@@ -1,6 +1,19 @@
-# Quas<span color='yellow'>Art</span>
-<img>
-Trabalho de Conclusão de Ano chamado de Quasart.
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=6528F7&height=120&section=header" /> 
+<div align="left" style="display: inline-block"> 
+	
+
+<a href="https://www.linkedin.com/in/thomaz-vasconcelos-mendes-027388268/">
+     <img align"center" width="300px" alt="Quasart" src="https://img.shields.io/badge/QuasArt-6528F7?style=for-the-badge&logo=Quasart&logoColor=white">
+</a>
+	<br>
+ 	<br> 
+	
+
+ 
+</div>	
+<br>
+<br>
+
 Equipe 6 - Integrantes:
 - Thomaz Vasconcelos Mendes N°35 RM86681
 - Bruna Lopes Rodrigues N°3 RM86701
@@ -9,3 +22,7 @@ Equipe 6 - Integrantes:
 - Nayara Santos N°27 RM86507
 - Tifanny Iara N°36 RM86569
 - Nicole Ribeiro N°28 RM88680
+
+<br>
+
+<img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=6528F7&height=120&section=footer" />
