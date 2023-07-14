@@ -1,6 +1,6 @@
 <img width=100% src="https://capsule-render.vercel.app/api?type=waving&color=6528F7&height=120&section=header" /> 
 	
-<img align='right' width='350px' src="imagens/quasart_logo.png"> 
+<img align='right' width='350px' src="img/quasart_logo.png"> 
 
 <a href="https://fiebedu.sharepoint.com/sites/Moonvies">
      <img width="300px" alt="Quasart" src="https://img.shields.io/badge/QuasArt-6528F7?style=for-the-badge&logo=Quasart&logoColor=white">
