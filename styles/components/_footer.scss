@@ -1,0 +1,12 @@
+@import '../abstract/variaveis';
+@import '../abstract/mixins';
+
+footer{
+    position: absolute;
+    left: 0;
+    bottom:0;
+    padding: 10px 15px;
+    background-color: $roxo-escuro;
+    width: 100%;
+    height: auto;
+}

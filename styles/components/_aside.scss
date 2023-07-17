@@ -5,31 +5,34 @@
 
 aside{
     width: 100%;
-    
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     background-color: $roxo;
-   
+    z-index:100;
+    
     .nav-bar__container{
         width: 100%;
-        display: flex;
-        gap: 1.5rem;
-        justify-content: center;
+        @include alignCenter(row,nowrap,space-evenly,center);
+        padding: 10px;
         .nav__item{
-            position: relative;
+            display: flex;
+            width: 30px;
+            height: 30px;
+            padding: 10px;
             transition: all .4s;
-            padding: 1rem;
             border-radius: 50%;
             &:hover, &:focus{
                 background-color: $roxo-escuro;
                 transform: translateY(-10px);
                 box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.336);
+                
             }
                 i{
-                position: relative;
-                color: white;
-                font-size: calc($fs-title / 1.4);
+                    
+                    position: relative;
+                    color: white;
+                   font-size: calc($fs-title / 1.5);
                 
             }
         }

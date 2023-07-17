@@ -8,6 +8,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
+  font-family: "Poppins", sans-serif;
 }
 
 :root {
@@ -16,21 +17,26 @@ body, html {
 
 aside {
   width: 100%;
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   background-color: #994BBD;
+  z-index: 100;
 }
 aside .nav-bar__container {
   width: 100%;
   display: flex;
-  gap: 1.5rem;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
 }
 aside .nav-bar__container .nav__item {
-  position: relative;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
   transition: all 0.4s;
-  padding: 1rem;
   border-radius: 50%;
 }
 aside .nav-bar__container .nav__item:hover, aside .nav-bar__container .nav__item:focus {
@@ -41,5 +47,48 @@ aside .nav-bar__container .nav__item:hover, aside .nav-bar__container .nav__item
 aside .nav-bar__container .nav__item i {
   position: relative;
   color: white;
-  font-size: 20px;
+  font-size: 18.6666666667px;
+}
+
+header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #994BBD;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #FFE03B;
+}
+header .logotipo {
+  margin: auto 0;
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+}
+header .logotipo a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+header .logotipo a .logo_img {
+  width: 40px;
+  height: 40px;
+}
+header .logotipo a .tipografia {
+  font-size: 14px;
+}
+
+footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px 15px;
+  background-color: #701786;
+  width: 100%;
+  height: auto;
 }/*# sourceMappingURL=style.css.map */

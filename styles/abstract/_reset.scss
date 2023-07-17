@@ -1,3 +1,4 @@
+@import './variaveis';
 *{
     padding: 0;
     margin: 0;
@@ -7,7 +8,8 @@
 body, html{
     text-decoration: none;
     width:100vw;
-    height:100vh;   
+    height:100vh;  
+    font-family: $ft-padrao; 
 }
 
 :root{
