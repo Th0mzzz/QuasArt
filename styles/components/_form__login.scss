@@ -1,0 +1,109 @@
+@import '../abstract/mixins';
+@import '../abstract/variaveis';
+@import '../abstract/reset';
+
+.form__container{
+    position: relative;
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%);
+    width: 95%;
+    height: 400px;
+    background-color: $azul;
+    padding: 1rem;
+    border-radius: 20px;
+    text-align: center;
+    
+   
+    .trocar__container{
+        position: absolute;
+        left: 0;
+        top: -30px;
+        width: 100%;
+        height: 50px;
+        border-radius: 20px 20px 0 0;
+        overflow: hidden;
+        @include alignCenter(row, nowrap, center,center);
+        .switch_btn{
+            font-size: $fs-text / 1.2;
+            color: #ffffff;
+            border: none;
+            width: 50%;
+            height: 100%;
+            background-color: $azul-escuro;
+            transition: all ease .5s;
+        }
+        .ativo{
+            z-index: 1000;
+            background-color: $azul;
+            box-shadow: 1px 4px 5px black;
+        }
+    }
+   
+    .form{
+        margin-bottom: 1rem;
+        width: 100%;
+        height: 100%;
+        display: none;
+        gap: 20px;
+        a{
+            position: relative;
+            bottom: 0%;
+            z-index: 1000;
+            transition: all ease .4s;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: calc($fs-text / 1.4);
+    
+            &:hover{
+                color: $amarelo;
+            }
+        } 
+        .foto-perfil{
+            position:relative ;
+            background: gray;
+            overflow: hidden;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2px solid $amarelo;
+            img{
+                width: 100%;
+                height: 100%;
+                
+            }
+        }
+        input{
+            font-size: calc($fs-text / 1.5);
+            width: 100%;
+            height: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+        .enviar__btn{
+            font-size: calc($fs-title / 2.3);
+            margin-top: 10px;
+            transition: all ease .4s;
+            height: 35px;
+            padding:0;
+            @include bg-gradient(right,$amarelo,$amarelo-escuro 20%);
+            color: #ffffff;
+            font-weight: bold;
+            &:hover{
+                transform: translateY(-5px);
+                box-shadow: 1px 1px 5px #ffffff;
+                
+            }
+            
+        }
+        
+    }
+    .ativado{
+        @include alignCenter(column,nowrap,center,center);
+    }
+    
+    
+}

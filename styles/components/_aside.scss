@@ -14,25 +14,23 @@ aside{
     .nav-bar__container{
         width: 100%;
         @include alignCenter(row,nowrap,space-evenly,center);
-        padding: 10px;
+        padding: 3px;
         .nav__item{
             display: flex;
-            width: 30px;
-            height: 30px;
-            padding: 10px;
+            width: 45px;
+            height: 45px;
             transition: all .4s;
             border-radius: 50%;
-            &:hover, &:focus{
+            &:hover{
                 background-color: $roxo-escuro;
                 transform: translateY(-10px);
                 box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.336);
                 
             }
                 i{
-                    
-                    position: relative;
+                    margin: auto;
                     color: white;
-                   font-size: calc($fs-title / 1.5);
+                    font-size: calc($fs-title / 1.5);
                 
             }
         }

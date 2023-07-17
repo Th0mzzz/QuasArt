@@ -4,3 +4,10 @@
     justify-content: $justify;
     align-items: $align;
 }
+
+@mixin bg-gradient($direction , $cores...){
+
+    background: linear-gradient(to $direction, $cores);
+
+}
+
