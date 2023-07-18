@@ -1,11 +1,14 @@
+// Arquivo: style.scss
+
 @import '../abstract/mixins';
 @import '../abstract/variaveis';
 @import '../abstract/reset';
 
-.form__container{
+.form__container {
+    z-index: 9;
     position: relative;
     left: 50%;
-    top: 50px;
+    top: 70px;
     transform: translate(-50%);
     width: 95%;
     height: 400px;
@@ -13,97 +16,137 @@
     padding: 1rem;
     border-radius: 20px;
     text-align: center;
-    
-   
-    .trocar__container{
+    color: $white;
+
+    p {
+        font-size: $fs-text / 1.1;
+        margin-bottom: 1rem;
+    }
+
+    h1 {
+        font-size: $fs-title / 1.4;
+        margin-top: 1rem;
+    }
+
+    .trocar__container {
+        z-index: 8;
         position: absolute;
         left: 0;
-        top: -30px;
+        top: -8%;
         width: 100%;
         height: 50px;
         border-radius: 20px 20px 0 0;
         overflow: hidden;
-        @include alignCenter(row, nowrap, center,center);
-        .switch_btn{
+        @include alignCenter(row, nowrap, center, center);
+
+        .switch_btn {
             font-size: $fs-text / 1.2;
-            color: #ffffff;
+            color: $white;
             border: none;
             width: 50%;
             height: 100%;
             background-color: $azul-escuro;
             transition: all ease .5s;
-        }
-        .ativo{
-            z-index: 1000;
-            background-color: $azul;
-            box-shadow: 1px 4px 5px black;
+            
+            &.ativo {
+                z-index: 1000;
+                background-color: $azul;
+                box-shadow: 1px 4px 5px black;
+            }
         }
     }
-   
-    .form{
-        margin-bottom: 1rem;
+
+    .form {
         width: 100%;
         height: 100%;
         display: none;
         gap: 20px;
-        a{
+        padding: 10px;
+        border-radius: 15px;
+        a {
             position: relative;
             bottom: 0%;
             z-index: 1000;
             transition: all ease .4s;
-            color: #ffffff;
+            color: $white;
             text-decoration: none;
             font-size: calc($fs-text / 1.4);
-    
-            &:hover{
+
+            &:hover {
                 color: $amarelo;
             }
         } 
-        .foto-perfil{
-            position:relative ;
+        .a{
+            position: static;
+            width: 100%;
+        }
+
+        .foto-perfil {
+            position: relative;
             background: gray;
             overflow: hidden;
             width: 90px;
             height: 90px;
             border-radius: 50%;
             border: 2px solid $amarelo;
-            img{
+
+            img {
                 width: 100%;
                 height: 100%;
-                
             }
         }
-        input{
+
+        input {
             font-size: calc($fs-text / 1.5);
             width: 100%;
             height: 30px;
-            background-color: #ffffff;
+            background-color: $white;
             border-radius: 10px;
             padding: 10px;
             border: none;
             outline: none;
         }
-        .enviar__btn{
+
+        .enviar__btn {
             font-size: calc($fs-title / 2.3);
             margin-top: 10px;
             transition: all ease .4s;
             height: 35px;
-            padding:0;
-            @include bg-gradient(right,$amarelo,$amarelo-escuro 20%);
-            color: #ffffff;
+            padding: 0;
+            @include bg-gradient(right, $amarelo, $amarelo-escuro 20%);
+            color: $white;
             font-weight: bold;
-            &:hover{
+
+            &:hover {
                 transform: translateY(-5px);
-                box-shadow: 1px 1px 5px #ffffff;
-                
+                box-shadow: 1px 1px 5px $white;
             }
-            
         }
-        
+
+        .token__container {
+            width: 100%;
+            margin-top: 20px;
+
+            p {
+                margin-bottom: 1rem;
+            }
+
+            .token__btns {      
+                @include alignCenter(row, nowrap, center, center);
+                gap: 5px;
+
+                .cod_token {
+                    width: calc(100% / 5);
+                    height: 50px;
+                    text-align: center;
+                    font-size: $fs-title;
+                }
+            }
+        }
     }
-    .ativado{
-        @include alignCenter(column,nowrap,center,center);
+    .ativado {
+        @include alignCenter(column, nowrap, start, center);
     }
-    
     
 }
+

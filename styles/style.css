@@ -48,7 +48,7 @@ aside .nav-bar__container .nav__item:hover {
 aside .nav-bar__container .nav__item i {
   margin: auto;
   color: white;
-  font-size: 18.6666666667px;
+  font-size: 16.6666666667px;
 }
 
 header {
@@ -81,7 +81,7 @@ header .logotipo a .logo_img {
   height: 40px;
 }
 header .logotipo a .tipografia {
-  font-size: 14px;
+  font-size: 12.5px;
 }
 
 footer {
@@ -114,9 +114,10 @@ body, html {
 }
 
 .form__container {
+  z-index: 9;
   position: relative;
   left: 50%;
-  top: 50px;
+  top: 70px;
   transform: translate(-50%);
   width: 95%;
   height: 400px;
@@ -124,11 +125,21 @@ body, html {
   padding: 1rem;
   border-radius: 20px;
   text-align: center;
+  color: white;
+}
+.form__container p {
+  font-size: 11.8181818182px;
+  margin-bottom: 1rem;
+}
+.form__container h1 {
+  font-size: 17.8571428571px;
+  margin-top: 1rem;
 }
 .form__container .trocar__container {
+  z-index: 8;
   position: absolute;
   left: 0;
-  top: -30px;
+  top: -8%;
   width: 100%;
   height: 50px;
   border-radius: 20px 20px 0 0;
@@ -139,37 +150,42 @@ body, html {
   align-items: center;
 }
 .form__container .trocar__container .switch_btn {
-  font-size: 13.3333333333px;
-  color: #ffffff;
+  font-size: 10.8333333333px;
+  color: white;
   border: none;
   width: 50%;
   height: 100%;
   background-color: #3c6daa;
   transition: all ease 0.5s;
 }
-.form__container .trocar__container .ativo {
+.form__container .trocar__container .switch_btn.ativo {
   z-index: 1000;
   background-color: #508CD3;
   box-shadow: 1px 4px 5px black;
 }
 .form__container .form {
-  margin-bottom: 1rem;
   width: 100%;
   height: 100%;
   display: none;
   gap: 20px;
+  padding: 10px;
+  border-radius: 15px;
 }
 .form__container .form a {
   position: relative;
   bottom: 0%;
   z-index: 1000;
   transition: all ease 0.4s;
-  color: #ffffff;
+  color: white;
   text-decoration: none;
-  font-size: 11.4285714286px;
+  font-size: 9.2857142857px;
 }
 .form__container .form a:hover {
   color: #FFE03B;
+}
+.form__container .form .a {
+  position: static;
+  width: 100%;
 }
 .form__container .form .foto-perfil {
   position: relative;
@@ -185,32 +201,52 @@ body, html {
   height: 100%;
 }
 .form__container .form input {
-  font-size: 10.6666666667px;
+  font-size: 8.6666666667px;
   width: 100%;
   height: 30px;
-  background-color: #ffffff;
+  background-color: white;
   border-radius: 10px;
   padding: 10px;
   border: none;
   outline: none;
 }
 .form__container .form .enviar__btn {
-  font-size: 12.1739130435px;
+  font-size: 10.8695652174px;
   margin-top: 10px;
   transition: all ease 0.4s;
   height: 35px;
   padding: 0;
   background: linear-gradient(to right, #FFE03B, #ffd257 20%);
-  color: #ffffff;
+  color: white;
   font-weight: bold;
 }
 .form__container .form .enviar__btn:hover {
   transform: translateY(-5px);
-  box-shadow: 1px 1px 5px #ffffff;
+  box-shadow: 1px 1px 5px white;
+}
+.form__container .form .token__container {
+  width: 100%;
+  margin-top: 20px;
+}
+.form__container .form .token__container p {
+  margin-bottom: 1rem;
+}
+.form__container .form .token__container .token__btns {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.form__container .form .token__container .token__btns .cod_token {
+  width: 20%;
+  height: 50px;
+  text-align: center;
+  font-size: 25px;
 }
 .form__container .ativado {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }/*# sourceMappingURL=style.css.map */

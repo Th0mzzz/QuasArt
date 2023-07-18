@@ -11,49 +11,84 @@
     <title>Login</title>
 </head>
 <body>
+
     <header class="header">
         <div class="logotipo">
-             <a href="../index.html"> <img src="../img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+            <a href="../index.html">
+                <img src="../img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
+                <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+            </a>
         </div>
     </header>
 
     <main>
-        <div class="form__container">
-            <div class="trocar__container">
-                <button class="switch_btn ativo"> <i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</button>
-                <button class="switch_btn"> <i class="fa-solid fa-user-plus"></i> Cadastrar-se</button>
-            </div>
-            
-            
-            <form action="" class="form ativado" id="login">
 
-                <div class="foto-perfil ">
+        <div class="form__container" id="conta">
+
+            <div class="trocar__container">
+                <button class="switch_btn ativo"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</button>
+                <button class="switch_btn"><i class="fa-solid fa-user-plus"></i> Cadastrar-se</button>
+            </div>
+
+            <form action="" class="form ativado" id="login">
+                <div class="foto-perfil">
                     <img src="../img/perfil-padrao.webp" alt="foto-perfil">
                 </div>
                 
                 <input type="text" placeholder="Digite seu Email ou número de telefone">
                 <input type="password" placeholder="Digite sua senha">
-                <input type="submit" class="enviar__btn" value="Entrar">
-                <a href="esqueceu.html">Esqueceu sua senha?</a>
+                <a href="../index.html" class="a"><input type="button" class="enviar__btn" value="Entrar"></a>
+                <a class="esqueceu_btn">Esqueceu sua senha?</a>
             </form>
 
             <form action="" class="form " id="cadastro">
-                 <div class="foto-perfil">
+                <div class="foto-perfil">
                     <img src="../img/perfil-padrao.webp" alt="foto-perfil">
                 </div>
                
                 <input type="text" placeholder="Digite seu Email ou número de telefone">
-                <input type="password" placeholder="Digite sua senha">
+                <input type="text" placeholder="Digite seu usuário">
                 <input type="password" placeholder="Confirme sua senha">
-                
-                <input type="submit" class="enviar__btn" value="Cadastrar-se">
-                <a href="esqueceu.html">Esqueceu sua senha?</a>
+                <a href="../index.html" class="a"><input type="button" class="enviar__btn" value="Cadastrar-se"></a>
+                <a class="esqueceu_btn">Esqueceu sua senha?</a>
             </form>
-          
 
-       
+            <form action="" class="form" id="token">
+                <h2>Esqueceu a senha?</h2>
+                <input type="text" class="" name="email__esqueceu" placeholder="Digite seu Email para o envio do Token">
+                <input type="button" class="enviar__btn" value="Enviar" id="enviarToken">
+                
+                <div class="token__container">
+                    <p>Digite o Token de segurança:</p>
+                    <div class="token__btns">           
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1">
+                    </div>
+                    <input type="button" class="enviar__btn" value="Verificar" id="verificarToken">
+                </div>
+                <a class="cancelar_btn">Cancelar</a>
+            </form>
+
+            
+            <form action="" class="form" id="novaSenha">
+                <div class="logotipo">
+                    <a href="../index.html">
+                        <img src="../img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
+                        <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+                    </a>
+                </div>
+
+                <input type="text" placeholder="Digite sua nova senha">
+                <input type="text" placeholder="Confirme sua nova senha">
+                <a href="../index.html" class="a"><input type="button" class="enviar__btn" value="Enviar"></a>
+                <a class="cancelar_btn">Cancelar</a>
+            </form>
+
         </div>
-        
+
     </main>
     <script src="../js/login.js"></script>
 </body>
