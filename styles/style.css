@@ -249,4 +249,111 @@ body, html {
   flex-flow: column nowrap;
   justify-content: start;
   align-items: center;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+}
+
+body, html {
+  overflow-x: hidden;
+  text-decoration: none;
+  width: 100vw;
+  height: 100vh;
+}
+
+:root {
+  scroll-behavior: smooth;
+}
+
+.search__container {
+  display: none;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5882352941);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  left: 0;
+  top: 0;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+  padding: 1rem;
+}
+.search__container .input__container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  padding: 5px;
+  border-radius: 15px;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 1px 2px 3px #000;
+  background-color: white;
+}
+.search__container .input__container:hover, .search__container .input__container:focus {
+  border: 1px solid #701786;
+}
+.search__container .input__container input {
+  width: 90%;
+  border: none;
+  background: transparent;
+  font-size: 11.8181818182px;
+  outline: none;
+  padding-left: 10px;
+  color: #701786;
+}
+.search__container .input__container .search__btn {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  height: 100%;
+  border: none;
+  border-radius: 0 15px 15px 0;
+  background-color: #701786;
+  color: white;
+  transition: all 0.2s;
+  font-size: 10.8333333333px;
+}
+.search__container .input__container .search__btn:hover {
+  background-color: transparent;
+  border-left: 2px solid #701786;
+  color: #701786;
+}
+.search__container .tags__container {
+  width: 100%;
+  height: auto;
+  padding: 0.4rem;
+  overflow: hidden;
+}
+.search__container .tags__container .tag__inner {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.search__container .tags__container .tag__inner a {
+  width: auto;
+  border: 1px solid #DA9AF8;
+  font-size: 10.8333333333px;
+  background-color: #994BBD;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.search__container .tags__container .tag__inner a:hover {
+  background-color: transparent;
+  border: 1px solid #994BBD;
+  color: #994BBD;
 }/*# sourceMappingURL=style.css.map */

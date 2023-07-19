@@ -19,6 +19,7 @@ header{
         a{
             text-decoration: none;
             color: white;
+            display: flex;
            @include alignCenter(row,nowrap,space-between,center);
             .logo_img{
                 width: 40px;

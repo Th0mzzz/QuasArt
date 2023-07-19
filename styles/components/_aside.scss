@@ -13,6 +13,7 @@ aside{
     
     .nav-bar__container{
         width: 100%;
+        display: flex;
         @include alignCenter(row,nowrap,space-evenly,center);
         padding: 3px;
         .nav__item{
