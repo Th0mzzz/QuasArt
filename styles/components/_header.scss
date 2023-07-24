@@ -9,7 +9,7 @@ header{
     padding: 10px 10px;
     background-color:$preto;
     display: flex;
-    align-items: center; 
+    @include alignCenter(row,nowrap,space-between,center);
     border-bottom: 1px solid $amarelo;
     .logotipo{
         margin: auto 0 ;
@@ -28,6 +28,18 @@ header{
             .tipografia{
                 font-size: calc($fs-title / 2);
             }
+        }
+    }
+    .assine-btn{
+        border: 1px solid $azul;
+        background: transparent;
+        color: $azul;
+        padding: 3px 5px;
+        border-radius: 5px; 
+        transition: all .2s;
+        &:hover{
+            background: $azul;
+            color: $preto;
         }
     }
 }

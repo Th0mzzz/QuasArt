@@ -1,0 +1,63 @@
+@import '../abstract/variaveis';
+@import '../abstract/mixins';
+
+.carousel-container {
+    
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width:1200px; /* Defina o valor desejado */
+    margin: 0 auto;
+    padding: 10px;
+    h1{
+      font-size: $fs-text + 5px;
+      border-bottom: 1px solid $amarelo;
+      color: $amarelo;
+      font-weight: normal;
+    }
+    .itens {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+      gap: 1rem;
+      padding: 10px;
+      .item {
+        flex: 0 0 100px;
+        height: auto;
+        box-shadow: 1px 3px 5px $preto;
+        img {
+          object-fit: cover;
+          width: 100%;
+        }
+        p{
+          position: absolute;
+          bottom: -10px;
+          font-size: $fs-text / 1.2;
+          white-space: pre-wrap;
+          width: 100%;
+          color: #fff;
+        }
+      }
+    }
+  
+    .prev-button,
+    .next-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      font-size: 1.5rem;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+  
+    .prev-button {
+      left: 0;
+    }
+  
+    .next-button {
+      right: 0;
+    }
+  }

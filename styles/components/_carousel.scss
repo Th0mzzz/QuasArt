@@ -7,60 +7,93 @@
     max-width:1200px;
     margin: 0 auto;
     overflow: hidden;
-
+    box-shadow: 1px 5px 5px $preto;
+    margin-bottom: 1rem;
     .slides {
         display: flex;
         transition: transform 0.3s ease;
-    }
 
-    .slide {
-        flex: 0 0 100%;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 24px;
-        color: white;
+        .slide {
+            position: relative;
+            flex: 0 0 100%;
+            height: 200px;
+            display: flex;
+            align-items: end;
+            justify-content: start;
+            padding:2rem;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    left: 0;
+                    top: 0;
+                    position: absolute;
+                    z-index: -1;
+                    object-fit: cover;
+                    object-position: center;       
+                }
+                .texto{
+                    display: flex;
+                    @include alignCenter (column, nowrap, center, start);
+                    color: $white;
+                    h1{
+                        font-size: $fs-text+3px;
+                    }
+                    p{
+                        width: 60%;
+                        font-size: $fs-text/1.1;
+                    }
+                }
+                .btn__vermais{
+                    position: absolute;
+                    right: 10%;
+                    bottom: 10%;
+                    border: none;
+                    background: $amarelo;
+                    padding: 5px 10px;
+                    border-radius: 5px;
+                    font-weight: bold;
+                    color: $white;
+                    transition: all .2s;
+                    font-size: $fs-text;
+                    &:hover{
+                        background-color: $roxo;
+                    }
+                }
+            }   
+            
+        } 
 
-        &:nth-child(1) {
-            background-color: #ff7f50;
-        }
 
-        &:nth-child(2) {
-            background-color: #87ceeb;
-        }
 
-        &:nth-child(3) {
-            background-color: #90ee90;
-        }
 
-        &:nth-child(4) {
-            background-color: #ffa07a;
-        }
-    }
+            .prevBtn,
+            .nextBtn {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                background: transparent;
+                border: 2px solid $white;
+                border-radius:40px;
+                color: $white;
+                padding: 10px 20px;
+                cursor: pointer;
+                z-index: 1;
+                transition: all .2s;
+                &:hover{
+                    background-color: $white;
+                    color:$roxo;
+                }
+            }
 
-    .prevBtn,
-    .nextBtn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: #333;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        z-index: 1;
+            .prevBtn {
+                left: 5px;
+            }
 
-        &:hover {
-            background-color: #444;
-        }
-    }
+            .nextBtn {
+                right: 5px;
+            }
+       
+   
 
-    .prevBtn {
-        left: 0;
-    }
 
-    .nextBtn {
-        right: 0;
-    }
 }
