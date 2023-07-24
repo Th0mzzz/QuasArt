@@ -4,6 +4,7 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
+  list-style: none;
 }
 
 body, html {
@@ -11,6 +12,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
+  background-color: #1F1F1F;
 }
 
 :root {
@@ -18,37 +20,44 @@ body, html {
 }
 
 aside {
+  display: none;
   width: 100%;
   position: fixed;
   left: 0;
   bottom: 0;
-  background-color: #994BBD;
   z-index: 100;
 }
-aside .nav-bar__container {
+aside ul {
   width: 100%;
+  padding: 5px;
+  background-color: #151515;
+  position: relative;
   display: flex;
+  gap: 1rem;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  padding: 3px;
 }
-aside .nav-bar__container .nav__item {
-  display: flex;
-  width: 45px;
-  height: 45px;
-  transition: all 0.4s;
+aside ul .list {
+  border: 1px solid #FFE03B;
+  padding: 10px 15px;
   border-radius: 50%;
+  transition: all 0.2s;
 }
-aside .nav-bar__container .nav__item:hover {
-  background-color: #701786;
+aside ul .list a {
+  color: #FFE03B;
+}
+aside ul .list:hover {
+  box-shadow: 0px 0px 5px white;
+}
+aside ul .active {
+  background-color: #994BBD;
   transform: translateY(-10px);
-  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.336);
+  border: 1px solid #994BBD;
+  box-shadow: 0px 0px 5px white;
 }
-aside .nav-bar__container .nav__item i {
-  margin: auto;
-  color: white;
-  font-size: 16.6666666667px;
+aside ul .active a {
+  color: #151515;
 }
 
 header {
@@ -56,8 +65,8 @@ header {
   left: 0;
   top: 0;
   width: 100%;
-  padding: 5px 10px;
-  background-color: #994BBD;
+  padding: 10px 10px;
+  background-color: #151515;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #FFE03B;
@@ -70,15 +79,15 @@ header .logotipo {
 }
 header .logotipo a {
   text-decoration: none;
-  color: white;
+  color: #994BBD;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
 }
 header .logotipo a .logo_img {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
 }
 header .logotipo a .tipografia {
   font-size: 12.5px;
@@ -100,6 +109,7 @@ footer {
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
+  list-style: none;
 }
 
 body, html {
@@ -107,6 +117,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
+  background-color: #1F1F1F;
 }
 
 :root {
@@ -155,7 +166,7 @@ body, html {
   border: none;
   width: 50%;
   height: 100%;
-  background-color: #3c6daa;
+  background-color: #112B4A;
   transition: all ease 0.5s;
 }
 .form__container .trocar__container .switch_btn.ativo {
@@ -257,6 +268,7 @@ body, html {
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
+  list-style: none;
 }
 
 body, html {
@@ -264,6 +276,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
+  background-color: #1F1F1F;
 }
 
 :root {
@@ -284,6 +297,7 @@ body, html {
   justify-content: start;
   align-items: center;
   padding: 1rem;
+  transition: all 0.2s;
 }
 .search__container .input__container {
   display: flex;
@@ -294,7 +308,7 @@ body, html {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 1px 2px 3px #000;
+  box-shadow: 1px 2px 3px #151515;
   background-color: white;
 }
 .search__container .input__container:hover, .search__container .input__container:focus {
@@ -356,4 +370,58 @@ body, html {
   background-color: transparent;
   border: 1px solid #994BBD;
   color: #994BBD;
+}
+.carousel {
+  position: relative;
+  min-width: 300px;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.carousel .slides {
+  display: flex;
+  transition: transform 0.3s ease;
+}
+.carousel .slide {
+  flex: 0 0 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+}
+.carousel .slide:nth-child(1) {
+  background-color: #ff7f50;
+}
+.carousel .slide:nth-child(2) {
+  background-color: #87ceeb;
+}
+.carousel .slide:nth-child(3) {
+  background-color: #90ee90;
+}
+.carousel .slide:nth-child(4) {
+  background-color: #ffa07a;
+}
+.carousel .prevBtn,
+.carousel .nextBtn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+.carousel .prevBtn:hover,
+.carousel .nextBtn:hover {
+  background-color: #444;
+}
+.carousel .prevBtn {
+  left: 0;
+}
+.carousel .nextBtn {
+  right: 0;
 }/*# sourceMappingURL=style.css.map */

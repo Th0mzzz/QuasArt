@@ -6,8 +6,8 @@ header{
     left: 0;
     top:0;
     width:100%;
-    padding: 5px 10px;
-    background-color:$roxo;
+    padding: 10px 10px;
+    background-color:$preto;
     display: flex;
     align-items: center; 
     border-bottom: 1px solid $amarelo;
@@ -18,12 +18,12 @@ header{
         overflow: hidden;
         a{
             text-decoration: none;
-            color: white;
+            color:$roxo;
             display: flex;
            @include alignCenter(row,nowrap,space-between,center);
             .logo_img{
-                width: 40px;
-                height:40px;
+                width: 35px;
+                height:35px;
             }
             .tipografia{
                 font-size: calc($fs-title / 2);

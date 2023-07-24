@@ -3,7 +3,7 @@
 @import '../abstract/reset';
 
 .search__container{
-    display: none;
+    display:none;
     position:absolute;
     width:100vw;
     height:100vh;
@@ -13,6 +13,7 @@
     top:0;
     @include alignCenter(column, nowrap,start,center);
     padding: 1rem;
+    transition: all .2s;
     .input__container{
         display: flex;
         position: relative;

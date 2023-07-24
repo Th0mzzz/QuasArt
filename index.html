@@ -18,19 +18,28 @@
    </header>
    
    <aside class="aside">
-        <nav class="nav-bar__container">
+        <ul>
+            <li class="list" id="search__btn">
+                <a class="nav__item" ><i class="fa-solid fa-magnifying-glass"></i></a>
+            </li>
+            <li class="list active">
+                <a href="index.html" class="nav__item"><i class="fa-solid fa-house"></i></a>
+            </li>
+            <li class="list">
+                <a class="nav__item"><i class="fa-solid fa-video"></i></a>
+            </li>
+            <li class="list">
+                <a class="nav__item"><i class="fa-regular fa-plus"></i></a>
+            </li>
+            <li class="list">
+                <a href="login/login.html" class="nav__item"><i class="fa-regular fa-user"></i></a>
+            </li>
             
-            <a class="nav__item" id="search__btn"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="" class="nav__item"><i class="fa-solid fa-house"></i></a>
-            <a href="" class="nav__item"><i class="fa-solid fa-video"></i></a>
-            <a href="" class="nav__item"><i class="fa-regular fa-plus"></i></a>
-            <a href="login/login.html" class="nav__item"><i class="fa-regular fa-user"></i></a>
-
-        </nav>
+        </ul>
+        
    </aside>
    <main>
-
-    <section class="search__container">
+    <section class="search__container" id="search"> 
 
         <div class="input__container">
             <input type="text" class="search__input">
@@ -60,10 +69,21 @@
         
     </section>
 
+    <section class="carousel">
+            <div class="slides">
+                <div class="slide">Slide 1</div>
+                <div class="slide">Slide 2</div>
+                <div class="slide">Slide 3</div>
+                <div class="slide">Slide 4</div>
+            </div>
+            <button class="prevBtn" onclick="prevSlide()"><</button>
+            <button class="nextBtn" onclick="nextSlide()">></button>
+    </section>
    </main>
    <footer>
     
    </footer>
    <script src="js/index.js"></script>
+   <script src="js/carousel.js"></script>
 </body>
 </html>

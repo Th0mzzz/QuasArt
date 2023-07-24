@@ -4,37 +4,43 @@
 
 
 aside{
+    display: none;
     width: 100%;
     position: fixed;
     left: 0;
     bottom: 0;
-    background-color: $roxo;
     z-index:100;
-    
-    .nav-bar__container{
+    ul{ 
         width: 100%;
+        padding: 5px;
+        background-color: $preto;
+        position: relative;
         display: flex;
-        @include alignCenter(row,nowrap,space-evenly,center);
-        padding: 3px;
-        .nav__item{
-            display: flex;
-            width: 45px;
-            height: 45px;
-            transition: all .4s;
+        gap: 1rem;
+        @include alignCenter(row,nowrap,center,center);
+        .list{
+            border: 1px solid $amarelo;
+            padding: 10px 15px;
             border-radius: 50%;
-            &:hover{
-                background-color: $roxo-escuro;
-                transform: translateY(-10px);
-                box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.336);
-                
+            transition: all .2s;
+            a{
+                color: $amarelo;
             }
-                i{
-                    margin: auto;
-                    color: white;
-                    font-size: calc($fs-title / 1.5);
-                
+            &:hover{
+                box-shadow: 0px 0px 5px $white;
             }
         }
-        
+        .active{
+            background-color: $roxo;
+            transform: translateY(-10px);
+            border: 1px solid $roxo;
+            box-shadow: 0px 0px 5px $white;
+            a{
+                color: $preto;
+            }
+            
+        }
     }
 }
+
+
