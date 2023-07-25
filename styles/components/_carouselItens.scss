@@ -6,7 +6,7 @@
     overflow: hidden;
     width: 100%;
     margin-bottom: 10rem;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
     h3{
         color: $amarelo;
         font-weight: normal;
@@ -22,11 +22,15 @@
         margin-top: 20px;    
   
       .slide {
-        flex: 0 0 150px;
-        height: 200px;
+        flex: 0 0 50%;
+        height:fit-content;
         overflow: hidden;
         display: flex;
         @include alignCenter (column, nowrap, center, center); 
+        transition: all ease .2s;
+        &:hover{
+            transform: translateY(-10px);
+        }
 
         p{
             color: $white;

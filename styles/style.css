@@ -401,7 +401,7 @@ body, html {
 .carousel .slides .slide {
   position: relative;
   flex: 0 0 100%;
-  height: 200px;
+  height: 400px;
   display: flex;
   align-items: end;
   justify-content: start;
@@ -413,10 +413,10 @@ body, html {
   left: 0;
   top: 0;
   position: absolute;
+  -o-object-position: top;
+     object-position: top;
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
 }
 .carousel .slides .slide .texto {
   display: flex;
@@ -480,7 +480,7 @@ body, html {
   overflow: hidden;
   width: 100%;
   margin-bottom: 10rem;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 .carouselItens h3 {
   color: #FFE03B;
@@ -496,13 +496,18 @@ body, html {
   margin-top: 20px;
 }
 .carouselItens .slides .slide {
-  flex: 0 0 150px;
-  height: 200px;
+  flex: 0 0 50%;
+  height: -moz-fit-content;
+  height: fit-content;
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
+  transition: all ease 0.2s;
+}
+.carouselItens .slides .slide:hover {
+  transform: translateY(-10px);
 }
 .carouselItens .slides .slide p {
   color: white;
