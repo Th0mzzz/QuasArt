@@ -20,7 +20,6 @@ body, html {
 }
 
 aside {
-  display: none;
   width: 100%;
   position: fixed;
   left: 0;
@@ -312,6 +311,7 @@ body, html {
   align-items: center;
   padding: 1rem;
   transition: all 0.2s;
+  z-index: 99;
 }
 .search__container .input__container {
   display: flex;
@@ -413,7 +413,6 @@ body, html {
   left: 0;
   top: 0;
   position: absolute;
-  z-index: -1;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
@@ -425,12 +424,13 @@ body, html {
   justify-content: center;
   align-items: start;
   color: white;
+  z-index: 1;
 }
 .carousel .slides .slide .texto h1 {
   font-size: 16px;
 }
 .carousel .slides .slide .texto p {
-  width: 60%;
+  width: 70%;
   font-size: 11.8181818182px;
 }
 .carousel .slides .slide .btn__vermais {
@@ -475,60 +475,72 @@ body, html {
   right: 5px;
 }
 
-.carousel-container {
+.carouselItens {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 1200px; /* Defina o valor desejado */
-  margin: 0 auto;
-  padding: 10px;
+  margin-bottom: 10rem;
+  padding: 0 1rem;
 }
-.carousel-container h1 {
-  font-size: 18px;
-  border-bottom: 1px solid #FFE03B;
+.carouselItens h3 {
   color: #FFE03B;
   font-weight: normal;
+  border-bottom: 1px solid #FFE03B;
+  width: 100%;
 }
-.carousel-container .itens {
+.carouselItens .slides {
   display: flex;
-  transition: transform 0.3s ease-in-out;
-  gap: 1rem;
-  padding: 10px;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  gap: 35px;
+  margin-top: 20px;
 }
-.carousel-container .itens .item {
-  flex: 0 0 100px;
-  height: auto;
-  box-shadow: 1px 3px 5px #151515;
+.carouselItens .slides .slide {
+  flex: 0 0 150px;
+  height: 200px;
+  overflow: hidden;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
-.carousel-container .itens .item img {
+.carouselItens .slides .slide p {
+  color: white;
+  font-size: 10.8333333333px;
+  text-shadow: 1px 2px 3px #151515;
+}
+.carouselItens .slides .slide img {
+  width: 100%;
+  height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  width: 100%;
+  -o-object-position: center;
+     object-position: center;
+  box-shadow: 2px 3px 5px #151515;
 }
-.carousel-container .itens .item p {
+.carouselItens .prevBtn,
+.carouselItens .nextBtn {
   position: absolute;
-  bottom: -10px;
-  font-size: 10.8333333333px;
-  white-space: pre-wrap;
-  width: 100%;
-  color: #fff;
-}
-.carousel-container .prev-button,
-.carousel-container .next-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 1.5rem;
+  top: 100%;
+  transform: translateY(-100%);
+  height: 85%;
   border: none;
-  padding: 10px;
+  color: white;
+  padding: 10px 20px;
   cursor: pointer;
   z-index: 1;
+  transition: all 0.2s;
 }
-.carousel-container .prev-button {
+.carouselItens .prevBtn:hover,
+.carouselItens .nextBtn:hover {
+  font-weight: 800;
+  font-size: 25px;
+}
+.carouselItens .prevBtn {
   left: 0;
+  background: linear-gradient(to right, #151515, transparent);
 }
-.carousel-container .next-button {
+.carouselItens .nextBtn {
   right: 0;
+  background: linear-gradient(to left, #151515, transparent);
 }/*# sourceMappingURL=style.css.map */

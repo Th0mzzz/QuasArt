@@ -14,6 +14,7 @@
     @include alignCenter(column, nowrap,start,center);
     padding: 1rem;
     transition: all .2s;
+    z-index: 99;
     .input__container{
         display: flex;
         position: relative;

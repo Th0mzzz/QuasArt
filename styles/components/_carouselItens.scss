@@ -1,63 +1,75 @@
-@import '../abstract/variaveis';
 @import '../abstract/mixins';
+@import '../abstract/variaveis'; 
 
-.carousel-container {
-    
+.carouselItens{
     position: relative;
     overflow: hidden;
     width: 100%;
-    max-width:1200px; /* Defina o valor desejado */
-    margin: 0 auto;
-    padding: 10px;
-    h1{
-      font-size: $fs-text + 5px;
-      border-bottom: 1px solid $amarelo;
-      color: $amarelo;
-      font-weight: normal;
+    margin-bottom: 10rem;
+    padding: 0 1rem;
+    h3{
+        color: $amarelo;
+        font-weight: normal;
+        border-bottom: 1px solid $amarelo;
+        width: 100%;
     }
-    .itens {
-      display: flex;
-      transition: transform 0.3s ease-in-out;
-      gap: 1rem;
-      padding: 10px;
-      .item {
-        flex: 0 0 100px;
-        height: auto;
-        box-shadow: 1px 3px 5px $preto;
-        img {
-          object-fit: cover;
-          width: 100%;
-        }
+  
+    .slides {
+        display: flex;
+        transition: transform 0.3s ease;
+        touch-action: pan-y; 
+        gap: 35px;
+        margin-top: 20px;    
+  
+      .slide {
+        flex: 0 0 150px;
+        height: 200px;
+        overflow: hidden;
+        display: flex;
+        @include alignCenter (column, nowrap, center, center); 
+
         p{
-          position: absolute;
-          bottom: -10px;
-          font-size: $fs-text / 1.2;
-          white-space: pre-wrap;
+            color: $white;
+            font-size: $fs-text / 1.2;
+            text-shadow: 1px 2px 3px $preto;
+        }
+  
+        img {
           width: 100%;
-          color: #fff;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+          box-shadow: 2px 3px 5px $preto;
         }
       }
     }
-  
-    .prev-button,
-    .next-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      font-size: 1.5rem;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 1;
+    .prevBtn,
+    .nextBtn {
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        height: 85%;
+        border: none;
+        color: $white;
+        padding: 10px 20px;
+        cursor: pointer;
+        z-index: 1;
+        transition: all .2s;
+        &:hover{
+            
+            font-weight: 800;
+            font-size: $fs-title;
+        }
     }
-  
-    .prev-button {
-      left: 0;
+
+    .prevBtn {
+        left: 0;
+        background: linear-gradient(to right, $preto,transparent);
     }
-  
-    .next-button {
-      right: 0;
+
+    .nextBtn {
+        right: 0;
+        background: linear-gradient(to left, $preto,transparent);
     }
   }
+  
