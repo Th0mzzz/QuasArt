@@ -1,0 +1,63 @@
+@import '../abstract/mixins';
+@import '../abstract/variaveis'; 
+
+.carouselvideos{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin: 2rem 0 3rem 0;
+    padding: 0 1.5rem;
+    h3{
+        color: $amarelo;
+        font-weight: normal;
+        border-bottom: 1px solid $amarelo;
+        width: 100%;
+    }
+  
+    .slides {
+        display: flex;
+        transition: transform 0.3s ease;
+        touch-action: pan-y; 
+        gap: 20px; 
+      .slide {
+        @include slideItem(40%, fit-content, 15px);      
+        display: flex;
+        @include alignCenter (column, nowrap, center, center); 
+        margin-top: 10px;
+        video{
+          width: 100%;
+          height:100% ;
+          margin: 0 auto;
+        }
+      }
+    }
+    .prevBtn,
+    .nextBtn {
+        position: absolute;
+        top: 100%;
+        transform: translateY(-100%);
+        height: 85%;
+        border: none;
+        color: $white;
+        padding: 10px 20px;
+        cursor: pointer;
+        z-index: 1;
+        transition: all .2s;
+        &:hover{
+            
+            font-weight: 800;
+            font-size: $fs-title;
+        }
+    }
+
+    .prevBtn {
+        left: 0;
+        background: linear-gradient(to right, $preto,transparent);
+    }
+
+    .nextBtn {
+        right: 0;
+        background: linear-gradient(to left, $preto,transparent);
+    }
+  }
+  

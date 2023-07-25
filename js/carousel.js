@@ -62,9 +62,30 @@ next.addEventListener('click',nextSlide)
 carrosel("carouselInicial")
 carrosel("recomendados")
 carrosel("resenhas1")
-// carrosel("recentes")
+carrosel("recentes")
+
+carrosel('videos')
+
 // carrosel("paraVoce")
 
 
-// Carrosel Itens
+// Videos 
+
+const videosContainer = document.querySelectorAll('.carouselvideos');
+
+videosContainer.forEach(container =>{
+
+let slides = container.querySelectorAll('.slide');
+
+
+slides.forEach(slide =>{
+    let video = slide.getElementsByTagName(video)
+
+    slide.addEventListener("mouseenter", video.play())
+    slide.addEventListener("mouseleave", video.pause())
+
+})
+
+
+})
 

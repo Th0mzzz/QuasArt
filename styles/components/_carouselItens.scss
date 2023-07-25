@@ -20,19 +20,10 @@
         touch-action: pan-y; 
         gap: 35px;
         margin-top: 20px;    
-  
       .slide {
-        border-radius: 5px;
-        flex: 0 0 50%;
-        height:200px;
-        overflow: hidden;
+        @include slideItem(50%, 200px, 5px);      
         display: flex;
         @include alignCenter (column, nowrap, center, center); 
-        transition: all ease .2s;
-        &:hover{
-            transform: translateY(-10px);
-        }
-
         p{
             color: $white;
             font-size: $fs-text / 1.2;
