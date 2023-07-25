@@ -18,22 +18,16 @@ aside{
         gap: 1rem;
         @include alignCenter(row,nowrap,center,center);
         .list{
-            border: 1px solid $amarelo;
             padding: 10px 15px;
             border-radius: 50%;
             transition: all .2s;
             a{
                 color: $amarelo;
             }
-            &:hover{
-                box-shadow: 0px 0px 5px $white;
-            }
         }
         .active{
             background-color: $roxo;
             transform: translateY(-10px);
-            border: 1px solid $roxo;
-            box-shadow: 0px 0px 5px $white;
             a{
                 color: $preto;
             }
@@ -41,5 +35,6 @@ aside{
         }
     }
 }
+
 
 

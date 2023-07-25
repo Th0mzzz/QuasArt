@@ -61,6 +61,9 @@ next.addEventListener('click',nextSlide)
 
 carrosel("carouselInicial")
 carrosel("recomendados")
+carrosel("resenhas1")
+// carrosel("recentes")
+// carrosel("paraVoce")
 
 
 // Carrosel Itens

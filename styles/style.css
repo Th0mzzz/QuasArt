@@ -38,7 +38,6 @@ aside ul {
   align-items: center;
 }
 aside ul .list {
-  border: 1px solid #FFE03B;
   padding: 10px 15px;
   border-radius: 50%;
   transition: all 0.2s;
@@ -46,14 +45,9 @@ aside ul .list {
 aside ul .list a {
   color: #FFE03B;
 }
-aside ul .list:hover {
-  box-shadow: 0px 0px 5px white;
-}
 aside ul .active {
   background-color: #994BBD;
   transform: translateY(-10px);
-  border: 1px solid #994BBD;
-  box-shadow: 0px 0px 5px white;
 }
 aside ul .active a {
   color: #151515;
@@ -385,6 +379,11 @@ body, html {
   border: 1px solid #994BBD;
   color: #994BBD;
 }
+
+.show {
+  display: flex;
+}
+
 .carousel {
   position: relative;
   min-width: 300px;
@@ -392,7 +391,7 @@ body, html {
   margin: 0 auto;
   overflow: hidden;
   box-shadow: 1px 5px 5px #151515;
-  margin-bottom: 1rem;
+  margin-bottom: 5rem;
 }
 .carousel .slides {
   display: flex;
@@ -479,7 +478,7 @@ body, html {
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin-bottom: 10rem;
+  margin: 2rem 0 3rem 0;
   padding: 0 1.5rem;
 }
 .carouselItens h3 {
@@ -496,9 +495,9 @@ body, html {
   margin-top: 20px;
 }
 .carouselItens .slides .slide {
+  border-radius: 5px;
   flex: 0 0 50%;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 200px;
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
@@ -548,4 +547,123 @@ body, html {
 .carouselItens .nextBtn {
   right: 0;
   background: linear-gradient(to left, #151515, transparent);
+}
+
+.carouselresenhas {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin: 2rem 0 5rem 0;
+  padding: 0 10px;
+}
+.carouselresenhas h3 {
+  color: #FFE03B;
+  font-weight: normal;
+  border-bottom: 1px solid #FFE03B;
+  width: 100%;
+}
+.carouselresenhas .slides {
+  display: flex;
+  transition: transform 0.3s ease;
+  touch-action: pan-y;
+  gap: 10px;
+  margin-top: 20px;
+}
+.carouselresenhas .slides .slide {
+  flex: 0 0 100%;
+  height: 250px;
+  overflow: hidden;
+  transition: all ease 0.2s;
+  background: #151515;
+  padding: 10px 15px;
+  border-radius: 15px;
+  box-shadow: 2px 3px 5px #151515;
+}
+.carouselresenhas .slides .slide:hover {
+  transform: translateY(-10px);
+}
+.carouselresenhas .slides .slide .user {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: start;
+  align-items: center;
+}
+.carouselresenhas .slides .slide .user img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+.carouselresenhas .slides .slide .user h4 {
+  color: white;
+  margin-left: 10px;
+}
+.carouselresenhas .slides .slide .trecho {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: start;
+  margin-top: 20px;
+  position: relative;
+}
+.carouselresenhas .slides .slide .trecho .titulo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+.carouselresenhas .slides .slide .trecho .titulo p {
+  margin-top: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #994BBD;
+  padding: 3px;
+  font-size: 13px;
+}
+.carouselresenhas .slides .slide .trecho p {
+  margin-top: 15px;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.8181818182px;
+  color: white;
+}
+.carouselresenhas .slides .slide .btn__vermais {
+  background-color: #FFE03B;
+  border: none;
+  padding: 5px 10px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+}
+.carouselresenhas .prevBtn,
+.carouselresenhas .nextBtn {
+  background-color: transparent;
+  position: absolute;
+  top: 100%;
+  transform: translateY(-100%);
+  height: 85%;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  cursor: pointer;
+  z-index: 1;
+  transition: all 0.2s;
+}
+.carouselresenhas .prevBtn:hover,
+.carouselresenhas .nextBtn:hover {
+  font-weight: 800;
+  font-size: 25px;
+}
+.carouselresenhas .prevBtn {
+  left: 0;
+}
+.carouselresenhas .nextBtn {
+  right: 0;
 }/*# sourceMappingURL=style.css.map */
