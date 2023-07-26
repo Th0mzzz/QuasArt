@@ -2,11 +2,12 @@
 @import '../abstract/mixins';
 
 footer{
-    position: absolute;
+    position: relative;
     left: 0;
     bottom:0;
-    padding: 10px 15px;
     background-color: $roxo-escuro;
+    padding: 10px 30px 55px 30px;
     width: 100%;
-    height: auto;
+    height: fit-content;
+    margin-top: 5rem;
 }

@@ -6,7 +6,7 @@
     overflow: hidden;
     width: 100%;
     margin: 2rem 0 3rem 0;
-    padding: 0 1.5rem;
+    padding: 1rem;
     
     h3{
         color: $amarelo;
@@ -20,10 +20,11 @@
         transition: transform 0.3s ease;
         touch-action: pan-y; 
         gap: 20px; 
+        
       .slide {
-        @include slideItem(35%, 100%, 15px);      
+        @include slideItem(40%, 100%, 15px);      
         display: flex;
-        @include alignCenter (column, nowrap,start, center); 
+        @include alignCenter (column, nowrap,center, center); 
         margin-top: 10px;
         
         a{

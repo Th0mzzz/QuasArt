@@ -14,12 +14,17 @@ list.forEach(item => item.addEventListener('click', function(e){
 	e.currentTarget.classList.add('active');
 }));
 
-function reloadPageOnResize() {
-  location.reload();
+let larguraAnterior = window.innerWidth;
+
+function reloadPage() {
+    const larguraAtual = window.innerWidth;
+    if (larguraAtual !== larguraAnterior) {
+        location.reload();
+    }
 }
 
-// Adicionar o evento de redimensionamento da janela
-window.addEventListener('resize', reloadPageOnResize);
+
+window.addEventListener('resize', reloadPage);
 
 
 

@@ -1,4 +1,5 @@
 @import './variaveis';
+@import './mixins';
 *{
     padding: 0;
     margin: 0;
@@ -18,4 +19,26 @@ body, html{
 
 :root{
     scroll-behavior: smooth;
+}
+
+.assine_ad{
+    margin: 5rem 0 ;
+    width: 100%;
+    height: fit-content;
+    padding: 2rem 1rem;
+    border-top: 2px solid $roxo;
+    border-bottom:2px solid $roxo;
+    box-shadow: 0 0 3px $roxo-claro;
+    display: flex;
+    @include alignCenter(row,nowrap,center,center);
+    gap: 10px;
+    h2{
+        color: $white;
+        font-size:$fs-text/1.1;
+        text-shadow: none;
+    }
+    img{
+        width:35px;
+        height:35px;
+    }
 }

@@ -19,6 +19,31 @@ body, html {
   scroll-behavior: smooth;
 }
 
+.assine_ad {
+  margin: 5rem 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem 1rem;
+  border-top: 2px solid #994BBD;
+  border-bottom: 2px solid #994BBD;
+  box-shadow: 0 0 3px #DA9AF8;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.assine_ad h2 {
+  color: white;
+  font-size: 11.8181818182px;
+  text-shadow: none;
+}
+.assine_ad img {
+  width: 35px;
+  height: 35px;
+}
+
 aside {
   width: 100%;
   position: fixed;
@@ -101,13 +126,15 @@ header .assine-btn:hover {
 }
 
 footer {
-  position: absolute;
+  position: relative;
   left: 0;
   bottom: 0;
-  padding: 10px 15px;
   background-color: #701786;
+  padding: 10px 30px 55px 30px;
   width: 100%;
-  height: auto;
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-top: 5rem;
 }
 
 * {
@@ -129,6 +156,31 @@ body, html {
 
 :root {
   scroll-behavior: smooth;
+}
+
+.assine_ad {
+  margin: 5rem 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem 1rem;
+  border-top: 2px solid #994BBD;
+  border-bottom: 2px solid #994BBD;
+  box-shadow: 0 0 3px #DA9AF8;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.assine_ad h2 {
+  color: white;
+  font-size: 11.8181818182px;
+  text-shadow: none;
+}
+.assine_ad img {
+  width: 35px;
+  height: 35px;
 }
 
 .form__container {
@@ -288,6 +340,31 @@ body, html {
 
 :root {
   scroll-behavior: smooth;
+}
+
+.assine_ad {
+  margin: 5rem 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem 1rem;
+  border-top: 2px solid #994BBD;
+  border-bottom: 2px solid #994BBD;
+  box-shadow: 0 0 3px #DA9AF8;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.assine_ad h2 {
+  color: white;
+  font-size: 11.8181818182px;
+  text-shadow: none;
+}
+.assine_ad img {
+  width: 35px;
+  height: 35px;
 }
 
 .search__container {
@@ -563,7 +640,7 @@ body, html {
   overflow: hidden;
   width: 100%;
   margin: 2rem 0 5rem 0;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 .carouselresenhas h3 {
   color: #FFE03B;
@@ -575,9 +652,9 @@ body, html {
   display: flex;
   transition: transform 0.3s ease;
   touch-action: pan-y;
-  gap: 14px;
+  gap: 12px;
   margin-top: 20px;
-  padding: 0 5px;
+  padding: 0 50px 0 0;
 }
 .carouselresenhas .slides .slide {
   transition: all ease 0.2s;
@@ -589,7 +666,7 @@ body, html {
   overflow: hidden;
   transition: all ease 0.2s;
   background: #151515;
-  padding: 15px;
+  padding: 30px;
   border-radius: 15px;
   box-shadow: 2px 3px 5px #151515;
 }
@@ -686,7 +763,7 @@ body, html {
   overflow: hidden;
   width: 100%;
   margin: 2rem 0 3rem 0;
-  padding: 0 1.5rem;
+  padding: 1rem;
 }
 .carouselvideos h3 {
   color: #FFE03B;
@@ -703,12 +780,12 @@ body, html {
 .carouselvideos .slides .slide {
   transition: all ease 0.2s;
   border-radius: 15px;
-  flex: 0 0 35%;
+  flex: 0 0 40%;
   height: 100%;
   overflow: hidden;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
   margin-top: 10px;
 }

@@ -6,7 +6,7 @@
     overflow: hidden;
     width: 100%;
     margin: 2rem 0 5rem 0;
-    padding:1rem;
+    padding:0 1rem;
     h3{
         color: $amarelo;
         font-weight: normal;
@@ -18,18 +18,16 @@
         display: flex;
         transition: transform 0.3s ease;
         touch-action: pan-y; 
-        gap: 14px;
+        gap: 12px;
         margin-top: 20px;   
-        padding: 0 5px; 
+        padding: 0 50px 0 0; 
 
-        
-  
       .slide {
         @include slideItem(100%,fit-content, 15px);
         overflow: hidden;
         transition: all ease .2s;
         background: $preto;
-        padding:15px;
+        padding:30px;
         border-radius: 15px;
         box-shadow: 2px 3px 5px $preto;
         .user{

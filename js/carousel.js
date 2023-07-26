@@ -64,8 +64,8 @@ carrosel("recomendados")
 carrosel("resenhas1")
 carrosel("recentes")
 carrosel('videos')
-
-// carrosel("paraVoce")
+carrosel("paraVoce")
+carrosel('resenhas2')
 
 
 
