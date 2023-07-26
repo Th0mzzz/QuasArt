@@ -7,6 +7,7 @@
     width: 100%;
     margin: 2rem 0 3rem 0;
     padding: 0 1.5rem;
+    
     h3{
         color: $amarelo;
         font-weight: normal;
@@ -20,15 +21,22 @@
         touch-action: pan-y; 
         gap: 20px; 
       .slide {
-        @include slideItem(40%, fit-content, 15px);      
+        @include slideItem(35%, 100%, 15px);      
         display: flex;
-        @include alignCenter (column, nowrap, center, center); 
+        @include alignCenter (column, nowrap,start, center); 
         margin-top: 10px;
-        video{
+        
+        a{
           width: 100%;
-          height:100% ;
-          margin: 0 auto;
+          height: 100%;
+          video{
+            width: 100%;
+            height:100% ;
+            margin: 0 auto;
+            
+          }
         }
+        
       }
     }
     .prevBtn,

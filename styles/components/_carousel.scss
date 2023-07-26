@@ -20,7 +20,9 @@
             align-items: end;
             justify-content: start;
             padding:2rem;
-           
+            &:hover{
+                transform: translateY(0px);
+            }
                 img{
                     width: 100%;
                     height: 100%;

@@ -25,17 +25,13 @@
         
   
       .slide {
-        flex: 0 0 100%;
-        height:fit-content;
+        @include slideItem(100%,fit-content, 15px);
         overflow: hidden;
         transition: all ease .2s;
         background: $preto;
         padding:15px;
         border-radius: 15px;
         box-shadow: 2px 3px 5px $preto;
-        &:hover{
-            transform: translateY(-10px);
-        }
         .user{
             width: 100%;
             height: 50px;
