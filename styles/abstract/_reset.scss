@@ -14,7 +14,7 @@ body, html{
     text-decoration: none;
     width:100vw;
     height:100vh;  
-    background-color:$cinza-escuro;
+    background-color:$cor-fundo;
 }
 
 :root{
@@ -26,19 +26,19 @@ body, html{
     width: 100%;
     height: fit-content;
     padding: 2rem 1rem;
-    border-top: 2px solid $roxo;
-    border-bottom:2px solid $roxo;
-    box-shadow: 0 0 3px $roxo-claro;
+    border-top: 2px solid $cor-principal;
+    border-bottom:2px solid $cor-principal;
+    box-shadow: 0 0 3px $cor-principal-clara;
     display: flex;
     @include alignCenter(row,nowrap,center,center);
     gap: 10px;
     h2{
-        color: $white;
+        color: $cor-texto;
         font-size:$fs-text/1.1;
         text-shadow: none;
     }
     img{
-        width:35px;
-        height:35px;
+        width:45px;
+        height:45px;
     }
 }

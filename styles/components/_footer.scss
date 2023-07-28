@@ -5,14 +5,52 @@ footer{
     position: relative;
     left: 0;
     bottom:0;
-    background-color: $roxo-escuro;
-    padding: 10px 30px 55px 30px;
+    background-color: $cor-fundo-escura;
+    padding: 15px 15px 120px 15px;
     width: 100%;
     height: fit-content;
     margin-top: 5rem;
     display:flex;
     @include alignCenter(column, nowrap, center, start);
     .footer-highItens{
-         
+        padding: 5px;
+         width: 100%;
+         display: flex;
+         @include alignCenter(row,nowrap,space-between,center);
+         border-bottom: 1px solid $cor-principal-clara;
+         .logotipo{
+            a{
+                display: flex;
+                align-items: center;
+                img{
+                    width: 35px;
+                    height: 35px;
+                }
+                p{
+                    font-size: $fs-text ;
+                    font-weight: bold;
+                }
+            }
+            
+        
+         }
+
+         .redes{
+            display: flex;
+            gap: 15px;
+            li{
+                cursor: pointer;
+                &:hover{
+                    i{
+                        color: $cor-principal-escura;
+                    }
+                }
+                i{
+                    font-size: $fs-title;
+                    transition: all ease .2s;
+                    color: $cor-principal-clara;
+                }
+            }
+         }
     }
 }

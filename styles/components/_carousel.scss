@@ -7,7 +7,7 @@
     max-width:1200px;
     margin: 0 auto;
     overflow: hidden;
-    box-shadow: 1px 5px 5px $preto;
+    box-shadow: 1px 5px 5px #000000;
     margin-bottom: 5rem;
     .slides {
         display: flex;
@@ -20,6 +20,7 @@
             align-items: end;
             justify-content: start;
             padding:2rem;
+            background: $cor-principal-clara;
             &:hover{
                 transform: translateY(0px);
             }
@@ -36,7 +37,7 @@
                 .texto{
                     display: flex;
                     @include alignCenter (column, nowrap, center, start);
-                    color: $white;
+                    color: $cor-fundo;
                     z-index: 1;
                     h1{
                         font-size: $fs-text+3px;
@@ -51,15 +52,15 @@
                     right: 10%;
                     bottom: 10%;
                     border: none;
-                    background: $amarelo;
+                    background: $cor-secundaria;
                     padding: 5px 10px;
                     border-radius: 5px;
                     font-weight: bold;
-                    color: $white;
+                    color: $cor-fundo;
                     transition: all .2s;
                     font-size: $fs-text;
                     &:hover{
-                        background-color: $roxo;
+                        background-color: $cor-principal;
                     }
                 }
             }   
@@ -69,33 +70,35 @@
 
 
 
-            .prevBtn,
-            .nextBtn {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background: transparent;
-                border: 2px solid $white;
-                border-radius:40px;
-                color: $white;
-                padding: 10px 20px;
-                cursor: pointer;
-                z-index: 1;
-                transition: all .2s;
-                &:hover{
-                    background-color: $white;
-                    color:$roxo;
-                }
+        .prevBtn,
+        .nextBtn {
+            border:2px solid $cor-secundaria;
+            position: absolute;
+            border-radius: 30%;
+            color:$cor-fundo;
+            top: 50%;
+            transform: translateY(-50%);
+            height: fit-content;
+            background: $cor-secundaria;
+            padding: 10px 20px;
+            cursor: pointer;
+            z-index: 1;
+            transition: all .2s;
+            &:hover{
+                font-size: $fs-title;
+                font-weight: 800;
+                
             }
-
-            .prevBtn {
-                left: 5px;
-            }
-
-            .nextBtn {
-                right: 5px;
-            }
-       
+        }
+    
+        .prevBtn {
+            left: 2px;
+        }
+    
+        .nextBtn {
+            right: 2px;
+            
+        }
    
 
 

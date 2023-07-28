@@ -2,7 +2,13 @@ const searchMenu = document.querySelector('#search__btn');
 const searchContainer = document.querySelector('#search')
 
 searchMenu.addEventListener('click', () => {
-    searchContainer.classList.toggle('show');
+    if(searchMenu.classList.contains("active")){
+        searchContainer.classList.toggle('show');
+    }else{
+        searchContainer.classList.remove("show")
+        searchMenu.classList.remove("active")
+    }
+    
   });
 
 

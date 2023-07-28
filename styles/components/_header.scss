@@ -7,10 +7,10 @@ header{
     top:0;
     width:100%;
     padding: 10px 10px;
-    background-color:$preto;
+    background-color:$cor-fundo-escura;
     display: flex;
     @include alignCenter(row,nowrap,space-between,center);
-    border-bottom: 1px solid $amarelo;
+    border-bottom: 1px solid $cor-secundaria;
     .logotipo{
         margin: auto 0 ;
         width:auto;
@@ -18,7 +18,7 @@ header{
         overflow: hidden;
         a{
             text-decoration: none;
-            color:$roxo;
+            color:$cor-principal;
             display: flex;
            @include alignCenter(row,nowrap,space-between,center);
             .logo_img{
@@ -27,19 +27,42 @@ header{
             }
             .tipografia{
                 font-size: calc($fs-title / 2);
+                font-weight: 600;
             }
         }
     }
     .assine-btn{
-        border: 1px solid $azul;
+        position: relative;
+        border: 1px solid $cor-principal;
         background: transparent;
-        color: $azul;
+        color: $cor-principal;
         padding: 3px 5px;
         border-radius: 5px; 
         transition: all .2s;
+        overflow: hidden;
+        a{
+            z-index: 100;
+        }
+        &::after{
+            content: '';
+            position: absolute;
+            display: flex;
+            @include alignCenter(row,nowrap,center,center);
+            color: $cor-fundo;
+            left: 0%;
+            bottom: 0%;
+            width:0%;
+            height: 100%;
+            background: $cor-principal;
+            transition: all .2s;
+            z-index: 1;
+            
+        }
         &:hover{
-            background: $azul;
-            color: $preto;
+            &::after{
+                content: 'Assine';
+                width: 100%;
+            }
         }
     }
 }

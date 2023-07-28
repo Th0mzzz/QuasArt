@@ -9,9 +9,9 @@
     padding: 1rem;
     
     h3{
-        color: $amarelo;
+        color: $cor-principal;
         font-weight: normal;
-        border-bottom: 1px solid $amarelo;
+        border-bottom: 1px solid $cor-principal;
         width: 100%;
     }
   
@@ -42,31 +42,32 @@
     }
     .prevBtn,
     .nextBtn {
+        border:2px solid $cor-secundaria;
         position: absolute;
-        top: 100%;
-        transform: translateY(-100%);
-        height: 85%;
-        border: none;
-        color: $white;
+        border-radius: 30%;
+        color:$cor-fundo;
+        top: 50%;
+        transform: translateY(-50%);
+        height: fit-content;
+        background: $cor-secundaria;
         padding: 10px 20px;
         cursor: pointer;
         z-index: 1;
         transition: all .2s;
         &:hover{
-            
-            font-weight: 800;
             font-size: $fs-title;
+            font-weight: 800;
+            
         }
     }
 
     .prevBtn {
-        left: 0;
-        background: linear-gradient(to right, $preto,transparent);
+        left: 2px;
     }
 
     .nextBtn {
-        right: 0;
-        background: linear-gradient(to left, $preto,transparent);
+        right: 2px;
+        
     }
   }
   

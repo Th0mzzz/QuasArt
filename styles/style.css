@@ -12,7 +12,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #1F1F1F;
+  background-color: white;
 }
 
 :root {
@@ -35,13 +35,13 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: white;
+  color: #151515;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
 .assine_ad img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 
 aside {
@@ -50,29 +50,42 @@ aside {
   left: 0;
   bottom: 0;
   z-index: 100;
+  height: 55px;
 }
 aside ul {
+  position: absolute;
+  bottom: 0;
   width: 100%;
-  padding: 5px;
-  background-color: #151515;
-  position: relative;
+  height: 100%;
+  background-color: #994BBD;
   display: flex;
-  gap: 1rem;
+  gap: 0.6rem;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
 }
 aside ul .list {
-  padding: 10px 15px;
+  height: 100%;
+  width: 55px;
   border-radius: 50%;
   transition: all 0.2s;
+  background-color: #994BBD;
+  display: flex;
 }
 aside ul .list a {
-  color: #FFE03B;
+  border-radius: 50%;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  color: #994BBD;
+  background: #ffd257;
+  display: flex;
+}
+aside ul .list a i {
+  margin: auto;
 }
 aside ul .active {
-  background-color: #994BBD;
-  transform: translateY(-10px);
+  transform: translateY(-25px);
 }
 aside ul .active a {
   color: #151515;
@@ -84,7 +97,7 @@ header {
   top: 0;
   width: 100%;
   padding: 10px 10px;
-  background-color: #151515;
+  background-color: #f8e7fc;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -111,26 +124,48 @@ header .logotipo a .logo_img {
 }
 header .logotipo a .tipografia {
   font-size: 12.5px;
+  font-weight: 600;
 }
 header .assine-btn {
-  border: 1px solid #508CD3;
+  position: relative;
+  border: 1px solid #994BBD;
   background: transparent;
-  color: #508CD3;
+  color: #994BBD;
   padding: 3px 5px;
   border-radius: 5px;
   transition: all 0.2s;
+  overflow: hidden;
 }
-header .assine-btn:hover {
-  background: #508CD3;
-  color: #151515;
+header .assine-btn a {
+  z-index: 100;
+}
+header .assine-btn::after {
+  content: "";
+  position: absolute;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  left: 0%;
+  bottom: 0%;
+  width: 0%;
+  height: 100%;
+  background: #994BBD;
+  transition: all 0.2s;
+  z-index: 1;
+}
+header .assine-btn:hover::after {
+  content: "Assine";
+  width: 100%;
 }
 
 footer {
   position: relative;
   left: 0;
   bottom: 0;
-  background-color: #701786;
-  padding: 10px 30px 55px 30px;
+  background-color: #f8e7fc;
+  padding: 15px 15px 120px 15px;
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
@@ -140,6 +175,43 @@ footer {
   justify-content: center;
   align-items: start;
 }
+footer .footer-highItens {
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #DA9AF8;
+}
+footer .footer-highItens .logotipo a {
+  display: flex;
+  align-items: center;
+}
+footer .footer-highItens .logotipo a img {
+  width: 35px;
+  height: 35px;
+}
+footer .footer-highItens .logotipo a p {
+  font-size: 13px;
+  font-weight: bold;
+}
+footer .footer-highItens .redes {
+  display: flex;
+  gap: 15px;
+}
+footer .footer-highItens .redes li {
+  cursor: pointer;
+}
+footer .footer-highItens .redes li:hover i {
+  color: #701786;
+}
+footer .footer-highItens .redes li i {
+  font-size: 25px;
+  transition: all ease 0.2s;
+  color: #DA9AF8;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -154,7 +226,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #1F1F1F;
+  background-color: white;
 }
 
 :root {
@@ -177,13 +249,13 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: white;
+  color: #151515;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
 .assine_ad img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 
 .form__container {
@@ -338,7 +410,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #1F1F1F;
+  background-color: white;
 }
 
 :root {
@@ -361,13 +433,13 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: white;
+  color: #151515;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
 .assine_ad img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 
 .search__container {
@@ -470,7 +542,7 @@ body, html {
   max-width: 1200px;
   margin: 0 auto;
   overflow: hidden;
-  box-shadow: 1px 5px 5px #151515;
+  box-shadow: 1px 5px 5px #000000;
   margin-bottom: 5rem;
 }
 .carousel .slides {
@@ -488,6 +560,7 @@ body, html {
   align-items: end;
   justify-content: start;
   padding: 2rem;
+  background: #DA9AF8;
 }
 .carousel .slides .slide:hover {
   transform: translateY(-10px);
@@ -539,13 +612,15 @@ body, html {
 }
 .carousel .prevBtn,
 .carousel .nextBtn {
+  border: 2px solid #FFE03B;
   position: absolute;
+  border-radius: 30%;
+  color: white;
   top: 50%;
   transform: translateY(-50%);
-  background: transparent;
-  border: 2px solid white;
-  border-radius: 40px;
-  color: white;
+  height: -moz-fit-content;
+  height: fit-content;
+  background: #FFE03B;
   padding: 10px 20px;
   cursor: pointer;
   z-index: 1;
@@ -553,14 +628,14 @@ body, html {
 }
 .carousel .prevBtn:hover,
 .carousel .nextBtn:hover {
-  background-color: white;
-  color: #994BBD;
+  font-size: 25px;
+  font-weight: 800;
 }
 .carousel .prevBtn {
-  left: 5px;
+  left: 2px;
 }
 .carousel .nextBtn {
-  right: 5px;
+  right: 2px;
 }
 
 .carouselItens {
@@ -571,9 +646,9 @@ body, html {
   padding: 0 1.5rem;
 }
 .carouselItens h3 {
-  color: #FFE03B;
+  color: #994BBD;
   font-weight: normal;
-  border-bottom: 1px solid #FFE03B;
+  border-bottom: 1px solid #994BBD;
   width: 100%;
 }
 .carouselItens .slides {
@@ -613,12 +688,15 @@ body, html {
 }
 .carouselItens .prevBtn,
 .carouselItens .nextBtn {
+  border: 2px solid #FFE03B;
   position: absolute;
-  top: 100%;
-  transform: translateY(-100%);
-  height: 85%;
-  border: none;
+  border-radius: 30%;
   color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  height: -moz-fit-content;
+  height: fit-content;
+  background: #FFE03B;
   padding: 10px 20px;
   cursor: pointer;
   z-index: 1;
@@ -626,16 +704,14 @@ body, html {
 }
 .carouselItens .prevBtn:hover,
 .carouselItens .nextBtn:hover {
-  font-weight: 800;
   font-size: 25px;
+  font-weight: 800;
 }
 .carouselItens .prevBtn {
-  left: 0;
-  background: linear-gradient(to right, #151515, transparent);
+  left: 2px;
 }
 .carouselItens .nextBtn {
-  right: 0;
-  background: linear-gradient(to left, #151515, transparent);
+  right: 2px;
 }
 
 .carouselresenhas {
@@ -645,19 +721,13 @@ body, html {
   margin: 2rem 0 5rem 0;
   padding: 0 1rem;
 }
-.carouselresenhas h3 {
-  color: #FFE03B;
-  font-weight: normal;
-  border-bottom: 1px solid #FFE03B;
-  width: 100%;
-}
 .carouselresenhas .slides {
   display: flex;
   transition: transform 0.3s ease;
   touch-action: pan-y;
-  gap: 12px;
+  gap: 5px;
   margin-top: 20px;
-  padding: 0 50px 0 0;
+  padding: 0 30px 0 0;
 }
 .carouselresenhas .slides .slide {
   transition: all ease 0.2s;
@@ -668,7 +738,7 @@ body, html {
   overflow: hidden;
   overflow: hidden;
   transition: all ease 0.2s;
-  background: #151515;
+  background: #701786;
   padding: 30px;
   border-radius: 15px;
   box-shadow: 2px 3px 5px #151515;
@@ -712,8 +782,8 @@ body, html {
   margin-top: 0;
   width: -moz-fit-content;
   width: fit-content;
-  background-color: #994BBD;
-  padding: 3px;
+  background-color: #ffd257;
+  padding: 5px;
   font-size: 13px;
 }
 .carouselresenhas .slides .slide .trecho p {
@@ -730,20 +800,21 @@ body, html {
   padding: 5px 10px;
   position: relative;
   bottom: 0%;
-  font-weight: bold;
   color: white;
   border-radius: 5px;
   margin-top: 10px;
 }
 .carouselresenhas .prevBtn,
 .carouselresenhas .nextBtn {
-  background-color: transparent;
+  border: 2px solid #FFE03B;
   position: absolute;
-  top: 100%;
-  transform: translateY(-100%);
-  height: 85%;
-  border: none;
+  border-radius: 30%;
   color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  height: -moz-fit-content;
+  height: fit-content;
+  background: #FFE03B;
   padding: 10px 20px;
   cursor: pointer;
   z-index: 1;
@@ -751,14 +822,14 @@ body, html {
 }
 .carouselresenhas .prevBtn:hover,
 .carouselresenhas .nextBtn:hover {
-  font-weight: 800;
   font-size: 25px;
+  font-weight: 800;
 }
 .carouselresenhas .prevBtn {
-  left: 0;
+  left: 2px;
 }
 .carouselresenhas .nextBtn {
-  right: 0;
+  right: 2px;
 }
 
 .carouselvideos {
@@ -769,9 +840,9 @@ body, html {
   padding: 1rem;
 }
 .carouselvideos h3 {
-  color: #FFE03B;
+  color: #994BBD;
   font-weight: normal;
-  border-bottom: 1px solid #FFE03B;
+  border-bottom: 1px solid #994BBD;
   width: 100%;
 }
 .carouselvideos .slides {
@@ -806,12 +877,15 @@ body, html {
 }
 .carouselvideos .prevBtn,
 .carouselvideos .nextBtn {
+  border: 2px solid #FFE03B;
   position: absolute;
-  top: 100%;
-  transform: translateY(-100%);
-  height: 85%;
-  border: none;
+  border-radius: 30%;
   color: white;
+  top: 50%;
+  transform: translateY(-50%);
+  height: -moz-fit-content;
+  height: fit-content;
+  background: #FFE03B;
   padding: 10px 20px;
   cursor: pointer;
   z-index: 1;
@@ -819,14 +893,12 @@ body, html {
 }
 .carouselvideos .prevBtn:hover,
 .carouselvideos .nextBtn:hover {
-  font-weight: 800;
   font-size: 25px;
+  font-weight: 800;
 }
 .carouselvideos .prevBtn {
-  left: 0;
-  background: linear-gradient(to right, #151515, transparent);
+  left: 2px;
 }
 .carouselvideos .nextBtn {
-  right: 0;
-  background: linear-gradient(to left, #151515, transparent);
+  right: 2px;
 }/*# sourceMappingURL=style.css.map */

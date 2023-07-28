@@ -22,11 +22,11 @@
         padding: 5px;
         border-radius: 15px;
         @include alignCenter(row,nowrap,space-between,center);
-        box-shadow: 1px 2px 3px $preto;
-        background-color:$white;
+        box-shadow: 1px 2px 3px$cor-texto;
+        background-color:$cor-fundo;
        
         &:hover, &:focus{
-            border: 1px solid $roxo-escuro;
+            border: 1px solid $cor-principal-escura;
         }
         input{
             width: 90%;
@@ -35,7 +35,7 @@
             font-size: calc($fs-text / 1.1);
             outline: none;
             padding-left:10px;
-            color: $roxo-escuro;
+            color: $cor-principal-escura;
         }
     
         .search__btn{
@@ -46,14 +46,14 @@
             height: 100%;
             border: none;
             border-radius: 0 15px 15px 0;
-            background-color: $roxo-escuro;
-            color: $white;
+            background-color: $cor-principal-escura;
+            color: $cor-fundo;
             transition: all .2s;
             font-size: $fs-text / 1.2;
             &:hover{
                 background-color: transparent;
-                border-left: 2px solid $roxo-escuro;
-                color: $roxo-escuro;
+                border-left: 2px solid $cor-principal-escura;
+                color: $cor-principal-escura;
             }
         }
         
@@ -73,17 +73,17 @@
             gap: 5px;
             a{
                 width: auto;
-                border: 1px solid $roxo-claro;
+                border: 1px solid $cor-principal-clara;
                 font-size: $fs-text / 1.2;
-                background-color: $roxo;
-                color: $white;
+                background-color: $cor-principal;
+                color: $cor-fundo;
                 padding: 5px;
                 border-radius: 10px;
                 transition: all .2s;
                 &:hover{
                     background-color: transparent;
-                    border: 1px solid $roxo;
-                    color: $roxo;
+                    border: 1px solid $cor-principal;
+                    color: $cor-principal;
                 }
             }
         }
