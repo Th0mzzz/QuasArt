@@ -135,8 +135,11 @@ footer {
   height: -moz-fit-content;
   height: fit-content;
   margin-top: 5rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: start;
 }
-
 * {
   padding: 0;
   margin: 0;
