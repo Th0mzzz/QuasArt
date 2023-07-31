@@ -5,9 +5,8 @@
     position: relative;
     min-width:300px;
     max-width:1200px;
-    margin: 0 auto;
+    margin: -50px auto;
     overflow: hidden;
-    box-shadow: 1px 5px 5px #000000;
     margin-bottom: 5rem;
     .slides {
         display: flex;
@@ -20,7 +19,7 @@
             align-items: end;
             justify-content: start;
             padding:2rem;
-            background: $cor-principal-clara;
+            
             &:hover{
                 transform: translateY(0px);
             }
@@ -39,6 +38,7 @@
                     @include alignCenter (column, nowrap, center, start);
                     color: $cor-fundo;
                     z-index: 1;
+                    backdrop-filter: blur(5px);
                     h1{
                         font-size: $fs-text+3px;
                     }

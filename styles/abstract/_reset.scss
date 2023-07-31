@@ -16,6 +16,12 @@ body, html{
     height:100vh;  
     background-color:$cor-fundo;
 }
+main{
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 50px 0 50px 0;
+}
 
 :root{
     scroll-behavior: smooth;

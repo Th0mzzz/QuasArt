@@ -64,7 +64,6 @@ function alternarConta(array, classe) {
         login.classList.remove('ativado')
         cadastro.classList.remove('ativado')
         token.classList.add("ativado")
-        formContainer.style.top = '40px'
       }
 
 
@@ -82,7 +81,6 @@ cancelarBtn.forEach(btn =>{
     token.classList.remove('ativado')
     senha.classList.remove("ativado")
     login.classList.add('ativado')
-    formContainer.style.top = '70px'
   })
 })
 

@@ -21,13 +21,13 @@
         gap: 35px;
         margin-top: 20px;    
       .slide {
-        @include slideItem(50%, 200px, 5px);      
+        @include slideItem(50%, 250px, 5px);      
         display: flex;
+        border-radius: 5px;
         @include alignCenter (column, nowrap, center, center); 
         p{
-            color: $cor-fundo;
+            color: $cor-texto;
             font-size: $fs-text / 1.2;
-            text-shadow: 1px 2px 3px $cor-texto;
         }
   
         img {
@@ -35,7 +35,7 @@
           height: 100%;
           object-fit: cover;
           object-position: center;
-          box-shadow: 2px 3px 5px $cor-texto;
+
         }
       }
     }

@@ -53,4 +53,24 @@ footer{
             }
          }
     }
+    .footer__links{
+        display: flex;
+        @include alignCenter(row,wrap,center,center);
+        margin:auto;
+        width: 50%;
+        gap: 8px;
+        padding-top: 15px;
+        li{
+            font-size: $fs-text;   
+            text-align: center;
+            a{
+                color: $cor-texto;
+                cursor: pointer;
+                &:hover{
+                    color: $cor-principal-escura;
+                }
+            }
+            
+        }
+    }
 }

@@ -15,6 +15,13 @@ body, html {
   background-color: white;
 }
 
+main {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 50px 0 50px 0;
+}
+
 :root {
   scroll-behavior: smooth;
 }
@@ -88,29 +95,29 @@ aside ul .active {
   transform: translateY(-25px);
 }
 aside ul .active a {
-  color: #151515;
+  color: white;
 }
 
-header {
+.header {
   position: relative;
   left: 0;
   top: 0;
   width: 100%;
   padding: 10px 10px;
-  background-color: #f8e7fc;
+  background-color: #e2e2e2;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #FFE03B;
+  border-bottom: 1px solid #994BBD;
 }
-header .logotipo {
+.header .logotipo {
   margin: auto 0;
   width: auto;
   height: 100%;
   overflow: hidden;
 }
-header .logotipo a {
+.header .logotipo a {
   text-decoration: none;
   color: #994BBD;
   display: flex;
@@ -118,28 +125,29 @@ header .logotipo a {
   justify-content: space-between;
   align-items: center;
 }
-header .logotipo a .logo_img {
+.header .logotipo a .logo_img {
   width: 35px;
   height: 35px;
 }
-header .logotipo a .tipografia {
+.header .logotipo a .tipografia {
   font-size: 12.5px;
   font-weight: 600;
 }
-header .assine-btn {
+.header .assine-btn {
   position: relative;
-  border: 1px solid #994BBD;
+  width: 80px;
+  border: 1px solid #701786;
   background: transparent;
-  color: #994BBD;
   padding: 3px 5px;
   border-radius: 5px;
   transition: all 0.2s;
-  overflow: hidden;
 }
-header .assine-btn a {
-  z-index: 100;
+.header .assine-btn span {
+  color: #701786;
+  position: relative;
+  z-index: 2;
 }
-header .assine-btn::after {
+.header .assine-btn::before {
   content: "";
   position: absolute;
   display: flex;
@@ -151,12 +159,15 @@ header .assine-btn::after {
   bottom: 0%;
   width: 0%;
   height: 100%;
-  background: #994BBD;
+  background-color: #701786;
   transition: all 0.2s;
   z-index: 1;
+  border-radius: 3px;
 }
-header .assine-btn:hover::after {
-  content: "Assine";
+.header .assine-btn:hover span {
+  color: white;
+}
+.header .assine-btn:hover::before {
   width: 100%;
 }
 
@@ -164,7 +175,7 @@ footer {
   position: relative;
   left: 0;
   bottom: 0;
-  background-color: #f8e7fc;
+  background-color: #e2e2e2;
   padding: 15px 15px 120px 15px;
   width: 100%;
   height: -moz-fit-content;
@@ -211,6 +222,27 @@ footer .footer-highItens .redes li i {
   transition: all ease 0.2s;
   color: #DA9AF8;
 }
+footer .footer__links {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 50%;
+  gap: 8px;
+  padding-top: 15px;
+}
+footer .footer__links li {
+  font-size: 13px;
+  text-align: center;
+}
+footer .footer__links li a {
+  color: #151515;
+  cursor: pointer;
+}
+footer .footer__links li a:hover {
+  color: #701786;
+}
 
 * {
   padding: 0;
@@ -227,6 +259,13 @@ body, html {
   width: 100vw;
   height: 100vh;
   background-color: white;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 50px 0 50px 0;
 }
 
 :root {
@@ -261,18 +300,18 @@ body, html {
 .form__container {
   z-index: 9;
   position: relative;
-  left: 50%;
-  top: 70px;
-  transform: translate(-50%);
-  width: 95%;
-  height: 400px;
-  background-color: #508CD3;
-  padding: 1rem;
-  border-radius: 20px;
+  width: 100%;
+  margin-top: -40px;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: #e2e2e2;
+  border: 1px solid #994BBD;
   text-align: center;
-  color: white;
+  color: #151515;
+  padding: 5rem 20px 3rem 20px;
 }
 .form__container p {
+  color: #151515;
   font-size: 11.8181818182px;
   margin-bottom: 1rem;
 }
@@ -281,14 +320,11 @@ body, html {
   margin-top: 1rem;
 }
 .form__container .trocar__container {
-  z-index: 8;
   position: absolute;
-  left: 0;
-  top: -8%;
+  top: 0;
+  left: 0%;
   width: 100%;
   height: 50px;
-  border-radius: 20px 20px 0 0;
-  overflow: hidden;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -296,24 +332,23 @@ body, html {
 }
 .form__container .trocar__container .switch_btn {
   font-size: 10.8333333333px;
-  color: white;
+  color: #151515;
   border: none;
   width: 50%;
   height: 100%;
-  background-color: #112B4A;
+  background-color: #e2e2e2;
   transition: all ease 0.5s;
 }
 .form__container .trocar__container .switch_btn.ativo {
-  z-index: 1000;
-  background-color: #508CD3;
-  box-shadow: 1px 4px 5px black;
+  color: #701786;
+  font-weight: bold;
+  box-shadow: 2px 2px 3px #DA9AF8;
 }
 .form__container .form {
   width: 100%;
   height: 100%;
   display: none;
   gap: 20px;
-  padding: 10px;
   border-radius: 15px;
 }
 .form__container .form a {
@@ -321,7 +356,7 @@ body, html {
   bottom: 0%;
   z-index: 1000;
   transition: all ease 0.4s;
-  color: white;
+  color: #151515;
   text-decoration: none;
   font-size: 9.2857142857px;
 }
@@ -350,8 +385,8 @@ body, html {
   width: 100%;
   height: 30px;
   background-color: white;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 3px;
+  padding: 10px 10px 10px;
   border: none;
   outline: none;
 }
@@ -411,6 +446,13 @@ body, html {
   width: 100vw;
   height: 100vh;
   background-color: white;
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding: 50px 0 50px 0;
 }
 
 :root {
@@ -540,9 +582,8 @@ body, html {
   position: relative;
   min-width: 300px;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: -50px auto;
   overflow: hidden;
-  box-shadow: 1px 5px 5px #000000;
   margin-bottom: 5rem;
 }
 .carousel .slides {
@@ -560,7 +601,6 @@ body, html {
   align-items: end;
   justify-content: start;
   padding: 2rem;
-  background: #DA9AF8;
 }
 .carousel .slides .slide:hover {
   transform: translateY(-10px);
@@ -586,6 +626,8 @@ body, html {
   align-items: start;
   color: white;
   z-index: 1;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
 }
 .carousel .slides .slide .texto h1 {
   font-size: 16px;
@@ -662,9 +704,10 @@ body, html {
   transition: all ease 0.2s;
   border-radius: 5px;
   flex: 0 0 50%;
-  height: 200px;
+  height: 250px;
   overflow: hidden;
   display: flex;
+  border-radius: 5px;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
@@ -673,9 +716,8 @@ body, html {
   transform: translateY(-10px);
 }
 .carouselItens .slides .slide p {
-  color: white;
+  color: #151515;
   font-size: 10.8333333333px;
-  text-shadow: 1px 2px 3px #151515;
 }
 .carouselItens .slides .slide img {
   width: 100%;
@@ -684,7 +726,6 @@ body, html {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  box-shadow: 2px 3px 5px #151515;
 }
 .carouselItens .prevBtn,
 .carouselItens .nextBtn {
