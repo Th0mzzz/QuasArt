@@ -15,13 +15,6 @@ body, html {
   background-color: white;
 }
 
-main {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding: 50px 0 50px 0;
-}
-
 :root {
   scroll-behavior: smooth;
 }
@@ -261,13 +254,6 @@ body, html {
   background-color: white;
 }
 
-main {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding: 50px 0 50px 0;
-}
-
 :root {
   scroll-behavior: smooth;
 }
@@ -297,18 +283,35 @@ main {
   height: 45px;
 }
 
+.btn__homeback {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  background-color: #994BBD;
+  padding: 1rem;
+  color: white;
+  border-radius: 50%;
+  position: relative;
+  z-index: 100;
+}
+.btn__homeback i {
+  margin: auto;
+}
+
 .form__container {
+  top: 0;
   z-index: 9;
   position: relative;
+  top: 50%;
+  margin-top: 20px;
   width: 100%;
-  margin-top: -40px;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: 90vh;
   background-color: #e2e2e2;
   border: 1px solid #994BBD;
   text-align: center;
   color: #151515;
   padding: 5rem 20px 3rem 20px;
+  display: flex;
 }
 .form__container p {
   color: #151515;
@@ -346,10 +349,11 @@ main {
 }
 .form__container .form {
   width: 100%;
-  height: 100%;
+  height: auto;
   display: none;
   gap: 20px;
   border-radius: 15px;
+  margin: auto;
 }
 .form__container .form a {
   position: relative;
@@ -446,13 +450,6 @@ body, html {
   width: 100vw;
   height: 100vh;
   background-color: white;
-}
-
-main {
-  position: relative;
-  width: 100%;
-  height: auto;
-  padding: 50px 0 50px 0;
 }
 
 :root {

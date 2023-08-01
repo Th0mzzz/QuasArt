@@ -2,18 +2,35 @@
 @import '../abstract/mixins';
 @import '../abstract/variaveis';
 @import '../abstract/reset';
-
+.btn__homeback{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    background-color: $cor-principal;
+    padding: 1rem;
+    color: $cor-fundo;
+    border-radius: 50%;
+    position: relative;
+    z-index: 100;
+    i{
+        margin: auto;
+    }
+}
 .form__container {
+    top: 0;
     z-index: 9;
     position: relative;
+    top: 50%;
+    margin-top: 20px;
+    
     width: 100%;
-    margin-top: -40px;
-    height: fit-content;
+    height: 90vh;
     background-color: $cor-fundo-escura;
     border: 1px solid  $cor-principal;
     text-align: center;
     color: $cor-texto;
     padding: 5rem 20px 3rem 20px;
+    display: flex;
     p {
         color: $cor-texto;
         font-size: $fs-text / 1.1;
@@ -51,10 +68,11 @@
 
     .form {
         width: 100%;
-        height: 100%;
+        height: auto;
         display: none;
         gap: 20px;
         border-radius: 15px;
+        margin: auto;
         a {
             position: relative;
             bottom: 0%;
