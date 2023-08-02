@@ -585,10 +585,24 @@ body, html {
 .carousel {
   position: relative;
   min-width: 300px;
-  max-width: 100%;
+  max-width: 1600px;
   margin: 0 auto;
   overflow: hidden;
   margin-bottom: 5rem;
+}
+.carousel .btn__vermais {
+  border: none;
+  background: #FFE03B;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: white;
+  transition: all 0.2s;
+  font-size: fs-text;
+  cursor: pointer;
+}
+.carousel .btn__vermais:hover {
+  background-color: #ffd257;
 }
 .carousel .owl-nav {
   display: none;
@@ -599,6 +613,8 @@ body, html {
 }
 .carousel .carousel-inicial .slide {
   position: relative;
+  width: 100%;
+  height: 500px;
   display: flex;
   align-items: end;
   justify-content: start;
@@ -634,22 +650,6 @@ body, html {
 .carousel .carousel-inicial .slide .texto p {
   width: 70%;
   font-size: 11.8181818182px;
-}
-.carousel .carousel-inicial .slide .btn__vermais {
-  position: absolute;
-  right: 10%;
-  bottom: 10%;
-  border: none;
-  background: #FFE03B;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  color: white;
-  transition: all 0.2s;
-  font-size: 13px;
-}
-.carousel .carousel-inicial .slide .btn__vermais:hover {
-  background-color: #994BBD;
 }
 .carousel .carousel-itens {
   display: flex;
@@ -757,16 +757,6 @@ body, html {
   text-overflow: ellipsis;
   font-size: 11.8181818182px;
   color: white;
-}
-.carousel .carousel-resenhas .slide .trecho .btn__vermais {
-  background-color: #FFE03B;
-  border: none;
-  padding: 5px 10px;
-  position: relative;
-  bottom: 0%;
-  color: white;
-  border-radius: 5px;
-  margin-top: 10px;
 }
 .carousel .carousel-videos {
   display: flex;
