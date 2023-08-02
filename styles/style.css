@@ -12,7 +12,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: #e2e2e2;
 }
 
 :root {
@@ -97,7 +97,7 @@ aside ul .active a {
   top: 0;
   width: 100%;
   padding: 10px 10px;
-  background-color: #e2e2e2;
+  background-color: white;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
@@ -168,7 +168,7 @@ footer {
   position: relative;
   left: 0;
   bottom: 0;
-  background-color: #e2e2e2;
+  background-color: white;
   padding: 15px 15px 120px 15px;
   width: 100%;
   height: -moz-fit-content;
@@ -251,7 +251,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: #e2e2e2;
 }
 
 :root {
@@ -284,11 +284,10 @@ body, html {
 }
 
 .btn__homeback {
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   display: flex;
   background-color: #994BBD;
-  padding: 1rem;
   color: white;
   border-radius: 50%;
   position: relative;
@@ -303,10 +302,10 @@ body, html {
   z-index: 9;
   position: relative;
   top: 50%;
-  margin-top: 20px;
+  margin-top: 5px;
   width: 100%;
   height: 90vh;
-  background-color: #e2e2e2;
+  background-color: white;
   border: 1px solid #994BBD;
   text-align: center;
   color: #151515;
@@ -339,7 +338,7 @@ body, html {
   border: none;
   width: 50%;
   height: 100%;
-  background-color: #e2e2e2;
+  background-color: white;
   transition: all ease 0.5s;
 }
 .form__container .trocar__container .switch_btn.ativo {
@@ -349,7 +348,8 @@ body, html {
 }
 .form__container .form {
   width: 100%;
-  height: auto;
+  height: -moz-fit-content;
+  height: fit-content;
   display: none;
   gap: 20px;
   border-radius: 15px;
@@ -375,38 +375,45 @@ body, html {
   position: relative;
   background: gray;
   overflow: hidden;
-  width: 90px;
-  height: 90px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 2px solid #FFE03B;
+  border: 1px solid #994BBD;
 }
 .form__container .form .foto-perfil img {
   width: 100%;
   height: 100%;
 }
 .form__container .form input {
-  font-size: 8.6666666667px;
+  font-size: 11.8181818182px;
   width: 100%;
-  height: 30px;
-  background-color: white;
-  border-radius: 3px;
+  height: 40px;
+  background-color: transparent;
   padding: 10px 10px 10px;
   border: none;
+  border-bottom: 1px solid #994BBD;
   outline: none;
+  color: #151515;
+  transition: all 0.2s;
+}
+.form__container .form input:hover, .form__container .form input:focus {
+  border-bottom: 1px solid #701786;
 }
 .form__container .form .enviar__btn {
+  position: relative;
   font-size: 10.8695652174px;
   margin-top: 10px;
   transition: all ease 0.4s;
   height: 35px;
-  padding: 0;
-  background: linear-gradient(to right, #FFE03B, #ffd257 20%);
-  color: white;
+  border-radius: 5px;
+  background: transparent;
+  color: #701786;
   font-weight: bold;
+  border: 1px solid #701786;
 }
 .form__container .form .enviar__btn:hover {
-  transform: translateY(-5px);
-  box-shadow: 1px 1px 5px white;
+  background: #701786;
+  color: white;
 }
 .form__container .form .token__container {
   width: 100%;
@@ -449,7 +456,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background-color: #e2e2e2;
 }
 
 :root {
@@ -578,34 +585,29 @@ body, html {
 .carousel {
   position: relative;
   min-width: 300px;
-  max-width: 1200px;
-  margin: -50px auto;
+  max-width: 100%;
+  margin: 0 auto;
   overflow: hidden;
   margin-bottom: 5rem;
 }
-.carousel .slides {
+.carousel .owl-nav {
+  display: none;
+}
+.carousel .carousel-inicial {
   display: flex;
   transition: transform 0.3s ease;
 }
-.carousel .slides .slide {
+.carousel .carousel-inicial .slide {
   position: relative;
-  transition: all ease 0.2s;
-  border-radius: 0px;
-  flex: 0 0 100%;
-  height: 400px;
-  overflow: hidden;
   display: flex;
   align-items: end;
   justify-content: start;
   padding: 2rem;
 }
-.carousel .slides .slide:hover {
-  transform: translateY(-10px);
-}
-.carousel .slides .slide:hover {
+.carousel .carousel-inicial .slide:hover {
   transform: translateY(0px);
 }
-.carousel .slides .slide img {
+.carousel .carousel-inicial .slide img {
   width: 100%;
   height: 100%;
   left: 0;
@@ -616,7 +618,7 @@ body, html {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.carousel .slides .slide .texto {
+.carousel .carousel-inicial .slide .texto {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
@@ -626,14 +628,14 @@ body, html {
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
 }
-.carousel .slides .slide .texto h1 {
+.carousel .carousel-inicial .slide .texto h1 {
   font-size: 16px;
 }
-.carousel .slides .slide .texto p {
+.carousel .carousel-inicial .slide .texto p {
   width: 70%;
   font-size: 11.8181818182px;
 }
-.carousel .slides .slide .btn__vermais {
+.carousel .carousel-inicial .slide .btn__vermais {
   position: absolute;
   right: 10%;
   bottom: 10%;
@@ -646,58 +648,17 @@ body, html {
   transition: all 0.2s;
   font-size: 13px;
 }
-.carousel .slides .slide .btn__vermais:hover {
+.carousel .carousel-inicial .slide .btn__vermais:hover {
   background-color: #994BBD;
 }
-.carousel .prevBtn,
-.carousel .nextBtn {
-  border: 2px solid #FFE03B;
-  position: absolute;
-  border-radius: 30%;
-  color: white;
-  top: 50%;
-  transform: translateY(-50%);
-  height: -moz-fit-content;
-  height: fit-content;
-  background: #FFE03B;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.2s;
-}
-.carousel .prevBtn:hover,
-.carousel .nextBtn:hover {
-  font-size: 25px;
-  font-weight: 800;
-}
-.carousel .prevBtn {
-  left: 2px;
-}
-.carousel .nextBtn {
-  right: 2px;
-}
-
-.carouselItens {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin: 2rem 0 3rem 0;
-  padding: 0 1.5rem;
-}
-.carouselItens h3 {
-  color: #994BBD;
-  font-weight: normal;
-  border-bottom: 1px solid #994BBD;
-  width: 100%;
-}
-.carouselItens .slides {
+.carousel .carousel-itens {
   display: flex;
   transition: transform 0.3s ease;
   touch-action: pan-y;
   gap: 35px;
   margin-top: 20px;
 }
-.carouselItens .slides .slide {
+.carousel .carousel-itens .slide {
   transition: all ease 0.2s;
   border-radius: 5px;
   flex: 0 0 50%;
@@ -709,14 +670,14 @@ body, html {
   justify-content: center;
   align-items: center;
 }
-.carouselItens .slides .slide:hover {
+.carousel .carousel-itens .slide:hover {
   transform: translateY(-10px);
 }
-.carouselItens .slides .slide p {
+.carousel .carousel-itens .slide p {
   color: #151515;
   font-size: 10.8333333333px;
 }
-.carouselItens .slides .slide img {
+.carousel .carousel-itens .slide img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
@@ -724,42 +685,7 @@ body, html {
   -o-object-position: center;
      object-position: center;
 }
-.carouselItens .prevBtn,
-.carouselItens .nextBtn {
-  border: 2px solid #FFE03B;
-  position: absolute;
-  border-radius: 30%;
-  color: white;
-  top: 50%;
-  transform: translateY(-50%);
-  height: -moz-fit-content;
-  height: fit-content;
-  background: #FFE03B;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.2s;
-}
-.carouselItens .prevBtn:hover,
-.carouselItens .nextBtn:hover {
-  font-size: 25px;
-  font-weight: 800;
-}
-.carouselItens .prevBtn {
-  left: 2px;
-}
-.carouselItens .nextBtn {
-  right: 2px;
-}
-
-.carouselresenhas {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin: 2rem 0 5rem 0;
-  padding: 0 1rem;
-}
-.carouselresenhas .slides {
+.carousel .carousel-resenhas {
   display: flex;
   transition: transform 0.3s ease;
   touch-action: pan-y;
@@ -767,7 +693,7 @@ body, html {
   margin-top: 20px;
   padding: 0 30px 0 0;
 }
-.carouselresenhas .slides .slide {
+.carousel .carousel-resenhas .slide {
   transition: all ease 0.2s;
   border-radius: 15px;
   flex: 0 0 100%;
@@ -781,10 +707,10 @@ body, html {
   border-radius: 15px;
   box-shadow: 2px 3px 5px #151515;
 }
-.carouselresenhas .slides .slide:hover {
+.carousel .carousel-resenhas .slide:hover {
   transform: translateY(-10px);
 }
-.carouselresenhas .slides .slide .user {
+.carousel .carousel-resenhas .slide .user {
   width: 100%;
   height: 50px;
   display: flex;
@@ -792,16 +718,16 @@ body, html {
   justify-content: start;
   align-items: center;
 }
-.carouselresenhas .slides .slide .user img {
+.carousel .carousel-resenhas .slide .user img {
   width: 45px;
   height: 45px;
   border-radius: 50%;
 }
-.carouselresenhas .slides .slide .user h4 {
+.carousel .carousel-resenhas .slide .user h4 {
   color: white;
   margin-left: 10px;
 }
-.carouselresenhas .slides .slide .trecho {
+.carousel .carousel-resenhas .slide .trecho {
   position: relative;
   width: 100%;
   display: flex;
@@ -810,13 +736,13 @@ body, html {
   align-items: start;
   margin-top: 20px;
 }
-.carouselresenhas .slides .slide .trecho .titulo {
+.carousel .carousel-resenhas .slide .trecho .titulo {
   display: flex;
   align-items: center;
   gap: 10px;
   color: white;
 }
-.carouselresenhas .slides .slide .trecho .titulo p {
+.carousel .carousel-resenhas .slide .trecho .titulo p {
   margin-top: 0;
   width: -moz-fit-content;
   width: fit-content;
@@ -824,7 +750,7 @@ body, html {
   padding: 5px;
   font-size: 13px;
 }
-.carouselresenhas .slides .slide .trecho p {
+.carousel .carousel-resenhas .slide .trecho p {
   margin-top: 15px;
   width: 80%;
   overflow: hidden;
@@ -832,7 +758,7 @@ body, html {
   font-size: 11.8181818182px;
   color: white;
 }
-.carouselresenhas .slides .slide .trecho .btn__vermais {
+.carousel .carousel-resenhas .slide .trecho .btn__vermais {
   background-color: #FFE03B;
   border: none;
   padding: 5px 10px;
@@ -842,54 +768,13 @@ body, html {
   border-radius: 5px;
   margin-top: 10px;
 }
-.carouselresenhas .prevBtn,
-.carouselresenhas .nextBtn {
-  border: 2px solid #FFE03B;
-  position: absolute;
-  border-radius: 30%;
-  color: white;
-  top: 50%;
-  transform: translateY(-50%);
-  height: -moz-fit-content;
-  height: fit-content;
-  background: #FFE03B;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.2s;
-}
-.carouselresenhas .prevBtn:hover,
-.carouselresenhas .nextBtn:hover {
-  font-size: 25px;
-  font-weight: 800;
-}
-.carouselresenhas .prevBtn {
-  left: 2px;
-}
-.carouselresenhas .nextBtn {
-  right: 2px;
-}
-
-.carouselvideos {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  margin: 2rem 0 3rem 0;
-  padding: 1rem;
-}
-.carouselvideos h3 {
-  color: #994BBD;
-  font-weight: normal;
-  border-bottom: 1px solid #994BBD;
-  width: 100%;
-}
-.carouselvideos .slides {
+.carousel .carousel-videos {
   display: flex;
   transition: transform 0.3s ease;
   touch-action: pan-y;
   gap: 20px;
 }
-.carouselvideos .slides .slide {
+.carousel .carousel-videos .slide {
   transition: all ease 0.2s;
   border-radius: 15px;
   flex: 0 0 40%;
@@ -901,42 +786,15 @@ body, html {
   align-items: center;
   margin-top: 10px;
 }
-.carouselvideos .slides .slide:hover {
+.carousel .carousel-videos .slide:hover {
   transform: translateY(-10px);
 }
-.carouselvideos .slides .slide a {
+.carousel .carousel-videos .slide a {
   width: 100%;
   height: 100%;
 }
-.carouselvideos .slides .slide a video {
+.carousel .carousel-videos .slide a video {
   width: 100%;
   height: 100%;
   margin: 0 auto;
-}
-.carouselvideos .prevBtn,
-.carouselvideos .nextBtn {
-  border: 2px solid #FFE03B;
-  position: absolute;
-  border-radius: 30%;
-  color: white;
-  top: 50%;
-  transform: translateY(-50%);
-  height: -moz-fit-content;
-  height: fit-content;
-  background: #FFE03B;
-  padding: 10px 20px;
-  cursor: pointer;
-  z-index: 1;
-  transition: all 0.2s;
-}
-.carouselvideos .prevBtn:hover,
-.carouselvideos .nextBtn:hover {
-  font-size: 25px;
-  font-weight: 800;
-}
-.carouselvideos .prevBtn {
-  left: 2px;
-}
-.carouselvideos .nextBtn {
-  right: 2px;
 }/*# sourceMappingURL=style.css.map */

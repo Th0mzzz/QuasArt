@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    
     <title>Quasart</title>
 </head>
 <body>
@@ -41,7 +44,7 @@
         
    </aside>
    <main>
-    <section class="search__container" id="search"> 
+    <section class="search__container"> 
 
         <div class="input__container">
             <input type="text" class="search__input">
@@ -58,10 +61,11 @@
             </div>
         </div>
     </section>
+<!-- Inicial -->
+    <section class="carousel">
 
-    <section class="carousel" id="carouselInicial">
-            <div class="slides">
-                <div class="slide">
+            <div class="carousel-inicial">
+                <div class="slide inicial">
                     <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img" class="slide__img_fundo">
                     <div class="texto">
                         <h1>Ghost Rider</h1>
@@ -69,65 +73,22 @@
                     </div>
                     <button class="btn__vermais">Ver mais</button>
                 </div>
-                <div class="slide">
-                    <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img" class="slide__img_fundo">
-                    <div class="texto">
-                        <h1 >Titulo Slide</h1>
-                        <p>Sinopse do conteúdo</p>
-                    </div>
-                    <button class="btn__vermais">Ver mais</button>
-                </div>
-                <div class="slide">
-                    <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img" class="slide__img_fundo">
-                    <div class="texto">
-                        <h1 >Titulo Slide</h1>
-                        <p>Sinopse do conteúdo</p>
-                    </div>
-                    <button class="btn__vermais">Ver mais</button>
-                </div>
-                <div class="slide">
-
-                    <div class="texto">
-                        <h1>Titulo Slide</h1>
-                        <p>Sinopse do conteúdo</p>
-                        <button class="btn__vermais">Ver mais</button>
-                    </div>
-                    <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img" class="slide__img_fundo">
-                    
-                </div>
             </div>
-            <button class="prevBtn"><</button>
-            <button class="nextBtn">></button>
-    </section>
-
-    <section class="carouselItens" id="recomendados">
+     </section>
+<!-- Itens -->
+    <section class="carousel">
         <h3>Recomendados</h3>
-        <div class="slides">
-            <div class="slide">
+        <div class="carousel-itens">
+            <div class="slide item">
                 <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-                <p>motoqueiro_fantasma</p>
-            </div>
-            <div class="slide">
-                <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-                <p>motoqueiro_fantasma</p>
-            </div>
-            <div class="slide">
-                <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-                <p>motoqueiro_fantasma</p>
-            </div>
-            <div class="slide">
-                <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">     
-                <p>motoqueiro_fantasma</p>
+                <p>MOTOQUEIRO 1</p>
             </div>
         </div>
-        <button class="prevBtn"><</button>
-        <button class="nextBtn">></button>
 </section>
-
-<section class="carouselresenhas" id="resenhas1">
-    <div class="slides">
-        <div class="slide">
-
+<!-- Resenhas -->
+<section class="carousel">
+    <div class="carousel-resenhas">
+        <div class="slide resenha">
             <div class="user">
                 <img src="img/perfil-padrao.webp" alt="user_profile">
                 <h4>Username</h4>
@@ -145,101 +106,26 @@
                 <button class="btn__vermais">Ver mais</button>
             </div>
             
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-            
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-            
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-           
         </div>
     </div>
-    <button class="prevBtn"><</button>
-    <button class="nextBtn">></button>
+   
 </section>
-
-<section class="carouselItens" id="recentes">
+<!-- Itens -->
+<section class="carousel">
     <h3>Recentes</h3>
-    <div class="slides">
-        <div class="slide">
+    <div class="carousel-itens">
+        <div class="slide item">
             <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-            <p>motoqueiro_fantasma</p>
-        </div>
-        <div class="slide">
-            <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-            <p>motoqueiro_fantasma</p>
-        </div>
-        <div class="slide">
-            <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-            <p>motoqueiro_fantasma</p>
-        </div>
-        <div class="slide">
-            <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">     
-            <p>motoqueiro_fantasma</p>
+            <p>MOTOQUEIRO 1</p>
         </div>
     </div>
-    <button class="prevBtn"><</button>
-    <button class="nextBtn">></button>
 </section>
-
-<section class="carouselvideos" id="videos">
+<!-- Videos -->
+<section class="carousel">
     <h3>Vídeos</h3>
-    <div class="slides">
+    <div class="carousel-videos">
 
-        <div class="slide">
+        <div class="slide video">
             <a href="">
             <video>
                 <source src="img/Snaptik.app_7255320850197499142.mp4" type="video/mp4" class="video">
@@ -247,39 +133,8 @@
             </video>
             </a>
         </div>
-        <div class="slide">
-            <a href="">
-            <video>
-                <source src="img/Snaptik.app_7255320850197499142.mp4" type="video/mp4" class="video">
-                Seu navegador não suporta a reprodução de vídeos.
-            </video>
-            </a>
-        </div><div class="slide">
-            <a href="">
-            <video>
-                <source src="img/Snaptik.app_7255320850197499142.mp4" type="video/mp4" class="video">
-                Seu navegador não suporta a reprodução de vídeos.
-            </video>
-            </a>
-        </div><div class="slide">
-            <a href="">
-            <video>
-                <source src="img/Snaptik.app_7255320850197499142.mp4" type="video/mp4" class="video">
-                Seu navegador não suporta a reprodução de vídeos.
-            </video>
-            </a>
-        </div>
-        <div class="slide">
-            <a href="">
-            <video>
-                <source src="img/Snaptik.app_7255320850197499142.mp4" type="video/mp4" class="video">
-                Seu navegador não suporta a reprodução de vídeos.
-            </video>
-            </a>
-        </div>
+
     </div>
-    <button class="prevBtn"><</button>
-    <button class="nextBtn">></button>
 </section>
 
 <div class="assine_ad">
@@ -287,30 +142,19 @@
     <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
 </div>
 
-<section class="carouselItens" id="paraVoce">
-    <h3>Para você</h3>
-    <div class="slides">
-        <div class="slide">
+<section class="carousel">
+    <h3>Recentes</h3>
+    <div class="carousel-itens">
+        <div class="slide item">
             <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-            <p>motoqueiro_fantasma</p>
-        </div>
-        <div class="slide">
-            <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">
-            <p>motoqueiro_fantasma</p>
-        </div>
-        <div class="slide">
-            <img src="img/motoqueiro_fantasma.jpg" alt="conteudo_img">     
-            <p>motoqueiro_fantasma</p>
+            <p>MOTOQUEIRO 1</p>
         </div>
     </div>
-    <button class="prevBtn"><</button>
-    <button class="nextBtn">></button>
 </section>
 
-<section class="carouselresenhas" id="resenhas2">
-    <div class="slides">
-        <div class="slide">
-
+<section class="carousel">
+    <div class="carousel-resenhas">
+        <div class="slide resenha">
             <div class="user">
                 <img src="img/perfil-padrao.webp" alt="user_profile">
                 <h4>Username</h4>
@@ -328,70 +172,9 @@
                 <button class="btn__vermais">Ver mais</button>
             </div>
             
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-            
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-            
-        </div>
-        <div class="slide">
-
-            <div class="user">
-                <img src="img/perfil-padrao.webp" alt="user_profile">
-                <h4>Username</h4>
-
-            </div>
-
-            <div class="trecho">
-                <div class="titulo">
-                    <h5>Titulo da resenha</h5>
-                    <p>0/0</p>
-                </div>
-                <p>
-                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda ipsum quod perferendis corporis ut! Quam quasi officia fugiat velit voluptatem obcaecati similique...
-                </p>
-                <button class="btn__vermais">Ver mais</button>
-            </div>
-           
         </div>
     </div>
-    <button class="prevBtn"><</button>
-    <button class="nextBtn">></button>
+   
 </section>
 
    </main>
@@ -415,5 +198,8 @@
    </footer>
    <script src="js/index.js"></script>
    <script src="js/carousel.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+
 </body>
 </html>

@@ -3,11 +3,10 @@
 @import '../abstract/variaveis';
 @import '../abstract/reset';
 .btn__homeback{
-    width: 50px;
-    height: 50px;
+    width: 35px;
+    height: 35px;
     display: flex;
     background-color: $cor-principal;
-    padding: 1rem;
     color: $cor-fundo;
     border-radius: 50%;
     position: relative;
@@ -21,11 +20,10 @@
     z-index: 9;
     position: relative;
     top: 50%;
-    margin-top: 20px;
-    
+    margin-top: 5px;
     width: 100%;
     height: 90vh;
-    background-color: $cor-fundo-escura;
+    background-color: $cor-fundo;
     border: 1px solid  $cor-principal;
     text-align: center;
     color: $cor-texto;
@@ -56,7 +54,7 @@
             border: none;
             width: 50%;
             height: 100%;
-            background-color: $cor-fundo-escura;
+            background-color: $cor-fundo;
             transition: all ease .5s;
             &.ativo {
                 color: $cor-principal-escura;   
@@ -68,11 +66,11 @@
 
     .form {
         width: 100%;
-        height: auto;
+        height: fit-content;
         display: none;
         gap: 20px;
         border-radius: 15px;
-        margin: auto;
+        margin:auto;
         a {
             position: relative;
             bottom: 0%;
@@ -95,10 +93,10 @@
             position: relative;
             background: gray;
             overflow: hidden;
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 2px solid $cor-secundaria;
+            border: 1px solid $cor-principal;
 
             img {
                 width: 100%;
@@ -107,29 +105,37 @@
         }
 
         input {
-            font-size: calc($fs-text / 1.5);
+            font-size: calc($fs-text / 1.1);
             width: 100%;
-            height: 30px;
-            background-color: $cor-fundo;
-            border-radius: 3px;
+            height: 40px;
+            background-color: transparent;
             padding: 10px 10px 10px;
             border: none;
+            border-bottom: 1px solid $cor-principal;
             outline: none;
+            color: $cor-texto;
+            transition: all .2s;
+            &:hover , &:focus{
+                border-bottom: 1px solid $cor-principal-escura;
+            }
         }
-
+        
+    
         .enviar__btn {
+            position: relative;
             font-size: calc($fs-title / 2.3);
             margin-top: 10px;
             transition: all ease .4s;
             height: 35px;
-            padding: 0;
-            @include bg-gradient(right, $cor-secundaria, $cor-secundaria-escura 20%);
-            color: $cor-fundo;
+            border-radius: 5px;
+            background: transparent;
+            color: $cor-principal-escura;
             font-weight: bold;
-
+            border: 1px solid $cor-principal-escura;
+            
             &:hover {
-                transform: translateY(-5px);
-                box-shadow: 1px 1px 5px $cor-fundo;
+              background: $cor-principal-escura;  
+              color: $cor-fundo;
             }
         }
 

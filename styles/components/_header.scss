@@ -6,9 +6,8 @@
     left: 0;
     top:0;
     width:100%;
-    
     padding: 10px 10px;
-    background-color:$cor-fundo-escura;
+    background-color:$cor-fundo;
     display: flex;
     @include alignCenter(row,nowrap,space-between,center);
     border-bottom: 1px solid $cor-principal;

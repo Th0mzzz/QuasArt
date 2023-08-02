@@ -1,71 +1,78 @@
-function carrosel (carouselId){
-const container = document.getElementById(carouselId)
-const slides = container.querySelector(".slides");
-const slideWidth = container.querySelector(".slide").clientWidth;
-const prev = container.querySelector('.prevBtn')
-const next = container.querySelector('.nextBtn')
-let currentSlide = 0;
-let touchStartX = 0;
-let touchEndX = 0;
-
-
-function prevSlide() {
-    currentSlide--;
-    if (currentSlide < 0) {
-        currentSlide = slides.children.length - 1;
+  document.addEventListener('DOMContentLoaded', function () {
+    function initOwlCarousel(selector, options) {
+      $(selector).owlCarousel(options);
     }
-    updateCarousel();
-}
 
-function nextSlide() {
-    currentSlide++;
-    if (currentSlide >= slides.children.length) {
-        currentSlide = 0;
-    }
-    updateCarousel();
-}
+    // Configuração do carousel inicial
+    initOwlCarousel('.carousel-inicial', {
+      loop: false,
+      margin: 10,
+      nav: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 1
+        },
+        1000: {
+          items: 1
+        }
+      }
+    });
 
-function updateCarousel() {
-    const offsetX = -currentSlide * slideWidth;
-    slides.style.transform = `translateX(${offsetX}px)`;
-}
+    // Configuração do carousel de itens
+    initOwlCarousel('.carousel-itens', {
+      loop: false,
+      margin: 10,
+      nav: false,
+      responsive: {
+        0: {
+          items: 2
+        },
+        600: {
+          items: 4
+        },
+        1000: {
+          items: 5
+        }
+      }
+    });
 
-function handleTouchStart(event) {
-    touchStartX = event.touches[0].clientX;
-}
+    // Configuração do carousel de resenhas
+    initOwlCarousel('.carousel-resenhas', {
+      loop: false,
+      margin: 10,
+      nav: false,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 1
+        }
+      }
+    });
 
-function handleTouchEnd(event) {
-    touchEndX = event.changedTouches[0].clientX;
-    handleSwipe();
-}
-
-function handleSwipe() {
-    const swipeThreshold = 50; // Adjust this value to control sensitivity
-    const deltaX = touchEndX - touchStartX;
-
-    if (deltaX > swipeThreshold) {
-        prevSlide();
-    } else if (deltaX < -swipeThreshold) {
-        nextSlide();
-    }
-}
-
-slides.addEventListener("touchstart", handleTouchStart);
-slides.addEventListener("touchend", handleTouchEnd);
-
-prev.addEventListener("click", prevSlide);
-next.addEventListener('click',nextSlide)
-
-}
-
-
-carrosel("carouselInicial")
-carrosel("recomendados")
-carrosel("resenhas1")
-carrosel("recentes")
-carrosel('videos')
-carrosel("paraVoce")
-carrosel('resenhas2')
-
-
+    // Configuração do carousel de vídeos
+    initOwlCarousel('.carousel-videos', {
+      loop: false,
+      margin: 10,
+      nav: false,
+      responsive: {
+        0: {
+          items: 5
+        },
+        600: {
+          items: 3
+        },
+        1000: {
+          items: 5
+        }
+      }
+    });
+  });
 

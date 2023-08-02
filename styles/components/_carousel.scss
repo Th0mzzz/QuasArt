@@ -4,17 +4,22 @@
 .carousel {
     position: relative;
     min-width:300px;
-    max-width:1200px;
-    margin: -50px auto;
+    max-width:100%;
+    margin: 0 auto;
     overflow: hidden;
     margin-bottom: 5rem;
-    .slides {
+
+    .owl-nav{
+        display: none   ;
+    }
+
+    .carousel-inicial {
         display: flex;
         transition: transform 0.3s ease;
 
         .slide {
             position: relative;
-            @include slideItem(100%, 400px, 0px);      
+            
             display: flex;
             align-items: end;
             justify-content: start;
@@ -67,39 +72,140 @@
             
         } 
 
+    .carousel-itens{
 
+            display: flex;
+            transition: transform 0.3s ease;
+            touch-action: pan-y; 
+            gap: 35px;
+            margin-top: 20px; 
+               
+          .slide {
+            @include slideItem(50%, 250px, 5px);      
+            display: flex;
+            border-radius: 5px;
+            @include alignCenter (column, nowrap, center, center); 
 
-
-        .prevBtn,
-        .nextBtn {
-            border:2px solid $cor-secundaria;
-            position: absolute;
-            border-radius: 30%;
-            color:$cor-fundo;
-            top: 50%;
-            transform: translateY(-50%);
-            height: fit-content;
-            background: $cor-secundaria;
-            padding: 10px 20px;
-            cursor: pointer;
-            z-index: 1;
-            transition: all .2s;
-            &:hover{
-                font-size: $fs-title;
-                font-weight: 800;
+            p{
+                color: $cor-texto;
+                font-size: $fs-text / 1.2;
+            }
+      
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              object-position: center;
+    
+            }
+          }
+        }
+    .carousel-resenhas{
+            display: flex;
+            transition: transform 0.3s ease;
+            touch-action: pan-y; 
+            gap: 12px;
+            margin-top: 20px;   
+            padding: 0 30px 0 0; 
+    
+    
+          .slide {
+            @include slideItem(100%,fit-content, 15px);
+            overflow: hidden;
+            transition: all ease .2s;
+            background: $cor-principal-escura;
+            padding:30px;
+            border-radius: 15px;
+            box-shadow: 2px 3px 5px $cor-texto;
+            .user{
+                width: 100%;
+                height: 50px;
+                display: flex;
+                @include alignCenter(row,nowrap,start,center);
+                img{
+                    
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                }
+                h4{
+                    color: $cor-fundo;
+                    margin-left: 10px;
+                }
+            }
+            .trecho{
+                position: relative;
+                width: 100%;
+                display: flex;
+                @include alignCenter(column, nowrap,start,start);
+                margin-top: 20px;
+                
+                .titulo{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    color: $cor-fundo;
+                    p{
+                        margin-top: 0;
+                        width: fit-content;
+                        background-color: $cor-secundaria-escura;
+                        padding: 5px;
+                        font-size: $fs-text ;
+                    }
+                }
+                p{
+                    margin-top: 15px;
+                    width: 80%      ; 
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: $fs-text / 1.1;
+                    color: $cor-fundo;
+                }
+                .btn__vermais{
+                    background-color: $cor-secundaria;
+                    border: none;
+                    padding: 5px 10px;
+                    position: relative;
+                    bottom:0%;
+                   
+                    color: $cor-fundo;
+                    border-radius: 5px;
+                    margin-top: 10px;
+                    
+                }
                 
             }
-        }
-    
-        .prevBtn {
-            left: 2px;
-        }
-    
-        .nextBtn {
-            right: 2px;
             
+          }
         }
-   
+    
+    .carousel-videos{
+            display: flex;
+            transition: transform 0.3s ease;
+            touch-action: pan-y; 
+            gap: 20px; 
+            
+          .slide {
+            @include slideItem(40%, 100%, 15px);      
+            display: flex;
+            @include alignCenter (column, nowrap,center, center); 
+            margin-top: 10px;
+            
+            a{
+              width: 100%;
+              height: 100%;
+              video{
+                width: 100%;
+                height:100% ;
+                margin: 0 auto;
+                
+              }
+            }
+            
+          
+        }
+    }
 
 
+    
 }
