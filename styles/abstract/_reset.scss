@@ -27,14 +27,13 @@ body, html{
     width: 100%;
     height: fit-content;
     padding: 2rem 1rem;
-    border-top: 2px solid $cor-principal;
-    border-bottom:2px solid $cor-principal;
+    background-color: $cor-principal-clara;
     box-shadow: 0 0 3px $cor-principal-clara;
     display: flex;
     @include alignCenter(row,nowrap,center,center);
     gap: 10px;
     h2{
-        color: $cor-texto;
+        color: $cor-fundo;
         font-size:$fs-text/1.1;
         text-shadow: none;
     }

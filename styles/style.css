@@ -25,8 +25,7 @@ body, html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  border-top: 2px solid #994BBD;
-  border-bottom: 2px solid #994BBD;
+  background-color: #DA9AF8;
   box-shadow: 0 0 3px #DA9AF8;
   display: flex;
   flex-flow: row nowrap;
@@ -35,7 +34,7 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: #151515;
+  color: white;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
@@ -264,8 +263,7 @@ body, html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  border-top: 2px solid #994BBD;
-  border-bottom: 2px solid #994BBD;
+  background-color: #DA9AF8;
   box-shadow: 0 0 3px #DA9AF8;
   display: flex;
   flex-flow: row nowrap;
@@ -274,7 +272,7 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: #151515;
+  color: white;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
@@ -469,8 +467,7 @@ body, html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  border-top: 2px solid #994BBD;
-  border-bottom: 2px solid #994BBD;
+  background-color: #DA9AF8;
   box-shadow: 0 0 3px #DA9AF8;
   display: flex;
   flex-flow: row nowrap;
@@ -479,7 +476,7 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: #151515;
+  color: white;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
@@ -582,14 +579,6 @@ body, html {
   display: flex;
 }
 
-.carousel {
-  position: relative;
-  min-width: 300px;
-  max-width: 1600px;
-  margin: 0 auto;
-  margin-bottom: 5rem;
-  padding: 0 10px;
-}
 .carousel .btn__vermais {
   border: none;
   background: #FFE03B;
@@ -606,181 +595,4 @@ body, html {
 }
 .carousel .owl-nav {
   display: none;
-}
-.carousel .carousel-inicial {
-  display: flex;
-  transition: transform 0.3s ease;
-}
-.carousel .carousel-inicial .slide {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: end;
-  justify-content: start;
-  padding: 2rem;
-  margin-left: -10px;
-}
-.carousel .carousel-inicial .slide:hover {
-  transform: translateY(0px);
-}
-.carousel .carousel-inicial .slide img {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  -o-object-position: top;
-     object-position: top;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.carousel .carousel-inicial .slide .texto {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: start;
-  color: white;
-  z-index: 1;
-  -webkit-backdrop-filter: blur(5px);
-          backdrop-filter: blur(5px);
-}
-.carousel .carousel-inicial .slide .texto h1 {
-  font-size: 16px;
-}
-.carousel .carousel-inicial .slide .texto p {
-  width: 70%;
-  font-size: 11.8181818182px;
-}
-.carousel .carousel-itens {
-  display: flex;
-  transition: transform 0.3s ease;
-  touch-action: pan-y;
-  gap: 35px;
-  margin-top: 20px;
-}
-.carousel .carousel-itens .slide {
-  transition: all ease 0.2s;
-  border-radius: 5px;
-  flex: 0 0 50%;
-  height: 250px;
-  overflow: hidden;
-  display: flex;
-  border-radius: 5px;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-}
-.carousel .carousel-itens .slide:hover {
-  transform: translateY(-10px);
-}
-.carousel .carousel-itens .slide p {
-  color: #151515;
-  font-size: 10.8333333333px;
-}
-.carousel .carousel-itens .slide img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center;
-     object-position: center;
-}
-.carousel .carousel-resenhas {
-  display: flex;
-  transition: transform 0.3s ease;
-  touch-action: pan-y;
-  gap: 12px;
-  margin-top: 20px;
-  padding: 0 30px 0 0;
-}
-.carousel .carousel-resenhas .slide {
-  transition: all ease 0.2s;
-  border-radius: 15px;
-  flex: 0 0 100%;
-  height: -moz-fit-content;
-  height: fit-content;
-  overflow: hidden;
-  overflow: hidden;
-  transition: all ease 0.2s;
-  background: #701786;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 2px 3px 5px #151515;
-}
-.carousel .carousel-resenhas .slide:hover {
-  transform: translateY(-10px);
-}
-.carousel .carousel-resenhas .slide .user {
-  width: 100%;
-  height: 50px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-}
-.carousel .carousel-resenhas .slide .user img {
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-}
-.carousel .carousel-resenhas .slide .user h4 {
-  color: white;
-  margin-left: 10px;
-}
-.carousel .carousel-resenhas .slide .trecho {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: start;
-  align-items: start;
-  margin-top: 20px;
-}
-.carousel .carousel-resenhas .slide .trecho .titulo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-}
-.carousel .carousel-resenhas .slide .trecho .titulo p {
-  margin-top: 0;
-  width: -moz-fit-content;
-  width: fit-content;
-  background-color: #ffd257;
-  padding: 5px;
-  font-size: 13px;
-}
-.carousel .carousel-resenhas .slide .trecho p {
-  margin-top: 15px;
-  width: 80%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 11.8181818182px;
-  color: white;
-}
-.carousel .carousel-videos {
-  display: flex;
-  transition: transform 0.3s ease;
-  touch-action: pan-y;
-  gap: 20px;
-  height: 250px;
-}
-.carousel .carousel-videos .slide {
-  height: -moz-fit-content;
-  height: fit-content;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
-.carousel .carousel-videos .slide a {
-  width: 100%;
-  height: 100%;
-}
-.carousel .carousel-videos .slide a video {
-  width: 100%;
-  height: 100%;
-  margin: 0 auto;
 }/*# sourceMappingURL=style.css.map */

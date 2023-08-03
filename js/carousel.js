@@ -5,7 +5,7 @@
 
     // Configuração do carousel inicial
     initOwlCarousel('.carousel-inicial', {
-      loop: false,
+      loop: true,
       margin: 10,
       nav: false,
       responsive: {
@@ -28,10 +28,10 @@
       nav: false,
       responsive: {
         0: {
-          items: 2
+          items: 3
         },
         600: {
-          items: 4
+          items: 3
         },
         1000: {
           items: 5
