@@ -1,7 +1,7 @@
 
-@import '../abstract/mixins';
-@import '../abstract/variaveis';
-@import '../abstract/reset';
+@import '../../abstract/mixins';
+@import '../../abstract/variaveis';
+@import '../../abstract/reset';
 .btn__homeback{
     width: 35px;
     height: 35px;
@@ -79,7 +79,7 @@
             color: $cor-texto;
             text-decoration: none;
             font-size: calc($fs-text / 1.4);
-
+            cursor: pointer;
             &:hover {
                 color: $cor-secundaria;
             }
