@@ -6,8 +6,8 @@
     min-width:300px;
     max-width:1600px;
     margin: 0 auto;
-    overflow: hidden;
     margin-bottom: 5rem;
+    padding: 0 10px;
     .btn__vermais{
         border: none;
         background: $cor-secundaria;
@@ -39,7 +39,7 @@
             align-items: end;
             justify-content: start;
             padding:2rem;
-            
+            margin-left: -10px;
             &:hover{
                 transform: translateY(0px);
             }
@@ -173,9 +173,10 @@
             transition: transform 0.3s ease;
             touch-action: pan-y; 
             gap: 20px; 
+            height: 250px;
             
           .slide {
-            @include slideItem(40%, 100%, 15px);      
+            height: fit-content;
             display: flex;
             @include alignCenter (column, nowrap,center, center); 
             margin-top: 10px;

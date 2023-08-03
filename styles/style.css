@@ -12,7 +12,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #e2e2e2;
+  background-color: white;
 }
 
 :root {
@@ -96,13 +96,13 @@ aside ul .active a {
   left: 0;
   top: 0;
   width: 100%;
-  padding: 10px 10px;
+  padding: 30px 30px;
   background-color: white;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #994BBD;
+  margin-bottom: 20px;
 }
 .header .logotipo {
   margin: auto 0;
@@ -119,11 +119,11 @@ aside ul .active a {
   align-items: center;
 }
 .header .logotipo a .logo_img {
-  width: 35px;
-  height: 35px;
+  width: 45px;
+  height: 45px;
 }
 .header .logotipo a .tipografia {
-  font-size: 12.5px;
+  font-size: 16.6666666667px;
   font-weight: 600;
 }
 .header .assine-btn {
@@ -251,7 +251,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #e2e2e2;
+  background-color: white;
 }
 
 :root {
@@ -456,7 +456,7 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: #e2e2e2;
+  background-color: white;
 }
 
 :root {
@@ -587,8 +587,8 @@ body, html {
   min-width: 300px;
   max-width: 1600px;
   margin: 0 auto;
-  overflow: hidden;
   margin-bottom: 5rem;
+  padding: 0 10px;
 }
 .carousel .btn__vermais {
   border: none;
@@ -619,6 +619,7 @@ body, html {
   align-items: end;
   justify-content: start;
   padding: 2rem;
+  margin-left: -10px;
 }
 .carousel .carousel-inicial .slide:hover {
   transform: translateY(0px);
@@ -763,21 +764,16 @@ body, html {
   transition: transform 0.3s ease;
   touch-action: pan-y;
   gap: 20px;
+  height: 250px;
 }
 .carousel .carousel-videos .slide {
-  transition: all ease 0.2s;
-  border-radius: 15px;
-  flex: 0 0 40%;
-  height: 100%;
-  overflow: hidden;
+  height: -moz-fit-content;
+  height: fit-content;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
-}
-.carousel .carousel-videos .slide:hover {
-  transform: translateY(-10px);
 }
 .carousel .carousel-videos .slide a {
   width: 100%;

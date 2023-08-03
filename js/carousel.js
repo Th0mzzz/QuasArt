@@ -64,7 +64,7 @@
       nav: false,
       responsive: {
         0: {
-          items: 5
+          items: 3
         },
         600: {
           items: 3

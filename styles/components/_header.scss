@@ -6,11 +6,12 @@
     left: 0;
     top:0;
     width:100%;
-    padding: 10px 10px;
+    padding: 30px 30px;
+    
     background-color:$cor-fundo;
     display: flex;
     @include alignCenter(row,nowrap,space-between,center);
-    border-bottom: 1px solid $cor-principal;
+    margin-bottom: 20px;
     .logotipo{
         margin: auto 0 ;
         width:auto;
@@ -22,11 +23,11 @@
             display: flex;
            @include alignCenter(row,nowrap,space-between,center);
             .logo_img{
-                width: 35px;
-                height:35px;
+                width: 45px;
+                height: 45px;
             }
             .tipografia{
-                font-size: calc($fs-title / 2);
+                font-size: calc($fs-title / 1.5);
                 font-weight: 600;
             }
         }
