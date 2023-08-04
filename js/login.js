@@ -3,7 +3,8 @@ const cadastro = document.getElementById('cadastro')
 const token = document.getElementById('token')
 const senha = document.getElementById('novaSenha')
 const formContainer = document.querySelector(".form__container")
-
+const btnHome = document.querySelector('.btn__homeback')
+const esqueceuBtn = document.querySelectorAll(".esqueceu_btn")
 
 function encontrarIndiceArray(array,classe){
   const indiceEncontrado = Array.from(array).indexOf(
@@ -27,12 +28,13 @@ function alternarConta(array, classe) {
     switchBtns[1].classList.add(classe);
     login.classList.remove('ativado')
     cadastro.classList.add('ativado')
-
+    
    }else{
     switchBtns[1].classList.remove(classe);
     switchBtns[0].classList.add(classe);
     cadastro.classList.remove('ativado')
     login.classList.add('ativado')
+    
    }
   }
 
@@ -49,7 +51,7 @@ function alternarConta(array, classe) {
     });
   });
 
-  const esqueceuBtn = document.querySelectorAll(".esqueceu_btn")
+  
 
   esqueceuBtn.forEach(btn =>{
     btn.addEventListener("click", ()=>{
@@ -60,6 +62,7 @@ function alternarConta(array, classe) {
 
         switchBtns.forEach(btn =>{
           btn.style.display = 'none'
+          btnHome.style.display = "none"
         })
         login.classList.remove('ativado')
         cadastro.classList.remove('ativado')
@@ -77,6 +80,7 @@ cancelarBtn.forEach(btn =>{
   btn.addEventListener('click', ()=>{
     switchBtns.forEach(btn =>{
       btn.style.display = 'block'
+      btnHome.style.display = 'flex'
     })
     token.classList.remove('ativado')
     senha.classList.remove("ativado")

@@ -13,7 +13,7 @@ footer{
     display:flex;
     @include alignCenter(column, nowrap, center, start);
     .footer-highItens{
-        padding: 5px;
+        padding: 10px;
          width: 100%;
          display: flex;
          @include alignCenter(row,nowrap,space-between,center);
@@ -54,8 +54,9 @@ footer{
          }
     }
     .footer__links{
-        display: flex;
-        @include alignCenter(row,wrap,center,center);
+        display: grid;
+        grid-template: 1fr 1fr;
+        gap: 15px;
         margin:auto;
         width: 50%;
         gap: 8px;

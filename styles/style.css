@@ -179,7 +179,7 @@ footer {
   align-items: start;
 }
 footer .footer-highItens {
-  padding: 5px;
+  padding: 10px;
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
@@ -215,10 +215,9 @@ footer .footer-highItens .redes li i {
   color: #DA9AF8;
 }
 footer .footer__links {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template: 1fr 1fr;
+  gap: 15px;
   margin: auto;
   width: 50%;
   gap: 8px;
