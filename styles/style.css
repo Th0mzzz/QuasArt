@@ -453,12 +453,52 @@ body, html {
   margin: 0px 0 30px 0;
 }
 #inicial .carousel-inicial .slide {
+  position: relative;
   display: flex;
   height: 300px;
   background-color: #994BBD;
 }
-#inicial .carousel-inicial .slide span {
-  margin: auto;
+#inicial .carousel-inicial .slide div {
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.459) 45%, transparent);
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: end;
+  align-items: start;
+}
+#inicial .carousel-inicial .slide div h5 {
+  color: white;
+}
+#inicial .carousel-inicial .slide div p {
+  width: 55%;
+  color: white;
+  font-size: 10.8333333333px;
+}
+#inicial .carousel-inicial .slide div .btn-vermais {
+  position: absolute;
+  right: 10px;
+  padding: 8px;
+  border: 1px solid #FFE03B;
+  background-color: transparent;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+#inicial .carousel-inicial .slide div .btn-vermais span {
+  color: #FFE03B;
+}
+#inicial .carousel-inicial .slide div .btn-vermais:hover {
+  background-color: #FFE03B;
+}
+#inicial .carousel-inicial .slide div .btn-vermais:hover span {
+  color: #151515;
+  font-weight: bold;
 }
 
 .itens_container {
@@ -466,7 +506,7 @@ body, html {
   gap: 10px;
   flex-direction: column;
   padding: 10px;
-  margin: 30px 0;
+  margin: 20px 0;
 }
 .itens_container h3 {
   font-weight: normal;
@@ -480,19 +520,106 @@ body, html {
   background: #701786;
   position: relative;
 }
+.itens_container .carousel-itens .slide a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  color: white;
+}
+.itens_container .carousel-itens .slide a img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: left;
+     object-position: left;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
 
 .resenhas__container {
-  margin: 100px 0;
+  margin: 50px 0;
+}
+.resenhas__container .carousel-resenhas .owl-item {
+  opacity: 0.8;
+}
+.resenhas__container .carousel-resenhas .owl-item.active {
+  opacity: 1;
 }
 .resenhas__container .carousel-resenhas .slide {
+  position: relative;
   margin: 0 10px;
   display: flex;
-  height: 250px;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: left;
+  height: 300px;
   padding: 1rem;
-  background-color: #e2e2e2;
+  background-color: #701786;
+  border-radius: 15px;
 }
-.resenhas__container .carousel-resenhas .slide span {
-  margin: auto;
+.resenhas__container .carousel-resenhas .slide .usuario {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.resenhas__container .carousel-resenhas .slide .usuario a {
+  color: white;
+  font-size: 13px;
+}
+.resenhas__container .carousel-resenhas .slide .usuario a:hover {
+  text-decoration: underline;
+}
+.resenhas__container .carousel-resenhas .slide .usuario .foto {
+  width: 55px;
+  height: 55px;
+  background-color: white;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.resenhas__container .carousel-resenhas .slide .usuario .foto img {
+  width: 100%;
+  height: 100%;
+}
+.resenhas__container .carousel-resenhas .slide .trecho {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: start;
+}
+.resenhas__container .carousel-resenhas .slide .trecho h5 {
+  color: white;
+}
+.resenhas__container .carousel-resenhas .slide .trecho p {
+  width: 100%;
+  color: white;
+  font-size: 10.8333333333px;
+}
+.resenhas__container .carousel-resenhas .slide .trecho .btn-vermais {
+  padding: 0.5rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  border: 1px solid #FFE03B;
+  background-color: transparent;
+  border-radius: 5px;
+  transition: all 0.2s;
+}
+.resenhas__container .carousel-resenhas .slide .trecho .btn-vermais span {
+  color: #FFE03B;
+}
+.resenhas__container .carousel-resenhas .slide .trecho .btn-vermais:hover {
+  background-color: #FFE03B;
+}
+.resenhas__container .carousel-resenhas .slide .trecho .btn-vermais:hover span {
+  color: #151515;
+  font-weight: bold;
 }
 
 .videos__container {

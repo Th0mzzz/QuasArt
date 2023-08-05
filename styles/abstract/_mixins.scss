@@ -10,13 +10,3 @@
 
 }
 
-@mixin slideItem($width , $height, $radius){
-        transition: all ease .2s;
-        border-radius: $radius;
-        flex: 0 0 $width;
-        height:$height;
-        overflow: hidden;
-    &:hover{
-        transform: translateY(-10px);
-    }
-}

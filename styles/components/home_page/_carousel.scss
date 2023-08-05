@@ -6,11 +6,49 @@
     margin: 0px 0 30px 0;
     .carousel-inicial{
         .slide{
+            position: relative;
             display: flex;
             height: 300px;
             background-color: $cor-principal;
-            span{
-                margin: auto;
+            div{
+                border-radius: 20px 20px 0 0;
+                background: linear-gradient(to top , rgba(0, 0, 0, 0.459) 45% , transparent);
+                width: 100%;
+                height: 50%;
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                padding: 15px;
+                text-align:left;
+                display: flex;
+                @include alignCenter(column,nowrap,end,start);
+                h5{
+                    color: $cor-fundo;
+                }
+                p{
+                    width: 55%;
+                    color: $cor-fundo;
+                    font-size: $fs-text / 1.2;
+                }
+                .btn-vermais{
+                    position: absolute;
+                    right: 10px;
+                    padding: 8px;
+                    border: 1px solid $cor-secundaria;
+                    background-color: transparent;
+                    border-radius: 5px;
+                    transition: all .2s ;
+                    span{
+                        color:$cor-secundaria;
+                    }
+                    &:hover{
+                        background-color: $cor-secundaria;
+                        span{
+                            color:$cor-texto;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
         }
     
@@ -23,7 +61,7 @@
     gap: 10px;
     flex-direction: column;
     padding: 10px;
-    margin: 30px 0;
+    margin: 20px 0;
     h3{
         font-weight: normal;
         border-bottom: 1px solid $cor-principal ;
@@ -38,21 +76,104 @@
             padding: 1rem;
             background: $cor-principal-escura;
             position: relative;
+            
+            a{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0;
+                bottom: 0;
+                z-index: 2;
+                color: $cor-fundo;
+                img{
+                    object-fit: cover;
+                    object-position:left;
+                    z-index: 1;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
         }
     }
 }
 
 .resenhas__container{
-    margin: 100px 0;
+    margin: 50px 0;
     .carousel-resenhas{
+        .owl-item{
+            opacity: .8;
+            &.active{
+                opacity: 1;
+            }
+        }
         .slide{
+            position: relative;
             margin: 0 10px ;
             display: flex;
-            height: 250px;
+            @include alignCenter (column,nowrap,start,left);
+            height: 300px;
             padding: 1rem;
-            background-color: $cor-fundo-escura;
-            span{
-                margin: auto;
+            background-color: $cor-principal-escura;
+            border-radius: 15px;
+      
+            .usuario{
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                height: fit-content;
+                a{
+                    color: $cor-fundo;
+                    font-size: $fs-text ;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+                .foto{
+                    width: 55px;
+                    height: 55px;
+                    background-color: $cor-fundo;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    img{
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+            }
+            .trecho{    
+                position: relative;
+                height: 100%;
+                display: flex;
+                @include alignCenter(column,nowrap,center,start);
+                
+                h5{
+                    color: $cor-fundo;
+                }
+                p{
+                    width: 100%;
+                    color: $cor-fundo;
+                    font-size: $fs-text / 1.2;
+                }
+                .btn-vermais{
+                    padding: .5rem;
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    border: 1px solid $cor-secundaria;
+                    background-color: transparent;
+                    border-radius: 5px;
+                    transition: all .2s ;
+                    span{
+                        color:$cor-secundaria;
+                    }
+                    &:hover{
+                        background-color: $cor-secundaria;
+                        span{
+                            color:$cor-texto;
+                            font-weight: bold;
+                        }
+                    }
+                }
             }
         }
     }

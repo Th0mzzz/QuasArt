@@ -45,8 +45,8 @@ function initCustomCarousel(carouselSelector, options) {
 
   const resenhasOptions = {
     center:true,
-    loop: false,
-    margin: 0,
+    loop: true,
+    margin: 10,
     responsiveClass: true,
     responsive: {
       0: {
