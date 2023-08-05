@@ -1,2 +1,86 @@
 @import '../../abstract/mixins';
 @import '../../abstract/variaveis';
+
+
+#inicial{
+    margin: 0px 0 30px 0;
+    .carousel-inicial{
+        .slide{
+            display: flex;
+            height: 300px;
+            background-color: $cor-principal;
+            span{
+                margin: auto;
+            }
+        }
+    
+    }
+
+}
+
+.itens_container{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+    margin: 30px 0;
+    h3{
+        font-weight: normal;
+        border-bottom: 1px solid $cor-principal ;
+        color: $cor-principal;
+    }
+    
+    .carousel-itens{
+    
+        .slide{
+            display: flex;
+            height: 200px;
+            padding: 1rem;
+            background: $cor-principal-escura;
+            position: relative;
+        }
+    }
+}
+
+.resenhas__container{
+    margin: 100px 0;
+    .carousel-resenhas{
+        .slide{
+            margin: 0 10px ;
+            display: flex;
+            height: 250px;
+            padding: 1rem;
+            background-color: $cor-fundo-escura;
+            span{
+                margin: auto;
+            }
+        }
+    }
+}
+
+.videos__container{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px;
+    h3{
+        font-weight: normal;
+        border-bottom: 1px solid $cor-principal ;
+        color: $cor-principal;
+    }
+    .carousel-videos{
+        .slide{
+            position: relative;
+            display: flex;
+            height: 150px ;
+            background-color: $cor-principal-clara;
+            img{
+                
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: center;
+            }
+        }
+    }
+}
