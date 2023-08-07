@@ -27,7 +27,7 @@ function initCustomCarousel(carouselSelector, options) {
   
 
   const itensOptions = {
-    loop: false,
+    loop: true,
     margin: 8,
     responsiveClass: true,
     responsive: {
@@ -62,7 +62,7 @@ function initCustomCarousel(carouselSelector, options) {
   };
   const videosOptions = {
     center:false,
-    loop: false,
+    loop: true,
     margin: 5,
     responsiveClass: true,
     responsive: {
