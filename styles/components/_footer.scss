@@ -58,9 +58,10 @@ footer{
         grid-template: 1fr 1fr;
         gap: 15px;
         margin:auto;
-        width: 50%;
-        gap: 8px;
-        padding-top: 15px;
+        width: 70%;
+        max-width: 300px;
+        gap: 18px;
+        padding: 35px 0;
         li{
             font-size: $fs-text;   
             text-align: center;
@@ -73,5 +74,11 @@ footer{
             }
             
         }
+    }
+    .creditos{
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid $cor-principal-clara;
+        padding: 1rem;
     }
 }
