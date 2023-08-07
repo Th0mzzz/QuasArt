@@ -291,9 +291,8 @@ body, html {
   z-index: 9;
   position: relative;
   top: 50%;
-  margin-top: 5px;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   background-color: white;
   border: 1px solid #994BBD;
   text-align: center;
@@ -515,19 +514,9 @@ body, html {
 }
 .itens_container .carousel-itens .slide {
   display: flex;
-  height: 200px;
-  padding: 1rem;
   background: #701786;
   position: relative;
-}
-.itens_container .carousel-itens .slide a {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  bottom: 0;
-  z-index: 2;
-  color: white;
+  height: 200px;
 }
 .itens_container .carousel-itens .slide a img {
   -o-object-fit: cover;
@@ -535,8 +524,8 @@ body, html {
   -o-object-position: left;
      object-position: left;
   z-index: 1;
-  width: 100%;
-  height: 100%;
+  max-width: 100%;
+  min-height: 100%;
 }
 
 .resenhas__container {
@@ -590,8 +579,9 @@ body, html {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: top;
   align-items: start;
+  padding-top: 1.5rem;
 }
 .resenhas__container .carousel-resenhas .slide .trecho h5 {
   color: white;
@@ -610,6 +600,7 @@ body, html {
   background-color: transparent;
   border-radius: 5px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 .resenhas__container .carousel-resenhas .slide .trecho .btn-vermais span {
   color: #FFE03B;
@@ -636,13 +627,9 @@ body, html {
 .videos__container .carousel-videos .slide {
   position: relative;
   display: flex;
-  height: 150px;
-  background-color: #DA9AF8;
 }
-.videos__container .carousel-videos .slide img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  position: center;
+.videos__container .carousel-videos .slide a video {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 5px;
 }/*# sourceMappingURL=style.css.map */
