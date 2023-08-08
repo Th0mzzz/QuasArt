@@ -2,6 +2,7 @@
 @import '../abstract/mixins';
 
 footer{
+
     position: relative;
     left: 0;
     bottom:0;
@@ -12,14 +13,16 @@ footer{
     margin-top: 5rem;
     display:flex;
     @include alignCenter(column, nowrap, center, start);
+
     .footer-highItens{
         padding: 10px;
          width: 100%;
          display: flex;
          @include alignCenter(row,nowrap,space-between,center);
          border-bottom: 1px solid $cor-principal-clara;
+
          .logotipo{
-            a{
+                    a{
                 display: flex;
                 align-items: center;
                 img{
