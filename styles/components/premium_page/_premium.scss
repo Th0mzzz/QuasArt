@@ -1,0 +1,18 @@
+@import '../../abstract/mixins';
+@import '../../abstract/variaveis'; 
+
+.logotipo{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: $fs-title / 1.2;
+    color: $cor-principal-escura;
+        img{
+            width: 100px;
+            height: 100px;
+        }
+    
+}
