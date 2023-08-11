@@ -650,11 +650,19 @@ body, html {
 }
 
 .header nav .btn__homeback {
-  height: 50px;
-  width: 50px;
+  padding: 1rem;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 .header nav .btn__homeback i {
+  font-size: 28px;
   color: #994BBD;
+  margin: auto;
+}
+.header nav .btn__homeback:hover i {
+  color: #FFE03B;
 }
 
 .premium_top {
@@ -664,6 +672,7 @@ body, html {
 }
 .premium_top .logotipo {
   margin: 0 auto;
+  text-align: center;
   font-weight: bold;
   color: #701786;
 }
