@@ -9,69 +9,68 @@
     z-index: 10;
     nav{
         width:100%;
-        padding: 30px 30px;
+        padding: 15px 30px;
         z-index: 100;
-
         display: flex;
         @include alignCenter(row,nowrap,space-between,center);
-    .logotipo{
-        margin: auto 0 ;
-        width:auto;
-        height: 100%;
-        overflow: hidden;
-        a{
-            text-decoration: none;
-            color:$cor-principal;
-            display: flex;
-           @include alignCenter(row,nowrap,space-between,center);
-            .logo_img{
-                width: 45px;
-                height: 45px;
-            }
-            .tipografia{
-                font-size: calc($fs-title / 1.5);
-                font-weight: 600;
-            }
-        }
-    }
-    .assine-btn{
-        position: relative;
-        width: 80px;
-        border: 1px solid $cor-principal-escura;
-        background: transparent;
-        padding: 3px 5px;
-        border-radius: 5px; 
-        transition: all .2s;
-        cursor: pointer;
-        span{
-            color: $cor-principal-escura;
-            position: relative;
-            z-index: 2;
-        }
-        &::before{
-            content: '';
-            position: absolute;
-            display: flex;
-            @include alignCenter(row,nowrap,center,center);
-            color: $cor-fundo;
-            left: 0%;
-            bottom: 0%;
-            width:0%;
+        .logotipo{
+            margin: auto 0 ;
+            width:auto;
             height: 100%;
-            background-color: $cor-principal-escura;
-            transition: all .2s;
-            z-index: 1;
-            border-radius: 3px; 
+            overflow: hidden;
+            a{
+                text-decoration: none;
+                color:$cor-principal;
+                display: flex;
+            @include alignCenter(row,nowrap,space-between,center);
+                .logo_img{
+                    width: 45px;
+                    height: 45px;
+                }
+                .tipografia{
+                    font-size: calc($fs-title / 1.5);
+                    font-weight: 600;
+                }
+            }
         }
-        &:hover{
+        .assine-btn{
+            position: relative;
+            width: 80px;
+            border: 1px solid $cor-principal-escura;
+            background: transparent;
+            padding: 3px 5px;
+            border-radius: 5px; 
+            transition: all .2s;
+            cursor: pointer;
             span{
-                color: $cor-fundo;
+                color: $cor-principal-escura;
+                position: relative;
+                z-index: 2;
             }
             &::before{
-                width: 100%;
-                
+                content: '';
+                position: absolute;
+                display: flex;
+                @include alignCenter(row,nowrap,center,center);
+                color: $cor-fundo;
+                left: 0%;
+                bottom: 0%;
+                width:0%;
+                height: 100%;
+                background-color: $cor-principal-escura;
+                transition: all .2s;
+                z-index: 1;
+                border-radius: 3px; 
+            }
+            &:hover{
+                span{
+                    color: $cor-fundo;
+                }
+                &::before{
+                    width: 100%;
+                    
+                }
             }
         }
     }
-}
 }
