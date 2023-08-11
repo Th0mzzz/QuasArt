@@ -1,11 +1,24 @@
 @import '../../abstract/mixins';
 @import '../../abstract/variaveis'; 
 
+.header{
+    nav{
+       
+        .btn__homeback{
+            height: 50px;
+            width: 50px;
+            i{
+                color: $cor-principal;
+            }
+        }  
+    }
+    
+}
 .premium_top{
     padding: 3rem;
     width: 100%;
     display: flex;
-    background-color: $cor-texto;
+    
     .logotipo{
         margin: 0 auto;
         font-weight: bold;

@@ -649,11 +649,18 @@ body, html {
   border-radius: 5px;
 }
 
+.header nav .btn__homeback {
+  height: 50px;
+  width: 50px;
+}
+.header nav .btn__homeback i {
+  color: #994BBD;
+}
+
 .premium_top {
   padding: 3rem;
   width: 100%;
   display: flex;
-  background-color: #151515;
 }
 .premium_top .logotipo {
   margin: 0 auto;
