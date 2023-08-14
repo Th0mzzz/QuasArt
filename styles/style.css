@@ -649,34 +649,46 @@ body, html {
   border-radius: 5px;
 }
 
-.header nav .btn__homeback {
-  padding: 1rem;
-  height: -moz-fit-content;
-  height: fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.header nav .btn__homeback i {
-  font-size: 28px;
-  color: #994BBD;
-  margin: auto;
-}
-.header nav .btn__homeback:hover i {
-  color: #FFE03B;
+header .btn__homeback {
+  font-size: 25px;
 }
 
 .premium_top {
+  position: relative;
   padding: 3rem;
   width: 100%;
   display: flex;
 }
 .premium_top .logotipo {
+  z-index: 2;
+  background-color: white;
   margin: 0 auto;
   text-align: center;
   font-weight: bold;
   color: #701786;
+  font-size: 25px;
 }
 .premium_top .logotipo img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+}
+.premium_top .logotipo .slogan_plus {
+  color: #508CD3;
+  font-size: 15.6px;
+  letter-spacing: 3px;
+}
+
+.premium_planos {
+  width: 100%;
+  margin: 0.5rem 0rem;
+}
+.premium_planos .container_planos {
+  background-image: url(../img/space.jpg);
+  width: 100%;
+  height: auto;
+}
+.premium_planos .container_planos .plano {
+  width: 50%;
+  height: auto;
+  background-color: white;
 }/*# sourceMappingURL=style.css.map */
