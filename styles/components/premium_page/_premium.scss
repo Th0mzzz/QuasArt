@@ -33,6 +33,23 @@ header{
     }
    
 }
+.plano_btn{
+    border: none;
+    background-color: $cor-terciaria;
+    padding: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background ease-in .2s;
+    color: $cor-fundo;
+    font-size: $fs-title / 1.8;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    outline: none;
+    &:hover{
+        background-color: $cor-terciaria-escura;
+    }
+}
 
 .premium_planos{
     z-index: 2;
@@ -80,7 +97,7 @@ header{
             }
                 ul{
                     margin-top: 20px;
-                    margin-bottom: 60px;
+                    margin-bottom: 70px;
                     position: relative;
                     height: fit-content;
                     li{ 
@@ -104,23 +121,6 @@ header{
                     transform: translateX(-50%);
                     width: 80%;
                     bottom: 30px;
-                    border: none;
-                    background-color: $cor-terciaria;
-                    padding: 1em;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    transition: background ease-in .2s;
-                    a{
-                        color: $cor-fundo;
-                        font-size: $fs-title / 1.5;
-                        font-weight: bold;
-                        letter-spacing: 2px;
-                        width: 100%;
-                        height: 100%;
-                    }
-                    &:hover{
-                        background-color: $cor-terciaria-escura;
-                    }
                 }
 
             }
@@ -128,3 +128,68 @@ header{
 
       }
     }
+
+
+.premium_modal{
+    position: fixed;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #88868665;
+    z-index: 1000;
+
+    .close_btn{
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: $fs-title;
+        color: $cor-terciaria-escura;
+        cursor: pointer;
+        font-weight: bold;
+        &:hover{
+            color: $cor-terciaria;
+        }
+    }
+    .modal_content{
+        width: 100%;
+        max-width: 800px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50% , -50%);
+        background-color: $cor-fundo;
+        padding: 3rem;
+        border-radius: 15px;
+        span{
+            color: $cor-terciaria;
+        }
+        p{
+            margin: 5px 0 20px 0;
+        }
+        .inputs_plano{
+            display: flex;
+            @include alignCenter(column,nowrap,center,left);
+            gap: 2rem;
+        
+        }
+        .btn{
+            border: none;
+            background-color: $cor-terciaria;
+            padding: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background ease-in .2s;
+            color: $cor-fundo;
+            font-size: $fs-title / 1.8;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-align: center;
+            outline: none;
+            &:hover{
+                background-color: $cor-terciaria-escura;
+            }
+        }
+    }
+}

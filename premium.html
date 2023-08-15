@@ -48,7 +48,7 @@
                     <li><i class="fa-solid fa-star"></i>Selo Premium</li>
                     <li><i class="fa-solid fa-star"></i>Ficha Grátis</li>
                 </ul>
-                <button class="plano_btn"><a href="">Decolar!</a></button>
+                <button class="plano_btn tripulante">Decolar!</butbtnton>
             </div>
             <div class="plano comandante">
                 <h2>Comandante <span style="color:#508CD3;">PLUS +</span></h2>
@@ -67,12 +67,49 @@
                     <li><i class="fa-solid fa-star"></i>Ficha <span>ILIMITADAS</span></li>
                     <li><i class="fa-solid fa-star"></i>Maior visibilidade na Platoforma</li>
                 </ul>
-                <button class="plano_btn"><a href="">Decolar!</a></button>
+                <button class="plano_btn comandante">Decolar!</button>
             </div>
 
          </div>
          
     </section>
+
+    <section class="premium_modal" id="premium_modal">
+
+        <span class="close_btn"><i class="fa-solid fa-xmark"></i></span>
+
+        <div class="modal_content">
+
+            <h2 id="plano_nome"></h2>
+            <p>Gostaria de qual plano?</p>
+
+            <div class="inputs_plano">
+
+                <div class="input_container">
+                    <input type="radio" name="plano" id="mensal">
+                    <label for="plano">Plano Mensal:<span id="preco_mensal"></span> </label>
+                    
+                </div>
+
+                <div class="input_container">
+                    <input type="radio" name="plano" id="semestral">
+                    <label for="plano">Plano Semestral: <span id="preco_semestral"></span> (desconto de <span>10%</span>!!)</label>
+                    
+                </div>
+
+                <div class="input_container">
+                    <input type="radio" name="plano" id="anual">    
+                    <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!) </label>
+                    
+                </div>
+
+                <input type="submit" class="btn" value="Confirmar!">
+
+            </div>
+
+        </div>
+    </section>
+
 </main>   
 <footer>
     <div class="footer-highItens">
@@ -95,5 +132,6 @@
         &copy; Quasart 2023
     </div>
 </footer>
+<script src="js/premium.js"></script>
 </body>
 </html>
