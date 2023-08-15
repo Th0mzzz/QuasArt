@@ -37,7 +37,7 @@ header{
 .premium_planos{
     z-index: 2;
      width: 100%;
-     margin: 10rem 0rem;
+     margin: 3rem 0rem;
      
      .container_planos{
       width: 100%;
@@ -52,7 +52,7 @@ header{
             width: 100%;
             max-width: 450px;
             padding: 3rem 2.5rem;
-            height: 700px;
+            height: auto;
             border-top:10px solid $cor-principal-escura;
             box-shadow: 1px 1px 5px #8a8a8a;
             background-color: $cor-fundo;
@@ -71,16 +71,20 @@ header{
                     color: $cor-principal;
                 }
                 p{
+                    margin-top: 10px;
                     font-size: $fs-text / 1.1; 
                     white-space: wrap;
-                    width: 100%
-                    
+                    width: 100%;
+                    letter-spacing: 2px;
                 }
             }
                 ul{
-                    margin-top: 2rem;
+                    margin-top: 20px;
+                    margin-bottom: 60px;
+                    position: relative;
+                    height: fit-content;
                     li{ 
-                        margin: 2rem 0;
+                        margin: 1rem 0;
                         color: $cor-texto;
                         i{
                             color: $cor-secundaria-escura;
@@ -97,9 +101,9 @@ header{
                 .plano_btn{
                     position: absolute;
                     left: 50%;
-                    bottom:50px;
-                    width: 80%;
                     transform: translateX(-50%);
+                    width: 80%;
+                    bottom: 30px;
                     border: none;
                     background-color: $cor-terciaria;
                     padding: 1em;
