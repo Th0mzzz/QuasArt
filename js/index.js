@@ -19,5 +19,7 @@ list.forEach(item => item.addEventListener('click', function(e){
 
     
 }));
-    
+
+
+
 
