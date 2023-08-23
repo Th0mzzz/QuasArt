@@ -19,15 +19,87 @@
      
 </head>
 <body>
-    <header class="header">
-    
-            <nav>
-                <div class="logotipo">
-                        <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
-                </div>
-                <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
-            </nav>
+   <header class="header">
+    <section class="search_modal" id="searchModal">
+        <div class="search_topItens">
+
+            <div class="logotipo">
+                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+            </div>
+            <div class="searchInput_container">
+                <input type="text" placeholder="O que procura?">
+                <button class="search_btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+
+        </div>
+
+        <div class="search_results">
+            <p>Não há nada</p>
+            <div class="result">
+                <span></span>
+            </div>
+        </div>
+        
+        
+    </section>
+
+        <nav>
+            <div class="logotipo">
+                    <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+            </div>
+            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
+        </nav>
+        
+   </header>
+   
+   <aside class="aside">
+        <ul>
+            <li class="list search" id="search__btn">
+                <a class="nav__item" ><i class="fa-solid fa-magnifying-glass"></i></a>
+            </li>
+            <li class="list">
+                <a href="index.html" class="nav__item"><i class="fa-solid fa-house"></i></a>
+            </li>
+            <li class="list">
+                <a class="nav__item"><i class="fa-solid fa-video"></i></a>
+            </li>
+            <li class="list active">
+                <a href="pub.html" "nav__item"><i class="fa-regular fa-plus"></i></a>
+            </li>
+            <li class="list">
+                <a href="login.html" class="nav__item"><i class="fa-regular fa-user"></i></a>
+            </li>
             
-       </header>
+        </ul>
+        
+   </aside>
+
+   <main>
+
+   </main>
+
+   <footer>
+    <div class="footer-highItens">
+        <div class="logotipo">
+            <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+       </div>
+       <ul class="redes">
+        <li><a href="https://instagram.com/oficial_quasart?igshid=MzRlODBiNWFlZA=="><i class="fa-brands fa-instagram"></a></i></li>
+        <li><a href="mailto:quasartcontato@gmail.com"><i class="fa-regular fa-envelope"></i></a></li>
+        <li><a href=""><i class="fa-brands fa-github"></i></a></li>
+       </ul>
+    </div>
+    <ul class="footer__links">
+        <li><a href="#">Sobre o QuasArt</a></li>
+        <li><a>Entre em contato</a></li>
+        <li><a>Direitos Autorais</a></li>
+        <li><a>Termos de Politica de Privacidade e Segurança</a></li>
+    </ul>
+    <div class="creditos">
+        &copy; Quasart 2023
+    </div>
+</footer>
+
+    <script src="js/index.js"></script>
 </body>
 </html>

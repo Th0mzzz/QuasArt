@@ -3,12 +3,33 @@
 @import '../../abstract/variaveis';
 @import '../../abstract/reset';
 
+.btn__homeback{
+    display: flex;
+    color: $cor-principal-escura;
+    border-radius: 50%;
+    z-index: 100;
+    transition: color ease .2s;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    i{
+        margin: auto;
+    }
+    &:hover{
+        color: $cor-secundaria;
+    }
+}
+.login_main{
+  
 .form__container {
     top: 0;
     z-index: 9;
     position: relative;
     top: 50%;
+    left: 100%;
+    transform: translateX(-100%);
     width: 100%;
+    max-width: 550px;
     height: 100vh;
     background-color: $cor-fundo;
     border: 1px solid  $cor-principal;
@@ -173,3 +194,4 @@
     
 }
 
+}

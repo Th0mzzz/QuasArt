@@ -25,8 +25,8 @@ body, html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  background-color: #DA9AF8;
-  box-shadow: 0 0 3px #DA9AF8;
+  background-color: #fad97d;
+  box-shadow: 1px 1px 5px #151515;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -34,11 +34,14 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: white;
+  color: #151515;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
 .assine_ad h2 span {
+  color: #994BBD;
+}
+.assine_ad h2 .plus_span {
   color: #508CD3;
 }
 .assine_ad img {
@@ -279,8 +282,8 @@ body, html {
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  background-color: #DA9AF8;
-  box-shadow: 0 0 3px #DA9AF8;
+  background-color: #fad97d;
+  box-shadow: 1px 1px 5px #151515;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
@@ -288,11 +291,14 @@ body, html {
   gap: 10px;
 }
 .assine_ad h2 {
-  color: white;
+  color: #151515;
   font-size: 11.8181818182px;
   text-shadow: none;
 }
 .assine_ad h2 span {
+  color: #994BBD;
+}
+.assine_ad h2 .plus_span {
   color: #508CD3;
 }
 .assine_ad img {
@@ -300,12 +306,32 @@ body, html {
   height: 45px;
 }
 
-.form__container {
+.btn__homeback {
+  display: flex;
+  color: #701786;
+  border-radius: 50%;
+  z-index: 100;
+  transition: color ease 0.2s;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.btn__homeback i {
+  margin: auto;
+}
+.btn__homeback:hover {
+  color: #FFE03B;
+}
+
+.login_main .form__container {
   top: 0;
   z-index: 9;
   position: relative;
   top: 50%;
+  left: 100%;
+  transform: translateX(-100%);
   width: 100%;
+  max-width: 550px;
   height: 100vh;
   background-color: white;
   border: 1px solid #994BBD;
@@ -314,16 +340,16 @@ body, html {
   padding: 0 1.5rem;
   display: flex;
 }
-.form__container p {
+.login_main .form__container p {
   color: #151515;
   font-size: 11.8181818182px;
   margin-bottom: 1rem;
 }
-.form__container h1 {
+.login_main .form__container h1 {
   font-size: 17.8571428571px;
   margin-top: 1rem;
 }
-.form__container .btn__homeback {
+.login_main .form__container .btn__homeback {
   width: 35px;
   height: 35px;
   display: flex;
@@ -335,13 +361,13 @@ body, html {
   z-index: 100;
   transition: color ease 0.2s;
 }
-.form__container .btn__homeback i {
+.login_main .form__container .btn__homeback i {
   margin: auto;
 }
-.form__container .btn__homeback:hover {
+.login_main .form__container .btn__homeback:hover {
   color: #FFE03B;
 }
-.form__container .trocar__container {
+.login_main .form__container .trocar__container {
   position: absolute;
   top: 0;
   left: 0%;
@@ -352,7 +378,7 @@ body, html {
   justify-content: center;
   align-items: center;
 }
-.form__container .trocar__container .switch_btn {
+.login_main .form__container .trocar__container .switch_btn {
   font-size: 10.8333333333px;
   color: #151515;
   border: none;
@@ -362,12 +388,12 @@ body, html {
   transition: all ease 0.5s;
   cursor: pointer;
 }
-.form__container .trocar__container .switch_btn.ativo {
+.login_main .form__container .trocar__container .switch_btn.ativo {
   color: #701786;
   font-weight: bold;
   box-shadow: 2px 2px 3px #DA9AF8;
 }
-.form__container .form {
+.login_main .form__container .form {
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
@@ -376,7 +402,7 @@ body, html {
   border-radius: 15px;
   margin: auto;
 }
-.form__container .form a {
+.login_main .form__container .form a {
   position: relative;
   bottom: 0%;
   z-index: 1000;
@@ -386,24 +412,24 @@ body, html {
   font-size: 9.2857142857px;
   cursor: pointer;
 }
-.form__container .form a:hover {
+.login_main .form__container .form a:hover {
   color: #FFE03B;
 }
-.form__container .form .a {
+.login_main .form__container .form .a {
   position: static;
   width: 100%;
 }
-.form__container .form .foto-perfil {
+.login_main .form__container .form .foto-perfil {
   position: relative;
 }
-.form__container .form .foto-perfil img {
+.login_main .form__container .form .foto-perfil img {
   background: #994BBD;
   width: 80px;
   height: 80px;
   padding: 1.5px;
   border-radius: 10px;
 }
-.form__container .form input {
+.login_main .form__container .form input {
   font-size: 11.8181818182px;
   width: 100%;
   height: 40px;
@@ -415,10 +441,10 @@ body, html {
   color: #151515;
   transition: all 0.2s;
 }
-.form__container .form input:focus {
+.login_main .form__container .form input:focus {
   border-bottom: 1px solid #ffd257;
 }
-.form__container .form .enviar__btn {
+.login_main .form__container .form .enviar__btn {
   position: relative;
   font-size: 10.8695652174px;
   margin-top: 10px;
@@ -431,32 +457,32 @@ body, html {
   border: 1px solid #701786;
   cursor: pointer;
 }
-.form__container .form .enviar__btn:hover {
+.login_main .form__container .form .enviar__btn:hover {
   background: #701786;
   color: white;
   border: none;
 }
-.form__container .form .token__container {
+.login_main .form__container .form .token__container {
   width: 100%;
   margin-top: 20px;
 }
-.form__container .form .token__container p {
+.login_main .form__container .form .token__container p {
   margin-bottom: 1rem;
 }
-.form__container .form .token__container .token__btns {
+.login_main .form__container .form .token__container .token__btns {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   gap: 5px;
 }
-.form__container .form .token__container .token__btns .cod_token {
+.login_main .form__container .form .token__container .token__btns .cod_token {
   width: 20%;
   height: 50px;
   text-align: center;
   font-size: 25px;
 }
-.form__container .ativado {
+.login_main .form__container .ativado {
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
@@ -852,7 +878,7 @@ header .btn__homeback {
 }
 .search_modal .search_topItens .logotipo {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 50px;
   padding: 1rem 1.5rem;
 }
 .search_modal .search_topItens .logotipo a {
@@ -870,7 +896,7 @@ header .btn__homeback {
   max-width: 900px;
   height: 50px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 50px;
   display: flex;
   align-items: center;
   padding: 2rem 1.5rem;

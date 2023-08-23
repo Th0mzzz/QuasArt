@@ -27,17 +27,20 @@ body, html{
     width: 100%;
     height: fit-content;
     padding: 2rem 1rem;
-    background-color: $cor-principal-clara;
-    box-shadow: 0 0 3px $cor-principal-clara;
+    background-color: $cor-secundaria-clara;
+    box-shadow: 1px 1px 5px $cor-texto;
     display: flex;
     @include alignCenter(row,nowrap,center,center);
     gap: 10px;
     
     h2{
-        color: $cor-fundo;
+        color: $cor-texto;
         font-size:$fs-text/1.1;
         text-shadow: none;
         span{
+            color: $cor-principal;
+        }
+        .plus_span{
             color: $cor-terciaria;
         }
     }
