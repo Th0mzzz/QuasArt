@@ -949,4 +949,50 @@ header .btn__homeback {
 
 .search_ativo {
   display: flex;
+}
+
+.planets {
+  margin-top: 1rem;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+.planets h1 {
+  font-size: 22.7272727273px;
+}
+.planets .planet_container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease-in 0.2s;
+  border-radius: 50%;
+}
+.planets .planet_container:hover img {
+  animation: none;
+}
+.planets .planet_container h2 {
+  font-size: 20.8333333333px;
+  font-weight: normal;
+}
+.planets .planet_container img {
+  width: 100%;
+  height: 100%;
+  animation: flutuar 6s infinite;
+}
+
+@keyframes flutuar {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }/*# sourceMappingURL=style.css.map */

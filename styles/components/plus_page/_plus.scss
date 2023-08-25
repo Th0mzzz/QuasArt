@@ -1,0 +1,52 @@
+@import '../../abstract/mixins';
+@import '../../abstract/variaveis';
+.planets{
+    margin-top: 1rem;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    @include alignCenter(column,nowrap,center,center);
+    h1{
+        font-size:$fs-title / 1.1 ;
+    }
+    .planet_container{
+        position: relative;
+        width: 250px;
+        height: 250px;
+        text-align: center;
+        cursor: pointer;
+        transition: all ease-in .2s;
+        &:hover{
+                img{
+                    animation: none;
+                }
+        }
+        
+        h2{
+            font-size: $fs-title /1.2;
+            font-weight: normal;
+            
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            animation: flutuar 6s infinite;
+        }
+        
+        border-radius: 50%;
+    }
+}
+
+
+@keyframes flutuar {
+    0%{
+        transform: translateY(0px);
+    }
+    50%{
+        transform: translateY(-8px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}
