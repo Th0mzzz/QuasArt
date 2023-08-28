@@ -1112,4 +1112,19 @@ header .btn__homeback {
 .planets__containers .planet .bloqueado i {
   color: white;
   font-size: 25px;
+}
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.pubModal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: black;
 }/*# sourceMappingURL=style.css.map */
