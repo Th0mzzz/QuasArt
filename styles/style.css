@@ -1,3 +1,11 @@
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -49,6 +57,14 @@ body, html {
   height: 45px;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 aside {
   width: 100%;
   position: fixed;
@@ -99,6 +115,14 @@ aside ul .active a {
   color: white;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 .header {
   position: relative;
   left: 0;
@@ -176,6 +200,14 @@ aside ul .active a {
   width: 100%;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 footer {
   position: relative;
   left: 0;
@@ -255,6 +287,22 @@ footer .creditos {
   padding: 1rem;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 * {
   padding: 0;
   margin: 0;
@@ -489,6 +537,14 @@ body, html {
   align-items: center;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 #inicial {
   margin: 0px 0 30px 0;
 }
@@ -557,7 +613,7 @@ body, html {
   display: flex;
   background: #701786;
   position: relative;
-  height: 200px;
+  height: 230px;
 }
 .itens_container .carousel-itens .slide a img {
   -o-object-fit: cover;
@@ -675,6 +731,14 @@ body, html {
   border-radius: 5px;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 header .btn__homeback {
   font-size: 25px;
 }
@@ -749,7 +813,10 @@ header .btn__homeback {
   border-radius: 15px;
 }
 .premium_planos .container_planos .plano.comandante {
-  border-top: 10px solid #FFE03B;
+  border-top: 10px solid #fad97d;
+}
+.premium_planos .container_planos .plano.comandante .precos h1 {
+  color: #ffd257;
 }
 .premium_planos .container_planos .plano h2 {
   font-size: 25px;
@@ -856,6 +923,14 @@ header .btn__homeback {
   background-color: #112B4A;
 }
 
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
 .search_modal {
   position: fixed;
   -webkit-backdrop-filter: blur(5px);
@@ -949,4 +1024,92 @@ header .btn__homeback {
 
 .search_ativo {
   display: flex;
+}
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+.planets__containers {
+  width: 100%;
+  max-height: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.planets__containers .planet {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.planets__containers .planet:hover .bloqueado {
+  display: flex;
+}
+.planets__containers .planet .planet_btn {
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+.planets__containers .planet .planet_btn:hover svg {
+  animation-play-state: paused;
+  background-color: #701786;
+  border-radius: 50px;
+}
+.planets__containers .planet .planet_btn:hover svg g path {
+  fill: white;
+}
+.planets__containers .planet .planet_btn:hover P {
+  color: #701786;
+  letter-spacing: 2px;
+}
+.planets__containers .planet .planet_btn svg {
+  width: 100%;
+  height: 80%;
+  animation: flutuar ease-in-out 2s infinite;
+  transition: all ease 0.3s;
+}
+.planets__containers .planet .planet_btn svg rect {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+}
+.planets__containers .planet .planet_btn svg g path {
+  transition: all 0.2s;
+  fill: #994BBD;
+}
+.planets__containers .planet .planet_btn p {
+  transition: all 0.2s;
+  font-size: 25px;
+  color: #994BBD;
+}
+.planets__containers .planet .bloqueado {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  z-index: 50;
+  transition: all 0.2s;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.planets__containers .planet .bloqueado i {
+  color: white;
+  font-size: 25px;
 }/*# sourceMappingURL=style.css.map */

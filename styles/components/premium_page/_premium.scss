@@ -76,7 +76,13 @@ header{
             border-radius: 15px;
             
             &.comandante{
-                border-top: 10px solid $cor-secundaria;
+                border-top: 10px solid $cor-secundaria-clara;
+                .precos{
+                    h1{
+                        
+                        color: $cor-secundaria-escura;
+                    }
+                }
             }
 
             h2{

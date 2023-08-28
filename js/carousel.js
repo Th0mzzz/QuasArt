@@ -28,7 +28,7 @@ function initCustomCarousel(carouselSelector, options) {
 
   const itensOptions = {
     loop: true,
-    margin: 8,
+    margin: 1,
     responsiveClass: true,
     responsive: {
       0: {
