@@ -3,8 +3,17 @@
 
 .pubModal{
     position:fixed;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $cor-principal;
+    backdrop-filter: blur(2px);
+    z-index: 1000;
+    display: none;
+    padding: 1rem;
+    .close_btn{
+        font-size: $fs-title;
+        color: $cor-fundo;
+    }
 }
