@@ -741,6 +741,9 @@ body, html {
 }
 header .btn__homeback {
   font-size: 25px;
+  position: relative;
+  left: 20px;
+  top: 20px;
 }
 
 .premium_top {
@@ -1122,24 +1125,9 @@ header .btn__homeback {
     transform: translateY(-5px);
   }
 }
-.pubModal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #994BBD;
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
-  z-index: 1000;
-  display: none;
-  padding: 1rem;
+.titulo_pub {
+  width: 100%;
   text-align: center;
-}
-.pubModal .close_btn {
-  font-size: 25px;
-  color: white;
-}
-.pubModal h2 {
-  color: white;
+  font-weight: bold;
+  padding: 1rem;
 }/*# sourceMappingURL=style.css.map */
