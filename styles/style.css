@@ -1134,8 +1134,12 @@ header .btn__homeback {
   z-index: 1000;
   display: none;
   padding: 1rem;
+  text-align: center;
 }
 .pubModal .close_btn {
   font-size: 25px;
+  color: white;
+}
+.pubModal h2 {
   color: white;
 }/*# sourceMappingURL=style.css.map */
