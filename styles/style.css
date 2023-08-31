@@ -283,6 +283,7 @@ footer .footer__links li a:hover {
 footer .creditos {
   text-align: center;
   width: 100%;
+  margin: auto;
   border-top: 1px solid #DA9AF8;
   padding: 1rem;
 }
@@ -744,6 +745,7 @@ header .btn__homeback {
   position: relative;
   left: 20px;
   top: 20px;
+  z-index: 10;
 }
 
 .premium_top {
@@ -948,6 +950,18 @@ header .btn__homeback {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.383);
 }
+.search_modal .close_btn {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-size: 25px;
+  color: #701786;
+  cursor: pointer;
+  font-weight: bold;
+}
+.search_modal .close_btn:hover {
+  color: #994BBD;
+}
 .search_modal .search_topItens {
   display: flex;
   align-items: center;
@@ -1130,4 +1144,72 @@ header .btn__homeback {
   text-align: center;
   font-weight: bold;
   padding: 1rem;
+  color: #701786;
+}
+
+.pubContent {
+  width: 100%;
+  padding: 1.5rem;
+}
+.pubContent form {
+  width: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: left;
+  align-items: start;
+  gap: 10px;
+}
+.pubContent form label {
+  font-size: 13px;
+  color: #994BBD;
+}
+.pubContent form input {
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-bottom: 1px solid #994BBD;
+  padding: 0.8rem 0;
+  outline: none;
+  transition: all 0.2s;
+}
+.pubContent form input:hover, .pubContent form input:focus {
+  border-bottom: 1px solid #DA9AF8;
+}
+.pubContent form #image_resenha {
+  border: 2px solid #994BBD;
+  color: #994BBD;
+  width: 40%;
+  max-width: 180px;
+  height: 200px;
+  text-align: center;
+  outline: none;
+  background: transparent;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+.pubContent form fieldset {
+  margin-top: 20px;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 900px;
+  height: 400px;
+  border: 1.5px solid #994BBD;
+  border-radius: 5px;
+}
+.pubContent form fieldset legend {
+  padding: 0 5px;
+  color: #701786;
+  font-weight: bold;
+}
+.pubContent form fieldset textarea {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+}
+.pubContent form #tags_resenha {
+  border: 1px solid #994BBD;
+  padding: 1rem;
+  border-radius: 5px;
 }/*# sourceMappingURL=style.css.map */

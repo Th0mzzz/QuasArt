@@ -1,5 +1,5 @@
 const searchModal =  document.querySelector('#searchModal')
-
+const closeSearch = searchModal.querySelector(".close_btn")
 
 
 
@@ -18,10 +18,9 @@ list.forEach(item => item.addEventListener('click', function(e){
     if(e.currentTarget.classList.contains("search")){
         searchModal.classList.add("search_ativo")
     }
-
+    
     
 }));
-
 
 
 

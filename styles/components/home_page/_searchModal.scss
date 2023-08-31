@@ -11,7 +11,18 @@
     padding: 1rem 10px;
     @include alignCenter(column,nowrap,start,center);
     background-color: rgba(0, 0, 0, 0.383);
-
+    .close_btn{
+        position: absolute;
+        right: 2rem;
+        top: 2rem;
+        font-size: $fs-title;
+        color: $cor-principal-escura;
+        cursor: pointer;
+        font-weight: bold;
+        &:hover{
+            color: $cor-principal;
+        }
+    }
     .search_topItens{
         display: flex;
         align-items: center;

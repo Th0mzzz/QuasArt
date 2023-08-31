@@ -19,7 +19,10 @@
 </head>
 <body>
     <header class="header">
+
+
         <section class="search_modal" id="searchModal">
+            <span class="close_btn"><i class="fa-solid fa-xmark"></i></span>
             <div class="search_topItens">
     
                 <div class="logotipo">
@@ -51,45 +54,34 @@
             <button href="#" class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>
        </header>
        
-       <aside class="aside">
-            <ul>
-                <li class="list search" id="search__btn">
-                    <a class="nav__item" ><i class="fa-solid fa-magnifying-glass"></i></a>
-                </li>
-                <li class="list">
-                    <a href="index.html" class="nav__item"><i class="fa-solid fa-house"></i></a>
-                </li>
-                <li class="list">
-                    <a class="nav__item"><i class="fa-solid fa-video"></i></a>
-                </li>
-                <li class="list active">
-                    <a href="pub.html" "nav__item"><i class="fa-regular fa-plus"></i></a>
-                </li>
-                <li class="list">
-                    <a href="login.html" class="nav__item"><i class="fa-regular fa-user"></i></a>
-                </li>
-                
-            </ul>
-            
-       </aside>
+      
        <main>
         
         <h2 class="titulo_pub">Resenha cósmica</h2>
 
-        <form action="" class="resenha_form">
+        <div class="pubContent">
 
+            <form action="" class="form_resenha">
+                <label for="image_resenha">Adicionar Capa</label>
+                <input type="button" value="+" id="image_resenha" name="image_resenha">
+                <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
+                <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha">
+                
+                <fieldset>
+                    <legend>Resenha</legend>
+                    <textarea name="content_resenha" id="content_resenha"  rows="10" placeholder="Digite aqui sua resenha"></textarea>
+                </fieldset>
 
+                <div id="tagInput_resenha">
+                    <div id="tagContainer_resenha">
+                      <input type="text" name="tags_resenha" id="tags_resenha" placeholder="Digite uma tag">
+                    </div>
+                    <div id="tagList_resenha"></div>
+                  </div>
+                  
+            </form>
 
-
-        </form>
-
-
-
-
-
-
-
-
+        </div>
 
        </main>
        <footer>
