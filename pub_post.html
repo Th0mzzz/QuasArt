@@ -22,7 +22,6 @@
 
 
         <section class="search_modal" id="searchModal">
-            <span class="close_btn"><i class="fa-solid fa-xmark"></i></span>
             <div class="search_topItens">
     
                 <div class="logotipo">
@@ -56,27 +55,40 @@
        
       
        <main>
+
+        <div class="title_container">
+            <button href="#" class="btn__homeback back" ><i class="fa-solid fa-arrow-left"></i></button>
+            <h2 class="titulo_pub">Resenha cósmica</h2>
+        </div>
         
-        <h2 class="titulo_pub">  <button href="#" class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>Resenha cósmica</h2>
 
         <div class="pubContent">
 
             <form action="" class="form_resenha">
-                <div class="image_container">
-                    <label for="image_resenha">Adicionar Capa</label>
-                    <input type="button" value="+" id="image_resenha" name="image_resenha">
-                </div>
-                <div>
-                    <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
-                    <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha">    
+
+                <div class="inputs_container">
+
+                    <div class="image_container">
+                        <label for="image_resenha">Adicionar Capa</label>
+                        <input type="button" value="+" id="image_resenha" name="image_resenha">
+                    </div>
+
+                    <div>
+                        <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
+                        <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha">    
+                    </div>
+
                 </div>
                
                 <fieldset>
+
                     <legend>Resenha</legend>
                     <textarea name="content_resenha" id="content_resenha"  rows="10" placeholder="Digite aqui sua resenha"></textarea>
+
                 </fieldset>
 
-                
+                <input type="submit" value="Publicar" class="submit_resenha">
+                <input type="reset" value="Apagar tudo" class="submit_resenha">
                   
             </form>
 
