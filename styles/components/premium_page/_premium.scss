@@ -1,15 +1,11 @@
 @import '../../abstract/mixins';
 @import '../../abstract/variaveis'; 
-header{
     
-    .btn__homeback{
-        font-size: $fs-title ;
-        position: relative;
-        left: 20px;
-        top: 20px;
-        z-index: 10;
-    }
+.btn__homeback{
+    font-size: $fs-title ;
+    z-index: 10;
 }
+
 .premium_top{
     z-index: 1;
     position: relative;

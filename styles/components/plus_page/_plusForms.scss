@@ -2,10 +2,13 @@
 @import '../../abstract/variaveis'; 
 
 .titulo_pub{
+    margin: auto;
     width: 100%;
     text-align: center;
     font-weight: bold;
     padding: 1rem;
+    display: flex;
+    gap: 10px;
     color: $cor-principal-escura;
 }
 
@@ -15,12 +18,30 @@
     form{
         width: 100%;    
         display: flex;
-        @include alignCenter(column,wrap,left,start);
-        gap: 10px;
-        label{
-            font-size: $fs-text;
-            color: $cor-principal;
+        @include alignCenter(row,wrap,left,start);
+        gap: 30px;
+        .image_container{
+            width: 40%;
+            max-width: 180px;
+            height: 200px;
+            margin-bottom: 20px;
+            label{
+                font-size: $fs-text;
+                color: $cor-principal;
+            }
+            #image_resenha{
+                border: 2px solid $cor-principal;
+                color: $cor-principal;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                outline: none;
+                background: transparent;
+                border-radius: 15px;
+                
+            }
         }
+        
         input{
             width: 100%;
             max-width: 400px;
@@ -33,18 +54,7 @@
                 border-bottom: 1px solid $cor-principal-clara;
             }
         }
-        #image_resenha{
-            border: 2px solid $cor-principal;
-            color: $cor-principal;
-            width: 40%;
-            max-width: 180px;
-            height: 200px;
-            text-align: center;
-            outline: none;
-            background: transparent;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
+        
         fieldset{
             margin-top: 20px;
             padding: .5rem;

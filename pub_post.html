@@ -51,33 +51,32 @@
                 </div>
                 <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
             </nav>
-            <button href="#" class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>
+
        </header>
        
       
        <main>
         
-        <h2 class="titulo_pub">Resenha cósmica</h2>
+        <h2 class="titulo_pub">  <button href="#" class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>Resenha cósmica</h2>
 
         <div class="pubContent">
 
             <form action="" class="form_resenha">
-                <label for="image_resenha">Adicionar Capa</label>
-                <input type="button" value="+" id="image_resenha" name="image_resenha">
-                <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
-                <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha">
-                
+                <div class="image_container">
+                    <label for="image_resenha">Adicionar Capa</label>
+                    <input type="button" value="+" id="image_resenha" name="image_resenha">
+                </div>
+                <div>
+                    <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
+                    <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha">    
+                </div>
+               
                 <fieldset>
                     <legend>Resenha</legend>
                     <textarea name="content_resenha" id="content_resenha"  rows="10" placeholder="Digite aqui sua resenha"></textarea>
                 </fieldset>
 
-                <div id="tagInput_resenha">
-                    <div id="tagContainer_resenha">
-                      <input type="text" name="tags_resenha" id="tags_resenha" placeholder="Digite uma tag">
-                    </div>
-                    <div id="tagList_resenha"></div>
-                  </div>
+                
                   
             </form>
 
