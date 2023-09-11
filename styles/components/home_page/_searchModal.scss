@@ -2,6 +2,8 @@
 @import '../../abstract/variaveis';
 
 .search_modal{
+    left: 0;
+    top: 0;
     position: fixed;
     backdrop-filter: blur(5px);
     width: 100%;

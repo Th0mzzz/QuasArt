@@ -90,7 +90,7 @@ aside ul .list {
   height: 100%;
   width: 55px;
   border-radius: 50%;
-  transition: all 0.2s;
+  transition: transform 0.2s;
   background-color: #994BBD;
   display: flex;
   z-index: 1;
@@ -115,6 +115,60 @@ aside ul .active a {
   color: white;
 }
 
+@media (min-width: 768px) {
+  .aside_interference {
+    padding-left: 60px;
+  }
+  aside {
+    width: 60px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 1000;
+    height: 100%;
+  }
+  aside ul {
+    position: absolute;
+    bottom: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #994BBD;
+    display: flex;
+    gap: 0.6rem;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 5px;
+  }
+  aside ul .list {
+    height: 55px;
+    width: 100%;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    background-color: #994BBD;
+    display: flex;
+    z-index: 1;
+  }
+  aside ul .list a {
+    z-index: 2;
+    border-radius: 50%;
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    color: #994BBD;
+    background: #ffd257;
+    display: flex;
+  }
+  aside ul .list a i {
+    margin: auto;
+  }
+  aside ul .active {
+    transform: translateX(25px);
+  }
+  aside ul .active a {
+    color: white;
+  }
+}
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0);
@@ -727,8 +781,8 @@ body, html {
   display: flex;
 }
 .videos__container .carousel-videos .slide a video {
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
   border-radius: 5px;
 }
 
@@ -934,6 +988,8 @@ body, html {
   }
 }
 .search_modal {
+  left: 0;
+  top: 0;
   position: fixed;
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
@@ -1139,13 +1195,10 @@ body, html {
 .title_container {
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-.title_container .btn__homeback {
-  margin-left: 2rem;
+  justify-content: start;
+  padding: 24px;
 }
 .title_container .titulo_pub {
-  margin: auto;
   width: -moz-fit-content;
   width: fit-content;
   text-align: center;
@@ -1159,36 +1212,114 @@ body, html {
 .pubContent {
   width: 100%;
   padding: 1.5rem;
+  margin-top: 1rem;
 }
 .pubContent form {
   width: 100%;
   display: flex;
   flex-flow: column wrap;
-  justify-content: left;
+  justify-content: center;
   align-items: start;
   gap: 30px;
 }
-.pubContent form .inputs_container {
+.pubContent form.form_resenha .inputs_container {
   display: flex;
-  align-items: center;
   flex-flow: row wrap;
-  width: 100%;
+  justify-content: start;
+  align-items: center;
   gap: 20px;
-}
-.pubContent form .inputs_container input {
   width: 100%;
-  max-width: 900px;
+}
+.pubContent form.form_resenha .inputs_container input {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 50px;
   border: none;
   border: 1px solid #994BBD;
   padding: 1rem;
   border-radius: 15px;
   outline: none;
   transition: all 0.2s;
+  position: relative;
 }
-.pubContent form .inputs_container input:hover, .pubContent form .inputs_container input:focus {
+.pubContent form.form_resenha .inputs_container input:hover, .pubContent form.form_resenha .inputs_container input:focus {
   border: 1px solid #DA9AF8;
 }
-.pubContent form fieldset {
+.pubContent form.form_resenha .inputs_container .title-inputs {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.pubContent form.form_resenha .inputs_container .title-inputs .tags-container {
+  max-width: 500px;
+  height: auto;
+}
+.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #994BBD;
+  border-radius: 15px;
+  padding: 1rem;
+  outline: none;
+}
+.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags:hover, .pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags:focus {
+  border: 1px solid #DA9AF8;
+}
+.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags-preview {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  overflow: scroll;
+  gap: 5px;
+}
+.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags-preview .tag {
+  padding: 0.4rem;
+  border-radius: 15px;
+  color: white;
+  background: #508CD3;
+  font-size: 13px;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha {
+  width: 100%;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  position: relative;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha:hover label {
+  color: #DA9AF8;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha p {
+  position: absolute;
+  top: -50px;
+  text-align: center;
+  font-size: 13px;
+  max-width: 150px;
+  margin-bottom: 5px;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #994BBD;
+  transition: color 0.2s;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha input[type=file] {
+  width: 100%;
+  height: 100%;
+  max-width: 150px;
+  height: 100vh;
+  max-height: 180px;
+  color: transparent;
+}
+.pubContent form.form_resenha .inputs_container #image_resenha input[type=file]::-webkit-file-upload-button {
+  display: none;
+}
+.pubContent form.form_resenha fieldset {
   margin-top: 20px;
   padding: 0.5rem;
   width: 100%;
@@ -1197,38 +1328,202 @@ body, html {
   border: 1.5px solid #994BBD;
   border-radius: 5px;
 }
-.pubContent form fieldset legend {
+.pubContent form.form_resenha fieldset legend {
   padding: 0 5px;
   color: #701786;
   font-weight: bold;
 }
-.pubContent form fieldset textarea {
+.pubContent form.form_resenha fieldset textarea {
   width: 100%;
   height: 100%;
   outline: none;
   border: none;
   padding: 0.2rem 0.5rem;
 }
-.pubContent form #tags_resenha {
-  border: 1px solid #994BBD;
-  padding: 1rem;
-  border-radius: 5px;
+.pubContent form.form_resenha .enviar_inputs {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: end;
 }
-.pubContent form .submit_resenha {
+.pubContent form.form_resenha .enviar_inputs .erase_btn {
+  width: 50px;
+  border: none;
+  background: #e21d1d;
+  font-weight: bolder;
+  font-size: 19.2307692308px;
+  border-radius: 5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+}
+.pubContent form.form_resenha .enviar_inputs .erase_btn:hover {
+  box-shadow: 1px 2px 5px #000000;
+  transform: translateY(-5px);
+}
+.pubContent form.form_resenha .enviar_inputs .submit_resenha {
   background-color: #994BBD;
   color: white;
   width: 100%;
-  max-width: 320px;
+  max-width: 220px;
   border-radius: 5px;
   outline: none;
   padding: 1rem;
   border: none;
   transition: all 0.2s;
 }
-.pubContent form .submit_resenha:hover {
+.pubContent form.form_resenha .enviar_inputs .submit_resenha:hover {
   background-color: #ffd257;
   border: none;
   color: #151515;
   box-shadow: 1px 2px 5px #000000;
   transform: translateY(-5px);
+}
+.pubContent form.form_videos .inputs_container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+.pubContent form.form_videos .inputs_container input {
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  max-height: 50px;
+  border: none;
+  border: 1px solid #994BBD;
+  padding: 1rem;
+  border-radius: 15px;
+  outline: none;
+  transition: all 0.2s;
+  position: relative;
+}
+.pubContent form.form_videos .inputs_container input:hover, .pubContent form.form_videos .inputs_container input:focus {
+  border: 1px solid #DA9AF8;
+}
+.pubContent form.form_videos .inputs_container .title-inputs {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .tags-container {
+  max-width: 500px;
+  height: 100vh;
+  max-height: 150px;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #994BBD;
+  border-radius: 15px;
+  padding: 1rem;
+  outline: none;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags:hover, .pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags:focus {
+  border: 1px solid #DA9AF8;
+}
+.pubContent form.form_videos .inputs_container #image_resenha {
+  width: 100%;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  position: relative;
+}
+.pubContent form.form_videos .inputs_container #image_resenha:hover label {
+  color: #DA9AF8;
+}
+.pubContent form.form_videos .inputs_container #image_resenha p {
+  position: absolute;
+  top: -50px;
+  text-align: center;
+  font-size: 13px;
+  max-width: 150px;
+  margin-bottom: 5px;
+}
+.pubContent form.form_videos .inputs_container #image_resenha label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #994BBD;
+  transition: color 0.2s;
+}
+.pubContent form.form_videos .inputs_container #image_resenha input[type=file] {
+  width: 100%;
+  height: 100%;
+  max-width: 150px;
+  height: 100vh;
+  max-height: 180px;
+  color: transparent;
+}
+.pubContent form.form_videos .inputs_container #image_resenha input[type=file]::-webkit-file-upload-button {
+  display: none;
+}
+.pubContent form.form_videos fieldset {
+  margin-top: 20px;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 1000px;
+  height: 400px;
+  border: 1.5px solid #994BBD;
+  border-radius: 5px;
+}
+.pubContent form.form_videos fieldset legend {
+  padding: 0 5px;
+  color: #701786;
+  font-weight: bold;
+}
+.pubContent form.form_videos fieldset textarea {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  padding: 0.2rem 0.5rem;
+}
+.pubContent form.form_videos .enviar_inputs {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: end;
+}
+.pubContent form.form_videos .enviar_inputs .erase_btn {
+  width: 50px;
+  border: none;
+  background: #e21d1d;
+  font-weight: bolder;
+  font-size: 19.2307692308px;
+  border-radius: 5px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: white;
+}
+.pubContent form.form_videos .enviar_inputs .erase_btn:hover {
+  box-shadow: 1px 2px 5px #000000;
+  transform: translateY(-5px);
+}
+.pubContent form.form_videos .enviar_inputs .submit_resenha {
+  background-color: #994BBD;
+  color: white;
+  width: 100%;
+  max-width: 220px;
+  border-radius: 5px;
+  outline: none;
+  padding: 1rem;
+  border: none;
+  transition: all 0.2s;
+}
+.pubContent form.form_videos .enviar_inputs .submit_resenha:hover {
+  background-color: #ffd257;
+  border: none;
+  color: #151515;
+  box-shadow: 1px 2px 5px #000000;
+  transform: translateY(-5px);
+}
+
+@media (max-width: 717px) {
+  #image_resenha {
+    margin-top: 3rem;
+  }
 }/*# sourceMappingURL=style.css.map */

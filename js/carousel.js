@@ -65,6 +65,7 @@ function initCustomCarousel(carouselSelector, options) {
     loop: true,
     margin: 5,
     responsiveClass: true,
+    
     responsive: {
       0: {
         items: 3,
