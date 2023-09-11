@@ -28,6 +28,7 @@ aside{
             background-color: $cor-principal    ;
             display: flex;
             z-index: 1;
+            cursor: pointer;
             a{
                 z-index: 2;
                 border-radius: 50%;

@@ -40,41 +40,42 @@
 
         <div class="pubContent">
 
-            <form class="form_resenha">
+            <form class="form_videos">
 
                 <div class="inputs_container">
                     
                     
                         <div class="title-inputs">
                             
-                            <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
-                            <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha" >
+                            <input type="text" name="title_video" id="title_video" placeholder="Digite o título do vídeo">
+                            <input type="text" name="tema_video" id="tema_video" placeholder="Digite o tema do video" >
                         
                             <div class="tags-container">
                                     <textarea id="tags" placeholder="Digite suas tags aqui" rows="3"></textarea>
                                     <div class="tags-preview" id="tags-preview"></div>
                             </div>
+                            <div class="video_input">
+                                <label for="video_file">Escolha o arquivo do seu video</label>
+                                <input type="file" name="video_file" id="video_file">
+                            </div>
                         </div>
-                            <div id="image_resenha">
-                                <p>Adicione uma imagem para sua resenha!</p>
-                                <input type="file" id="inputImage_resenha" name="image_resenha" >
-                                <label for="inputImage_resenha">+</label>
+                            <div id="image_video">
+                                <p>Adicione uma imagem de capa do seu video!</p>
+                                <input type="file" id="inputImage_video" name="image_video" >
+                                <label for="inputImage_video">+</label>
                             </div>
                         
                 </div>
+                <div class="descri_container">
+                    <p>Descrição</p>
+                    <textarea name="descri_input" id="descri_input" cols="30" rows="8"  placeholder="Digite a descrição do seu video"></textarea>
+                </div>
                
-                <fieldset>
-
-                    <legend>Resenha</legend>
-                    <textarea name="content_resenha" id="content_resenha"  rows="10" placeholder="Digite aqui sua resenha"></textarea>
-
-                </fieldset>
                 <div class="enviar_inputs">
-                <input type="reset" value="X" class="erase_btn" >
-                <input type="submit" value="Publicar" class="submit_resenha">
+                <input type="submit" value="Publicar" class="submit">
             </div> 
             </form>
-        </div>
+        </div>   
 
        </main>
        <footer>
@@ -99,8 +100,7 @@
         </div>
     </footer>
     
-        <script src="js/index.js"></script>
-        <script src="js/plus.js"></script>
+        <script src="js/index.js"></script> 
         <script src="js/backBtn.js"></script>
         <script src="js/tags.js"></script>
 </body>

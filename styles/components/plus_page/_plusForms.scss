@@ -102,6 +102,7 @@
                     }
 
                     #image_resenha{
+                        margin-top: 3rem;
                         width: 100%;
                         max-width: fit-content;
                         position: relative;
@@ -148,7 +149,7 @@
                 
                 overflow: hidden;
                 width: 100%;
-                max-width: 800px;
+                max-width: 1000px;
                 p{
                     font-weight: bold;
                     font-size: $fs-text;
@@ -192,7 +193,7 @@
                     gap: 20px;
                     width: 100%;
                     max-width: 1000px;
-                    justify-content: end;
+                    justify-content: start;
                     .erase_btn{
                         width: 50px;
                         border: none;
@@ -223,7 +224,7 @@
                             background-color: $cor-secundaria-escura;
                             border: none;
                             color: $cor-texto;
-                            box-shadow: 1px 2px 5px #000000;
+                            box-shadow: 1px 2px 5px #0000005d;
                             transform: translateY(-5px);
                         }
                         
@@ -253,8 +254,10 @@
                         &:hover ,  &:focus{
                             border: 1px solid $cor-principal-clara;
                         }
-                                                
-                    }
+                        
+                        }
+                       
+                        
                     .title-inputs{
                         width:100%;
                         max-width: 500px;
@@ -262,10 +265,25 @@
                         gap: 10px;
                         display: flex;
                         flex-direction: column;
+                        .video_input{
+                            position: relative;
+                            label{
+                                font-size: $fs-text* 1.1;
+                                color: $cor-principal;
+                                margin:0 0 1rem 1rem;
+                            }
+                            input[type="file"]{
+                                padding: 2rem;
+                                color: transparent;
+                                &::-webkit-file-upload-button{
+                                    display: none;
+                                }
+                               
+                            }                       
+                        }
                         .tags-container{
                             max-width: 500px;
-                            height: 100vh;
-                            max-height: 150px;
+                            height: auto;
                             #tags{
                                 width: 100%;
                                 height: 100%;
@@ -273,16 +291,40 @@
                                 border-radius: 15px;
                                 padding: 1rem;
                                 outline: none;
+                                resize: none;
                                 &:hover ,  &:focus{
                                     border: 1px solid $cor-principal-clara;
                                 }
                             }
+                            #tags-preview{
+                                display: flex;
+                                flex-wrap: wrap;
+                                height: auto;
+                                max-height: 100px;
+                                overflow-y: scroll;
+                                overflow-x: hidden;
+                                gap: 5px;
+                                padding: 1rem;
+                                .tag{
+                                    max-width: 100%;
+                                    
+                                    padding: .4rem;
+                                    border-radius: 15px;
+                                    color: $cor-fundo;
+                                    background: $cor-terciaria;
+                                    font-size: $fs-text;
+                                    
+                                }
+                            }
                         }
+                       
                       
                     }
 
-                    #image_resenha{
+                    #image_video{
+                        margin-top: 3rem;
                         width: 100%;
+                       
                         max-width: fit-content;
                         position: relative;
                         &:hover{
@@ -293,6 +335,9 @@
                         p{
                             position: absolute;
                             top: -50px;
+                            left: 50%;
+                            width: 100%;
+                            transform: translateX(-50%);
                             text-align: center;
                             font-size: $fs-text / 1;
                             max-width: 150px;
@@ -309,9 +354,9 @@
                         input[type="file"]{
                         width: 100%;
                         height: 100%;
-                        max-width: 150px;
+                        max-width:200px;
                         height: 100vh;
-                        max-height: 180px;
+                        max-height: 280px;
                         color: transparent;
 
                         &::-webkit-file-upload-button{
@@ -323,35 +368,33 @@
                     
                 
             }
-                fieldset{
-                    margin-top: 20px;
-                    padding: .5rem;
+        
+
+                .descri_container{
+                
+                    overflow: hidden;
                     width: 100%;
                     max-width: 1000px;
-                    height: 400px;
-                    border: 1.5px solid $cor-principal;
-                    border-radius: 5px;
-                    legend{
-                        padding: 0  5px;
-                        color: $cor-principal-escura;
+                    p{
                         font-weight: bold;
+                        font-size: $fs-text;
+                        color: $cor-principal-escura;
                     }
                     textarea{
                         width: 100%;
                         height: 100%;
-                        outline:none;
-                        border: none;
-                        padding: .2rem .5rem;
-
+                        border: 1px solid $cor-principal;
+                        outline: none;
+                        padding: 1rem;
+                        resize: none;
+                        border-radius: 5px;
                     }
                 }
-
-               
                 .enviar_inputs{
                     display: flex;
                     gap: 20px;
                     width: 100%;
-                    justify-content: end;
+                    justify-content: start;
                     .erase_btn{
                         width: 50px;
                         border: none;
@@ -368,7 +411,7 @@
                            
                         }
                     }
-                    .submit_resenha{
+                    .submit{
                         background-color: $cor-principal;
                         color: $cor-fundo;
                         width: 100%;
@@ -382,25 +425,64 @@
                             background-color: $cor-secundaria-escura;
                             border: none;
                             color: $cor-texto;
-                            box-shadow: 1px 2px 5px #000000;
+                            box-shadow: 1px 2px 5px #0000004d;
                             transform: translateY(-5px);
                         }
                         
                     }
                 }
             }
-            
-
-               
-
-        }
-
+            &.form_fichas{
+                
+            }  
 
 }
+}
 
-
-@media (max-width:717px) {
+@media (max-width:425px){
+    .form_resenha , .form_video , .form_fichas{
     #image_resenha{
-        margin-top: 3rem;
+        width: 100%;
+        max-width: fit-content;
+        position: relative;
+        &:hover{
+            label{
+                color: $cor-principal-clara;
+            }
+        }
+        p{
+            position: absolute;
+            top: -50px;
+            text-align: center;
+            font-size: $fs-text / 1;
+            max-width: 150px;
+            margin-bottom: 5px;
+        }
+        label{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50% , -50%);
+            color: $cor-principal;
+            transition: color .2s;
+        }
+        input[type="file"]{
+        width: 100%;
+        height: 100%;
+        max-width: 150px;
+        height: 100vh;
+        max-height: 180px;
+        color: transparent;
+
+        &::-webkit-file-upload-button{
+        display: none;
+    }  
     }
+   
+    }
+    } 
+
 }
+
+
+

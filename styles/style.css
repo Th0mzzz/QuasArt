@@ -94,6 +94,7 @@ aside ul .list {
   background-color: #994BBD;
   display: flex;
   z-index: 1;
+  cursor: pointer;
 }
 aside ul .list a {
   z-index: 2;
@@ -426,26 +427,61 @@ body, html {
   color: #FFE03B;
 }
 
-.login_main .form__container {
+.login_main {
+  position: relative;
+  height: 100vh;
+}
+.login_main .fundo {
+  z-index: 1;
+  position: absolute;
+  left: 0;
   top: 0;
+  width: 100vw;
+  height: 100vh;
+  opacity: 1;
+  filter: blur(5px);
+  background-image: url(../img/space.jpg);
+  background-size: cover;
+}
+.login_main .header {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.login_main .header nav {
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 1rem;
+}
+.login_main .header nav .logotipo {
+  padding: 10px 1rem;
+  background: white;
+  border-radius: 15px;
+}
+.login_main .form__container {
   z-index: 9;
   position: relative;
+  left: 50%;
   top: 50%;
-  left: 100%;
-  transform: translateX(-100%);
+  transform: translate(-50%, -50%);
   width: 100%;
   max-width: 550px;
-  height: 100vh;
+  height: 85vh;
   background-color: white;
   border: 1px solid #994BBD;
   text-align: center;
   color: #151515;
-  padding: 0 1.5rem;
+  padding: 2rem 3rem;
+  border-radius: 15px;
   display: flex;
+  overflow: hidden;
+  box-shadow: 0 2px 15px #DA9AF8;
 }
-.login_main .form__container p {
+.login_main .form__container a {
   color: #151515;
-  font-size: 11.8181818182px;
+  font-size: 13px;
   margin-bottom: 1rem;
 }
 .login_main .form__container h1 {
@@ -503,7 +539,7 @@ body, html {
   display: none;
   gap: 20px;
   border-radius: 15px;
-  margin: auto;
+  height: 100%;
 }
 .login_main .form__container .form a {
   position: relative;
@@ -547,12 +583,15 @@ body, html {
 .login_main .form__container .form input:focus {
   border-bottom: 1px solid #ffd257;
 }
-.login_main .form__container .form .enviar__btn {
+.login_main .form__container .form a {
   position: relative;
-  font-size: 10.8695652174px;
   margin-top: 10px;
-  transition: all ease 0.4s;
+  width: 100%;
   height: 35px;
+}
+.login_main .form__container .form a .enviar__btn {
+  font-size: 10.8695652174px;
+  transition: all ease 0.4s;
   border-radius: 5px;
   background: transparent;
   color: #701786;
@@ -560,7 +599,7 @@ body, html {
   border: 1px solid #701786;
   cursor: pointer;
 }
-.login_main .form__container .form .enviar__btn:hover {
+.login_main .form__container .form a .enviar__btn:hover {
   background: #701786;
   color: white;
   border: none;
@@ -588,10 +627,26 @@ body, html {
 .login_main .form__container .ativado {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: start;
+  justify-content: center;
   align-items: center;
 }
 
+@media (max-width: 425px) {
+  .login_main .header {
+    display: none;
+  }
+  .login_main .form__container {
+    border: none;
+    height: 100vh;
+    border-radius: 0;
+    padding: 1rem;
+  }
+}
+@media (min-width: 426px) and (max-width: 900px) {
+  .login_main .header {
+    display: none;
+  }
+}
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0);
@@ -1287,6 +1342,7 @@ body, html {
   font-size: 13px;
 }
 .pubContent form.form_resenha .inputs_container #image_resenha {
+  margin-top: 3rem;
   width: 100%;
   max-width: -moz-fit-content;
   max-width: fit-content;
@@ -1325,7 +1381,7 @@ body, html {
 .pubContent form.form_resenha .descri_container {
   overflow: hidden;
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
 }
 .pubContent form.form_resenha .descri_container p {
   font-weight: bold;
@@ -1366,7 +1422,7 @@ body, html {
   gap: 20px;
   width: 100%;
   max-width: 1000px;
-  justify-content: end;
+  justify-content: start;
 }
 .pubContent form.form_resenha .enviar_inputs .erase_btn {
   width: 50px;
@@ -1397,7 +1453,7 @@ body, html {
   background-color: #ffd257;
   border: none;
   color: #151515;
-  box-shadow: 1px 2px 5px #000000;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3647058824);
   transform: translateY(-5px);
 }
 .pubContent form.form_videos .inputs_container {
@@ -1432,10 +1488,24 @@ body, html {
   display: flex;
   flex-direction: column;
 }
+.pubContent form.form_videos .inputs_container .title-inputs .video_input {
+  position: relative;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .video_input label {
+  font-size: 14.3px;
+  color: #994BBD;
+  margin: 0 0 1rem 1rem;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .video_input input[type=file] {
+  padding: 2rem;
+  color: transparent;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .video_input input[type=file]::-webkit-file-upload-button {
+  display: none;
+}
 .pubContent form.form_videos .inputs_container .title-inputs .tags-container {
   max-width: 500px;
-  height: 100vh;
-  max-height: 150px;
+  height: auto;
 }
 .pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags {
   width: 100%;
@@ -1444,28 +1514,51 @@ body, html {
   border-radius: 15px;
   padding: 1rem;
   outline: none;
+  resize: none;
 }
 .pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags:hover, .pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags:focus {
   border: 1px solid #DA9AF8;
 }
-.pubContent form.form_videos .inputs_container #image_resenha {
+.pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags-preview {
+  display: flex;
+  flex-wrap: wrap;
+  height: auto;
+  max-height: 100px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  gap: 5px;
+  padding: 1rem;
+}
+.pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags-preview .tag {
+  max-width: 100%;
+  padding: 0.4rem;
+  border-radius: 15px;
+  color: white;
+  background: #508CD3;
+  font-size: 13px;
+}
+.pubContent form.form_videos .inputs_container #image_video {
+  margin-top: 3rem;
   width: 100%;
   max-width: -moz-fit-content;
   max-width: fit-content;
   position: relative;
 }
-.pubContent form.form_videos .inputs_container #image_resenha:hover label {
+.pubContent form.form_videos .inputs_container #image_video:hover label {
   color: #DA9AF8;
 }
-.pubContent form.form_videos .inputs_container #image_resenha p {
+.pubContent form.form_videos .inputs_container #image_video p {
   position: absolute;
   top: -50px;
+  left: 50%;
+  width: 100%;
+  transform: translateX(-50%);
   text-align: center;
   font-size: 13px;
   max-width: 150px;
   margin-bottom: 5px;
 }
-.pubContent form.form_videos .inputs_container #image_resenha label {
+.pubContent form.form_videos .inputs_container #image_video label {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1473,43 +1566,41 @@ body, html {
   color: #994BBD;
   transition: color 0.2s;
 }
-.pubContent form.form_videos .inputs_container #image_resenha input[type=file] {
+.pubContent form.form_videos .inputs_container #image_video input[type=file] {
   width: 100%;
   height: 100%;
-  max-width: 150px;
+  max-width: 200px;
   height: 100vh;
-  max-height: 180px;
+  max-height: 280px;
   color: transparent;
 }
-.pubContent form.form_videos .inputs_container #image_resenha input[type=file]::-webkit-file-upload-button {
+.pubContent form.form_videos .inputs_container #image_video input[type=file]::-webkit-file-upload-button {
   display: none;
 }
-.pubContent form.form_videos fieldset {
-  margin-top: 20px;
-  padding: 0.5rem;
+.pubContent form.form_videos .descri_container {
+  overflow: hidden;
   width: 100%;
   max-width: 1000px;
-  height: 400px;
-  border: 1.5px solid #994BBD;
-  border-radius: 5px;
 }
-.pubContent form.form_videos fieldset legend {
-  padding: 0 5px;
-  color: #701786;
+.pubContent form.form_videos .descri_container p {
   font-weight: bold;
+  font-size: 13px;
+  color: #701786;
 }
-.pubContent form.form_videos fieldset textarea {
+.pubContent form.form_videos .descri_container textarea {
   width: 100%;
   height: 100%;
+  border: 1px solid #994BBD;
   outline: none;
-  border: none;
-  padding: 0.2rem 0.5rem;
+  padding: 1rem;
+  resize: none;
+  border-radius: 5px;
 }
 .pubContent form.form_videos .enviar_inputs {
   display: flex;
   gap: 20px;
   width: 100%;
-  justify-content: end;
+  justify-content: start;
 }
 .pubContent form.form_videos .enviar_inputs .erase_btn {
   width: 50px;
@@ -1525,7 +1616,7 @@ body, html {
   box-shadow: 1px 2px 5px #000000;
   transform: translateY(-5px);
 }
-.pubContent form.form_videos .enviar_inputs .submit_resenha {
+.pubContent form.form_videos .enviar_inputs .submit {
   background-color: #994BBD;
   color: white;
   width: 100%;
@@ -1536,16 +1627,114 @@ body, html {
   border: none;
   transition: all 0.2s;
 }
-.pubContent form.form_videos .enviar_inputs .submit_resenha:hover {
+.pubContent form.form_videos .enviar_inputs .submit:hover {
   background-color: #ffd257;
   border: none;
   color: #151515;
-  box-shadow: 1px 2px 5px #000000;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.3019607843);
   transform: translateY(-5px);
 }
-
-@media (max-width: 717px) {
-  #image_resenha {
-    margin-top: 3rem;
+@media (max-width: 425px) {
+  .form_resenha #image_resenha, .form_video #image_resenha, .form_fichas #image_resenha {
+    width: 100%;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    position: relative;
   }
+  .form_resenha #image_resenha:hover label, .form_video #image_resenha:hover label, .form_fichas #image_resenha:hover label {
+    color: #DA9AF8;
+  }
+  .form_resenha #image_resenha p, .form_video #image_resenha p, .form_fichas #image_resenha p {
+    position: absolute;
+    top: -50px;
+    text-align: center;
+    font-size: 13px;
+    max-width: 150px;
+    margin-bottom: 5px;
+  }
+  .form_resenha #image_resenha label, .form_video #image_resenha label, .form_fichas #image_resenha label {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #994BBD;
+    transition: color 0.2s;
+  }
+  .form_resenha #image_resenha input[type=file], .form_video #image_resenha input[type=file], .form_fichas #image_resenha input[type=file] {
+    width: 100%;
+    height: 100%;
+    max-width: 150px;
+    height: 100vh;
+    max-height: 180px;
+    color: transparent;
+  }
+  .form_resenha #image_resenha input[type=file]::-webkit-file-upload-button, .form_video #image_resenha input[type=file]::-webkit-file-upload-button, .form_fichas #image_resenha input[type=file]::-webkit-file-upload-button {
+    display: none;
+  }
+}
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  list-style: none;
+}
+
+body, html {
+  overflow-x: hidden;
+  text-decoration: none;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+:root {
+  scroll-behavior: smooth;
+}
+
+.assine_ad {
+  margin: 5rem 0;
+  width: 100%;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 2rem 1rem;
+  background-color: #fad97d;
+  box-shadow: 1px 1px 5px #151515;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.assine_ad h2 {
+  color: #151515;
+  font-size: 11.8181818182px;
+  text-shadow: none;
+}
+.assine_ad h2 span {
+  color: #994BBD;
+}
+.assine_ad h2 .plus_span {
+  color: #508CD3;
+}
+.assine_ad img {
+  width: 45px;
+  height: 45px;
 }/*# sourceMappingURL=style.css.map */

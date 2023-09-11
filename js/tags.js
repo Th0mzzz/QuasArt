@@ -1,9 +1,7 @@
 const tagsTextArea = document.getElementById('tags');
 const tagsPreview = document.getElementById('tags-preview');
 
-tagsTextArea.addEventListener('keydown', function(e) {
- 
-});
+
 
 tagsTextArea.addEventListener('keydown', function(e) {
 

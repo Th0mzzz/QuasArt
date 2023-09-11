@@ -40,37 +40,37 @@
 
         <div class="pubContent">
 
-            <form class="form_resenha">
+            <form class="form_resenha form_fichas">
 
                 <div class="inputs_container">
                     
                     
                         <div class="title-inputs">
                             
-                            <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da resenha">
-                            <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema da resenha" >
+                            <input type="text" name="title_resenha" id="title_resenha" placeholder="Digite o título da sua obra">
+                            <input type="text" name="tema_resenha" id="tema_resenha" placeholder="Digite o tema(s) da sua obra" >
                         
                             <div class="tags-container">
                                     <textarea id="tags" placeholder="Digite suas tags aqui" rows="3"></textarea>
                                     <div class="tags-preview" id="tags-preview"></div>
                             </div>
-                        </div>
+                        </div> 
                             <div id="image_resenha">
-                                <p>Adicione uma imagem para sua resenha!</p>
+                                <p>Adicione uma imagem para sua ficha!</p>
                                 <input type="file" id="inputImage_resenha" name="image_resenha" >
                                 <label for="inputImage_resenha">+</label>
                             </div>
+
+                            <div class="descri_container">
+                                <p>Descrição</p>
+                                <textarea name="descri_input" id="descri_input" cols="30" rows="8" placeholder="Digite a sinopse da sua obra"></textarea>
+                            </div>
+                            
                         
                 </div>
                
-                <fieldset>
-
-                    <legend>Resenha</legend>
-                    <textarea name="content_resenha" id="content_resenha"  rows="10" placeholder="Digite aqui sua resenha"></textarea>
-
-                </fieldset>
+               
                 <div class="enviar_inputs">
-                <input type="reset" value="X" class="erase_btn" >
                 <input type="submit" value="Publicar" class="submit_resenha">
             </div> 
             </form>
@@ -100,7 +100,7 @@
     </footer>
     
         <script src="js/index.js"></script>
-        <script src="js/plus.js"></script>
+
         <script src="js/backBtn.js"></script>
         <script src="js/tags.js"></script>
 </body>

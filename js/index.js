@@ -1,8 +1,4 @@
 const searchModal =  document.querySelector('#searchModal')
-const closeSearch = searchModal.querySelector(".close_btn")
-
-
-
 const list = document.querySelectorAll('.list');
 const nav = document.querySelector('.navigation');
 
