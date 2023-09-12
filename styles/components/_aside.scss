@@ -19,16 +19,17 @@ aside{
         display: flex;
         gap: .6rem;
         @include alignCenter(row,nowrap,center,center);
-        padding-bottom: 5px;
+        padding: 5px 2px 5px 2px;
         .list{
             height: 100%;
-            width: 55px;
+            width: 50px;
             border-radius: 50%;
             transition: transform .2s;
             background-color: $cor-principal    ;
             display: flex;
             z-index: 1;
             cursor: pointer;
+            
             a{
                 z-index: 2;
                 border-radius: 50%;
@@ -38,6 +39,10 @@ aside{
                 color: $cor-principal;
                 background: $cor-secundaria-escura;
                 display: flex;
+                transition: box-shadow .2s;
+                &:hover{
+                    box-shadow: 0px 0px 5px $cor-fundo;
+                }
                 i{
                     margin: auto;
                 }
@@ -48,6 +53,7 @@ aside{
             transform: translateY(-25px);
             a{
                 color: $cor-fundo;
+                box-shadow: 0px 0px 5px $cor-fundo;
             }
             
         }

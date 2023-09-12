@@ -84,11 +84,11 @@ aside ul {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  padding-bottom: 5px;
+  padding: 5px 2px 5px 2px;
 }
 aside ul .list {
   height: 100%;
-  width: 55px;
+  width: 50px;
   border-radius: 50%;
   transition: transform 0.2s;
   background-color: #994BBD;
@@ -105,6 +105,10 @@ aside ul .list a {
   color: #994BBD;
   background: #ffd257;
   display: flex;
+  transition: box-shadow 0.2s;
+}
+aside ul .list a:hover {
+  box-shadow: 0px 0px 5px white;
 }
 aside ul .list a i {
   margin: auto;
@@ -114,6 +118,7 @@ aside ul .active {
 }
 aside ul .active a {
   color: white;
+  box-shadow: 0px 0px 5px white;
 }
 
 @media (min-width: 768px) {
@@ -1737,4 +1742,31 @@ body, html {
 .assine_ad img {
   width: 45px;
   height: 45px;
+}
+
+.nav_perfil {
+  background: #994BBD;
+  padding: 1rem;
+}
+.nav_perfil h2 {
+  color: white;
+  font-size: 19.2307692308px;
+}
+.nav_perfil .logotipo a p {
+  color: white;
+}
+.nav_perfil a .assine-btn {
+  border: 1px solid white;
+  background: transparent;
+}
+.nav_perfil a .assine-btn span {
+  color: white;
+}
+.nav_perfil a .assine-btn::before {
+  color: white;
+  background-color: white;
+}
+.nav_perfil a .assine-btn:hover span {
+  color: #994BBD;
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */
