@@ -18,7 +18,14 @@
             display: flex;
             background-color: $cor-principal;
             height: 550px;
-
+            overflow: hidden;
+            &:hover{
+                a {
+                    img {
+                        transform: scale(1.2);
+                    }
+                }
+            }
             a {
                 position: absolute;
                 left: 0;
@@ -89,14 +96,31 @@
     }
 
     .itens {
+        .owl-item{
+            opacity: .7;
+            transition: all ease-in .4s;
+            &.active, &:hover{
+                opacity: 1;
+            }
+        }
+        
+
         .slide {
             display: flex;
             background: $cor-principal-escura;
             position: relative;
             height: 280px;
-
+            overflow: hidden;
+            &:hover{
+                a {
+                    img {
+                        transform: scale(1.1);
+                    }
+                }
+            }
             a {
                 img {
+                    transition: transform ease .3s;
                     object-fit: cover;
                     object-position: left;
                     z-index: 1;
@@ -221,7 +245,7 @@
     }
 
 
-}
+
 
 
 @media (max-width:768) {
@@ -236,4 +260,5 @@
         }
 
     }
+}
 }

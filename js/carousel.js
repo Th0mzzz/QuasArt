@@ -28,7 +28,7 @@ function initCustomCarousel(carouselSelector, options) {
 
   const itensOptions = {
     stagePadding:50,
-    margin: 1,
+    margin: 15,
     loop:true,
     responsiveClass: true,
     responsive: {

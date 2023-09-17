@@ -65,23 +65,6 @@ body, html {
   height: 45px;
 }
 
-.btn__homeback {
-  display: flex;
-  color: #701786;
-  border-radius: 50%;
-  z-index: 100;
-  transition: color ease 0.2s;
-  border: none;
-  outline: none;
-  background-color: transparent;
-}
-.btn__homeback i {
-  margin: auto;
-}
-.btn__homeback:hover {
-  color: #FFE03B;
-}
-
 .login_main {
   position: relative;
   height: 100vh;

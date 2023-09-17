@@ -74,6 +74,7 @@ aside {
   height: 60px;
 }
 aside ul {
+  box-shadow: 0 -2px 5px #000000;
   position: absolute;
   bottom: -1;
   width: 100%;
@@ -114,7 +115,7 @@ aside ul .list a i {
   margin: auto;
 }
 aside ul .active {
-  transform: translateY(-25px);
+  transform: translateY(-25px) scale(1.2);
 }
 aside ul .active a {
   color: white;
@@ -153,6 +154,7 @@ aside ul .active a {
     transition: transform 0.2s;
     background-color: #994BBD;
     display: flex;
+    padding: 0.2rem;
     z-index: 1;
   }
   aside ul .list a {
@@ -169,7 +171,7 @@ aside ul .active a {
     margin: auto;
   }
   aside ul .active {
-    transform: translateX(25px);
+    transform: translateX(25px) scale(1.2);
   }
   aside ul .active a {
     color: white;
@@ -258,6 +260,23 @@ aside ul .active a {
 }
 .header nav .assine-btn:hover::before {
   width: 100%;
+}
+
+.btn__homeback {
+  display: flex;
+  color: #701786;
+  border-radius: 50%;
+  z-index: 100;
+  transition: color ease 0.2s;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+.btn__homeback i {
+  margin: auto;
+}
+.btn__homeback:hover {
+  color: #FFE03B;
 }
 
 @keyframes flutuar {

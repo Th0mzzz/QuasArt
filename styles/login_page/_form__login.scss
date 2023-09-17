@@ -3,22 +3,6 @@
 @import '../abstract/variaveis';
 @import '../abstract/reset';
 
-.btn__homeback{
-    display: flex;
-    color: $cor-principal-escura;
-    border-radius: 50%;
-    z-index: 100;
-    transition: color ease .2s;
-    border: none;
-    outline: none;
-    background-color: transparent;
-    i{
-        margin: auto;
-    }
-    &:hover{
-        color: $cor-secundaria;
-    }
-}
 
 .login_main{
     position: relative;
