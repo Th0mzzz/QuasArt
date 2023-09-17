@@ -10,7 +10,7 @@ function initCustomCarousel(carouselSelector, options) {
     loop: true,
     margin: 0,
     responsiveClass: true,
-    autoplay: true,
+    // autoplay: true,
     autoplayTimeout:5000,
     responsive: {
       0: {
@@ -27,12 +27,14 @@ function initCustomCarousel(carouselSelector, options) {
   
 
   const itensOptions = {
-    loop: true,
+    stagePadding:50,
     margin: 1,
+    loop:true,
     responsiveClass: true,
     responsive: {
       0: {
         items: 2,
+        stagePadding:10,
       },
       768: {
         items: 4,
@@ -44,6 +46,7 @@ function initCustomCarousel(carouselSelector, options) {
   };
 
   const resenhasOptions = {
+    stagePadding:100,
     center:true,
     loop: true,
     margin: 10,
@@ -51,12 +54,13 @@ function initCustomCarousel(carouselSelector, options) {
     responsive: {
       0: {
         items: 1,
+        stagePadding:0,
       },
       768: {
         items: 1,
       },
       1000: {
-        items: 2,
+        items: 1,
       },
     },
   };
@@ -79,10 +83,10 @@ function initCustomCarousel(carouselSelector, options) {
     },
   };
   
-  initCustomCarousel(".carousel-inicial", inicialOptions);
-  initCustomCarousel(".carousel-itens", itensOptions);
-  initCustomCarousel(".carousel-resenhas", resenhasOptions);
-  initCustomCarousel(".carousel-videos", videosOptions);
+  initCustomCarousel(".inicial", inicialOptions);
+  initCustomCarousel(".itens", itensOptions);
+  initCustomCarousel(".resenhas", resenhasOptions);
+  initCustomCarousel(".videos", videosOptions);
   
 
   });
