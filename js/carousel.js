@@ -9,6 +9,7 @@ function initCustomCarousel(carouselSelector, options) {
     center: true,
     loop: true,
     margin: 0,
+    nav:false,
     responsiveClass: true,
     // autoplay: true,
     autoplayTimeout:5000,
@@ -28,12 +29,19 @@ function initCustomCarousel(carouselSelector, options) {
 
   const itensOptions = {
     stagePadding:50,
-    margin: 15,
+    margin:5,
+    nav:false,
     loop:true,
     responsiveClass: true,
+    autoWidth:true,
     responsive: {
       0: {
+        
         items: 2,
+        stagePadding:10,
+      },
+      420:{
+        items:3,
         stagePadding:10,
       },
       768: {
@@ -49,6 +57,7 @@ function initCustomCarousel(carouselSelector, options) {
     stagePadding:100,
     center:true,
     loop: true,
+    nav:false,
     margin: 10,
     responsiveClass: true,
     responsive: {
@@ -67,6 +76,7 @@ function initCustomCarousel(carouselSelector, options) {
   const videosOptions = {
     center:false,
     loop: true,
+    nav:false,
     margin: 5,
     responsiveClass: true,
     

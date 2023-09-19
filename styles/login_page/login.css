@@ -51,7 +51,7 @@ body, html {
 }
 .assine_ad h2 {
   color: #151515;
-  font-size: 11.8181818182px;
+  font-size: 18px;
   text-shadow: none;
 }
 .assine_ad h2 span {
@@ -119,11 +119,11 @@ body, html {
 }
 .login_main .form__container a {
   color: #151515;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 1rem;
 }
 .login_main .form__container h1 {
-  font-size: 17.8571428571px;
+  font-size: 12.8571428571px;
   margin-top: 1rem;
 }
 .login_main .form__container .btn__homeback {
@@ -156,7 +156,7 @@ body, html {
   align-items: center;
 }
 .login_main .form__container .trocar__container .switch_btn {
-  font-size: 10.8333333333px;
+  font-size: 11.6666666667px;
   color: #151515;
   border: none;
   width: 50%;
@@ -186,7 +186,7 @@ body, html {
   transition: all ease 0.4s;
   color: #151515;
   text-decoration: none;
-  font-size: 9.2857142857px;
+  font-size: 10px;
   cursor: pointer;
 }
 .login_main .form__container .form a:hover {
@@ -207,7 +207,7 @@ body, html {
   border-radius: 10px;
 }
 .login_main .form__container .form input {
-  font-size: 11.8181818182px;
+  font-size: 12.7272727273px;
   width: 100%;
   height: 40px;
   background-color: transparent;
@@ -228,7 +228,7 @@ body, html {
   height: 35px;
 }
 .login_main .form__container .form a .enviar__btn {
-  font-size: 10.8695652174px;
+  font-size: 7.8260869565px;
   transition: all ease 0.4s;
   border-radius: 5px;
   background: transparent;
@@ -260,7 +260,7 @@ body, html {
   width: 20%;
   height: 50px;
   text-align: center;
-  font-size: 25px;
+  font-size: 18px;
 }
 .login_main .form__container .ativado {
   display: flex;

@@ -43,7 +43,7 @@ body, html {
 }
 .assine_ad h2 {
   color: #151515;
-  font-size: 11.8181818182px;
+  font-size: 18px;
   text-shadow: none;
 }
 .assine_ad h2 span {
@@ -189,7 +189,7 @@ aside ul .active a {
   position: relative;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
   z-index: 10;
 }
 .header nav {
@@ -220,7 +220,7 @@ aside ul .active a {
   height: 45px;
 }
 .header nav .logotipo a .tipografia {
-  font-size: 16.6666666667px;
+  font-size: 18px;
   font-weight: 600;
 }
 .header nav .assine-btn {
@@ -292,7 +292,7 @@ footer {
   left: 0;
   bottom: 0;
   background-color: white;
-  padding: 15px 15px 120px 15px;
+  padding: 1rem 2rem;
   width: 100%;
   height: -moz-fit-content;
   height: fit-content;
@@ -320,7 +320,7 @@ footer .footer-highItens .logotipo a img {
   height: 35px;
 }
 footer .footer-highItens .logotipo a p {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 footer .footer-highItens .redes {
@@ -334,7 +334,7 @@ footer .footer-highItens .redes li:hover i {
   color: #701786;
 }
 footer .footer-highItens .redes li i {
-  font-size: 25px;
+  font-size: 18px;
   transition: all ease 0.2s;
   color: #DA9AF8;
 }
@@ -349,7 +349,7 @@ footer .footer__links {
   padding: 35px 0;
 }
 footer .footer__links li {
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 footer .footer__links li a {
@@ -395,7 +395,7 @@ footer .creditos {
   position: absolute;
   right: 2rem;
   top: 2rem;
-  font-size: 25px;
+  font-size: 18px;
   color: #701786;
   cursor: pointer;
   font-weight: bold;
@@ -441,7 +441,7 @@ footer .creditos {
   background-color: transparent;
   outline: none;
   color: #151515;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: bold;
 }
 .search_modal .search_topItens .searchInput_container input[type=text]::-moz-placeholder {
@@ -451,7 +451,7 @@ footer .creditos {
   color: #994BBD;
 }
 .search_modal .search_topItens .searchInput_container .search_btn {
-  font-size: 20.8333333333px;
+  font-size: 15px;
   color: #994BBD;
   background: transparent;
   border: none;

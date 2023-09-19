@@ -5,7 +5,7 @@
     position: relative;
     left: 0;
     top:0;
-    width: 100vw;
+    width: 100%;
     z-index: 10;
     nav{
         width:100%;
@@ -28,7 +28,7 @@
                     height: 45px;
                 }
                 .tipografia{
-                    font-size: calc($fs-title / 1.5);
+                    font-size: $fs-title;
                     font-weight: 600;
                 }
             }

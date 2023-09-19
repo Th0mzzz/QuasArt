@@ -7,7 +7,7 @@
   }
 }
 .btn__homeback {
-  font-size: 25px;
+  font-size: 18px;
   z-index: 10;
 }
 
@@ -26,7 +26,7 @@
   text-align: center;
   font-weight: bold;
   color: #701786;
-  font-size: 25px;
+  font-size: 18px;
 }
 .premium_top .logotipo img {
   width: 150px;
@@ -34,7 +34,7 @@
 }
 .premium_top .logotipo .slogan_plus {
   color: #508CD3;
-  font-size: 15.6px;
+  font-size: 16.8px;
   letter-spacing: 3px;
 }
 
@@ -46,7 +46,7 @@
   cursor: pointer;
   transition: background ease-in 0.2s;
   color: white;
-  font-size: 13.8888888889px;
+  font-size: 10px;
   font-weight: bold;
   letter-spacing: 2px;
   text-align: center;
@@ -87,15 +87,15 @@
   color: #ffd257;
 }
 .premium_planos .container_planos .plano h2 {
-  font-size: 25px;
+  font-size: 18px;
 }
 .premium_planos .container_planos .plano .precos h1 {
-  font-size: 30px;
+  font-size: 21.6px;
   color: #994BBD;
 }
 .premium_planos .container_planos .plano .precos p {
   margin-top: 10px;
-  font-size: 11.8181818182px;
+  font-size: 12.7272727273px;
   white-space: wrap;
   width: 100%;
   letter-spacing: 2px;
@@ -141,7 +141,7 @@
   position: absolute;
   right: 2rem;
   top: 2rem;
-  font-size: 25px;
+  font-size: 18px;
   color: #112B4A;
   cursor: pointer;
   font-weight: bold;
@@ -181,7 +181,7 @@
   cursor: pointer;
   transition: background ease-in 0.2s;
   color: white;
-  font-size: 13.8888888889px;
+  font-size: 10px;
   font-weight: bold;
   letter-spacing: 2px;
   text-align: center;

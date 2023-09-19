@@ -64,7 +64,7 @@
 }
 .planets__containers .planet .planet_btn p {
   transition: all 0.2s;
-  font-size: 25px;
+  font-size: 18px;
   color: #994BBD;
 }
 .planets__containers .planet .bloqueado {
@@ -83,7 +83,7 @@
 }
 .planets__containers .planet .bloqueado i {
   color: white;
-  font-size: 25px;
+  font-size: 18px;
 }
 
 @keyframes flutuar {
@@ -186,7 +186,7 @@
   border-radius: 15px;
   color: white;
   background: #508CD3;
-  font-size: 13px;
+  font-size: 14px;
 }
 .pubContent form.form_resenha .inputs_container #image_resenha {
   margin-top: 3rem;
@@ -202,7 +202,7 @@
   position: absolute;
   top: -50px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   max-width: 150px;
   margin-bottom: 5px;
 }
@@ -232,7 +232,7 @@
 }
 .pubContent form.form_resenha .descri_container p {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
   color: #701786;
 }
 .pubContent form.form_resenha .descri_container textarea {
@@ -276,7 +276,7 @@
   border: none;
   background: #e21d1d;
   font-weight: bolder;
-  font-size: 19.2307692308px;
+  font-size: 13.8461538462px;
   border-radius: 5px;
   transition: transform 0.2s, box-shadow 0.2s;
   color: white;
@@ -339,7 +339,7 @@
   position: relative;
 }
 .pubContent form.form_videos .inputs_container .title-inputs .video_input label {
-  font-size: 14.3px;
+  font-size: 15.4px;
   color: #994BBD;
   margin: 0 0 1rem 1rem;
 }
@@ -382,7 +382,7 @@
   border-radius: 15px;
   color: white;
   background: #508CD3;
-  font-size: 13px;
+  font-size: 14px;
 }
 .pubContent form.form_videos .inputs_container #image_video {
   margin-top: 3rem;
@@ -401,7 +401,7 @@
   width: 100%;
   transform: translateX(-50%);
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   max-width: 150px;
   margin-bottom: 5px;
 }
@@ -431,7 +431,7 @@
 }
 .pubContent form.form_videos .descri_container p {
   font-weight: bold;
-  font-size: 13px;
+  font-size: 14px;
   color: #701786;
 }
 .pubContent form.form_videos .descri_container textarea {
@@ -454,7 +454,7 @@
   border: none;
   background: #e21d1d;
   font-weight: bolder;
-  font-size: 19.2307692308px;
+  font-size: 13.8461538462px;
   border-radius: 5px;
   transition: transform 0.2s, box-shadow 0.2s;
   color: white;
@@ -495,7 +495,7 @@
     position: absolute;
     top: -50px;
     text-align: center;
-    font-size: 13px;
+    font-size: 14px;
     max-width: 150px;
     margin-bottom: 5px;
   }
