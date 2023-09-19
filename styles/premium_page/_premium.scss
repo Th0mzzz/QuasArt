@@ -2,7 +2,9 @@
 @import '../abstract/variaveis'; 
     
 .btn__homeback{
-    font-size: $fs-title ;
+    top: 2rem;
+    position: absolute;
+    font-size: $fs-title * 1.4;
     z-index: 10;
 }
 

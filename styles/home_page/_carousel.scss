@@ -149,11 +149,10 @@
 
 
     .resenhas {
-
+        margin: 5rem 0;
         .owl-item {
             opacity: .8;
             transition: opacity ease-in .3s;
-
             &.active,
             &:hover {
                 opacity: 1;
@@ -162,14 +161,13 @@
 
         .slide {
             position: relative;
-            margin: 0 10px;
             display: flex;
             @include alignCenter (column, nowrap, start, left);
-            height: 300px;
-            padding: 3rem 2rem;
+            height: 350px;
+            max-width: 800px;
             background-color: $cor-principal-escura;
-            border-radius: 15px;
-
+            border-radius: 15px;    
+            padding: 2.5rem;
             .usuario {
                 display: flex;
                 gap: 10px;
@@ -246,16 +244,20 @@
 
     .videos {
         .slide {
-            background: $cor-principal-escura;
+            
             position: relative;
             height: auto;
             overflow: hidden;
+            
             a {
-
-                video {
-                    width: 100%;
-                    
+                position: relative;
+                width: 100%;
+                height: 100%;
+                video{
+                    width: 100%; 
+                    height: 100%; 
                 }
+               
             }
         }
     }

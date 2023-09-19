@@ -7,7 +7,9 @@
   }
 }
 .btn__homeback {
-  font-size: 18px;
+  top: 2rem;
+  position: absolute;
+  font-size: 25.2px;
   z-index: 10;
 }
 
