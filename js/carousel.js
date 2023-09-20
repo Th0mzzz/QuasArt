@@ -58,12 +58,12 @@ function initCustomCarousel(carouselSelector, options) {
     center:true,
     loop: true,
     nav:false,
-    margin: 10,
+    margin: 20,
     responsiveClass: true,
     responsive: {
       0: {
         items: 1,
-        stagePadding:0,
+        stagePadding:10,
       },
       768: {
         items: 1,

@@ -164,7 +164,6 @@
             display: flex;
             @include alignCenter (column, nowrap, start, left);
             height: 350px;
-            max-width: 800px;
             background-color: $cor-principal-escura;
             border-radius: 15px;    
             padding: 2.5rem;
