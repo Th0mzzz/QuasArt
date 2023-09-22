@@ -63,17 +63,6 @@ a, p {
   height: 45px;
 }
 
-.form-floating {
-  font-size: 15px;
-}
-.form-floating .form-control {
-  padding: 1rem;
-}
-.form-floating .form-control:focus {
-  border: 1px solid #994BBD;
-  box-shadow: 0 0 0 3px #DA9AF8;
-}
-
 @keyframes flutuar {
   0%, 100% {
     transform: translateY(0);

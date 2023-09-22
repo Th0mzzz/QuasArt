@@ -71,17 +71,6 @@ a, p {
   height: 45px;
 }
 
-.form-floating {
-  font-size: 15px;
-}
-.form-floating .form-control {
-  padding: 1rem;
-}
-.form-floating .form-control:focus {
-  border: 1px solid #994BBD;
-  box-shadow: 0 0 0 3px #DA9AF8;
-}
-
 main {
   height: -moz-fit-content;
   height: fit-content;
@@ -169,9 +158,11 @@ main {
   margin-top: 10px;
   width: 100%;
   height: 35px;
+  color: #508CD3;
 }
 .form__container .form a:hover {
-  color: #508CD3;
+  font-weight: bold;
+  color: #112B4A;
 }
 .form__container .form a .enviar__btn {
   font-size: 15px;
@@ -186,9 +177,6 @@ main {
 .form__container .form a .enviar__btn:hover {
   background: #701786;
   color: white;
-}
-.form__container .form p {
-  color: #994BBD;
 }
 .form__container .form .rede_entrar .rede_btn {
   width: 100%;

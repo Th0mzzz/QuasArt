@@ -55,15 +55,4 @@ a , p {
     }
 }
 
-.form-floating {
-    font-size: $fs-text;
-    
-    .form-control{
-        padding: 1rem;
-  
-        &:focus{
-            border: 1px solid $cor-principal;
-            box-shadow: 0 0 0 3px $cor-principal-clara;
-        }
-    }
-}
+

@@ -88,8 +88,11 @@ main{
             margin-top: 10px;
             width: 100%;
             height: 35px;
+            color: $cor-terciaria;
+            
             &:hover{
-                color: $cor-terciaria;
+                font-weight: bold;
+                color: $cor-terciaria-escura;
             }
             .enviar__btn {  
                 font-size: $fs-text;
@@ -105,9 +108,6 @@ main{
                     color: $cor-fundo;
                 }
             }
-        }
-        p{
-            color: $cor-principal;
         }
         .rede_entrar{
             .rede_btn{
