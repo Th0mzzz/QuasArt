@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" >
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BOOTSTRAP  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- CSS -->
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/login_page/login.css">
-    <!-- FONTAWESOME -->
-    <script src="https://kit.fontawesome.com/6cbe33c9ce.js" crossorigin="anonymous"></script>
-    <!-- Google Fonts -->
+        <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
@@ -17,37 +18,70 @@
     <title>Quasart</title>
 </head>
 <body>
-    <main class="login_main">
-        <div class="fundo"></div>
-        <header class="header">
-            <nav>
-                <div class="logotipo">
-                        <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
-                </div>
+    <header class="mb-3">
+        <nav class="navbar p-3 ">
             
-       </header>
-       
-        <div class="form__container" id="conta">
-            <button class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>
-            <div class="trocar__container">
-                <button class="switch_btn left ativo"><i class="fa-solid fa-arrow-right-to-bracket"></i> Entrar</button>
-                <button class="switch_btn right "><i class="fa-solid fa-user-plus"></i> Cadastrar-se</button>
-            </div>
+                <div class="logotipo mx-auto">
+                    <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+                </div>
 
-            <form action="" class="form ativado" id="login">
+        </nav>
+           
+        
+   </header>
+    <main > 
+       
+        
+      
+        <div class="form__container" id="conta">
+            <button class="btn__homeback back"><i class="bi bi-arrow-left-circle position-absolute end-0 top-0 fs-1"></i></button>
+            <div class="trocar__container">
+               
+                <button class="switch_btn left ativo"><i class="bi bi-box-arrow-in-right"></i> Entrar</button>
+                <button class="switch_btn right"><i class="bi bi-person-plus"></i> Cadastrar-se</button>
+            </div>
+           
+
+
+
+            <form action="" class="form ativado mt-5" id="login">
+                <div class="w-100 text-sm-center text-start">
+                    <h2 class="fs-1 fw-bold mb-3">Entrar no QuasArt</h2>
+                </div>
                 
-                <input type="email" placeholder="Digite seu Email ou número de telefone">
-                <input type="password" placeholder="Digite sua senha">
-                <a href="perfil.html"><input type="button" class="enviar__btn" value="Entrar"></a>
-                <a class="esqueceu_btn">Esqueceu sua senha?</a>
+                <div class="rede_entrar d-flex flex-column gap-3 mb-2">
+                    <div class="rede_btn  px-5 p-2"><i class="bi bi-google"></i> Entrar com Google</div>
+                    <div class="rede_btn  px-5 p-2"><i class="bi bi-google"></i> Entrar com Google</div>
+                    <div class="rede_btn  px-5 p-2"><i class="bi bi-google"></i> Entrar com Google</div>
+                    <div class="rede_btn  px-5 p-2"><i class="bi bi-google"></i> Entrar com Google</div>
+                </div>
+                <hr class="w-100 my-3 mb-5 ">
+                <div class="form-floating mb-1 w-100">
+                    <input type="email" class="form-control" id="email-entrar" placeholder="name@example.com">
+                    <label for="email-entrar">Email ou Telefone</label>
+                  </div>
+
+                  <div class="form-floating w-100">
+                    <input type="password" class="form-control" id="senha-entrar" placeholder="Password">
+                    <label for="senha-entrar">Senha</label>
+                  </div>
+                <a href="perfil.html"><input type="button" class="btn form-control enviar__btn p-3 mt-3" value="Entrar"></a>
+                <a class="esqueceu_btn mb-3">Esqueceu sua senha?</a>
+                
             </form>
 
             <form action="" class="form " id="cadastro">
                
-                <input type="email" placeholder="Digite seu Email ou número de telefone">
-                <input type="text" placeholder="Digite seu usuário">
-                <input type="password" placeholder="Confirme sua senha">
-                <a href="perfil.html"><input type="button" class="enviar__btn" value="Cadastrar-se"></a>
+                <div class="form-floating mb-1 w-100">
+                    <input type="email" class="form-control" id="email-entrar" placeholder="name@example.com">
+                    <label for="email-entrar">Email ou Telefone</label>
+                  </div>
+
+                  <div class="form-floating w-100">
+                    <input type="password" class="form-control" id="senha-entrar" placeholder="Password">
+                    <label for="senha-entrar">Senha</label>
+                  </div>
+                <a href="perfil.html"><input type="button" class="btn form-control enviar__btn p-3" value="Entrar"></a>
                 
             </form>
 
@@ -88,6 +122,10 @@
         </div>
 
     </main>
+    <footer class="p-4 mt-5">
+        <p class="text-center w-100">Este site é protegido pelo reCAPTCHA e está sujeito à Política de Privacidade e aos Termos de Serviço do Google.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="js/login.js"></script>
     <script src="js/backBtn.js"></script>
 </body>

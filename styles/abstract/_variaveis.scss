@@ -1,5 +1,5 @@
 
-// Cores 
+// Cores light mode
 $cor-principal:#994BBD;
 $cor-principal-escura:#701786;
 $cor-principal-clara:#DA9AF8;
@@ -9,13 +9,19 @@ $cor-secundaria-clara:#fad97d;
 $cor-terciaria:#508CD3;
 $cor-terciaria-escura:#112B4A;
 $cor-fundo:#ffff;
-$cor-fundo-escura:#e2e2e2;
 $cor-texto:#151515;
 $sucess-color:#82CD47;
 $danger-color:#e21d1d;
+
+// Cores dark Mode
+
+$cor-fundo-dark:#151515;
+$cor-texto-dark:#ffff;
 // Fontes
 $ft-padrao:'Poppins', sans-serif;
 
 // Font-sizes
-$fs-title:18px;
-$fs-text:14px;
+$fs-title:20px;
+$fs-text:15px;
+
+

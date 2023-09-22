@@ -28,7 +28,13 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background: white;
+}
+
+a, p {
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 :root {
@@ -51,7 +57,7 @@ body, html {
 }
 .assine_ad h2 {
   color: #151515;
-  font-size: 18px;
+  font-size: 20px;
   text-shadow: none;
 }
 .assine_ad h2 span {
@@ -65,68 +71,47 @@ body, html {
   height: 45px;
 }
 
-.login_main {
-  position: relative;
-  height: 100vh;
+.form-floating {
+  font-size: 15px;
 }
-.login_main .fundo {
-  z-index: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  opacity: 1;
-  filter: blur(5px);
-  background-image: url(../img/space.jpg);
-  background-size: cover;
-}
-.login_main .header {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: -moz-fit-content;
-  width: fit-content;
-}
-.login_main .header nav {
-  width: -moz-fit-content;
-  width: fit-content;
+.form-floating .form-control {
   padding: 1rem;
 }
-.login_main .header nav .logotipo {
-  padding: 10px 1rem;
-  background: white;
-  border-radius: 15px;
+.form-floating .form-control:focus {
+  border: 1px solid #994BBD;
+  box-shadow: 0 0 0 3px #DA9AF8;
 }
-.login_main .form__container {
+
+main {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.form__container {
   z-index: 9;
   position: relative;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
   width: 100%;
-  max-width: 550px;
-  height: 85vh;
+  max-width: 800px;
+  height: 100%;
   background-color: white;
-  border: 1px solid #994BBD;
   text-align: center;
   color: #151515;
   padding: 2rem 3rem;
   border-radius: 15px;
-  display: flex;
   overflow: hidden;
   box-shadow: 0 2px 15px #DA9AF8;
 }
-.login_main .form__container a {
+.form__container a {
   color: #151515;
-  font-size: 14px;
+  font-size: 15px;
   margin-bottom: 1rem;
 }
-.login_main .form__container h1 {
-  font-size: 12.8571428571px;
+.form__container h1 {
+  font-size: 14.2857142857px;
   margin-top: 1rem;
 }
-.login_main .form__container .btn__homeback {
+.form__container .btn__homeback {
   width: 35px;
   height: 35px;
   display: flex;
@@ -138,25 +123,23 @@ body, html {
   z-index: 100;
   transition: color ease 0.2s;
 }
-.login_main .form__container .btn__homeback i {
+.form__container .btn__homeback i {
   margin: auto;
 }
-.login_main .form__container .btn__homeback:hover {
+.form__container .btn__homeback:hover {
   color: #FFE03B;
 }
-.login_main .form__container .trocar__container {
-  position: absolute;
-  top: 0;
-  left: 0%;
+.form__container .trocar__container {
   width: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  gap: 5px;
 }
-.login_main .form__container .trocar__container .switch_btn {
-  font-size: 11.6666666667px;
+.form__container .trocar__container .switch_btn {
+  font-size: 15px;
   color: #151515;
   border: none;
   width: 50%;
@@ -165,70 +148,33 @@ body, html {
   transition: all ease 0.5s;
   cursor: pointer;
 }
-.login_main .form__container .trocar__container .switch_btn.ativo {
+.form__container .trocar__container .switch_btn.ativo {
   color: #701786;
   font-weight: bold;
-  box-shadow: 2px 2px 3px #DA9AF8;
+  box-shadow: 0 0 0 5px #DA9AF8;
 }
-.login_main .form__container .form {
+.form__container .form {
   width: 100%;
-  height: -moz-fit-content;
-  height: fit-content;
+  max-width: 550px;
+  height: 100%;
+  min-height: 700px;
   display: none;
   gap: 20px;
   border-radius: 15px;
   height: 100%;
+  margin: 0 auto;
 }
-.login_main .form__container .form a {
-  position: relative;
-  bottom: 0%;
-  z-index: 1000;
-  transition: all ease 0.4s;
-  color: #151515;
-  text-decoration: none;
-  font-size: 10px;
-  cursor: pointer;
-}
-.login_main .form__container .form a:hover {
-  color: #FFE03B;
-}
-.login_main .form__container .form .a {
-  position: static;
-  width: 100%;
-}
-.login_main .form__container .form .foto-perfil {
-  position: relative;
-}
-.login_main .form__container .form .foto-perfil img {
-  background: #994BBD;
-  width: 80px;
-  height: 80px;
-  padding: 1.5px;
-  border-radius: 10px;
-}
-.login_main .form__container .form input {
-  font-size: 12.7272727273px;
-  width: 100%;
-  height: 40px;
-  background-color: transparent;
-  padding: 10px 10px 10px;
-  border: none;
-  border-bottom: 1px solid #994BBD;
-  outline: none;
-  color: #151515;
-  transition: all 0.2s;
-}
-.login_main .form__container .form input:focus {
-  border-bottom: 1px solid #ffd257;
-}
-.login_main .form__container .form a {
+.form__container .form a {
   position: relative;
   margin-top: 10px;
   width: 100%;
   height: 35px;
 }
-.login_main .form__container .form a .enviar__btn {
-  font-size: 7.8260869565px;
+.form__container .form a:hover {
+  color: #508CD3;
+}
+.form__container .form a .enviar__btn {
+  font-size: 15px;
   transition: all ease 0.4s;
   border-radius: 5px;
   background: transparent;
@@ -237,43 +183,52 @@ body, html {
   border: 1px solid #701786;
   cursor: pointer;
 }
-.login_main .form__container .form a .enviar__btn:hover {
+.form__container .form a .enviar__btn:hover {
   background: #701786;
   color: white;
-  border: none;
 }
-.login_main .form__container .form .token__container {
+.form__container .form p {
+  color: #994BBD;
+}
+.form__container .form .rede_entrar .rede_btn {
   width: 100%;
-  margin-top: 20px;
+  cursor: pointer;
+  transition: background ease 0.3s, color ease 0.3s, border ease 0.3s;
+  border: 1px solid #508CD3;
+  border-radius: 25px;
+  color: #508CD3;
 }
-.login_main .form__container .form .token__container p {
-  margin-bottom: 1rem;
+.form__container .form .rede_entrar .rede_btn i {
+  transition: color ease 0.3s;
+  color: #508CD3;
 }
-.login_main .form__container .form .token__container .token__btns {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+.form__container .form .rede_entrar .rede_btn:hover {
+  border: 1px solid #112B4A;
+  background: #112B4A;
+  color: white;
 }
-.login_main .form__container .form .token__container .token__btns .cod_token {
-  width: 20%;
-  height: 50px;
-  text-align: center;
-  font-size: 18px;
+.form__container .form .rede_entrar .rede_btn:hover i {
+  color: white;
 }
-.login_main .form__container .ativado {
+.form__container .form.ativado {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
 }
 
+footer {
+  background: #701786;
+}
+footer p {
+  color: white;
+}
+
 @media (max-width: 425px) {
-  .login_main .header {
+  .header {
     display: none;
   }
-  .login_main .form__container {
+  .form__container {
     border: none;
     height: 100vh;
     border-radius: 0;
@@ -281,7 +236,7 @@ body, html {
   }
 }
 @media (min-width: 426px) and (max-width: 900px) {
-  .login_main .header {
+  .header {
     display: none;
   }
 }/*# sourceMappingURL=login.css.map */

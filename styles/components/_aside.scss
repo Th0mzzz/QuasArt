@@ -68,7 +68,7 @@ aside{
         padding-left: 60px;
     }
     aside{
-        width:60px;
+        width:70px;
         position: fixed;
         left: 0;
         bottom: 0;
@@ -85,7 +85,7 @@ aside{
             @include alignCenter(column,nowrap,center,center);
             padding-bottom: 5px;
             .list{
-                height:55px ;
+                height:65px ;
                 width:100% ;
                 border-radius: 50%;
                 transition: transform .2s;

@@ -1,7 +1,7 @@
 @import '../abstract/variaveis';
 @import '../abstract/mixins';
 
-.header{
+header{
     position: relative;
     left: 0;
     top:0;
@@ -28,6 +28,7 @@
                     height: 45px;
                 }
                 .tipografia{
+                    color: $cor-principal;
                     font-size: $fs-title;
                     font-weight: 600;
                 }
@@ -85,10 +86,11 @@
     border: none;
     outline: none;
     background-color: transparent;
+    font-size: $fs-title * 1.5;
     i{
         margin: auto;
     }
     &:hover{
-        color: $cor-secundaria;
+        color: $cor-secundaria-escura;
     }
 }

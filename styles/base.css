@@ -20,7 +20,13 @@ body, html {
   text-decoration: none;
   width: 100vw;
   height: 100vh;
-  background-color: white;
+  background: white;
+}
+
+a, p {
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 :root {
@@ -43,7 +49,7 @@ body, html {
 }
 .assine_ad h2 {
   color: #151515;
-  font-size: 18px;
+  font-size: 20px;
   text-shadow: none;
 }
 .assine_ad h2 span {
@@ -55,6 +61,17 @@ body, html {
 .assine_ad img {
   width: 45px;
   height: 45px;
+}
+
+.form-floating {
+  font-size: 15px;
+}
+.form-floating .form-control {
+  padding: 1rem;
+}
+.form-floating .form-control:focus {
+  border: 1px solid #994BBD;
+  box-shadow: 0 0 0 3px #DA9AF8;
 }
 
 @keyframes flutuar {
@@ -127,7 +144,7 @@ aside ul .active a {
     padding-left: 60px;
   }
   aside {
-    width: 60px;
+    width: 70px;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -148,7 +165,7 @@ aside ul .active a {
     padding-bottom: 5px;
   }
   aside ul .list {
-    height: 55px;
+    height: 65px;
     width: 100%;
     border-radius: 50%;
     transition: transform 0.2s;
@@ -185,14 +202,14 @@ aside ul .active a {
     transform: translateY(-5px);
   }
 }
-.header {
+header {
   position: relative;
   left: 0;
   top: 0;
   width: 100%;
   z-index: 10;
 }
-.header nav {
+header nav {
   width: 100%;
   padding: 15px 30px;
   z-index: 100;
@@ -201,13 +218,13 @@ aside ul .active a {
   justify-content: space-between;
   align-items: center;
 }
-.header nav .logotipo {
+header nav .logotipo {
   margin: auto 0;
   width: auto;
   height: 100%;
   overflow: hidden;
 }
-.header nav .logotipo a {
+header nav .logotipo a {
   text-decoration: none;
   color: #994BBD;
   display: flex;
@@ -215,15 +232,16 @@ aside ul .active a {
   justify-content: space-between;
   align-items: center;
 }
-.header nav .logotipo a .logo_img {
+header nav .logotipo a .logo_img {
   width: 45px;
   height: 45px;
 }
-.header nav .logotipo a .tipografia {
-  font-size: 18px;
+header nav .logotipo a .tipografia {
+  color: #994BBD;
+  font-size: 20px;
   font-weight: 600;
 }
-.header nav .assine-btn {
+header nav .assine-btn {
   position: relative;
   width: 80px;
   border: 1px solid #701786;
@@ -233,12 +251,12 @@ aside ul .active a {
   transition: all 0.2s;
   cursor: pointer;
 }
-.header nav .assine-btn span {
+header nav .assine-btn span {
   color: #701786;
   position: relative;
   z-index: 2;
 }
-.header nav .assine-btn::before {
+header nav .assine-btn::before {
   content: "";
   position: absolute;
   display: flex;
@@ -255,10 +273,10 @@ aside ul .active a {
   z-index: 1;
   border-radius: 3px;
 }
-.header nav .assine-btn:hover span {
+header nav .assine-btn:hover span {
   color: white;
 }
-.header nav .assine-btn:hover::before {
+header nav .assine-btn:hover::before {
   width: 100%;
 }
 
@@ -271,12 +289,13 @@ aside ul .active a {
   border: none;
   outline: none;
   background-color: transparent;
+  font-size: 30px;
 }
 .btn__homeback i {
   margin: auto;
 }
 .btn__homeback:hover {
-  color: #FFE03B;
+  color: #ffd257;
 }
 
 @keyframes flutuar {
@@ -320,7 +339,7 @@ footer .footer-highItens .logotipo a img {
   height: 35px;
 }
 footer .footer-highItens .logotipo a p {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 }
 footer .footer-highItens .redes {
@@ -334,7 +353,7 @@ footer .footer-highItens .redes li:hover i {
   color: #701786;
 }
 footer .footer-highItens .redes li i {
-  font-size: 18px;
+  font-size: 20px;
   transition: all ease 0.2s;
   color: #DA9AF8;
 }
@@ -349,7 +368,7 @@ footer .footer__links {
   padding: 35px 0;
 }
 footer .footer__links li {
-  font-size: 14px;
+  font-size: 15px;
   text-align: center;
 }
 footer .footer__links li a {
@@ -395,7 +414,7 @@ footer .creditos {
   position: absolute;
   right: 2rem;
   top: 2rem;
-  font-size: 18px;
+  font-size: 20px;
   color: #701786;
   cursor: pointer;
   font-weight: bold;
@@ -441,7 +460,7 @@ footer .creditos {
   background-color: transparent;
   outline: none;
   color: #151515;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
 }
 .search_modal .search_topItens .searchInput_container input[type=text]::-moz-placeholder {
@@ -451,7 +470,7 @@ footer .creditos {
   color: #994BBD;
 }
 .search_modal .search_topItens .searchInput_container .search_btn {
-  font-size: 15px;
+  font-size: 16.6666666667px;
   color: #994BBD;
   background: transparent;
   border: none;

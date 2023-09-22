@@ -61,7 +61,7 @@
 .carousel_container .inicial .slide div p {
   width: 55%;
   color: white;
-  font-size: 11.6666666667px;
+  font-size: 12.5px;
 }
 .carousel_container .inicial .slide div .btn-vermais {
   position: absolute;
@@ -150,7 +150,7 @@
 }
 .carousel_container .resenhas .slide .usuario a {
   color: white;
-  font-size: 16.8px;
+  font-size: 18px;
 }
 .carousel_container .resenhas .slide .usuario a:hover {
   text-decoration: underline;
@@ -181,7 +181,7 @@
 .carousel_container .resenhas .slide .trecho p {
   width: 100%;
   color: white;
-  font-size: 11.6666666667px;
+  font-size: 12.5px;
 }
 .carousel_container .resenhas .slide .trecho .btn-vermais {
   padding: 0.5rem;

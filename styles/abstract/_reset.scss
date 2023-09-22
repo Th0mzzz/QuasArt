@@ -14,9 +14,14 @@ body, html{
     text-decoration: none;
     width:100vw;
     height:100vh;  
-    background-color:$cor-fundo;
+    background:$cor-fundo;
+   
 }
-
+a , p {
+    margin: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
 
 :root{
     scroll-behavior: smooth;
@@ -47,5 +52,18 @@ body, html{
     img{
         width:45px;
         height:45px;
+    }
+}
+
+.form-floating {
+    font-size: $fs-text;
+    
+    .form-control{
+        padding: 1rem;
+  
+        &:focus{
+            border: 1px solid $cor-principal;
+            box-shadow: 0 0 0 3px $cor-principal-clara;
+        }
     }
 }

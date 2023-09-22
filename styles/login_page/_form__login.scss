@@ -3,55 +3,23 @@
 @import '../abstract/variaveis';
 @import '../abstract/reset';
 
+main{
+    height: fit-content;
+    
+}
 
-.login_main{
-    position: relative;
-    .fundo{
-        z-index: 1;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        opacity: 1;
-        filter: blur(5px);
-        background-image: url(../img/space.jpg);
-        background-size: cover;
-    }
-    
-    height: 100vh;
-    .header{
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: fit-content;
-        nav{
-            width: fit-content;
-            padding: 1rem;
-            .logotipo{
-                padding: 10px 1rem;
-                background: $cor-fundo;
-                border-radius: 15px;
-            }
-        }
-    }
 .form__container {
-    
     z-index: 9;
     position:relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50% , -50%);
+    margin: auto;
     width: 100%;
-    max-width: 550px;
-    height: 85vh;
+    max-width: 800px;
+    height: 100%;
     background-color: $cor-fundo;
-    border: 1px solid  $cor-principal;
     text-align: center;
     color: $cor-texto;
     padding:2rem 3rem ;
     border-radius: 15px;
-    display: flex;
     overflow: hidden;
     box-shadow: 0 2px 15px $cor-principal-clara;
     a {
@@ -83,15 +51,13 @@
         }
     }
     .trocar__container {
-        position: absolute;
-        top: 0;
-        left: 0%;
         width: 100%;
-        height: 50px;
+        height: 60px;
         display: flex;
         @include alignCenter(row, nowrap, center, center);
+        gap: 5px;
         .switch_btn {
-            font-size: $fs-text / 1.2;
+            font-size: $fs-text;
             color: $cor-texto;
             border: none;
             width: 50%;
@@ -99,76 +65,34 @@
             background-color: $cor-fundo;
             transition: all ease .5s;
             cursor: pointer;
-            &.ativo {
+        &.ativo  {
                 color: $cor-principal-escura;   
                 font-weight: bold;
-                box-shadow: 2px 2px 3px $cor-principal-clara;
+                box-shadow: 0 0 0 5px $cor-principal-clara;
             }
         }
     }
 
     .form {
         width: 100%;
-        height: fit-content;
+        max-width: 550px;
+        height: 100%;
+        min-height: 700px;
         display: none;
         gap: 20px;
         border-radius: 15px;
-    
         height: 100%;
-        a {
-            position: relative;
-            bottom: 0%;
-            z-index: 1000;
-            transition: all ease .4s;
-            color: $cor-texto;
-            text-decoration: none;
-            font-size: calc($fs-text / 1.4);
-            cursor: pointer;
-            &:hover {
-                color: $cor-secundaria;
-            }
-        } 
-        .a{
-            position: static;
-            width: 100%;
-        }
-
-        .foto-perfil {
-            position: relative;
-            img {
-                
-                background: $cor-principal;
-                width: 80px;
-                height: 80px;
-                padding: 1.5px;
-                border-radius: 10px;
-
-            }
-        }
-
-        input {
-            font-size: calc($fs-text / 1.1);
-            width: 100%;
-            height: 40px;
-            background-color: transparent;
-            padding: 10px 10px 10px;
-            border: none;
-            border-bottom: 1px solid $cor-principal;
-            outline: none;
-            color: $cor-texto;
-            transition: all .2s;
-            &:focus{
-                border-bottom: 1px solid $cor-secundaria-escura;
-            }
-        }
-        
+        margin: 0 auto;
         a{
             position: relative;
             margin-top: 10px;
             width: 100%;
             height: 35px;
+            &:hover{
+                color: $cor-terciaria;
+            }
             .enviar__btn {  
-                font-size: calc($fs-title / 2.3);
+                font-size: $fs-text;
                 transition: all ease .4s;
                 border-radius: 5px;
                 background: transparent;
@@ -176,38 +100,40 @@
                 font-weight: bold;
                 border: 1px solid $cor-principal-escura;
                 cursor: pointer;
-                &:hover {
-                  background: $cor-principal-escura;  
-                  color: $cor-fundo;
-                  border: none;
+                &:hover{
+                    background: $cor-principal-escura;
+                    color: $cor-fundo;
                 }
             }
         }
-        
-
-        .token__container {
-            width: 100%;
-            margin-top: 20px;
-
-            p {
-                margin-bottom: 1rem;
-            }
-
-            .token__btns {  
-                display: flex;    
-                @include alignCenter(row, nowrap, center, center);
-                gap: 5px;
-
-                .cod_token {
-                    width: calc(100% / 5);
-                    height: 50px;
-                    text-align: center;
-                    font-size: $fs-title;
+        p{
+            color: $cor-principal;
+        }
+        .rede_entrar{
+            .rede_btn{
+                width: 100%;
+                cursor:pointer;
+                transition: background ease .3s , color ease .3s , border ease .3s;
+               border: 1px solid $cor-terciaria;
+               border-radius: 25px;
+               color: $cor-terciaria;
+               i{
+                transition: color ease .3s;
+                color: $cor-terciaria;
+               }
+               &:hover{
+                border: 1px solid $cor-terciaria-escura;
+                background: $cor-terciaria-escura;
+                color: $cor-fundo;
+                i{
+                    color: $cor-fundo;
                 }
             }
+            }
         }
-    }
-    .ativado {
+
+       
+    &.ativado {
         display: flex;
         @include alignCenter(column, nowrap, center, center);
     }
@@ -216,11 +142,16 @@
 
 
 
-
+}
+footer{
+    background: $cor-principal-escura;
+    p{
+        color: $cor-fundo;
+    }
 }
 
 @media (max-width:425px) {
-    .login_main{
+    
         .header{
             display: none;
         }
@@ -230,14 +161,14 @@
             border-radius: 0;
             padding: 1rem;
         }
-    }
+    
 }
 
 @media (min-width:426px) and (max-width:900px) {
-    .login_main{
+    
         .header{
             display: none;
         }
      
-    }
+    
 }
