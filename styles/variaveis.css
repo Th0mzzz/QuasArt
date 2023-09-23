@@ -1,0 +1,24 @@
+:root {
+    --cor-principal: #A555EC;
+    --cor-principal-escura: #58287F;
+    --cor-principal-clara: #DA9AF8;
+    --cor-secundaria: #ffd257;
+    --cor-secundaria-escura: #F2921D;
+    --cor-secundaria-clara: #fad97d;
+    --cor-terciaria: #508CD3;
+    --cor-terciaria-escura: #112B4A;
+    --cor-fundo: #ffff;
+    --cor-texto: #151515;
+    --sucess-color: #82CD47;
+    --danger-color: #e21d1d;
+    scroll-behavior: smooth;
+}
+
+:root.dark{
+    --cor-fundo:#191825;
+    --cor-texto:#E9E8E8 ;
+}
+
+body{
+    background: var(--cor-fundo);
+}

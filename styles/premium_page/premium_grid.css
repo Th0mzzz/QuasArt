@@ -27,7 +27,7 @@
   margin: 0 auto;
   text-align: center;
   font-weight: bold;
-  color: #701786;
+  color: #58287F;
   font-size: 20px;
 }
 .premium_top .logotipo img {
@@ -77,7 +77,7 @@
   max-width: 450px;
   padding: 3rem 2.5rem;
   height: auto;
-  border-top: 10px solid #701786;
+  border-top: 10px solid #58287F;
   box-shadow: 1px 1px 5px #8a8a8a;
   background-color: white;
   border-radius: 15px;
@@ -86,14 +86,14 @@
   border-top: 10px solid #fad97d;
 }
 .premium_planos .container_planos .plano.comandante .precos h1 {
-  color: #ffd257;
+  color: #F2921D;
 }
 .premium_planos .container_planos .plano h2 {
   font-size: 20px;
 }
 .premium_planos .container_planos .plano .precos h1 {
   font-size: 24px;
-  color: #994BBD;
+  color: #A555EC;
 }
 .premium_planos .container_planos .plano .precos p {
   margin-top: 10px;
@@ -114,7 +114,7 @@
   color: #151515;
 }
 .premium_planos .container_planos .plano ul li i {
-  color: #ffd257;
+  color: #F2921D;
   margin-right: 15px;
 }
 .premium_planos .container_planos .plano ul li span {

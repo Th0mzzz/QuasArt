@@ -13,7 +13,7 @@
 .carousel_container h3 {
   padding: 1rem 3rem;
   font-weight: bold;
-  color: #994BBD;
+  color: #A555EC;
 }
 .carousel_container#inicial {
   margin: 0 auto 3rem auto;
@@ -21,7 +21,7 @@
 .carousel_container .inicial .slide {
   position: relative;
   display: flex;
-  background-color: #994BBD;
+  background-color: #A555EC;
   height: 550px;
   overflow: hidden;
 }
@@ -67,16 +67,16 @@
   position: absolute;
   right: 10px;
   padding: 8px;
-  border: 1px solid #FFE03B;
+  border: 1px solid #ffd257;
   background-color: transparent;
   border-radius: 5px;
   transition: all 0.2s;
 }
 .carousel_container .inicial .slide div .btn-vermais span {
-  color: #FFE03B;
+  color: #ffd257;
 }
 .carousel_container .inicial .slide div .btn-vermais:hover {
-  background-color: #FFE03B;
+  background-color: #ffd257;
 }
 .carousel_container .inicial .slide div .btn-vermais:hover span {
   color: #151515;
@@ -137,7 +137,7 @@
   justify-content: start;
   align-items: left;
   height: 350px;
-  background-color: #701786;
+  background-color: #58287F;
   border-radius: 15px;
   padding: 2.5rem;
 }
@@ -188,17 +188,17 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  border: 1px solid #FFE03B;
+  border: 1px solid #ffd257;
   background-color: transparent;
   border-radius: 5px;
   transition: all 0.2s;
   cursor: pointer;
 }
 .carousel_container .resenhas .slide .trecho .btn-vermais span {
-  color: #FFE03B;
+  color: #ffd257;
 }
 .carousel_container .resenhas .slide .trecho .btn-vermais:hover {
-  background-color: #FFE03B;
+  background-color: #ffd257;
 }
 .carousel_container .resenhas .slide .trecho .btn-vermais:hover span {
   color: #151515;
