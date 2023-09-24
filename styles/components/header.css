@@ -9,40 +9,39 @@ header {
   }
   header nav {
     width: 100%;
-    padding: 15px 30px;
+    padding: 1.5rem;
     z-index: 100;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
   }
-  header nav .logotipo {
+   .logotipo {
     margin: auto 0;
     width: auto;
     height: 100%;
     overflow: hidden;
   }
-  header nav .logotipo a {
+   .logotipo a {
     text-decoration: none;
-    color: #A555EC;
+    color:var(--cor-principal);
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
   }
-  header nav .logotipo a .logo_img {
+   .logotipo a .logo_img {
     width: 45px;
     height: 45px;
   }
-  header nav .logotipo a .tipografia {
-    color: #A555EC;
+   .logotipo a .tipografia {
     font-size: 20px;
-    font-weight: 600;
+    font-weight: bold;
   }
   header nav .assine-btn {
     position: relative;
     width: 100px;
-    border: 1px solid #F2921D;
+    border: 1px solid var(--cor-secundaria-escura);
     background: transparent;
     padding: 0.8rem;
     border-radius: 5px;
@@ -50,7 +49,7 @@ header {
     cursor: pointer;
   }
   header nav .assine-btn span {
-    color: #F2921D;
+    color:var(--cor-secundaria-escura);
     position: relative;
     z-index: 2;
   }
@@ -61,18 +60,17 @@ header {
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    color: white;
     left: 0%;
     bottom: 0%;
     width: 0%;
     height: 100%;
-    background-color: #F2921D;
+    background-color: var(--cor-secundaria-escura);
     transition: all 0.2s;
     z-index: 1;
     border-radius: 3px;
   }
   header nav .assine-btn:hover span {
-    color: white;
+    color: var(--cor-fundo);
   }
   header nav .assine-btn:hover::before {
     width: 100%;
@@ -80,7 +78,7 @@ header {
   
   .btn__homeback {
     display: flex;
-    color: #58287F;
+    color: var(--cor-principal);
     border-radius: 50%;
     z-index: 100;
     transition: color ease 0.2s;
@@ -93,6 +91,6 @@ header {
     margin: auto;
   }
   .btn__homeback:hover {
-    color: #F2921D;
+    color: var(--cor-principal-escura);
   }
   

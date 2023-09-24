@@ -34,6 +34,7 @@
                     <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
             </div>
             <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
+            <button id="modoBtn"><i class="bi bi-moon"></i></button>
         </nav>
         
    </header>
@@ -43,13 +44,13 @@
             <a class="nav__item"><i class="bi bi-search"></i></a>
         </li>
         <li class="list">
-            <a class="nav__item"><i class="bi bi-house"></i></a>
+            <a href="index.html" class="nav__item"><i class="bi bi-house"></i></a>
         </li>
         <li class="list">
             <a class="nav__item"><i class="bi bi-camera-video"></i></a>
         </li>
         <li class="list active">
-            <a href="pub.html" class="nav__item"><i class="bi bi-plus"></i></a>
+            <a  class="nav__item"><i class="bi bi-plus"></i></a>
         </li>
         <li class="list">
             <a href="login.html" class="nav__item"><i class="bi bi-person"></i></a>
@@ -164,27 +165,40 @@
 
     </section>
    </main>
-
-    </section>
-   <footer  class="aside_interference">
-    <div class="footer-highItens">
-        <div class="logotipo">
-            <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
-       </div>
-       <ul class="redes">
-        <li><a href="https://instagram.com/oficial_quasart?igshid=MzRlODBiNWFlZA=="><i class="fa-brands fa-instagram"></a></i></li>
-        <li><a href="mailto:quasartcontato@gmail.com"><i class="fa-regular fa-envelope"></i></a></li>
-        <li><a href="https://github.com/Th0mzzz/QuasArt"><i class="fa-brands fa-github"></i></a></li>
-       </ul>
-    </div>
-    <ul class="footer__links">
-        <li><a href="#">Sobre o QuasArt</a></li>
-        <li><a>Entre em contato</a></li>
-        <li><a>Direitos Autorais</a></li>
-        <li><a>Termos de Politica de Privacidade e Segurança</a></li>
-    </ul>
-    <div class="creditos">
-        &copy; Quasart 2023
+   <footer class="aside_interference">
+    <div class="footer_content">
+        <div class="footer-highItens">
+            <div class="logotipo">
+                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
+        </div>
+        <ul class="redes">
+            <li>
+                <a href="https://instagram.com/oficial_quasart?igshid=MzRlODBiNWFlZA==">
+                    <i class="bi bi-instagram"></i>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:quasartcontato@gmail.com">
+                    <i class="bi bi-envelope"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/Th0mzzz/QuasArt">
+                    <i class="bi bi-github"></i>
+                </a>
+            </li>
+        </ul>
+        </div>
+        <hr>
+        <ul class="footer__links">
+            <li><a href="#">Sobre o QuasArt</a></li>
+            <li><a href="#">Entre em contato</a></li>
+            <li><a href="#">Direitos Autorais</a></li>
+            <li><a href="#">Termos de Politica de Privacidade e Segurança</a></li>
+        </ul>
+        <div class="creditos">
+            &copy; Quasart 2023
+        </div>
     </div>
 </footer>
 <!-- Search Modal -->
@@ -214,6 +228,6 @@
 
     <script src="js/index.js"></script>
     <script src="js/plus.js"></script>
-    
+    <script src="js/modos.js"></script>
 </body>
 </html>

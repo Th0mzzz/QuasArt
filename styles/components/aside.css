@@ -1,11 +1,15 @@
+body{
+  --width-aside:100%;
+}
 aside {
-    width: 100%;
+    width: var(--width-aside);
     position: fixed;
     left: 0;
     bottom: 0;
     z-index: 1000;
     height: 70px;
   }
+  
   aside ul {
     box-shadow: 0 -2px 5px ;
     position: absolute;
@@ -58,14 +62,18 @@ aside {
   }
   
   @media (min-width: 1024px) {
+    body{
+      --width-aside:70px;
+    }
     .aside_interference {
-      padding-left: 60px;
+      padding-left: var(--width-aside);
     }
     aside {
-      width: 70px;
+      width:var(--width-aside) ;
       left: 0;
       bottom: 0;
       height: 100%;
+      
     }
     aside ul {
       flex-flow: column nowrap;

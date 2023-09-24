@@ -41,7 +41,7 @@
   font-weight: bold;
   cursor: pointer;
 }
-.enviar__btn:hover {
+.enviar__btn:hover , .enviar__btn:focus  {
   background:var(--cor-secundaria-escura);
   color:var(--cor-fundo) ;
 }

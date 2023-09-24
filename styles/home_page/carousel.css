@@ -1,0 +1,251 @@
+.carousel_container {
+    max-width: 1440px;
+    margin: 2rem auto;
+}
+
+h3 {
+    padding: 1rem 3rem;
+    font-weight: bold;
+    color: var(--cor-principal);
+}
+
+#inicial {
+    margin: 0 auto 3rem auto;
+}
+
+.inicial .slide {
+    position: relative;
+    display: flex;
+    background-color: var(--cor-principal);
+    height: 550px;
+    overflow: hidden;
+}
+
+.inicial .slide:hover a img {
+    transform: scale(1.2);
+}
+
+.inicial .slide a {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.inicial .slide a img {
+    min-width: 500px;
+    width: 100%;
+    height: 100%;
+}
+
+.inicial .slide div {
+    border-radius: 20px 20px 0 0;
+    background: linear-gradient(to top, #00000075 45%, transparent);
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    text-align: left;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: end;
+    align-items: start;
+    padding-bottom: 2rem;
+}
+
+.inicial .slide div h5 {
+    color: var(--cor-texto);
+}
+
+.inicial .slide div p {
+    width: 55%;
+    color: var(--cor-texto);
+    font-size: 12.5px;
+}
+
+.inicial .slide div .btn-vermais {
+    position: absolute;
+    right: 10px;
+    padding: 8px;
+    border: 1px solid var(--cor-secundaria);
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.2s;
+}
+
+.inicial .slide div .btn-vermais span {
+    color: var(--cor-secundaria);
+}
+
+.inicial .slide div .btn-vermais:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.inicial .slide div .btn-vermais:hover span {
+    color: var(--cor-texto);
+    font-weight: bold;
+}
+
+.itens .owl-item {
+    opacity: 0.8;
+    transition: all ease-in 0.4s;
+}
+
+.itens .owl-item:hover {
+    opacity: 1;
+}
+
+.itens .slide {
+    display: flex;
+    position: relative;
+    max-width: fit-content;
+    height: auto;
+    overflow: hidden;
+}
+
+.itens .slide:hover a img {
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+.itens .slide a img {
+    transition: transform ease 0.3s;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center;
+    object-position: center;
+    z-index: 1;
+    max-width: 100%;
+    height: 280px;
+}
+
+.itens .slide a p {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    color: var(--cor-texto);
+    font-weight: bold;
+    background: var(--cor-fundo);
+    z-index: 100;
+}
+
+.resenhas {
+    margin: 5rem 0;
+}
+
+.resenhas .owl-item {
+    opacity: 0.8;
+    transition: opacity ease-in 0.3s;
+}
+
+.resenhas .owl-item.active,
+.resenhas .owl-item:hover {
+    opacity: 1;
+}
+
+.resenhas .slide {
+    position: relative;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: start;
+    align-items: left;
+    height: 350px;
+    background-color: var(--cor-principal-escura);
+    border-radius: 15px;
+    padding: 2.5rem;
+}
+
+.resenhas .slide .usuario {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+.resenhas .slide .usuario a {
+    color: var(--cor-texto);
+    font-size: var(--fs-text);
+}
+
+.resenhas .slide .usuario a:hover {
+    text-decoration: underline;
+}
+
+.resenhas .slide .usuario .foto {
+    width: 55px;
+    height: 55px;
+    background-color: var(--cor-fundo);
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.resenhas .slide .usuario .foto img {
+    width: 100%;
+    height: 100%;
+}
+
+.resenhas .slide .trecho {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: top;
+    align-items: start;
+    padding-top: 1.5rem;
+}
+
+.resenhas .slide .trecho h5 {
+    color: var(--cor-texto);
+}
+
+.resenhas .slide .trecho p {
+    width: 100%;
+    color: var(--cor-texto);
+    font-size: var(--fs-text);
+}
+
+.resenhas .slide .trecho .btn-vermais {
+    padding: 0.5rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 1px solid var(--cor-secundaria);
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.resenhas .slide .trecho .btn-vermais span {
+    color: var(--cor-secundaria);
+}
+
+.resenhas .slide .trecho .btn-vermais:hover {
+    background-color: var(--cor-secundaria);
+}
+
+.resenhas .slide .trecho .btn-vermais:hover span {
+    color: var(--cor-texto);
+    font-weight: bold;
+}
+
+.videos .slide {
+    position: relative;
+    height: auto;
+    overflow: hidden;
+}
+
+.videos .slide a {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.videos .slide a video {
+    width: 100%;
+    height: 100%;
+}
+
