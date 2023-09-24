@@ -1,8 +1,5 @@
 
-main {
-  height: -moz-fit-content;
-  height: fit-content;
-}
+
 
 .form__container {
   z-index: 9;
@@ -13,59 +10,13 @@ main {
   height: 100%;
   background-color: var(--cor-fundo);
   text-align: center;
-  color:var(--cor-principal);
   padding: 2rem 3rem;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0px 5px 0.6px;
+  box-shadow: 0 0px 5px 0.6px var(--cor-principal);
+  color: var(--cor-texto);
 }
-.form__container a {
-  color:var(--cor-principal);
-  font-size: 15px;
-  margin-bottom: 1rem;
-}
-.form__container .btn__homeback {
-  width: 35px;
-  height: 35px;
-  display: flex;
-  position: absolute;
-  top: 100px;
-  left: 20px;
-  color:var(--cor-principal);
-  border-radius: 50%;
-  z-index: 100;
-  transition: color ease 0.2s;
-}
-.form__container .btn__homeback i {
-  margin: auto;
-}
-.form__container .btn__homeback:hover {
-  color:var(--cor-principal);
-}
-.form__container .trocar__container {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
-.form__container .trocar__container .switch_btn {
-  font-size: 15px;
-  color:var(--cor-principal);
-  border: none;
-  width: 50%;
-  height: 100%;
-  background-color: white;
-  transition: all ease 0.5s;
-  cursor: pointer;
-}
-.form__container .trocar__container .switch_btn.ativo {
-  color:var(--cor-principal);
-  font-weight: bold;
-  box-shadow: 0 0 0 5px;
-}
+
 .form__container .form {
   width: 100%;
   max-width: 550px;
@@ -80,50 +31,36 @@ main {
 .form__container .form h2 {
   color:var(--cor-principal);
 }
-.form__container .form a {
-  position: relative;
-  margin-top: 10px;
-  width: 100%;
-  height: 35px;
-  color:var(--cor-principal);
-}
-.form__container .form a:hover {
-  font-weight: bold;
-  color:var(--cor-principal);
-}
-.form__container .form a .enviar__btn {
+
+.enviar__btn {
   font-size: 15px;
   transition: all ease 0.4s;
   border-radius: 5px;
-  background:var(--cor-principal);
-  color: white;
+  background:var(--cor-secundaria);
+  color: var(--cor-fundo);
   font-weight: bold;
-  border: 1px solid;
   cursor: pointer;
 }
-.form__container .form a .enviar__btn:hover {
-  background:var(--cor-principal);
-  border: 1px solid;
+.enviar__btn:hover {
+  background:var(--cor-secundaria-escura);
+  color:var(--cor-fundo) ;
 }
-.form__container .form .rede_entrar .rede_btn {
-  width: 100%;
+.rede_btn {
   cursor: pointer;
   transition: background ease 0.3s, color ease 0.3s, border ease 0.3s;
   background:var(--cor-principal);
   border-radius: 25px;
-  color: white;
+  color: var(--cor-fundo);
 }
-.form__container .form .rede_entrar .rede_btn i {
+.rede_btn i {
   transition: color ease 0.3s;
-  color: white;
+  color: var(--cor-fundo);
 }
-.form__container .form .rede_entrar .rede_btn:hover {
-  background:var(--cor-principal);
-  color: white;
+.rede_btn:hover {
+  background:var(--cor-principal-escura);
+
 }
-.form__container .form .rede_entrar .rede_btn:hover i {
-  color: white;
-}
+
 .form__container .form.ativado {
   display: flex;
   flex-flow: column nowrap;
@@ -132,25 +69,21 @@ main {
 }
 
 footer {
-  background:var(--cor-principal);
+  background:var(--cor-fundo);
 }
 footer p {
-  color: white;
+  color: var(--cor-texto);
 }
 
-@media (max-width: 425px) {
-  .header {
-    display: none;
-  }
+@media (max-width: 599px) {
+
   .form__container {
     border: none;
-    height: 100vh;
+    box-shadow: none;
     border-radius: 0;
     padding: 1rem;
   }
 }
-@media (min-width: 426px) and (max-width: 900px) {
-  .header {
-    display: none;
-  }
+@media (min-width: 600px) and (max-width: 900px) {
+  
 }

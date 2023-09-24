@@ -1,0 +1,108 @@
+.search_modal {
+    left: 0;
+    top: 0;
+    position: fixed;
+    -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    display: none;
+    padding: 1rem 10px;
+    flex-flow: column nowrap;
+    justify-content: start;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.383);
+  }
+  .search_modal .close_btn {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    font-size: 20px;
+    color: #58287F;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .search_modal .close_btn:hover {
+    color: #A555EC;
+  }
+  .search_modal .search_topItens {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-flow: column;
+  }
+  .search_modal .search_topItens .logotipo {
+    background-color: white;
+    border-radius: 50px;
+    padding: 1rem 1.5rem;
+  }
+  .search_modal .search_topItens .logotipo a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: bold;
+  }
+  .search_modal .search_topItens .logotipo a img {
+    width: 35px;
+    height: 35px;
+  }
+  .search_modal .search_topItens .searchInput_container {
+    width: 100%;
+    max-width: 900px;
+    height: 50px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    margin-top: 20px;
+  }
+  .search_modal .search_topItens .searchInput_container input[type=text] {
+    border: none;
+    width: 100%;
+    background-color: transparent;
+    outline: none;
+    color: #151515;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .search_modal .search_topItens .searchInput_container input[type=text]::-moz-placeholder {
+    color: #A555EC;
+  }
+  .search_modal .search_topItens .searchInput_container input[type=text]::placeholder {
+    color: #A555EC;
+  }
+  .search_modal .search_topItens .searchInput_container .search_btn {
+    font-size: 16.6666666667px;
+    color: #A555EC;
+    background: transparent;
+    border: none;
+    padding: 0.2rem;
+    outline: none;
+    transition: all 0.2s;
+    width: 50px;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .search_modal .search_topItens .searchInput_container .search_btn:hover {
+    color: #151515;
+  }
+  .search_modal .search_results {
+    width: 100%;
+    height: 50%;
+    max-width: 900px;
+    background-color: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    display: flex;
+  }
+  .search_modal .search_results p {
+    margin: auto;
+    text-align: center;
+  }
+  
+  .search_ativo {
+    display: flex;
+  }
