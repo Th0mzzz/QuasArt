@@ -1,2 +1,6 @@
 @import url(carousel.css);
+@import url(utilitiesMenu.css);
 
+.row{
+    --bs-gutter-x: 0rem
+}

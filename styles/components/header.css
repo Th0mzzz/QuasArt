@@ -34,8 +34,8 @@ header {
     width: 45px;
     height: 45px;
   }
-   .logotipo a .tipografia {
-    font-size: 20px;
+   .logotipo a .tipografia , .tipografia span{
+    font-size: var(--fs-title);
     font-weight: bold;
   }
   header nav .assine-btn {

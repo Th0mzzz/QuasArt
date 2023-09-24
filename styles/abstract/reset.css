@@ -15,7 +15,20 @@
     height: 100vh;
     
   }
+
+  ::-webkit-scrollbar{
+    z-index: 100;
+    position: fixed;
+    background: var(--cor-fundo);
+    width: 10px;
+  }
   
+  ::-webkit-scrollbar-thumb{
+    border-radius: 15px;
+    
+    background-color: var(--cor-principal);
+  }
+
   a, p {
     margin: 0;
     cursor: pointer;

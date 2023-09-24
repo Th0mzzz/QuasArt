@@ -13,17 +13,17 @@
     --sucess-color: #82CD47;
     --danger-color: #e21d1d;
     scroll-behavior: smooth;
-    /* FONTES */
-    --fs-title: 22px;
-    --fs-text: 18px;
-    --fs-link: 20px;
+/* FONTES */
+    --fs-title:22px;
+    --fs-text:18px;
+    --fs-link:20px;
 }
 
-.dark {
-    --cor-fundo: #191825;
-    --cor-texto: #E9E8E8;
+.dark{
+    --cor-fundo:#191825;
+    --cor-texto:#E9E8E8 ;
 }
 
-body {
+body{
     background: var(--cor-fundo);
 }
