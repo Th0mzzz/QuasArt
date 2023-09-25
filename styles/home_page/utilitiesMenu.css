@@ -2,6 +2,7 @@
 .utilities_container{
     position: relative;
     border-left: 1px solid var(--cor-principal);
+    padding: 0 10px;
 }
 
 .utilities_menu{
@@ -13,5 +14,13 @@
 
 .utility_item{
     width: 100%;
-    border:1px solid var(--cor-principal) ;
+    background:  var(--cor-principal) ;
+    color: var(--cor-texto);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.utility_item:hover{
+
+    background: var(--cor-principal-escura);
 }

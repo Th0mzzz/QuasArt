@@ -19,8 +19,8 @@
   ::-webkit-scrollbar{
     z-index: 100;
     position: fixed;
-    background: var(--cor-fundo);
-    width: 10px;
+    background: transparent;
+    width: 5px;
   }
   
   ::-webkit-scrollbar-thumb{
