@@ -19,7 +19,7 @@ list.forEach(item => item.addEventListener('click', function(e){
 }));
 
 
-
+// BOTÃO DE MODO
 const modoBtn = document.querySelector("#modoBtn")
 const body = document.body
 const icone = modoBtn.querySelector("i")
@@ -44,6 +44,15 @@ if (darkModeEnabled === 'true') {
     icone.className = "bi bi-brightness-high"
 }
 
+// BOTÃOP PARA VOLTAR A PAGINA ANTERIOR
 
 
+const back = document.querySelectorAll('.back')
 
+back.forEach( btn => {
+    btn.addEventListener('click', (e)=>{
+        e.preventDefault()
+        window.history.back()
+    })
+    
+})

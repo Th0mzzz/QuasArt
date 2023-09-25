@@ -54,3 +54,21 @@
   color: #000000;
 }
 
+.btn__homeback {
+  display: flex;
+  color: var(--cor-principal);
+  border-radius: 50%;
+  z-index: 100;
+  transition: color ease 0.2s;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  
+}
+.btn__homeback i {
+  font-size: 50px;
+  margin: auto;
+}
+.btn__homeback:hover {
+  color: var(--cor-principal-escura);
+}

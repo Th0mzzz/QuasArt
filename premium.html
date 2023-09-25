@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html lang=pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quasart</title>
+    <!-- BOOTSTRAP  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- CSS -->
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/premium_page/premium_grid.css">
@@ -11,112 +16,116 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-     <!-- FONTAWESOME -->
-     <script src="https://kit.fontawesome.com/6cbe33c9ce.js" crossorigin="anonymous"></script>
-      <!-- FavIcon -->
+    <!-- FavIcon -->
     <link rel="shortcut icon" href="img/quasart_logo_pequena.png" type="image/x-icon">
 </head>
+
 <body>
     <header class="header">
         <nav>
             <button href="#" class="btn__homeback back"><i class="fa-solid fa-arrow-left"></i></button>
+            <button id="modoBtn" class="d-none"><i class="bi bi-moon"></i></button>
         </nav>
-   </header>
-<main class="premium_main">
-   
-    <section class="premium_top">
-    
-        <div class="logotipo">
-            <img src="img/quasart_logo.png" alt="Logotipo_QuasArt" class="logo_img"> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span> <span style="color:#508CD3;">PLUS +</span></p>
-            <p class="slogan_plus">Venha viajar ainda mais longe com o Plus!!</p>
-        </div>
-        
-    </section>
-    <section class="premium_planos">
+    </header>
+    <main class="premium_main">
 
-         <div class="container_planos">
+        <section class="premium_top">
 
-            <div class="plano tripulante">
-                <h2>Tripulante <span style="color:#508CD3;">PLUS+</span></h2>
-                <div class="precos">
-                    <h1>R$20,00 por mês!</h3>
-                    <p>Plano Semestral: R$108.00 <span>(10% desconto por mês!!)</span> <br>
-                    Plano Anual:R$192.00 <span>(20% desconto ao mês!!)</span>
-                    </p>
-                </div>
-                <ul>
-                    <li><i class="fa-solid fa-star"></i>Anúncios Bloqueados</li>
-                    <li><i class="fa-solid fa-star"></i>Descontos especiais em Parcerias!</li>
-                    <li><i class="fa-solid fa-star"></i>Seja Membro Mensal Grátis!</li>
-                    <li><i class="fa-solid fa-star"></i>Selo Premium</li>
-                    <li><i class="fa-solid fa-star"></i>Ficha Grátis</li>
-                </ul>
-                <button class="plano_btn tripulante">Decolar!</butbtnton>
-            </div>
-            <div class="plano comandante">
-                <h2>Comandante <span style="color:#508CD3;">PLUS +</span></h2>
-                <div class="precos">
-
-                    <h1>R$30,00 por mês!</h3>
-                    <p>Plano Semestral: R$144.00 <span>(10% desconto por mês!!)</span> <br>
-                    Plano Anual:R$288.00 <span>(20% desconto ao mês!!)</span>
-                    </p>
-                </div>
-                <ul>
-                    <li><i class="fa-solid fa-star"></i>Anúncios Bloqueados</li>
-                    <li><i class="fa-solid fa-star"></i>Descontos especias em Parcerias!</li>
-                    <li><i class="fa-solid fa-star"></i>Suporte Técnico Prioritário</li>
-                    <li><i class="fa-solid fa-star"></i>Selo Premium</li>
-                    <li><i class="fa-solid fa-star"></i>Ficha <span>ILIMITADAS</span></li>
-                    <li><i class="fa-solid fa-star"></i>Maior visibilidade na Platoforma</li>
-                </ul>
-                <button class="plano_btn comandante">Decolar!</button>
+            <div class="logotipo">
+                <img src="img/quasart_logo.png" alt="Logotipo_QuasArt" class="logo_img">
+                <p class="tipografia">Quas<span style="color:#FFE03B">Art</span> <span style="color:#508CD3;">PLUS
+                        +</span></p>
+                <p class="slogan_plus">Venha viajar ainda mais longe com o Plus!!</p>
             </div>
 
-         </div>
-         
-    </section>
+        </section>
+        <section class="premium_planos">
 
-    <section class="premium_modal" id="premium_modal">
+            <div class="container_planos">
 
-        <span class="close_btn"><i class="fa-solid fa-xmark"></i></span>
-
-        <div class="modal_content">
-
-            <h2 id="plano_nome"></h2>
-            <p>Gostaria de qual plano?</p>
-
-            <div class="inputs_plano">
-
-                <div class="input_container">
-                    <input type="radio" name="plano" id="mensal">
-                    <label for="plano">Plano Mensal:<span id="preco_mensal"></span> </label>
-                    
+                <div class="plano tripulante">
+                    <h2>Tripulante <span style="color:#508CD3;">PLUS+</span></h2>
+                    <div class="precos">
+                        <h1>R$20,00 por mês!</h3>
+                            <p>Plano Semestral: R$108.00 <span>(10% desconto por mês!!)</span> <br>
+                                Plano Anual:R$192.00 <span>(20% desconto ao mês!!)</span>
+                            </p>
+                    </div>
+                    <ul>
+                        <li><i class="fa-solid fa-star"></i>Anúncios Bloqueados</li>
+                        <li><i class="fa-solid fa-star"></i>Descontos especiais em Parcerias!</li>
+                        <li><i class="fa-solid fa-star"></i>Seja Membro Mensal Grátis!</li>
+                        <li><i class="fa-solid fa-star"></i>Selo Premium</li>
+                        <li><i class="fa-solid fa-star"></i>Ficha Grátis</li>
+                    </ul>
+                    <button class="plano_btn tripulante">Decolar!</butbtnton>
                 </div>
+                <div class="plano comandante">
+                    <h2>Comandante <span style="color:#508CD3;">PLUS +</span></h2>
+                    <div class="precos">
 
-                <div class="input_container">
-                    <input type="radio" name="plano" id="semestral">
-                    <label for="plano">Plano Semestral: <span id="preco_semestral"></span> (desconto de <span>10%</span>!!)</label>
-                    
+                        <h1>R$30,00 por mês!</h3>
+                            <p>Plano Semestral: R$144.00 <span>(10% desconto por mês!!)</span> <br>
+                                Plano Anual:R$288.00 <span>(20% desconto ao mês!!)</span>
+                            </p>
+                    </div>
+                    <ul>
+                        <li><i class="fa-solid fa-star"></i>Anúncios Bloqueados</li>
+                        <li><i class="fa-solid fa-star"></i>Descontos especias em Parcerias!</li>
+                        <li><i class="fa-solid fa-star"></i>Suporte Técnico Prioritário</li>
+                        <li><i class="fa-solid fa-star"></i>Selo Premium</li>
+                        <li><i class="fa-solid fa-star"></i>Ficha <span>ILIMITADAS</span></li>
+                        <li><i class="fa-solid fa-star"></i>Maior visibilidade na Platoforma</li>
+                    </ul>
+                    <button class="plano_btn comandante">Decolar!</button>
                 </div>
-
-                <div class="input_container">
-                    <input type="radio" name="plano" id="anual">    
-                    <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!) </label>
-                    
-                </div>
-
-                <input type="submit" class="btn" value="Confirmar!">
 
             </div>
 
-        </div>
-    </section>
+        </section>
 
-</main>   
+        <section class="premium_modal" id="premium_modal">
 
-<script src="js/premium.js"></script>
-<script src="js/backBtn.js"></script>
-<script src="js/modos.js"></script>
+            <span class="close_btn"><i class="fa-solid fa-xmark"></i></span>
+
+            <div class="modal_content">
+
+                <h2 id="plano_nome"></h2>
+                <p>Gostaria de qual plano?</p>
+
+                <div class="inputs_plano">
+
+                    <div class="input_container">
+                        <input type="radio" name="plano" id="mensal">
+                        <label for="plano">Plano Mensal:<span id="preco_mensal"></span> </label>
+
+                    </div>
+
+                    <div class="input_container">
+                        <input type="radio" name="plano" id="semestral">
+                        <label for="plano">Plano Semestral: <span id="preco_semestral"></span> (desconto de
+                            <span>10%</span>!!)</label>
+
+                    </div>
+
+                    <div class="input_container">
+                        <input type="radio" name="plano" id="anual">
+                        <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!)
+                        </label>
+
+                    </div>
+
+                    <input type="submit" class="btn" value="Confirmar!">
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="js/premium.js"></script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>
