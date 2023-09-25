@@ -15,13 +15,13 @@ btn.addEventListener("click", ()=>{
 
     if(btn.classList.contains("comandante")){
 
-        tituloPlano.innerHTML = `Comandante <span>PLUS +</span>`
+        tituloPlano.innerHTML = `Comandante PLUS+`
         precoMensal.innerHTML = " R$ 30.00"
         precoSemestral.innerHTML = " R$ 144.00"
         precoAnual.innerHTML = " R$ 288.00"
 
     }else{
-        tituloPlano.innerHTML = `Tripulante <span>PLUS +</span>`
+        tituloPlano.innerHTML = `Tripulante PLUS +`
         precoMensal.innerHTML = " R$ 20.00"
         precoSemestral.innerHTML = " R$ 108.00"
         precoAnual.innerHTML = " R$ 192.00"
