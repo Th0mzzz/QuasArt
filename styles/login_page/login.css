@@ -1,5 +1,7 @@
 
-
+.btn__homeback {
+  width: fit-content;
+}
 
 .form__container {
   z-index: 9;

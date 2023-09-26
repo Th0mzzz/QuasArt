@@ -93,7 +93,7 @@ h3 {
     transition: all ease-in 0.4s;
 }
 
-.itens .owl-item:hover {
+.itens .active {
     opacity: 1;
 }
 
