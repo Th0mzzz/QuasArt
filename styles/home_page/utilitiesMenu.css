@@ -2,7 +2,7 @@
 .utilities_container{
     position: relative;
     border-left: 1px solid var(--cor-principal);
-    padding: 0 10px;
+    padding-left:10px;
 }
 
 .utilities_menu{
@@ -10,17 +10,22 @@
     margin: 0;
     height: auto;
     z-index: 12;
+    overflow: hidden;
+    border-radius: 5px;
 }
 
 .utility_item{
     width: 100%;
-    background:  var(--cor-principal) ;
-    color: var(--cor-texto);
+    background: var(--cor-fundo);
+    color: var(--cor-terciaria);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+}
+.utility_item i {
+    font-size: var(--fs-title);
 }
 .utility_item:hover{
-
-    background: var(--cor-principal-escura);
+    color:var(--cor-fundo);
+    background:var(--cor-hover);
 }

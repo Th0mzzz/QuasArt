@@ -17,8 +17,8 @@
   }
 
   ::-webkit-scrollbar{
-    z-index: 100;
-    position: fixed;
+    z-index: 0;
+    position: absolute;
     background: transparent;
     width: 5px;
   }

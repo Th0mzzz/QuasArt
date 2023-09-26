@@ -22,26 +22,30 @@ list.forEach(item => item.addEventListener('click', function(e){
 // BOTÃO DE MODO
 const modoBtn = document.querySelector("#modoBtn")
 const body = document.body
-const icone = modoBtn.querySelector("i")
 
 modoBtn.addEventListener('click', function() {
     body.classList.toggle('dark');
+
     if(body.classList.contains('dark')){
-        icone.className = "bi bi-brightness-high"
-    }else {
-        icone.className = "bi bi-moon"
-    }
+        modoBtn.innerHTML = "Modo claro <i class='bi bi-brightness-high'></i> "
     
+    }else{
+        modoBtn.innerHTML = "Modo Escuro <i class='bi bi-moon'></i>"
+    }    
     const darkModeEnabled = body.classList.contains('dark');
     localStorage.setItem('darkModeEnabled', darkModeEnabled);
+
 });
+
 
 
 const darkModeEnabled = localStorage.getItem('darkModeEnabled');
 
 if (darkModeEnabled === 'true') {
     body.classList.add('dark');
-    icone.className = "bi bi-brightness-high"
+    modoBtn.innerHTML = "Modo claro <i class='bi bi-brightness-high'></i> "
+}else{
+    modoBtn.innerHTML = "Modo escuro <i class='bi bi-moon'></i>"
 }
 
 // BOTÃOP PARA VOLTAR A PAGINA ANTERIOR

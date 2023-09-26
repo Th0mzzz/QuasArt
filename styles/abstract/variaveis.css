@@ -8,7 +8,8 @@
     --cor-secundaria-clara: #fad97d;
     --cor-terciaria: #508CD3;
     --cor-terciaria-escura: #112B4A;
-    --cor-fundo: #ffff;
+    --cor-fundo: #ffffff;
+    --cor-hover:#9D76C1; 
     --cor-texto: #151515;
     --sucess-color: #82CD47;
     --danger-color: #e21d1d;
@@ -20,6 +21,7 @@
 }
 
 .dark{
+    --cor-hover:#FFD082 ;
     --cor-fundo:#191825;
     --cor-texto:#E9E8E8 ;
 }
