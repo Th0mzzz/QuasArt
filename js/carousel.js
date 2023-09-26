@@ -33,7 +33,6 @@ function initCustomCarousel(carouselSelector, options) {
     nav:false,
     loop:true,
     responsiveClass: true,
-    autoWidth:true,
     responsive: {
       0: {
         
@@ -41,8 +40,8 @@ function initCustomCarousel(carouselSelector, options) {
         stagePadding:10,
       },
       420:{
-        items:3,
-        stagePadding:10,
+        items:2,
+        stagePadding:15,
       },
       768: {
         items: 4,
