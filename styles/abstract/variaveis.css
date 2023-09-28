@@ -9,7 +9,7 @@
     --cor-terciaria: #508CD3;
     --cor-terciaria-escura: #112B4A;
     --cor-fundo: #ffffff;
-    --cor-hover:#9D76C1; 
+    --cor-fundo-secundaria:#F8F0E5; 
     --cor-texto: #151515;
     --sucess-color: #82CD47;
     --danger-color: #e21d1d;
@@ -21,7 +21,7 @@
 }
 
 .dark{
-    --cor-hover:#FFD082 ;
+    --cor-fundo-secundaria:#2A2F4F;
     --cor-fundo:#191825;
     --cor-texto:#E9E8E8 ;
 }

@@ -9,13 +9,15 @@ header {
   }
   header nav {
     width: 100%;
-    padding: 1.5rem;
+    padding: 1.5rem !important;
     z-index: 100;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
   }
+
+  
    .logotipo {
     margin: auto 0;
     width: auto;
@@ -76,3 +78,7 @@ header {
     width: 100%;
   }
   
+
+  .btn_menu{
+    background: var(--cor-fundo);
+  }

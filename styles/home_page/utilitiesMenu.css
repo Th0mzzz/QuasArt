@@ -16,16 +16,16 @@
 
 .utility_item{
     width: 100%;
-    background: var(--cor-fundo);
-    color: var(--cor-terciaria);
+    background:var(--cor-fundo-secundaria);
+    color: var(--cor-texto);
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: start;
 }
 .utility_item i {
     font-size: var(--fs-title);
 }
 .utility_item:hover{
     color:var(--cor-fundo);
-    background:var(--cor-hover);
+    background:var(--cor-principal-clara);
 }

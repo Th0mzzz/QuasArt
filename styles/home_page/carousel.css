@@ -110,7 +110,7 @@ h3 {
     z-index: -1;
 }
 
-.itens .slide a img {
+.itens .slide a img , .itens .slide a div{
     transition: transform ease 0.3s;
     -o-object-fit: cover;
     object-fit: cover;

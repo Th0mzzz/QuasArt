@@ -36,7 +36,7 @@
 
 .plano_btn {
   border: none;
-  background-color: var(--cor-terciaria);
+  background-color: var(--cor-secundaria);
   padding: 1em;
   border-radius: 5px;
   cursor: pointer;
@@ -49,7 +49,7 @@
   outline: none;
 }
 .plano_btn:hover {
-  background-color: var(--cor-terciaria-escura);
+  background-color: var(--cor-secundaria-escura);
 }
 
 .premium_planos {
@@ -172,7 +172,7 @@
 }
 .premium_modal .modal_content .btn {
   border: none;
-  background-color: var(--cor-terciaria);
+  background-color: var(--cor-secundaria);
   padding: 1em;
   border-radius: 5px;
   cursor: pointer;
@@ -185,5 +185,5 @@
   outline: none;
 }
 .premium_modal .modal_content .btn:hover {
-  background-color: var(--cor-terciaria-escura);
+  background-color: var(--cor-secundaria-escura);
 }
