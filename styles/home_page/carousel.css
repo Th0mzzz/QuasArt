@@ -208,28 +208,9 @@ h3 {
 }
 
 .resenhas .slide .trecho .btn-vermais {
-    padding: 0.5rem;
     position: absolute;
     bottom: 0;
     right: 0;
-    border: 1px solid var(--cor-secundaria);
-    background-color: transparent;
-    border-radius: 5px;
-    transition: all 0.2s;
-    cursor: pointer;
-}
-
-.resenhas .slide .trecho .btn-vermais span {
-    color: var(--cor-secundaria);
-}
-
-.resenhas .slide .trecho .btn-vermais:hover {
-    background-color: var(--cor-secundaria);
-}
-
-.resenhas .slide .trecho .btn-vermais:hover span {
-    color: var(--cor-texto);
-    font-weight: bold;
 }
 
 .videos .slide {
@@ -249,3 +230,23 @@ h3 {
     height: 100%;
 }
 
+.btn-vermais{
+    padding: 0.5rem;
+    border: 1px solid var(--cor-secundaria);
+    background-color: transparent;
+    border-radius: 5px;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.btn-vermais span {
+    color: var(--cor-secundaria);
+    transition:  color ease .2s ;
+}
+.btn-vermais:hover {
+    background-color: var(--cor-secundaria);
+}
+.btn-vermais:hover span {
+    color: var(--cor-texto);
+    font-weight: bold;
+}

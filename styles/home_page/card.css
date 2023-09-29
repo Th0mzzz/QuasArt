@@ -1,0 +1,16 @@
+.card_container{
+    background: var(--cor-fundo);
+    
+}
+
+.cards_content{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+.card{
+    max-width: 350px;
+    
+}
