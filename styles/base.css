@@ -36,9 +36,10 @@
 }
 
 .assine_ad h2 {
-  color: var(--cor-fundo);
+  color:#000000;
   font-size: 20px;
   text-shadow: none;
+  font-weight: bold;
 }
 
 .assine_ad h2 span {
