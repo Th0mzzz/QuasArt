@@ -1,10 +1,10 @@
 :root {
     /* CORES */
     --cor-principal: #A555EC;
-    --cor-principal-escura: #58287F;
+    --cor-principal-escura: #674188  ;
     --cor-principal-clara: #DA9AF8;
     --cor-secundaria: #ffd257;
-    --cor-secundaria-escura: #F2921D;
+    --cor-secundaria-escura: #ffc175;
     --cor-secundaria-clara: #fad97d;
     --cor-terciaria: #508CD3;
     --cor-terciaria-escura: #112B4A;
@@ -25,7 +25,7 @@
     --cor-fundo-secundaria:#2A2F4F;
     --cor-fundo:#191825;
     --cor-texto:#E9E8E8 ;
-    --cor-secundaria-escura: #ffc175;
+    
 }
 
 body{
