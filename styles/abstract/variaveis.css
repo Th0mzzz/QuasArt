@@ -18,12 +18,14 @@
     --fs-title:22px;
     --fs-text:18px;
     --fs-link:20px;
+
 }
 
 .dark{
     --cor-fundo-secundaria:#2A2F4F;
     --cor-fundo:#191825;
     --cor-texto:#E9E8E8 ;
+    --cor-secundaria-escura: #ffc175;
 }
 
 body{

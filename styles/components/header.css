@@ -54,6 +54,7 @@ header {
     color:var(--cor-secundaria-escura);
     position: relative;
     z-index: 2;
+    font-weight: bold;
   }
   header nav .assine-btn::before {
     content: "";

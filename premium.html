@@ -46,7 +46,7 @@
             <div class="container_planos">
 
                 <div class="plano tripulante">
-                    <h2>Tripulante <span style="color:#508CD3;">PLUS+</span></h2>
+                    <h2>Tripulante <span style="color:#508CD3;">PLUS +</span></h2>
                     <div class="precos">
                         <h1>R$20,00 por mês!</h3>
                             <p>Plano Semestral: R$108.00 <span>(10% desconto por mês!!)</span> <br>
@@ -56,9 +56,8 @@
                     <ul class="p-0">
                         <li><i class="bi bi-star-fill"></i>Anúncios Bloqueados</li>
                         <li><i class="bi bi-star-fill"></i>Descontos especiais em Parcerias!</li>
-                        <li><i class="bi bi-star-fill"></i>Seja Membro Mensal Grátis!</li>
+                        <li><i class="bi bi-star-fill"></i>Acesso a conteúdo <span>exclusivo</span></li>
                         <li><i class="bi bi-star-fill"></i>Selo Premium</li>
-                        <li><i class="bi bi-star-fill"></i>Ficha Grátis</li>
                     </ul>
                     <button class="plano_btn tripulante">Decolar!</butbtnton>
                 </div>
@@ -76,7 +75,7 @@
                         <li><i class="bi bi-star-fill"></i>Descontos especias em Parcerias!</li>
                         <li><i class="bi bi-star-fill"></i>Suporte Técnico Prioritário</li>
                         <li><i class="bi bi-star-fill"></i>Selo Premium</li>
-                        <li><i class="bi bi-star-fill"></i>Ficha <span>ILIMITADAS</span></li>
+                        <li><i class="bi bi-star-fill"></i>Criação de conteúdo <span>exclusivo</span></li>
                         <li><i class="bi bi-star-fill"></i>Maior visibilidade na Platoforma</li>
                     </ul>
                     <button class="plano_btn comandante">Decolar!</button>
@@ -95,23 +94,21 @@
                 <h2 id="plano_nome"></h2>
                 <p>Gostaria de qual plano?</p>
 
-                <div class="inputs_plano">
+                <div class="inputs_plano my-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="plano" id="mensal">
+                        <label for="mensal">Plano Mensal:<span id="preco_mensal"></span></label>
+                      </div>
 
-                    <div class="input_container">
-                        <input type="radio" name="plano" id="mensal">
-                        <label for="plano">Plano Mensal:<span id="preco_mensal"></span> </label>
-
-                    </div>
-
-                    <div class="input_container">
-                        <input type="radio" name="plano" id="semestral">
-                        <label for="plano">Plano Semestral: <span id="preco_semestral"></span> (desconto de
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="plano" id="semestral">
+                        <label for="semestral">Plano Semestral: <span id="preco_semestral"></span> (desconto de
                             <span>10%</span>!!)</label>
+                      </div>
 
-                    </div>
-
+                    
                     <div class="input_container">
-                        <input type="radio" name="plano" id="anual">
+                        <input class="form-check-input" type="radio" name="plano" id="anual">
                         <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!)
                         </label>
 
