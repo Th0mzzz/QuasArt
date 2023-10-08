@@ -154,7 +154,8 @@ h3 {
     flex-flow: column nowrap;
     justify-content: start;
     align-items: left;
-    height: 350px;
+    height:auto;
+    max-height: 500px;
     background-color: var(--cor-principal-escura);
     border-radius: 15px;
     padding: 2.5rem;
@@ -206,14 +207,15 @@ h3 {
 
 .resenhas .slide .trecho p {
     width: 100%;
+    padding: 10px 0;
+    max-height: 200px;
+    overflow: hidden;
     color: var(--cor-texto);
     font-size: var(--fs-text);
 }
 
 .resenhas .slide .trecho .btn-vermais {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    
 }
 
 .videos .slide {
