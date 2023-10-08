@@ -79,17 +79,8 @@ header {
     width: 100%;
   }
   
+.header-tag{
+  background: var(--cor-terciaria);
+  color: var(--cor-fundo);
+}
 
-  .btn_menu{
-    background: var(--cor-fundo);
-    color: var(--cor-principal);
-    margin: 0;
-
-  }
-
-
-
-  .offcanvas{
-    background: var(--cor-fundo);
-    max-width: 75%;
-  }

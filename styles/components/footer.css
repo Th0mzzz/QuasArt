@@ -7,6 +7,7 @@ footer {
     height: fit-content;
     margin-top: 5rem;
     color: var(--cor-principal);
+   margin-bottom:6rem ;
   }
   .footer_content{
     background-color: var(--cor-fundo);
@@ -14,7 +15,7 @@ footer {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: start;
-    padding: 1.5rem;
+    padding: 1rem;
   }
   .footer-highItens {
     width: 100%;
@@ -38,20 +39,7 @@ footer {
     transition: all ease 0.2s;
     color:var(--cor-principal) ;
   }
-  .footer__links {
-    display: grid;
-    grid-template: 1fr 1fr;
-    gap: 15px;
-    margin: auto;
-    width: 70%;
-    max-width: 300px;
-    gap: 18px;
-    padding: 35px 0;
-  }
-  .footer__links li {
-    font-size: 15px;
-    text-align: center;
-  }
+
   .creditos {
     text-align: center;
     width: 100%;

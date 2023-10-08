@@ -42,15 +42,12 @@
         <!-- Navbar Second -->
         <nav class="navbar d-block" id="lownav000_header">
 
-            <div class="container-fluid d-flex align-items-center justify-content-between">
-                <div class="btn-group position-relative" role="group" aria-label="Vertical button group">
-                    <a class="btn form-control utility_item gap-2 modoBtn"></a>
-                </div>
+            <div class="container-fluid d-flex align-items-center justify-content-around flex-nowrap">
+                    <a class="btn w-auto utility_item gap-2 modoBtn"></a>
                 <div class="tags-container w-75">
-                    <ul class="owl-carousel tags-carousel w-100 m-0">
-                        <li class="bg-primary text-center btn">#categoria</li>
-
-                    </ul>
+                    <div class="owl-carousel tags-carousel m-0">
+                        <li class="bg-primary text-center btn">categoria</li>
+                    </div>
                 </div>
 
             </div>
@@ -720,7 +717,7 @@
 
 
     </div>
-    <footer class="aside_interference">
+    <footer class="aside_interference ">
         <div class="footer_content">
             <div class="footer-highItens">
                 <div class="logotipo">
@@ -748,12 +745,23 @@
                 </ul>
             </div>
             <hr>
-            <ul class="footer__links">
-                <li><a href="#">Sobre o QuasArt</a></li>
-                <li><a href="#">Entre em contato</a></li>
-                <li><a href="#">Direitos Autorais</a></li>
-                <li><a href="#">Termos de Politica de Privacidade e
-                        Segurança</a></li>
+            <ul class=" d-flex p-0 w-100 px-3 justify-content-between ">
+                <div>
+                    <h5>Links</h5>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pub.html">Publicar</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="login.html">Perfil</a></li>
+                </div>
+                <div class="text-end">
+                    <h5>Informações</h5>
+                    <li><a href="#">Sobre o QuasArt</a></li>
+                    <li><a href="#">Entre em contato</a></li>
+                    <li><a href="#">Direitos Autorais</a></li>
+                    <li><a href="#">Termos de Politica de Privacidade e
+                            Segurança</a></li>
+                </div>
+                
             </ul>
             <div class="creditos">
                 &copy; Quasart 2023
@@ -785,6 +793,7 @@
         </div>
 
     </section>
+    
     <script src="js/index.js"></script>
     <script src="js/carousel.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
