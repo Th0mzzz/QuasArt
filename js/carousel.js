@@ -75,12 +75,15 @@ function initCustomCarousel(carouselSelector, options) {
   };
   const tagsOptions = {
     center:false,
-    loop: true,
+    
     nav:false,
     margin: 10,
     stagePadding:10,
     responsive: {
       0: {
+        items: 1,
+      },
+      420: {
         items: 2,
       },
       768: {
