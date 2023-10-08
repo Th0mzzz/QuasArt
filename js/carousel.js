@@ -11,7 +11,6 @@ function initCustomCarousel(carouselSelector, options) {
     margin: 0,
     nav:false,
     responsiveClass: true,
-    // autoplay: true,
     autoplayTimeout:5000,
     responsive: {
       0: {
@@ -20,7 +19,7 @@ function initCustomCarousel(carouselSelector, options) {
       768: {
         items: 1,
       },
-      1000: {
+      1024: {
         items: 1,
       },
     },
@@ -33,7 +32,7 @@ function initCustomCarousel(carouselSelector, options) {
     nav:false,
     loop:true,
     responsiveClass: true,
-    autoWidth:true,
+    
     responsive: {
       0: {
         
@@ -47,8 +46,11 @@ function initCustomCarousel(carouselSelector, options) {
       768: {
         items: 4,
       },
-      1000: {
+      1024: {
         items: 6,
+      },
+      1440: {
+        items: 8,
       },
     },
   };

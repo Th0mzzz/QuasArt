@@ -99,13 +99,7 @@ h3 {
 }
 
 .itens .slide {
-    display: flex;
-    position: relative;
-    width: 100%;
-    min-width: 180px;
-    max-width: 300px;
-    height: auto;
-    overflow: hidden;
+   overflow: hidden;
 }
 
 .itens .slide:hover a img {
@@ -120,7 +114,9 @@ h3 {
     -o-object-position: center;
     object-position: center;
     z-index: 1;
-    max-width: 100%;
+    min-width: 180px;
+    width: 100%;
+    max-width: 320px;
     height: 280px;
 }
 
