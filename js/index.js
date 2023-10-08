@@ -20,17 +20,20 @@ list.forEach(item => item.addEventListener('click', function(e){
 
 
 // BOTÃO DE MODO
-const modoBtn = document.querySelector("#modoBtn")
+const modoBtn = document.querySelectorAll(".modoBtn")
 const body = document.body
+console.log(modoBtn)
+modoBtn.forEach(btn =>{
 
-modoBtn.addEventListener('click', function() {
+
+btn.addEventListener('click', function() {
     body.classList.toggle('dark');
 
     if(body.classList.contains('dark')){
-        modoBtn.innerHTML = "<i class='bi bi-brightness-high'></i> Modo claro  "
+        btn.innerHTML = "<i class='bi bi-brightness-high'></i> Modo claro  "
     
     }else{
-        modoBtn.innerHTML = "<i class='bi bi-moon'></i> Modo Escuro"
+        btn.innerHTML = "<i class='bi bi-moon'></i> Modo Escuro"
     }    
     const darkModeEnabled = body.classList.contains('dark');
     localStorage.setItem('darkModeEnabled', darkModeEnabled);
@@ -43,10 +46,12 @@ const darkModeEnabled = localStorage.getItem('darkModeEnabled');
 
 if (darkModeEnabled === 'true') {
     body.classList.add('dark');
-    modoBtn.innerHTML = "<i class='bi bi-brightness-high'></i> Modo claro  "
+    btn.innerHTML = "<i class='bi bi-brightness-high'></i> Modo claro  "
 }else{
-    modoBtn.innerHTML = "<i class='bi bi-moon'></i> Modo escuro"
+    btn.innerHTML = "<i class='bi bi-moon'></i> Modo escuro"
 }
+
+})
 
 // BOTÃOP PARA VOLTAR A PAGINA ANTERIOR
 

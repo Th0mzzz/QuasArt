@@ -83,3 +83,8 @@ header {
   .btn_menu{
     background: var(--cor-fundo);
   }
+
+  .offcanvas{
+    background: var(--cor-fundo);
+    max-width: 75%;
+  }

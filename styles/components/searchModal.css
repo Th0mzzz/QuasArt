@@ -58,7 +58,7 @@
     padding: 2rem 1.5rem;
     margin-top: 20px;
   }
-  .search_modal .search_topItens .searchInput_container input[type=text] {
+  .search_modal .search_topItens .searchInput_container input[type=search] {
     border: none;
     width: 100%;
     background-color: transparent;
@@ -67,10 +67,10 @@
     font-size: 15px;
     font-weight: bold;
   }
-  .search_modal .search_topItens .searchInput_container input[type=text]::-moz-placeholder {
+  .search_modal .search_topItens .searchInput_container input[type=search]::-moz-placeholder {
     color: #A555EC;
   }
-  .search_modal .search_topItens .searchInput_container input[type=text]::placeholder {
+  .search_modal .search_topItens .searchInput_container input[type=search]::placeholder {
     color: #A555EC;
   }
   .search_modal .search_topItens .searchInput_container .search_btn {
