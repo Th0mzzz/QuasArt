@@ -48,7 +48,6 @@ function initCustomCarousel(carouselSelector, options) {
         items: 4,
       },
       1000: {
-        margin:0,
         items: 6,
       },
     },

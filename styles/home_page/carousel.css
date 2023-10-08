@@ -17,6 +17,7 @@ h3 {
     position: relative;
     display: flex;
     background-color: var(--cor-principal);
+    
     height: 550px;
     overflow: hidden;
 }
@@ -101,6 +102,8 @@ h3 {
     display: flex;
     position: relative;
     width: 100%;
+    min-width: 180px;
+    max-width: 300px;
     height: auto;
     overflow: hidden;
 }
