@@ -82,5 +82,12 @@ header {
 .header-tag{
   background: var(--cor-terciaria);
   color: var(--cor-fundo);
+  height: 40px;
+  display: flex;
+  border-radius: 5px; 
+}
+
+.header-tag span{
+  margin: auto;
 }
 
