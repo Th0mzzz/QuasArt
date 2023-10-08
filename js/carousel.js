@@ -85,19 +85,21 @@ function initCustomCarousel(carouselSelector, options) {
         autoWidth:true,
       },
       420: {
-        autoWidth:true,
         items: 3,
       },
       768: {
         items: 4,
+        autoWidth:false,
       },
       1024: {
         items: 5,
-        margin:0
+        margin:10,
+        autoWidth:false,
       },
       1440: {
         items: 7,
-        margin:0
+        margin:10,
+        autoWidth:false,
       }
     },
   };
