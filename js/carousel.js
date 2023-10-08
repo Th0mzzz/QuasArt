@@ -49,9 +49,7 @@ function initCustomCarousel(carouselSelector, options) {
       1024: {
         items: 6,
       },
-      1440: {
-        items: 8,
-      },
+     
     },
   };
 
@@ -75,16 +73,15 @@ function initCustomCarousel(carouselSelector, options) {
       },
     },
   };
-  const videosOptions = {
+  const tagsOptions = {
     center:false,
     loop: true,
     nav:false,
-    margin: 5,
-    responsiveClass: true,
-    
+    margin: 10,
+    stagePadding:10,
     responsive: {
       0: {
-        items: 3,
+        items: 2,
       },
       768: {
         items: 4,
@@ -98,7 +95,8 @@ function initCustomCarousel(carouselSelector, options) {
   initCustomCarousel(".inicial", inicialOptions);
   initCustomCarousel(".itens", itensOptions);
   initCustomCarousel(".resenhas", resenhasOptions);
-  initCustomCarousel(".videos", videosOptions);
+  // initCustomCarousel(".videos", tagsOptions);
+  initCustomCarousel(".tags-carousel", tagsOptions);
   
 
   });
