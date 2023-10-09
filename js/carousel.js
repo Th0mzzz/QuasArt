@@ -65,14 +65,13 @@ document.addEventListener("DOMContentLoaded", function () {
   };
   const tagsOptions = {
     center: false,
-    loop: true,
+    loop: false,
     nav: false,
     margin: 5,
-    stagePadding: 10,
+    stagePadding: 5,
     responsive: {
       0: {
-        items: 1,
-        autoWidth: true,
+        items: 2,
       },
       420: {
         items: 3,

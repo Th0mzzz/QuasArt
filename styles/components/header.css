@@ -9,7 +9,7 @@ header {
   }
   header nav {
     width: 100%;
-    padding: 1.5rem !important;
+    padding: .5rem 1.5rem !important;
     z-index: 100;
     display: flex;
     flex-flow: row nowrap;
@@ -88,6 +88,12 @@ header {
 }
 
 .header-tag span{
+  font-size: 13px;
+  text-align: center;
   margin: auto;
+}
+
+.owl-dots{
+  display: none;
 }
 

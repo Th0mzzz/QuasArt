@@ -1,122 +1,7 @@
+@import url("pub.css");
+@import url('pub_form.css');
 
-.planets__containers {
-  width: 100%;
-  max-height: 1000px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-}
-.planets__containers .planet {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-.planets__containers .planet:hover .bloqueado {
-  display: flex;
-}
-.planets__containers .planet .planet_btn {
-  width: 100%;
-  height: 100%;
-  max-width: 250px;
-  max-height: 250px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  transition: all ease 0.2s;
-  cursor: pointer;
-}
-.planets__containers .planet .planet_btn:hover svg {
-  animation-play-state: paused;
-  background-color: var(--cor-secundaria-escura);
-  border-radius: 50px;
-}
-.planets__containers .planet .planet_btn:hover svg g path {
-  fill: white;
-}
-.planets__containers .planet .planet_btn:hover P {
-  color: var(--cor-secundaria-escura);
-  letter-spacing: 2px;
-}
-.planets__containers .planet .planet_btn svg {
-  width: 100%;
-  height: 80%;
-  animation: flutuar ease-in-out 2s infinite;
-  transition: all ease 0.3s;
-}
-.planets__containers .planet .planet_btn svg rect {
-  width: 100%;
-  height: 100%;
-  fill: transparent;
-}
-.planets__containers .planet .planet_btn svg g path {
-  transition: all 0.2s;
-  fill: var(--cor-secundaria-escura);
-}
-.planets__containers .planet .planet_btn p {
-  transition: all 0.2s;
-  font-size: 20px;
-  color: var(--cor-secundaria-escura);
-}
-.planets__containers .planet .bloqueado {
-  display: none;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  background-color: rgba(0, 0, 0, 0.5019607843);
-  z-index: 50;
-  transition: all 0.2s;
-  border-radius: 50px;
-  justify-content: center;
-  align-items: center;
-}
-.planets__containers .planet .bloqueado i {
-  color: white;
-  font-size: 20px;
-}
-
-@keyframes flutuar {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-5px);
-  }
-}
-.title_container {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  padding: 24px;
-}
-.title_container .titulo_pub {
-  width: -moz-fit-content;
-  width: fit-content;
-  text-align: center;
-  font-weight: bold;
-  padding: 1rem;
-  display: flex;
-  gap: 10px;
-  color: var(--cor-principal-escura);
-}
-
-.pubContent {
-  width: 100%;
-  padding: 1.5rem;
-}
-.pubContent form {
-  width: 100%;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: start;
-  gap: 30px;
-}
-.pubContent form.form_resenha .inputs_container {
+.inputs_container {
   display: flex;
   flex-flow: row wrap;
   justify-content: start;
@@ -124,7 +9,7 @@
   gap: 20px;
   width: 100%;
 }
-.pubContent form.form_resenha .inputs_container input {
+.inputs_container input {
   width: 100%;
   max-width: 500px;
   height: 100%;
@@ -137,10 +22,10 @@
   transition: all 0.2s;
   position: relative;
 }
-.pubContent form.form_resenha .inputs_container input:hover, .pubContent form.form_resenha .inputs_container input:focus {
+.inputs_container input:hover, .inputs_container input:focus {
   border: 1px solid #DA9AF8;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs {
+.inputs_container .title-inputs {
   width: 100%;
   max-width: 500px;
   height: auto;
@@ -148,11 +33,11 @@
   display: flex;
   flex-direction: column;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs .tags-container {
+.inputs_container .title-inputs .tags-container {
   max-width: 500px;
   height: auto;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags {
+.inputs_container .title-inputs .tags-container #tags {
   width: 100%;
   height: 100%;
   border: 1px solid var(--cor-principal);
@@ -161,10 +46,10 @@
   outline: none;
   resize: none;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags:hover, .pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags:focus {
+.inputs_container .title-inputs .tags-container #tags:hover, .inputs_container .title-inputs .tags-container #tags:focus {
   border: 1px solid #DA9AF8;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags-preview {
+.inputs_container .title-inputs .tags-container #tags-preview {
   display: flex;
   flex-wrap: wrap;
   height: auto;
@@ -173,7 +58,7 @@
   overflow-x: hidden;
   gap: 5px;
 }
-.pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags-preview .tag {
+.inputs_container .title-inputs .tags-container #tags-preview .tag {
   max-width: 100%;
   padding: 0.4rem;
   border-radius: 15px;
@@ -181,17 +66,17 @@
   background: #508CD3;
   font-size: 15px;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha {
+.inputs_container #image_resenha {
   margin-top: 3rem;
   width: 100%;
   max-width: -moz-fit-content;
   max-width: fit-content;
   position: relative;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha:hover label {
+.inputs_container #image_resenha:hover label {
   color: #DA9AF8;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha p {
+.inputs_container #image_resenha p {
   position: absolute;
   top: -50px;
   text-align: center;
@@ -199,7 +84,7 @@
   max-width: 150px;
   margin-bottom: 5px;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha label {
+.inputs_container #image_resenha label {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -207,7 +92,7 @@
   color: var(--cor-principal);
   transition: color 0.2s;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha input[type=file] {
+.inputs_container #image_resenha input[type=file] {
   width: 100%;
   height: 100%;
   max-width: 150px;
@@ -215,20 +100,20 @@
   max-height: 180px;
   color: transparent;
 }
-.pubContent form.form_resenha .inputs_container #image_resenha input[type=file]::-webkit-file-upload-button {
+.inputs_container #image_resenha input[type=file]::-webkit-file-upload-button {
   display: none;
 }
-.pubContent form.form_resenha .descri_container {
+.descri_container {
   overflow: hidden;
   width: 100%;
   max-width: 1000px;
 }
-.pubContent form.form_resenha .descri_container p {
+.descri_container p {
   font-weight: bold;
   font-size: 15px;
   color: var(--cor-principal-escura);
 }
-.pubContent form.form_resenha .descri_container textarea {
+.descri_container textarea {
   width: 100%;
   height: 100%;
   border: 1px solid var(--cor-principal);
@@ -237,7 +122,7 @@
   resize: none;
   border-radius: 5px;
 }
-.pubContent form.form_resenha fieldset {
+fieldset {
   margin-top: 20px;
   padding: 0.5rem;
   width: 100%;
@@ -245,26 +130,26 @@
   border: 1.5px solid var(--cor-principal);
   border-radius: 5px;
 }
-.pubContent form.form_resenha fieldset legend {
+fieldset legend {
   padding: 0 5px;
   color: var(--cor-principal-escura);
   font-weight: bold;
 }
-.pubContent form.form_resenha fieldset textarea {
+fieldset textarea {
   width: 100%;
   outline: none;
   border: none;
   padding: 0.2rem 1rem;
   resize: none;
 }
-.pubContent form.form_resenha .enviar_inputs {
+.enviar_inputs {
   display: flex;
   gap: 20px;
   width: 100%;
   max-width: 1000px;
   justify-content: start;
 }
-.pubContent form.form_resenha .enviar_inputs .erase_btn {
+.enviar_inputs .erase_btn {
   width: 50px;
   border: none;
   background: #e21d1d;
@@ -274,11 +159,11 @@
   transition: transform 0.2s, box-shadow 0.2s;
   color: white;
 }
-.pubContent form.form_resenha .enviar_inputs .erase_btn:hover {
+.enviar_inputs .erase_btn:hover {
   box-shadow: 1px 2px 5px #000000;
   transform: translateY(-5px);
 }
-.pubContent form.form_resenha .enviar_inputs .submit_resenha {
+.enviar_inputs .submit_resenha {
   background-color: var(--cor-principal);
   color: white;
   width: 100%;
@@ -289,7 +174,7 @@
   border: none;
   transition: all 0.2s;
 }
-.pubContent form.form_resenha .enviar_inputs .submit_resenha:hover {
+.enviar_inputs .submit_resenha:hover {
   background-color: #F2921D;
   border: none;
   color: #151515;

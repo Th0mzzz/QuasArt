@@ -1,61 +1,88 @@
 .planets__containers {
-    width: 100%;
-    max-height: 1000px;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  width: 100%;
+  max-height: 1000px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.planets__containers .planet {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.planets__containers .planet:hover .bloqueado {
+  display: flex;
+}
+.planets__containers .planet .planet_btn {
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  max-height: 250px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  transition: all ease 0.2s;
+  cursor: pointer;
+}
+.planets__containers .planet .planet_btn:hover svg {
+  animation-play-state: paused;
+  background-color: var(--cor-secundaria-escura);
+  border-radius: 50px;
+}
+.planets__containers .planet .planet_btn:hover svg g path {
+  fill: white;
+}
+.planets__containers .planet .planet_btn:hover P {
+  color: var(--cor-secundaria-escura);
+  letter-spacing: 2px;
+}
+.planets__containers .planet .planet_btn svg {
+  width: 100%;
+  height: 80%;
+  animation: flutuar ease-in-out 2s infinite;
+  transition: all ease 0.3s;
+}
+.planets__containers .planet .planet_btn svg rect {
+  width: 100%;
+  height: 100%;
+  fill: transparent;
+}
+.planets__containers .planet .planet_btn svg g path {
+  transition: all 0.2s;
+  fill: var(--cor-secundaria-escura);
+}
+.planets__containers .planet .planet_btn p {
+  transition: all 0.2s;
+  font-size: 20px;
+  color: var(--cor-secundaria-escura);
+}
+.planets__containers .planet .bloqueado {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5019607843);
+  z-index: 50;
+  transition: all 0.2s;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+}
+.planets__containers .planet .bloqueado i {
+  color: white;
+  font-size: 20px;
+}
+
+@keyframes flutuar {
+  0%, 100% {
+    transform: translateY(0);
   }
-  .planets__containers .planet {
-    position: relative;
-    display: flex;
-    justify-content: center;
+  50% {
+    transform: translateY(-5px);
   }
-  .planets__containers .planet:hover .bloqueado {
-    display: flex;
-  }
-  .planets__containers .planet .planet_btn {
-    width: 100%;
-    height: 100%;
-    max-width: 250px;
-    max-height: 250px;
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: center;
-    transition: all ease 0.2s;
-    cursor: pointer;
-  }
-  .planets__containers .planet .planet_btn:hover svg {
-    animation-play-state: paused;
-    background-color: #58287F;
-    border-radius: 50px;
-  }
-  .planets__containers .planet .planet_btn:hover svg g path {
-    fill: white;
-  }
-  .planets__containers .planet .planet_btn:hover P {
-    color: #58287F;
-    letter-spacing: 2px;
-  }
-  .planets__containers .planet .planet_btn svg {
-    width: 100%;
-    height: 80%;
-    animation: flutuar ease-in-out 2s infinite;
-    transition: all ease 0.3s;
-  }
-  .planets__containers .planet .planet_btn svg rect {
-    width: 100%;
-    height: 100%;
-    fill: transparent;
-  }
-  .planets__containers .planet .planet_btn svg g path {
-    transition: all 0.2s;
-    fill: #A555EC;
-  }
-  .planets__containers .planet .planet_btn p {
-    transition: all 0.2s;
-    font-size: 20px;
-    color: #A555EC;
-  }
+}
