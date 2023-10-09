@@ -52,11 +52,11 @@
   transition: background ease 0.3s, color ease 0.3s, border ease 0.3s;
   background:var(--cor-principal);
   border-radius: 25px;
-  color: var(--cor-fundo);
+  color: white;
 }
 .rede_btn i {
   transition: color ease 0.3s;
-  color: var(--cor-fundo);
+  color: white;
 }
 .rede_btn:hover {
   background:var(--cor-principal-escura);
@@ -80,7 +80,7 @@ footer p {
 .feedback{
   display: none;
   font-size: 14px;
-  color: red;
+  color: var(--danger-color);
 
 }
 

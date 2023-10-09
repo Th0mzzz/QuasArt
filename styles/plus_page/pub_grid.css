@@ -30,14 +30,14 @@
 }
 .planets__containers .planet .planet_btn:hover svg {
   animation-play-state: paused;
-  background-color: #58287F;
+  background-color: var(--cor-secundaria-escura);
   border-radius: 50px;
 }
 .planets__containers .planet .planet_btn:hover svg g path {
   fill: white;
 }
 .planets__containers .planet .planet_btn:hover P {
-  color: #58287F;
+  color: var(--cor-secundaria-escura);
   letter-spacing: 2px;
 }
 .planets__containers .planet .planet_btn svg {
@@ -53,12 +53,12 @@
 }
 .planets__containers .planet .planet_btn svg g path {
   transition: all 0.2s;
-  fill: #A555EC;
+  fill: var(--cor-secundaria-escura);
 }
 .planets__containers .planet .planet_btn p {
   transition: all 0.2s;
   font-size: 20px;
-  color: #A555EC;
+  color: var(--cor-secundaria-escura);
 }
 .planets__containers .planet .bloqueado {
   display: none;
@@ -101,7 +101,7 @@
   padding: 1rem;
   display: flex;
   gap: 10px;
-  color: #58287F;
+  color: var(--cor-principal-escura);
 }
 
 .pubContent {
@@ -130,7 +130,7 @@
   height: 100%;
   max-height: 50px;
   border: none;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   padding: 1rem;
   border-radius: 15px;
   outline: none;
@@ -155,7 +155,7 @@
 .pubContent form.form_resenha .inputs_container .title-inputs .tags-container #tags {
   width: 100%;
   height: 100%;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   border-radius: 15px;
   padding: 1rem;
   outline: none;
@@ -204,7 +204,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #A555EC;
+  color: var(--cor-principal);
   transition: color 0.2s;
 }
 .pubContent form.form_resenha .inputs_container #image_resenha input[type=file] {
@@ -226,12 +226,12 @@
 .pubContent form.form_resenha .descri_container p {
   font-weight: bold;
   font-size: 15px;
-  color: #58287F;
+  color: var(--cor-principal-escura);
 }
 .pubContent form.form_resenha .descri_container textarea {
   width: 100%;
   height: 100%;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   outline: none;
   padding: 1rem;
   resize: none;
@@ -242,12 +242,12 @@
   padding: 0.5rem;
   width: 100%;
   max-width: 1000px;
-  border: 1.5px solid #A555EC;
+  border: 1.5px solid var(--cor-principal);
   border-radius: 5px;
 }
 .pubContent form.form_resenha fieldset legend {
   padding: 0 5px;
-  color: #58287F;
+  color: var(--cor-principal-escura);
   font-weight: bold;
 }
 .pubContent form.form_resenha fieldset textarea {
@@ -279,7 +279,7 @@
   transform: translateY(-5px);
 }
 .pubContent form.form_resenha .enviar_inputs .submit_resenha {
-  background-color: #A555EC;
+  background-color: var(--cor-principal);
   color: white;
   width: 100%;
   max-width: 220px;
@@ -310,7 +310,7 @@
   height: 100%;
   max-height: 50px;
   border: none;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   padding: 1rem;
   border-radius: 15px;
   outline: none;
@@ -333,7 +333,7 @@
 }
 .pubContent form.form_videos .inputs_container .title-inputs .video_input label {
   font-size: 16.5px;
-  color: #A555EC;
+  color: var(--cor-principal);
   margin: 0 0 1rem 1rem;
 }
 .pubContent form.form_videos .inputs_container .title-inputs .video_input input[type=file] {
@@ -350,7 +350,7 @@
 .pubContent form.form_videos .inputs_container .title-inputs .tags-container #tags {
   width: 100%;
   height: 100%;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   border-radius: 15px;
   padding: 1rem;
   outline: none;
@@ -403,7 +403,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  color: #A555EC;
+  color: var(--cor-principal);
   transition: color 0.2s;
 }
 .pubContent form.form_videos .inputs_container #image_video input[type=file] {
@@ -425,12 +425,12 @@
 .pubContent form.form_videos .descri_container p {
   font-weight: bold;
   font-size: 15px;
-  color: #58287F;
+  color: var(--cor-principal-escura);
 }
 .pubContent form.form_videos .descri_container textarea {
   width: 100%;
   height: 100%;
-  border: 1px solid #A555EC;
+  border: 1px solid var(--cor-principal);
   outline: none;
   padding: 1rem;
   resize: none;
@@ -457,7 +457,7 @@
   transform: translateY(-5px);
 }
 .pubContent form.form_videos .enviar_inputs .submit {
-  background-color: #A555EC;
+  background-color: var(--cor-principal);
   color: white;
   width: 100%;
   max-width: 220px;
@@ -497,7 +497,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    color: #A555EC;
+    color: var(--cor-principal);
     transition: color 0.2s;
   }
   .form_resenha #image_resenha input[type=file], .form_video #image_resenha input[type=file], .form_fichas #image_resenha input[type=file] {

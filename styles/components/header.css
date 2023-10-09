@@ -81,7 +81,7 @@ header {
   
 .header-tag{
   background: var(--cor-terciaria);
-  color: var(--cor-fundo);
+  color: white;
   height: 40px;
   display: flex;
   border-radius: 5px; 
