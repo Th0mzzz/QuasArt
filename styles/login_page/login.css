@@ -77,6 +77,13 @@ footer p {
   color: var(--cor-texto);
 }
 
+.feedback{
+  display: none;
+  font-size: 14px;
+  color: red;
+
+}
+
 @media (max-width: 599px) {
 
   .form__container {

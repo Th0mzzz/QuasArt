@@ -39,7 +39,7 @@
 
         <div class="form__container needs-validation" id="conta">
 
-            <form action="" class="form ativado my-3" id="login">
+            <form action="" class="form ativado my-3 formConta" id="login">
                 <div class="w-100 text-sm-center text-start my-3">
                     <h2 class="fs-1 fw-bold mb-3">Registrar-se no QuasArt</h2>
                     <p class="fs-5">Seja bem-vindo novamente tripulante!</p>
@@ -54,40 +54,51 @@
                 <div class="row">
                     <div class="col-12 col-sm-5 mb-2">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="nome" placeholder="Nome" required>
+                            <input type="text" class="form-control input-conta" id="nome" placeholder="Nome">
                             <label for="nome">Nome</label>
-                            <div class="valid-feedback">
-                                Looks good!
-                              </div>
+                            <span class="feedback mt-1 text-end">
+                                Digite seu nome!
+                              </span>
                         </div>
                     </div>
                     <div class="col-12 col-sm-7 mb-2">
                         <div class="form-floating">
-                            <input type="text" class="form-control" id="sobrenome" placeholder="name@example.com">
+                            <input type="text" class="form-control input-conta" id="sobrenome" placeholder="name@example.com">
                             <label for="sobrenome">Sobrenome</label>
+                            <span class="feedback mt-1 text-end">
+                                Digite seu sobrenome!
+                              </span>
                         </div>
                     </div>
                 </div>
                 
                 <div class="form-floating mb-1 w-100">
-                    <input type="date" class="form-control" id="nasc" placeholder="data de nascimento">
+                    <input type="date" class="form-control input-conta" id="nasc" placeholder="data de nascimento">
                     <label for="nasc">Data de nascimento</label>
+                    <span class="feedback mt-1 text-end">
+                        Digite sua data de nascimento!
+                      </span>
                 </div>
 
                 <div class="form-floating mb-1 w-100">
-                    <input type="text" class="form-control" id="nickname" placeholder="data de nascimento">
-                    <label for="nickname">Qual seria seu apelido?</label>
+                    <input type="text" class="form-control input-conta nick" id="nickname" placeholder="data de nascimento">
+                    <label for="nickname">Qual seria seu NickName?</label>
+                    <span class="feedback mt-1 text-end">
+                        Digite um nickname!
+                      </span>
                 </div>
 
                 <div class="form-floating mb-1 w-100">
-                    <input type="email" class="form-control" id="email-entrar" placeholder="name@example.com">
+                    <input type="email" class="form-control input-conta" id="email-entrar" placeholder="name@example.com">
                     <label for="email-entrar">Email ou Telefone</label>
-                </div>
+                    <span class="feedback mt-1 text-end">O e-mail digitado é invalido!</span>
+                  </div>
 
-                <div class="form-floating w-100">
-                    <input type="password" class="form-control" id="senha-entrar" placeholder="Password">
+                  <div class="form-floating w-100">
+                    <input type="password" class="form-control input-conta senha" id="senha-entrar" placeholder="Password">
                     <label for="senha-entrar">Senha</label>
-                </div>
+                    <span class="feedback mt-1 text-end">A senha digitada é invalida!</span>
+                  </div>
 
                 <input type="submit" class="btn form-control enviar__btn p-3 mt-3" value="Registrar-se">
 
@@ -107,7 +118,7 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
     <script src="js/index.js"></script>
-
+    <script src="js/validation.js"></script>
 </body>
 
 </html>
