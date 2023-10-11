@@ -8,13 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-     <!-- OwlCarousel -->
+    <!-- OwlCarousel -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/plus_page/pub_grid.css">
-   
+    <link rel="stylesheet" href="styles/ficha-view/ficha.css">
+
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,20 +41,20 @@
             <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
         </nav>
         <!-- Navbar Second -->
-        
+
     </header>
     <aside class="aside">
         <ul>
             <li class="list search" id="search__btn">
                 <a class="nav__item"><i class="bi bi-search"></i></a>
             </li>
-            <li class="list">
+            <li class="list active">
                 <a href="index.html" class="nav__item"><i class="bi bi-house"></i></a>
             </li>
             <li class="list">
                 <a class="nav__item"><i class="bi bi-camera-video"></i></a>
             </li>
-            <li class="list active">
+            <li class="list">
                 <a href="pub.html" class="nav__item"><i class="bi bi-plus"></i></a>
             </li>
             <li class="list">
@@ -64,14 +65,44 @@
 
     </aside>
 
-
-
     <main class="aside_interference">
 
+        <section class="ficha mx-auto my-5 d-flex flex-column justify-content-center align-items-start p-2">
+            <section class="ficha_topo">
+
+                <div class="img_container w-100">
+                    <img src="img/carouseis/Bacurau-carrossel.jpg" alt="" class="w-100">
+                </div>
+
+                <div class="indicativos d-flex justify-content-between align-items-center">
+
+                    <div class="user d-flex justify-content-between align-items-center gap-3 my-4">
+                        <div class="img-user"><img src="img/perfil-padrao.webp" alt=""></div>
+                        <a>UserName</a>
+                    </div>
+                    <div class="row mx-1 gap-3">
+
+
+                        <div class="nota-geral d-flex p-0">
+                            <p class="m-auto">X/5</p>
+                        </div>
+
+                        <div class="classi d-flex p-0">
+                            <p class="m-auto fs-4 fw-bold">L</p>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="ficha_conteudo">
+
+            </section>
+            <section class="ficha_avaliacoes">
+
+            </section>
+        </section>
+
     </main>
-
-
-
 
     <footer class="aside_interference ">
         <div class="footer_content">
@@ -102,21 +133,21 @@
             </div>
             <hr>
             <ul class=" p-0 w-100 px-3 ">
-                
-                    <h5>Links</h5>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="pub.html">Publicar</a></li>
-                    <li><a href="#">Videos</a></li>
-                    <li><a href="login.html">Perfil</a></li>
-                
-                
-                    <h5 class="mt-4">Informações</h5>
-                    <li><a href="#">Sobre o QuasArt</a></li>
-                    <li><a href="#">Entre em contato</a></li>
-                    <li><a href="#">Direitos Autorais</a></li>
-                    <li><a href="#">Termos de Politica de Privacidade e
-                            Segurança</a></li>
-               
+
+                <h5>Links</h5>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="pub.html">Publicar</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="login.html">Perfil</a></li>
+
+
+                <h5 class="mt-4">Informações</h5>
+                <li><a href="#">Sobre o QuasArt</a></li>
+                <li><a href="#">Entre em contato</a></li>
+                <li><a href="#">Direitos Autorais</a></li>
+                <li><a href="#">Termos de Politica de Privacidade e
+                        Segurança</a></li>
+
 
             </ul>
             <div class="creditos mt-4">
