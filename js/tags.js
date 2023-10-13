@@ -14,7 +14,7 @@ tagsTextArea.addEventListener('keydown', function(e) {
     if (tag.trim() !== '') {
       const tagElement = document.createElement('span');
       tagElement.classList.add('tag');
-      const maxTagLength = 15; 
+      const maxTagLength = 22; 
       const trimmedTag = tag.trim().slice(0, maxTagLength);
       tagElement.innerText = `#${trimmedTag}`;
       

@@ -1,10 +1,102 @@
 .pubForm_container{
-    background: var(--cor-fundo-secundaria);
-    max-width: 1000px;
+    background: var(--cor-principal-escura);
+    max-width: 900px;
     border-radius: 15px;
-    box-shadow: 0px 3px 5px var();
+}
+.pubForm_container textarea{
+    resize: none;
 }
 
+.dark  .pubForm_container{
+    background: var(--cor-fundo-secundaria);
+    
+}
+.btn__homeback {
+    display: flex;
+    color: var(--cor-secundaria);
+    border-radius: 50%;
+    z-index: 100;
+    transition: color ease 0.2s;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    
+  }
+  .btn__homeback i {
+    font-size: 50px;
+    margin: auto;
+  }
+  .btn__homeback:hover {
+    color: var(--cor-secundaria-escura);
+  }
+
 .titulo_pub{
+    color: var(--cor-secundaria);
+}
+
+#image_resenha{
+    width: 100%;
+    height: 100%;
+    min-height: 180px;
+    max-height: 266px;
+    border: 2px solid var(--cor-principal);
+    border-radius: 15px;
+    position: relative;
+    transition: all ease-in .2s;
+    z-index: 1;
+    background-size:100% 100%;
+    object-position: center;
+}
+
+#image_resenha label{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     color: var(--cor-principal);
+    z-index: 100;
+    width: fit-content;
+    
+}
+#image_resenha:hover{
+    background: var(--cor-principal);
+    background-size:100% 100%;
+}
+#image_resenha:hover label{
+    color: var(--cor-fundo);
+
+}
+
+
+#inputImage_resenha{
+    cursor: pointer;
+    color: transparent;
+}
+#inputImage_resenha::-webkit-file-upload-button{
+    display: none;
+}
+label{
+    width: 100%;
+}
+
+.tag{
+    width: fit-content;
+    max-width: 100%;
+    text-wrap: wrap;
+    background: var(--cor-terciaria);
+    color: #ffffff;
+    margin: 5px;
+    padding: .2rem .6rem;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+
+.btn-pub{
+    background: var(--cor-secundaria);
+}
+
+.btn-pub:hover{
+    background: var(--cor-secundaria-escura);
 }

@@ -85,6 +85,10 @@ header {
   height: 40px;
   display: flex;
   border-radius: 5px; 
+  cursor: pointer;
+}
+.header-tag:hover{
+  background: var(--cor-terciaria-escura);
 }
 
 .header-tag span{
