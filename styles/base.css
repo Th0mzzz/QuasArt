@@ -7,7 +7,12 @@
 @import url("components/utilitiesMenu.css");
 
 
+.feedback{
+  display: none;
+  font-size: 14px;
+  color: var(--danger-color);
 
+} 
 @keyframes flutuar {
 
   0%,

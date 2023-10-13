@@ -63,7 +63,7 @@
 
                 <div class="pubContent">
 
-                    <form class="form_resenha form_fichas ">
+                    <form class="form_resenha form_fichas formConta">
 
                         <div
                             class="inputs_container row mt-4 mb-3 justify-content-space-between">
@@ -72,26 +72,28 @@
                                 <div>
 
                                     <div class="form-floating mb-3 ">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control input-conta"
                                             name="title_resenha"
                                             id="title_resenha"
                                             placeholder="Digite o título da sua obra"
-                                            required>
+                                            >
                                         <label for="title_resenha">Digite o
                                             titulo
                                             de sua resenha</label>
+                                            <span class="feedback text-danger my-1 ">Digite um titulo!</span>
                                     </div>
                                 </div>
 
                                 <div class>
                                     <div class="form-floating mb-3 ">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control input-conta"
                                             name="title_resenha"
                                             id="title_resenha"
                                             placeholder="Digite o título da sua obra"
-                                            required>
+                                            >
                                         <label for="tema_resenha">Digite o tema
                                             de sua resenha</label>
+                                            <span class="feedback text-danger my-1 ">Digite seu tema!</span>
                                     </div>
 
                                 </div>
@@ -108,31 +110,26 @@
                                 <div
                                     class="tags-preview d-flex flex-wrap w-100 my-3"
                                     id="tags-preview"></div>
-<!-- 
-                                <div class="form-floating mb-2">
-                                    <textarea class="form-control"
-                                        placeholder="Leave a comment here"
-                                        id="floatingTextarea2"
-                                        style="height: 200px"></textarea>
-                                    <label for="floatingTextarea2">Descrição:</label>
-                                </div> -->
+
 
                             </div>
                             <div class="col-12 col-md-3 my-md-0 my-3" id="containerImage">
                                 <div id="image_resenha">
                                     <input type="file" id="inputImage_resenha"
-                                        name="image_resenha" class="w-100 h-100">
+                                        name="image_resenha" class="w-100 h-100 input-conta">
                                     <label for="inputImage_resenha">+</label>
+                                    <span class="feedback text-danger my-1 ">Insira uma imagem!</span>
                                 </div>
                             </div>
 
                         </div>
 
                         <div class="form-floating mb-3">
-                            <textarea class="form-control"
+                            <textarea class="form-control input-conta"
                                 placeholder="Leave a comment here"
                                 id="floatingTextarea2" style="min-height: 500px;height:auto;max-height: 700px;"></textarea>
                             <label for="floatingTextarea2">Resenha</label>
+                            <span class="feedback text-danger my-1 ">Digite sua resenha!</span>
                         </div>
                         <div class="w-100 d-flex">
                             <input type="submit" value="Publicar"
@@ -148,7 +145,7 @@
         <script src="js/index.js"></script>
         <script src="js/tags.js"></script>
         <script src="js/imagePub.js"></script>
-
+        <script src="js/validation.js"></script>
             
 
         

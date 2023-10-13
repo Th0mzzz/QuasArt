@@ -63,7 +63,7 @@
 
                 <div class="pubContent">
 
-                    <form class="form_resenha form_fichas ">
+                    <form class="form_resenha form_fichas formConta">
 
                         <div
                             class="inputs_container row mt-4 mb-3 justify-content-space-between">
@@ -72,26 +72,28 @@
                                 <div>
 
                                     <div class="form-floating mb-3 ">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control input-conta"
                                             name="title_resenha"
                                             id="title_resenha"
                                             placeholder="Digite o título da sua obra"
-                                            required>
+                                            >
                                         <label for="title_resenha">Digite o
                                             titulo
                                             do video</label>
+                                            <span class="feedback text-danger ">Digite um titulo!</span>
                                     </div>
                                 </div>
 
                                 <div class>
                                     <div class="form-floating mb-3 ">
-                                        <input type="text" class="form-control"
+                                        <input type="text" class="form-control input-conta"
                                             name="title_resenha"
                                             id="title_resenha"
                                             placeholder="Digite o título da sua obra"
-                                            required>
+                                            >
                                         <label for="tema_resenha">Digite o tema
                                             do video</label>
+                                            <span class="feedback text-danger ">Digite um tema!</span>
                                     </div>
 
                                 </div>
@@ -102,6 +104,7 @@
                                             placeholder="Leave a comment here"
                                             id="tags" style="height: 100px"></textarea>
                                         <label for="tags">Digite suas tags aqui:</label>
+                                     
                                     </div>
 
                                 </div>
@@ -109,19 +112,21 @@
                                     id="tags-preview"></div>
 
                                 <div class="form-floating mb-2">
-                                    <textarea class="form-control"
+                                    <textarea class="form-control input-conta"
                                         placeholder="Leave a comment here"
                                         id="floatingTextarea2"
                                         style="height: 200px"></textarea>
                                     <label for="floatingTextarea2">Descrição:</label>
+                                    <span class="feedback text-danger ">Digite uma descrição!</span>
                                 </div>
 
                             </div>
                             <div class="col-12 col-md-3 my-md-0 my-3" id="containerImage">
                                 <div id="image_resenha">
                                     <input type="file" id="inputImage_resenha"
-                                        name="image_resenha" class="w-100 h-100">
+                                        name="image_resenha" class="w-100 h-100 input-conta">
                                     <label for="inputImage_resenha">+</label>
+                                    <span class="feedback text-danger my-1 ">Insira uma imagem!</span>
                                 </div>
                             </div>
 
@@ -129,17 +134,17 @@
 
                         <div class="mb-3">
                             <label for="inputVideo" class="form-label text-primary">Escolha seu arquivo de video</label>
-                            <input class="form-control my-2" type="file" id="inputVideo">
-                            <span class="feedback-video text-danger fs-6 d-none my-1">Escolha um arquivo MP4!</span>
+                            <input class="form-control my-2 input-conta" type="file" id="inputVideo">
+                            <span class="feedback feedback-video text-danger fs-6 my-1">Escolha um arquivo MP4!</span>
                         </div>
                           <div id="w-100">
-                            <video id="containerVideo">
+                            <video id="containerVideo" class="w-100 my-3" controls>
 
                             </video>
                           </div>
                         <div class="w-100 d-flex">
                             <input type="submit" value="Publicar"
-                                class="btn btn-pub py-3 px-5 ms-auto">
+                                class="btn btn-pub py-3 px-5 mx-auto mx-md-0 ms-md-auto">
                         </div>
                     </form>
 
@@ -151,6 +156,7 @@
         <script src="js/index.js"></script>
         <script src="js/tags.js"></script>
         <script src="js/imagePub.js"></script>
+        <script src="js/validation.js"></script>
     </body>
 
 </html>

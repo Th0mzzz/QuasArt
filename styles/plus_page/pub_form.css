@@ -37,7 +37,7 @@
 #image_resenha{
     width: 100%;
     height: 100%;
-    min-height: 180px;
+    min-height: 200px;
     max-height: 266px;
     border: 2px solid var(--cor-principal);
     border-radius: 15px;
@@ -46,7 +46,16 @@
     z-index: 1;
     background-size:100% 100%;
     object-position: center;
+    
 }
+@media (max-width:768px) {
+    
+#image_resenha{
+    max-width: 150px;
+    max-height: 300px;
+}
+}
+
 
 #image_resenha label{
     position: absolute;
@@ -99,4 +108,11 @@ label{
 
 .btn-pub:hover{
     background: var(--cor-secundaria-escura);
+}
+
+
+#containerVideo{
+    display: none;
+    object-fit: contain;
+    max-height: 450px
 }

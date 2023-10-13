@@ -77,12 +77,7 @@ footer p {
   color: var(--cor-texto);
 }
 
-.feedback{
-  display: none;
-  font-size: 14px;
-  color: var(--danger-color);
 
-}
 
 @media (max-width: 599px) {
 
