@@ -34,7 +34,7 @@
     color: var(--cor-secundaria);
 }
 
-#image_resenha{
+#image_resenha , .addPrevia , .previaItem {
     width: 100%;
     height: 100%;
     min-height: 200px;
@@ -50,14 +50,14 @@
 }
 @media (max-width:768px) {
     
-#image_resenha{
+#image_resenha , .addPrevia, .previaItem {
     max-width: 150px;
     max-height: 300px;
 }
 }
 
 
-#image_resenha label{
+#image_resenha label , .addPrevia label{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -67,21 +67,21 @@
     width: fit-content;
     
 }
-#image_resenha:hover{
+#image_resenha:hover, .addPrevia:hover , .previaItem:hover {
     background: var(--cor-principal);
     background-size:100% 100%;
 }
-#image_resenha:hover label{
+#image_resenha:hover label , .addPrevia:hover label{
     color: var(--cor-fundo);
 
 }
 
 
-#inputImage_resenha{
+#inputImage_resenha , #inputPrevia{
     cursor: pointer;
     color: transparent;
 }
-#inputImage_resenha::-webkit-file-upload-button{
+#inputImage_resenha::-webkit-file-upload-button , #inputPrevia::-webkit-file-upload-button{
     display: none;
 }
 label{
@@ -115,4 +115,21 @@ label{
     display: none;
     object-fit: contain;
     max-height: 450px
+}
+
+.previaContainer{
+    margin: .6rem 0;
+}
+
+.previaContainer h5{
+    color:var(--cor-principal);
+}
+
+.addPrevia ,.previaItem {
+    max-width: 180px;
+    min-height: 266px;
+}
+.previaItem img{
+    width: 100%;
+    height: 100%; 
 }
