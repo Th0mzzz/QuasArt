@@ -6,13 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const inicialOptions = {
-    center: true,
     loop: true,
     margin: 0,
     nav: false,
     autoplayTimeout: 5000,
     items: 1,
-
   }
 
 
