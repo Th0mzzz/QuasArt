@@ -15,30 +15,31 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   const itensOptions = {
-    stagePadding: 50,
-    margin: 5,
-    nav: false,
-    loop: true,
-    responsiveClass: true,
+    loop:true,
+    margin:10,
 
-    responsive: {
-      0: {
-
-        items: 2,
-        stagePadding: 10,
+    responsive:{
+      0:{
+        items:2,
+        stagePadding:10
       },
-      420: {
-        items: 2,
-        stagePadding: 15,
+      424:{
+        items:3,
+        stagePadding:15
       },
-      768: {
-        items: 4,
+      768:{
+        items:4,
+        stagePadding:20
       },
-      1024: {
-        items: 6,
+      1024:{
+        items:5,
+        stagePadding:25
       },
-
-    },
+      1440:{
+        items:7,
+        stagePadding:25
+      },
+    }
   };
 
   const resenhasOptions = {

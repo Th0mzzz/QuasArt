@@ -1,6 +1,6 @@
 .carousel_container {
     margin: 2rem auto;
-   
+
 }
 
 h3 {
@@ -97,8 +97,15 @@ h3 {
     opacity: 1;
 }
 
-.itens .slide {
-   overflow: hidden;
+.itens .slide{
+    overflow: hidden;
+}
+.itens .slide a div,
+.itens .slide a img {
+    transition: all ease-in .3s;
+    z-index: 1;
+    flex-grow: 1;
+    max-height: 320px;
 }
 
 .itens .slide:hover a img {
@@ -106,18 +113,6 @@ h3 {
     z-index: -1;
 }
 
-.itens .slide a img , .itens .slide a div{
-    transition: transform ease 0.3s;
-    -o-object-fit: cover;
-    object-fit: cover;
-    -o-object-position: center;
-    object-position: center;
-    z-index: 1;
-    min-width: 180px;
-    width: 100%;
-    max-width: 320px;
-    height: 280px;
-}
 
 .itens .slide a p {
     position: relative;
@@ -149,7 +144,7 @@ h3 {
     flex-flow: column nowrap;
     justify-content: start;
     align-items: left;
-    height:auto;
+    height: auto;
     max-height: 500px;
     background-color: var(--cor-principal-escura);
     border-radius: 15px;
@@ -207,7 +202,7 @@ h3 {
     overflow: hidden;
     color: var(--cor-texto);
     font-size: var(--fs-text);
-    
+
 }
 
 .videos .slide {
@@ -227,7 +222,7 @@ h3 {
     height: 100%;
 }
 
-.btn-vermais{
+.btn-vermais {
     padding: 0.5rem;
     border: 1px solid var(--cor-secundaria);
     background-color: transparent;
@@ -238,11 +233,13 @@ h3 {
 
 .btn-vermais span {
     color: var(--cor-secundaria);
-    transition:  color ease .2s ;
+    transition: color ease .2s;
 }
+
 .btn-vermais:hover {
     background-color: var(--cor-secundaria);
 }
+
 .btn-vermais:hover span {
     color: var(--cor-texto);
     font-weight: bold;
