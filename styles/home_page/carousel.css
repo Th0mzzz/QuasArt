@@ -1,6 +1,12 @@
 .carousel_container {
     margin: 2rem auto;
+    
+}
 
+@media (max-width:1024px) {
+    .carousel_container{
+        --width-aside:0px
+    }
 }
 
 h3 {
@@ -18,14 +24,15 @@ h3 {
     display: flex;
     background-color: var(--cor-principal);
     height: 550px;
-    overflow: hidden;
+    width: calc(100vw - var(--width-aside));
+    overflow: hidden;   
 }
 
 .inicial .slide:hover a img {
     transform: scale(1.2);
 }
 
-.inicial .slide a {
+.inicial .slide > a {
     position: absolute;
     left: 0;
     height: 100%;
@@ -55,12 +62,12 @@ h3 {
 }
 
 .inicial .slide div h5 {
-    color: var(--cor-texto);
+    color: white;
 }
 
 .inicial .slide div p {
     width: 55%;
-    color: var(--cor-texto);
+    color: white;
     font-size: 12.5px;
 }
 
@@ -143,14 +150,33 @@ h3 {
 .resenhas .slide {
     position: relative;
     display: flex;
-    flex-flow: column nowrap;
+    flex-flow: row wrap;
     justify-content: start;
     align-items: left;
     height: auto;
-    max-height: 500px;
+    /* max-height: 500px; */
     background-color: var(--cor-principal-escura);
     border-radius: 15px;
-    padding: 2.5rem;
+    gap: 1rem   ;
+    overflow: hidden;
+}
+
+.resenhas .slide .image {
+   
+    width: 100%;
+    max-height: 300px;
+    overflow: hidden;
+   
+}
+.resenhas .slide .image img{
+    
+    flex-shrink: 1;
+    transition: all ease-in .3s;
+    filter: brightness(70%) blur(2px);
+}
+
+.resenhas .slide .image:hover img{
+    filter: brightness(100%) blur(0px);
 }
 
 .resenhas .slide .usuario {
@@ -162,7 +188,7 @@ h3 {
 }
 
 .resenhas .slide .usuario a {
-    color: var(--cor-texto);
+    color: #fff;
     font-size: var(--fs-text);
 }
 
@@ -194,7 +220,7 @@ h3 {
 }
 
 .resenhas .slide .trecho h5 {
-    color: var(--cor-texto);
+    color:#ffffff;
 }
 
 .resenhas .slide .trecho p {
@@ -202,7 +228,7 @@ h3 {
     padding: 10px 0;
     max-height: 200px;
     overflow: hidden;
-    color: var(--cor-texto);
+    color:#ffffff;
     font-size: var(--fs-text);
 
 }

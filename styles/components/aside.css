@@ -1,6 +1,3 @@
-body{
-  --width-aside:100%;
-}
 aside {
     width: var(--width-aside);
     position: fixed;
