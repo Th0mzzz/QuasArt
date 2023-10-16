@@ -92,10 +92,41 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   };
 
+  const previaOptions = {
+    stagePadding: 10,
+    center: true,
+    loop: false,
+    nav: false,
+    margin: 10,
+    autoWidth:true,
+    responsive: {
+      0:{
+        items:2,
+        stagePadding:10
+      },
+      424:{
+        items:3,
+        stagePadding:15
+      },
+      768:{
+        items:4,
+        stagePadding:20
+      },
+      1024:{
+        items:5,
+        stagePadding:25
+      },
+      1440:{
+        items:7,
+        stagePadding:25
+      },
+    },
+  };
+
   initCustomCarousel(".inicial", inicialOptions);
   initCustomCarousel(".itens", itensOptions);
   initCustomCarousel(".resenhas", resenhasOptions);
   initCustomCarousel(".tags-carousel", tagsOptions);
-
+  initCustomCarousel(".previas-imagens", previaOptions);
 
 });

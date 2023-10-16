@@ -90,10 +90,3 @@
     font-size: 16px;
 }
 
-.previa img , .previa div{
-    width: 100%;    
-    max-width: 280px;
-    min-height: 400px;
-    height: auto;
-    max-height: 430px;
-}
