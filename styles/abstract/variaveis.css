@@ -2,7 +2,7 @@
     /* CORES */
     --cor-principal: #A555EC;
     --cor-principal-escura: #674188  ;
-    --cor-principal-clara: #DA9AF8;
+    --cor-principal-clara: #e4b5fa;
     --cor-secundaria: #ffd86e;
     --cor-secundaria-escura: #ffb55b;
     --cor-secundaria-clara: #fad97d;
@@ -16,11 +16,11 @@
     scroll-behavior: smooth;
 /* FONTES */
     --fs-title:22px;
-    --fs-text:18px;
+    --fs-text:16px;
     --fs-link:20px;
 /* Aside width */
     --width-aside:100%;
-
+    
 }
 
 .dark {

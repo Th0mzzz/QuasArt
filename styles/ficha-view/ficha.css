@@ -3,6 +3,7 @@
     height: auto;
     min-height: fit-content;
     max-width: 1200px;
+    color: #ffffff;
 }
 
 .ficha_topo{
@@ -26,7 +27,14 @@
 .user {
     width: fit-content;
     height: auto;
-    color: var(--cor-texto);
+}
+.user a {
+    color: var(--cor-terciaria ) !important;
+}
+
+.user a:hover {
+
+    text-decoration: underline !important;
 }
 
 .img-user{
@@ -44,7 +52,7 @@
 .nota-geral{
     width: 50px;
     height: 50px;
-    color: var(--cor-fundo);
+    color: white;
     background: var(--cor-principal);
     border-radius: 10px;
 }
@@ -52,7 +60,40 @@
 .classi{
     width: 50px;
     height: 50px;
-    color: var(--cor-fundo);
+    color: white;
     background: var(--sucess-color);
     border-radius: 10px;
+}
+
+.content_container{
+    background: var(--cor-principal-clara);
+    border-radius: 5px;
+}
+.descri{
+    height: auto;
+    min-height: 300px;
+}
+.descri p{
+    font-size: var(--fs-text)   ;
+}
+
+.tag{
+    width: fit-content;
+    max-width: 100%;
+    text-wrap: nowrap;
+    background: var(--cor-terciaria);
+    color: #ffffff;
+    margin: 5px;
+    padding: .2rem .6rem;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 16px;
+}
+
+.previa img , .previa div{
+    width: 100%;    
+    max-width: 280px;
+    min-height: 400px;
+    height: auto;
+    max-height: 430px;
 }
