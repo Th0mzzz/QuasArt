@@ -95,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function () {
   initCustomCarousel(".inicial", inicialOptions);
   initCustomCarousel(".itens", itensOptions);
   initCustomCarousel(".resenhas", resenhasOptions);
-  // initCustomCarousel(".videos", tagsOptions);
   initCustomCarousel(".tags-carousel", tagsOptions);
 
 
