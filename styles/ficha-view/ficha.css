@@ -28,9 +28,6 @@
     width: fit-content;
     height: auto;
 }
-.user a {
-    color: var(--cor-terciaria ) !important;
-}
 
 .user a:hover {
 
@@ -90,3 +87,33 @@
     font-size: 16px;
 }
 
+.previa_container{
+    width: 100vw;
+    max-width: 1000px;
+
+} 
+
+.previas .slide{
+    height: 320px;
+}
+
+.avaliacoes-inner{
+    display: flex;
+    flex-flow: column nowrap;
+    max-width: 840px;
+    gap: 2.5rem;
+}
+
+.avaliacao{
+    background: var(--cor-principal);
+    border-radius:15px ;
+    height: auto;
+    min-height: 350px ;
+    box-shadow: 0px 0px 5px black;
+}
+
+.nota i{ 
+    margin: 0 1px;
+    color: var(--cor-secundaria);
+    font-size: var(--fs-title);
+}

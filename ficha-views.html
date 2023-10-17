@@ -1,212 +1,281 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BOOTSTRAP  -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- OwlCarousel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
-    <!-- CSS -->
-    <link rel="stylesheet" href="styles/base.css">
-    <link rel="stylesheet" href="styles/ficha-view/ficha.css">
-    <link rel="stylesheet" href="styles/home_page/carousel.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- BOOTSTRAP  -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <!-- OwlCarousel -->
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
+        <link rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
+        <!-- CSS -->
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/ficha-view/ficha.css">
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+            rel="stylesheet">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+        <!-- FavIcon -->
+        <link rel="shortcut icon" href="img/quasart_logo_pequena.png"
+            type="image/x-icon">
+        <title>Quasart</title>
 
-    <!-- FavIcon -->
-    <link rel="shortcut icon" href="img/quasart_logo_pequena.png" type="image/x-icon">
-    <title>Quasart</title>
+    </head>
 
-</head>
+    <body>
 
-<body>
+        <header class="header aside_interference">
 
-    <header class="header aside_interference">
+            <nav>
+                <div class="logotipo">
+                    <a href="index.html"> <img
+                            src="img/quasart_logo_pequena.png"
+                            alt="Logotipo_QuasArt" class="logo_img">
+                        <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+                    </a>
+                </div>
+                <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
+                <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
+            </nav>
+            <!-- Navbar Second -->
 
-        <nav>
-            <div class="logotipo">
-                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                    <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
-                </a>
+        </header>
+        <aside class="aside">
+            <ul>
+                <li class="list search" id="search__btn">
+                    <a class="nav__item"><i class="bi bi-search"></i></a>
+                </li>
+                <li class="list active">
+                    <a href="index.html" class="nav__item"><i
+                            class="bi bi-house"></i></a>
+                </li>
+                <li class="list">
+                    <a class="nav__item"><i class="bi bi-camera-video"></i></a>
+                </li>
+                <li class="list">
+                    <a href="pub.html" class="nav__item"><i class="bi bi-plus"></i></a>
+                </li>
+                <li class="list">
+                    <a href="login.html" class="nav__item"><i
+                            class="bi bi-person"></i></a>
+                </li>
+
+            </ul>
+
+        </aside>
+
+        <main class="aside_interference">
+
+            <section
+                class="ficha mx-auto my-5 d-flex flex-column justify-content-center align-items-start p-2 px-md-3 gap-3">
+                <section class="ficha_topo">
+
+                    <div class="img_container w-100">
+                        <img src alt="Imagem" class="w-100">
+                    </div>
+
+                    <div
+                        class="indicativos d-flex justify-content-between align-items-center flex-wrap">
+
+                        <div
+                            class="user d-flex justify-content-between align-items-center gap-3 my-4">
+                            <div class="img-user"><img
+                                    src="img/perfil-padrao.webp" alt></div>
+                            <a>UserName</a>
+                        </div>
+                        <div class="row mx-1 gap-2">
+
+                            <div class="nota-geral d-flex p-0">
+                                <p class="m-auto">X/5</p>
+                            </div>
+
+                            <div class="classi d-flex p-0">
+                                <p class="m-auto fs-4 fw-bold">L</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+                <section class="ficha_conteudo d-flex flex-column gap-3">
+                    <div class="content_container titulo p-3">
+                        <h2 class="m-0 fs-5">Titulo</h2>
+                    </div>
+                    <div class="content_container descri p-3 ">
+                        <p class="mb-2 fs-5">Descrição:</p>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Eos totam cum neque sed magnam odio assumenda
+                            asperiores nesciunt? Corporis aperiam nam quo animi.
+                            Iusto quis ad officiis accusantium numquam
+                            impedit!Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit. Eos totam cum neque sed magnam
+                            odio assumenda asperiores nesciunt? Corporis aperiam
+                            nam quo animi. Iusto quis ad officiis accusantium
+                            numquam impedit!Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Eos totam cum neque
+                            sed magnam odio assumenda asperiores nesciunt?
+                            Corporis aperiam nam quo animi. Iusto quis ad
+                            officiis accusantium numquam impedit!Lorem ipsum
+                            dolor sit amet consectetur adipisicing elit. Eos
+                            totam cum neque sed magnam odio assumenda asperiores
+                            nesciunt? Corporis aperiam nam quo animi. Iusto quis
+                            ad officiis accusantium numquam impedit!</p>
+                    </div>
+                    <div class="tags">
+                        <div class="tag_inner d-flex flex-wrap flex-row ">
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                            <div class="tag">
+                                #tag
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="previa_container">
+                        <h3 class="m-0 my-3">Prévia</h3>
+                        <div class="owl-carousel previas">
+                            <div class="slide">
+                                <div
+                                    class="content_container bg-secondary p-2 h-100">Imagem</div>
+                            </div>
+
+                        </div>
+                    </section>
+
+                </section>
+                <section class="avaliacoes my-4 w-100">
+                    <div class="addAvaliacao">
+                        
+                    </div>
+                    <div class="avaliacoes-inner">
+                        <div class="avaliacao px-5 p-3">
+                            <div class="avaliacao-topo d-flex align-items-center justify-content-between flex-wrap my-2 py-1">
+                                <div
+                                    class="user d-flex justify-content-between align-items-center gap-3">
+                                    <div class="img-user"><img
+                                            src="img/perfil-padrao.webp" alt></div>
+                                    <a>UserName</a>
+                                </div>
+                                <div class="nota">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+
+                            <div class="avaliacao-content py-4">
+                                <div class="texto">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium rem magnam non debitis, soluta similique minima veritatis nisi, alias, iste doloribus odio neque! Error velit unde enim sed voluptatum amet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium rem magnam non debitis, soluta similique minima veritatis nisi, alias, iste doloribus odio neque! Error velit unde enim sed.
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="avaliacao px-5 p-3">
+                            <div class="avaliacao-topo d-flex align-items-center justify-content-between flex-wrap my-2 py-1">
+                                <div
+                                    class="user d-flex justify-content-between align-items-center gap-3">
+                                    <div class="img-user"><img
+                                            src="img/perfil-padrao.webp" alt></div>
+                                    <a>UserName</a>
+                                </div>
+                                <div class="nota">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                    <i class="bi bi-star"></i>
+                                </div>
+                            </div>
+
+                            <div class="avaliacao-content py-4">
+                                <div class="texto">
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium rem magnam non debitis, soluta similique minima veritatis nisi, alias, iste doloribus odio neque! Error velit unde enim sed voluptatum amet.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium rem magnam non debitis, soluta similique minima veritatis nisi, alias, iste doloribus odio neque! Error velit unde enim sed.
+                                    </p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+        </main>
+
+        <section class="search_modal" id="searchModal">
+
+            <div class="search_topItens">
+
+                <div class="logotipo">
+                    <a href="index.html"> <img
+                            src="img/quasart_logo_pequena.png"
+                            alt="Logotipo_QuasArt" class="logo_img">
+                        <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+                    </a>
+                </div>
+                <div class="searchInput_container">
+                    <input type="search" placeholder="O que procura?">
+                    <button class="search_btn"><i class="bi bi-search"></i></button>
+                </div>
+
             </div>
-            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
-            <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
-        </nav>
-        <!-- Navbar Second -->
 
-    </header>
-    <aside class="aside">
-        <ul>
-            <li class="list search" id="search__btn">
-                <a class="nav__item"><i class="bi bi-search"></i></a>
-            </li>
-            <li class="list active">
-                <a href="index.html" class="nav__item"><i class="bi bi-house"></i></a>
-            </li>
-            <li class="list">
-                <a class="nav__item"><i class="bi bi-camera-video"></i></a>
-            </li>
-            <li class="list">
-                <a href="pub.html" class="nav__item"><i class="bi bi-plus"></i></a>
-            </li>
-            <li class="list">
-                <a href="login.html" class="nav__item"><i class="bi bi-person"></i></a>
-            </li>
-
-        </ul>
-
-    </aside>
-
-    <main class="aside_interference">
-
-        <section class="ficha mx-auto my-5 d-flex flex-column justify-content-center align-items-start p-2 px-md-3 gap-3">
-            <section class="ficha_topo">
-
-                <div class="img_container w-100">
-                    <img src="" alt="Imagem" class="w-100">
+            <div class="search_results">
+                <p>Não há nada</p>
+                <div class="result">
+                    <span></span>
                 </div>
+            </div>
 
-                <div class="indicativos d-flex justify-content-between align-items-center flex-wrap">
-
-                    <div class="user d-flex justify-content-between align-items-center gap-3 my-4">
-                        <div class="img-user"><img src="img/perfil-padrao.webp" alt=""></div>
-                        <a>UserName</a>
-                    </div>
-                    <div class="row mx-1 gap-2">
-
-
-                        <div class="nota-geral d-flex p-0">
-                            <p class="m-auto">X/5</p>
-                        </div>
-
-                        <div class="classi d-flex p-0">
-                            <p class="m-auto fs-4 fw-bold">L</p>
-                        </div>
-                    </div>
-                </div>
-
-                
-
-            </section>
-            <section class="ficha_conteudo d-flex flex-column gap-3">
-                <div class="content_container titulo p-3">
-                    <h2 class="m-0 fs-5">Titulo</h2>
-                </div>
-                <div class="content_container descri p-3 ">
-                    <p class="mb-2 fs-5">Descrição:</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos totam cum neque sed magnam odio assumenda asperiores nesciunt? Corporis aperiam nam quo animi. Iusto quis ad officiis accusantium numquam impedit!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos totam cum neque sed magnam odio assumenda asperiores nesciunt? Corporis aperiam nam quo animi. Iusto quis ad officiis accusantium numquam impedit!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos totam cum neque sed magnam odio assumenda asperiores nesciunt? Corporis aperiam nam quo animi. Iusto quis ad officiis accusantium numquam impedit!Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos totam cum neque sed magnam odio assumenda asperiores nesciunt? Corporis aperiam nam quo animi. Iusto quis ad officiis accusantium numquam impedit!</p>
-                </div>
-                <div class="tags">
-                    <div class="tag_inner d-flex flex-wrap flex-row ">
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                        <div class="tag">
-                            #tag
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="content_container bg-secondary p-2">Imagem</div>
-
-                <div id="carousel-previa" class="carousel slide">
-                    <div class="carousel-indicators">
-                      <button type="button" data-bs-target="#carousel-previa" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carousel-previa" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carousel-previa" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img src="..." class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
-                      </div>
-                      <div class="carousel-item">
-                        <img src="..." class="d-block w-100" alt="...">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-previa" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-previa" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>
-        
-            </section>
-            <section class="ficha_avaliacoes">
-
-            </section>
         </section>
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+        <script src="js/carousel.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <script src="js/index.js"></script>
 
-    </main>
-
-
-
-    <section class="search_modal" id="searchModal">
-
-        <div class="search_topItens">
-
-            <div class="logotipo">
-                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                    <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
-                </a>
-            </div>
-            <div class="searchInput_container">
-                <input type="search" placeholder="O que procura?">
-                <button class="search_btn"><i class="bi bi-search"></i></button>
-            </div>
-
-        </div>
-
-        <div class="search_results">
-            <p>Não há nada</p>
-            <div class="result">
-                <span></span>
-            </div>
-        </div>
-
-    </section>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <script src="js/index.js"></script>
-
-</body>
+    </body>
 
 </html>
