@@ -10,6 +10,7 @@
 
 .ficha_conteudo{
     position: relative;
+    width: 100%;
     max-width: 100%;
 }
 .ficha_topo{
@@ -101,7 +102,10 @@
 }
 
 
-
+.previa_container{
+    position: relative;
+    max-width: 700px;
+}
 
 .previas .slide{
     height: 320px;
@@ -133,4 +137,29 @@
 .previa_container h3 , .avaliacoes h2{
     color: var(--cor-principal);
     font-weight: bold;
+}
+
+.previas .owl-nav {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+}
+.previas .owl-nav button{
+    z-index: 3;
+    width: 50px;
+    height: 50px;
+    background: var(--cor-secundaria)!important;
+    border-radius: 50%;
+}
+
+.owl-next{
+    position: relative;
+    left: 10px;
+}
+.owl-prev{
+    position: relative;
+    right: 10px;
 }
