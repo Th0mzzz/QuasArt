@@ -112,7 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
         items:3,
       
       },
+      1440:{
+        items:3,
       
+      },
     }
   };
 

@@ -8,7 +8,7 @@
     overflow: hidden;
 }
 
-.ficha-conteudo{
+.ficha_conteudo{
     position: relative;
     max-width: 100%;
 }
@@ -73,8 +73,6 @@
 .content_container{
     background: var(--cor-principal-clara);
     border-radius: 15px;
-    
-    min-width: none;
 }
 
 .dark .content_container{
@@ -102,12 +100,7 @@
     font-size: 16px;
 }
 
-.previa_container{
-    position: relative;
-    width: 100%;
-    max-width: 700px;
 
-} 
 
 
 .previas .slide{
