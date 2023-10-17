@@ -94,22 +94,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const previaOptions = {
     loop:true,
-    margin:10,
+    margin:5,
     responsive:{
       0:{
         items:2,
         stagePadding:10
       },
       424:{
-        items:3,
+        items:2,
         
       },
       768:{
-        items:4,
+        items:3,
         
       },
       1024:{
-        items:5,
+        items:3,
       
       },
       
