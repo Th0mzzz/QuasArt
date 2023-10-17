@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const previaOptions = {
-    loop:false,
+    loop:true,
     margin:10,
     responsive:{
       0:{

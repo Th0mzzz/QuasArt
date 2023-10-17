@@ -2,10 +2,15 @@
     width: 100%;
     height: auto;
     min-height: fit-content;
-    max-width: 1200px;
+    max-width: 1000px;
     color: #ffffff;
+    position: relative;
+    overflow: hidden;
 }
-
+.ficha-conteudo{
+    position: relative;
+    max-width: 100%;
+}
 .ficha_topo{
     width: 100%;
 }
@@ -88,8 +93,9 @@
 }
 
 .previa_container{
-    width: 100vw;
-    max-width: 1000px;
+    position: relative;
+    width: 100%;
+    max-width: 960px;
 
 } 
 
