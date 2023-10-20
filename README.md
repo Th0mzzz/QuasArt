@@ -6,8 +6,7 @@
      <img width="300px" alt="Quasart" src="https://img.shields.io/badge/QuasArt-6528F7?style=for-the-badge&logo=Quasart&logoColor=white">
 </a>
 	
-
-
+### Link do repositório: https://th0mzzz.github.io/QuasArt/
 
 Equipe 6 - Integrantes:
 - Thomaz Vasconcelos Mendes N°35 RM86681
