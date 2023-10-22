@@ -47,19 +47,24 @@ document.addEventListener("DOMContentLoaded", function () {
     center: true,
     loop: true,
     nav: false,
-    margin: 20,
+    margin:20,
+    center:true,
     responsiveClass: true,
     responsive: {
       0: {
         items: 1,
-        stagePadding: 10,
+        stagePadding: 30,
       },
       768: {
         items: 1,
       },
       1000: {
         items: 1,
+        stagePadding: 300,
       },
+      1440: {
+        items: 3,
+      }
     },
   };
   const tagsOptions = {
@@ -93,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const previaOptions = {
-    loop:true,
     nav:true,
     margin:10,
     stagePadding:10,

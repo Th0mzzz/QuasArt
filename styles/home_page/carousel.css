@@ -154,12 +154,13 @@ h3 {
     justify-content: start;
     align-items: left;
     height: auto;
-    /* max-height: 500px; */
+    max-width: 800px;
     background-color: var(--cor-principal-escura);
     border-radius: 15px;
     gap: 1rem   ;
     overflow: hidden;
     padding: 2rem;
+    margin:  0 auto;
 }
 
 .resenhas .slide .image {
@@ -186,6 +187,7 @@ h3 {
     align-items: center;
     height: -moz-fit-content;
     height: fit-content;
+    flex-wrap: wrap;
 }
 
 .resenhas .slide .usuario a {
