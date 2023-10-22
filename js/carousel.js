@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       1000: {
         items: 1,
-        stagePadding: 300,
+        stagePadding: 0,
       },
       1440: {
         items: 3,
