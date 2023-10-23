@@ -22,7 +22,6 @@ list.forEach(item => item.addEventListener('click', function (e) {
 // BOTÃO DE MODO
 const modoBtn = document.querySelectorAll(".modoBtn")
 const body = document.body
-console.log(modoBtn)
 modoBtn.forEach(btn => {
 
 

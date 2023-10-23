@@ -43,7 +43,7 @@
 
 .assine_ad h2 {
   color:#000000;
-  font-size: 16px;
+  font-size: var(--fs-text);
   text-shadow: none;
   font-weight: bold;
   margin: 0;
@@ -51,7 +51,7 @@
 
 .assine_ad h2 span {
   color: var(--cor-principal-escura);
-  font-size: 16px;
+  font-size: var(--fs-text);
 }
 
 .assine_ad img {
@@ -76,7 +76,6 @@
 }
 .btn__homeback i {
   font-size: 50px;
-  margin: auto;
 }
 .btn__homeback:hover {
   color: var(--cor-principal-escura);
