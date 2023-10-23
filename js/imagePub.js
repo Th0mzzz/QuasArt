@@ -10,6 +10,7 @@ document.getElementById('inputImage_resenha').addEventListener('change', functio
         reader.onload = function() {
             const container = document.getElementById('image_resenha');
             container.style.backgroundImage = `url(${reader.result})`;
+            container.classList.add("")
         }
 
     reader.readAsDataURL(file);
@@ -48,6 +49,7 @@ document.getElementById('inputImage_resenha').addEventListener('change', functio
             reader.onload = function() {
                 container.style.display = "block"
                 container.src = reader.result;
+                container.classList.add('.filled')
             }
     
         reader.readAsDataURL(file);
