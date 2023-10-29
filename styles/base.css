@@ -39,11 +39,15 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  transition: all ease .2s;
+}
+.assine_ad:hover{
+  background: var(--cor-principal);
 }
 
 .assine_ad h2 {
   color:#000000;
-  font-size: var(--fs-text);
+  font-size: var(--fs-title);
   text-shadow: none;
   font-weight: bold;
   margin: 0;
@@ -51,7 +55,7 @@
 
 .assine_ad h2 span {
   color: var(--cor-principal-escura);
-  font-size: var(--fs-text);
+  font-size: var(--fs-title);
 }
 
 .assine_ad img {
