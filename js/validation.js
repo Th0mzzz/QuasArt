@@ -13,16 +13,21 @@ document.addEventListener('DOMContentLoaded', function () {
             let feedback = paiInput.querySelector(".feedback")
 
             if (input.value.trim() === '') {
+
                 input.classList.add('is-invalid');
                 event.preventDefault();
+                
             } else {
                 input.classList.remove('is-invalid');
+                event.preventDefault();
+                window.location.href = "perfil.html"
             }
 
             if(input.classList.contains("is-invalid")){
                 feedback.style.display = "block"
             }else {
                 feedback.style.display = "none"
+                
             }
 
             if(input.classList.contains("senha")){
