@@ -103,9 +103,6 @@ h3 {
     opacity: 1;
 }
 
-.itens .slide{
-    overflow: hidden;
-}
 
 .itens .slide a img {
     transition: all ease-in .3s;
@@ -120,8 +117,9 @@ h3 {
 .itens .owl-stage-outer {
     overflow:visible !important;
 }
-.itens .owl-item:hover{
-    transform: translateY(-10px);
+.itens .owl-item:hover .slide img{
+    transform: translateY(-15px);
+    box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.521) ;
 }
 
 

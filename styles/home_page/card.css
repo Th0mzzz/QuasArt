@@ -18,6 +18,11 @@
     box-shadow: 0px 0px 5px #00000094;
     border-radius: 20px;
     overflow: hidden;
+    transition:all ease-in .3s;
+}
+.card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0px 0px 10px #000000b9;
 }
 
 .user_card img{
@@ -42,5 +47,5 @@
 }
 
 .card .btn-vermais span{
-    color: var(--cor-fundo);
+    color: var(--cor-texto);
 }

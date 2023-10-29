@@ -42,7 +42,11 @@
   transition: all ease .2s;
 }
 .assine_ad:hover{
-  background: var(--cor-principal);
+  background: var(--cor-secundaria-clara);
+}
+
+.assine_ad:hover span {
+  color:var(--cor-principal)
 }
 
 .assine_ad h2 {
@@ -56,6 +60,7 @@
 .assine_ad h2 span {
   color: var(--cor-principal-escura);
   font-size: var(--fs-title);
+  transition: all .2s;
 }
 
 .assine_ad img {
