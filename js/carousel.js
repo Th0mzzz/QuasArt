@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         items:2,
         stagePadding:10
       },
-      424:{
+      530:{
         items:3,
         stagePadding:15
       },
@@ -125,10 +125,40 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 
+
+  const postOptions = {
+    loop:false,
+    margin:10,
+    
+    responsive:{
+      0:{
+        items:2,
+        stagePadding:0
+      },
+      400:{
+        items:2,
+        stagePadding:15
+      },
+      530:{
+        items:3,
+        stagePadding:15
+      },
+      768:{
+        items:4,
+        stagePadding:20
+      },
+      1024:{
+        items:4,
+        stagePadding:25
+      } 
+    }
+  };
+ 
   initCustomCarousel(".inicial", inicialOptions);
   initCustomCarousel(".itens", itensOptions);
   initCustomCarousel(".resenhas", resenhasOptions);
   initCustomCarousel(".tags-carousel", tagsOptions);
   initCustomCarousel(".previas", previaOptions);
+  initCustomCarousel(".post", postOptions);
 
 });
