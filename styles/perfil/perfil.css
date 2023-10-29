@@ -3,9 +3,9 @@ body {
 }
 
 .img-user {
-    width: 120px;
-    height: 150px;
-    border-radius: 15px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
 }
 
 .img-user label {
@@ -20,6 +20,7 @@ body {
     font-size: var(--fs-title);
 }
 
+
 .statistics,
 .info-user,
 .post_container {
@@ -27,16 +28,10 @@ body {
     margin: 0 auto;
 }
 
-.statistic h4 {
-    font-weight: bold;
-}
 
-.statistic p>i {
-    color: var(--cor-secundaria);
-    font-size: 20px;
-    margin-left: 5px;
+.statistics i {
+    color: var(--cor-secundaria-escura);
 }
-
 
 /* POSTS */
 
@@ -48,7 +43,7 @@ body {
 .posts-cards {
     display: flex;
     flex-flow: row wrap;
-    gap: 10px;
+    gap: 15px;
 }
 
 .card-post {

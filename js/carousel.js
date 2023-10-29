@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const postOptions = {
     loop:false,
-    margin:10,
+    margin:15,
     
     responsive:{
       0:{
@@ -139,13 +139,9 @@ document.addEventListener("DOMContentLoaded", function () {
         items:2,
         stagePadding:15
       },
-      530:{
+      600:{
         items:3,
         stagePadding:15
-      },
-      768:{
-        items:4,
-        stagePadding:20
       },
       1024:{
         items:4,
