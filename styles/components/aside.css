@@ -48,7 +48,7 @@ aside {
   }
   aside ul .list a i {
     margin: auto;
-    font-size: var(--fs-text);
+    font-size: var(--fs-title);
   }
   aside ul .active {
     transform: translateY(-25px) scale(1.2);
@@ -60,7 +60,7 @@ aside {
   
   @media (min-width: 992px) {
     body{
-      --width-aside:55px;
+      --width-aside:60px;
     }
     .aside_interference {
       padding-left: var(--width-aside);
@@ -83,7 +83,7 @@ aside {
       width: 100%;
     }
     aside ul .list i{
-      font-size: var(--fs-text);
+      font-size: var(--fs-title);
     }
     aside ul .active {
       transform: translateX(25px) scale(1.2);

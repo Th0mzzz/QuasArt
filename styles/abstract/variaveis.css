@@ -15,9 +15,9 @@
     --danger-color: #e21d1d;
     scroll-behavior: smooth;
     /* FONTES */
-    --fs-title: 22px;
-    --fs-text: 16px;
-    --fs-link: 20px;
+    --fs-title: 18px;
+    --fs-text: 14px;
+    --fs-link: 14px;
     /* Aside width */
     --width-aside: 100%;
 
@@ -35,12 +35,3 @@ body {
     background: var(--cor-fundo);
 }
 
-/* Telas até 768px */
-
-@media (max-width:768px) {
-    :root {
-        --fs-title: 18px;
-        --fs-text: 14px;
-        --fs-link: 14px;
-    }
-}
