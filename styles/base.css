@@ -32,7 +32,7 @@
   height: -moz-fit-content;
   height: fit-content;
   padding: 2rem 1rem;
-  background-color: var(--cor-secundaria);
+  background-color: var(--cor-secundaria-clara);
   box-shadow: 1px 1px 5px;
   display: flex;
   flex-flow: row nowrap;
@@ -42,7 +42,7 @@
   transition: all ease .2s;
 }
 .assine_ad:hover{
-  background: var(--cor-secundaria-clara);
+  background: var(--cor-secundaria);
 }
 
 .assine_ad:hover span {

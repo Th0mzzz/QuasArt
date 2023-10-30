@@ -48,7 +48,7 @@ aside {
   }
   aside ul .list a i {
     margin: auto;
-    font-size: var(--fs-title);
+    font-size: var(--fs-text);
   }
   aside ul .active {
     transform: translateY(-25px) scale(1.2);
@@ -58,9 +58,9 @@ aside {
     box-shadow: 0px 0px 5px var(--cor-fundo);
   }
   
-  @media (min-width: 1024px) {
+  @media (min-width: 992px) {
     body{
-      --width-aside:70px;
+      --width-aside:55px;
     }
     .aside_interference {
       padding-left: var(--width-aside);
@@ -79,10 +79,12 @@ aside {
       
     }
     aside ul .list {
-      height: 65px;
+      height: calc(var(--width-aside) - 5px);
       width: 100%;
     }
-
+    aside ul .list i{
+      font-size: var(--fs-text);
+    }
     aside ul .active {
       transform: translateX(25px) scale(1.2);
     }

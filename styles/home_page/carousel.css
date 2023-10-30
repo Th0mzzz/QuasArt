@@ -110,14 +110,14 @@ h3 {
     flex-grow: 1;
     max-height: 320px;
 }
-.itens .slide a div{
-    height: 100vh;
-    max-height: 320px;
+.itens .slide a div {
+    height: 320px;
+    transition: all ease-in .3s;
 }
 .itens .owl-stage-outer {
     overflow:visible !important;
 }
-.itens .owl-item:hover .slide img{
+.itens .owl-item:hover .slide img , .itens .owl-item:hover .slide a div{
     transform: translateY(-15px);
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.521) ;
 }
