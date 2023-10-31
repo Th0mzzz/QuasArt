@@ -5,8 +5,6 @@
 }
 .pubForm_container .form-control{
     border: 1px solid var(--cor-principal);
-    background: var(--cor-fundo);
-    color: var(--cor-texto);
 }
 .dark .pubForm_container .form-control{
     border: 1px solid var(--cor-principal);
