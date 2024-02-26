@@ -17,6 +17,9 @@ footer {
     align-items: start;
     padding: 1rem;
   }
+  .footer_content > main > ul{ 
+    padding-left: 5px;
+  }
   .footer-highItens {
     width: 100%;
     display: flex;

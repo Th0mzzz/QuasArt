@@ -39,6 +39,7 @@ header {
    .logotipo a .tipografia , .tipografia span{
     font-size: var(--fs-title);
     font-weight: bold;
+    margin-bottom: 0;
   }
   header nav .assine-btn {
     position: relative;

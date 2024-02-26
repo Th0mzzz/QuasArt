@@ -28,43 +28,9 @@
 </head>
 
 <body>
-    <header class="header aside_interference">
-
-        <nav>
-            <div class="logotipo">
-                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                    <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
-                </a>
-            </div>
-            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
-
-        </nav>
-        <!-- Navbar Second -->
-        <nav class="navbar" id="lownav000_header">
-
-            <div class="container-fluid d-flex align-items-center justify-content-around flex-nowrap">
-                <a class="btn w-auto utility_item gap-2 modoBtn"></a>
-                <div class="tags-container w-75 ">
-                    <div class="owl-carousel tags-carousel m-0">
-                        <li class="header-tag"><span>Em Alta</span></li>
-                        <li class="header-tag"><span>Fanfics</span></li>
-                        <li class="header-tag"><span>Podcasts</span></li>
-                        <li class="header-tag"><span>Terror</span></li>
-                        <li class="header-tag"><span>Suspense</span></li>
-                        <li class="header-tag"><span>Comedia</span></li>
-                        <li class="header-tag"><span>Romance</span></li>
-                        <li class="header-tag"><span>Ficção Cientifica </span></li>
-                    </div>
-                </div>
-
-            </div>
-
-        </nav>
-
-    </header>
 
     <aside class="aside">
-        <ul>
+        <ul class="aside-list">
             <li class="list search" id="search__btn">
                 <a class="nav__item"><i class="bi bi-search"></i></a>
             </li>
@@ -84,543 +50,213 @@
         </ul>
 
     </aside>
+    <header class="header aside_interference">
+        <nav>
+            <div class="logotipo">
+                <a href="index.html">
+                    <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                    <h1 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h1>
+                </a>
+            </div>
+            <a class="btn w-auto utility_item gap-2 ms-auto me-3 modoBtn"></a>
+            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
+        </nav>
+    </header>
+    <main class="aside_interference">
+        <section class="carousel_container" id="inicial">
+            <main class="owl-carousel inicial">
 
-
-
-        <main class="aside_interference">
-
-            <!-- Carrosel Inicial -->
-            <section class="carousel_container" id="inicial">
-
-                <div class="owl-carousel inicial">
-                    <div class="slide">
-                        <a href="#">
-                            <img src="" alt="">
-                        </a>
-                        <div>
-                            <h5>Nome do conteúdo</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit...</p>
-                            <a href="#" class="btn btn-vermais"><span>Ver mais</span></a>
-                        </div>
-                    </div>
-                    <div class="slide">
-                        <a href="#">
-                            <img src="" alt="">
-                        </a>
-                        <div>
-                            <h5>Nome do conteúdo 2</h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit...</p>
-                            <a href="#" class="btn btn-vermais"><span>Ver mais</span></a>
-                        </div>
+                <div class="slide">
+                    <a href="#">
+                        <img src="" alt="">
+                    </a>
+                    <div>
+                        <h5>Nome do conteúdo</h5>
+                        <p>Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit...</p>
+                        <a href="#" class="btn btn-vermais"><span>Ver mais</span></a>
                     </div>
                 </div>
-            </section>
-
-            <!-- Carrossel de Itens -->
-            <section class="carousel_container">
-                <h3 style="color: #FFE03B;">Recomendados</h3>
-                <div class="owl-carousel itens">
-                    <div class="slide">
-                        <a href="ficha-views.html">
-                            <div class="w-100 w-75 bg-secondary"></div>
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- Carrosel de Resenhas -->
-            <section class="carousel_container">
-                <div class="owl-carousel resenhas">
-                    <div class="slide">
-                        <div class="usuario">
-                            <a href class="foto"><img src="img/perfil-padrao.webp" alt="foto"></a>
-                            <a href>Nickname do Usuário</a>
-                        </div>
-                        <div class="trecho">
-                            <h5>Nome da Resenha</h5>
-                            <p>Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Expedita aliquid
-                                exercitationem animi cumque? Rem voluptates
-                                magnam culpa? Consequatur, ex. Odio impedit
-                                consectetur doloremque molestias,
-                                perferendis
-                                voluptates repudiandae officia earum
-                                adipisci....</p>
-                            <a href="resenha-views.html" class="btn-vermais ms-auto"><span>Ver mais</span></a>
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- CARDS -->
-
-            <section class="card_container">
-
-                <div class="cards_content">
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </section>
-
-            <!-- Assine Ads -->
-            <a href="premium.html" class="assine_ad">
-                <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                <h2>Com o <span class="plus_span">Plus</span> você pode
-                    mais!
-                    <span>Assine já!</span>
-                </h2>
-
-            </a>
-
-
-            <!-- CARDS -->
-
-            <section class="card_container">
-
-                <div class="cards_content">
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </section>
-
-            <section class="carousel_container">
-                <h3>Mais Vistos</h3>
-                <div class="owl-carousel itens">
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Casta-Dos-Metabarões-HQ.jpg" alt="imagem 1">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Ilha-do-Tesouro-HQ.jpg" alt="imagem 2">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Viagem-de-Chihiro.jpg" alt="imagem 3">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/Aliceatravesdoespelho.jpg" alt="imagem 4">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/HamletLivro.jpg" alt="imagem 5">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/Aquaman(2011)HQ.jpg" alt="imagem 6">
-                            <p>Nome do conteúdo</p>
-                        </a>
+                <div class="slide">
+                    <a href="#">
+                        <img src="" alt="">
+                    </a>
+                    <div>
+                        <h5>Nome do conteúdo 2</h5>
+                        <p>Lorem ipsum, dolor sit amet consectetur
+                            adipisicing elit...</p>
+                        <a href="#" class="btn btn-vermais"><span>Ver mais</span></a>
                     </div>
                 </div>
-            </section>
 
+            </main>
+        </section>
 
+        <section class="carousel_container">
+            <h3>Mais Vistos</h3>
+            <div class="owl-carousel itens">
+                <div class="slide">
+                    <a href>
 
-
-            <!-- Carrosel de Resenhas -->
-            <section class="carousel_container">
-                <div class="owl-carousel resenhas">
-                    <div class="slide">
-                        <div class="usuario">
-                            <a href class="foto"><img src="img/perfil-padrao.webp" alt="foto"></a>
-                            <a href>Nickname do Usuário</a>
-                        </div>
-                        <div class="trecho">
-                            <h5>Nome da Resenha</h5>
-                            <p>Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Expedita aliquid
-                                exercitationem animi cumque? Rem voluptates
-                                magnam culpa? Consequatur, ex. Odio impedit
-                                consectetur doloremque molestias,
-                                perferendis
-                                voluptates repudiandae officia earum
-                                adipisci....</p>
-                            <button class="btn-vermais ms-auto mt-3"><span>Ver mais</span></button>
-                        </div>
-                    </div>
-
+                        <img src="img/carouseis/A-Casta-Dos-Metabarões-HQ.jpg" alt="imagem 1">
+                        <p>Nome do conteúdo</p>
+                    </a>
                 </div>
-            </section>
+                <div class="slide">
+                    <a href>
 
-            <!-- CARDS -->
+                        <img src="img/carouseis/A-Ilha-do-Tesouro-HQ.jpg" alt="imagem 2">
+                        <p>Nome do conteúdo</p>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href>
 
-            <section class="card_container">
+                        <img src="img/carouseis/A-Viagem-de-Chihiro.jpg" alt="imagem 3">
+                        <p>Nome do conteúdo</p>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href>
 
-                <div class="cards_content">
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
+                        <img src="img/carouseis/Aliceatravesdoespelho.jpg" alt="imagem 4">
+                        <p>Nome do conteúdo</p>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href>
 
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
+                        <img src="img/carouseis/HamletLivro.jpg" alt="imagem 5">
+                        <p>Nome do conteúdo</p>
+                    </a>
+                </div>
+                <div class="slide">
+                    <a href>
 
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
+                        <img src="img/carouseis/Aquaman(2011)HQ.jpg" alt="imagem 6">
+                        <p>Nome do conteúdo</p>
+                    </a>
+                </div>
+            </div>
+        </section>
 
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-
-
+        <!-- Carrosel de Resenhas -->
+        <section class="carousel_container">
+            <main class="owl-carousel resenhas">
+                <div class="slide">
+                    <header class="usuario">
+                        <a href class="foto"><img src="img/perfil-padrao.webp" alt="foto"></a>
+                        <a href>Nickname do Usuário</a>
+                    </header>
+                    <main class="trecho">
+                        <h5>Nome da Resenha</h5>
+                        <p>Lorem ipsum dolor sit, amet consectetur
+                            adipisicing elit. Expedita aliquid
+                            exercitationem animi cumque? Rem voluptates
+                            magnam culpa? Consequatur, ex. Odio impedit
+                            consectetur doloremque molestias,
+                            perferendis
+                            voluptates repudiandae officia earum
+                            adipisci....</p>
+                        <a href="resenha-views.html" class="btn-vermais ms-auto"><span>Ver mais</span></a>
+                    </main>
                 </div>
 
-            </section>
+            </main>
+        </section>
 
-            <!-- Assine Ads -->
-            <a href="premium.html" class="assine_ad">
-                <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                <h2>Com o <span class="plus_span">Plus</span> você pode
-                    mais!
-                    <span>Assine já!</span>
-                </h2>
+        <!-- CARDS -->
 
-            </a>
+        <section class="card_container">
 
-            <!-- CARDS -->
-            <section class="card_container">
+            <div class="cards_content">
+                <div class="card ">
+                    <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
+                    <div class="card-body">
 
-                <div class="cards_content">
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
+                        <h5>Titulo do conteúdo</h5>
+                        <a href class="user_card d-flex gap-2 align-items-center mt-3">
+                            <img src="img/perfil-padrao.webp" alt>
+                            <p>Usuário</p>
+                        </a>
 
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
+                        <p class="card-text mt-3">Some quick example
+                            text to build on the card title and make up
+                            the bulk of the card's content.</p>
+                        <div class="w-100 d-flex">
+                            <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
+                                    mais</span></a />
                         </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
 
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="card ">
-                        <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
-                        <div class="card-body">
-
-                            <h5>Titulo do conteúdo</h5>
-                            <a href class="user_card d-flex gap-2 align-items-center mt-3">
-                                <img src="img/perfil-padrao.webp" alt>
-                                <p>Usuário</p>
-                            </a>
-
-                            <p class="card-text mt-3">Some quick example
-                                text to build on the card title and make up
-                                the bulk of the card's content.</p>
-                            <div class="w-100 d-flex">
-                                <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
-                                        mais</span></a/>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-            </section>
-
-            <!-- Carrossel de Itens -->
-            <section class="carousel_container">
-                <h3>Recentes</h3>
-                <div class="owl-carousel itens">
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Casta-Dos-Metabarões-HQ.jpg" alt="imagem 1">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Ilha-do-Tesouro-HQ.jpg" alt="imagem 2">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/A-Viagem-de-Chihiro.jpg" alt="imagem 3">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/Aliceatravesdoespelho.jpg" alt="imagem 4">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/HamletLivro.jpg" alt="imagem 5">
-                            <p>Nome do conteúdo</p>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <a href>
-
-                            <img src="img/carouseis/Aquaman(2011)HQ.jpg" alt="imagem 6">
-                            <p>Nome do conteúdo</p>
-                        </a>
                     </div>
                 </div>
-            </section>
-            <!-- Carrosel de Resenhas -->
-            <section class="carousel_container">
-                <div class="owl-carousel resenhas">
-                    <div class="slide">
-                        <div class="usuario">
-                            <a href class="foto"><img src="img/perfil-padrao.webp" alt="foto"></a>
-                            <a href>Nickname do Usuário</a>
+                <div class="card ">
+                    <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
+                    <div class="card-body">
+
+                        <h5>Titulo do conteúdo</h5>
+                        <a href class="user_card d-flex gap-2 align-items-center mt-3">
+                            <img src="img/perfil-padrao.webp" alt>
+                            <p>Usuário</p>
+                        </a>
+
+                        <p class="card-text mt-3">Some quick example
+                            text to build on the card title and make up
+                            the bulk of the card's content.</p>
+                        <div class="w-100 d-flex">
+                            <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
+                                    mais</span></a />
                         </div>
-                        <div class="trecho">
-                            <h5>Nome da Resenha</h5>
-                            <p>Lorem ipsum dolor sit, amet consectetur
-                                adipisicing elit. Expedita aliquid
-                                exercitationem animi cumque? Rem voluptates
-                                magnam culpa? Consequatur, ex. Odio impedit
-                                consectetur doloremque molestias,
-                                perferendis
-                                voluptates repudiandae officia earum
-                                adipisci....</p>
-                            <button class="btn-vermais ms-auto"><span>Ver mais</span></button>
-                        </div>
+
                     </div>
-
                 </div>
-            </section>
+                <div class="card ">
+                    <div class="card-img-top"><img src class="w-100 h-100 border-0" alt></div>
+                    <div class="card-body">
 
-        </main>
+                        <h5>Titulo do conteúdo</h5>
+                        <a href class="user_card d-flex gap-2 align-items-center mt-3">
+                            <img src="img/perfil-padrao.webp" alt>
+                            <p>Usuário</p>
+                        </a>
+
+                        <p class="card-text mt-3">Some quick example
+                            text to build on the card title and make up
+                            the bulk of the card's content.</p>
+                        <div class="w-100 d-flex">
+                            <a href="ficha-views.html" class="btn-vermais ms-auto"><span>Ver
+                                    mais</span></a />
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+
+        <!-- Assine Ads -->
+        <a href="premium.html" class="assine_ad">
+            <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
+            <h2>Com o <span class="plus_span">Plus</span> você pode
+                mais!
+                <span>Assine já!</span>
+            </h2>
+
+        </a>
+    </main>
 
 
 
-    <footer class="aside_interference ">
-        <div class="footer_content">
-            <div class="footer-highItens">
+    <footer class="aside_interference">
+
+        <address class="footer_content">
+            <header class="footer-highItens">
                 <div class="logotipo">
-                    <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt"
-                            class="logo_img">
-                        <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+                    <a href="index.html">
+                        <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                        <h1 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h1>
                     </a>
                 </div>
                 <ul class="redes">
@@ -640,35 +276,36 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </header>
             <hr>
-            <ul class=" p-0 w-100 px-3 ">
-
+            <main class="p-0 w-100 px-3">
                 <h5>Links</h5>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="pub.html">Publicar</a></li>
-                <li><a href="#">Videos</a></li>
-                <li><a href="login.html">Perfil</a></li>
-
-
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="pub.html">Publicar</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="login.html">Perfil</a></li>
+                </ul>
                 <h5 class="mt-4">Informações</h5>
-                <li><a href="#">Sobre o QuasArt</a></li>
-                <li><a href="#">Entre em contato</a></li>
-                <li><a href="#">Direitos Autorais</a></li>
-                <li><a href="#">Termos de Politica de Privacidade e
-                        Segurança</a></li>
+                <ul>
+                    <li><a href="#">Sobre o QuasArt</a></li>
+                    <li><a href="#">Entre em contato</a></li>
+                    <li><a href="#">Direitos Autorais</a></li>
+                    <li><a href="#">Termos de Politica de Privacidade e
+                            Segurança</a></li>
+                </ul>
 
 
-            </ul>
-            <div class="creditos mt-4">
+            </main>
+            <footer class="creditos mt-4">
                 &copy; Quasart 2023
-            </div>
-        </div>
-    </footer>
+            </footer>
+        </address>
 
+    </footer>
     <section class="search_modal" id="searchModal">
 
-        <div class="search_topItens">
+        <header class="search_topItens">
 
             <div class="logotipo">
                 <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
@@ -680,14 +317,14 @@
                 <button class="search_btn"><i class="bi bi-search"></i></button>
             </div>
 
-        </div>
+        </header>
 
-        <div class="search_results">
-            <p>Não há nada</p>
+        <main class="search_results">
+            Não há nada. <br>
             <div class="result">
                 <span></span>
             </div>
-        </div>
+        </main>
 
     </section>
 
