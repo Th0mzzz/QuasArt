@@ -20,22 +20,17 @@
 <body>
     <header class="mb-3">
         <nav class="navbar p-3 container-fluid">
-            
                 <div class="logotipo">
                     <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img "> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
                 </div>
                 <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
-        </nav>
-           
-        
+        </nav> 
    </header>
     <main> 
-        
-        <div class="form__container" id="conta">
+        <section class="form__container" id="conta">
            
             <form action="" class="form ativado my-3 formConta" id="login">
-                <div class="w-100 text-sm-center text-start my-3">
-                    
+                <div class="w-100 text-sm-center text-start my-3"> 
                     <h2 class="fs-1 fw-bold mb-3"><a href="index.html" class="btn__homeback mb-3 "><i class="bi bi-arrow-left-circle"></i></a> Entrar no QuasArt</h2>
                     <p class="fs-5">Seja bem-vindo novamente tripulante!</p>
                 </div>
@@ -60,47 +55,13 @@
                   </div>
              
                   <input type="submit" class="btn form-control enviar__btn p-3 mt-3" value="Entrar">
-                <a class="esqueceu_btn mb-1">Esqueceu sua senha?</a>
                 <p>Não está cadastrado? <a href="cadastro.html">Registre-se Já!</a></p>
 
             </form>
 
-            <form action="" class="form" id="token">
-                
-                <h2>Esqueceu a senha?</h2>
-                <input type="text" class="" name="email__esqueceu" placeholder="Digite seu Email para o envio do Token">
-                <input type="button" class="enviar__btn" value="Enviar" id="enviarToken">
-                
-                <div class="token__container">
-                    <p>Digite o Token de segurança:</p>
-                    <div class="token__btns">           
-                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
-                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
-                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
-                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
-                        <input type="text" class="cod_token" maxlength="1">
-                    </div>
-                    <input type="button" class="enviar__btn" value="Verificar" id="verificarToken">
-                </div>
-                <a class="cancelar_btn">Cancelar</a>
-            </form>
+         
 
-            
-            <form action="" class="form" id="novaSenha">
-                <div class="logotipo">
-                    <a href="../index.html">
-                        <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                    </a>
-                </div>
-
-                <input type="text" placeholder="Digite sua nova senha">
-                <input type="text" placeholder="Confirme sua nova senha">
-                <input type="button" class="enviar__btn" value="Enviar"></a>
-                <a class="cancelar_btn">Cancelar</a>
-            </form>
-
-        </div>
-
+        </section>
     </main>
     <footer class="p-4 mt-5">
         <p class="text-center w-100">Este site é protegido pelo reCAPTCHA e está sujeito à Política de Privacidade e aos Termos de Serviço do Google.</p>
