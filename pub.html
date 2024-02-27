@@ -8,52 +8,35 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-     <!-- OwlCarousel -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/plus_page/pub_grid.css">
-   
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
+    <!-- OwlCarousel -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.theme.default.min.css">
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/quasart_logo_pequena.png" type="image/x-icon">
     <title>Quasart</title>
-
 </head>
 
 <body>
-
-    <header class="header aside_interference">
-
-        <nav>
-            <div class="logotipo">
-                <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
-                    <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
-                </a>
-            </div>
-            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
-            <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
-        </nav>
-        <!-- Navbar Second -->
-        
-    </header>
     <aside class="aside">
-        <ul>
+        <ul class="aside-list">
             <li class="list search" id="search__btn">
                 <a class="nav__item"><i class="bi bi-search"></i></a>
             </li>
-            <li class="list">
-                <a href="index.html" class="nav__item"><i class="bi bi-house"></i></a>
+            <li class="list active">
+                <a class="nav__item"><i class="bi bi-house"></i></a>
             </li>
             <li class="list">
                 <a class="nav__item"><i class="bi bi-camera-video"></i></a>
             </li>
-            <li class="list active">
+            <li class="list">
                 <a href="pub.html" class="nav__item"><i class="bi bi-plus"></i></a>
             </li>
             <li class="list">
@@ -63,13 +46,20 @@
         </ul>
 
     </aside>
-
-
-
+    <header class="header aside_interference">
+        <nav>
+            <div class="logotipo">
+                <a href="index.html">
+                    <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                    <h1 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h1>
+                </a>
+            </div>
+            <a class="btn w-auto utility_item gap-2 ms-auto me-3 modoBtn"></a>
+            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
+        </nav>
+    </header>
     <main class="aside_interference">
-
-        <section class="planets__containers mt-5" >
-
+        <section class="planets__containers mt-5">
             <a href="pub_resenhas.html" class="planet ">
 
                 <div class="planet_btn ">
@@ -119,7 +109,7 @@
                             </g>
                         </g>
                     </svg>
-                    <p>Resenhas</p>
+                    <h3>Resenhas</h3>
                 </div>
 
             </a>
@@ -172,7 +162,7 @@
                             </g>
                         </g>
                     </svg>
-                    <p>Videos</p>
+                    <h3>Videos</h3>
                 </div>
 
             </a>
@@ -226,25 +216,20 @@
                             </g>
                         </g>
                     </svg>
-                    <p>Fichas</p>
+                    <h3>Fichas</h3>
                 </div>
 
             </a>
-
-
         </section>
     </main>
+    <footer class="aside_interference">
 
-
-
-
-    <footer class="aside_interference ">
-        <div class="footer_content">
-            <div class="footer-highItens">
+        <address class="footer_content">
+            <header class="footer-highItens">
                 <div class="logotipo">
-                    <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt"
-                            class="logo_img">
-                        <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
+                    <a href="index.html">
+                        <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                        <h2 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h2>
                     </a>
                 </div>
                 <ul class="redes">
@@ -264,35 +249,35 @@
                         </a>
                     </li>
                 </ul>
-            </div>
+            </header>
             <hr>
-            <ul class=" p-0 w-100 px-3 ">
-                
-                    <h5>Links</h5>
+            <main class="p-0 w-100 px-3">
+                <h5>Links</h5>
+                <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="pub.html">Publicar</a></li>
                     <li><a href="#">Videos</a></li>
                     <li><a href="login.html">Perfil</a></li>
-                
-                
-                    <h5 class="mt-4">Informações</h5>
+                </ul>
+                <h5 class="mt-4">Informações</h5>
+                <ul>
                     <li><a href="#">Sobre o QuasArt</a></li>
                     <li><a href="#">Entre em contato</a></li>
                     <li><a href="#">Direitos Autorais</a></li>
                     <li><a href="#">Termos de Politica de Privacidade e
                             Segurança</a></li>
-               
+                </ul>
 
-            </ul>
-            <div class="creditos mt-4">
+
+            </main>
+            <footer class="creditos mt-4">
                 &copy; Quasart 2023
-            </div>
-        </div>
+            </footer>
+        </address>
+
     </footer>
-
     <section class="search_modal" id="searchModal">
-
-        <div class="search_topItens">
+        <header class="search_topItens">
 
             <div class="logotipo">
                 <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
@@ -304,16 +289,16 @@
                 <button class="search_btn"><i class="bi bi-search"></i></button>
             </div>
 
-        </div>
-
-        <div class="search_results">
-            <p>Não há nada</p>
+        </header>
+        <main class="search_results">
+            Não há nada. <br>
             <div class="result">
                 <span></span>
             </div>
-        </div>
+        </main>
 
     </section>
+    
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
     <script src="js/carousel.js"></script>
