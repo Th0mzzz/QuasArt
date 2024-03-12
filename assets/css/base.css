@@ -1,0 +1,160 @@
+@import url("./abstract/variaveis.css");
+@import url("./abstract/reset.css");
+
+.btn-principal {
+    color: #ffffff;
+    font-weight: 400;
+    font-family: 'Poppins', Verdana;
+    font-size: clamp(13px, 2vw, 16px);
+    text-decoration: none;
+    background: var(--cor-principal);
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    transition: background .3s, color .3s;
+}
+
+.btn-principal:hover,
+.btn-outline-principal:hover {
+    color: #ffffff;
+    background: var(--cor-principal-hover);
+    border: none;
+}
+
+.btn-outline-principal {
+    color: var(--cor-principal);
+    font-weight: 400;
+    font-family: 'Poppins', Verdana;
+    font-size: clamp(13px, 2vw, 16px);
+    text-decoration: none;
+    border: 1px solid var(--cor-principal);
+    background: transparent;
+    padding: .5rem 1rem;
+    border-radius: 5px;
+    transition: background .3s, border .3s, color .3s;
+}
+
+/* Margins */
+
+.m-1 {
+    margin: .5rem;
+}
+
+.m-2 {
+    margin: 1rem;
+}
+
+.m-3 {
+    margin: 2rem;
+}
+
+
+.ms-1 {
+    margin-left: .5rem;
+}
+
+.ms-2 {
+    margin-left: 1rem;
+}
+
+.ms-3 {
+    margin-left: 2rem;
+}
+
+.mt-1 {
+    margin-top: .5rem;
+}
+
+.mt-2 {
+    margin-top: 1rem;
+}
+
+.mt-3 {
+    margin-top: 2rem;
+}
+
+.me-1 {
+    margin-right: .5rem;
+}
+
+.me-2 {
+    margin-right: 1rem;
+}
+
+.me-3 {
+    margin-right: 2rem;
+}
+
+.mb-1 {
+    margin-right: .5rem;
+}
+
+.mb-2 {
+    margin-right: 1rem;
+}
+
+.mb-3 {
+    margin-right: 2rem;
+}
+
+/* Paddings */
+
+.p-1 {
+    padding: .5rem;
+}
+
+.p-2 {
+    padding: 1rem;
+}
+
+.p-3 {
+    padding: 2rem;
+}
+
+
+.ps-1 {
+    padding-left: .5rem;
+}
+
+.ps-2 {
+    padding-left: 1rem;
+}
+
+.ps-3 {
+    padding-left: 2rem;
+}
+
+.pt-1 {
+    padding-top: .5rem;
+}
+
+.pt-2 {
+    padding-top: 1rem;
+}
+
+.pt-3 {
+    padding-top: 2rem;
+}
+
+.pe-1 {
+    padding-right: .5rem;
+}
+
+.pe-2 {
+    padding-right: 1rem;
+}
+
+.pe-3 {
+    padding-right: 2rem;
+}
+
+.pb-1 {
+    padding-right: .5rem;
+}
+
+.pb-2 {
+    padding-right: 1rem;
+}
+
+.pb-3 {
+    padding-right: 2rem;
+}
