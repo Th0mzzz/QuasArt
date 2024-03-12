@@ -53,9 +53,19 @@ header.landing__header {
 }
 
 .inicial__container .imagem-inicial {
-    width: clamp(60rem, 120vw, 4000px);
-    transform: rotate(-0deg) translateY(-20%);
+    width: clamp(900px, 110vw, 180vw);
+    transform: rotate(-0deg) translateY(-20vh);
     border-radius: 0;
+    object-position: right;
+    box-shadow: 0 0 15px 5px #00000069;
+}
+
+@media (min-width:992px) {
+    .inicial__container .imagem-inicial {
+        transform: rotate(-2deg) translateY(-20vh);
+        border-radius: 0 0 0 35%;
+        object-position: right;
+    }
 }
 
 
@@ -63,4 +73,11 @@ header.landing__header {
     position: absolute;
     top: 50%;
     transform: translateY(-100%);
+    color: #ffffff;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap    ;
+}
+.inicial__container .slogan .btn-outline-principal{
+    width: fit-content;
 }

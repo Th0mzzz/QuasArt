@@ -9,4 +9,5 @@ body,
 html {
     background: var(--cor-fundo);
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
