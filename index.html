@@ -8,26 +8,32 @@
     <link rel="shortcut icon" href="assets/img/quasart_logo_pequena.png" type="image/x-icon">
     <link rel="stylesheet" href="assets/css/base.css">
     <link rel="stylesheet" href="assets/css/landing-page/landing.css">
+
 </head>
 
 <body>
     <header class="landing__header">
-        <nav class="landing__nav">
+        <nav class="landing__nav nav">
             <a href="index.html" class="logo">
                 <img src="assets/img/quasart_logo_branca.png" alt="Logotipo do Quasart">
                 <h1 class="tipografia">Quas<span style="color:var(--cor-principal);">Art<span></h1>
             </a>
-            <ul class="nav__list">
-                <li><a href="#inicio" class="nav__item text">Inicio</a></li>
-                <li><a href="#" class="nav__item text">Sobre o projeto</a></li>
-                <li><a href="#" class="nav__item text">Nosso objetivo</a></li>
-                <li><a href="#" class="nav__item text">Quem somos</a></li>
-                <li><a href="#" class="btn-principal ms-1">Entrar</a></li>
-            </ul>
+            <button class="landing__nav-btn">
+                <i class="bi bi-list"></i>
+            </button>
+            <article class="menu-container">
+                <ul class="nav__list">
+                    <li><a href="#inicio" class="nav__item text">Inicio</a></li>
+                    <li><a href="#" class="nav__item text">Sobre o projeto</a></li>
+                    <li><a href="#" class="nav__item text">Nosso objetivo</a></li>
+                    <li><a href="#" class="nav__item text">Quem somos</a></li>
+                    <li><a href="#" class="btn-principal ms-1">Entrar</a></li>
+                </ul>
+            </article>
         </nav>
     </header>
     <main>
-        <section class="inicial__container" >
+        <section class="inicial__container">
             <img class="imagem-inicial" src="assets/img/landing-page/fundo lading page-2.png"
                 alt="imagem de fundo com um Quasar roxo em estilo aquarela">
             <article class="slogan p-3">
@@ -40,6 +46,7 @@
     <footer>
 
     </footer>
+    <script src="assets/js/LandingNav.js"></script>
 </body>
 
 </html>

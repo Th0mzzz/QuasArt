@@ -1,0 +1,82 @@
+/* HEADER */
+header.landing__header {
+    position: relative;
+    z-index: 100;
+    --landing-nav-bg: #000000a9;
+}
+
+.landing__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: .5rem 10%;
+    background: var(--landing-nav-bg);
+    position: fixed;
+    transition: transform ease .5s;
+}
+
+
+.landing__nav .logo {
+    display: flex;
+    align-items: center;
+    padding: 1rem 0;
+    gap: .4rem;
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.landing__nav .logo img {
+    width: clamp(40px, 5%, 50px);
+}
+
+.landing__nav .menu-container {
+    position: absolute;
+    top: 100%;
+    right: 0%;
+    padding: 2rem 10%;
+    background: var(--landing-nav-bg);
+    transform: translateX(100%);
+    transition: transform ease .6s;
+}
+
+.landing__nav .menu-container.show {
+    transform: translateY(0%);
+}
+
+.landing__nav .nav__list {
+    list-style-type: none;
+    display: flex;
+    align-items: end;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+.landing__nav .nav__list .nav__item {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.landing__nav .nav__list .nav__item:hover {
+    color: var(--cor-principal-hover);
+}
+
+.landing__nav-btn {
+    outline: none;
+    background: transparent;
+    color: #fff;
+    font-size: 30px;
+    transition: background ease .2s, boxShadow ease .2s;
+    padding: .4rem .6rem;
+    border-radius: 10px;
+}
+
+.landing__nav-btn:hover {
+    background: var(--cor-principal-hover);
+}
+
+.landing__nav-btn:active {
+    background: var(--cor-principal-hover);
+    box-shadow: 0px 0px 14px 4px var(--cor-principal);
+}
