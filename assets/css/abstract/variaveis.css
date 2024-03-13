@@ -19,7 +19,7 @@
 }
 
 .title {
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Montserrat', Arial;
     font-size: clamp(28px, 3vw, 32px);
 }
@@ -31,7 +31,7 @@
 }
 
 .supertitle {
-    font-weight: 900;
+    font-weight: 700;
     font-family: 'Poppins', Verdana;
     font-size: clamp(32px, 2vw, 40px);
     letter-spacing: 1px;
@@ -41,4 +41,16 @@
     font-weight: normal;
     font-family: 'Jost', sans-serif;
     font-size: clamp(24px, 3vw, 28px);
+}
+
+.negrito-amarelo {
+    color: var(--cor-principal);
+    font-weight: bold;
+    font-size: calc(clamp(13px, 2vw, 16px) + 2px);
+}
+
+.negrito-roxo {
+    color: var(--cor-secundaria);
+    font-weight: bold;
+    font-size: calc(clamp(13px, 2vw, 16px) + 2px);
 }

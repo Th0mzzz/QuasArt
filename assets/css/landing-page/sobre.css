@@ -1,0 +1,23 @@
+.sobre__container .sobre__item {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 80px 10% 0 10%;
+    --cor-item:var(--cor-principal);
+}
+.sobre__container .sobre__item.roxo {
+    --cor-item:var(--cor-secundaria);
+    background: var(--cor-containers);
+}
+
+
+.sobre__container img {
+    width: clamp(380px, 100%, 500px);
+    height: clamp(380px, 100%, 500px);
+}
+
+.sobre__container .sobre__item .content .title {
+    color: var(--cor-item);
+}
