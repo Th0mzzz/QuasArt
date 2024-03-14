@@ -44,6 +44,7 @@ header.landing__header {
 
 .landing__nav .menu-container .text , .landing__nav .menu-container .btn  {
     font-size: clamp(18px, 100%, 30px);
+    width: 100%;
 }
 
 .landing__nav .menu-container.show {
