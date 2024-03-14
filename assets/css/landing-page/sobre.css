@@ -1,11 +1,17 @@
 .sobre__container .sobre__item {
+    padding: 80px 0 0 0;
+    --cor-item:var(--cor-principal);
+}
+
+.sobre__container .sobre__item .sobre__item-content{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 2rem;
-    padding: 80px 10% 0 10%;
-    --cor-item:var(--cor-principal);
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 10%;
 }
 .sobre__container .sobre__item.roxo {
     --cor-item:var(--cor-secundaria);
@@ -14,10 +20,10 @@
 
 
 .sobre__container img {
-    width: clamp(380px, 100%, 500px);
-    height: clamp(380px, 100%, 500px);
+    width: clamp(320px, 100%, 500px);
+    height: clamp(320px, 100%, 500px);
 }
 
-.sobre__container .sobre__item .content .title {
+.sobre__container .sobre__item .sobre__text .title {
     color: var(--cor-item);
 }

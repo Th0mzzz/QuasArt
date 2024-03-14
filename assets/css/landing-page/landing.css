@@ -13,7 +13,7 @@
     .inicial__container .slogan {
         position: absolute;
         top: 50%;
-        transform: translateY(calc(-50% + -25vh));
+        transform: translateY(-50%);
         color: #ffffff;
         height: auto;
         display: flex;
@@ -42,7 +42,7 @@
         display: none;
     }
 
-    .sobre__container .sobre__item{
+    .sobre__container  .sobre__item .sobre__item-content{
         display: flex;
         flex-flow: row nowrap;
         align-items: center;

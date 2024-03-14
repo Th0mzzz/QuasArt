@@ -38,6 +38,7 @@ header.landing__header {
     background: var(--landing-nav-bg);
     transform: translateX(100%);
     transition: transform ease .6s;
+    width: 100%;
 }
 
 .landing__nav .menu-container.show {
