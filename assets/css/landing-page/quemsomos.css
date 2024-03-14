@@ -1,0 +1,6 @@
+.quemSomos__container{
+    padding: var(--container-padding);
+}
+.quemSomos__container .title{
+    color: var(--cor-principal);
+}

@@ -3,6 +3,7 @@ header.landing__header {
     position: relative;
     z-index: 100;
     --landing-nav-bg: #000000a9;
+    min-height: 100px;
 }
 
 .landing__nav {

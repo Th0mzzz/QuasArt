@@ -15,6 +15,6 @@
 }
 
 .objetivo__container .objetivo__content img {
-    width: clamp(300px, 100%, 1024px);
+    width: clamp(320px, 100%, 1024px);
     margin:0 auto;
 }

@@ -2,7 +2,7 @@
 @import url("./inicial.css");
 @import url("./sobre.css");
 @import url("./objetivo.css");
-
+@import url("./quemsomos.css");
 /* TELA MAIORES */
 
 @media (min-width:992px) {
@@ -13,7 +13,6 @@
     }
 
     .inicial__container .slogan {
-        position: absolute;
         top: 50%;
         transform: translateY(calc(-70%));
         color: #ffffff;
