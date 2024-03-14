@@ -7,7 +7,7 @@
 }
 
 .inicial__container .imagem-inicial {
-    width: clamp(1000px, 110%, 180vw);
+    width: clamp(1000px, 110%, 105vw);
     transform: rotate(-0deg) translateY(-20%);
     border-radius: 0;
     object-position: right;
@@ -17,7 +17,7 @@
 .inicial__container .slogan {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-30%);
     color: #ffffff;
     height: auto;
     display: flex;

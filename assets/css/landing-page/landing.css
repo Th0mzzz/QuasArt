@@ -1,6 +1,8 @@
 @import url("./header.css");
 @import url("./inicial.css");
 @import url("./sobre.css");
+@import url("./objetivo.css");
+
 /* TELA MAIORES */
 
 @media (min-width:992px) {
@@ -13,7 +15,7 @@
     .inicial__container .slogan {
         position: absolute;
         top: 50%;
-        transform: translateY(calc(-50% + -25vh));
+        transform: translateY(calc(-70%));
         color: #ffffff;
         height: auto;
         display: flex;
@@ -26,8 +28,15 @@
         top: 0%;
         right: 0%;
         padding: 0rem 0%;
-        background:none;
+        background: none;
         transform: translateX(0%);
+        opacity: 1;
+        width: auto;
+    }
+
+    .landing__nav .menu-container .text,
+    .landing__nav .menu-container .btn {
+        font-size: clamp(13px, 2vw, 16px);
     }
 
     .landing__nav .nav__list {
@@ -42,13 +51,14 @@
         display: none;
     }
 
-    .sobre__container .sobre__item{
+    .sobre__container .sobre__item .sobre__item-content {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         gap: 1rem;
-    } 
-    .sobre__container .sobre__item:first-child{
+    }
+
+    .sobre__container .sobre__item:first-child .sobre__item-content {
         display: flex;
         flex-flow: row nowrap;
         align-items: end;

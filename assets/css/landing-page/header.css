@@ -37,11 +37,18 @@ header.landing__header {
     padding: 2rem 10%;
     background: var(--landing-nav-bg);
     transform: translateX(100%);
-    transition: transform ease .6s;
+    transition: transform ease .6s, opacity ease .1s;
+    width: 100%;
+    opacity: 0;
+}
+
+.landing__nav .menu-container .text , .landing__nav .menu-container .btn  {
+    font-size: clamp(18px, 100%, 30px);
 }
 
 .landing__nav .menu-container.show {
-    transform: translateY(0%);
+    transform: translateX(0%);
+    opacity: 1;
 }
 
 .landing__nav .nav__list {

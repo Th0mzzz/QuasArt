@@ -3,11 +3,12 @@
 @import url("./abstract/reset.css");
 
 /* Componentes */
-:root{
-    --cor-btn:var(--cor-principal);
-    --cor-btn-hover:var(--cor-principal-hover);
+:root {
+    --cor-btn: var(--cor-principal);
+    --cor-btn-hover: var(--cor-principal-hover);
 }
-.btn{
+
+.btn {
     color: #ffffff;
     font-weight: 400;
     font-family: 'Poppins', Verdana;
@@ -18,12 +19,13 @@
     border-radius: 8px;
     transition: background .3s, color .3s;
     border: 1px solid transparent;
-   
+
 }
 
-.btn.secundaria,.btn-outline.secundaria{
-    --cor-btn:var(--cor-secundaria);
-    --cor-btn-hover:var(--cor-secundaria-hover);
+.btn.secundaria,
+.btn-outline.secundaria {
+    --cor-btn: var(--cor-secundaria);
+    --cor-btn-hover: var(--cor-secundaria-hover);
 }
 
 .btn:hover,
@@ -33,7 +35,7 @@
     border: 1px solid transparent;
 }
 
-.btn-outline{
+.btn-outline {
     color: var(--cor-btn);
     font-weight: 400;
     font-family: 'Poppins', Verdana;
@@ -46,13 +48,13 @@
     transition: background .3s, border .3s, color .3s;
 }
 
-
 /* Espaçamentos */
 
 :root {
     --space-1: 0.5rem !important;
     --space-2: 1rem !important;
     --space-3: 2rem !important;
+    --container-padding: 10rem clamp(2rem, 10%, 6rem) 0 clamp(2rem, 10%, 6rem);
 }
 
 /* Margins */

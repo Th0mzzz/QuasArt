@@ -50,7 +50,7 @@
 }
 
 .negrito-roxo {
-    color: var(--cor-secundaria);
+    color: var(--cor-secundaria-hover);
     font-weight: bold;
     font-size: calc(clamp(13px, 2vw, 16px) + 2px);
 }
