@@ -12,12 +12,11 @@
     border-radius: 0;
     object-position: right;
     box-shadow: 0 0 15px 5px #00000069;
-    position: absolute;
 }
 
 .inicial__container .slogan {
-    position: relative;
-    top: 50%;
+    position: absolute;
+    top: 30%;
     transform: translateY(-50%);
     color: #ffffff;
     height: auto;

@@ -13,7 +13,7 @@
     }
 
     .inicial__container .slogan {
-        top: 50%;
+        top: 30%;
         transform: translateY(calc(-70%));
         color: #ffffff;
         height: auto;

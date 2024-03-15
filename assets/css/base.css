@@ -19,7 +19,7 @@
     border-radius: 8px;
     transition: background .3s, color .3s;
     border: 1px solid transparent;
-
+    cursor: pointer;
 }
 
 .btn.secundaria,
@@ -46,6 +46,7 @@
     padding: .5rem 1rem;
     border-radius: 8px;
     transition: background .3s, border .3s, color .3s;
+    cursor: pointer;
 }
 
 /* Espaçamentos */
