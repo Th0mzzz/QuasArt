@@ -1,5 +1,6 @@
 .quemSomos__container {
     padding: var(--container-padding);
+    padding-top: 20em;
 }
 
 .quemSomos__container .title {
@@ -14,16 +15,18 @@
 }
 
 .carousel__container .arrows .arrow-btn {
-    font-size: 35px;
+    font-size: 40px;
     outline: none;
     background: transparent;
     color: #fd9c4d;
     cursor: pointer;
-    transition: font .3s, color .3s;
+    transition: font .5s, color .5s, background .5s;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     z-index: 50;
+    border-radius: 50%;
+    padding: .5rem .7rem;
 }
 .arrow-btn#previous{
     left: 0;
@@ -32,8 +35,9 @@
     right: 0;
 }
 .carousel__container .arrows .arrow-btn:hover {
-    color: var(--cor-principal);
+    color:#ffffff;
     font-size: 45px;    
+    background: #0000003a;
 }
 
 .carousel__container .carousel__inner{
