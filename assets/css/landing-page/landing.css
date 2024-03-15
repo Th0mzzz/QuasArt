@@ -3,6 +3,9 @@
 @import url("./sobre.css");
 @import url("./objetivo.css");
 @import url("./quemsomos.css");
+@import url("./footer.css");
+
+
 /* TELA MAIORES */
 
 @media (min-width:992px) {

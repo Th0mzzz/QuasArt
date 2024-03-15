@@ -30,7 +30,7 @@
 
 .btn:hover,
 .btn-outline:hover {
-    color: #000;
+    color: #fff;
     background: var(--cor-btn-hover);
     border: 1px solid transparent;
 }

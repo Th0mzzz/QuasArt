@@ -18,7 +18,7 @@ header.landing__header {
 }
 
 
-.landing__nav .logo {
+.landing__nav .logo , .footer__header .logo{
     display: flex;
     align-items: center;
     padding: 1rem 0;
@@ -27,7 +27,7 @@ header.landing__header {
     color: #ffffff;
 }
 
-.landing__nav .logo img {
+.landing__nav .logo img , .footer__header .logo img{
     width: clamp(40px, 5%, 50px);
 }
 
