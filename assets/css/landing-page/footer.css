@@ -18,11 +18,15 @@
 
 .footer__header .redes .rede-item{  
     color: var(--cor-secundaria);
-    font-size: 30px;
+    font-size: 25px;
     margin: 0 10px;
 }
 .footer__header .redes .rede-item:hover{  
     color: var(--cor-secundaria-hover);
-    font-size: 30px;
     margin: 0 10px;
+}
+.footer__container >.text{
+    color: var(--cor-secundaria);
+    padding: 2rem;
+    text-align: center;
 }

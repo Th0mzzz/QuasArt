@@ -13,15 +13,6 @@
     padding: 5rem 0;
 }
 
-.carousel__container .arrows {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
 .carousel__container .arrows .arrow-btn {
     font-size: 35px;
     outline: none;
@@ -29,35 +20,49 @@
     color: #fd9c4d;
     cursor: pointer;
     transition: font .3s, color .3s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
 }
-
+.arrow-btn#previous{
+    left: 0;
+}
+.arrow-btn#next{
+    right: 0;
+}
 .carousel__container .arrows .arrow-btn:hover {
     color: var(--cor-principal);
     font-size: 45px;    
 }
 
 .carousel__container .carousel__inner{
-    padding: 5rem 10% ;
     display: flex;
-    gap: 1rem;
-    justify-content: space-around;
+    padding: 1rem;
+    gap: 2rem;
 }
 
 .card__membro{
-    padding: 5rem 4rem;
+    padding: 5rem 2rem;
     box-shadow: 0 0 8px #00000048;
     border-radius: 10px;
-    max-width: 400px;
     position: relative;
     border-bottom: 3px solid var(--cor-card);
     --cor-card:#2600ff;
+    transition: all ease .8s;
+    opacity: .4;
+    min-width: clamp(200px,100%,350px);
+    
+}
+.card__membro.active{
+    opacity: 1;
 }
 .card__membro header{
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     gap: .6rem;
-    text-align: center                          ;
+    text-align: center;
 }
 
 .card__membro header .imagem__membro{
@@ -78,9 +83,6 @@
     top: 15px;
     left: 15px;
     color: var(--cor-card);
-}
-.card__membro.active{
-    
 }
 .card__membro .rm {
     color: var(--cor-card);
