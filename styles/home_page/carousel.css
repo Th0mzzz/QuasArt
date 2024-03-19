@@ -44,7 +44,7 @@ h3 {
     height: 100%;
 }
 
-.inicial .slide div {
+.inicial .slide article {
     border-radius: 20px 20px 0 0;
     background: linear-gradient(to top, #00000075 45%, transparent);
     width: 100%;
@@ -61,17 +61,17 @@ h3 {
     padding-bottom: 2rem;
 }
 
-.inicial .slide div h5 {
+.inicial .slide article h5 {
     color: white;
 }
 
-.inicial .slide div p {
+.inicial .slide article p {
     width: 55%;
     color: white;
     font-size: 12.5px;
 }
 
-.inicial .slide div .btn-vermais {
+.inicial .slide article .btn-vermais {
     position: absolute;
     right: 10px;
     padding: 8px;
@@ -81,15 +81,15 @@ h3 {
     transition: all 0.2s;
 }
 
-.inicial .slide div .btn-vermais span {
+.inicial .slide article .btn-vermais span {
     color: var(--cor-secundaria);
 }
 
-.inicial .slide div .btn-vermais:hover {
+.inicial .slide article .btn-vermais:hover {
     background-color: var(--cor-secundaria);
 }
 
-.inicial .slide div .btn-vermais:hover span {
+.inicial .slide article .btn-vermais:hover span {
     color: var(--cor-texto);
     font-weight: bold;
 }
@@ -110,14 +110,14 @@ h3 {
     flex-grow: 1;
     max-height: 320px;
 }
-.itens .slide a div {
+.itens .slide a article {
     height: 320px;
     transition: all ease-in .3s;
 }
 .itens .owl-stage-outer {
     overflow:visible !important;
 }
-.itens .owl-item:hover .slide img , .itens .owl-item:hover .slide a div{
+.itens .owl-item:hover .slide img , .itens .owl-item:hover .slide a article{
     transform: translateY(-15px);
     box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.521) ;
 }
