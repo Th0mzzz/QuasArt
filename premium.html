@@ -21,10 +21,16 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header aside_interference">
         <nav>
-            <button href="#" class="btn__homeback back mb-3"><i class="bi bi-arrow-left-circle"></i></button>
-            <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
+            <article class="logotipo">
+                <a href="index.html">
+                    <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                    <h1 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h1>
+                </a>
+            </article>
+            <a class="btn w-auto utility_item gap-2 ms-auto me-3 modoBtn"></a>
+            <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
         </nav>
     </header>
     <main class="premium_main">
@@ -39,9 +45,17 @@
                         
                 <p class="slogan_plus">Venha viajar ainda mais longe com o Plus!!</p>
             </article>
+        <header class="premium_top">
+            <article class="logotipo ">
+                <img src="img/quasart_logo.png" alt="Logotipo_QuasArt" class="logo_img">
+                <p class="fs-5">Quas<span style="color:#FFE03B" class="fs-5">Art</span> <SPAN style="color:#508CD3"
+                        class="fs-5">PLUS+</SPAN></p>
+                <p class="slogan_plus">Venha viajar ainda mais longe com o Plus!!</p>
+            </article>
+        </header>
+        <main class="premium_planos">
 
-        </section>
-        <section class="premium_planos">
+            <article class="container_planos">
 
             <article class="container_planos">
 
@@ -119,8 +133,39 @@
             </article>
         </section>
 
+        </main>
     </main>
 
+    <section class="premium_modal" id="premium_modal">
+        <main class="modal_content">
+            <span class="close_btn"><i class="bi bi-x-lg"></i></span>
+            <h2 id="plano_nome"></h2>
+            <p>Gostaria de qual plano?</p>
+            <form class="inputs_plano my-3">
+                <article class="form-check">
+                    <input class="form-check-input" type="radio" name="plano" id="mensal">
+                    <label for="mensal">Plano Mensal:<span id="preco_mensal"></span></label>
+                </article>
+
+                <article class="form-check">
+                    <input class="form-check-input" type="radio" name="plano" id="semestral">
+                    <label for="semestral">Plano Semestral: <span id="preco_semestral"></span> (desconto de
+                        <span>10%</span>!!)</label>
+                </article>
+
+
+                <article class="input_container">
+                    <input class="form-check-input" type="radio" name="plano" id="anual">
+                    <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!)
+                    </label>
+
+                </article>
+
+                <input type="submit" class="btn" value="Confirmar!">
+
+            </form>
+        </main>
+    </section>
     <script src="js/premium.js"></script>
     <script src="js/index.js"></script>
 </body>

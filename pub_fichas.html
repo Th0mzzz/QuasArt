@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,33 +15,33 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-
     <!-- FavIcon -->
     <link rel="shortcut icon" href="img/quasart_logo_pequena.png" type="image/x-icon">
     <title>Quasart</title>
 </head>
-
 <body>
-    <header class="header">
-
+    <header class="header aside_interference">
         <nav>
             <article class="logotipo">
                 <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
                     <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p>
                 </a>
             </article>
+                <a href="index.html">
+                    <img src="img/quasart_logo_pequena.png" alt="Logo do QuasArt" class="logo_img">
+                    <h1 class="tipografia">Quas<span style="color:#FFE03B">Art</span></h1>
+                </a>
+            </article>
+            <a class="btn w-auto utility_item gap-2 ms-auto me-3 modoBtn"></a>
             <a href="premium.html"><button class="assine-btn"><span>Assine</span></button></a>
-            <button class="d-none modoBtn"><i class="bi bi-moon"></i></button>
         </nav>
-
     </header>
-
     <main>
-
         <section class="pubForm_container container-fluid mx-2 p-4 p-md-5 my-5 mx-lg-auto position-relative">
 
             <article class="row h-auto position-relative">
 
+            <header class="row h-auto position-relative">
                 <button href="#" class="btn__homeback back col-3 col-md-1 "><i
                         class="bi bi-arrow-left-circle"></i></button>
 
@@ -53,6 +52,8 @@
 
             <article class="pubContent">
 
+            </header>
+            <main class="pubContent">
                 <form class="form_resenha form_fichas formConta">
 
                     <article class="inputs_container row mt-4 mb-3 justify-content-space-between">
@@ -103,6 +104,7 @@
                             <article id="image_container">
                                 <input type="file" id="inputImage" name="image_resenha"
                                     class="w-100 h-100 input-conta">
+                                <input type="file" id="inputImage" name="image_resenha" class="w-100 h-100 input-conta">
                                 <label for="inputImage">+</label>
                                 <span class="feedback text-danger my-1 ">Insira uma imagem!</span>
                             </article>
@@ -126,17 +128,17 @@
                 </form>
 
             </article>
+            </main>
         </section>
     </main>
-   
+
 
     <script src="js/index.js"></script>
     <script src="js/tags.js"></script>
     <script src="js/imagePub.js"></script>
     <script src="js/validation.js"></script>
-   
+
 
 
 </body>
-
 </html>
