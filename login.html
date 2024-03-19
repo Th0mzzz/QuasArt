@@ -22,6 +22,7 @@
 <body>
     <header class="mb-3">
         <nav class="navbar p-3 container-fluid">
+            
                 <article class="logotipo">
                     <a href="index.html"> <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img "> <p class="tipografia">Quas<span style="color:#FFE03B">Art</span></p> </a>
                 </article>
@@ -29,6 +30,12 @@
         </nav> 
    </header>
     <main> 
+        
+        <article class="form__container" id="conta">
+           
+            <form action="" class="form ativado my-3 formConta" id="login">
+                <article class="w-100 text-sm-center text-start my-3">
+                    
         <section class="form__container" id="conta">
            
             <form action="" class="form ativado my-3 formConta" id="login">
@@ -61,6 +68,41 @@
 
             </form>
 
+            <form action="" class="form" id="token">
+                
+                <h2>Esqueceu a senha?</h2>
+                <input type="text" class="" name="email__esqueceu" placeholder="Digite seu Email para o envio do Token">
+                <input type="button" class="enviar__btn" value="Enviar" id="enviarToken">
+                
+                <article class="token__container">
+                    <p>Digite o Token de segurança:</p>
+                    <article class="token__btns">           
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1" oninput="handleInput(this)">
+                        <input type="text" class="cod_token" maxlength="1">
+                    </article>
+                    <input type="button" class="enviar__btn" value="Verificar" id="verificarToken">
+                </article>
+                <a class="cancelar_btn">Cancelar</a>
+            </form>
+
+            
+            <form action="" class="form" id="novaSenha">
+                <article class="logotipo">
+                    <a href="../index.html">
+                        <img src="img/quasart_logo_pequena.png" alt="Logotipo_QuasArt" class="logo_img">
+                    </a>
+                </article>
+
+                <input type="text" placeholder="Digite sua nova senha">
+                <input type="text" placeholder="Confirme sua nova senha">
+                <input type="button" class="enviar__btn" value="Enviar"></a>
+                <a class="cancelar_btn">Cancelar</a>
+            </form>
+
+        </article>
          
 
         </section>

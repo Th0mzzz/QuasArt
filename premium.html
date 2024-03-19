@@ -35,6 +35,17 @@
         </nav>
     </header>
     <main class="premium_main">
+
+        <section class="premium_top">
+        
+            <article class="logotipo">
+                <a href="index.html" class="d-flex flex-column"> 
+                    <img src="img/quasart_logo.png" alt="Logotipo_QuasArt" class="logo_img"> 
+                    <p class="tipografia">Quas<span style="color:#FFE03B">Art</span> <SPAN style="color:#508CD3">PLUS+</SPAN></p>
+                </a>
+                        
+                <p class="slogan_plus">Venha viajar ainda mais longe com o Plus!!</p>
+            </article>
         <header class="premium_top">
             <article class="logotipo ">
                 <img src="img/quasart_logo.png" alt="Logotipo_QuasArt" class="logo_img">
@@ -44,6 +55,8 @@
             </article>
         </header>
         <main class="premium_planos">
+
+            <article class="container_planos">
 
             <article class="container_planos">
 
@@ -66,6 +79,7 @@
                 <article class="plano comandante">
                     <h2>Comandante <span style="color:#508CD3;">PLUS +</span></h2>
                     <article class="precos">
+
                         <h1>R$30,00 por mês!</h3>
                             <p>Plano Semestral: R$144.00 <span>(10% desconto por mês!!)</span> <br>
                                 Plano Anual:R$288.00 <span>(20% desconto ao mês!!)</span>
@@ -83,6 +97,42 @@
                 </article>
 
             </article>
+
+        </section>
+
+        <section class="premium_modal" id="premium_modal">
+
+            <article class="modal_content">
+                <span class="close_btn"><i class="bi bi-x-lg"></i></span>
+                <h2 id="plano_nome"></h2>
+                <p>Gostaria de qual plano?</p>
+
+                <article class="inputs_plano my-3">
+                    <article class="form-check">
+                        <input class="form-check-input" type="radio" name="plano" id="mensal">
+                        <label for="mensal">Plano Mensal:<span id="preco_mensal"></span></label>
+                      </article>
+
+                      <article class="form-check">
+                        <input class="form-check-input" type="radio" name="plano" id="semestral">
+                        <label for="semestral">Plano Semestral: <span id="preco_semestral"></span> (desconto de
+                            <span>10%</span>!!)</label>
+                      </article>
+
+                    
+                    <article class="input_container">
+                        <input class="form-check-input" type="radio" name="plano" id="anual">
+                        <label for="plano">Plano Anual: <span id="preco_anual"></span> (desconto de <span>20%</span>!!)
+                        </label>
+
+                    </article>
+
+                    <input type="submit" class="btn" value="Confirmar!">
+
+                </article>
+
+            </article>
+        </section>
 
         </main>
     </main>
