@@ -1,8 +1,11 @@
 .quemSomos__container {
     padding: var(--container-padding);
-    padding-top: 20em;
+    padding-top: 10em;
 }
-
+.quemSomos__content {
+    max-width: 1440px;
+    margin: auto;
+}
 .quemSomos__container .title {
     color: var(--cor-principal);
 }
