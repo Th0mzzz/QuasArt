@@ -1,0 +1,93 @@
+.quemSomos__container {
+    padding: var(--container-padding);
+    padding-top: 20em;
+}
+
+.quemSomos__container .title {
+    color: var(--cor-principal);
+}
+
+
+.carousel__container {
+    overflow: hidden;
+    position: relative;
+    padding: 5rem 0;
+}
+
+.carousel__container .arrows .arrow-btn {
+    font-size: 40px;
+    outline: none;
+    background: transparent;
+    color: #fd9c4d;
+    cursor: pointer;
+    transition: font .5s, color .5s, background .5s;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    border-radius: 50%;
+    padding: .5rem .7rem;
+}
+.arrow-btn#previous{
+    left: 0;
+}
+.arrow-btn#next{
+    right: 0;
+}
+.carousel__container .arrows .arrow-btn:hover {
+    color:#ffffff;
+    font-size: 45px;    
+    background: #0000003a;
+}
+
+.carousel__container .carousel__inner{
+    display: flex;
+    padding: 1rem;
+}
+
+.card__membro{
+    padding: 5rem 2rem;
+    box-shadow: 0 0 8px #00000048;
+    border-radius: 10px;
+    position: relative;
+    border-bottom: 3px solid var(--cor-card);
+    --cor-card:#2600ff;
+    transition: all ease .8s;
+    opacity: .4;
+    min-width: clamp(200px,100%,350px);
+    
+}
+.card__membro.active{
+    opacity: 1;
+}
+.card__membro header{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    gap: .6rem;
+    text-align: center;
+}
+
+.card__membro header .imagem__membro{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00000048;
+}
+.card__membro header .imagem__membro img{ 
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.card__membro i{
+    font-size: 30px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: var(--cor-card);
+}
+.card__membro .rm {
+    color: var(--cor-card);
+    font-weight: bold;
+}

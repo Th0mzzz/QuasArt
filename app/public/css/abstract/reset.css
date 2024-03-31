@@ -1,0 +1,22 @@
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    background: var(--cor-fundo);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+    padding: 0 10px;
+}
+::-webkit-scrollbar-thumb{
+    background:linear-gradient(to bottom, var(--cor-principal) ,var(--cor-principal-hover)) ;
+    border-radius: 20px;
+}

@@ -1,0 +1,30 @@
+
+/* Container Inicial */
+
+.inicial__container {
+    position: relative;
+    display: flex;
+}
+
+.inicial__container .imagem-inicial {
+    width: clamp(1000px, 110%, 105vw);
+    transform: rotate(-0deg) translateY(-20%);
+    border-radius: 0;
+    object-position: right;
+    box-shadow: 0 0 15px 5px #00000069;
+}
+
+.inicial__container .slogan {
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    color: #ffffff;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0 10%;
+}
+
+.inicial__container .slogan .btn-outline {
+    width: fit-content;
+}
