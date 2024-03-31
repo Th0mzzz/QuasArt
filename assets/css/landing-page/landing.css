@@ -66,4 +66,11 @@
         align-items: end;
         gap: 1rem;
     }
+    
+}
+
+@media (min-width:768px) {
+    .carousel__container .carousel__inner{
+        gap: 2rem;
+    }
 }

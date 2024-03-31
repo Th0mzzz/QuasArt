@@ -81,11 +81,3 @@ header.landing__header {
     border-radius: 10px;
 }
 
-.landing__nav-btn:hover {
-    background: var(--cor-principal-hover);
-}
-
-.landing__nav-btn:active {
-    background: var(--cor-principal-hover);
-    box-shadow: 0px 0px 14px 4px var(--cor-principal);
-}

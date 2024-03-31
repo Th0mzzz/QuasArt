@@ -6,9 +6,11 @@ const menuItens = document.querySelectorAll(".nav__item")
 
 menuBtn.addEventListener("click", () => {
     menuContainer.classList.toggle("show")
+    menuContainer.classList.contains("show") ? menuBtn.querySelector("i").className = "bi bi-x-lg " : menuBtn.querySelector("i").className = "bi bi-list ";
+
 })
 
-menuItens.forEach(item => item.addEventListener("click",()=>{ menuContainer.classList.remove("show")}))
+menuItens.forEach(item => item.addEventListener("click", () => { menuContainer.classList.remove("show") }))
 
 // animação nav
 let currentScrollY = window.scrollY
@@ -18,7 +20,7 @@ window.addEventListener("scroll", () => {
     if (window.scrollY > currentScrollY) {
         nav.style.transform = "translateY(-100%)"
         currentScrollY = window.scrollY
-        menuContainer.classList.contains("show")? menuContainer.classList.remove("show"): ""
+        menuContainer.classList.contains("show") ? menuContainer.classList.remove("show") : ""
     }
     if (window.scrollY < currentScrollY) {
         nav.style.transform = "translateY(0%)"

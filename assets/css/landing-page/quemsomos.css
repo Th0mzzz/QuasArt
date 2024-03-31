@@ -43,7 +43,6 @@
 .carousel__container .carousel__inner{
     display: flex;
     padding: 1rem;
-    gap: 2rem;
 }
 
 .card__membro{
