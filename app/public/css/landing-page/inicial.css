@@ -7,7 +7,7 @@
 }
 
 .inicial__container .imagem-inicial {
-    width: clamp(1000px, 110%, 105vw);
+    width: clamp(1000px, 105%, 105vw);
     transform: rotate(-0deg) translateY(-20%);
     border-radius: 0;
     object-position: right;

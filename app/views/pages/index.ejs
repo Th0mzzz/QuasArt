@@ -2,11 +2,7 @@
 <html lang="pt-br" id="inicio">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quasart</title>
-    <link rel="shortcut icon" href="./img/quasart_logo_pequena.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/base.css">
+    <%- include("../partial/head") %>
     <link rel="stylesheet" href="./css/landing-page/landing.css">
 
 </head>
@@ -14,7 +10,7 @@
 <body>
     <header class="landing__header">
         <nav class="landing__nav nav">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src=".//img/quasart_logo_branca.png" alt="Logotipo do Quasart">
                 <h1 class="tipografia">Quas<span style="color:var(--cor-principal);">Art<span></h1>
             </a>
@@ -27,7 +23,7 @@
                     <li><a href="#sobre" class="nav__item text">Sobre o projeto</a></li>
                     <li><a href="#objetivo" class="nav__item text">Nosso objetivo</a></li>
                     <li><a href="#quemSomos" class="nav__item text">Quem somos</a></li>
-                    <li><a href="#" class="btn ms-1">Entrar</a></li>
+                    <li><a href="/entrar" class="btn ms-1">Entrar</a></li>
                 </ul>
             </article>
         </nav>
@@ -39,7 +35,7 @@
             <article class="slogan p-3">
                 <h2 class="supertitle">Explore o Infinito</h2>
                 <h3 class="subtitle">Descubra o extraordinário.</h3>
-                <a href="#" class="btn-outline mt-2">Cadastre-se agora!</a>
+                <a href="cadastrar" class="btn-outline mt-2">Cadastre-se agora!</a>
             </article>
         </section>
         <section id="sobre" class="sobre__container">
@@ -273,7 +269,7 @@
     </main>
     <footer class="footer__container">
         <header class="footer__header">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src=".//img/quasart_logo.png" alt="Logotipo do Quasart">
                 <h1 class="tipografia">Quas<span style="color:var(--cor-principal);">Art<span></h1>
             </a>

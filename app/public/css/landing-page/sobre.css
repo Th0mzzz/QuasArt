@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 4rem;
-    padding: var(--container-padding);
+    padding: var(--container-padding-landing);
     max-width: 1440px;
     margin: 0 auto;
 }

@@ -16,7 +16,7 @@
     text-decoration: none;
     background: var(--cor-btn);
     padding: .5rem 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     transition: background .3s, color .3s;
     border: 1px solid transparent;
     cursor: pointer;
@@ -44,7 +44,7 @@
     border: 1px solid var(--cor-btn);
     background: transparent;
     padding: .5rem 1rem;
-    border-radius: 8px;
+    border-radius: 5px;
     transition: background .3s, border .3s, color .3s;
     cursor: pointer;
 }
@@ -55,7 +55,7 @@
     --space-1: 0.5rem !important;
     --space-2: 1rem !important;
     --space-3: 2rem !important;
-    --container-padding: 10rem clamp(2rem, 10%, 6rem) 0 clamp(2rem, 10%, 6rem);
+    --container-padding-landing: 10rem clamp(2rem, 10%, 6rem) 0 clamp(2rem, 10%, 6rem);
 }
 
 /* Margins */

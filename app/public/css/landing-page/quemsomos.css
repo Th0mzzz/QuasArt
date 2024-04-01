@@ -1,5 +1,5 @@
 .quemSomos__container {
-    padding: var(--container-padding);
+    padding: var(--container-padding-landing);
     padding-top: 10em;
 }
 .quemSomos__content {
@@ -62,6 +62,7 @@
 }
 .card__membro.active{
     opacity: 1;
+    margin: 0 10px;
 }
 .card__membro header{
     display: flex;

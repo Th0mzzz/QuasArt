@@ -1,5 +1,5 @@
 .footer__container{
-    padding: var(--container-padding);
+    padding: var(--container-padding-landing);
 }
 .footer__header {
     display: flex;
