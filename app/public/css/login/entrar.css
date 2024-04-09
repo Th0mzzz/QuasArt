@@ -1,4 +1,17 @@
-.section__login{
-    --cor-login:var(--cor-secundaria);
-    --cor-login-hover:var(--cor-secundaria-hover);
+.section__login {
+    --cor-login: var(--cor-secundaria);
+    --cor-login-hover: var(--cor-secundaria-hover);
+}
+
+@media (min-width:769px) {
+    .section__login {
+        flex-flow: row nowrap;
+        
+        .logo-login {
+            top: 50%;
+            bottom: inherit;
+            left: 100%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }

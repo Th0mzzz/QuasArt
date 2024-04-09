@@ -1,0 +1,5 @@
+.section__login{
+    --cor-login:var(--cor-primaria );
+    --cor-login-hover:var(--cor-primaria-hover);
+}
+

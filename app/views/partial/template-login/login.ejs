@@ -11,17 +11,18 @@
     </header>
     <form action="/logarConta" method="get">
         <article class="input__container">
-            <input type="text" name="usuario" id="usuario" class="input__control" required>
+            <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required>
             <label for="usuario">Usuário:</label>
         </article>
-        <article class="input__container">
-            <input type="text" name="senha" id="senha" class="input__control" required>
+        <article class="input__container senha">
+            <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required>
+            <button class="ocultSenha btn"><i class="bi bi-eye"></i></button>
             <label for="senha">Senha:</label>
         </article>
         <article class="links">
             <a class="link" href="/esqueceuSenha">Esqueceu a senha?</a>
             <a class="link" href="/cadastrar">Não tem cadastro?</a>
         </article>
-        <button class="btn text p-2 mt-3">Entrar</button>
+        <button class="btn submit text p-2 mt-3">Entrar</button>
     </form>
 </article>

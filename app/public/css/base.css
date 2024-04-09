@@ -38,7 +38,6 @@
 .btn-outline {
     color: var(--cor-btn);
     font-weight: 400;
-    font-family: 'Poppins', Verdana;
     font-size: clamp(13px, 2vw, 16px);
     text-decoration: none;
     border: 1px solid var(--cor-btn);
@@ -52,28 +51,46 @@
 .input__container {
     position: relative;
     border-radius: 10px;
-}
-.input__container input ~ label {
-    position: absolute;
-    left: 1rem;
-    top: 1rem;
-    transition: all ease .3s;
-}
-.input__container :is( input:focus, input:active) ~ label {
-    left: .8rem;
-    top: 5px;
-    font-size: var(--fs-smalltext);
+
+    & input~label {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        transition: all ease .3s;
+        font-family: 'Poppins', Verdana;
+    }
+
+    & input {
+        outline: none;
+        border: none;
+        background: transparent;
+        color: var(--cor-texto);
+        padding: 1.5rem 1rem 1.2rem 1rem;
+        width: 100%;
+        font-family: 'Questrial', Verdana;
+        font-size: var(--fs-text);
+
+        &::placeholder{
+            color: var(--cor-containers);
+        }
+    }
+
+    & :is(input:focus, input:active, input:not(:placeholder-shown))~label {
+        left: .8rem;
+        top: 5px;
+        font-size: var(--fs-smalltext);
+        opacity: .8;
+    }
+
+    & .ocultSenha{
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        translate: 0% -50%;
+    }
+
 }
 
-
-.input__container input {
-    outline: none;
-    border: none;
-    background: transparent;
-    color: var(--cor-texto);
-    padding: 1.5rem 1rem 1.2rem 1rem;
-    width: 100%;
-}
 
 
 /* Espaçamentos */

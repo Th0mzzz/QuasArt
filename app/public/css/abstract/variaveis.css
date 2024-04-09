@@ -19,7 +19,7 @@
     --fs-smalltext:clamp(10px, 1vw, 14px);
 }
 
-.text ,  .input__container input ~ label {
+.text   {
     font-weight: 400;
     font-family: 'Poppins', Verdana;
     font-size:var(--fs-text);
@@ -62,7 +62,7 @@
     font-size: calc(clamp(13px, 2vw, 16px) + 2px);
 }
 
-.smallText , .input__container :is( input:focus, input:active) ~ label{
+.smallText {
     font-weight: 400;
     font-size:var(--fs-smalltext) ;
     font-family: 'Questrial', sans-serif;
