@@ -49,6 +49,32 @@
     cursor: pointer;
 }
 
+.input__container {
+    position: relative;
+    border-radius: 10px;
+}
+.input__container input ~ label {
+    position: absolute;
+    left: 1.5rem;
+    top: 1.5rem;
+    transition: all ease .3s;
+}
+.input__container :is(input:hover, input:focus, input:active) ~ label {
+    left: 1.2rem;
+    top: 5px    ;
+}
+
+
+.input__container input {
+    outline: none;
+    border: none;
+    background: transparent;
+    color: var(--cor-texto);
+    padding: 1.5rem 1.2rem 1rem 1.2rem;
+    width: 100%;
+}
+
+
 /* Espaçamentos */
 
 :root {

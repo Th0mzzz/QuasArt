@@ -10,30 +10,36 @@
     --cor-fundo: #F3F8FF;
     --cor-containers: #fff;
     --cor-texto: #2C2C2C;
+    /* Fontes */
+    --fs-text:clamp(13px, 2vw, 16px);
+    --fs-title:clamp(28px, 3vw, 32px);
+    --fs-subtitle:clamp(20px, 2.5vw, 22px);
+    --fs-supertitle:clamp(32px, 2vw, 40px);
+
 }
 
-.text {
+.text , label ,  .input__container input{
     font-weight: 400;
     font-family: 'Poppins', Verdana;
-    font-size: clamp(13px, 2vw, 16px);
+    font-size:var(--fs-text);
 }
 
 .title {
-    font-weight: 700;
+    font-weight: 800;
     font-family: 'Montserrat', Arial;
-    font-size: clamp(28px, 3vw, 32px);
+    font-size: var(--fs-title);
 }
 
 .subtitle {
     font-weight: normal;
     font-family: 'Questrial', sans-serif;
-    font-size: clamp(20px, 2.5vw, 22px);
+    font-size: var(--fs-subtitle);
 }
 
 .supertitle {
     font-weight: 700;
     font-family: 'Poppins', Verdana;
-    font-size: clamp(32px, 2vw, 40px);
+    font-size: var(--fs-supertitle);
     letter-spacing: 1px;
 }
 

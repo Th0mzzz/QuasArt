@@ -2,38 +2,51 @@
     --cor-login: none;
     --cor-login-hover: none;
     display: flex;
+    flex-flow: column nowrap;
     width: 100%;
     min-height: 100vh;
 }
 
 .container__form {
-    background: var(--fundo-containers);
+    background: var(--cor-containers);
     width: 100%;
-    max-width: 992px;
     padding: 3rem 4rem;
+    & .form__title{
+        padding: 3rem 0;
+        text-align: center;
+        color: var(--cor-login);
+        & h3 , & h2{
+            display: block;
+            margin: 10px 0;
+        }
+    }
+    & .input__container{
+        border:1px solid var(--cor-login);
+        width: 100%;
+    }
 }
 
 .fundo__login {
     width: 100%;
-    height: 100vh;
     background: var(--cor-login);
     position: relative;
     overflow: visible;
-
+    height: clamp(50px, 20vh, 100px);
     & .logo-login {
         position: absolute;
-        left: 95%;
         width: auto;
         height: auto;
+        bottom: -50%;
+        left: 50%;
+        transform: translate(-50%);
         border-radius: 50%;
-        border: 4px solid var(--fundo-containers);
+        border: 4px solid var(--cor-containers);
         background: var(--cor-login);
-        z-index: 3;
+        z-index: 50;
         padding: 1.2rem;
 
         & img {
-            width: 50px;
-
+            width: clamp(45px, 1vw, 60px );
         }
     }
 }
