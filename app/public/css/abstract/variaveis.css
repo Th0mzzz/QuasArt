@@ -12,13 +12,14 @@
     --cor-texto: #2C2C2C;
     /* Fontes */
     --fs-text:clamp(13px, 2vw, 16px);
+    --fs-link:clamp(14px, 2vw, 18px);
     --fs-title:clamp(28px, 3vw, 32px);
     --fs-subtitle:clamp(20px, 2.5vw, 22px);
     --fs-supertitle:clamp(32px, 2vw, 40px);
-
+    --fs-smalltext:clamp(10px, 1vw, 14px);
 }
 
-.text , label ,  .input__container input{
+.text ,  .input__container input ~ label {
     font-weight: 400;
     font-family: 'Poppins', Verdana;
     font-size:var(--fs-text);
@@ -59,4 +60,16 @@
     color: var(--cor-secundaria-hover);
     font-weight: bold;
     font-size: calc(clamp(13px, 2vw, 16px) + 2px);
+}
+
+.smallText , .input__container :is( input:focus, input:active) ~ label{
+    font-weight: 400;
+    font-size:var(--fs-smalltext) ;
+    font-family: 'Questrial', sans-serif;
+}
+
+.link{
+    font-size: var(--fs-link);
+    font-family: "Questrial", Arial;
+    text-decoration: none;
 }

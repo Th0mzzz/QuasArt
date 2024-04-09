@@ -5,24 +5,52 @@
     flex-flow: column nowrap;
     width: 100%;
     min-height: 100vh;
+    max-width: 992px;
+    margin: 0 auto;
+
 }
 
 .container__form {
     background: var(--cor-containers);
     width: 100%;
-    padding: 3rem 4rem;
-    & .form__title{
+    padding: clamp(.6rem, 5vw, 3rem) clamp(.6rem,5vw,4rem);
+
+    & .btn {
+        width: 100%;
+        border-radius: 20px;
+        background: var(--cor-login);
+    }
+
+    & .links {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 1.4rem 2rem;
+        & .link {
+            color: var(--cor-login);
+
+            &:hover {
+                color: var(--cor-login-hover);
+            }
+        }
+    }
+
+    & .form__title {
         padding: 3rem 0;
         text-align: center;
         color: var(--cor-login);
-        & h3 , & h2{
+
+        & h3,
+        & h2 {
             display: block;
             margin: 10px 0;
         }
     }
-    & .input__container{
-        border:1px solid var(--cor-login);
+
+    & .input__container {
+        border: 1px solid var(--cor-login);
         width: 100%;
+        margin: .5rem 0;
     }
 }
 
@@ -32,6 +60,7 @@
     position: relative;
     overflow: visible;
     height: clamp(50px, 20vh, 100px);
+
     & .logo-login {
         position: absolute;
         width: auto;
@@ -46,7 +75,7 @@
         padding: 1.2rem;
 
         & img {
-            width: clamp(45px, 1vw, 60px );
+            width: clamp(45px, 1vw, 60px);
         }
     }
 }
