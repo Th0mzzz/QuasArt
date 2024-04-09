@@ -1,0 +1,54 @@
+<% let classModal=modal=="fechado" ? "" : "show" %>
+
+    <link rel="stylesheet" href="./css/login/entrar.css">
+    
+    <article class="fundo__login">
+        <figure class="logo-login">
+            <img src="./img/quasart_logo_branca.png" alt="logo do Quasart">
+        </figure>
+    </article>
+
+    <article class="container__form">
+        <header class="form__title">
+            <h2 class="title">REDEFINIR SENHA</h2>
+            <h3 class="subtitle">Vamos te ajudar a recuperar sua senha!</h3>
+        </header>
+        <p class="text helpText mt-1
+     mb-3">Digite o seu e-mail no campo abaixo e lhe enviaremos
+            um código de ativação para a redefinição de senha.</p>
+        <form action="/enviarEmail" method="get">
+            <article class="input__container">
+                <input type="text" name="email" id="email" class="input__control" placeholder="E-mail" required>
+                <label for="email">E-mail:</label>
+            </article>
+            <article class="links">
+                <a href="/entrar" class="link">Cancelar</a>
+            </article>
+            <button class="btn submit text p-2 mt-3">Enviar</button>
+        </form>
+    </article>
+
+    <!-- MODAL -->
+    <section class="modal redefinirModal <%= classModal %>" id="redefinirModal">
+        <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+        <article class="modal__content">
+            <header class="modal__title">
+                <h2 class="title">Digite abaixo o código enviado no seu e-mail</h2>
+                <p class="text">Caso não encontre o código certifique-se que digitou o e-mail correto</p>
+            </header>
+            <form action="/checarToken">
+                <article class="inputs__numbers mb-3 mt-2">
+                    <input class="numberToken" name="numero1" type="text" maxlength="1" inputmode="numeric"
+                        pattern="[0-9]*" id="numero1">
+                    <input class="numberToken" name="numero2" type="text" maxlength="1" inputmode="numeric"
+                        pattern="[0-9]*" id="numero2">
+                    <input class="numberToken" name="numero3" type="text" maxlength="1" inputmode="numeric"
+                        pattern="[0-9]*" id="numero3">
+                    <input class="numberToken" name="numero4" type="text" maxlength="1" inputmode="numeric"
+                        pattern="[0-9]*" id="numero4">
+                </article>
+
+                <button class="btn submit">Enviar</button>
+            </form>
+        </article>
+    </section>

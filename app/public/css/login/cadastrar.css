@@ -1,5 +1,18 @@
 .section__login{
-    --cor-login:var(--cor-primaria );
-    --cor-login-hover:var(--cor-primaria-hover);
+    --cor-login:var(--cor-principal );
+    --cor-login-hover:var(--cor-principal-hover);
 }
 
+@media (min-width:769px) {
+    .section__login {
+        flex-flow: row-reverse nowrap;
+        
+        .logo-login {
+            top: 50%;
+            bottom: inherit;
+            left: inherit;
+            right: 100%;
+            transform: translate(50%, -50%);
+        }
+    }
+}

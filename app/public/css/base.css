@@ -8,6 +8,7 @@
     --cor-btn-hover: var(--cor-principal-hover);
 }
 
+/* BTNS */
 .btn {
     color: #ffffff;
     font-weight: 400;
@@ -20,6 +21,11 @@
     transition: background .3s, color .3s;
     border: 1px solid transparent;
     cursor: pointer;
+
+    &.submit {
+        width: 100%;
+        border-radius: 50px;
+    }
 }
 
 .btn.secundaria,
@@ -39,6 +45,7 @@
     color: var(--cor-btn);
     font-weight: 400;
     font-size: clamp(13px, 2vw, 16px);
+    font-family: 'Poppins';
     text-decoration: none;
     border: 1px solid var(--cor-btn);
     background: transparent;
@@ -48,9 +55,12 @@
     cursor: pointer;
 }
 
+/* INPUT */
+
 .input__container {
     position: relative;
     border-radius: 10px;
+    overflow: hidden;
 
     & input~label {
         position: absolute;
@@ -70,7 +80,7 @@
         font-family: 'Questrial', Verdana;
         font-size: var(--fs-text);
 
-        &::placeholder{
+        &::placeholder {
             color: var(--cor-containers);
         }
     }
@@ -82,7 +92,7 @@
         opacity: .8;
     }
 
-    & .ocultSenha{
+    & .ocultSenha {
         position: absolute;
         right: 1rem;
         top: 50%;
@@ -91,6 +101,43 @@
 
 }
 
+
+/* MODAL */
+
+.modal {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+
+    &.show {
+        display: flex;
+    }
+
+    & .closeBtn {
+        font-size: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+    }
+
+    & .modal__content {
+        background: var(--cor-containers);
+        margin: auto;
+        border-radius: 10px;
+        padding: 2rem clamp(1rem, 10vw, 4rem);
+
+        & .modal__title {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+        }
+
+    }
+}
 
 
 /* Espaçamentos */

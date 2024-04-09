@@ -5,32 +5,36 @@
     flex-flow: column nowrap;
     width: 100%;
     min-height: 100vh;
+    height: auto;
     margin: 0 auto;
 
-}
-
-.container__form {
-    background: var(--cor-containers);
-    width: 100%;
-    min-height: 100vh;
-    padding: clamp(.6rem, 5vw, 3rem) clamp(.6rem, 5vw, 4rem);
-
-    & form {
-        max-width: 600px;
-        margin: auto;
+    & .text.helpText {
+        text-align: center;
+        color: var(--cor-texto);
     }
 
     & .btn {
         background: var(--cor-login);
-
-        &.submit {
-            width: 100%;
-            border-radius: 50px;
-        }
-
         &:hover {
             background: var(--cor-login-hover);
         }
+    }
+
+    .container__form {
+        background: var(--cor-containers);
+        width: 100%;
+        min-height: 100vh;
+        padding: clamp(.6rem, 5vw, 3rem) clamp(.6rem, 5vw, 4rem);
+
+        & form {
+            max-width: 600px;
+            margin: auto;
+        }
+
+
+
+
+       
     }
 
     & .links {
@@ -65,6 +69,7 @@
         width: 100%;
         margin: .5rem 0;
     }
+
 }
 
 .fundo__login {
@@ -90,14 +95,67 @@
     }
 }
 
+.modal {
+    background: #0000001a;
+
+    & .closeBtn {
+        font-size: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 20px;
+        background: var(--cor-login);
+
+        &:hover {
+            background: var(--cor-login-hover);
+        }
+    }
+
+    & .modal__content {
+        border: 1px solid var(--cor-login-hover);
+        width: auto;
+        max-width: 768px;
+        & .modal__title {
+            color: var(--cor-login);
+        }
+
+
+        & form {
+            max-width: 600px;
+            width: 100%;
+            margin: auto;
+            padding: 1rem;
+
+            & .inputs__numbers {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+
+
+                & .numberToken {
+                    outline: none;
+                    background: transparent;
+                    color: var(--cor-texto);
+                    padding: 1.5rem 1rem 1.2rem 1rem;
+                    width: 20%;
+                    max-width: 80px;
+                    font-family: 'Questrial', Verdana;
+                    font-size: var(--fs-subtitle);
+                    border: 1px solid var(--cor-login);
+                    border-radius: 10px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
 @media (min-width:769px) {
     .section__login {
         & .fundo__login {
-            position: relative;
-            overflow: visible;
             min-height: 100vh;
+            height: auto;
             max-width: 400px;
-
         }
     }
 
