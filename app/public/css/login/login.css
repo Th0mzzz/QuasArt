@@ -1,0 +1,39 @@
+.section__login {
+    --cor-login: none;
+    --cor-login-hover: none;
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.container__form {
+    background: var(--fundo-containers);
+    width: 100%;
+    max-width: 992px;
+    padding: 3rem 4rem;
+}
+
+.fundo__login {
+    width: 100%;
+    height: 100vh;
+    background: var(--cor-login);
+    position: relative;
+    overflow: visible;
+
+    & .logo-login {
+        position: absolute;
+        left: 95%;
+        width: auto;
+        height: auto;
+        border-radius: 50%;
+        border: 4px solid var(--fundo-containers);
+        background: var(--cor-login);
+        z-index: 3;
+        padding: 1.2rem;
+
+        & img {
+            width: 50px;
+
+        }
+    }
+}
