@@ -19,6 +19,12 @@
     --fs-smalltext:clamp(10px, 1vw, 14px);
 }
 
+.dark{
+    --cor-fundo:#0E1631;
+    --cor-containers:#1C284E;
+    --cor-texto:#fff;
+}
+
 .text   {
     font-weight: 400;
     font-family: 'Poppins', Verdana;

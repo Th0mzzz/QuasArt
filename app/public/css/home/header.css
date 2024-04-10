@@ -1,0 +1,94 @@
+.home__header {
+    position: relative;
+
+    & .nav__home {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: clamp(1rem, 5vw, 1.4rem);
+
+
+        & .nav__btns {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            & .btn {
+                --cor-btn: var(--cor-secundaria);
+                --cor-btn-hover: var(--cor-secundaria-hover);
+            }
+
+            & .btn-icon {
+                background: transparent;
+                outline: none;
+                font-size: clamp(20px, 5vw, 25px);
+                cursor: pointer;
+                transition: transform .3s;
+
+                &#btnMode {
+                    color: var(--cor-principal);
+                }
+
+                &#access {
+                    color: var(--cor-secundaria);
+                }
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-secundaria);
+
+    & img {
+        width: clamp(45px, 5vw, 55px);
+    }
+}
+
+.dark .logo {
+    color: var(--cor-texto);
+}
+
+.access__container {
+    width: clamp(15rem,15vw,20rem);
+    height: 0;
+    position: absolute;
+    background: var(--cor-containers);
+    top: 100%;
+    right: 50%;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all .3s;
+
+    & .access__content {
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        & .access__link {
+            width: 100%;
+            color: var(--cor-texto);
+            padding: clamp(.5rem, 1vw, .8rem) clamp(1rem, 2vw, 1.3rem);
+            & i {
+                font-size: 23px;
+                margin-right: 10%;
+            }
+            &:hover {
+                color: var(--cor-principal);
+            }
+        }
+    }
+
+    &.aberto {
+        height: clamp(15rem,25vw,20rem);
+        box-shadow: 1px 0px 5px 1px var(--cor-texto);
+
+    }
+}

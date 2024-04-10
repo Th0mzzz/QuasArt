@@ -9,20 +9,44 @@
         <title>Quasart</title>
         <link rel="shortcut icon" href="./img/quasart_logo_pequena.png" type="image/x-icon">
         <link rel="stylesheet" href="./css/base.css">
-        <link rel="stylesheet" href="./css/home.css">
+        <link rel="stylesheet" href="./css/home/home.css">
     </head>
 </head>
 
 <body>
     <header class="home__header">
+        <nav class="nav__home">
+            <article class="logo">
+                <img src="./img/quasart_logo.png" alt="logotipo da plataforma Quasart">
+                <h1 class="tipografia">Quas<span style="color: var(--cor-principal);">Art</span></h1>
+            </article>
 
+            <article class="nav__btns">
+                <button class="btn-icon ms-1 me-1" id="btnMode"><i class="bi bi-brightness-high"></i></button>
+                <button class="btn-icon ms-1 me-1" id="access"><i class="bi bi-universal-access-circle"></i></button>
+                <button class="btn link ms-2">Experimente o PLUS <i class="ms-1 bi bi-rocket-takeoff-fill"></i></button>
+                <article class="access__container" id="accessContainer">
+                    <article class="access__content">
+                        <a href="" class="access__link link"><i class="bi bi-plus"></i>Aumentar fonte </a>
+                        <a href="" class="access__link link"><i class="bi bi-dash"></i>Diminuir fonte </a>
+                        <a href="" class="access__link link"><i class="bi bi-link"></i>Sublinhar links</a>
+                        <a href="" class="access__link link"><i class="bi bi-alphabet"></i>Tipografia fácil</a>
+                        <a href="" class="access__link link"><i class="bi bi-arrow-counterclockwise"></i>Reiniciar</a>
+                    </article>
+                </article>
+            </article>
+
+
+        </nav>
     </header>
-    <main>
+    <main class="home__content">
         <%- include(page) %>
     </main>
     <footer class="home__footer">
 
     </footer>
+    <script src="./js/colorMode.js"></script>
+    <script src="./js/access.js"></script>
 </body>
 
 </html>

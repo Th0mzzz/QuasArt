@@ -8,8 +8,10 @@
 body,
 html {
     background: var(--cor-fundo);
+    transition: background .3s;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    min-height: 100vh;
 }
 
 ::-webkit-scrollbar{
