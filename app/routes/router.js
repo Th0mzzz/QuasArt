@@ -18,7 +18,11 @@ router.get("/esqueceuSenha", function (req, res) {
 router.get("/enviarEmail", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/esqueceuSenha", modal: "aberto" });
 })
-router.get("/checarToken", function (req, res) {
+router.post("/checarToken", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/redefinir", modal: "fechado" });
 })
+
+router.post("/criarConta", function (req, res) {
+    res.render("pages/template-home", { page: "../partial/template-home/inicial-home" })
+});
 module.exports = router;
