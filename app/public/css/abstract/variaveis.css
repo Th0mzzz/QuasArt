@@ -11,49 +11,92 @@
     --cor-containers: #fff;
     --cor-texto: #2C2C2C;
     /* Fontes */
-    --fs-text:clamp(13px, 2vw, 16px);
-    --fs-link:clamp(14px, 2vw, 18px);
-    --fs-title:clamp(28px, 3vw, 32px);
-    --fs-subtitle:clamp(20px, 2.5vw, 22px);
-    --fs-supertitle:clamp(32px, 2vw, 40px);
-    --fs-smalltext:clamp(10px, 1vw, 14px);
+    --fs-text: clamp(13px, 2vw, 16px);
+    --fs-link: clamp(14px, 2vw, 18px);
+    --fs-title: clamp(28px, 3vw, 32px);
+    --fs-subtitle: clamp(20px, 2.5vw, 22px);
+    --fs-supertitle: clamp(32px, 2vw, 40px);
+    --fs-smalltext: clamp(10px, 1vw, 14px);
+    --fs-tipografiaLogo: clamp(24px, 3vw, 28px);
+    --ff-text: 'Poppins', Verdana;
+    --ff-title: 'Montserrat', Arial;
+    --ff-subtitle: 'Montserrat', Arial;
+    --ff-supertitle: 'Poppins', Verdana;
+    --ff-tipografiaLogo: 'Jost', monospace;
+    --ff-smallText: 'Questrial', sans-serif;
+    --ff-link: 'Questrial', monospace;
 }
 
-.dark{
-    --cor-fundo:#0E1631;
-    --cor-containers:#1C284E;
-    --cor-texto:#fff;
+.dark {
+    --cor-fundo: #0E1631;
+    --cor-containers: #1C284E;
+    --cor-texto: #fff;
 }
 
-.text   {
+.tipografiaFacil * {
+    --ff-text: Verdana !important;
+    --ff-title: Arial !important;
+    --ff-subtitle: Arial !important;
+    --ff-supertitle: Verdana !important;
+    --ff-tipografiaLogo: monospace !important;
+    --ff-smallText: sans-serif !important;
+    --ff-link: monospace !important;
+}
+
+.sublinhado a {
+    text-decoration: underline !important;
+}
+
+
+.aumentada {
+    --fs-text: calc(clamp(13px, 2vw, 16px) + 5px);
+    --fs-link: calc(clamp(14px, 2vw, 18px) + 5px);
+    --fs-title: calc(clamp(28px, 3vw, 32px) + 8px);
+    --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) + 8px);
+    --fs-supertitle: calc(clamp(32px, 2vw, 40px) + 10px);
+    --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) + 10px);
+    --fs-smalltext: calc(clamp(10px, 1vw, 14px) + 2px);
+}
+
+.diminuida {
+    --fs-text: calc(clamp(13px, 2vw, 16px) - 5px);
+    --fs-link: calc(clamp(14px, 2vw, 18px) - 5px);
+    --fs-title: calc(clamp(28px, 3vw, 32px) - 8px);
+    --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) - 8px);
+    --fs-supertitle: calc(clamp(32px, 2vw, 40px) - 10px);
+    --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) - 10px);
+    --fs-smalltext: calc(clamp(10px, 1vw, 14px) - 2px);
+}
+
+.text {
     font-weight: 400;
-    font-family: 'Poppins', Verdana;
-    font-size:var(--fs-text);
+    font-family: var(--ff-text);
+    font-size: var(--fs-text);
 }
 
 .title {
     font-weight: 800;
-    font-family: 'Montserrat', Arial;
+    font-family: var(--ff-title);
     font-size: var(--fs-title);
 }
 
 .subtitle {
     font-weight: normal;
-    font-family: 'Questrial', sans-serif;
+    font-family: var(--ff-subtitle);
     font-size: var(--fs-subtitle);
 }
 
 .supertitle {
     font-weight: 700;
-    font-family: 'Poppins', Verdana;
+    font-family: var(--ff-supertitle);
     font-size: var(--fs-supertitle);
     letter-spacing: 1px;
 }
 
 .tipografia {
     font-weight: normal;
-    font-family: 'Jost', sans-serif;
-    font-size: clamp(24px, 3vw, 28px);
+    font-family: var(--ff-tipografiaLogo);
+    font-size: var(--fs-tipografiaLogo);
 }
 
 .negrito-amarelo {
@@ -70,12 +113,12 @@
 
 .smallText {
     font-weight: 400;
-    font-size:var(--fs-smalltext) ;
-    font-family: 'Questrial', sans-serif;
+    font-size: var(--fs-smalltext);
+    font-family: var(--ff-smallText);
 }
 
-.link{
+.link {
     font-size: var(--fs-link);
-    font-family: "Questrial", Arial;
+    font-family: var(--ff-link);
     text-decoration: none;
 }

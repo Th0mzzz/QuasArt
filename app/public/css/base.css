@@ -12,8 +12,8 @@
 .btn {
     color: #ffffff;
     font-weight: 400;
-    font-family: 'Poppins', Verdana;
-    font-size: clamp(13px, 2vw, 16px);
+    font-family: var(--ff-text);
+    font-size: var(--fs-text);
     text-decoration: none;
     background: var(--cor-btn);
     padding: .5rem 1rem;
@@ -67,7 +67,7 @@
         left: 1rem;
         top: 1rem;
         transition: all ease .3s;
-        font-family: 'Poppins', Verdana;
+        font-family: var(--ff-link);
     }
 
     & input {
