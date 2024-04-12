@@ -8,7 +8,7 @@ const usuariosController = {
         body('email').isEmail().withMessage('Deve ser um email válido'),
         body('senha').isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres')
     ],
-    criarUsuario: (req, res) => {
+    criarUsuario: async (req, res) => {
         const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
         dadosForm = {
             NOME_USUARIO: nome,
@@ -19,11 +19,8 @@ const usuariosController = {
             CPF_USUARIO: cpf,
             EMAIL_USUARIO: email
         }
-        const resultados = usuariosModel.create(dadosForm);
+        const resultados = await usuariosModel.create(dadosForm);
         console.log(resultados);
-        res.render("pages/template-home", { page: "../partial/template-home/inicial-home" });
-
-
     }
 }
 
