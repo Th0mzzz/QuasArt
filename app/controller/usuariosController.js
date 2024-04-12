@@ -9,22 +9,19 @@ const usuariosController = {
         body('senha').isLength({ min: 6 }).withMessage('A senha deve ter pelo menos 6 caracteres')
     ],
     criarUsuario: (req, res) => {
-        let errors = validationResult(req)
-
-        if (!errors) {
-            const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
-            dadosForm = {
-                NOME_USUARIO: nome,
-                NICKNAME_USUARIO: usuario,
-                CONTATO: contato,
-                SENHA_USUARIO: senha,
-                DATA_NASC_USUARIO: nascimento,
-                CPF_USUARIO: cpf,
-                EMAIL_USUARIO: email
-            }
-        } else {
-            res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erro: errors , form: req.body});
+        const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
+        dadosForm = {
+            NOME_USUARIO: nome,
+            NICKNAME_USUARIO: usuario,
+            CONTATO: contato,
+            SENHA_USUARIO: senha,
+            DATA_NASC_USUARIO: nascimento,
+            CPF_USUARIO: cpf,
+            EMAIL_USUARIO: email
         }
+        const resultados = usuariosModel.create(dadosForm);
+        console.log(resultados);
+        res.render("pages/template-home", { page: "../partial/template-home/inicial-home" });
 
 
     }

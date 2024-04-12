@@ -61,10 +61,7 @@
     position: relative;
     border-radius: 10px;
     overflow: hidden;
-    &.invalid{
-        
-    }
-    
+
     & input~label {
         position: absolute;
         left: 1rem;
@@ -72,6 +69,7 @@
         translate: 0 -50%;
         transition: all ease .3s;
         font-family: var(--ff-link);
+        opacity: .5;
     }
 
     & input {
@@ -93,7 +91,6 @@
         left: .8rem;
         top: 20%;
         font-size: var(--fs-smalltext);
-        opacity: .8;
     }
 
     & .ocultSenha {

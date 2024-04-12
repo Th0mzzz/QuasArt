@@ -18,7 +18,7 @@ USE `b0ugzjkogcuw0zusl2np` ;
 -- Table `b0ugzjkogcuw0zusl2np`.`USUARIOS`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `b0ugzjkogcuw0zusl2np`.`USUARIOS` (
-  `ID_USUARIO` INT NOT NULL,
+  `ID_USUARIO` INT NOT NULL AUTO_INCREMENT,
   `NOME_USUARIO` VARCHAR(70) NOT NULL,
   `NICKNAME_USUARIO` CHAR(15) NOT NULL,
   `CONTATO` CHAR(11) NOT NULL,

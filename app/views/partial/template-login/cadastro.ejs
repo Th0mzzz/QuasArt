@@ -9,7 +9,7 @@
         <h2 class="title">CADASTRAR-SE</h2>
         <h3 class="subtitle">Venha se tornar um de nossos tripulantes!</h3>
     </header>
-    <form action="/criarConta" method="get">
+    <form action="/criarConta" method="post">
         <article class="input__container">
             <input type="text" name="nome" id="nome" class="input__control" placeholder="Nome completo" required>
             <label for="nome">Nome completo</label>
@@ -25,8 +25,8 @@
             <label for="cpf">Digite seu CPF (XXX.XXX.XXX-XX)</label>
         </article>
         <article class="input__container">
-            <input type="tel" name="contato" id="contato" class="input__control" placeholder="contato"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required>
+            <input type="tel" name="contato" id="contato" class="input__control" placeholder="contato" maxlength="14"
+                required>
             <label for="contato">Digite seu número de telefone</label>
         </article>
         <article class="input__container">

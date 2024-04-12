@@ -1,4 +1,5 @@
 var express = require("express");
+const usuariosController = require("../controller/usuariosController");
 var router = express.Router();
 
 // LANDING PAGE
@@ -17,7 +18,7 @@ router.get("/entrar", function (req, res) {
 });
 
 router.get("/cadastrar", function (req, res) {
-    res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado" , erro: null});
+    res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erro: null });
 });
 router.get("/esqueceuSenha", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/esqueceuSenha", modal: "fechado" });
@@ -30,8 +31,7 @@ router.post("/checarToken", function (req, res) {
 })
 
 router.post("/criarConta", function (req, res) {
-
-    res.render("pages/template-home", { page: "../partial/template-home/inicial-home" })
+    usuariosController.criarUsuario(req, res)
 });
 
 module.exports = router;
