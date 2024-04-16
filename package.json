@@ -119,7 +119,6 @@
     "vary": "^1.1.2",
     "yallist": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon ./app.js localhost 3000"

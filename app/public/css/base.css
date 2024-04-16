@@ -99,6 +99,15 @@
         top: 50%;
         translate: 0% -50%;
     }
+    &.invalid{
+        border: 1px solid var(--cor-danger);
+        &.invalid-msg{
+            display: block;
+        }
+    }
+    & .invalid-msg{
+        color: var(--cor-danger);
+    }
 
 }
 

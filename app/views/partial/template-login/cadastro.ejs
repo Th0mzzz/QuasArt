@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="./css/login/cadastrar.css">
+
 <article class="fundo__login">
     <figure class="logo-login">
         <img src="./img/quasart_logo_branca.png" alt="logo do Quasart">
     </figure>
 </article>
+
 <article class="container__form">
     <header class="form__title">
         <h2 class="title">CADASTRAR-SE</h2>
@@ -11,33 +13,81 @@
     </header>
     <form action="/criarConta" method="post">
         <article class="input__container">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="nome" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="text" name="nome" id="nome" class="input__control" placeholder="Nome completo" required>
             <label for="nome">Nome completo</label>
         </article>
         <article class="input__container">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="nascimento" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="date" name="nascimento" id="nascimento" class="input__control" placeholder="Data de nascimento"
                 required>
             <label for="nascimento">Data de nascimento</label>
         </article>
         <article class="input__container">
-            <input type="text" name="cpf" id="cpf" class="input__control" placeholder="cpf"
-                pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" maxlength="14" required>
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="cpf" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
+            <input type="text" name="cpf" id="cpf" class="input__control" placeholder="cpf" maxlength="11" required>
             <label for="cpf">Digite seu CPF (XXX.XXX.XXX-XX)</label>
         </article>
         <article class="input__container">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="contato" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="tel" name="contato" id="contato" class="input__control" placeholder="contato" maxlength="14"
                 required>
             <label for="contato">Digite seu número de telefone</label>
         </article>
         <article class="input__container">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="usuario" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required>
             <label for="usuario">Crie seu Usuário</label>
         </article>
         <article class="input__container">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="email" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="email" name="email" id="email" class="input__control" placeholder="email" required>
             <label for="email">Digite seu E-mail</label>
         </article>
         <article class="input__container senha">
+            <span class="invalid-msg smallText">
+                <% if (erros) { %>
+                    <% erros.forEach(function(error) { if (error.param==="senha" ) { %>
+                        <%= error.msg %>
+                            <% } }); %>
+                                <% } %>
+            </span>
             <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required>
             <button class="ocultSenha btn"><i class="bi bi-eye"></i></button>
             <label for="senha">Senha</label>
