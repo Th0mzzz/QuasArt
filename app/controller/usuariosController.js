@@ -13,9 +13,11 @@ const usuariosController = {
     ],
     criarUsuario: async (req, res) => {
         let errors = validationResult(req)
+        console.log(errors)
+
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/redefinir", modal: "fechado", erros: errors });
+            res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors });
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
             dadosForm = {

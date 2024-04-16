@@ -30,7 +30,7 @@ router.post("/checarToken", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/redefinir", modal: "fechado", erros: null });
 })
 
-router.post("/criarConta", function (req, res) {
+router.post("/criarConta", usuariosController.regrasValidacao, function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 
