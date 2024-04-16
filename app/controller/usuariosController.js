@@ -1,13 +1,31 @@
 const usuariosModel = require("../models/usuariosModel")
 const { body, validationResult } = require("express-validator")
+const moment = require("moment")
 
 const usuariosController = {
     regrasValidacao: [
         body("nome").isLength({ min: 3, max: 45 }).withMessage("Nome deve ter de 3 a 45 letras!"),
-        body("nascimento").isDate().withMessage('Data de nascimento inválida').isBefore('01/01/2009').withMessage('Necessário ter mais de 13 anos!'),
+        body('nascimento')
+        .isDate() 
+        .withMessage("Data inválida!")
+        .bail()
+        .custom(value => {
+          const userDate = moment(value, "YYYY-MM-DD");
+          const cutoffDate = moment().subtract(13, 'years');
+          if (userDate.isAfter(cutoffDate)) {
+            throw new Error('Necessário ter mais de 13 anos!');
+          }
+          return true;
+        }),
         body("cpf").isLength({ min: 11, max: 11 }).withMessage("CPF deve ter 11 dígitos").isNumeric().withMessage("CPF deve conter apenas números"),
         body("contato").isMobilePhone('pt-BR').withMessage("Número de telefone inválido"),
-        body('usuario').isLength({ min: 5 }).withMessage("Usuário deve ter pelo menos 5 caracteres"),
+        body('usuario').isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!").bail().custom(async (usuario) => {
+            const usuarioExistente = await usuariosModel.findNickname(usuario)
+            if (usuarioExistente.length > 0) {
+                throw new Error("usuario já existente");
+            }
+            return true;
+        }).withMessage("Usuário já existente!"),
         body('email').isEmail().withMessage('Deve ser um email válido'),
         body('senha').isLength({ min: 8, max: 30 }).withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
     ],

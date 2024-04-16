@@ -1,7 +1,10 @@
 <link rel="stylesheet" href="./css/login/cadastrar.css">
 <% 
-let classeErro={ nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } let msgErro={
-    nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } if(erros) {
+var classeErro={ nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } 
+var msgErro={
+    nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } 
+    
+    if(erros) {
     erros.errors.forEach(error=>{
     classeErro[error.path] = 'invalid';
     msgErro[error.path] = error.msg

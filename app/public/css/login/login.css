@@ -39,11 +39,6 @@
             max-width: 600px;
             margin: auto;
         }
-
-
-
-
-       
     }
 
     & .links {
@@ -76,7 +71,6 @@
     & .input__container {
         border: 1px solid var(--cor-login);
         width: 100%;
-        margin: .5rem 0;
     }
 
 }

@@ -60,7 +60,7 @@
 .input__container {
     position: relative;
     border-radius: 10px;
-    overflow: hidden;
+    margin: .5rem 0;
 
     & input~label {
         position: absolute;
@@ -99,14 +99,21 @@
         top: 50%;
         translate: 0% -50%;
     }
-    &.invalid{
-        border: 1px solid var(--cor-danger);
-        &.invalid-msg{
+
+    &.invalid {
+        --cor-login: var(--cor-danger);
+        margin-bottom: 2rem;
+        & .invalid-msg {
             display: block;
         }
     }
-    & .invalid-msg{
+
+    & .invalid-msg {
+        display: none;
         color: var(--cor-danger);
+        position: absolute;
+        bottom: -30%;
+        left: 1rem;
     }
 
 }
