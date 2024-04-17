@@ -19,11 +19,34 @@ const usuariosModel = {
     },
     findNickname: async (nickname) => {
         try {
-            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?"[nickname])
+            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?",[nickname])
+            console.log(resultados)
             return resultados
 
         } catch (error) {
             console.error("Erro ao buscar usuário", error);
+            throw error;
+        }
+    },
+    findEmail: async (email) => {
+        try {
+            const [resultados] = await pool.query("select * from USUARIOS where EMAIL_USUARIO = ?",[email])
+            console.log(resultados)
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao buscar e-mail", error);
+            throw error;
+        }
+    },
+    findCpf: async (cpf) => {
+        try {
+            const [resultados] = await pool.query("select * from USUARIOS where CPF_USUARIO = ?",[cpf])
+            console.log(resultados)
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao buscar e-mail", error);
             throw error;
         }
     }
