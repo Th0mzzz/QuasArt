@@ -29,7 +29,7 @@ var msgErro={
                     <%= msgErro.nome %>
                 </span>
 
-                <input type="text" name="nome" id="nome" class="input__control" placeholder="Nome completo" required>
+                <input type="text" name="nome" id="nome" class="input__control" placeholder="Nome completo" required value="<%= valores.nome %>" >
                 <label for="nome">Nome completo</label>
             </article>
             <article class="input__container <%= classeErro.nascimento  %>">
@@ -37,43 +37,43 @@ var msgErro={
                     <%= msgErro.nascimento %>
                 </span>
                 <input type="date" name="nascimento" id="nascimento" class="input__control"
-                    placeholder="Data de nascimento" required>
+                    placeholder="Data de nascimento" required value="<%= valores.nascimento %>" >
                 <label for="nascimento">Data de nascimento</label>
             </article>
             <article class="input__container <%= classeErro.cpf  %>">
                 <span class="invalid-msg smallText">
                     <%= msgErro.cpf %>
                 </span>
-                <input type="text" name="cpf" id="cpf" class="input__control" placeholder="cpf" maxlength="11" required>
-                <label for="cpf">Digite seu CPF (XXX.XXX.XXX-XX)</label>
+                <input type="text" name="cpf" id="cpf" class="input__control" placeholder="cpf" maxlength="11" required value="<%= valores.cpf %>" >
+                <label for="cpf">Digite seu CPF</label>
             </article>
             <article class="input__container <%= classeErro.contato  %>">
                 <span class="invalid-msg smallText">
                     <%= msgErro.contato %>
                 </span>
                 <input type="tel" name="contato" id="contato" class="input__control" placeholder="contato"
-                    maxlength="14" required>
+                    maxlength="14" required value="<%= valores.contato %>" >
                 <label for="contato">Digite seu número de telefone</label>
             </article>
             <article class="input__container <%= classeErro.usuario  %>">
                 <span class="invalid-msg smallText">
                     <%= msgErro.usuario %>
                 </span>
-                <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required>
+                <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required value="<%= valores.usuario %>" >
                 <label for="usuario">Crie seu Usuário</label>
             </article>
             <article class="input__container <%= classeErro.email  %>">
                 <span class="invalid-msg smallText">
                     <%= msgErro.email %>
                 </span>
-                <input type="email" name="email" id="email" class="input__control" placeholder="email" required>
+                <input type="email" name="email" id="email" class="input__control" placeholder="email" required value="<%= valores.email %>" >
                 <label for="email">Digite seu E-mail</label>
             </article>
             <article class="input__container <%= classeErro.senha  %> senha">
                 <span class="invalid-msg smallText">
                     <%= msgErro.senha %>
                 </span>
-                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required>
+                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required value="<%= valores.senha %>" >
                 <button class="ocultSenha btn"><i class="bi bi-eye"></i></button>
                 <label for="senha">Senha</label>
             </article>

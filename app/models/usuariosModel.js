@@ -49,6 +49,17 @@ const usuariosModel = {
             console.error("Erro ao buscar e-mail", error);
             throw error;
         }
+    },
+    findPasswordByUser: async (usuario,senha)=>{
+        try {
+            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ? AND SENHA_USUARIO = ? LIMIT 1 ", [usuario,senha])
+            console.log(resultados)
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao buscar usuário", error);
+            throw error;
+        }
     }
 }
 

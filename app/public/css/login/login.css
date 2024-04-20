@@ -7,6 +7,19 @@
         font-size: 20px;
     }
 }
+
+.user-incorrect{
+    color: var(--cor-danger);
+    padding: 1rem;
+    text-align: center;
+    background: #ffb2b281;
+    border: 1px solid var(--cor-danger);
+    border-radius: 10px;
+    display: none;
+    &.ativado{
+        display: block;
+    }
+}
 .section__login {
     --cor-login: none;
     --cor-login-hover: none;

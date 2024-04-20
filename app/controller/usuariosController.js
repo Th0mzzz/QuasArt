@@ -3,7 +3,7 @@ const { body, validationResult } = require("express-validator")
 const moment = require("moment")
 
 const usuariosController = {
-    regrasValidacao: [
+    regrasValidacaoCriarConta: [
         body("nome").isLength({ min: 3, max: 45 }).withMessage("Nome deve ter de 3 a 45 letras!"),
 
         body('nascimento').custom(value => {
@@ -26,7 +26,7 @@ const usuariosController = {
         body("contato").isMobilePhone('pt-BR').withMessage("Número de telefone inválido").bail().custom(async (contato) => {
             const contatoExistente = await usuariosModel.findContato(contato)
             if (contatoExistente.length > 0) {
-                throw new Error("Contato já em uso! Tente outro");
+                throw new Error("Telefone já em uso! Tente outro");
             }
             return true;
         }),
@@ -46,15 +46,21 @@ const usuariosController = {
             }
             return true;
         }),
-        
+
         body('senha').isLength({ min: 8, max: 30 }).withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
+    ],
+    regrasValidacaoEntrar: [
+
+        body('usuario').isLength({ min: 4, max: 30 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
+
+        body('senha').isLength({ min: 8, max: 50 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
     ],
     criarUsuario: async (req, res) => {
         let errors = validationResult(req)
 
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors });
+            res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors, valores: req.body });
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
             dadosForm = {
@@ -77,7 +83,31 @@ const usuariosController = {
             }
 
         }
-    }
+    },
+    entrar: async (req, res) => {
+        let errors = validationResult(req)
+
+        if (!errors.isEmpty()) {
+            console.log(errors)
+            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors });
+        } else {
+
+            const { usuario, senha } = req.body
+            try {
+                const resultado = usuariosModel.findPasswordByUser(usuario, senha)
+                if (resultado) {
+                    res.redirect("/home")
+                } else {
+                    res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
+                }
+
+            } catch (erros) {
+                console.log(erros)
+                res.render("pages/error-500")
+            }
+
+        }
+    },
 }
 
 module.exports = usuariosController
