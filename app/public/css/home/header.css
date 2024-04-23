@@ -37,6 +37,13 @@
                     transform: scale(1.1);
                 }
             }
+            & .plus-btn{
+                display: flex;
+                & p{
+                    display: none;
+                }
+                
+            }
         }
     }
 }

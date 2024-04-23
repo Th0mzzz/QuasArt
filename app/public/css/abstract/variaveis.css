@@ -10,7 +10,7 @@
     --cor-fundo: #F3F8FF;
     --cor-containers: #fff;
     --cor-texto: #2C2C2C;
-    --cor-danger:#df4141;
+    --cor-danger: #df4141;
     /* Fontes */
     --fs-text: clamp(13px, 2vw, 16px);
     --fs-link: clamp(14px, 2vw, 18px);
@@ -26,6 +26,9 @@
     --ff-tipografiaLogo: 'Jost', monospace;
     --ff-smallText: 'Questrial', sans-serif;
     --ff-link: 'Questrial', monospace;
+    /* diversos */
+    --aside-width: 105px;
+
 }
 
 .dark {
