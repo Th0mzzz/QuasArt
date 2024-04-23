@@ -9,7 +9,7 @@ router.get("/", function (req, res) {
 
 // HOMEPAGE
 router.get("/home", function (req, res) {
-    res.render("pages/template-home", { page: "../partial/template-home/inicial-home" });
+    usuariosController.verificarLogin(req,res)
 });
 
 // LOGIN E CADASTRO
