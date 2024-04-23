@@ -53,7 +53,7 @@ const usuariosController = {
 
         body('usuario').isLength({ min: 4, max: 30 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
 
-        body('senha').isLength({ min: 8, max: 50 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
+        body('senha').isLength({ min: 8, max: 50 }).withMessage("a Senha deve ter pelo menos 8 caracteres!"),
     ],
     criarUsuario: async (req, res) => {
         let errors = validationResult(req)
@@ -89,14 +89,15 @@ const usuariosController = {
 
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors });
+            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors , incorreto:null});
         } else {
 
             const { usuario, senha } = req.body
             try {
-                const resultado = usuariosModel.findPasswordByUser(usuario, senha)
-                if (resultado) {
+                const userBd = await usuariosModel.findPasswordByUser(usuario, senha)
+                if (userBd.length > 0) {
                     res.redirect("/home")
+                    console.log("Logado!")
                 } else {
                     res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
                 }

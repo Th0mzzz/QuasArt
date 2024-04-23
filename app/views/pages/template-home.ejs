@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quasart</title>
-        <link rel="shortcut icon" href="./img/quasart_logo_pequena.png" type="image/x-icon">
-        <link rel="stylesheet" href="./css/base.css">
-        <link rel="stylesheet" href="./css/home/home.css">
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quasart</title>
+    <link rel="shortcut icon" href="./img/quasart_logo_pequena.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/home/home.css">
 </head>
-
 <body>
     <header class="home__header">
         <nav class="nav__home">
-            <a href="/home" class="logo link" >
+            <a href="/home" class="logo link">
                 <img src="./img/quasart_logo.png" alt="logotipo da plataforma Quasart">
                 <h1 class="tipografia">Quas<span style="color: var(--cor-principal);">Art</span></h1>
             </a>
 
             <article class="nav__btns">
                 <button class="btn-icon ms-1 me-1" id="btnMode"><i class="bi bi-brightness-high"></i></button>
-                <button class="btn-icon ms-1 me-1" id="access"><i class="bi bi-universal-access-circle"></i></button>
-                <a href="/home" class="btn link ms-2">Experimente o PLUS <i class="ms-1 bi bi-rocket-takeoff-fill"></i></a>
+                <button class="btn-icon ms-1 me-1" id="access" title="Acessibilidade"><i class="bi bi-universal-access-circle"></i></button>
+                <a href="/home" class="btn link ms-2">Experimente o PLUS <i
+                        class="ms-1 bi bi-rocket-takeoff-fill"></i></a>
                 <article class="access__container" id="accessContainer">
                     <article class="access__content">
-                        <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar fonte </button>
-                        <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte </button>
-                        <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar links</button>
-                        <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia fácil</button>
-                        <button class="access__link link pb-2" id="reset"><i class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
+                        <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar fonte
+                        </button>
+                        <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte
+                        </button>
+                        <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
+                            links</button>
+                        <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
+                            fácil</button>
+                        <button class="access__link link pb-2" id="reset"><i
+                                class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
                     </article>
                 </article>
             </article>
 
         </nav>
     </header>
+    <aside class="home__aside">
+
+    </aside>
     <main class="home__content">
         <%- include(page) %>
     </main>
