@@ -11,6 +11,9 @@ router.get("/", function (req, res) {
 router.get("/home", function (req, res) {
     res.render("./pages/template-home", {page:"../partial/template-home/inicial-home"})
 });
+router.get("/profile", function (req, res) {
+    res.render("./pages/template-home", {page:"../partial/template-home/perfil-home"})
+});
 
 // LOGIN E CADASTRO
 router.get("/entrar", function (req, res) {
