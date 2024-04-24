@@ -109,9 +109,7 @@ const usuariosController = {
 
         }
     },
-    verificarLogin: async(req,res) =>{
-        
-    }
+   
 }
 
 module.exports = usuariosController
