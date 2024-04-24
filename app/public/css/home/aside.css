@@ -87,7 +87,7 @@
             margin: auto;
             border-radius: 0 10px 10px 0;
             padding: 4rem 0;
-
+            height: 80%;
             & .aside__items {
                 flex-flow: column nowrap;
                 width: 100%;

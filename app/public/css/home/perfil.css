@@ -1,0 +1,34 @@
+.area__perfil {
+
+    & .header__perfil{
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+        align-items: center;
+        border-bottom: 1px solid var(--cor-texto);
+        & .foto__perfil{
+            max-width: 120px;
+            border-radius: 35%;
+            object-fit: cover;
+            margin: 2.3rem 0;
+            border: 5px solid var(--cor-principal);
+        }
+        & > .subtitle{
+            color:var(--cor-texto);
+        }
+
+        & .estatisticas__usuario{
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 3rem 1rem;
+            & .item{
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+                gap: 5px;
+                color: var(--cor-texto);
+            }
+        }
+    }
+}
