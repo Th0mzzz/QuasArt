@@ -5,6 +5,9 @@ const iconMode = btnMode.querySelector("i")
 if (modo === 'dark') {
     html.classList.add('dark');
     iconMode.className = "bi bi-brightness-high"
+} else {
+    iconMode.className = "bi bi-moon"
+
 }
 
 btnMode.addEventListener('click', () => {

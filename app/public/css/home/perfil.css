@@ -18,11 +18,21 @@
         & > .subtitle{
             color:var(--cor-texto);
         }
-
+        & .row-items{
+            display: flex;
+            flex-flow: row-reverse wrap;
+            align-items: center;
+            justify-content: center;
+            & .btn{
+                width: fit-content;
+                height: fit-content;
+                margin-left: .5em;
+            }
+        }
         & .estatisticas__usuario{
             display: flex;
             align-items: center;
-            gap: clamp(1.2rem, 5vw, 2rem);
+            gap: clamp(2em, 10vw, 4em);
             padding: 2rem 1rem;
             & .item{
                 display: flex;
@@ -48,14 +58,16 @@
                 background: none;
                 opacity: .6;
                 cursor: pointer;
-                padding: 0.2rem;
+                padding: 1rem;
                 transition: all ease .4s;
+                border-top:none;
+
                 &:hover{
                     opacity: 1;
                 }
                 &.ativo{
                     opacity: 1;
-                    border-top: 2px solid var(--cor-principal);
+                    border-top: 3px solid var(--cor-principal);
                 }
                 & i{
                     font-size: var(--fs-title);
@@ -65,6 +77,25 @@
         & .subtitle{
             color: var(--cor-texto);
             text-align: center;
+        }
+    }
+
+    .postagens__section{
+        display: none;
+        &.ativo{
+            display: block;
+        }
+        & .title{
+            color: var(--cor-texto);
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        & .conteudo-row{
+            display: flex;
+            flex-flow: row wrap;
+            width: 100%;
+            gap: 1rem;
         }
     }
 }

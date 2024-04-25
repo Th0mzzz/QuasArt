@@ -3,6 +3,41 @@
 @import url("./footer.css");
 @import url("./perfil.css");
 
+/* Código dos cards de fichas */
+.card__ficha {
+    width: clamp(180px, 100%, 300px);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 5px;
+    & .card__content {
+        border-radius: 10px;
+        overflow: hidden;
+        & img{
+            width: 100%;
+            height: 110%;
+            margin: 0;
+        }
+        &:hover{
+             & img  
+        }
+    }
+
+    & .card__autor {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        & .usuario{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            & img{
+                width: 35px;
+                height: 35px;
+            }
+        }
+    }
+}
+
 @media (min-width:769px) {
 
     .home__header,

@@ -1,33 +1,60 @@
+<!-- Area de perfil que é incluida no template -->
+
 <section class="area__perfil">
     <header class="header__perfil">
         <img src="./img/teste-foto.webp" alt="foto de perfil do usuário" class="foto__perfil">
         <h3 class="subtitle">Nome do usuário</h3>
-        <button class="btn mt-2 link">Seguir</button>
-        <section class="estatisticas__usuario">
-            <article class="item">
-                <p class="link">Postagens</p>
-                <h3 class="subtitle">3</h3>
-            </article>
-            <article class="item">
-                <p class="link">Seguidores</p>
-                <h3 class="subtitle">40</h3>
-            </article>
-            <article class="item">
-                <p class="link">Curtidas</p>
-                <h3 class="subtitle">1K</h3>
-            </article>
-        </section>
+        <article class="row-items">
+            <button class="btn mt-2 link">Seguir</button>
+            <section class="estatisticas__usuario">
+                <article class="item">
+                    <p class="link">Postagens</p>
+                    <h3 class="subtitle">3</h3>
+                </article>
+                <article class="item">
+                    <p class="link">Seguidores</p>
+                    <h3 class="subtitle">40</h3>
+                </article>
+                <article class="item">
+                    <p class="link">Curtidas</p>
+                    <h3 class="subtitle">1K</h3>
+                </article>
+            </section>
+        </article>
+
     </header>
     <section class="postagens__perfil">
         <article class="btns-section">
-            <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i class="bi bi-grid"></i></button>
-            <button class="btn-section link" data-btnSection="resenhas" title="resenhas"><i class="bi bi-card-text"></i></button>
-            <button class="btn-section link" data-btnSection="videos" title="videos"><i class="bi bi-camera-video"></i></button>
+            <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i
+                    class="bi bi-grid"></i></button>
+            <button class="btn-section link" data-btnSection="resenhas" title="resenhas"><i
+                    class="bi bi-card-text"></i></button>
+            <button class="btn-section link" data-btnSection="videos" title="videos"><i
+                    class="bi bi-camera-video"></i></button>
         </article>
-        <h3 class="subtitle mt-3">Postagens</h3>
-        <section class="postagens__section ativo" data-section="fichas"><h2 class="title">FICHAS</h2></section>
-        <section class="postagens__section" data-section="resenhas"><h2 class="title">Resenhas</h2></section>
-        <section class="postagens__section" data-section="videos"><h2 class="title">Videos</h2></section>
+        <section class="postagens__section ativo" data-section="fichas">
+            <h3 class="title">Fichas</h3>
+            <section class="conteudo-row">
+                <article class="card__ficha">
+                    <header class="card__content">
+                        <img src="./img/cards/card-ficha-teste.png" alt="imagem da ficha">
+                    </header>
+                    <footer class="card__autor">
+                        <article class="usuario">
+                            <img src="./img/perfil-padrao.webp" alt="imagem do autor">
+                            <a href="/profile" class="link">Username</a>
+                        </article>
+                        <p class="text">00/00/0000</p>
+                    </footer>
+                </article>
+            </section>
+        </section>
+        <section class="postagens__section" data-section="resenhas">
+            <h3 class="title">Resenhas</h3>
+        </section>
+        <section class="postagens__section" data-section="videos">
+            <h3 class="title">Videos</h3>
+        </section>
     </section>
 </section>
 <script src="./js/toggleSection.js"></script>
