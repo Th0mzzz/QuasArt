@@ -3,3 +3,14 @@
 @import url("./footer.css");
 @import url("./perfil.css");
 
+@media (min-width:769px) {
+
+    .home__header,
+    .home__footer,
+    .home__content {
+        padding: 0 clamp(1rem, 10vw, 3rem);
+        padding-left: calc(var(--aside-width) + clamp(1rem, 10vw, 1.4rem));
+        max-width: 1440px;
+        margin: auto;
+    }
+}

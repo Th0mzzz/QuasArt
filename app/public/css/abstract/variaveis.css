@@ -85,7 +85,7 @@
 }
 
 .subtitle {
-    font-weight: normal;
+    font-weight: 600;
     font-family: var(--ff-subtitle);
     font-size: var(--fs-subtitle);
 }

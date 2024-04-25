@@ -7,7 +7,9 @@
         align-items: center;
         border-bottom: 1px solid var(--cor-texto);
         & .foto__perfil{
-            max-width: 120px;
+            
+            width: clamp(105px, 20vw, 120px);
+            height: clamp(105px, 20vw, 120px);
             border-radius: 35%;
             object-fit: cover;
             margin: 2.3rem 0;
@@ -20,8 +22,8 @@
         & .estatisticas__usuario{
             display: flex;
             align-items: center;
-            gap: 1rem;
-            padding: 3rem 1rem;
+            gap: clamp(1.2rem, 5vw, 2rem);
+            padding: 2rem 1rem;
             & .item{
                 display: flex;
                 flex-flow: column nowrap;
@@ -29,6 +31,40 @@
                 gap: 5px;
                 color: var(--cor-texto);
             }
+        }
+    }
+
+    & .postagens__perfil{
+        & .btns-section{
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            margin: auto;
+            gap: 1rem;
+            & .btn-section{
+                width: 100%;
+                max-width: 220px;
+                color:var(--cor-texto);
+                background: none;
+                opacity: .6;
+                cursor: pointer;
+                padding: 0.2rem;
+                transition: all ease .4s;
+                &:hover{
+                    opacity: 1;
+                }
+                &.ativo{
+                    opacity: 1;
+                    border-top: 2px solid var(--cor-principal);
+                }
+                & i{
+                    font-size: var(--fs-title);
+                }
+            }
+        }
+        & .subtitle{
+            color: var(--cor-texto);
+            text-align: center;
         }
     }
 }
