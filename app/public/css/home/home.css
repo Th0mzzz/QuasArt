@@ -10,30 +10,39 @@
     flex-flow: column nowrap;
     gap: 10px;
     cursor: pointer;
+
     & .card__content {
         position: relative;
         border-radius: 10px;
         overflow: hidden;
-        & img{
+
+        & img {
             width: 100%;
             height: 110%;
             margin: 0;
             transition: all ease .3s;
             opacity: .8;
         }
-        &:hover{
-             & img  {
+
+        &:hover {
+            & img {
                 opacity: 1;
                 transform: scale(1.1);
-             }
+            }
         }
-        & .card-title{
+
+        & .card-title {
             background: linear-gradient(to top, rgba(0, 0, 0, 0.514)20%, transparent);
             position: absolute;
             left: 0;
             bottom: 0;
             width: 100%;
-            padding: 1rem 0 ;
+            padding: 1rem 0;
+
+            & .subtitle {
+                color: #ffffff;
+text-align: center;
+            }
         }
     }
 
@@ -42,22 +51,65 @@
         align-items: center;
         justify-content: space-between;
         color: var(--cor-texto);
-        & .usuario{
+
+        & .usuario {
             display: flex;
             align-items: center;
             gap: 10px;
-            & img{
+
+            & img {
                 width: 35px;
                 height: 35px;
                 border-radius: 50%;
                 object-fit: cover;
             }
-            & a{
+
+            & a {
                 color: var(--cor-texto);
-                &:hover{
+
+                &:hover {
                     color: var(--cor-principal);
                 }
             }
+        }
+    }
+}
+.card__resenha{
+    width: clamp(200px, 100vw, 320px);
+    display: flex;
+    flex-flow: column nowrap;
+    cursor: pointer;
+    & .card__img{
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+        & img{
+            width: 100%;
+            height: 105%;
+            object-fit: cover;
+            transition: transform .4s;
+        }
+        &:hover{
+            & img{
+                transform: scale(1.1);
+            }
+        }
+    }
+    & .card__content{
+        padding: 1.2rem 1.5rem;
+        padding-bottom: calc(1.5rem + 35px);
+        background: var(--cor-containers);
+        border-radius: 0 0 10px 10px;
+        color: var(--cor-texto);
+        position: relative;
+        & .btn{
+            border: 10px solid var(--cor-containers);
+            border-radius: 50%;
+            padding: .3rem .8rem ;
+            font-size: var(--fs-title);
+            position: absolute;
+            right: -25px;
+            bottom: 25px;
         }
     }
 }
