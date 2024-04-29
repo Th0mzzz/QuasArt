@@ -219,6 +219,7 @@
         display: flex;
         padding: 1rem;
         width: fit-content;
+        align-items: center;
     }
     & .card{
         transition: transform .4s;

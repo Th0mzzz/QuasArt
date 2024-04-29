@@ -32,7 +32,7 @@
 
     & .title {
         text-align: center;
-        color: var(--cor-secundaria);
+        color: var(--cor-principal);
     }
 }
 
