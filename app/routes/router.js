@@ -38,6 +38,6 @@ router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, functio
 });
 router.post("/logarConta", usuariosController.regrasValidacaoEntrar, function (req, res) {
     usuariosController.entrar(req, res)
-});0
+})
 
 module.exports = router;

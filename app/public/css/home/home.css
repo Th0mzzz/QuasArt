@@ -41,7 +41,7 @@
 
             & .subtitle {
                 color: #ffffff;
-text-align: center;
+                text-align: center;
             }
         }
     }
@@ -74,38 +74,47 @@ text-align: center;
         }
     }
 }
-.card__resenha{
+
+.card__resenha {
     width: clamp(200px, 100vw, 320px);
     display: flex;
     flex-flow: column nowrap;
     cursor: pointer;
-    & .card__img{
+
+    & .card__img {
         width: 100%;
         overflow: hidden;
         border-radius: 10px 10px 0 0;
-        & img{
+
+        & img {
             width: 100%;
             height: 105%;
             object-fit: cover;
             transition: transform .4s;
         }
-        &:hover{
-            & img{
+        & header.card__autor{
+            background: #000;
+        }
+
+        &:hover {
+            & img {
                 transform: scale(1.1);
             }
         }
     }
-    & .card__content{
+
+    & .card__content {
         padding: 1.2rem 1.5rem;
         padding-bottom: calc(1.5rem + 35px);
         background: var(--cor-containers);
         border-radius: 0 0 10px 10px;
         color: var(--cor-texto);
         position: relative;
-        & .btn{
+
+        & .btn {
             border: 10px solid var(--cor-containers);
             border-radius: 50%;
-            padding: .3rem .8rem ;
+            padding: .3rem .8rem;
             font-size: var(--fs-title);
             position: absolute;
             right: -25px;
