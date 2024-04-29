@@ -7,7 +7,6 @@ if (modo === 'dark') {
     iconMode.className = "bi bi-brightness-high"
 } else {
     iconMode.className = "bi bi-moon"
-
 }
 
 btnMode.addEventListener('click', () => {

@@ -10,10 +10,11 @@
     flex-flow: column nowrap;
     gap: 10px;
     cursor: pointer;
+    --bdrr: 20px;
 
     & .card__content {
         position: relative;
-        border-radius: 10px;
+        border-radius: var(--bdrr);
         overflow: hidden;
 
         & img {
@@ -22,6 +23,8 @@
             margin: 0;
             transition: all ease .3s;
             opacity: .8;
+            object-fit: cover;
+
         }
 
         &:hover {
@@ -75,29 +78,100 @@
     }
 }
 
+.card__video {
+    width: clamp(180px, 100vw, 250px);
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    cursor: pointer;
+    --bdrr: 20px;
+
+    & .card__content {
+        position: relative;
+        border-radius: var(--bdrr);
+        overflow: hidden;
+
+        & img {
+            width: 100%;
+            height: 110%;
+            margin: 0;
+            transition: all ease .3s;
+            opacity: .8;
+            object-fit: cover;
+        }
+
+        &:hover {
+            & img {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        & .card-title {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.514)20%, transparent);
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 1rem;
+            color: #ffffff;
+            
+
+        }
+    }
+
+}
+
 .card__resenha {
     width: clamp(200px, 100vw, 320px);
     display: flex;
     flex-flow: column nowrap;
     cursor: pointer;
+    --bdrr: 20px;
+    border-radius: var(--bdrr);
+    box-shadow: 0 0 8px #0000009d;
 
     & .card__img {
+        position: relative;
         width: 100%;
         overflow: hidden;
-        border-radius: 10px 10px 0 0;
+        border-radius: var(--bdrr) var(--bdrr) 0 0;
 
-        & img {
+        & img.img__resenha {
             width: 100%;
             height: 105%;
             object-fit: cover;
             transition: transform .4s;
         }
-        & header.card__autor{
-            background: #000;
+
+        & .usuario {
+            background: #0000007a;
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 0.4em;
+
+            & img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+
+            & a {
+                color: white;
+
+                &:hover {
+                    color: var(--cor-principal);
+                }
+            }
         }
 
         &:hover {
-            & img {
+            & img.img__resenha {
                 transform: scale(1.1);
             }
         }
@@ -107,7 +181,7 @@
         padding: 1.2rem 1.5rem;
         padding-bottom: calc(1.5rem + 35px);
         background: var(--cor-containers);
-        border-radius: 0 0 10px 10px;
+        border-radius: 0 0 var(--bdrr) var(--bdrr);
         color: var(--cor-texto);
         position: relative;
 
@@ -119,6 +193,8 @@
             position: absolute;
             right: -25px;
             bottom: 25px;
+            box-shadow: 5px 0 8px #0000004f;
+
         }
     }
 }
