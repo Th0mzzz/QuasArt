@@ -54,7 +54,8 @@
     transition: background .3s, border .3s, color .3s;
     cursor: pointer;
 }
-.back-btn{
+
+.back-btn {
     border-radius: 50%;
     position: fixed;
     right: 5%;
@@ -62,12 +63,13 @@
     bottom: 40%;
     transform: translateX(100vw);
     transition: transform .5s;
-    & i{
+
+    & i {
         font-size: 28px;
     }
 
-    &.ativo{
-    transform: translateX(0%);
+    &.ativo {
+        transform: translateX(0%);
 
     }
 }
@@ -120,12 +122,18 @@
     &.invalid {
         --cor-login: var(--cor-danger);
         margin-bottom: 2rem;
+
         & .invalid-msg {
             display: block;
         }
+
+        & .alert-msg {
+            display: none;
+        }
     }
 
-    & .invalid-msg {
+    & .invalid-msg,
+    & .alert-msg {
         display: none;
         color: var(--cor-danger);
         position: absolute;
@@ -133,6 +141,10 @@
         left: 1rem;
     }
 
+    & .alert-msg {
+        display: block;
+        color: var(--cor-texto);
+    }
 }
 
 /* MODAL */
@@ -171,6 +183,56 @@
 
     }
 }
+
+
+/* carousel  */
+
+
+
+.carousel__container {
+    overflow: hidden;
+    position: relative;
+    padding: 5rem 0;
+
+    & .arrows .arrow-btn {
+        font-size: 40px;
+        outline: none;
+        background: transparent;
+        color: #fd9c4d;
+        cursor: pointer;
+        transition: font .5s, color .5s, background .5s;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 50;
+        border-radius: 50%;
+        padding: .5rem .7rem;
+    }
+
+    & .arrows .arrow-btn:hover {
+        color: #ffffff;
+        font-size: 45px;
+        background: #0000003a;
+    }
+
+    & .carousel__inner {
+        display: flex;
+        padding: 1rem;
+        width: fit-content;
+    }
+    & .card{
+        transition: transform .4s;
+    }
+}
+
+.arrow-btn.previous {
+    left: 0;
+}
+
+.arrow-btn.next {
+    right: 0;
+}
+
 
 
 /* Espaçamentos */

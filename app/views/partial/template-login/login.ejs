@@ -22,12 +22,15 @@ if(erros) { erros.errors.forEach(error=>{
             <article class="user-incorrect <%= incorreto %>">
                 <p class="text">Usuário ou senha incorretos! Tente novamente...</p>
             </article>
-            <article class="input__container <%= classeErro.usuario %>">
+            <article class="input__container <%= classeErro.usuario %> mb-3">
                 <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required
                     maxlength="30">
                 <label for="usuario">Usuário:</label>
                 <span class="invalid-msg smallText">
                     <%= msgErro.usuario %>
+                </span>
+                <span class="smallText alert-msg">
+                    O usuário deve ter pelo menos 4 caracteres!
                 </span>
             </article>
             <article class="input__container <%= classeErro.senha %> senha">
@@ -37,6 +40,9 @@ if(erros) { erros.errors.forEach(error=>{
                 <label for="senha">Senha:</label>
                 <span class="invalid-msg smallText">
                     <%= msgErro.senha %>
+                </span>
+                <span class="smallText alert-msg">
+                    A senha deve ter pelo menos 8 caracteres!
                 </span>
             </article>
             <article class="links">

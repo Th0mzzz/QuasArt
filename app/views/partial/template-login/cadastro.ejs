@@ -70,6 +70,9 @@ var msgErro={
                 <label for="email">Digite seu E-mail</label>
             </article>
             <article class="input__container <%= classeErro.senha  %> senha">
+                <span class="smallText alert-msg">
+                    A senha deve ter pelo menos 8 caracteres!
+                </span>
                 <span class="invalid-msg smallText">
                     <%= msgErro.senha %>
                 </span>
@@ -77,6 +80,7 @@ var msgErro={
                 <button class="ocultSenha btn"><i class="bi bi-eye"></i></button>
                 <label for="senha">Senha</label>
             </article>
+          
             <article class="links">
                 <a class="link" href="/entrar">Já tem uma conta?</a>
             </article>

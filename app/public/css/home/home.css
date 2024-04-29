@@ -2,6 +2,7 @@
 @import url("./aside.css");
 @import url("./footer.css");
 @import url("./perfil.css");
+@import url("./inicial-home.css");
 
 /* Código dos cards de fichas */
 .card__ficha {
