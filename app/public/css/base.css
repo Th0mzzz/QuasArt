@@ -192,13 +192,14 @@
 .carousel__container {
     overflow: hidden;
     position: relative;
-    padding: 5rem 0;
+    padding: 1rem 0;
 
     & .arrows .arrow-btn {
         font-size: 40px;
         outline: none;
-        background: transparent;
-        color: #fd9c4d;
+        background: var(--cor-principal);
+        color: var(--cor-fundo);
+        border: 3px solid var(--cor-containers);
         cursor: pointer;
         transition: font .5s, color .5s, background .5s;
         position: absolute;
@@ -207,22 +208,25 @@
         z-index: 50;
         border-radius: 50%;
         padding: .5rem .7rem;
+
+        &:hover {
+            color: #ffffff;
+            font-size: 45px;
+            background: var(--cor-principal-hover);
+        }
     }
 
-    & .arrows .arrow-btn:hover {
-        color: #ffffff;
-        font-size: 45px;
-        background: #0000003a;
-    }
+
 
     & .carousel__inner {
         display: flex;
-        padding: 1rem;
         width: fit-content;
         align-items: center;
     }
-    & .card{
+
+    & .card {
         transition: transform .4s;
+        padding: 0 1rem;
     }
 }
 
@@ -234,7 +238,11 @@
     right: 0;
 }
 
-
+@media (min-width:768px) {
+    .carousel__container .carousel__inner {
+        gap: 2rem;
+    }
+}
 
 /* Espaçamentos */
 

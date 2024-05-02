@@ -82,3 +82,5 @@ reset.addEventListener("click", () => {
     localStorage.setItem("links", "normais")
 })
 
+
+  

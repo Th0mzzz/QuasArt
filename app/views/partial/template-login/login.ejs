@@ -36,7 +36,7 @@ if(erros) { erros.errors.forEach(error=>{
             <article class="input__container <%= classeErro.senha %> senha">
                 <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
                     maxlength="50">
-                <button class="ocultSenha btn"><i class="bi bi-eye"></i></button>
+                <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
                 <label for="senha">Senha:</label>
                 <span class="invalid-msg smallText">
                     <%= msgErro.senha %>

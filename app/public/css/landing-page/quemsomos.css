@@ -13,8 +13,14 @@
 }
 
 
+.card.active {
+    & .card__membro {
+        opacity: 1;
+        top: -1rem;
+    }
+}
+
 .card__membro {
-    padding: 5rem 2rem;
     box-shadow: 0 0 8px #00000048;
     border-radius: 10px;
     position: relative;
@@ -22,13 +28,8 @@
     --cor-card: #2600ff;
     transition: all ease 1s;
     opacity: .4;
-    min-width: clamp(200px, 100%, 350px);
-
-    &.active {
-        opacity: 1;
-        margin: 0 10px;
-        top:-1rem;
-    }
+    width: clamp(200px, 100vw, 320px);
+    padding: 3rem 1.2rem;
 
     & header {
         display: flex;
@@ -51,8 +52,6 @@
             }
         }
     }
-
-
 
     & i {
         font-size: 30px;

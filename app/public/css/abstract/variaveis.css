@@ -12,12 +12,12 @@
     --cor-texto: #2C2C2C;
     --cor-danger: #df4141;
     /* Fontes */
-    --fs-text: clamp(13px, 2vw, 16px);
-    --fs-link: clamp(14px, 2vw, 18px);
+    --fs-text: clamp(12px, 2vw, 14px);
+    --fs-link: clamp(13px, 2vw, 15px);
     --fs-title: clamp(28px, 3vw, 32px);
-    --fs-subtitle: clamp(20px, 2.5vw, 22px);
+    --fs-subtitle: clamp(16px, 2.5vw, 20px);
     --fs-supertitle: clamp(32px, 2vw, 40px);
-    --fs-smalltext: clamp(10px, 1vw, 14px);
+    --fs-smalltext: clamp(8px, 1vw, 12px);
     --fs-tipografiaLogo: clamp(24px, 3vw, 28px);
     --ff-text: 'Poppins', Verdana;
     --ff-title: 'Montserrat', Arial;
@@ -52,44 +52,48 @@
 
 
 .aumentada {
-    --fs-text: calc(clamp(13px, 2vw, 16px) + 5px);
-    --fs-link: calc(clamp(14px, 2vw, 18px) + 5px);
+    --fs-text: calc(clamp(12px, 2vw, 14px) + 5px);
+    --fs-link: calc(clamp(13px, 2vw, 15px) + 5px);
     --fs-title: calc(clamp(28px, 3vw, 32px) + 8px);
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) + 8px);
     --fs-supertitle: calc(clamp(32px, 2vw, 40px) + 10px);
     --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) + 10px);
-    --fs-smalltext: calc(clamp(10px, 1vw, 14px) + 2px);
+    --fs-smalltext: calc(clamp(8px, 1vw, 12px) + 2px);
 }
 
 .diminuida {
-    --fs-text: calc(clamp(13px, 2vw, 16px) - 5px);
-    --fs-link: calc(clamp(14px, 2vw, 18px) - 5px);
+    --fs-text: calc(clamp(12px, 2vw, 14px) - 5px);
+    --fs-link: calc(clamp(13px, 2vw, 15px) - 5px);
     --fs-title: calc(clamp(28px, 3vw, 32px) - 8px);
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) - 8px);
     --fs-supertitle: calc(clamp(32px, 2vw, 40px) - 10px);
     --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) - 10px);
-    --fs-smalltext: calc(clamp(10px, 1vw, 14px) - 2px);
+    --fs-smalltext: calc(clamp(8px, 1vw, 12px) - 2px);
 }
 
 .text {
+    text-decoration: none;
     font-weight: 400;
     font-family: var(--ff-text);
     font-size: var(--fs-text);
 }
 
 .title {
+    text-decoration: none;
     font-weight: 800;
     font-family: var(--ff-title);
     font-size: var(--fs-title);
 }
 
 .subtitle {
+    text-decoration: none;
     font-weight: 600;
     font-family: var(--ff-subtitle);
     font-size: var(--fs-subtitle);
 }
 
 .supertitle {
+    text-decoration: none;
     font-weight: 700;
     font-family: var(--ff-supertitle);
     font-size: var(--fs-supertitle);
@@ -97,6 +101,7 @@
 }
 
 .tipografia {
+    text-decoration: none;
     font-weight: normal;
     font-family: var(--ff-tipografiaLogo);
     font-size: var(--fs-tipografiaLogo);
@@ -104,17 +109,20 @@
 
 .negrito-amarelo {
     color: var(--cor-principal);
+    text-decoration: none;
     font-weight: bold;
-    font-size: calc(clamp(13px, 2vw, 16px) + 2px);
+    font-size: calc(clamp(12px, 2vw, 14px) + 2px);
 }
 
 .negrito-roxo {
     color: var(--cor-secundaria-hover);
+    text-decoration: none;
     font-weight: bold;
-    font-size: calc(clamp(13px, 2vw, 16px) + 2px);
+    font-size: calc(clamp(12px, 2vw, 14px) + 2px);
 }
 
 .smallText {
+    text-decoration: none;
     font-weight: 400;
     font-size: var(--fs-smalltext);
     font-family: var(--ff-smallText);
