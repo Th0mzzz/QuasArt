@@ -23,6 +23,12 @@
         color: var(--cor-principal);
         gap: .5em;
         padding: 1.3rem 0;
+        & .subtitle i{
+            background: var(--cor-principal);
+            color: white;
+            padding: 10px 12px;
+            border-radius: 50%;
+        }
         & .text{
             color: var(--cor-texto);
            }
@@ -37,6 +43,10 @@
         background: var(--cor-secundaria-hover);
         --cor-principal: #ffffff;
         --cor-texto:#fff;
+        & .subtitle i{
+            background: var(--cor-principal);
+            color: var(--cor-secundaria-hover);
+        }
         & .btn {
            background: white;
            color: var(--cor-secundaria-hover);
