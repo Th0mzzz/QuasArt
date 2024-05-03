@@ -8,11 +8,21 @@ router.get("/", function (req, res) {
 });
 
 // HOMEPAGE
+router.get("/pesquisar", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/pesquisa-home" , classePagina: "pesquisar"})
+});
 router.get("/home", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/inicial-home" , classePagina: "inicialHome"})
 });
 router.get("/profile", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/perfil-home" , classePagina: "perfil"})
+});
+
+router.get("/publicar", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/publicar-home" , classePagina: "publicar"})
+});
+router.get("/videos", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/videos-home" , classePagina: "videos"})
 });
 
 // LOGIN E CADASTRO

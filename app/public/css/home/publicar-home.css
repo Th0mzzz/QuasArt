@@ -1,0 +1,50 @@
+.publicacao__cards {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-flow: row wrap;
+    gap: 2rem;
+    margin: 5rem 0;
+}
+
+.pub__card {
+    border-radius: 20px;
+    background: var(--cor-containers);
+    width: clamp(180px, 100vw, 350px);
+    min-height: 700px;
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0px 0px 8px 1px #0000004d;
+    transition: all ease .4s;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    & header {
+        color: var(--cor-principal);
+        gap: .5em;
+        padding: 1.3rem 0;
+        & .text{
+            color: var(--cor-texto);
+           }
+    }
+    & .content__card{
+       & .pub__card-img{
+        width: 100%;
+       }
+    }
+    &:hover{
+        translate: 0 -10px;
+        background: var(--cor-secundaria-hover);
+        --cor-principal: #ffffff;
+        --cor-texto:#fff;
+        & .btn {
+           background: white;
+           color: var(--cor-secundaria-hover);
+        }
+    }
+
+    & .btn {
+        width: 100%;
+        font-size: var(--fs-subtitle);
+    }
+}

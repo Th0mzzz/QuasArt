@@ -10,6 +10,7 @@
 
 /* BTNS */
 .btn {
+    display: block;
     color: #ffffff;
     font-weight: 400;
     font-family: var(--ff-text);
@@ -195,7 +196,9 @@
     padding: 1rem 0;
 
     & .arrows .arrow-btn {
-        font-size: 40px;
+        width: 65px;
+        height: 65px;
+        font-size: 30px;
         outline: none;
         background: var(--cor-principal);
         color: var(--cor-fundo);
@@ -211,7 +214,6 @@
 
         &:hover {
             color: #ffffff;
-            font-size: 45px;
             background: var(--cor-principal-hover);
         }
     }

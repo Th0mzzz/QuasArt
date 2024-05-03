@@ -3,8 +3,10 @@
 
     & .ad__img {
         width: 100%;
+        min-height: 280px;
         border-radius: 20px;
-        object-fit: fill;
+        object-fit: cover;
+        object-position: center;
     }
 
     & .ad__header {

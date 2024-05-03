@@ -15,8 +15,8 @@
     --fs-text: clamp(12px, 2vw, 14px);
     --fs-link: clamp(13px, 2vw, 15px);
     --fs-title: clamp(28px, 3vw, 32px);
-    --fs-subtitle: clamp(16px, 2.5vw, 20px);
-    --fs-supertitle: clamp(32px, 2vw, 40px);
+    --fs-subtitle: clamp(20px, 2.5vw, 22px);
+    --fs-supertitle: clamp(32px, 8vw, 40px);
     --fs-smalltext: clamp(8px, 1vw, 12px);
     --fs-tipografiaLogo: clamp(24px, 3vw, 28px);
     --ff-text: 'Poppins', Verdana;

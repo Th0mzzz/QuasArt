@@ -11,6 +11,23 @@
 </head>
 
 <body>
+    <% 
+        var tituloPagina = ''
+         if (classePagina === "perfil") { 
+            tituloPagina = "Área de perfil";
+           } else if (classePagina === "pesquisar") { 
+            tituloPagina = "Pesquisar";
+           } else if (classePagina === "inicialHome") { 
+            tituloPagina = "Página Inicial";
+           } else if (classePagina === "videos") { 
+            tituloPagina = "Vídeos";
+           } else if (classePagina === "publicar") { 
+            tituloPagina = "Área de Publicação";
+           } else { 
+            tituloPagina = "";
+           } 
+          
+        %>
     <header class="home__header">
         <nav class="nav__home">
             <a href="/home" class="logo link">
@@ -47,13 +64,13 @@
     <aside class="home__aside">
         <section class="aside__content">
             <ul class="aside__items">
-                <li class="aside__item <%= classePagina == 'pesquisar' ? 'ativo ': '' %>"><a href=""><i
+                <li class="aside__item <%= classePagina == 'pesquisar' ? 'ativo ': '' %>"><a href="/pesquisar"><i
                             class="bi bi-search"></i></a></li>
                 <li class="aside__item <%= classePagina == 'inicialHome' ? 'ativo ': '' %>"><a href="/home"><i
                             class="bi bi-house"></i></a></li>
-                <li class="aside__item <%= classePagina == 'videos' ? 'ativo ': '' %>"><a href=""><i
+                <li class="aside__item <%= classePagina == 'videos' ? 'ativo ': '' %>"><a href="/videos"><i
                             class="bi bi-camera-video"></i></a></li>
-                <li class="aside__item <%= classePagina == 'publicar' ? 'ativo ': '' %>"><a href=""><i
+                <li class="aside__item <%= classePagina == 'publicar' ? 'ativo ': '' %>"><a href="/publicar"><i
                             class="bi bi-plus-circle-dotted"></i></a></li>
                 <li class="aside__item <%= classePagina == 'perfil' ? 'ativo ': '' %> perfil-item"><a
                         href="/profile"><img src="./img/perfil-padrao.webp" alt="imagem do usuário"></a></li>
@@ -61,6 +78,8 @@
         </section>
     </aside>
     <main class="home__content">
+        
+        <h1 class="supertitle" style="color:var(--cor-texto); text-align: center;"><%= tituloPagina %></h1>
         <%- include(page) %>
             <a href="#inicio" class="btn back-btn"><i class="bi bi-arrow-up-circle"></i></a>
     </main>
@@ -83,8 +102,8 @@
             <ul class="footer__list mt-3">
                 <h3 class="subtitle mb-2">Páginas</h3>
                 <li><a class="link" href="/home">Página Inicial</a></li>
-                <li><a class="link" href="">Publicar</a></li>
-                <li><a class="link" href="">Vídeos</a></li>
+                <li><a class="link" href="/publicar">Publicar</a></li>
+                <li><a class="link" href="/videos">Vídeos</a></li>
                 <li><a class="link" href="/profile">Perfil</a></li>
             </ul>
             <ul class="footer__list mt-3">
