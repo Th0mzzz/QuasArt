@@ -5,15 +5,15 @@ const btnsOpenModal = document.querySelectorAll("[data-openmodal]")
 
 btnsOpenModal.forEach(btn => {
     btn.addEventListener("click", () => {
-        let modal = document.querySelector(btn.dataset.openmodal)
-        modal.classList.add("show")
-
-    })
-})
-modals.forEach(modal => {
+      let modal = document.querySelector(btn.dataset.openmodal);
+      modal.classList.add("show");
+    });
+  });
+  
+  modals.forEach(modal => {
     const closeBtn = modal.querySelector(".closeBtn");
-
-    closeBtn.addEventListener("click", () => {
-        modal.classList.remove("show");
-    })
-})
+    closeBtn?.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
+  });
+  

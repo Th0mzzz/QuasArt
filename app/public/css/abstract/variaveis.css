@@ -11,8 +11,9 @@
     --cor-containers: #fff;
     --cor-texto: #2C2C2C;
     --cor-danger: #df4141;
+    --cor-success: #7ABA78;
     /* Fontes */
-    --fs-text: clamp(12px, 2vw, 14px);
+    --fs-text: clamp(13px, 2vw, 1px);
     --fs-link: clamp(13px, 2vw, 15px);
     --fs-title: clamp(28px, 3vw, 32px);
     --fs-subtitle: clamp(20px, 2.5vw, 22px);
@@ -52,7 +53,7 @@
 
 
 .aumentada {
-    --fs-text: calc(clamp(12px, 2vw, 14px) + 5px);
+    --fs-text: calc(clamp(13px, 2vw, 1px) + 5px);
     --fs-link: calc(clamp(13px, 2vw, 15px) + 5px);
     --fs-title: calc(clamp(28px, 3vw, 32px) + 8px);
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) + 8px);
@@ -62,7 +63,7 @@
 }
 
 .diminuida {
-    --fs-text: calc(clamp(12px, 2vw, 14px) - 5px);
+    --fs-text: calc(clamp(13px, 2vw, 1px) - 5px);
     --fs-link: calc(clamp(13px, 2vw, 15px) - 5px);
     --fs-title: calc(clamp(28px, 3vw, 32px) - 8px);
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) - 8px);
@@ -111,14 +112,12 @@
     color: var(--cor-principal);
     text-decoration: none;
     font-weight: bold;
-    font-size: calc(clamp(12px, 2vw, 14px) + 2px);
 }
 
 .negrito-roxo {
     color: var(--cor-secundaria-hover);
     text-decoration: none;
     font-weight: bold;
-    font-size: calc(clamp(12px, 2vw, 14px) + 2px);
 }
 
 .smallText {

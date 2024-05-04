@@ -1,0 +1,76 @@
+.plus__container {
+    margin: 1rem 0;
+
+    &>.subtitle {
+        text-align: center;
+        color: var(--cor-texto);
+    }
+
+    & .plus__cards {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        margin: 5rem 0;
+
+        & .plus__card {
+            position: relative;
+            padding: 1.5rem .6rem;
+            box-shadow: 0 0 8px 1px var(--cor-texto);
+            border-radius: 20px;
+            border: 1px solid var(--cor-texto);
+            background: var(--cor-containers);
+
+            & header {
+                text-align: center;
+                padding: clamp(.5rem, 3vw, 2rem);
+                color: var(--cor-texto);
+                border-bottom: 1px solid var(--cor-texto);
+
+                & .btn {
+                    width: 100%;
+                }
+            }
+
+            & .plus__recursos {
+                padding: clamp(.5rem, 3vw, 2rem);
+
+                & .recursos {
+                    padding: 1rem;
+                    list-style: none;
+
+                    & .recurso__item {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+                        gap: 1rem;
+                        color: var(--cor-texto);
+
+                        & i {
+                            font-size: 20px;
+                            color: var(--cor-success);
+                        }
+                    }
+                }
+            }
+
+            &.recomendado {
+                padding: 2.2rem 1rem;
+                border: 1px solid var(--cor-principal);
+                box-shadow: 0 0 8px 1px var(--cor-principal);
+                & .recomendado__alert{
+                    position: absolute;
+                    top: -5%;
+                    left: 50%;
+                    translate: -50% 0 ;
+                    background: var(--cor-principal-hover);
+                    border: 2px solid var(--cor-principal);
+                    padding: .4rem 1rem;
+                    border-radius: 30px;
+                }
+
+            }
+        }
+    }
+}

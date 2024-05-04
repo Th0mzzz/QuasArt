@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
 });
 
 router.get("/plus-page", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/plus-page", classePagina: "" })
+    res.render("./pages/template-home", { page: "../partial/template-home/plus-page", classePagina: "assinatura" })
 });
 // HOMEPAGE
 router.get("/pesquisar", function (req, res) {

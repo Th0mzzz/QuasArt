@@ -35,7 +35,7 @@
     }
     & .content__card{
        & .pub__card-img{
-        width: 70%;
+        width: clamp(100px, 100%, 200px);
        }
     }
     &:hover{

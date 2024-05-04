@@ -14,7 +14,7 @@
     color: #ffffff;
     font-weight: 400;
     font-family: var(--ff-text);
-    font-size: var(--fs-text);
+    font-size: clamp(14px,2vw, 16px);
     text-decoration: none;
     background: var(--cor-btn);
     padding: .5rem 1rem;
@@ -34,6 +34,12 @@
     --cor-btn: var(--cor-secundaria);
     --cor-btn-hover: var(--cor-secundaria-hover);
 }
+.btn.lg{
+    font-size: clamp(16px,3vw, 19px);
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
 
 .btn:hover,
 .btn-outline:hover {
