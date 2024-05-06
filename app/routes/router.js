@@ -20,10 +20,22 @@ router.get("/home", function (req, res) {
 router.get("/profile", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" })
 });
-
+// publicar pages
 router.get("/publicar", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/publicar-home", classePagina: "publicar" })
 });
+router.get("/via-videos-pub", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/videos-pub", classePagina: "publicar" })
+});
+router.get("/ficha-espacial-pub", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/ficha-pub", classePagina: "publicar" })
+});
+router.get("/resenha-cosmica-pub", function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/resenha-pub", classePagina: "publicar" })
+});
+
+
+// videos
 router.get("/videos", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/videos-home", classePagina: "videos" })
 });

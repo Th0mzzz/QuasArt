@@ -1,0 +1,6 @@
+.input__container {
+    border: 1px solid var(--cor-secundaria);
+    width: 100%;
+}
+
+.input-file

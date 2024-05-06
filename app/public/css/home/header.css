@@ -77,6 +77,7 @@
     overflow: hidden;
     border: 0px solid var(--cor-secundaria-hover);
     transition: all .3s;
+    z-index: 100;
 
     & .access__content {
         height: 100%;
@@ -112,7 +113,7 @@
 
 @media (min-width:769px) {
 
- 
+
 
     .home__header {
         position: relative;

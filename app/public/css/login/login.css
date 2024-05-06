@@ -81,10 +81,7 @@
         }
     }
 
-    & .input__container {
-        border: 1px solid var(--cor-login);
-        width: 100%;
-    }
+   
 
 }
 

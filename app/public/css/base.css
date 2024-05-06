@@ -14,7 +14,7 @@
     color: #ffffff;
     font-weight: 400;
     font-family: var(--ff-text);
-    font-size: clamp(14px,2vw, 16px);
+    font-size: clamp(14px, 2vw, 16px);
     text-decoration: none;
     background: var(--cor-btn);
     padding: .5rem 1rem;
@@ -34,8 +34,9 @@
     --cor-btn: var(--cor-secundaria);
     --cor-btn-hover: var(--cor-secundaria-hover);
 }
-.btn.lg{
-    font-size: clamp(16px,3vw, 19px);
+
+.btn.lg {
+    font-size: clamp(16px, 3vw, 19px);
     font-weight: bold;
     letter-spacing: 1px;
 }
@@ -67,7 +68,7 @@
     position: fixed;
     right: 5%;
     z-index: 100;
-    bottom: 40%;
+    bottom: 30%;
     transform: translateX(100vw);
     transition: transform .5s;
 
@@ -96,6 +97,7 @@
         transition: all ease .3s;
         font-family: var(--ff-link);
         opacity: .5;
+        color: var(--cor-texto);
     }
 
     & input {
@@ -119,12 +121,15 @@
         font-size: var(--fs-smalltext);
     }
 
+    /* input senha */
     & .ocultSenha {
         position: absolute;
         right: 1rem;
         top: 50%;
         translate: 0% -50%;
     }
+
+    /* input invalid */
 
     &.invalid {
         --cor-login: var(--cor-danger);
@@ -152,6 +157,28 @@
         display: block;
         color: var(--cor-texto);
     }
+
+    /* input file */
+    &.input-file{
+        & input[type="file"]{
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        & label.icon{
+            opacity: 1;
+            background: var(--cor-secundaria);
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            translate: -50% -50%;
+        }
+       
+    }
 }
 
 /* MODAL */
@@ -163,6 +190,8 @@
     backdrop-filter: blur(10px);
     z-index: 1000;
     display: none;
+    left: 0;
+    top: 0;
 
     &.show {
         display: flex;
@@ -193,7 +222,6 @@
 
 
 /* carousel  */
-
 
 
 .carousel__container {
