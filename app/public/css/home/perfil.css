@@ -10,7 +10,7 @@
             
             width: clamp(105px, 20vw, 120px);
             height: clamp(105px, 20vw, 120px);
-            border-radius: 35%;
+            border-radius: 50%;
             object-fit: cover;
             margin: 2.3rem 0;
             border: 5px solid var(--cor-principal);
@@ -20,13 +20,12 @@
         }
         & .row-items{
             display: flex;
-            flex-flow: row-reverse wrap;
+            flex-flow: column wrap;
             align-items: center;
             justify-content: center;
             & .btn{
                 width: fit-content;
                 height: fit-content;
-                margin-left: .5em;
             }
         }
         & .estatisticas__usuario{
@@ -97,6 +96,16 @@
             flex-flow: row wrap;
             width: 100%;
             gap: 2rem;
+        }
+    }
+}
+
+@media (min-width: 769px){
+    & .row-items{
+        position: relative;
+        & .btn{
+            position: absolute;
+            right: calc(-85px - 1.5em);
         }
     }
 }
