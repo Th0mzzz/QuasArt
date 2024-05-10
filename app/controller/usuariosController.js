@@ -76,7 +76,8 @@ const usuariosController = {
 
                 const resultados = await usuariosModel.create(dadosForm);
                 console.log(resultados);
-                res.redirect("/home")
+                res.render("pages/template-home", { page: "../partial/template-home/initial-home",  classePagina: "initial-home"  ,tokenAlert: { msg: "Seja bem-vindo ao QuasArt!"} })
+                console.log("Cadastrado!")
             } catch (erros) {
                 console.log(erros)
                 res.render("pages/error-500")
@@ -89,14 +90,14 @@ const usuariosController = {
 
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors , incorreto:null});
+            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors, incorreto: null });
         } else {
 
             const { usuario, senha } = req.body
             try {
                 const userBd = await usuariosModel.findPasswordByUser(usuario, senha)
                 if (userBd.length > 0) {
-                    res.redirect("/home")
+                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home",  classePagina: "inicialHome"  ,tokenAlert: { msg: `Bom te ver de novo ${usuario}!` } })
                     console.log("Logado!")
                 } else {
                     res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
@@ -109,7 +110,7 @@ const usuariosController = {
 
         }
     },
-   
+
 }
 
 module.exports = usuariosController

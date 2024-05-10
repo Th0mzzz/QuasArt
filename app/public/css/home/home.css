@@ -211,6 +211,14 @@
     }
 }
 
+.token-alert{
+    position: fixed;
+    right: 20%;
+    bottom: 20%;
+    background: var(--cor-containers);
+    padding: 0.5rem;    
+}
+
 @media (min-width:769px) {
 
     .home__header,
