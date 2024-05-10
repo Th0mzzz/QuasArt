@@ -1,6 +1,30 @@
-.input__container {
-    border: 1px solid var(--cor-secundaria);
-    width: 100%;
-}
+.form__pub-container {
+    margin: 5rem 0;
+    background: var(--cor-containers);
+    padding: clamp(.8rem, 5vw, 2rem);
+    border-radius: 20px;
+    box-shadow: 0 0 8px 1px #00000036;
 
-.input-file
+    & .form__pub {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        gap: 1rem;
+
+        & .form__row {
+            display: flex;
+            align-items: start;
+            width: 50%;
+        }
+
+        & .input__container {
+            border: 1px solid var(--cor-secundaria);
+            width: 100%;
+
+            &.input-file {
+                width: clamp(180px, 100%, 200px);
+                height: clamp(240px, 20vw, 300px);
+            }
+        }
+    }
+}
