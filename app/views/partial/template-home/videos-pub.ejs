@@ -1,20 +1,48 @@
 <section class="form__pub-container">
+    <h2 class="title">Criar <span class="negrito-roxo">ViaVideo</span></h2>
     <form action="/criarVideo" class="form__pub">
+        <header class="form__row">
+            <article class="input__container input-file">
+                <span class="invalid-msg smallText">
+                </span>
+                <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video"
+                    required>
+                <label for="capaVideo">Selecione a capa do vídeo</label>
+                <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+            </article>
+            <section>
+                <input type="hidden" name="idUsuario" id="idUsuario" value="">
+                <article class="input__container">
+                    <span class="invalid-msg smallText">
+                    </span>
+                    <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
+                        placeholder="Título do video" required value="">
+                    <label for="tituloVideo">Título do vídeo</label>
+                </article>
+                <article class="input__container">
+                    <span class="invalid-msg smallText">
+                    </span>
+                    <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"></textarea>
+                    <label for="descricao">Descrição</label>
+                </article>
+                <article class="input__container">
+                    <span class="invalid-msg smallText">
+                    </span>
+                    <input type="text" name="tags" id="tags" class="tagInput" placeholder="">
+                    <label for="tags">Tags</label>
+                </article>
+                <div id="tagsContainer"></div>
+            </section>
+        </header>
         <article class="input__container input-file">
             <span class="invalid-msg smallText">
             </span>
-            <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video" required>
-            <label for="capaVideo">Selecione a capa do vídeo</label>
+            <input type="file" name="tituloVideo" id="tituloVideo" class="input__control" placeholder="Título do video"
+                required value="">
+            <label for="tituloVideo">Adicionar Vídeo</label>
             <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
-        </article>
-        <section class="form__row">
-            <article class="input__container">
-                <span class="invalid-msg smallText">
-                </span>
-                <input type="text" name="" id="" class="input__control" placeholder="Título do video" required value="">
-                <label for="">Título do video</label>
-            </article>
-        </section>
 
+        </article>
+        <button class="btn submit secundaria p-2">Publicar</button>
     </form>
 </section>

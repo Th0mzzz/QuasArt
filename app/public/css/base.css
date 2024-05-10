@@ -23,6 +23,7 @@
     border: 1px solid transparent;
     cursor: pointer;
     text-align: center;
+
     &.submit {
         width: 100%;
         border-radius: 50px;
@@ -91,7 +92,7 @@
     border: 1px solid var(--cor-texto);
     background: var(--cor-containers);
 
-    & input~label {
+    & :is(input, select, textarea)~label {
         position: absolute;
         left: 1rem;
         top: 50%;
@@ -100,16 +101,18 @@
         font-family: var(--ff-link);
         opacity: .5;
         color: var(--cor-texto);
+        z-index: 50;
     }
 
-    & input {
+    & :is(input, select, textarea) {
         outline: none;
         border: none;
         background: transparent;
         color: var(--cor-texto);
         padding: 1.5rem 1rem 1.2rem 1rem;
         width: 100%;
-        font-family: 'Questrial', Verdana;
+        font-family: 'Questrial',
+        Verdana;
         font-size: var(--fs-text);
 
         &::placeholder {
@@ -117,9 +120,9 @@
         }
     }
 
-    & :is(input:focus, input:active, input:not(:placeholder-shown))~label {
+    & :is( :is(input, textarea, select):focus, :is(input, textarea, select):active, input:not(:placeholder-shown), textarea:not(:placeholder-shown))~label {
         left: .8rem;
-        top: 20%;
+        top: 10px;
         font-size: var(--fs-smalltext);
     }
 
@@ -167,9 +170,11 @@
             height: 100%;
             opacity: 0;
         }
-        & label{
+
+        & label {
             font-size: var(--fs-text);
         }
+
         & label.icon {
             opacity: 1;
             background: var(--cor-secundaria);
