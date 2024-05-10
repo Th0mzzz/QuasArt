@@ -1,14 +1,15 @@
-.homebtn{
+.homebtn {
     position: absolute;
     top: 10px;
     left: 10px;
     z-index: 10;
-    & i{
+
+    & i {
         font-size: 20px;
     }
 }
 
-.user-incorrect{
+.user-incorrect {
     color: var(--cor-danger);
     padding: 1rem;
     text-align: center;
@@ -16,10 +17,12 @@
     border: 1px solid var(--cor-danger);
     border-radius: 10px;
     display: none;
-    &.ativado{
+
+    &.ativado {
         display: block;
     }
 }
+
 .section__login {
     --cor-login: none;
     --cor-login-hover: none;
@@ -37,6 +40,7 @@
 
     & .btn {
         background: var(--cor-login);
+
         &:hover {
             background: var(--cor-login-hover);
         }
@@ -81,7 +85,10 @@
         }
     }
 
-   
+    & .input__container {
+        border: 1px solid var(--cor-login);
+
+    }
 
 }
 
@@ -128,6 +135,7 @@
         border: 1px solid var(--cor-login-hover);
         width: auto;
         max-width: 768px;
+
         & .modal__title {
             color: var(--cor-login);
         }

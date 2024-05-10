@@ -88,6 +88,8 @@
     position: relative;
     border-radius: 10px;
     margin: .5rem 0;
+    border: 1px solid var(--cor-texto);
+    background: var(--cor-containers);
 
     & input~label {
         position: absolute;
@@ -159,13 +161,16 @@
     }
 
     /* input file */
-    &.input-file{
-        & input[type="file"]{
+    &.input-file {
+        & input[type="file"] {
             width: 100%;
             height: 100%;
             opacity: 0;
         }
-        & label.icon{
+        & label{
+            font-size: var(--fs-text);
+        }
+        & label.icon {
             opacity: 1;
             background: var(--cor-secundaria);
             color: white;
@@ -173,11 +178,11 @@
             padding: 10px;
             border-radius: 50%;
             position: absolute;
-            top:50%;
+            top: 50%;
             left: 50%;
             translate: -50% -50%;
         }
-       
+
     }
 }
 
