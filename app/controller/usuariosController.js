@@ -76,7 +76,7 @@ const usuariosController = {
 
                 const resultados = await usuariosModel.create(dadosForm);
                 console.log(resultados);
-                res.render("pages/template-home", { page: "../partial/template-home/initial-home",  classePagina: "initial-home"  ,tokenAlert: { msg: "Seja bem-vindo ao QuasArt!"} })
+                res.render("pages/template-home", { page: "../partial/template-home/initial-home",  classePagina: "initial-home"  ,tokenAlert: { msg: `Seja bem-vindo ao QuasArt!`,usuario:`${usuario}!`} })
                 console.log("Cadastrado!")
             } catch (erros) {
                 console.log(erros)
@@ -97,7 +97,7 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findPasswordByUser(usuario, senha)
                 if (userBd.length > 0) {
-                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home",  classePagina: "inicialHome"  ,tokenAlert: { msg: `Bom te ver de novo ${usuario}!` } })
+                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home",  classePagina: "inicialHome"  ,tokenAlert: { msg: `Bom te ver de novo`, usuario:`${usuario}!` } })
                     console.log("Logado!")
                 } else {
                     res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
