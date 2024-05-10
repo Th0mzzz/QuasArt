@@ -22,7 +22,7 @@
     transition: background .3s, color .3s;
     border: 1px solid transparent;
     cursor: pointer;
-
+    text-align: center;
     &.submit {
         width: 100%;
         border-radius: 50px;
