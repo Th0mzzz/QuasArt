@@ -15,7 +15,7 @@ router.get("/pesquisar", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/pesquisa-home", classePagina: "pesquisar" })
 });
 router.get("/home", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome" })
+    res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome" , tokenAlert: undefined})
 });
 router.get("/profile", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" })

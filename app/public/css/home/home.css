@@ -213,13 +213,15 @@
 
 .token-alert {
     position: fixed;
-    right: 5px;
+    right: 10%;
     bottom: 20%;
     background: var(--cor-containers);
     padding: 1rem 1.8rem;
     color: var(--cor-texto);
     animation: sumir 8s normal ;
     translate: 200% 0;
+    border: 2px solid var(--cor-secundaria);
+    border-radius: 50px;
 }
 
 @keyframes sumir {
