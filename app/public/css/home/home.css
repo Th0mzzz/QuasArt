@@ -211,12 +211,24 @@
     }
 }
 
-.token-alert{
+.token-alert {
     position: fixed;
-    right: 20%;
+    right: 5px;
     bottom: 20%;
     background: var(--cor-containers);
-    padding: 0.5rem;    
+    padding: 1rem 1.8rem;
+    color: var(--cor-texto);
+    animation: sumir 8s normal ;
+    translate: 200% 0;
+}
+
+@keyframes sumir {
+    0% , 10%, 15%,20%,30%,35%,40%,45%,50%,55%,60%,65%,70%{
+        translate: 0% 0;
+    }
+    100% {
+        translate: 200% 0;
+    }
 }
 
 @media (min-width:769px) {
