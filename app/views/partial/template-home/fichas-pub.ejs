@@ -1,14 +1,13 @@
 <section class="form__pub-container">
-    <h2 class="title">Criar <span class="negrito-roxo">ViaVideo</span></h2>
+    <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
     <form action="/criarVideo" class="form__pub" method="post">
         <header class="form__row">
             <article class="input__container input-file">
                 <span class="invalid-msg smallText">
                 </span>
-                <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video"
-                    required>
-                <label for="capaVideo">Selecione a capa do vídeo</label>
-                <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required>
+                <label for="capaFicha">Selecione a capa da ficha</label>
+                <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
                 <input type="hidden" name="idUsuario" id="idUsuario" value="">
@@ -17,13 +16,13 @@
                     </span>
                     <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
                         placeholder="Título do video" required value="">
-                    <label for="tituloVideo">Título do vídeo</label>
+                    <label for="tituloVideo">Nome da Obra</label>
                 </article>
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
-                    <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"></textarea>
-                    <label for="descricao">Descrição</label>
+                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="800"></textarea>
+                    <label for="sinopse">Sinopse</label>
                 </article>
                 <article class="input__container">
                     <span class="invalid-msg smallText">
@@ -35,16 +34,29 @@
                 <div id="tagsContainer"></div>
             </section>
         </header>
-        <article class="input__container input-file">
-            <span class="invalid-msg smallText">
-            </span>
-            <input type="file" name="tituloVideo" id="tituloVideo" class="input__control" placeholder="Título do video"
-                required value="">
-            <label for="tituloVideo">Adicionar Vídeo</label>
-            <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+        <section class="ficha__conteudo">
 
-        </article>
+            <article class="input__container input-file ">
+                <span class="invalid-msg smallText">
+                    Limite de previas alcançado!
+                </span>
+                <input type="file" name="addPrevia" id="addPrevia" class="input__control" placeholder="Título do video">
+                <label for="addPrevia">Adicionar Prévias da Obra</label>
+                <label for="addPrevia" class="icon"><i class="bi bi-plus"></i></label>
+
+            </article>
+
+            <section class="previas__container mt-3">
+                <article class="previas__inner" id="carouselPrevia">
+                    
+                </article>
+            </section>
+        </section>
+
         <button class="btn submit secundaria p-2">Publicar</button>
     </form>
 </section>
 <script src="./js/criarTag.js"></script>
+<script src="./js/addPrevia.js"></script>
+
+

@@ -24,6 +24,7 @@
         gap: .5em;
         padding: 1.3rem 0;
         & .subtitle i{
+            font-size: 20px;
             background: var(--cor-principal);
             color: white;
             padding: 10px 12px;

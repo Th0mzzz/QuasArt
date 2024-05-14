@@ -137,7 +137,7 @@
     /* input invalid */
 
     &.invalid {
-        --cor-login: var(--cor-danger);
+        border-color: var(--cor-danger) !important;
         margin-bottom: 2rem;
 
         & .invalid-msg {
@@ -154,7 +154,7 @@
         display: none;
         color: var(--cor-danger);
         position: absolute;
-        bottom: -30%;
+        bottom: -15px;
         left: 1rem;
     }
 
@@ -240,6 +240,7 @@
     padding: 1rem 0;
 
     & .arrows .arrow-btn {
+        display: flex;
         width: 65px;
         height: 65px;
         font-size: 30px;
@@ -260,6 +261,9 @@
             color: #ffffff;
             background: var(--cor-principal-hover);
         }
+        & i {
+            margin: auto;
+        }
     }
 
 
@@ -272,7 +276,7 @@
 
     & .card {
         transition: transform .4s;
-        padding: 0 1rem;
+        padding-right: 1rem;
     }
 }
 

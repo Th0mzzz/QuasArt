@@ -8,43 +8,110 @@
     &>.title {
         color: var(--cor-texto);
     }
+}
 
-    & .form__pub {
+.form__pub {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    padding: 2rem 0;
+
+    & .form__row {
+        width: 100%;
         display: flex;
         flex-flow: row wrap;
+        align-items: start;
         gap: 1rem;
-        padding: 2rem 0;
 
-        & .form__row {
+        & section {
             width: 100%;
-            display: flex;
-            flex-flow: row wrap;
-            align-items: start;
-            gap: 1rem;
+        }
+    }
 
-            & section {
-                width: 100%;
-            }
+    & .input__container {
+
+        border: 1px solid var(--cor-texto);
+        width: 100%;
+
+        & textarea {
+            resize: none;
+            height: 200px;
         }
 
-        & .input__container {
-
-            border: 1px solid var(--cor-texto);
-            width: 100%;
-
-            & textarea {
-                resize: none;
-                height: 200px;
+        &.input-file {
+            min-width: 270px;
+            max-width: 270px;
+            height: clamp(320px, 100vh, 480px);
+        }
+        &.input-previa{
+            overflow: hidden;
+            background: #000;
+            & .removePrevia{
+                color: #fff;
+                background: var(--cor-principal);
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                cursor: pointer;
+                border-radius: 50%;
+                padding: 0.4rem;
+                z-index: 10;
+                &:hover{
+                    background: var(--cor-principal-hover);
+                   
+                }
             }
-
-            &.input-file {
+            & .previa-content{
                 width: 100%;
-                max-width: 270px;
-                height: clamp(320px, 100vh, 480px);
+                height: 100%;
+                object-fit: cover;
             }
         }
     }
+
+    &.resenha {
+        & .form__row {
+            flex-flow: column nowrap;
+
+            & .input-file {
+                max-width: 100%;
+            }
+        }
+    }
+
+    & #textoResenha,
+    #sinopse {
+        resize: vertical;
+        min-height: 200px;
+        max-height: 600px;
+    }
+
+    & #sinopse {
+        max-height: 400px;
+    }
+
+
 }
+
+.ficha__conteudo {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+
+    & .previas__container {
+        width: 100%;
+        padding: 0;
+        & .previas__inner{
+            display: flex;
+            flex-flow: row wrap;
+            gap: 1rem;
+            align-items: start;
+            justify-content: start;
+        }
+    }
+}
+
 
 #tagsContainer {
     display: flex;
@@ -62,14 +129,16 @@
     align-items: center;
     gap: 5px;
     width: fit-content;
-    & button{
+
+    & span {
         background: transparent;
         color: white;
         outline: none;
         padding: 2px;
-        border-radius: 50%; 
+        border-radius: 50%;
         font-size: 14px;
-        &:hover{
+
+        &:hover {
             background: var(--cor-secundaria-hover);
         }
     }

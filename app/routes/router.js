@@ -2,60 +2,73 @@ var express = require("express");
 const usuariosController = require("../controller/usuariosController");
 var router = express.Router();
 
-// LANDING PAGE
+// ------------ LANDING PAGE ---------------
+
 router.get("/", function (req, res) {
     res.render("pages/index");
 });
+ 
+// ---------- PÁGINAS DA HOME -------------
 
+// pagina de assinatura
 router.get("/plus-page", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/plus-page", classePagina: "assinatura" })
 });
-// HOMEPAGE
+
+// Pagina de pesquisa
 router.get("/pesquisar", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/pesquisa-home", classePagina: "pesquisar" })
 });
+// pagina inicial
 router.get("/home", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome" , tokenAlert: undefined})
 });
+// pagina de perfil
 router.get("/profile", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" })
 });
-// publicar pages
+// Publicar pages
 router.get("/publicar", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/publicar-home", classePagina: "publicar" })
 });
+// pagina de publicar videos
 router.get("/via-videos-pub", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/videos-pub", classePagina: "publicar" })
 });
+
+// pagina de publicar fichas
 router.get("/ficha-espacial-pub", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/ficha-pub", classePagina: "publicar" })
+    res.render("./pages/template-home", { page: "../partial/template-home/fichas-pub", classePagina: "publicar" })
 });
+// pagina de publicar resenhas
 router.get("/resenha-cosmica-pub", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/resenha-pub", classePagina: "publicar" })
+    res.render("./pages/template-home", { page: "../partial/template-home/resenhas-pub", classePagina: "publicar" })
 });
 
-
-// videos
+// pagina de videos
 router.get("/videos", function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/videos-home", classePagina: "videos" })
 });
 
-// LOGIN E CADASTRO
+// ------------ LOGIN E CADASTRO ---------------
+// pagina de login
 router.get("/entrar", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: "" });
 });
-
+//  pagina de cadastro
 router.get("/cadastrar", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: null, valores: "" });
 });
+// pagina de esqueceu a senha
 router.get("/esqueceuSenha", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/esqueceuSenha", modal: "fechado", erros: null });
 });
 
-
+// formulario para enviar email
 router.get("/enviarEmail", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/esqueceuSenha", modal: "aberto", erros: null });
 })
+// form para checar se o valor do token é correto
 router.post("/checarToken", function (req, res) {
     res.render("pages/template-login", { page: "../partial/template-login/redefinir", modal: "fechado", erros: null });
 })

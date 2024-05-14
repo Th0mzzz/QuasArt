@@ -1,23 +1,22 @@
 <section class="form__pub-container">
-    <h2 class="title">Criar <span class="negrito-roxo">ViaVideo</span></h2>
-    <form action="/criarVideo" class="form__pub" method="post">
+    <h2 class="title">Criar <span class="negrito-roxo">Resenha Cósmica</span></h2>
+    <form action="/criarResenha" class="form__pub resenha" method="post">
         <header class="form__row">
             <article class="input__container input-file">
                 <span class="invalid-msg smallText">
                 </span>
-                <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video"
-                    required>
-                <label for="capaVideo">Selecione a capa do vídeo</label>
-                <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+                <input type="file" name="imgResenha" id="imgResenha" class="input__control" placeholder="" required>
+                <label for="imgResenha">Selecione a imagem da Resenha</label>
+                <label for="imgResenha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
                 <input type="hidden" name="idUsuario" id="idUsuario" value="">
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
-                    <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
+                    <input type="text" name="tituloResenha" id="tituloResenha" class="input__control"
                         placeholder="Título do video" required value="">
-                    <label for="tituloVideo">Título do vídeo</label>
+                    <label for="tituloResenha">Título do Resenha Cósmica</label>
                 </article>
                 <article class="input__container">
                     <span class="invalid-msg smallText">
@@ -30,19 +29,16 @@
                         Limite de tags atingido!
                     </span>
                     <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder="" maxlength="30">
-                    <label for="tags">Digite as Hashtags do seu video</label>
+                    <label for="tags">Digite as Hashtags da sua resenha</label>
                 </article>
                 <div id="tagsContainer"></div>
             </section>
         </header>
-        <article class="input__container input-file">
+        <article class="input__container">
             <span class="invalid-msg smallText">
             </span>
-            <input type="file" name="tituloVideo" id="tituloVideo" class="input__control" placeholder="Título do video"
-                required value="">
-            <label for="tituloVideo">Adicionar Vídeo</label>
-            <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
-
+            <textarea name="textoResenha" id="textoResenha" placeholder="Digite sua resenha aqui!"></textarea>
+            <label for="textoResenha">Digite sua Resenha aqui!</label>
         </article>
         <button class="btn submit secundaria p-2">Publicar</button>
     </form>
