@@ -47,6 +47,9 @@
                 position: relative;
                 z-index: 10;
             }
+            & .capa__img{
+                border-radius: 10px;
+            }
         }
 
         &.input-previa {

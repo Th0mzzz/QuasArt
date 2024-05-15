@@ -2,10 +2,10 @@
     <h2 class="title">Criar <span class="negrito-roxo">Resenha Cósmica</span></h2>
     <form action="/criarResenha" class="form__pub resenha" method="post">
         <header class="form__row">
-            <article class="input__container input-file">
+            <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
                 </span>
-                <input type="file" name="imgResenha" id="imgResenha" class="input__control" placeholder="" required>
+                <input type="file" name="imgResenha" id="imgResenha" class="input__control" placeholder="" required data-inputCapa>
                 <label for="imgResenha">Selecione a imagem da Resenha</label>
                 <label for="imgResenha" class="icon"><i class="bi bi-download"></i></label>
             </article>
@@ -44,3 +44,4 @@
     </form>
 </section>
 <script src="./js/criarTag.js"></script>
+<script src="./js/addCapa.js"></script>

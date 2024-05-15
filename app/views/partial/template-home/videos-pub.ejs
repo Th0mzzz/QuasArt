@@ -2,11 +2,11 @@
     <h2 class="title">Criar <span class="negrito-roxo">ViaVideo</span></h2>
     <form action="/criarVideo" class="form__pub" method="post">
         <header class="form__row">
-            <article class="input__container input-file">
+            <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
                 </span>
                 <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video"
-                    required>
+                    required data-inputCapa>
                 <label for="capaVideo">Selecione a capa do vídeo</label>
                 <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
             </article>
@@ -49,3 +49,4 @@
 </section>
 <script src="./js/criarTag.js"></script>
 <script src="./js/addPrevia.js"></script>
+<script src="./js/addCapa.js"></script>

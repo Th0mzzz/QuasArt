@@ -5,6 +5,7 @@ inputFileCapa.addEventListener("change", function (e) {
     e.preventDefault();
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
+        inputFileCapa.parentNode.classList.remove("invalid")
         const reader = new FileReader();
         reader.onload = function (e) {
             const src = e.target.result;
