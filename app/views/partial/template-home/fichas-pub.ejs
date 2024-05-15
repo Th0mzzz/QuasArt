@@ -2,10 +2,10 @@
     <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
     <form action="/criarVideo" class="form__pub" method="post">
         <header class="form__row">
-            <article class="input__container input-file">
+            <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
                 </span>
-                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required>
+                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required data-inputCapa>
                 <label for="capaFicha">Selecione a capa da ficha</label>
                 <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
             </article>
@@ -58,5 +58,6 @@
 </section>
 <script src="./js/criarTag.js"></script>
 <script src="./js/addPrevia.js"></script>
+<script src="./js/addCapa.js"></script>
 
 

@@ -6,26 +6,31 @@ const addPreviaBtn = document.querySelector("#addPrevia")
 addPreviaBtn.addEventListener("change", function (e) {
     const previas = document.querySelectorAll(".previa")
     e.preventDefault();
-    if (previas.length < 10) {
+    if (previas.length < 8) {
         addPreviaBtn.parentNode.classList.remove("invalid")
         const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
+        if (file && (file.type.startsWith('image/') || file.type.startsWith('video/'))) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                const imgSrc = e.target.result;
-                criarPreviaItem(imgSrc, addPreviaBtn.value)
+                const src = e.target.result;
+
+                criarPreviaItem(src, addPreviaBtn.value, file.type)
                 addPreviaBtn.value = ''
             };
             reader.readAsDataURL(file);
         } else {
-            alert('Por favor, selecione um arquivo de imagem.');
+            addPreviaBtn.parentNode.classList.add("invalid")
+            addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo imagem ou video!'
+            addPreviaBtn.value = ""
         }
     } else {
         addPreviaBtn.parentNode.classList.add("invalid")
+        addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Limite de prévias atingido! No maximo 8 prévias.'
+        addPreviaBtn.value = ""
     }
 })
 
-function criarPreviaItem(srcImg, valorPrevia) {
+function criarPreviaItem(srcMidia, valorPrevia, tipoArquivo) {
     const article = document.createElement("article");
     article.className = 'previa'
     const inputContainer = document.createElement("article")
@@ -36,9 +41,19 @@ function criarPreviaItem(srcImg, valorPrevia) {
     removePrevia.addEventListener("click", () => {
         article.remove()
     })
-    const previaContent = document.createElement("img")
-    previaContent.className = 'previa-content'
-    previaContent.setAttribute("src", srcImg)
+    let previaContent = null
+    if (tipoArquivo.startsWith("image/")) {
+        previaContent = document.createElement("img")
+        previaContent.setAttribute("src", srcMidia)
+    } else if (tipoArquivo.startsWith("video/")) {
+        previaContent = document.createElement("video")
+        previaContent.setAttribute("controls", "controls")
+        const source = document.createElement("source")
+        source.setAttribute('src', srcMidia);
+        source.setAttribute("type", tipoArquivo);
+        previaContent.appendChild(source)
+    }
+    previaContent.className = 'previa-content';
     const inputPrevia = document.createElement("input")
     inputPrevia.type = "hidden"
     inputPrevia.name = "previas[]"

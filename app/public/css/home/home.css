@@ -196,6 +196,7 @@
         border-radius: 0 0 var(--bdrr) var(--bdrr);
         color: var(--cor-texto);
         position: relative;
+        flex-grow: 1;
 
         & .btn {
             border: 10px solid var(--cor-containers);
@@ -218,19 +219,33 @@
     background: var(--cor-containers);
     padding: 1rem 1.8rem;
     color: var(--cor-texto);
-    animation: sumir 8s normal ;
-    translate: -50% -200vh ;
+    animation: sumir 8s normal;
+    translate: -50% -200vh;
     border: 2px solid var(--cor-secundaria);
     border-radius: 50px;
     z-index: 100;
 }
 
 @keyframes sumir {
-    0% , 10%, 15%,20%,30%,35%,40%,45%,50%,55%,60%,65%,70%{
+
+    0%,
+    10%,
+    15%,
+    20%,
+    30%,
+    35%,
+    40%,
+    45%,
+    50%,
+    55%,
+    60%,
+    65%,
+    70% {
         translate: -50% 0%;
     }
+
     100% {
-        translate: -50% -200vh ;
+        translate: -50% -200vh;
     }
 }
 
