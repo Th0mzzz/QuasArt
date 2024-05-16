@@ -35,18 +35,22 @@
                 <div id="tagsContainer"></div>
             </section>
         </header>
-        <article class="input__container input-file">
-            <span class="invalid-msg smallText">
-            </span>
-            <input type="file" name="tituloVideo" id="tituloVideo" class="input__control" placeholder="Título do video"
-                required value="">
-            <label for="tituloVideo">Adicionar Vídeo</label>
-            <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+        <section class="video__section">
+            <article class="input__container input-file">
+                <span class="invalid-msg smallText">
+                </span>
+                <input type="file" name="tituloVideo" id="tituloVideo" class="input__control"
+                    placeholder="Título do video" required data-inputVideo>
+                <label for="tituloVideo">Adicionar Vídeo</label>
+                <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
 
-        </article>
+            </article>
+            <article class="video__container" data-videoContainer>
+            </article>
+        </section>
         <button class="btn submit secundaria p-2">Publicar</button>
     </form>
 </section>
 <script src="./js/criarTag.js"></script>
-<script src="./js/addPrevia.js"></script>
+<script src="./js/addVideo.js"></script>
 <script src="./js/addCapa.js"></script>

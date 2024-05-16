@@ -13,16 +13,15 @@ addPreviaBtn.addEventListener("change", function (e) {
             const reader = new FileReader();
             reader.onload = function (e) {
                 const src = e.target.result;
-
                 criarPreviaItem(src, addPreviaBtn.value, file.type)
-                addPreviaBtn.value = ''
             };
             reader.readAsDataURL(file);
         } else {
             addPreviaBtn.parentNode.classList.add("invalid")
             addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo imagem ou video!'
-            addPreviaBtn.value = ""
+
         }
+        addPreviaBtn.value = ""
     } else {
         addPreviaBtn.parentNode.classList.add("invalid")
         addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Limite de prévias atingido! No maximo 8 prévias.'
