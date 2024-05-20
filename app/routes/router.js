@@ -1,5 +1,6 @@
 var express = require("express");
 const usuariosController = require("../controller/usuariosController");
+const middleWares = require("../sessions/middleswares");
 var router = express.Router();
 
 // ------------ LANDING PAGE ---------------
@@ -7,7 +8,7 @@ var router = express.Router();
 router.get("/", function (req, res) {
     res.render("pages/index");
 });
- 
+
 // ---------- PÁGINAS DA HOME -------------
 
 // pagina de assinatura
@@ -21,11 +22,19 @@ router.get("/pesquisar", function (req, res) {
 });
 // pagina inicial
 router.get("/home", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome" , tokenAlert: undefined})
+    res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: undefined })
 });
 // pagina de perfil
-router.get("/profile", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" })
+router.get("/profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
+    {
+        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+    }
+), function (req, res) {
+    res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" , idUsuario: req.session.autenticado.id})
+});
+// Pagina de view perfil
+router.get("/view-profile", function (req, res) {
+    
 });
 // Publicar pages
 router.get("/publicar", function (req, res) {
@@ -53,7 +62,12 @@ router.get("/videos", function (req, res) {
 // ------------ LOGIN E CADASTRO ---------------
 // pagina de login
 router.get("/entrar", function (req, res) {
-    res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: "" });
+    if (req.session.autenticado && req.session.autenticado.autenticado) {
+        res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${req.session.autenticado.autenticado}!` } })
+
+    } else {
+        res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: "" });
+    }
 });
 //  pagina de cadastro
 router.get("/cadastrar", function (req, res) {
@@ -80,8 +94,14 @@ router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, functio
 });
 
 // Router do FORM de login que chama o controle de usuários e valida e verifica no banco se o usuário digitado existe
-router.post("/logarConta", usuariosController.regrasValidacaoEntrar, function (req, res) {
+router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares.gravarAutenticacao, function (req, res) {
     usuariosController.entrar(req, res)
+})
+
+// Link para destruir sessão
+
+router.get("/sair", middleWares.clearSession, function (req, res) {
+    res.redirect("/")
 })
 
 module.exports = router;

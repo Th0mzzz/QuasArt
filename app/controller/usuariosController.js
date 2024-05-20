@@ -97,10 +97,8 @@ const usuariosController = {
 
             const { usuario, senha } = req.body
             try {
-                const userBd = await usuariosModel.findNickname(usuario)
-
-                if (userBd && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO)) {
-                    req.session.userId = userBd[0].ID_USUARIO
+                const userBd = await usuariosModel.findByNickname(usuario)
+                if (userBd && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${usuario}!` } })
                     console.log("Logado!")
                 } else {
@@ -114,6 +112,9 @@ const usuariosController = {
 
         }
     },
+    mostrarPageProfile: (req, res) => {
+
+    }
 
 }
 

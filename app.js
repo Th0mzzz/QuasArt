@@ -6,7 +6,7 @@ app.use((session({
   secret: "QuasartSession",
   resave: false,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: false }
 })))
 app.use(express.static("app/public"));
 

@@ -17,7 +17,7 @@ const usuariosModel = {
             return error
         }
     },
-    findNickname: async (nickname) => {
+    findByNickname: async (nickname) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?",[nickname])
             console.log(resultados)
