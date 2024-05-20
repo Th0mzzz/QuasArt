@@ -37,6 +37,9 @@ const middleWares = {
             if (Object.keys(userBd).length == 1) {
                 if (bcrypt.compareSync(req.body.senha, userBd[0].SENHA_USUARIO)) {
                     var aut = { autenticado: userBd[0].NICKNAME_USUARIO, id: userBd[0].ID_USUARIO }
+                } else {
+                    var aut = { autenticado: null, id: null }
+
                 }
             } else {
                 var aut = { autenticado: null, id: null }
@@ -47,7 +50,7 @@ const middleWares = {
         req.session.autenticado = aut
         next();
     },
-    
+
 }
 
 module.exports = middleWares

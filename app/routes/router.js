@@ -30,11 +30,11 @@ router.get("/profile", middleWares.verifyAutenticado, middleWares.verifyAutoriza
         page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
     }
 ), function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil" , idUsuario: req.session.autenticado.id})
+    res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil", idUsuario: req.session.autenticado.id })
 });
 // Pagina de view perfil
 router.get("/view-profile", function (req, res) {
-    
+
 });
 // Publicar pages
 router.get("/publicar", function (req, res) {
@@ -89,7 +89,7 @@ router.post("/checarToken", function (req, res) {
 
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
-router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, function (req, res) {
+router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, middleWares.gravarAutenticacao, function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 

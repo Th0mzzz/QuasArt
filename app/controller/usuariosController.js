@@ -34,7 +34,7 @@ const usuariosController = {
         }),
 
         body('usuario').isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!").bail().custom(async (usuario) => {
-            const usuarioExistente = await usuariosModel.findNickname(usuario)
+            const usuarioExistente = await usuariosModel.findByNickname(usuario)
             if (usuarioExistente[0] === usuario) {
                 throw new Error("Usuário já existe! Tente outro");
             }
@@ -59,7 +59,7 @@ const usuariosController = {
     ],
     criarUsuario: async (req, res) => {
         let errors = validationResult(req)
-
+        console.log(req.session.autenticado)
         if (!errors.isEmpty()) {
             console.log(errors)
             res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors, valores: req.body });
