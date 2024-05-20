@@ -50,9 +50,9 @@ const usuariosModel = {
             throw error;
         }
     },
-    findPasswordByUser: async (usuario,senha)=>{
+    findPasswordByUser: async (usuario)=>{
         try {
-            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ? AND SENHA_USUARIO = ? LIMIT 1 ", [usuario,senha])
+            const [resultados] = await pool.query("SELECT SENHA_USUARIO FROM USUARIOS WHERE NICKNAME_USUARIO = ?", [usuario])
             console.log(resultados)
             return resultados
 

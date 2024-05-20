@@ -1,6 +1,8 @@
 const usuariosModel = require("../models/usuariosModel")
 const { body, validationResult } = require("express-validator")
 const moment = require("moment")
+var bcrypt = require("bcryptjs")
+var salt = bcrypt.genSaltSync(8)
 
 const usuariosController = {
     regrasValidacaoCriarConta: [
@@ -33,7 +35,7 @@ const usuariosController = {
 
         body('usuario').isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!").bail().custom(async (usuario) => {
             const usuarioExistente = await usuariosModel.findNickname(usuario)
-            if (usuarioExistente.length > 0) {
+            if (usuarioExistente[0] === usuario) {
                 throw new Error("Usuário já existe! Tente outro");
             }
             return true;
@@ -63,20 +65,20 @@ const usuariosController = {
             res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors, valores: req.body });
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
+            let hashSenha = bcrypt.hashSync(senha, salt);
             dadosForm = {
                 NOME_USUARIO: nome,
                 NICKNAME_USUARIO: usuario,
                 CONTATO: contato,
-                SENHA_USUARIO: senha,
+                SENHA_USUARIO: hashSenha,
                 DATA_NASC_USUARIO: nascimento,
                 CPF_USUARIO: cpf,
                 EMAIL_USUARIO: email
             }
             try {
-
                 const resultados = await usuariosModel.create(dadosForm);
                 console.log(resultados);
-                res.render("pages/template-home", { page: "../partial/template-home/initial-home",  classePagina: "initial-home"  ,tokenAlert: { msg: `Seja bem-vindo ao QuasArt!`,usuario:`${usuario}!`} })
+                res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "initial-home", tokenAlert: { msg: `Seja bem-vindo ao QuasArt!`, usuario: `${usuario}!` } })
                 console.log("Cadastrado!")
             } catch (erros) {
                 console.log(erros)
@@ -95,9 +97,11 @@ const usuariosController = {
 
             const { usuario, senha } = req.body
             try {
-                const userBd = await usuariosModel.findPasswordByUser(usuario, senha)
-                if (userBd.length > 0) {
-                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home",  classePagina: "inicialHome"  ,tokenAlert: { msg: `Bom te ver de novo`, usuario:`${usuario}!` } })
+                const userBd = await usuariosModel.findNickname(usuario)
+
+                if (userBd && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO)) {
+                    req.session.userId = userBd[0].ID_USUARIO
+                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${usuario}!` } })
                     console.log("Logado!")
                 } else {
                     res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
