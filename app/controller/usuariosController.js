@@ -115,8 +115,8 @@ const usuariosController = {
             try {
                 const resultados = await usuariosModel.create(dadosForm);
                 console.log(resultados);
-                req.session.autenticado = {autenticado: usuario, id:"" }
-                
+                req.session.autenticado = { autenticado: usuario, id: resultados.insertId }
+
                 res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "initial-home", tokenAlert: { msg: `Seja bem-vindo ao QuasArt, `, usuario: `${usuario}!` } })
                 console.log("Cadastrado!")
             } catch (erros) {
@@ -137,7 +137,7 @@ const usuariosController = {
             const { usuario, senha } = req.body
             try {
                 const userBd = await usuariosModel.findByNickname(usuario)
-                if (userBd && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
+                if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${usuario}!` } })
                     console.log("Logado!")
                 } else {
@@ -151,8 +151,20 @@ const usuariosController = {
 
         }
     },
-    mostrarPageProfile: (req, res) => {
-
+    mostrarPageProfile: async (req, res) => {
+        const idPage = req.query.id
+        if (idPage) {
+            if (idPage === req.session){
+                
+            }
+        }
+        const jsonResult = {
+            page: "../partial/template-home/perfil-home",
+            classePagina: "perfil",
+            usuario: userBd[0],
+            isUser: isUser
+        }
+        res.render("./pages/template-home", jsonResult)
     }
 
 }

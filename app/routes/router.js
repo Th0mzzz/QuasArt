@@ -2,6 +2,9 @@ var express = require("express");
 const usuariosController = require("../controller/usuariosController");
 const middleWares = require("../sessions/middleswares");
 var router = express.Router();
+const destinoDeFalha = {
+    page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+}
 
 // ------------ LANDING PAGE ---------------
 
@@ -13,65 +16,66 @@ router.get("/", function (req, res) {
 
 // pagina de assinatura
 router.get("/plus-page", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/plus-page", classePagina: "assinatura" })
+
+    const jsonResult = {
+        page: "../partial/template-home/plus-page",
+        classePagina: "assinatura"
+    }
+
+    res.render("./pages/template-home", jsonResult)
 });
 
 // Pagina de pesquisa
 router.get("/pesquisar", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/pesquisa-home", classePagina: "pesquisar" })
+    const jsonResult = {
+        page: "../partial/template-home/pesquisa-home",
+        classePagina: "pesquisar"
+    }
+    res.render("./pages/template-home", jsonResult)
 });
 // pagina inicial
 router.get("/home", function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: undefined })
+    const jsonResult = {
+        page: "../partial/template-home/inicial-home",
+        classePagina: "inicialHome",
+        tokenAlert: undefined
+    }
+    res.render("./pages/template-home", jsonResult)
 });
 // pagina de perfil
-router.get("/profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
-    {
-        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
-    }
-), function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/perfil-home", classePagina: "perfil", idUsuario: req.session.autenticado.id })
+router.get("/profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    usuariosController.mostrarPageProfile(req, res)
 });
-// Pagina de view perfil
-router.get("/view-profile", function (req, res) {
 
-});
 // Publicar pages
-router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
-    {
-        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const jsonResult = {
+        page: "../partial/template-home/publicar-home",
+        classePagina: "publicar"
     }
-), function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/publicar-home", classePagina: "publicar" })
+    res.render("./pages/template-home", jsonResult)
 });
 // pagina de publicar videos
-router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
-    {
-        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const jsonResult = {
+        page: "../partial/template-home/videos-pub",
+        classePagina: "publicar"
     }
-), function (req, res) {
-    res.render("./pages/template-home", { page: "../partial/template-home/videos-pub", classePagina: "publicar" })
+    res.render("./pages/template-home",jsonResult)
 });
 
 // pagina de publicar fichas
-router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
-    {
-        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
-    }
-), function (req, res) {
+router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/fichas-pub", classePagina: "publicar" })
 });
 // pagina de publicar resenhas
-router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
-    {
-        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
-    }
-), function (req, res) {
+router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/resenhas-pub", classePagina: "publicar" })
 });
 
 // pagina de videos
 router.get("/videos", function (req, res) {
+
     res.render("./pages/template-home", { page: "../partial/template-home/videos-home", classePagina: "videos" })
 });
 

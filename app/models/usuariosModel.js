@@ -19,18 +19,18 @@ const usuariosModel = {
     },
     findByNickname: async (nickname) => {
         try {
-            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?",[nickname])
+            const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?", [nickname])
             console.log(resultados)
             return resultados
 
         } catch (error) {
-            console.error("Erro ao buscar usuário", error);
+            console.log("Erro ao buscar usuário", error);
             throw error;
         }
     },
     findEmail: async (email) => {
         try {
-            const [resultados] = await pool.query("select * from USUARIOS where EMAIL_USUARIO = ?",[email])
+            const [resultados] = await pool.query("select * from USUARIOS where EMAIL_USUARIO = ?", [email])
             console.log(resultados)
             return resultados
 
@@ -41,7 +41,7 @@ const usuariosModel = {
     },
     findCpf: async (cpf) => {
         try {
-            const [resultados] = await pool.query("select * from USUARIOS where CPF_USUARIO = ?",[cpf])
+            const [resultados] = await pool.query("select * from USUARIOS where CPF_USUARIO = ?", [cpf])
             console.log(resultados)
             return resultados
 
@@ -50,7 +50,7 @@ const usuariosModel = {
             throw error;
         }
     },
-    findPasswordByUser: async (usuario)=>{
+    findPasswordByUser: async (usuario) => {
         try {
             const [resultados] = await pool.query("SELECT SENHA_USUARIO FROM USUARIOS WHERE NICKNAME_USUARIO = ?", [usuario])
             console.log(resultados)

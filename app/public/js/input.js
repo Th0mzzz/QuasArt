@@ -1,4 +1,5 @@
 const inputsContainers = document.querySelectorAll(".input__container.senha")
+const inputsMask = document.querySelectorAll(".inputMask")
 // input que troca o type de password para text para poder visualizar a senha que está sendo escrita.
 inputsContainers.forEach(inputContainer => {
     const ocultSenha = inputContainer.querySelector(".ocultSenha");
@@ -15,4 +16,10 @@ inputsContainers.forEach(inputContainer => {
         }
     })
 
+})
+
+inputsMask.forEach(input => {
+    input.addEventListener('input', function (e) {
+        e.target.value = e.target.value.replace(/\D/g, '');
+    });
 })

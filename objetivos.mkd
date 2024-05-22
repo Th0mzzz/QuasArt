@@ -3,12 +3,16 @@
 ### FRONT-END
 - Página de pesquisa;
 - Página de Videos
+- Página de configurações
+-
+
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home e na pagina de perfil;
 - Configurar página de profile para mudar se estiver acessando a propria página ou a página de outro usuário;
 - Configurar formulários de pub para salvarem no banco de dados( necessário configurar banco de dados);
 - Organizar e comentar arquivos de models, controllers e middlewares;
+- Verificar validade do e-mail e numero ao criar Usuário.
 
 ### Banco de dados
 - Configurar tables de pubs para guardar imagens, prévias e videos;
