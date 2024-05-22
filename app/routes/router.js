@@ -105,7 +105,7 @@ router.post("/checarToken", function (req, res) {
 
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
-router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, middleWares.gravarAutenticacao, function (req, res) {
+router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 

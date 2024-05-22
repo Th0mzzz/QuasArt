@@ -115,6 +115,8 @@ const usuariosController = {
             try {
                 const resultados = await usuariosModel.create(dadosForm);
                 console.log(resultados);
+                req.session.autenticado = {autenticado: usuario, id:"" }
+                
                 res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "initial-home", tokenAlert: { msg: `Seja bem-vindo ao QuasArt, `, usuario: `${usuario}!` } })
                 console.log("Cadastrado!")
             } catch (erros) {
