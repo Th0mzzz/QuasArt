@@ -18,7 +18,7 @@
     --fs-title: clamp(28px, 3vw, 32px);
     --fs-subtitle: clamp(20px, 2.5vw, 22px);
     --fs-supertitle: clamp(32px, 8vw, 40px);
-    --fs-smalltext: clamp(8px, 1vw, 12px);
+    --fs-smalltext: clamp(11px, 2vw, 12px);
     --fs-tipografiaLogo: clamp(24px, 3vw, 28px);
     --ff-text: 'Poppins', Verdana;
     --ff-title: 'Montserrat', Arial;
@@ -59,7 +59,7 @@
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) + 8px);
     --fs-supertitle: calc(clamp(32px, 2vw, 40px) + 10px);
     --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) + 10px);
-    --fs-smalltext: calc(clamp(8px, 1vw, 12px) + 2px);
+    --fs-smalltext: calc(clamp(11px, 2vw, 12px) + 2px);
 }
 
 .diminuida {
@@ -69,7 +69,7 @@
     --fs-subtitle: calc(clamp(20px, 2.5vw, 22px) - 8px);
     --fs-supertitle: calc(clamp(32px, 2vw, 40px) - 10px);
     --fs-tipografiaLogo: calc(clamp(24px, 3vw, 28px) - 10px);
-    --fs-smalltext: calc(clamp(8px, 1vw, 12px) - 2px);
+    --fs-smalltext: calc(clamp(11px, 2vw, 12px) - 2px);
 }
 
 .text {

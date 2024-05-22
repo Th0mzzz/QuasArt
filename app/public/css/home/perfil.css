@@ -1,5 +1,5 @@
 .area__perfil {
-
+position: relative;
     & .header__perfil{
         display: flex;
         flex-flow: column nowrap;
@@ -97,6 +97,17 @@
             width: 100%;
             gap: 2rem;
         }
+    }
+}
+
+.exit-btn{
+    position: absolute;
+    right: 0;
+    top: 0;
+    & > i{
+        display: block;
+        transform: rotate(180deg);
+        font-size: 20px;
     }
 }
 

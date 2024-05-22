@@ -37,20 +37,36 @@ router.get("/view-profile", function (req, res) {
 
 });
 // Publicar pages
-router.get("/publicar", function (req, res) {
+router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
+    {
+        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+    }
+), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/publicar-home", classePagina: "publicar" })
 });
 // pagina de publicar videos
-router.get("/via-videos-pub", function (req, res) {
+router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
+    {
+        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+    }
+), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/videos-pub", classePagina: "publicar" })
 });
 
 // pagina de publicar fichas
-router.get("/ficha-espacial-pub", function (req, res) {
+router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
+    {
+        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+    }
+), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/fichas-pub", classePagina: "publicar" })
 });
 // pagina de publicar resenhas
-router.get("/resenha-cosmica-pub", function (req, res) {
+router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login",
+    {
+        page: "../partial/template-login/login", modal: "fechado", erros: null, valores: "", incorreto: ""
+    }
+), function (req, res) {
     res.render("./pages/template-home", { page: "../partial/template-home/resenhas-pub", classePagina: "publicar" })
 });
 

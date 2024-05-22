@@ -112,7 +112,7 @@
         padding: 1.5rem 1rem 1.2rem 1rem;
         width: 100%;
         font-family: 'Questrial',
-        Verdana;
+            Verdana;
         font-size: var(--fs-text);
 
         &::placeholder {
@@ -144,13 +144,12 @@
             display: block;
         }
 
-        & .alert-msg {
+        &~.alert-msg {
             display: none;
         }
     }
 
-    & .invalid-msg,
-    & .alert-msg {
+    & .invalid-msg {
         display: none;
         color: var(--cor-danger);
         position: absolute;
@@ -261,6 +260,7 @@
             color: #ffffff;
             background: var(--cor-principal-hover);
         }
+
         & i {
             margin: auto;
         }
