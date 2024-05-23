@@ -3,11 +3,18 @@
 
 <section class="area__perfil">
     <header class="header__perfil">
+        <% if(isUser) {%>
         <a href="/sair" class="btn exit-btn"><i class="bi bi-box-arrow-left"></i></a>
+        <% } %>
         <img src="./img/perfil-padrao.webp" alt="foto de perfil do usuário" class="foto__perfil">
-        <h3 class="subtitle">Th0mzzz</h3>
+        <h3 class="subtitle"><%= usuario.NICKNAME_USUARIO %></h3>
         <article class="row-items">
+        <% if(isUser) {%>
+            <button class="btn mt-2 link">Editar</button>
+        <% } else { %>
             <button class="btn mt-2 link">Seguir</button>
+        <% } %>
+
             <section class="estatisticas__usuario">
                 <article class="item">
                     <p class="link">Postagens</p>

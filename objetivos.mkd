@@ -4,7 +4,6 @@
 - Página de pesquisa;
 - Página de Videos
 - Página de configurações
--
 
 
 ### BACK-END
@@ -13,7 +12,7 @@
 - Configurar formulários de pub para salvarem no banco de dados( necessário configurar banco de dados);
 - Organizar e comentar arquivos de models, controllers e middlewares;
 - Verificar validade do e-mail e numero ao criar Usuário.
-
+- Adicionar funcionalidade para adicionar imagem para usuários
 ### Banco de dados
 - Configurar tables de pubs para guardar imagens, prévias e videos;
-
+- add column de imagem na table usuarios 

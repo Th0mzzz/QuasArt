@@ -60,6 +60,17 @@ const usuariosModel = {
             console.error("Erro ao buscar usuário", error);
             throw error;
         }
+    },
+    findUserById: async (id) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO = ? LIMIT 1", [id])
+            console.log(resultados)
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao buscar usuário", error);
+            throw error;
+        }
     }
 }
 

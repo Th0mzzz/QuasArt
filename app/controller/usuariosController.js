@@ -152,19 +152,31 @@ const usuariosController = {
         }
     },
     mostrarPageProfile: async (req, res) => {
-        const idPage = req.query.id
-        if (idPage) {
-            if (idPage === req.session){
-                
+        try{
+            const idUser = req.query.idUser
+            if (idUser) {
+               var user = await usuariosModel.findUserById(idUser)
+            }else if(req.session.autenticado && req.session.autenticado.autenticado){
+               var user = await usuariosModel.findUserById(req.session.autenticado.id)
             }
+            var isUser = false
+    
+            if (user && req.session.autenticado) {
+                if (user[0].ID_USUARIO === req.session.autenticado.id) {
+                    isUser = true
+                }
+            }
+            const jsonResult = {
+                page: "../partial/template-home/perfil-home",
+                classePagina: isUser ? "perfil" : "inicialHome",
+                usuario: user[0],
+                isUser: isUser
+            }
+            res.render("./pages/template-home", jsonResult)
+        }catch(errors){
+            console.log("erro ao tentar visualizar página", errors)
+            res.render("pages/error-500")
         }
-        const jsonResult = {
-            page: "../partial/template-home/perfil-home",
-            classePagina: "perfil",
-            usuario: userBd[0],
-            isUser: isUser
-        }
-        res.render("./pages/template-home", jsonResult)
     }
 
 }
