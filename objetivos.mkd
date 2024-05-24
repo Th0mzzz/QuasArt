@@ -1,18 +1,24 @@
-## DIVISÕES
-
 ### FRONT-END
 - Página de pesquisa;
-- Página de Videos
-- Página de configurações
-
+- Página de Videos;
+- Página de configurações;
+- Página de gerenciamento de posts;
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home e na pagina de perfil;
 - Configurar página de profile para mudar se estiver acessando a propria página ou a página de outro usuário;
 - Configurar formulários de pub para salvarem no banco de dados( necessário configurar banco de dados);
 - Organizar e comentar arquivos de models, controllers e middlewares;
-- Verificar validade do e-mail e numero ao criar Usuário.
-- Adicionar funcionalidade para adicionar imagem para usuários
+- Verificar validade do e-mail e numero ao criar Usuário;
+- Adicionar funcionalidade para adicionar imagem para usuários;
+
 ### Banco de dados
 - Configurar tables de pubs para guardar imagens, prévias e videos;
-- add column de imagem na table usuarios 
+- add column de imagem na table usuarios;
+
+
+### Objetivos e coisas a definir
+- PagSeguro - definir implementação;
+- Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
+- Definição de assinaturas(Definir algo básico para a apresentação e aprimorar depois);
+- Implementação do Google ADS;

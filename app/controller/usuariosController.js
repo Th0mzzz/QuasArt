@@ -125,7 +125,7 @@ const usuariosController = {
             }
 
         }
-    },
+    },  
     entrar: async (req, res) => {
         let errors = validationResult(req)
 

@@ -41,6 +41,7 @@
     "escape-html": "^1.0.3",
     "etag": "^1.8.1",
     "express": "^4.19.2",
+    "express-flash": "github:RGBboy/express-flash",
     "express-session": "^1.18.0",
     "express-validator": "^7.0.1",
     "filelist": "^1.0.4",

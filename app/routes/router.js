@@ -2,6 +2,8 @@ var express = require("express");
 const usuariosController = require("../controller/usuariosController");
 const middleWares = require("../sessions/middleswares");
 var router = express.Router();
+
+// Página de falha de autenticação
 const destinoDeFalha = {
     page: "../partial/template-login/login",
     modal: "fechado",
@@ -141,7 +143,7 @@ router.get("/esqueceuSenha", function (req, res) {
         modal: "fechado",
         erros: null
     }
-    res.render("pages/template-login",);
+    res.render("pages/template-login",jsonResult);
 });
 
 // formulario para enviar email
