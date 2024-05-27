@@ -1,7 +1,7 @@
 var pool = require("../../config/poolConn");
 
 const usuariosModel = {
-    create: async (dadosForm) => {
+    createUser: async (dadosForm) => {
         try {
             const [resultados] = await pool.query("insert into USUARIOS set ?", [dadosForm])
             return resultados
@@ -9,7 +9,7 @@ const usuariosModel = {
             return error
         }
     },
-    findContato: async (contato) => {
+    findUserByContato: async (contato) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where CONTATO = ?", [contato])
             return resultados
@@ -17,7 +17,7 @@ const usuariosModel = {
             return error
         }
     },
-    findByNickname: async (nickname) => {
+    findUserByNickname: async (nickname) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?", [nickname])
             console.log(resultados)
@@ -28,7 +28,7 @@ const usuariosModel = {
             throw error;
         }
     },
-    findEmail: async (email) => {
+    findUserByEmail: async (email) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where EMAIL_USUARIO = ?", [email])
             console.log(resultados)
@@ -39,7 +39,7 @@ const usuariosModel = {
             throw error;
         }
     },
-    findCpf: async (cpf) => {
+    findUserByCpf: async (cpf) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where CPF_USUARIO = ?", [cpf])
             console.log(resultados)

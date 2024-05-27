@@ -27,7 +27,7 @@ const usuariosController = {
             .isNumeric().withMessage("CPF deve conter apenas números")
             .bail()
             .custom(async (cpf) => {
-                const cpfExistente = await usuariosModel.findCpf(cpf)
+                const cpfExistente = await usuariosModel.findUserByCpf(cpf)
                 if (cpfExistente.length > 0) {
                     throw new Error("CPF já em uso! Tente outro");
                 }
@@ -38,19 +38,19 @@ const usuariosController = {
             .isMobilePhone('pt-BR').withMessage("Número de telefone inválido")
             .bail()
             .custom(async (contato) => {
-                const contatoExistente = await usuariosModel.findContato(contato)
+                const contatoExistente = await usuariosModel.findUserByContato(contato)
                 if (contatoExistente.length > 0) {
                     throw new Error("Telefone já em uso! Tente outro");
                 }
                 return true;
             }),
-        // verifica se o usuário tem 4 caracteres e se o usuário digitado existe no banco de dados, caso tenha, retorna como incorreto
+        // // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30 e se o usuário digitado existe no banco de dados, caso tenha, retorna como incorreto
 
         body('usuario')
             .isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!")
             .bail()
             .custom(async (usuario) => {
-                const usuarioExistente = await usuariosModel.findByNickname(usuario)
+                const usuarioExistente = await usuariosModel.findUserByNickname(usuario)
                 if (usuarioExistente[0] === usuario) {
                     throw new Error("Usuário já existe! Tente outro");
                 }
@@ -61,13 +61,13 @@ const usuariosController = {
             .isEmail().withMessage('Deve ser um email válido')
             .bail()
             .custom(async (email) => {
-                const emailExistente = await usuariosModel.findEmail(email)
+                const emailExistente = await usuariosModel.findUserByEmail(email)
                 if (emailExistente.length > 0) {
                     throw new Error("E-mail já em uso! Tente outro");
                 }
                 return true;
             }),
-        // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos
+        // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos, se pelo menos 1 caracter especial, 1 maiusculo e 1 minusculo, tudo a partir de regex.
         body('senha')
             .isLength({ min: 8, max: 30 })
             .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
@@ -80,9 +80,9 @@ const usuariosController = {
             .bail()
     ],
     regrasValidacaoEntrar: [
-
+        // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30.
         body('usuario').isLength({ min: 4, max: 30 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
-
+        // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos, se pelo menos 1 caracter especial, 1 maiusculo e 1 minusculo, tudo a partir de regex.
         body('senha')
             .isLength({ min: 8, max: 30 })
             .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
@@ -95,6 +95,8 @@ const usuariosController = {
             .bail()
     ],
     criarUsuario: async (req, res) => {
+
+        //  Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de cadastro novamente com erros, senão pego tds os dados do form, crio um objeto com as colunas do banco e coloco os dados nela(obs: criptografo a senha a partir do bcrypt e armazeno o hash dela.), por fim utilizo uma funçao do banco para inserir no banco, se tiver erros ele mostra a pagina de erro 500.
         let errors = validationResult(req)
         console.log(req.session.autenticado)
         if (!errors.isEmpty()) {
@@ -113,8 +115,7 @@ const usuariosController = {
                 EMAIL_USUARIO: email
             }
             try {
-                const resultados = await usuariosModel.create(dadosForm);
-                console.log(resultados);
+                const resultados = await usuariosModel.createUser(dadosForm);
                 req.session.autenticado = { autenticado: usuario, id: resultados.insertId }
 
                 res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "initial-home", tokenAlert: { msg: `Seja bem-vindo ao QuasArt, `, usuario: `${usuario}!` } })
@@ -125,8 +126,9 @@ const usuariosController = {
             }
 
         }
-    },  
+    },
     entrar: async (req, res) => {
+        // Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de login novamente com erros, senão busco a partir do um usuário a partir do digitado, e então eu por fim, verifico se o usuario do banco existe e se o hash da senha digitada no form bate com o hash da senha que estava no banco e se a sessão não é null. Se tudo estiver correto ele renderiza a page home, senão ele manda pra page de login como usuário ou senha incorretos
         let errors = validationResult(req)
 
         if (!errors.isEmpty()) {
@@ -136,7 +138,7 @@ const usuariosController = {
 
             const { usuario, senha } = req.body
             try {
-                const userBd = await usuariosModel.findByNickname(usuario)
+                const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${usuario}!` } })
                     console.log("Logado!")
@@ -152,15 +154,17 @@ const usuariosController = {
         }
     },
     mostrarPageProfile: async (req, res) => {
-        try{
+
+        // Nessa função verifico se existe o idUser, vindo da query. Se existir eu faço a busca no banco de dados a partir dele, senão, verifico se a sessão existe, se existir eu faço a busca a partir do id de sessão. (Basicamente, no ejs eu na hora que quero chamar um perfil aleatorio eu coloco o idUser na query HTTPS com o valor do id do usuário que quero mostrar. Quando eu quiser chamar meu proprio perfil eu n coloco o idUser no link, fazendo com que ele avançe pra proximo trecho de codigo que é chamar a partir da sessão.) depois disso eu verifico novamente se o usuario chamado no banco e se a sessão existem, se existirem, a variavel isUser é true,caso o contrario será falsa e a página será mostrada como de um outro usuário.
+        try {
             const idUser = req.query.idUser
             if (idUser) {
-               var user = await usuariosModel.findUserById(idUser)
-            }else if(req.session.autenticado && req.session.autenticado.autenticado){
-               var user = await usuariosModel.findUserById(req.session.autenticado.id)
+                var user = await usuariosModel.findUserById(idUser)
+            } else if (req.session.autenticado && req.session.autenticado.autenticado) {
+                var user = await usuariosModel.findUserById(req.session.autenticado.id)
             }
             var isUser = false
-    
+
             if (user && req.session.autenticado) {
                 if (user[0].ID_USUARIO === req.session.autenticado.id) {
                     isUser = true
@@ -173,7 +177,7 @@ const usuariosController = {
                 isUser: isUser
             }
             res.render("./pages/template-home", jsonResult)
-        }catch(errors){
+        } catch (errors) {
             console.log("erro ao tentar visualizar página", errors)
             res.render("pages/error-500")
         }

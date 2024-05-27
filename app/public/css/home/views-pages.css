@@ -1,0 +1,73 @@
+.view__container {
+    margin: 3rem 0;
+
+    & .avaliacao__stars {
+        display: flex;
+        min-width: fit-content;
+        flex-flow: nowrap row;
+        gap: 5px;
+        & i{
+            font-size: 25px;
+            color: var(--cor-principal);
+        }
+    }
+
+    &.resenha-view {
+        width: 100%;
+
+        & .resenha__header {
+            width: 100%;
+
+            & .resenha__capa {
+                width: 100%;
+                max-height: 380px;
+                object-fit: cover;
+                border-radius: 20px;
+            }
+
+            & .row {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                padding: 2rem 1rem;
+
+                & .btn {
+                    padding: .5rem 1.2rem;
+                    height: fit-content;
+                }
+            }
+        }
+
+        & .resenha__content {
+            margin: 5rem 0;
+            & .title {
+                color: var(--cor-texto);
+            }
+
+            & .text__area {
+                margin: 2rem 0;
+                border: 2px solid var(--cor-secundaria);
+                border-radius: 10px;
+                padding: clamp(.8rem, 10vw, 2rem);
+                color: var(--cor-texto);
+                background: var(--cor-containers);
+                text-align: start;
+            }
+
+            & .row {
+                display: flex;
+                justify-content: start;
+                align-items: center;
+                gap: .5rem;
+                flex-wrap: wrap;
+            }
+        }
+    }
+}
+
+
+@media (min-width:769px){
+    .view__container.resenha-view .resenha__content .row{
+        justify-content: space-between;
+    }
+}

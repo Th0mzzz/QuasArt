@@ -33,7 +33,7 @@ const middleWares = {
     gravarAutenticacao: async (req, res, next) => {
         errors = validationResult(req)
         if (errors.isEmpty()) {
-            var userBd = await usuariosModel.findByNickname(req.body.usuario)
+            var userBd = await usuariosModel.findUserByNickname(req.body.usuario)
             if (Object.keys(userBd).length == 1) {
                 if (bcrypt.compareSync(req.body.senha, userBd[0].SENHA_USUARIO)) {
                     var aut = { autenticado: userBd[0].NICKNAME_USUARIO, id: userBd[0].ID_USUARIO }

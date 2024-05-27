@@ -4,7 +4,7 @@
 <section class="area__perfil">
     <header class="header__perfil">
         <% if(isUser) {%>
-        <a href="/sair" class="btn exit-btn"><i class="bi bi-box-arrow-left"></i></a>
+        <a href="/sair" class="btn exit-btn"  title="Sair"><i class="bi bi-box-arrow-left"></i></a>
         <% } %>
         <img src="./img/perfil-padrao.webp" alt="foto de perfil do usuário" class="foto__perfil">
         <h3 class="subtitle"><%= usuario.NICKNAME_USUARIO %></h3>
@@ -16,6 +16,7 @@
         <% } %>
 
             <section class="estatisticas__usuario">
+                
                 <article class="item">
                     <p class="link">Postagens</p>
                     <h3 class="subtitle">3</h3>
@@ -33,6 +34,7 @@
 
     </header>
     <section class="postagens__perfil">
+       
         <article class="btns-section">
             <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i
                     class="bi bi-grid"></i></button>
@@ -40,6 +42,9 @@
                     class="bi bi-card-text"></i></button>
             <button class="btn-section link" data-btnSection="videos" title="videos"><i
                     class="bi bi-camera-video"></i></button>
+                    <% if(isUser) {%>
+                        <a href="/myPosts" class="btn edit-btn" title="Editar Postagens"><i class="bi bi-pencil-square"></i></a>
+                    <% } %>
         </article>
         <section class="postagens__section ativo" data-section="fichas">
             <h3 class="title">Fichas</h3>

@@ -160,33 +160,10 @@
 #tagsContainer {
     display: flex;
     flex-wrap: wrap;
-    margin-top: 10px;
+    max-width: 700px;
 }
 
-.tag {
-    background: var(--cor-secundaria);
-    color: white;
-    padding: 5px 10px;
-    margin: 5px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    width: fit-content;
 
-    & span {
-        background: transparent;
-        color: white;
-        outline: none;
-        padding: 2px;
-        border-radius: 50%;
-        font-size: 14px;
-
-        &:hover {
-            background: var(--cor-secundaria-hover);
-        }
-    }
-}
 
 @media (min-width:769px) {
     .form__pub-container {

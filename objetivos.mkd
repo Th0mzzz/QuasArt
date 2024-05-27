@@ -4,6 +4,7 @@
 - Página de configurações;
 - Página de gerenciamento de posts;
 - View de resenhas, videos e fichas;
+- Validar proporção das imagens dos formulários (cadastro, publicações, etc.)e definir seus tamanhos;
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home e na pagina de perfil;
@@ -17,7 +18,7 @@
 - add column de imagem na table usuarios;
 
 
-### Objetivos e coisas a definir
+### Documentação e integração 
 - PagSeguro - definir implementação ;
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
 - Definição de assinaturas(Definir algo básico para a apresentação e aprimorar depois);
