@@ -126,7 +126,8 @@ router.get("/videos", function (req, res) {
 router.get("/view-resenha", function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/view-resenha",
-        classePagina: "inicialHome"
+        classePagina: "inicialHome",
+        erros: null
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -134,7 +135,8 @@ router.get("/view-resenha", function (req, res) {
 router.get("/view-ficha", function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/view-ficha",
-        classePagina: "inicialHome"
+        classePagina: "inicialHome",
+        erros: null
     }
     res.render("./pages/template-home", jsonResult)
 });

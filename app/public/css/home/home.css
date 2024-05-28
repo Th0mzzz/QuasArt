@@ -237,15 +237,15 @@
     padding: .7rem;
     gap: 10px;
     border-radius: 5px;
-    box-shadow: 0 0 5px var(--cor-texto);
+    box-shadow: 0 0 3px var(--cor-texto);
 
     &:hover {
         color: var(--cor-principal);
     }
 
     & .userImg {
-        width: 35px;
-        height: 35px;
+        width: 30px;
+        height: 30px;
         object-fit: cover;
         border-radius: 50%;
     }
@@ -272,6 +272,76 @@
 
         &:hover {
             background: var(--cor-secundaria-hover);
+        }
+    }
+}
+
+.comentarios__container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: start;
+
+    & .subtitle {
+        text-align: center;
+        color: var(--cor-secundaria);
+    }
+
+    & .comment__form {
+        width: 100%;
+        max-width: 700px;
+
+        & .input__container textarea {
+            resize: vertical;
+            max-height: 200px;
+        }
+    }
+
+    & .comentarios {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 1rem;
+        max-width: 700px;
+
+        & .comment__item {
+            position: relative;
+
+            & .row {
+                position: relative;
+                padding: 1rem;
+                border: 2px solid var(--cor-secundaria);
+                border-radius: 10px;
+                padding-top: 60px;
+                background: var(--cor-containers);
+
+                & .comment__user {
+                    display: flex;
+                    position: absolute;
+                    align-items: center;
+                    gap: 1.5rem;
+                    top: -25px;
+                    color: var(--cor-secundaria);
+
+                    & .userImg {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        border: 2px solid var(--cor-secundaria);
+                    }
+
+                }
+            }
+
+
+            & .avaliacao__stars {
+                justify-content: end;
+
+                & i {
+                    font-size: 18px;
+                }
+            }
         }
     }
 }

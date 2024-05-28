@@ -6,10 +6,23 @@
         min-width: fit-content;
         flex-flow: nowrap row;
         gap: 5px;
-        & i{
+
+        & i {
             font-size: 25px;
-            color: var(--cor-principal);
+            color: var(--cor-secundaria);
+
+            &.star:hover,
+            &.star:hover~.star {
+                color: gold;
+            }
+
+            &.star.selected,
+            &.star.selected~.star {
+                color: gold;
+            }
         }
+
+
     }
 
     &.resenha-view {
@@ -19,8 +32,10 @@
             width: 100%;
 
             & .resenha__capa {
-                width: 100%;
-                max-height: 380px;
+                width: clamp(380px, 100%, 1440px);
+                height: calc(100vw * (30/100));
+                min-height: 380px;
+                max-height: 420px;
                 object-fit: cover;
                 border-radius: 20px;
             }
@@ -34,12 +49,18 @@
                 & .btn {
                     padding: .5rem 1.2rem;
                     height: fit-content;
+                    box-shadow: 0 0 3px var(--cor-texto);
+                    color: var(--cor-principal);
+                    --cor-btn: var(--cor-containers);
+                    --cor-btn-hover: var(--cor-principal-hover);
+
                 }
             }
         }
 
         & .resenha__content {
             margin: 5rem 0;
+
             & .title {
                 color: var(--cor-texto);
             }
@@ -60,14 +81,15 @@
                 align-items: center;
                 gap: .5rem;
                 flex-wrap: wrap;
+
             }
         }
     }
 }
 
 
-@media (min-width:769px){
-    .view__container.resenha-view .resenha__content .row{
+@media (min-width:769px) {
+    .view__container.resenha-view .resenha__content .row {
         justify-content: space-between;
     }
 }

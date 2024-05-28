@@ -5,7 +5,7 @@
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding: clamp(1rem, 5vw, 1.4rem);
+        padding: clamp(1rem, 5vw, 1.4rem) 0;
 
 
         & .nav__btns {

@@ -11,7 +11,7 @@
     }
 
     & .footer__header {
-        padding: clamp(1rem, 5vw, 1.4rem);
+        padding: clamp(1rem, 5vw, 1.4rem) 0;
         display: flex;
         justify-content: space-between;
 
@@ -30,7 +30,6 @@
     }
 
     & .footer__content {
-        padding: 0 clamp(1rem, 5vw, 1.4rem);
         display: flex;
         flex-flow: row wrap;
         align-items: start;
