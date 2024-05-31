@@ -73,8 +73,6 @@
 
 }
 
-
-
 @media (min-width:769px) {
     .home__aside {
         max-width: var(--aside-width);

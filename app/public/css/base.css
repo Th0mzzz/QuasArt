@@ -240,9 +240,9 @@
 
     & .arrows .arrow-btn {
         display: flex;
-        width: 65px;
-        height: 65px;
-        font-size: 30px;
+        min-width: 20px;
+        min-height: 20px;
+        font-size: 25px;
         outline: none;
         background: var(--cor-principal);
         color: var(--cor-fundo);
@@ -254,7 +254,7 @@
         transform: translateY(-50%);
         z-index: 50;
         border-radius: 50%;
-        padding: .5rem .7rem;
+        padding: .5rem .6rem;
 
         &:hover {
             color: #ffffff;
@@ -272,11 +272,12 @@
         display: flex;
         width: fit-content;
         align-items: center;
+        padding: 10px 2.5rem;
     }
 
     & .card {
         transition: transform .4s;
-        padding-right: 1rem;
+        padding:0 1rem;
     }
 }
 

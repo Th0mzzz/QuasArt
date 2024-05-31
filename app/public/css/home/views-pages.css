@@ -81,7 +81,63 @@
                 align-items: center;
                 gap: .5rem;
                 flex-wrap: wrap;
+            }
+        }
+    }
 
+    &.ficha-view {
+        & .ficha__header {
+            & .ficha__info {
+                padding: 0 clamp(.8rem, 15vw, 2.3rem);
+                display: flex;
+                gap: 2rem;
+                align-items: start;
+
+                &>img {
+                    width: clamp(200px, 20vw, 280px);
+                    height: clamp(350px, 30vw, 350px);
+                    border-radius: 10px;
+                    box-shadow: 0 0 5px var(--cor-texto);
+                    display: block;
+                    z-index: 3;
+                }
+
+                & .estatistica__ficha {
+                    & h2 {
+                        color: var(--cor-texto);
+                    }
+
+                    & .row {
+                        display: flex;
+                        gap: .7rem;
+                        align-items: center;
+
+                        & .estatistica {
+                            text-align: center;
+                            color: var(--cor-texto);
+                        }
+
+                        &.user .btn {
+                            padding: .5rem 1.2rem;
+                            height: fit-content;
+                            box-shadow: 0 0 3px var(--cor-texto);
+                            color: var(--cor-principal);
+                            --cor-btn: var(--cor-containers);
+                            --cor-btn-hover: var(--cor-principal-hover);
+
+                        }
+                    }
+                }
+            }
+
+            & .ficha__sinopse {
+                & .box {
+                    position: relative;
+                    top: -20px;
+                    display: block;z-index: 2;
+                    color: var(--cor-texto);
+                    border: 1px solid var(--cor-texto);
+                }
             }
         }
     }

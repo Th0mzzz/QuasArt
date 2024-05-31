@@ -3,7 +3,7 @@
 - Página de Videos;
 - Página de configurações;
 - Página de gerenciamento de posts;
-- View de resenhas, videos e fichas;
+- View de videos e fichas;
 - Validar proporção das imagens dos formulários (cadastro, publicações, etc.)e definir seus tamanhos;
 
 ### BACK-END

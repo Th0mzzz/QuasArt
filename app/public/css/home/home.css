@@ -306,7 +306,7 @@
 
         & .comment__item {
             position: relative;
-
+            color: var(--cor-texto);
             & .row {
                 position: relative;
                 padding: 1rem;
