@@ -3,7 +3,7 @@
         <section class="ficha__info">
             <img src="./img/cards/card-ficha-teste2.png" alt="imagem de capa da ficha">
             <article class="estatistica__ficha">
-                <h2 class="title mb-2">Harry Potter e a Pedra Filosofal</h2>
+                <h2 class="title mb-3">Harry Potter e a Pedra Filosofal</h2>
                 <section class="row user">
                     <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
                             alt="foto do autor" class="userImg">Nome
@@ -28,9 +28,150 @@
         </section>
         <section class="ficha__sinopse">
             <article class="box p-3">
-                <h3 class="subtitle mb-1">Sinopse</h3> 
-                <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corrupti optio quis, voluptatibus non est eos, sequi accusantium at amet dolorum repudiandae nulla voluptates libero sapiente vitae veniam ipsum dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem praesentium adipisci ipsa, ipsam rerum veniam autem ea similique dignissimos, architecto voluptas earum ipsum minima minus, ratione rem quo vitae consectetur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium possimus tenetur accusantium. Dolorem, fugiat quasi assumenda et veniam deserunt recusandae, a necessitatibus impedit voluptas vero consequatur laboriosam. Ullam, tenetur necessitatibus? </p>
+                <h3 class="subtitle mb-1">Sinopse</h3>
+                <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corrupti optio quis,
+                    voluptatibus non est eos, sequi accusantium at amet dolorum repudiandae nulla voluptates libero
+                    sapiente vitae veniam ipsum dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Dolorem praesentium adipisci ipsa, ipsam rerum veniam autem ea similique dignissimos, architecto
+                    voluptas earum ipsum minima minus, ratione rem quo vitae consectetur! Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit. Praesentium possimus tenetur accusantium. Dolorem, fugiat quasi
+                    assumenda et veniam deserunt recusandae, a necessitatibus impedit voluptas vero consequatur
+                    laboriosam. Ullam, tenetur necessitatibus? </p>
             </article>
         </section>
     </header>
+    <section class="ficha__content">
+        <section class="carousel__container mt-3 mb-3 previa__container">
+            <article class="arrows">
+                <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+                <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+            </article>
+            <section class="carousel__inner">
+                <article class="card">
+                    <article class="previa__card">
+                        <img src="./img/cards/card-ficha-teste3.png" alt="Prévia item">
+                    </article>
+                </article>
+                <article class="card">
+                    <article class="previa__card">
+                        <img src="./img/cards/card-ficha-teste2.png" alt="Prévia item">
+                    </article>
+                </article>
+                <article class="card">
+                    <article class="previa__card">
+                        <img src="./img/cards/card-ficha-teste.png" alt="Prévia item">
+                    </article>
+                </article>
+                <article class="card">
+                    <article class="previa__card">
+                        <img src="./img/cards/card-ficha-teste4.png" alt="Prévia item">
+                    </article>
+                </article>
+                <article class="card">
+                    <article class="previa__card">
+                        <img src="./img/cards/card-ficha-teste5.png" alt="Prévia item">
+                    </article>
+                </article>
+            </section>
+        </section>
+        <footer class="row">
+            <article id="tagsContainer">
+                <span class="tag text">#Resenhalegal</span>
+                <span class="tag text">#ebaeba</span>
+                <span class="tag text">#que</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+            </article>
+            <article class="avaliacao__stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+            </article>
+        </footer>
+    </section>
+    <footer class="comentarios__container mt-3">
+        <h3 class="subtitle mb-2">Comentários</h3>
+        <form action="/comentarResenha" class="comment__form">
+            <article class="input__container">
+                <textarea name="textComment" id="textComment" class="form__control" placeholder="Deixe seu comentário sobre!">
+                </textarea>
+                <label for="textComment">Deixe seu comentário e sua avaliação!</label>
+            </article>
+            <article class="avaliacao__stars pt-1">
+                <span class="star"><i class="bi bi-star"></i></span>
+                <span class="star"><i class="bi bi-star"></i></span>
+                <span class="star"><i class="bi bi-star"></i></span>
+                <span class="star"><i class="bi bi-star"></i></span>
+                <span class="star"><i class="bi bi-star"></i></span>
+            </article>
+            <input type="hidden" name="avaliacao" id="avaliacaoInput">
+            <button type="submit" class="btn secundaria mt-2">Comentar</button>
+        </form>
+        <section class="comentarios mt-3">
+            <article class="comment__item">
+                <article class="row">
+                    <header class="comment__user">
+                        <img src="./img/user-teste2.png" alt="foto de perfil do comentário" class="userImg">
+                        <h4 class="link mt-2">Th0mzzz</h4>
+                    </header>
+                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
+                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
+                        eveniet
+                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
+                </article>
+                <article class="avaliacao__stars pt-1">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </article>
+            </article>
+
+            <article class="comment__item">
+                <article class="row">
+                    <header class="comment__user">
+                        <img src="./img/user-teste3.png" alt="foto de perfil do comentário" class="userImg">
+                        <h4 class="link mt-2">Mariana Ferraz</h4>
+                    </header>
+                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
+                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
+                        eveniet
+                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
+                </article>
+                <article class="avaliacao__stars pt-1">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </article>
+            </article>
+
+        </section>
+    </footer>
 </section>
+
+<script src="./js/carousel.js"></script>
+<script src="./js/input.js"></script>

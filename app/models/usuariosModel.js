@@ -6,15 +6,15 @@ const usuariosModel = {
             const [resultados] = await pool.query("insert into USUARIOS set ?", [dadosForm])
             return resultados
         } catch (error) {
-            return error
-        }
+            throw error
+        }  
     },
     findUserByContato: async (contato) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where CONTATO = ?", [contato])
             return resultados
         } catch (error) {
-            return error
+            throw error
         }
     },
     findUserByNickname: async (nickname) => {
