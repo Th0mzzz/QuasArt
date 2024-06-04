@@ -53,14 +53,20 @@ router.get("/home", function (req, res) {
 // -------- PÁGINA DE PERFIL ----------------
 
 // pagina de perfil
-router.get("/profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
-    usuariosController.mostrarPageProfile(req, res)
-});
-// pagina de perfil de outros usuários
-router.get("/view-profile", function (req, res) {
-    usuariosController.mostrarPageProfile(req, res)
-});
+router.get("/profile",
+    (req, res, next) => {
+        if (req.query.idUser && req.query.idUser != null) {
+            usuariosController.mostrarPageProfile(req, res)
 
+        } else {
+            next()
+        }
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        usuariosController.mostrarPageProfile(req, res)
+    });
 // pagina de gerenciamento de post
 
 router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
