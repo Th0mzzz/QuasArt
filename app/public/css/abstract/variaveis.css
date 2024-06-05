@@ -8,6 +8,7 @@
     --cor-secundaria: #582255;
     --cor-secundaria-hover: #9A3198;
     --cor-fundo: #F3F8FF;
+    --cor-fundo2: #F3F7EC;
     --cor-containers: #fff;
     --cor-texto: #2C2C2C;
     --cor-danger: #df4141;
@@ -33,6 +34,7 @@
 
 .dark {
     --cor-fundo: #0E1631;
+    --cor-fundo2: #1A2130;
     --cor-containers: #1C284E;
     --cor-texto: #fff;
 }

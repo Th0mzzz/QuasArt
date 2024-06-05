@@ -1,32 +1,32 @@
 .pesquisa__container {
     margin: 8rem 0;
+}
 
-    & .pesquisa__header {
-        & .pesquisa__form {
-            & .input__container {
-                display: flex;
-                border-radius: 50px;
-                overflow-x: hidden;
+.pesquisa__header {
+    & .pesquisa__form {
+        & .input__container {
+            display: flex;
+            border-radius: 50px;
+            overflow-x: hidden;
 
-                & :is( :is(input, textarea, select):focus, :is(input, textarea, select):active, input:not(:placeholder-shown), textarea:not(:placeholder-shown))~label {
-                    left: 1.2rem;
-                }
+            & :is( :is(input, textarea, select):focus, :is(input, textarea, select):active, input:not(:placeholder-shown), textarea:not(:placeholder-shown))~label {
+                left: 1.2rem;
+            }
 
-                & .pesquisa-btn {
-                    background: transparent;
-                    font-size: calc(var(--fs-subtitle) - 3px);
-                    padding: 0 1.5rem;
-                    outline: none;
-                    border: none;
-                    color: var(--cor-secundaria);
-                    transition: ease background .4s,
-                        ease color .4s;
-                    cursor: pointer;
+            & .pesquisa-btn {
+                background: transparent;
+                font-size: calc(var(--fs-subtitle) - 3px);
+                padding: 0 1.5rem;
+                outline: none;
+                border: none;
+                color: var(--cor-texto);
+                transition: ease background .4s,
+                    ease color .4s;
+                cursor: pointer;
 
-                    &:hover {
-                        color: var(--cor-containers);
-                        background: var(--cor-secundaria-hover);
-                    }
+                &:hover {
+                    color: var(--cor-containers);
+                    background: var(--cor-secundaria-hover);
                 }
             }
         }

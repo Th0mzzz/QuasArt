@@ -1,0 +1,97 @@
+<section class="view__container videos-view">
+    <section class="row__videos-container">
+        <section class="row__videos">
+            <article class="video__card">
+                <header class="video__btns">
+                    <button class="video-btn"><i class="bi bi-heart"></i></button>
+                    <button class="video-btn"><i class="bi bi-chat"></i></button>
+                    <button class="video-btn"><i class="bi bi-share"></i></button>
+                </header>
+                <!-- <video src="./img/video-teste-1.mp4" controls></video> -->
+            </article>
+        </section>
+    </section>
+    <section class="video__info">
+        <header class="video__desc">
+            <section class="row user mb-2">
+                <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
+                        alt="foto do autor" class="userImg">Nome
+                    do usuário</a>
+                <button class="btn">Seguir</button>
+            </section>
+            <article class="desc mb-2">
+                <p class="text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae nemo saepe blanditiis labore
+                    corrupti odio maxime distinctio fuga quisquam. Amet possimus illo corrupti nulla voluptatem expedita
+                    praesentium dolore ab. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem, dicta. Ipsam
+                    repudiandae reprehenderit odit.
+                </p>
+            </article>
+            <article id="tagsContainer">
+                <span class="tag text">#Resenhalegal</span>
+                <span class="tag text">#ebaeba</span>
+                <span class="tag text">#que</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+                <span class="tag text">#maneiro</span>
+            </article>
+        </header>
+        <section class="video__comments">
+            <h2 class="subtitle">Comentários</h2>
+            <article class="comments">
+                <article class="comment">
+                    <img src="./img/user-teste2.png" alt="" class="user__img">
+                    <article class="texto">
+                        <h4 class="link user-nick">Th0mzzz</h4>
+                        <p class="text">
+                            Amei o podCast, continue postando!
+                        </p>
+                    </article>
+                </article>
+                <article class="comment">
+                    <img src="./img/user-teste.png" alt="" class="user__img">
+                    <article class="texto">
+                        <h4 class="link user-nick">Dantas.Web</h4>
+                        <p class="text">
+                            Poderiam melhorar a qualidade de video, iria ficar muito mais interessante
+                        </p>
+                    </article>
+                </article>
+                <article class="comment">
+                    <img src="./img/user-teste3.png" alt="" class="user__img">
+                    <article class="texto">
+                        <h4 class="link user-nick">Mariana Ferraz</h4>
+                        <p class="text">
+                            Queria que trouxessem profissionais de psicologia para falar mais sobre a área
+                        </p>
+                    </article>
+                </article>
+                <article class="comment">
+                    <img src="./img/user-teste4.png" alt="" class="user__img">
+                    <article class="texto">
+                        <h4 class="link user-nick">Ícaro Carvalho</h4>
+                        <p class="text">
+                            Queria que trouxessem profissionais de psicologia para falar mais sobre a área
+                        </p>
+                    </article>
+                </article>
+            </article>
+            <footer class="video__form">
+                <form action="/comentarioVideo" method="post">
+                    <article class="input__container video-input">
+                        <input type="text" class="form__control" name="comentario" id="comentario" placeholder="Deixe seu comentário!">
+                        <label for="comentario">Deixe seu comentário</label>
+                        <button type="submit" class="btn-comment"><i class="bi bi-send"></i></button>
+                    </article>
+                    
+                </form>
+            </footer>
+        </section>
+    </section>
+</section>

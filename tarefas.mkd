@@ -27,5 +27,7 @@
 - Página de vídeos - função para trazer novos videos = {
         Lógica: "Fazer uma função de um botao next chamar uma query no banco de dados para chamar um video onde o ID NÃO esteja no array dos vídeos já assistidos. Esse array será alimentado toda vez que ele pressionar o botão nextVideo. Além disso, para deixar a ordem dos vídeos aleatórias, na função poderia se adicionar um math.Random() de numeros inteiros de 1 até o ID do ULTIMO vídeo criado.",
         Erros: "A questão de voltar os vídeos e avançar novamente é algo a ser pensado ainda, pois teria de criar uma maneira de acessar o video anterior e visualizar o proximo vídeo"
+        Back-end:" Necessário adicionar id de video e td vez que clicar no next, ele geraria o math.Random() no value de um input hidden e o next seria um submit, isso faria uma req post com o valor de um id aleatorio que chamaria o proximo video a partir de uma query, além disso, para chamar a página video seria necesssário um idVideo, ou seja, toda vez que for chamado um next ele recarregará a pagina com um novo valor, isso ajuda tbm para caso vc mande o link para outra pessoa e ela tente acessar o video."
 
+        "A função next será apenas para CRIAR um novo item do carousel/ inner de videos, ou seja, solucionando o problema de voltar e avançar. caso não exista video após o atual, chame um video novo, senão, chame o video ja criado da lista."
     }

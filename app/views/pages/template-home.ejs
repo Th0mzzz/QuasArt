@@ -89,6 +89,8 @@
 
         <a href="#inicio" class="btn back-btn"><i class="bi bi-arrow-up-circle"></i></a>
     </main>
+
+   <% if (classePagina !== "videos" & classePagina !== "pesquisar") { %>
     <footer class="home__footer">
         <header class="footer__header">
             <a href="/home" class="logo">
@@ -121,6 +123,7 @@
         </article>
         <p class="text">&COPY;Quasart 2024</p>
     </footer>
+<% } %>
     <script src="./js/colorMode.js"></script>
     <script src="./js/access.js"></script>
     <script src="./js/backToTop.js"></script>
