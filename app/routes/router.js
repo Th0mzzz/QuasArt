@@ -117,13 +117,11 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
     res.render("./pages/template-home", jsonResult)
 });
 
-// pagina de videos
+
+
+// --------- PAGINA DE VIDEOS ----------
 router.get("/videos", function (req, res) {
-    const jsonResult = {
-        page: "../partial/template-home/videos-home",
-        classePagina: "videos"
-    }
-    res.render("./pages/template-home", jsonResult)
+    res.render("./pages/videos-home")
 });
 
 

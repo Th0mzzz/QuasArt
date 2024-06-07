@@ -57,7 +57,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            align-items: start;
+            align-items: center;
             margin: auto;
             gap: 1rem;
 
@@ -129,10 +129,8 @@
 }
 
 .edit-btn {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    translate: 0 -50%;
+    padding:.3rem .5rem;
+    position: relative;
 
     &>i {
         display: block;
@@ -171,31 +169,36 @@
     background: var(--cor-containers);
     box-shadow: 0 0 8px 1px var(--cor-texto);
     border-radius: 10px;
-    & .post__capa{
-        width: clamp(130px,100%,250px);
-        height: clamp(230px,100%,310px);
+
+    & .post__capa {
+        width: clamp(130px, 100%, 250px);
+        height: clamp(230px, 100%, 310px);
         border-radius: 10px;
         object-fit: cover;
     }
 
-    & .info__post{
+    & .info__post {
         color: var(--cor-texto);
         width: 100%;
         padding: 5px;
-        & ul{
+
+        & ul {
             list-style: none;
         }
-        & .post__estatis{
+
+        & .post__estatis {
             display: flex;
             gap: 10px;
         }
-        & .post__btns{
+
+        & .post__btns {
             display: flex;
-            gap: 1rem ;
+            gap: 1rem;
             padding: 1rem 0;
-            & .btn-icon{
+
+            & .btn-icon {
                 cursor: pointer;
-                background:transparent;
+                background: transparent;
             }
         }
     }
@@ -211,7 +214,19 @@
         }
     }
 
-    .posts__container .posts{
-       justify-content: space-between;
+    .edit-btn {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        translate: 0 -50%;
+
+        &>i {
+            display: block;
+            font-size: 20px;
+        }
+    }
+
+    .posts__container .posts {
+        justify-content: space-between;
     }
 }
