@@ -76,6 +76,8 @@ const usuariosController = {
             .bail()
             .matches(/[a-z]/).withMessage('A senha deve conter pelo menos uma letra minúscula.')
             .bail()
+            .matches(/[0-9]/).withMessage('A senha deve conter pelo menos um número inteiro.')
+            .bail()
             .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
             .bail()
     ],
