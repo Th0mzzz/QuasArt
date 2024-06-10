@@ -88,7 +88,7 @@
     left: 0;
     top: 0;
     margin: 1rem;
-    
+    z-index: 20;
 }
 
 /* INPUT */
