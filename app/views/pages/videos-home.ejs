@@ -12,17 +12,44 @@
 
 <body>
     <main>
-        <button class="btn back-page" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
+        <section class="videos__btns">
+            <button class="btn" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
+            <button class="btn-icon ms-1 me-1" id="btnMode"><i class="bi bi-brightness-high"></i></button>
+        </section>
         <section class="view__container videos-view">
-            <section class="row__videos-container">
+            <section class="row__videos-container vertical-carousel__container">
                 <section class="row__videos">
-                    <article class="video__card">
-                        <header class="video__btns">
-                            <button class="video-btn"><i class="bi bi-heart"></i></button>
-                            <button class="video-btn" id="btnOpenComments"><i class="bi bi-chat"></i></button>
-                            <button class="video-btn"><i class="bi bi-share"></i></button>
-                        </header>
-                        <video src="./img/video-teste-1.mp4" controls></video>
+                    <article data-verticalCard>
+                        <article class="video__card">
+                            <header class="video__btns">
+                                <button class="previous video-arrows">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                                <button class="video-btn"><i class="bi bi-heart"></i></button>
+                                <button class="video-btn" id="btnOpenComments"><i class="bi bi-chat"></i></button>
+                                <button class="video-btn"><i class="bi bi-share"></i></button>
+                                <button class="next video-arrows">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </header>
+                            <video src="./img/video-teste-1.mp4" controls></video>
+                        </article>
+                    </article>
+                    <article data-verticalCard>
+                        <article class="video__card">
+                            <header class="video__btns">
+                                <button class="previous video-arrows">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                                <button class="video-btn"><i class="bi bi-heart"></i></button>
+                                <button class="video-btn" id="btnOpenComments"><i class="bi bi-chat"></i></button>
+                                <button class="video-btn"><i class="bi bi-share"></i></button>
+                                <button class="next video-arrows">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </header>
+                            <video src="./img/video-teste-1.mp4" controls></video>
+                        </article>
                     </article>
                 </section>
             </section>
@@ -30,6 +57,7 @@
                 <section class="video__info-content">
                     <button id="btnCloseComments" class="btn-close btn secundaria"><i
                             class="bi bi-arrow-bar-left"></i></button>
+
                     <header class="video__desc">
                         <section class="row user mb-2">
                             <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
@@ -126,8 +154,7 @@
         <script src="./js/commentVideo.js"></script>
     </main>
     <script src="./js/colorMode.js"></script>
-    <script src="./js/access.js"></script>
-    <script src="./js/backToTop.js"></script>
+    <script src="./js/verticalCarousel.js"></script>
 
 </body>
 

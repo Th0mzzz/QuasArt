@@ -30,4 +30,6 @@
         Back-end:" Necessário adicionar id de video e td vez que clicar no next, ele geraria o math.Random() no value de um input hidden e o next seria um submit, isso faria uma req post com o valor de um id aleatorio que chamaria o proximo video a partir de uma query, além disso, para chamar a página video seria necesssário um idVideo, ou seja, toda vez que for chamado um next ele recarregará a pagina com um novo valor, isso ajuda tbm para caso vc mande o link para outra pessoa e ela tente acessar o video."
 
         "A função next será apenas para CRIAR um novo item do carousel/ inner de videos, ou seja, solucionando o problema de voltar e avançar. caso não exista video após o atual, chame um video novo, senão, chame o video ja criado da lista."
+
+        "Essa lista pd ser passada e armazena a partir de HTTPS, mantendo sempre os videos em um array de ids de videos para carregar na pagina"
     }

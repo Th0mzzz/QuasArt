@@ -18,25 +18,6 @@
                 --cor-btn-hover: var(--cor-secundaria-hover);
             }
 
-            & .btn-icon {
-                background: transparent;
-                outline: none;
-                font-size: clamp(20px, 5vw, 25px);
-                cursor: pointer;
-                transition: transform .3s;
-
-                &#btnMode {
-                    color: var(--cor-principal);
-                }
-
-                &#access {
-                    color: var(--cor-secundaria-hover);
-                }
-
-                &:hover {
-                    transform: scale(1.1);
-                }
-            }
 
             & .plus-btn {
                 display: flex;
@@ -47,6 +28,26 @@
 
             }
         }
+    }
+}
+
+.btn-icon {
+    background: transparent;
+    outline: none;
+    font-size: clamp(20px, 5vw, 25px);
+    cursor: pointer;
+    transition: transform .3s;
+
+    &#btnMode {
+        color: var(--cor-principal);
+    }
+
+    &#access {
+        color: var(--cor-secundaria-hover);
+    }
+
+    &:hover {
+        transform: scale(1.1);
     }
 }
 

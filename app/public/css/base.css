@@ -83,7 +83,7 @@
     }
 }
 
-.back-page{
+.back-page, .videos__btns{
     position: absolute;
     left: 0;
     top: 0;
@@ -257,12 +257,12 @@
         border: 3px solid var(--cor-containers);
         cursor: pointer;
         transition: font .5s, color .5s, background .5s;
+        border-radius: 50%;
+        padding: .5rem .6rem;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
         z-index: 50;
-        border-radius: 50%;
-        padding: .5rem .6rem;
 
         &:hover {
             color: #ffffff;
