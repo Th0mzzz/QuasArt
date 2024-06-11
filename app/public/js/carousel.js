@@ -3,7 +3,7 @@ const carouselsContainers = document.querySelectorAll(".carousel__container")
 
 carouselsContainers.forEach(container => {
     
-    const cards = container.querySelectorAll("[data-verticalCard]")
+    const cards = container.querySelectorAll(".card")
     const previous = container.querySelector(".previous")
     const next = container.querySelector(".next")
     let indexAtual = 0;

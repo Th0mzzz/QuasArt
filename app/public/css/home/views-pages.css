@@ -336,6 +336,7 @@
         position: absolute;
         top: 30%;
         right: 10px;
+
         & .video-btn {
             cursor: pointer;
             position: relative;
@@ -380,7 +381,13 @@
 .videos__btns {
     display: flex;
     flex-flow: column nowrap;
-    gap: .5rem;
+    gap: .8rem;
+    & #accessContainer {
+        top: 50%;
+        right: -500%;
+
+    }
+
 }
 
 @media (min-width:992px) {
