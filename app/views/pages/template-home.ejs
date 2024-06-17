@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quasart</title>
-    <link rel="shortcut icon" href="./img/quasart_logo_pequena.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./img/quasart-logo-pequena.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/home/home.css">
 </head>
@@ -30,10 +30,10 @@
            } 
           
         %>
-    <header class="home__header">
+    <header class="home__header <%= classePagina === 'inicialHome' ? 'background' : '' %>">
         <nav class="nav__home">
-            <a href="/home" class="logo link">
-                <img src="./img/quasart_logo.png" alt="logotipo da plataforma Quasart">
+            <a href="/" class="logo link">
+                <img src="./img/<%= classePagina === 'inicialHome' ? 'quasart-logo-branca.png' : 'quasart-logo.png' %>" alt="logotipo da plataforma Quasart">
                 <h1 class="tipografia">Quas<span style="color: var(--cor-principal);">Art</span></h1>
             </a>
 
@@ -68,7 +68,7 @@
             <ul class="aside__items">
                 <li class="aside__item <%= classePagina == 'pesquisar' ? 'ativo ': '' %>"><a href="/pesquisar"><i
                             class="bi bi-search"></i></a></li>
-                <li class="aside__item <%= classePagina == 'inicialHome' ? 'ativo ': '' %>"><a href="/home"><i
+                <li class="aside__item <%= classePagina == 'inicialHome' ? 'ativo ': '' %>"><a href="/"><i
                             class="bi bi-house"></i></a></li>
                 <li class="aside__item <%= classePagina == 'videos' ? 'ativo ': '' %>"><a href="/videos"><i
                             class="bi bi-camera-video"></i></a></li>
@@ -79,10 +79,20 @@
             </ul>
         </section>
     </aside>
+   <% if(classePagina === "inicialHome"){ %>
+    <section class="inicial__container">
+        <article class="imagem-inicial"></article>
+        <article class="slogan p-3">
+            <h2 class="supertitle">Explore o Infinito</h2>
+            <h3 class="subtitle">Descubra o extraordinário.</h3>
+            <a href="/cadastrar" class="btn-outline mt-2">Cadastre-se agora!</a>
+        </article>
+    </section>
+    <% } %>
     <main class="home__content">
         
+        
         <h1 class="supertitle" style="color:var(--cor-texto); text-align: center;"><%= tituloPagina %></h1>
-
         <%- include(page) %>
 
         <a href="#inicio" class="btn back-btn"><i class="bi bi-arrow-up-circle"></i></a>
@@ -92,7 +102,7 @@
     <footer class="home__footer">
         <header class="footer__header">
             <a href="/home" class="logo">
-                <img src=".//img/quasart_logo.png" alt="Logotipo do Quasart">
+                <img src=".//img/quasart-logo.png" alt="Logotipo do Quasart">
                 <h1 class="tipografia">Quas<span style="color:var(--cor-principal);">Art<span></h1>
             </a>
             <article class="redes">

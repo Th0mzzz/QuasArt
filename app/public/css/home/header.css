@@ -1,12 +1,21 @@
 .home__header {
     position: relative;
+    z-index: 100;
+
+    &.background {
+        background: #00000096;
+
+        & .logo {
+            color: #ffffff;
+
+        }
+    }
 
     & .nav__home {
         display: flex;
         justify-content: space-between;
         width: 100%;
         padding: clamp(1rem, 5vw, 1.4rem) 0;
-
 
         & .nav__btns {
             position: relative;
@@ -62,9 +71,6 @@
     }
 }
 
-.dark .logo {
-    color: var(--cor-texto);
-}
 
 .access__container {
     width: clamp(15rem, 15vw, 20rem);

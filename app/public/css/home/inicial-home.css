@@ -1,3 +1,43 @@
+.inicial__container {
+    position: relative;
+    display: flex;
+    --top-img: 100px;
+    max-width: 1440px;
+    margin: auto;
+}
+
+.inicial__container .imagem-inicial {
+    position: relative;
+    top: calc(var(--top-img) * -1);
+    width: 100%;
+    height: clamp(450px, 100vw, 620px);
+    background-image: url("/img/imagem-inicial-desktop.png");
+    filter: brightness(60%);
+    background-size: cover;
+    background-position: right;
+    border-radius: 0;
+    box-shadow: 0 0 15px 5px #00000069;
+}
+
+
+
+.inicial__container .slogan {
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc((50% + var(--top-img)) * -1));
+    color: #ffffff;
+    height: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: start;
+    text-align: start;
+    padding: 0 10%;
+}
+
+.inicial__container .slogan .btn-outline {
+    width: fit-content;
+}
+
 .ad__section {
     width: 100%;
 
@@ -82,13 +122,15 @@
     }
 
     & .content__user {
-        padding: 1.5rem clamp(.8rem,3vw, 3rem);
+        padding: 1.5rem clamp(.8rem, 3vw, 3rem);
         padding-top: calc((clamp(120px, 20vw, 150px) / 2) + 2rem);
         background: var(--cor-principal);
-        & > :is(.subtitle, p) {
+
+        &> :is(.subtitle, p) {
             color: #ffffff;
             text-align: center;
         }
+
         & .obra__user :is(.card__ficha, .card__resenha, .card__video) {
             --fs-text: clamp(8px, 2vw, 11px);
             --fs-link: clamp(9px, 2vw, 12px);
@@ -110,7 +152,7 @@
     }
 }
 
-@media (min-width:1024px) {
+@media (min-width:992px) {
     .cards__container {
         & .cards__row {
             flex-flow: row nowrap;
@@ -121,5 +163,21 @@
             }
         }
 
+    }
+
+    .inicial__container {
+        & .imagem-inicial {
+            border-radius: 0 0 30% 30%;
+        }
+    }
+
+
+}
+@media (max-width:492px) {
+    .inicial__container {
+        & .slogan {
+            align-items: center;
+            text-align: center;
+        }
     }
 }

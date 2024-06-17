@@ -1,19 +1,34 @@
 <link rel="stylesheet" href="./css/login/cadastrar.css">
 <% 
-var classeErro={ nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } 
-var msgErro={
-    nome: "" , nascimento: "" , cpf:"", contato:"", usuario:"", email:"", senha:"" } 
+let classeErro={ 
+  nome: "", 
+  nascimento: "", 
+  cpf:"", 
+  contato:"", 
+  usuario:"", 
+  email:"", 
+  senha:"" 
+} 
+let msgErro= {
+    nome: "", 
+    nascimento: "", 
+    cpf:"", 
+    contato:"", 
+    usuario:"", 
+    email:"", 
+    senha:"" 
+  } 
     
     if(erros) {
-    erros.errors.forEach(error=>{
-    classeErro[error.path] = 'invalid';
-    msgErro[error.path] = error.msg
-    })
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
     }
-    %>
+%>
 <article class="fundo__login">
   <figure class="logo-login">
-    <img src="./img/quasart_logo_branca.png" alt="logo do Quasart">
+    <img src="./img/quasart-logo-branca.png" alt="logo do Quasart">
   </figure>
 </article>
 

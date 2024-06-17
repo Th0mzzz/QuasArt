@@ -8,8 +8,10 @@ const middleWares = {
     verifyAutenticado: (req, res, next) => {
         if (req.session.autenticado) {
             var aut = req.session.autenticado
+            req.session.logado = req.session.logado + 1
         } else {
             var aut = { autenticado: null, id: null }
+            req.session.logado = 0
         }
         req.session.autenticado = aut
         next();
@@ -48,6 +50,7 @@ const middleWares = {
             var aut = { autenticado: null, id: null }
         }
         req.session.autenticado = aut
+        req.session.logado = 0
         next();
     },
 

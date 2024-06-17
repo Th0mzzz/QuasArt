@@ -14,9 +14,6 @@ const destinoDeFalha = {
 
 // ------------ LANDING PAGE ---------------
 
-router.get("/", function (req, res) {
-    res.render("pages/index");
-});
 
 // ---------- PÁGINAS DA HOME -------------
 
@@ -40,7 +37,7 @@ router.get("/pesquisar", function (req, res) {
     res.render("./pages/template-home", jsonResult)
 });
 // pagina inicial
-router.get("/home", function (req, res) {
+router.get("/", function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/inicial-home",
         classePagina: "inicialHome",
@@ -54,10 +51,11 @@ router.get("/home", function (req, res) {
 
 // pagina de perfil
 router.get("/profile",
+
+    // Verificar se o idUser está sendo passado na URL. Se estiver quer dizer que não é necessário verificar se está logado ou não.
     (req, res, next) => {
         if (req.query.idUser && req.query.idUser != null) {
             usuariosController.mostrarPageProfile(req, res)
-
         } else {
             next()
         }
