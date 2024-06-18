@@ -70,7 +70,9 @@
         width: clamp(45px, 5vw, 55px);
     }
 }
-
+.dark .logo{
+    color: var(--cor-texto);
+}
 
 .access__container {
     width: clamp(15rem, 15vw, 20rem);

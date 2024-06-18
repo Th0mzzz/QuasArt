@@ -103,7 +103,13 @@ const usuariosController = {
         console.log(req.session.autenticado)
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/cadastro", modal: "fechado", erros: errors, valores: req.body });
+            const jsonResult = {
+                page: "../partial/template-login/cadastro",
+                modal: "fechado",
+                erros: errors,
+                valores: req.body
+            }
+            res.render("pages/template-login", jsonResult);
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
             let hashSenha = bcrypt.hashSync(senha, salt);
@@ -119,9 +125,8 @@ const usuariosController = {
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
                 req.session.autenticado = { autenticado: usuario, id: resultados.insertId }
-
-                res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "initial-home", tokenAlert: { msg: `Seja bem-vindo ao QuasArt, `, usuario: `${usuario}!` } })
                 console.log("Cadastrado!")
+                res.redirect("/")
             } catch (erros) {
                 console.log(erros)
                 res.render("pages/error-500")
@@ -142,10 +147,16 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
-                    res.render("pages/template-home", { page: "../partial/template-home/inicial-home", classePagina: "inicialHome", tokenAlert: { msg: `Bom te ver de novo`, usuario: `${usuario}!` } })
                     console.log("Logado!")
+                    res.redirect("/")
                 } else {
-                    res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: null, incorreto: "ativado" });
+                    const jsonResult = {
+                        page: "../partial/template-login/login",
+                        modal: "fechado",
+                        erros: null,
+                        incorreto: "ativado"
+                    }
+                    res.render("pages/template-login", jsonResult);
                 }
 
             } catch (erros) {

@@ -1,11 +1,12 @@
-<% if(tokenAlert) {%>
+<% if(token && token.ativar == 0) {%>
     <h4 class="token-alert link">
-        <%= tokenAlert.msg %> <span class="negrito-amarelo">
-                <%= tokenAlert.usuario %>
-            </span>
+        Bem-vindo ao Quasart! 
+        <span class="negrito-amarelo">
+            <%= token.usuario %>
+        </span>
     </h4>
     <% } %>
-        
+
         <section class="container__home">
             <section class="ad__section mt-3">
                 <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">

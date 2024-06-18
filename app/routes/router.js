@@ -12,11 +12,18 @@ const destinoDeFalha = {
     incorreto: ""
 }
 
-// ------------ LANDING PAGE ---------------
-
 
 // ---------- PÁGINAS DA HOME -------------
+// pagina inicial
+router.get("/", function (req, res) {
+    const jsonResult = {
+        page: "../partial/template-home/inicial-home",
+        classePagina: "inicialHome",
+        token: req.session.autenticado ? { usuario: req.session.autenticado.autenticado, ativar: req.session.logado } : { usuario: null, ativar: 1 }
 
+    }
+    res.render("./pages/template-home", jsonResult)
+});
 // pagina de assinatura
 router.get("/plus-page", function (req, res) {
 
@@ -36,15 +43,7 @@ router.get("/pesquisar", function (req, res) {
     }
     res.render("./pages/template-home", jsonResult)
 });
-// pagina inicial
-router.get("/", function (req, res) {
-    const jsonResult = {
-        page: "../partial/template-home/inicial-home",
-        classePagina: "inicialHome",
-        tokenAlert: undefined
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+
 
 
 // -------- PÁGINA DE PERFIL ----------------
@@ -115,7 +114,15 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
     res.render("./pages/template-home", jsonResult)
 });
 
+//Pagina sobre o quasart
 
+router.get("/sobre", function (req, res) {
+    const jsonResult = {
+        page: "../partial/template-home/sobre",
+        classePagina: ""
+    }
+    res.render("./pages/template-home", jsonResult)
+})
 
 // --------- PAGINA DE VIDEOS ----------
 router.get("/videos", function (req, res) {
