@@ -5,6 +5,8 @@ const middleWares = require("../sessions/middleswares");
 // CONTROLLERS -------------
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
+// UTIL --------------- 
+const uploadFile = require("../util/upload")("./app/public/img/imagens-servidor/");
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -235,7 +237,7 @@ router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares
 
 // Form de criação de Resenha
 
-router.post("/criarResenha", resenhaControl.validacaoResenha, function (req, res) {
+router.post("/criarResenha", uploadFile("capaResenha"), resenhaControl.validacaoResenha, function (req, res) {
     resenhaControl.postarResenha(req, res)
 })
 

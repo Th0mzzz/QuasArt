@@ -14,30 +14,32 @@ const resenhaControl = {
     ],
     postarResenha: async (req, res) => {
         let errors = validationResult(req)
+        const erroMulter = req.session.erroMulter;
 
-        if (!errors.isEmpty()) {
-            console.log(errors)
+        if (!errors.isEmpty() || erroMulter != null) {
+            listaErros = !errors.isEmpty ? errors : {formatter:null, errors: []};
+            if(erroMulter != null){
+                listaErros.errors.push(erroMulter)
+            }
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/resenhas-pub",
                 classePagina: "publicar",
-                erros: errors
+                erros: listaErros
             }
             res.render("./pages/template-home", jsonResult)
         } else {
             try {
                 const { titulo, descricao, textoResenha, tags } = req.body
-                console.log(tags)
                 const resenha = {
                     TITULO_RESENHA: titulo,
                     DESCR_RESENHA: descricao,
                     TEXTO_RESENHA: textoResenha,
-                    HASHTAG_RESENHA: "",
+                    HASHTAG_RESENHA: [tags].toString(),
+                    CAPA_CAMINHO: req.file.filename,
                     USUARIOS_ID_USUARIO: req.session.autenticado.id,
                 }
-
                 const resultado = await resenhaModel.criar(resenha)
                 console.log(resultado)
-
                 res.redirect("/")
             } catch (error) {
                 console.log(error)
@@ -47,6 +49,9 @@ const resenhaControl = {
 
         }
     },
+    mostrarResenha: async(req,res) =>{
+
+    }
 }
 
 module.exports = resenhaControl
