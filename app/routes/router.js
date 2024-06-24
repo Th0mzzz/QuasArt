@@ -1,9 +1,11 @@
 var express = require("express");
-const usuariosController = require("../controller/usuariosController");
-const middleWares = require("../sessions/middleswares");
 var router = express.Router();
-
-// Página de falha de autenticação
+// MIDDLEWARES -------------
+const middleWares = require("../sessions/middleswares");
+// CONTROLLERS -------------
+const usuariosController = require("../controller/usuariosController");
+const resenhaControl = require("../controller/resenhasController");
+// Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
     modal: "fechado",
@@ -12,8 +14,10 @@ const destinoDeFalha = {
     incorreto: ""
 }
 
+// ---------------------------------------- GETS -------------------------------------------------- 
 
 // ---------- PÁGINAS DA HOME -------------
+
 // pagina inicial
 router.get("/", function (req, res) {
     const jsonResult = {
@@ -44,10 +48,6 @@ router.get("/pesquisar", function (req, res) {
     res.render("./pages/template-home", jsonResult)
 });
 
-
-
-// -------- PÁGINA DE PERFIL ----------------
-
 // pagina de perfil
 router.get("/profile",
 
@@ -64,6 +64,7 @@ router.get("/profile",
     function (req, res) {
         usuariosController.mostrarPageProfile(req, res)
     });
+
 // pagina de gerenciamento de post
 
 router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
@@ -74,7 +75,6 @@ router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutoriza
     res.render("./pages/template-home", jsonResult)
 });
 
-// ------------ PAGINAS DE PUBLICAÇÃO -------------------
 
 // Home de publicações
 router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
@@ -90,7 +90,8 @@ router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/pub-pages/videos-pub",
-        classePagina: "publicar"
+        classePagina: "publicar",
+        erros: null
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -100,7 +101,8 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
 router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/pub-pages/fichas-pub",
-        classePagina: "publicar"
+        classePagina: "publicar",
+        erros: null
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -109,10 +111,12 @@ router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.ver
 router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/pub-pages/resenhas-pub",
-        classePagina: "publicar"
+        classePagina: "publicar",
+        erros: null
     }
     res.render("./pages/template-home", jsonResult)
 });
+
 
 //Pagina sobre o quasart
 
@@ -198,6 +202,15 @@ router.get("/enviarEmail", function (req, res) {
     }
     res.render("pages/template-login", jsonResult);
 })
+
+// Link para destruir sessão
+router.get("/sair", middleWares.clearSession, function (req, res) {
+    res.redirect("/")
+})
+
+// --------------------------------- POSTS --------------------------------- //
+
+
 // form para checar se o valor do token é correto
 router.post("/checarToken", function (req, res) {
     const jsonResult = {
@@ -219,10 +232,12 @@ router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares
     usuariosController.entrar(req, res)
 })
 
-// Link para destruir sessão
 
-router.get("/sair", middleWares.clearSession, function (req, res) {
-    res.redirect("/")
+// Form de criação de Resenha
+
+router.post("/criarResenha", resenhaControl.validacaoResenha, function (req, res) {
+    resenhaControl.postarResenha(req, res)
 })
+
 
 module.exports = router;

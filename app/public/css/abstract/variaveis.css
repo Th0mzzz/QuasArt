@@ -6,7 +6,7 @@
     --cor-principal: #FD9C4D;
     --cor-principal-hover: #ffc79a;
     --cor-secundaria: #582255;
-    --cor-secundaria-hover: #b950c7;
+    --cor-secundaria-hover: #9c5d9e;
     --cor-fundo: #F3F8FF;
     --cor-fundo2: #F8F6F4;
     --cor-containers: #fff;
@@ -37,6 +37,7 @@
     --cor-fundo2: #142D4C;
     --cor-containers: #1C284E;
     --cor-texto: #fff;
+    --cor-secundaria: #892c96;
 }
 
 .tipografiaFacil * {

@@ -5,18 +5,17 @@
             <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
                 </span>
-                <input type="file" name="imgResenha" id="imgResenha" class="input__control" placeholder="" required data-inputCapa>
-                <label for="imgResenha">Selecione a imagem da Resenha</label>
-                <label for="imgResenha" class="icon"><i class="bi bi-download"></i></label>
+                <input type="file" name="capaResenha" id="capaResenha" class="input__control capaResenha" placeholder="" required data-inputCapa>
+                <label for="capaResenha">Selecione a imagem da Resenha</label>
+                <label for="capaResenha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
-                <input type="hidden" name="idUsuario" id="idUsuario" value="">
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
-                    <input type="text" name="tituloResenha" id="tituloResenha" class="input__control"
+                    <input type="text" name="titulo" id="titulo" class="input__control"
                         placeholder="Título do video" required value="">
-                    <label for="tituloResenha">Título do Resenha Cósmica</label>
+                    <label for="titulo">Título do Resenha Cósmica</label>
                 </article>
                 <article class="input__container">
                     <span class="invalid-msg smallText">
@@ -28,7 +27,7 @@
                     <span class="invalid-msg smallText">
                         Limite de tags atingido!
                     </span>
-                    <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder="" maxlength="30">
+                    <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder="" maxlength="20">
                     <label for="tags">Digite as Hashtags da sua resenha</label>
                 </article>
                 <div id="tagsContainer"></div>
