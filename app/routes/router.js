@@ -139,18 +139,13 @@ router.get("/videos", function (req, res) {
 // -------- PÁGINAS DE VISUALIZAÇÃO -------------
 
 router.get("/view-resenha", function (req, res) {
-    const jsonResult = {
-        page: "../partial/template-home/view-resenha",
-        classePagina: "inicialHome",
-        erros: null
-    }
-    res.render("./pages/template-home", jsonResult)
+    resenhaControl.mostrarResenha(req, res)
 });
 
 router.get("/view-ficha", function (req, res) {
     const jsonResult = {
         page: "../partial/template-home/view-ficha",
-        classePagina: "inicialHome",
+        classePagina: "",
         erros: null
     }
     res.render("./pages/template-home", jsonResult)

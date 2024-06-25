@@ -9,6 +9,16 @@ const resenhaModel = {
             console.log(`Impossivel criar resenha`)
             return error
         }
+    },
+    buscarPorId: async (idResenha) => {
+        try {
+            const [resultado] = await pool.query("SELECT * FROM RESENHAS WHERE ID_RESENHAS = ?", idResenha)
+            return resultado[0]
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
     }
 }
 

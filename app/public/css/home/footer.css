@@ -1,4 +1,16 @@
 .home__footer {
+    padding-top: 5rem !important;
+    position: relative;
+    display: block;
+    & .footer__row {
+        display: flex;
+        flex-flow: row wrap;
+        column-gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--cor-principal);
+        padding-bottom: 1rem;
+    }
 
     & .logo {
         text-decoration: none;
@@ -10,23 +22,32 @@
         text-align: center;
     }
 
-    & .footer__header {
+    /* & .footer__header {
         padding: clamp(1rem, 5vw, 1.4rem) 0;
         display: flex;
         justify-content: space-between;
+    } */
+    & .redes {
+        display: flex;
+        flex-flow: column nowrap;
+        gap: 1rem;
 
-        & .redes .rede-item {
+        & .rede-item {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: .5rem;
             color: var(--cor-secundaria);
             font-size: 25px;
             margin: 0 10px;
+
+            & .link {display: none;}
 
             &:hover {
                 color: var(--cor-secundaria-hover);
                 margin: 0 10px;
             }
         }
-
-
     }
 
     & .footer__content {
@@ -62,7 +83,18 @@
 .dark .home__footer {
 
     &>.text,
-    & .redes .rede-item, & .footer__list .subtitle{
+    & .redes .rede-item,
+    & .footer__list .subtitle {
         color: var(--cor-texto);
+    }
+
+    & .rede-item:hover {
+        color: var(--cor-principal-hover);
+    }
+}
+
+@media (min-width:768px) {
+    .home__footer .redes .rede-item .link{
+        display: flex;
     }
 }

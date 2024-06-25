@@ -64,7 +64,6 @@ const usuariosModel = {
     findUserById: async (id) => {
         try {
             const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO = ? LIMIT 1", [id])
-            console.log(resultados)
             return resultados
 
         } catch (error) {

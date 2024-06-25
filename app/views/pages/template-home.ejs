@@ -99,7 +99,7 @@
     </main>
 
    <% if (classePagina !== "videos" & classePagina !== "pesquisar") { %>
-    <footer class="home__footer">
+    <!-- <footer class="home__footer">
         <header class="footer__header">
             <a href="/home" class="logo">
                 <img src=".//img/quasart-logo.png" alt="Logotipo do Quasart">
@@ -130,6 +130,42 @@
             </ul>
         </article>
         <p class="text">&COPY;Quasart 2024</p>
+    </footer> -->
+    <footer class="home__footer">
+        <section class="footer__row">
+
+        <a href="/home" class="logo">
+            <img src=".//img/quasart-logo.png" alt="Logotipo do Quasart">
+            <h1 class="tipografia">Quas<span style="color:var(--cor-principal);">Art<span></h1>
+        </a>
+        
+            <article class="footer__content">
+                <ul class="footer__list mt-3">
+                    <h3 class="subtitle mb-2">Páginas</h3>
+                    <li><a class="link" href="/">Página Inicial</a></li>
+                    <li><a class="link" href="/publicar">Publicar</a></li>
+                    <li><a class="link" href="/videos">Vídeos</a></li>
+                    <li><a class="link" href="/profile">Perfil</a></li>
+                </ul>
+                <ul class="footer__list mt-3">
+                    <h3 class="subtitle mb-2">Informações</h3>
+                    <li><a class="link" target="_blank" href="/sobre">Sobre o QuasArt</a></li>
+                    <li><a class="link" target="_blank" href="https://fiebedu.sharepoint.com/sites/Moonvies
+                        ">Sharepoint</a></li>
+                </ul>
+            </article>
+            <article class="redes">
+                <a target="_blank" href="https://instagram.com/oficial_quasart?igshid=MzRlODBiNWFlZA=="
+                    class="rede-item"><i class="bi bi-instagram"></i><p class="link">Instagram</p></a>
+                <a target="_blank" href="https://github.com/Th0mzzz/QuasArt" class="rede-item"><i
+                        class="bi bi-github"></i><p class="link">Github</p></a>
+                <a target="_blank" href="mailto:quasartcontato@gmail.com" class="rede-item"><i
+                        class="bi bi-envelope"></i><p class="link">E-mail</p></a>
+            </article>
+        
+    </section>
+
+        <p class="text mb-3 pb-3">&COPY;Quasart 2024</p>
     </footer>
     <% } %>
     <script src="./js/colorMode.js"></script>

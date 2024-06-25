@@ -1,146 +1,106 @@
-<section class="view__container resenha-view">
-    <header class="resenha__header">
-        <img src="./img/cards/card-resenha-teste.png" alt="imagem de capa da resenha" class="resenha__capa">
-        <section class="row">
-            <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png" alt="foto do autor"
-                    class="userImg">Nome
-                do usuário</a>
-            <button class="btn">Seguir</button>
-        </section>
-    </header>
-    <article class="resenha__content">
-        <h2 class="title">Título da Resenha</h2>
-        <section class="text__area">
-            <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque sed ullam,
-                repudiandae necessitatibus vel reiciendis iste perspiciatis odio tempora enim adipisci tenetur rem.
-                Facere rem earum autem maiores excepturi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,
-                tenetur vel. Dolore molestias et perferendis. Nobis vitae, minima sequi odit, accusantium in repudiandae
-                provident corrupti nihil maxime facilis tenetur quos?Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Cum maxime, libero repellendus nesciunt ab ullam neque laborum at repudiandae odio quia.
-                repudiandae necessitatibus vel reiciendis iste perspiciatis odio tempora enim adipisci tenetur rem.
-                Facere rem earum autem maiores excepturi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,
-                tenetur vel. Dolore molestias et perferendis. Nobis vitae, minima sequi odit, accusantium in repudiandae
-                provident corrupti nihil maxime facilis tenetur quos?Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Cum maxime, libero repellendus nesciunt ab ullam neque laborum at repudiandae odio quia.
-                repudiandae necessitatibus vel reiciendis iste perspiciatis odio tempora enim adipisci tenetur rem.
-                Facere rem earum autem maiores excepturi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,
-                tenetur vel. Dolore molestias et perferendis. Nobis vitae, minima sequi odit, accusantium in repudiandae
-                provident corrupti nihil maxime facilis tenetur quos?Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Cum maxime, libero repellendus nesciunt ab ullam neque laborum at repudiandae odio quia.
-                repudiandae necessitatibus vel reiciendis iste perspiciatis odio tempora enim adipisci tenetur rem.
-                Facere rem earum autem maiores excepturi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,
-                tenetur vel. Dolore molestias et perferendis. Nobis vitae, minima sequi odit, accusantium in repudiandae
-                provident corrupti nihil maxime facilis tenetur quos?Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Cum maxime, libero repellendus nesciunt ab ullam neque laborum at repudiandae odio quia.
-                repudiandae necessitatibus vel reiciendis iste perspiciatis odio tempora enim adipisci tenetur rem.
-                Facere rem earum autem maiores excepturi?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non,
-                tenetur vel. Dolore molestias et perferendis. Nobis vitae, minima sequi odit, accusantium in repudiandae
-                provident corrupti nihil maxime facilis tenetur quos?Lorem ipsum dolor sit amet consectetur adipisicing
-                elit.
-                Cum maxime, libero repellendus nesciunt ab ullam neque laborum at repudiandae odio quia.
-                Rem tempora alias suscipit officiis nostrum dolorum, rerum minima.</p>
-        </section>
-        <footer class="row">
-            <article id="tagsContainer">
-                <span class="tag text">#Resenhalegal</span>
-                <span class="tag text">#ebaeba</span>
-                <span class="tag text">#que</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-            </article>
-            <article class="avaliacao__stars">
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-            </article>
+<% if(resenha){ %>
+    <section class="view__container resenha-view">
+        <header class="resenha__header">
+            <img src="./img/imagens-servidor/<%= resenha.capaResenha %>" alt="imagem de capa da resenha"
+                class="resenha__capa">
+            <section class="row">
+                <a href="/view-profile?idUser=<%= resenha.autor.ID_USUARIO %>" class="userLink link">
+                    <img src="./img/user-teste.png" alt="foto do autor" class="userImg">
+                    <%= resenha.autor.NICKNAME_USUARIO %>
+                </a>
+                <button class="btn">Seguir</button>
+            </section>
+        </header>
+        <article class="resenha__content">
+            <h2 class="title"><%= resenha.titulo %></h2>
+            <section class="text__area">
+                <p class="text"><%= resenha.texto %></p>
+            </section>
+            <footer class="row">
+                <article id="tagsContainer">
+                    <% if(resenha.tags){ 
+                        resenha.tags.forEach(tag =>{ %>
+                            <span class="tag text"><%= tag %></span>
+                    <% })
+                } %>
+                    
+                </article>
+                <article class="avaliacao__stars">
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                    <i class="bi bi-star-fill"></i>
+                </article>
+            </footer>
+        </article>
+        <footer class="comentarios__container">
+            <h3 class="subtitle mb-2">Comentários</h3>
+            <form action="/comentarResenha" class="comment__form">
+                <article class="input__container">
+                    <textarea name="textComment" id="textComment" class="form__control"
+                        placeholder="Deixe seu comentário sobre!">
+                    </textarea>
+                    <label for="textComment">Deixe seu comentário e sua avaliação!</label>
+                </article>
+                <article class="avaliacao__stars pt-1">
+                    <span class="star"><i class="bi bi-star"></i></span>
+                    <span class="star"><i class="bi bi-star"></i></span>
+                    <span class="star"><i class="bi bi-star"></i></span>
+                    <span class="star"><i class="bi bi-star"></i></span>
+                    <span class="star"><i class="bi bi-star"></i></span>
+                </article>
+                <input type="hidden" name="avaliacao" id="avaliacaoInput">
+                <button type="submit" class="btn secundaria mt-2">Comentar</button>
+            </form>
+            <section class="comentarios mt-3">
+                <article class="comment__item">
+                    <article class="row">
+                        <header class="comment__user">
+                            <img src="./img/user-teste2.png" alt="foto de perfil do comentário" class="userImg">
+                            <h4 class="link mt-2">Th0mzzz</h4>
+                        </header>
+                        <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Aliquid
+                            dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
+                            eveniet
+                            voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
+                    </article>
+                    <article class="avaliacao__stars pt-1">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </article>
+                </article>
+
+                <article class="comment__item">
+                    <article class="row">
+                        <header class="comment__user">
+                            <img src="./img/user-teste3.png" alt="foto de perfil do comentário" class="userImg">
+                            <h4 class="link mt-2">Mariana Ferraz</h4>
+                        </header>
+                        <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                            Aliquid
+                            dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
+                            eveniet
+                            voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
+                    </article>
+                    <article class="avaliacao__stars pt-1">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </article>
+                </article>
+
+            </section>
         </footer>
-    </article>
-    <footer class="comentarios__container">
-        <h3 class="subtitle mb-2">Comentários</h3>
-        <form action="/comentarResenha" class="comment__form">
-            <article class="input__container">
-                <textarea name="textComment" id="textComment" class="form__control" placeholder="Deixe seu comentário sobre!">
-                </textarea>
-                <label for="textComment">Deixe seu comentário e sua avaliação!</label>
-            </article>
-            <article class="avaliacao__stars pt-1">
-                <span class="star"><i class="bi bi-star"></i></span>
-                <span class="star"><i class="bi bi-star"></i></span>
-                <span class="star"><i class="bi bi-star"></i></span>
-                <span class="star"><i class="bi bi-star"></i></span>
-                <span class="star"><i class="bi bi-star"></i></span>
-            </article>
-            <input type="hidden" name="avaliacao" id="avaliacaoInput">
-            <button type="submit" class="btn secundaria mt-2">Comentar</button>
-        </form>
-        <section class="comentarios mt-3">
-            <article class="comment__item">
-                <article class="row">
-                    <header class="comment__user">
-                        <img src="./img/user-teste2.png" alt="foto de perfil do comentário" class="userImg">
-                        <h4 class="link mt-2">Th0mzzz</h4>
-                    </header>
-                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
-                        eveniet
-                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
-                </article>
-                <article class="avaliacao__stars pt-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </article>
-            </article>
+    </section>
+    <% } %>
 
-            <article class="comment__item">
-                <article class="row">
-                    <header class="comment__user">
-                        <img src="./img/user-teste3.png" alt="foto de perfil do comentário" class="userImg">
-                        <h4 class="link mt-2">Mariana Ferraz</h4>
-                    </header>
-                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
-                        eveniet
-                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
-                </article>
-                <article class="avaliacao__stars pt-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </article>
-            </article>
 
-        </section>
-    </footer>
-</section>
 
-<script src="./js/input.js"></script>
+        <script src="./js/input.js"></script>

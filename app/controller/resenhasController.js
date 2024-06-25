@@ -1,5 +1,6 @@
 const { body, validationResult } = require("express-validator");
 const resenhaModel = require("../models/resenhasModel");
+const usuariosModel = require("../models/usuariosModel");
 
 const resenhaControl = {
     validacaoResenha: [
@@ -17,8 +18,8 @@ const resenhaControl = {
         const erroMulter = req.session.erroMulter;
 
         if (!errors.isEmpty() || erroMulter != null) {
-            listaErros = !errors.isEmpty ? errors : {formatter:null, errors: []};
-            if(erroMulter != null){
+            listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
+            if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
             }
             const jsonResult = {
@@ -40,7 +41,7 @@ const resenhaControl = {
                 }
                 const resultado = await resenhaModel.criar(resenha)
                 console.log(resultado)
-                res.redirect("/")
+                res.redirect(`/view-resenha?idResenha=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
                 res.render("pages/error-500")
@@ -49,7 +50,46 @@ const resenhaControl = {
 
         }
     },
-    mostrarResenha: async(req,res) =>{
+    mostrarResenha: async (req, res) => {
+        const idResenha = req.query.idResenha
+        if (!idResenha) {
+            res.status(404).render("pages/error-404.ejs");
+        } else {
+            try {
+                const resenha = await resenhaModel.buscarPorId(idResenha)
+                if (resenha) {
+                    console.log(resenha)
+                    const autor = await usuariosModel.findUserById(resenha.USUARIOS_ID_USUARIO)
+                    if (autor) {
+                        console.log(autor)
+                        const jsonResult = {
+                            page: "../partial/template-home/view-resenha",
+                            classePagina: "",
+                            resenha: {
+                                titulo: resenha.TITULO_RESENHA,
+                                descricao: resenha.descricao,
+                                texto: resenha.TEXTO_RESENHA,
+                                tags: resenha.HASHTAG_RESENHA.split(","),
+                                capaResenha: resenha.CAPA_CAMINHO,
+                                autor: autor[0]
+                            }
+                        }
+                        
+                        res.render("./pages/template-home", jsonResult)
+                    } else {
+                        res.status(404).render("pages/error-404.ejs");
+                    }
+                } else {
+                    res.status(404).render("pages/error-404.ejs");
+                }
+
+            } catch (error) {
+                console.log(error)
+                res.status(404).render("pages/error-404.ejs");
+            }
+
+        }
+
 
     }
 }
