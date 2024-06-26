@@ -17,7 +17,7 @@
            } else if (classePagina === "pesquisar") { 
             tituloPagina = "Pesquisar";
            } else if (classePagina === "inicialHome") { 
-            tituloPagina = "Página Inicial";
+            tituloPagina = "";
            } else if (classePagina === "videos") { 
             tituloPagina = "Vídeos";
            } else if (classePagina === "publicar") { 
@@ -66,10 +66,10 @@
     <aside class="home__aside">
         <section class="aside__content">
             <ul class="aside__items">
-                <li class="aside__item <%= classePagina == 'pesquisar' ? 'ativo ': '' %>"><a href="/pesquisar"><i
-                            class="bi bi-search"></i></a></li>
                 <li class="aside__item <%= classePagina == 'inicialHome' ? 'ativo ': '' %>"><a href="/"><i
                             class="bi bi-house"></i></a></li>
+                <li class="aside__item <%= classePagina == 'pesquisar' ? 'ativo ': '' %>"><a href="/pesquisar"><i
+                            class="bi bi-search"></i></a></li>
                 <li class="aside__item <%= classePagina == 'videos' ? 'ativo ': '' %>"><a href="/videos"><i
                             class="bi bi-camera-video"></i></a></li>
                 <li class="aside__item <%= classePagina == 'publicar' ? 'ativo ': '' %>"><a href="/publicar"><i

@@ -12,18 +12,22 @@
             </section>
         </header>
         <article class="resenha__content">
-            <h2 class="title"><%= resenha.titulo %></h2>
+            <h2 class="title">
+                <%= resenha.titulo %>
+            </h2>
             <section class="text__area">
-                <p class="text"><%= resenha.texto %></p>
+                <p class="text">
+                    <%= resenha.texto %>
+                </p>
             </section>
             <footer class="row">
                 <article id="tagsContainer">
-                    <% if(resenha.tags){ 
-                        resenha.tags.forEach(tag =>{ %>
-                            <span class="tag text"><%= tag %></span>
-                    <% })
-                } %>
-                    
+                    <% if(resenha.tags){ resenha.tags.forEach(tag=>{ %>
+                        <span class="tag text">
+                            <%= tag %>
+                        </span>
+                        <% }) } %>
+
                 </article>
                 <article class="avaliacao__stars">
                     <i class="bi bi-star-fill"></i>
@@ -33,6 +37,7 @@
                     <i class="bi bi-star-fill"></i>
                 </article>
             </footer>
+            <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i class="bi bi-exclamation-triangle"></i> Denunciar</button>
         </article>
         <footer class="comentarios__container">
             <h3 class="subtitle mb-2">Comentários</h3>
@@ -101,6 +106,5 @@
     </section>
     <% } %>
 
-
-
+    <%- include("denunciar-modal") %>
         <script src="./js/input.js"></script>

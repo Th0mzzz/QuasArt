@@ -10,7 +10,7 @@
     position: relative;
     top: calc(var(--top-img) * -1);
     width: 100%;
-    height: clamp(450px, 100vw, 620px);
+    height: clamp(520px, 100vw, 620px);
     background-image: url("/img/imagem-inicial-desktop.png");
     filter: brightness(60%);
     background-size: cover;

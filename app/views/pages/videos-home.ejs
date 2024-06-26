@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" id="inicio">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/home/home.css">
 </head>
+
 <body>
     <main>
         <section class="videos__btns">
@@ -42,7 +44,7 @@
                                     <i class="bi bi-arrow-up"></i>
                                 </button>
                                 <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn" id="btnOpenComments"><i class="bi bi-chat"></i></button>
+                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
                                 <button class="video-btn"><i class="bi bi-share"></i></button>
                                 <button class="next video-arrows">
                                     <i class="bi bi-arrow-down"></i>
@@ -58,7 +60,23 @@
                                     <i class="bi bi-arrow-up"></i>
                                 </button>
                                 <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn" id="btnOpenComments"><i class="bi bi-chat"></i></button>
+                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
+                                <button class="video-btn"><i class="bi bi-share"></i></button>
+                                <button class="next video-arrows">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                            </header>
+                            <video src="./img/video-teste-1.mp4" controls></video>
+                        </article>
+                    </article>
+                    <article data-verticalCard>
+                        <article class="video__card">
+                            <header class="video__btns">
+                                <button class="previous video-arrows">
+                                    <i class="bi bi-arrow-up"></i>
+                                </button>
+                                <button class="video-btn"><i class="bi bi-heart"></i></button>
+                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
                                 <button class="video-btn"><i class="bi bi-share"></i></button>
                                 <button class="next video-arrows">
                                     <i class="bi bi-arrow-down"></i>
@@ -112,6 +130,9 @@
                     </header>
                     <section class="video__comments">
                         <h2 class="subtitle">Comentários</h2>
+                        <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
+                                class="bi bi-exclamation-triangle"></i> Denunciar</button>
+
                         <article class="comments">
                             <article class="comment">
                                 <img src="./img/user-teste2.png" alt="" class="user__img">
@@ -167,10 +188,12 @@
             </section>
         </section>
     </main>
+    <%- include("../partial/template-home/denunciar-modal") %>
     <script src="./js/commentVideo.js"></script>
     <script src="./js/colorMode.js"></script>
     <script src="./js/access.js"></script>
     <script src="./js/verticalCarousel.js"></script>
 
 </body>
+
 </html>

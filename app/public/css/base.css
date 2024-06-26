@@ -67,9 +67,10 @@
 .back-btn {
     border-radius: 50%;
     position: fixed;
-    right: 5%;
-    z-index: 100;
-    bottom: 30%;
+    right: 0%;
+    z-index: 900;
+    bottom: 0%;
+    margin: 0 .5rem calc(3rem + 60px) 0;
     transform: translateX(100vw);
     transition: transform .5s;
 
@@ -83,7 +84,8 @@
     }
 }
 
-.back-page, .videos__btns{
+.back-page,
+.videos__btns {
     position: absolute;
     left: 0;
     top: 0;
@@ -198,6 +200,37 @@
     }
 }
 
+.input__radio {
+    color: var(--cor-texto);
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.input__radio label {
+    margin-left: 10px;
+}
+
+.input__radio input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.radio-btn {
+    position: relative;
+    border: 1px solid var(--cor-texto);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.input__radio input[type="radio"]:checked + .radio-btn {
+    background: var(--cor-principal-hover);
+    border: 1px solid var(--cor-principal);
+}
 /* MODAL */
 
 .modal {
@@ -283,7 +316,7 @@
 
     & .card {
         transition: transform .4s;
-        padding:0 1rem;
+        padding: 0 1rem;
     }
 }
 

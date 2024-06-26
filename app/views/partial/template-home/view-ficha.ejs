@@ -109,12 +109,15 @@
                 <i class="bi bi-star-fill"></i>
             </article>
         </footer>
+        <button class="denunciar-btn link mt-2" data-openmodal="#denunciarModal"><i
+                class="bi bi-exclamation-triangle"></i> Denunciar</button>
     </section>
     <footer class="comentarios__container mt-3">
         <h3 class="subtitle mb-2">Comentários</h3>
         <form action="/comentarResenha" class="comment__form">
             <article class="input__container">
-                <textarea name="textComment" id="textComment" class="form__control" placeholder="Deixe seu comentário sobre!">
+                <textarea name="textComment" id="textComment" class="form__control"
+                    placeholder="Deixe seu comentário sobre!">
                 </textarea>
                 <label for="textComment">Deixe seu comentário e sua avaliação!</label>
             </article>
@@ -172,6 +175,6 @@
         </section>
     </footer>
 </section>
-
-<script src="./js/carousel.js"></script>
-<script src="./js/input.js"></script>
+<%- include("denunciar-modal") %>
+    <script src="./js/carousel.js"></script>
+    <script src="./js/input.js"></script>

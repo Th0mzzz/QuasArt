@@ -5,7 +5,7 @@
     & .footer__row {
         display: flex;
         flex-flow: row wrap;
-        column-gap: 2rem;
+        column-gap: .5rem;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--cor-principal);

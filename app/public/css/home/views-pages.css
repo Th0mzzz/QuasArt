@@ -70,12 +70,15 @@
 
     & .resenha__content {
         margin: 5rem 0;
+        display: flex;
+        flex-direction: column;
 
         & .title {
             color: var(--cor-texto);
         }
 
         & .text__area {
+            width: 100%;
             margin: 2rem 0;
             border: 2px solid var(--cor-secundaria);
             border-radius: 10px;
@@ -83,6 +86,12 @@
             color: var(--cor-texto);
             background: var(--cor-containers);
             text-align: start;
+
+            & .text {
+                width: 100%;
+                word-wrap: break-word;
+
+            }
         }
 
         & .row {
@@ -91,6 +100,11 @@
             align-items: center;
             gap: .5rem;
             flex-wrap: wrap;
+        }
+
+        & .denunciar-btn {
+            margin: 10px 0;
+            margin-left: auto;
         }
     }
 }
@@ -223,6 +237,12 @@
 
     & .btn-close {
         margin: .5rem;
+        width: fit-content;
+    }
+
+    & .denunciar-btn {
+        margin: 10px 0;
+        margin-left: auto;
     }
 
     & .video__info-content {
@@ -390,6 +410,36 @@
 
     }
 
+}
+
+.denunciar-btn {
+    border: 1px solid #680404;
+    background: var(--cor-danger);
+    padding: .8rem 1.6rem;
+    width: fit-content;
+    border-radius: 10px;
+    color: #680404;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.denunciar__modal{
+    & .subtitle{
+        color: var(--cor-texto);
+        border-bottom: 1px solid var(--cor-texto);
+        padding-bottom: 10px;
+    }
+    & .modal__content{
+        width: 100%;
+        max-width: 650px;
+
+        & form{
+            padding: 1.5rem 0;
+            display: flex;
+            flex-flow: column nowrap;
+            gap: .5rem;
+        }
+    }
 }
 
 @media (min-width:992px) {
