@@ -2,14 +2,22 @@
     padding-top: 5rem !important;
     position: relative;
     display: block;
+
     & .footer__row {
         display: flex;
         flex-flow: row wrap;
-        column-gap: .5rem;
+        column-gap: 2rem;
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid var(--cor-principal);
         padding-bottom: 1rem;
+        & .group{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            flex-grow: 1;
+        }
     }
 
     & .logo {
@@ -41,7 +49,9 @@
             font-size: 25px;
             margin: 0 10px;
 
-            & .link {display: none;}
+            & .link {
+                display: none;
+            }
 
             &:hover {
                 color: var(--cor-secundaria-hover);
@@ -94,7 +104,14 @@
 }
 
 @media (min-width:768px) {
-    .home__footer .redes .rede-item .link{
-        display: flex;
+    .home__footer .redes .rede-item {
+        & i {
+            display: none;
+        }
+        .link {
+            display: flex;
+        }
     }
+
+    .home__footer .foote
 }

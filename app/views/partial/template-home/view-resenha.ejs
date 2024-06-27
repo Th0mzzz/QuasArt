@@ -4,7 +4,7 @@
             <img src="./img/imagens-servidor/<%= resenha.capaResenha %>" alt="imagem de capa da resenha"
                 class="resenha__capa">
             <section class="row">
-                <a href="/view-profile?idUser=<%= resenha.autor.ID_USUARIO %>" class="userLink link">
+                <a href="/profile?idUser=<%= resenha.autor.ID_USUARIO %>" class="userLink link">
                     <img src="./img/user-teste.png" alt="foto do autor" class="userImg">
                     <%= resenha.autor.NICKNAME_USUARIO %>
                 </a>

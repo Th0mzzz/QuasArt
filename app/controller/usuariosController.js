@@ -185,7 +185,7 @@ const usuariosController = {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     console.log("Logado!")
-                    res.redirect("/")
+                    res.redirect("/profile")
                 } else {
                     const jsonResult = {
                         page: "../partial/template-login/login",
@@ -222,7 +222,7 @@ const usuariosController = {
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
-                classePagina: isUser ? "perfil" : "inicialHome",
+                classePagina: isUser ? "perfil" : "",
                 usuario: user[0],
                 isUser: isUser
             }
