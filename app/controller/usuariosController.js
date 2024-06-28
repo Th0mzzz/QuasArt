@@ -163,6 +163,7 @@ const usuariosController = {
                 const resultados = await usuariosModel.createUser(dadosForm);
                 req.session.autenticado = { autenticado: usuario, id: resultados.insertId }
                 console.log("Cadastrado!")
+                req.session.logado = 0
                 res.redirect("/")
             } catch (erros) {
                 console.log(erros)
