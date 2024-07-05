@@ -17,10 +17,15 @@
         & .plus__card {
             position: relative;
             padding: 1rem .6rem;
-            box-shadow: 0 0 8px 1px var(--cor-texto);
             border-radius: 20px;
             border: 1px solid var(--cor-texto);
             background: var(--cor-containers);
+
+            & .btn {
+                margin: 0 auto;
+                margin-bottom: 3rem;
+                padding: .6rem 2rem;
+            }
 
             & header {
                 text-align: center;
@@ -37,7 +42,7 @@
                 padding: clamp(.5rem, 3vw, 2rem);
 
                 & .recursos {
-                    padding: 1rem;
+                    padding: 1rem 0;
                     list-style: none;
 
                     & .recurso__item {
@@ -57,17 +62,18 @@
 
             &.recomendado {
                 padding: 1.4rem 1rem;
-                border: 1px solid var(--cor-principal);
-                box-shadow: 0 0 8px 1px var(--cor-principal);
-                & .recomendado__alert{
+                border: 3px solid var(--cor-principal);
+
+                & .recomendado__alert {
                     position: absolute;
                     top: -5%;
                     left: 50%;
-                    translate: -50% 0 ;
-                    background: var(--cor-principal-hover);
-                    border: 2px solid var(--cor-principal);
+                    translate: -50% 0;
+                    background: var(--cor-secundaria-hover);
+                    border: 2px solid var(--cor-secundaria);
                     padding: .4rem 1rem;
                     border-radius: 30px;
+                    color: var(--cor-secundaria);
                 }
 
             }
