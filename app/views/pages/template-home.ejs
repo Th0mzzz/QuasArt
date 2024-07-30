@@ -10,6 +10,15 @@
 </head>
 
 <body>
+    <% if(token) {%>
+    <h4 class="token-alert link">
+        <%= token.msg %>
+        <span class="negrito-amarelo">
+            <%= token.usuario %>
+        </span>
+    </h4>
+    <% } %>
+
     <% 
         var tituloPagina = ''
          if (classePagina === "perfil") { 

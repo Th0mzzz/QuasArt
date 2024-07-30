@@ -21,21 +21,22 @@ const destinoDeFalha = {
 // ---------- PÁGINAS DA HOME -------------
 
 // pagina inicial
-router.get("/", function (req, res) {
+router.get("/" , function (req, res) {
+    const token = req.session.logado == 0 && req.session.autenticado.autenticado != null ? { msg:"Bem-vindo ao Quasart!", usuario: req.session.autenticado.autenticado} : null
     const jsonResult = {
         page: "../partial/template-home/inicial-home",
         classePagina: "inicialHome",
-        token: req.session.autenticado ? { usuario: req.session.autenticado.autenticado, ativar: req.session.logado } : { usuario: null, ativar: 1 }
-
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
 // pagina de assinatura
 router.get("/plus-page", function (req, res) {
-
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/plus-page",
-        classePagina: "assinatura"
+        classePagina: "assinatura",
+        token: token
     }
 
     res.render("./pages/template-home", jsonResult)
@@ -43,9 +44,11 @@ router.get("/plus-page", function (req, res) {
 
 // Pagina de pesquisa
 router.get("/pesquisar", function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/pesquisa-home",
-        classePagina: "pesquisar"
+        classePagina: "pesquisar",
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -70,9 +73,12 @@ router.get("/profile",
 // pagina de gerenciamento de post
 
 router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/my-posts",
-        classePagina: 'perfil'
+        classePagina: 'perfil',
+        token: token
+
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -80,9 +86,11 @@ router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutoriza
 
 // Home de publicações
 router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/publicar-home",
-        classePagina: "publicar"
+        classePagina: "publicar",
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -90,10 +98,12 @@ router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 
 // pagina de publicar videos
 router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/pub-pages/videos-pub",
         classePagina: "publicar",
-        erros: null
+        erros: null,
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -101,20 +111,24 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
 
 // pagina de publicar fichas
 router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/pub-pages/fichas-pub",
         classePagina: "publicar",
-        erros: null
+        erros: null,
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
 
 // pagina de publicar resenhas
 router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/pub-pages/resenhas-pub",
         classePagina: "publicar",
-        erros: null
+        erros: null,
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -123,9 +137,11 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
 //Pagina sobre o quasart
 
 router.get("/sobre", function (req, res) {
+    const token = null
     const jsonResult = {
         page: "../partial/template-home/sobre",
-        classePagina: ""
+        classePagina: "",
+        token: token
     }
     res.render("./pages/template-home", jsonResult)
 })
@@ -159,7 +175,7 @@ router.get("/entrar", function (req, res) {
         const jsonResult = {
             page: "../partial/template-home/inicial-home",
             classePagina: "inicialHome",
-            tokenAlert: {
+            token: {
                 msg: `Bom te ver de novo`,
                 usuario: `${req.session.autenticado.autenticado}!`
             }
