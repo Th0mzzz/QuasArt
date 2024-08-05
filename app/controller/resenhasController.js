@@ -62,6 +62,7 @@ const resenhaControl = {
                     const autor = await usuariosModel.findUserById(resenha.USUARIOS_ID_USUARIO)
                     if (autor) {
                         console.log(autor)
+                        const token = null
                         const jsonResult = {
                             page: "../partial/template-home/view-resenha",
                             classePagina: "",
@@ -72,7 +73,8 @@ const resenhaControl = {
                                 tags: resenha.HASHTAG_RESENHA.split(","),
                                 capaResenha: resenha.CAPA_CAMINHO,
                                 autor: autor[0]
-                            }
+                            },
+                            token:token
                         }
                         
                         res.render("./pages/template-home", jsonResult)

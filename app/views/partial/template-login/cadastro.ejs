@@ -68,9 +68,6 @@ let msgErro= {
       <input type="tel" name="contato" id="contato" class="input__control inputMask" placeholder="contato" maxlength="14" required value="<%= valores.contato %>">
       <label for="contato">Digite seu número de telefone</label>
     </article>
-    <span class="smallText alert-msg">
-        Digite apenas números!
-      </span>
     <article class="input__container <%= classeErro.usuario  %>">
       <span class="invalid-msg smallText">
         <%= msgErro.usuario %>
@@ -79,26 +76,28 @@ let msgErro= {
       <label for="usuario">Crie seu Usuário</label>
     </article>
     <article class="input__container <%= classeErro.email  %>">
+
       <span class="invalid-msg smallText">
         <%= msgErro.email %>
       </span>
+
       <input type="email" name="email" id="email" class="input__control" placeholder="email" required value="<%= valores.email %>">
       <label for="email">Digite seu E-mail</label>
     </article>
-    <article class="input__container <%= classeErro.senha  %> senha">
-
-      <span class="invalid-msg smallText">
-        <%= msgErro.senha %>
-      </span>
-      <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required value="<%= valores.senha %>">
-      <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
-      <label for="senha">Senha</label>
+    <article class="input__container <%= classeErro.senha %> senha alerted-input">
+                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
+                    maxlength="50">
+                <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
+                <label for="senha">Senha:</label>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.senha %>
+                </span>
+                
+                <span class="smallText alert-msg">
+                        A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
+                    </span>
     </article>
-    <span class="smallText alert-msg">
-      A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial([!@#$%^&*(),.?":{}|
-
-      <>])
-    </span>
+    
     <article class="links">
       <a class="link" href="/entrar">Já tem uma conta?</a>
     </article>

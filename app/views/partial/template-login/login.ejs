@@ -22,7 +22,8 @@ if(erros) { erros.errors.forEach(error=>{
             <article class="user-incorrect <%= incorreto %>">
                 <p class="text">Usuário ou senha incorretos! Tente novamente...</p>
             </article>
-            <article class="input__container <%= classeErro.usuario %> ">
+
+            <article class="input__container <%= classeErro.usuario %> alerted-input">
                 <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required
                     maxlength="30">
                 <label for="usuario">Usuário:</label>
@@ -30,11 +31,12 @@ if(erros) { erros.errors.forEach(error=>{
                     <%= msgErro.usuario %>
                 </span>
                 
+                <span class="smallText alert-msg mb-3 mt-1">
+                        O usuário deve ter pelo menos 4 caracteres!
+                    </span>
             </article>
-            <span class="smallText alert-msg mb-3 mt-1">
-                    O usuário deve ter pelo menos 4 caracteres!
-                </span>
-            <article class="input__container <%= classeErro.senha %> senha">
+
+            <article class="input__container <%= classeErro.senha %> senha alerted-input">
                 <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
                     maxlength="50">
                 <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
@@ -43,10 +45,11 @@ if(erros) { erros.errors.forEach(error=>{
                     <%= msgErro.senha %>
                 </span>
                 
+                <span class="smallText alert-msg">
+                        A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
+                    </span>
             </article>
-            <span class="smallText alert-msg">
-                    A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
-                </span>
+
             <article class="links">
                 <a class="link" href="/esqueceuSenha">Esqueceu a senha?</a>
                 <a class="link" href="/cadastrar">Não tem cadastro?</a>
