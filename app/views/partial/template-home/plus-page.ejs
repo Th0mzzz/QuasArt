@@ -25,8 +25,8 @@
             <p class="subtitle recomendado__alert">Recomendado</p>
             <header>
                 <h4 class="title">Comandante <span class="negrito-amarelo">PLUS+</span></h4>
-                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante"
-                        class="title negrito-roxo">35,00</span>/mês</p>
+                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante" class="title negrito-roxo">35,00</span>/mês
+                </p>
                 <p class="link">Semestral <span class="negrito-roxo">R$ 199,5 </span> (desconto 5% por mês)</p>
                 <p class="link">Anual <span class="negrito-roxo">R$ 378,0 </span> (desconto 10% por mês)</p>
             </header>
@@ -39,9 +39,35 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i>Selo premium</li>
                 </ul>
             </article>
-            <button class="btn secundaria lg mt-3">Decolar!</button>
+
+            <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b9019122ef5a1004f8"
+                name="MP-payButton" class="btn secundaria lg mt-3">Decolar!</a>
+            <script type="text/javascript">
+                (function () {
+                    function $MPC_load() {
+                        window.$MPC_loaded !== true && (function () {
+                            var s = document.createElement("script");
+                            s.type = "text/javascript";
+                            s.async = true;
+                            s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                            var x = document.getElementsByTagName('script')[0];
+                            x.parentNode.insertBefore(s, x);
+                            window.$MPC_loaded = true;
+                        })();
+                    }
+                    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                })();
+                /*
+                      // to receive event with message when closing modal from congrants back to site
+                      function $MPC_message(event) {
+                        // onclose modal ->CALLBACK FUNCTION
+                       // !!!!!!!!FUNCTION_CALLBACK HERE Received message: {event.data} preapproval_id !!!!!!!!
+                      }
+                      window.$MPC_loaded !== true ? (window.addEventListener("message", $MPC_message)) : null; 
+                      */
+            </script>
+            <!-- <button >Decolar!</button> -->
 
         </section>
     </section>
 </section>
-
