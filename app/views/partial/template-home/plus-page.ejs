@@ -24,7 +24,8 @@
             <p class="subtitle recomendado__alert">Recomendado</p>
             <header>
                 <h4 class="title">Comandante <span class="negrito-amarelo">PLUS+</span></h4>
-                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante" class="title negrito-roxo">45,<span class="subtitle">00</span></span>/mês
+                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante" class="title negrito-roxo">45,<span
+                            class="subtitle">00</span></span>/mês
                 </p>
                 <p class="link">Semestral <span class="negrito-roxo">R$ 199,50 </span> (desconto 5% por mês)</p>
                 <p class="link">Anual <span class="negrito-roxo">R$ 378,00 </span> (desconto 10% por mês)</p>
@@ -71,7 +72,8 @@
         <section class="plus__card">
             <header>
                 <h4 class="title">Tripulante <span class="negrito-roxo">PLUS+</span></h4>
-                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante" class="title negrito-roxo">35,<span class="subtitle">00</span></span>/mês
+                <p class="subtitle mt-2 mb-2">R$ <span id="precoTripulante" class="title negrito-roxo">35,<span
+                            class="subtitle">00</span></span>/mês
                 </p>
                 <p class="link">Semestral <span class="negrito-roxo">R$ 153,90 </span>(desconto 5% por mês)</p>
                 <p class="link">Anual <span class="negrito-roxo">R$ 291,60 </span> (desconto 10% por mês)</p>
@@ -84,7 +86,25 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i> Selo Premium</li>
                 </ul>
             </article>
-            <button class="btn secundaria lg mt-3">Decolar!</button>
+            <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698"
+                name="MP-payButton" class="btn secundaria lg mt-3">Decolar!</a>
+            <script type="text/javascript">
+                (function () {
+                    function $MPC_load() {
+                        window.$MPC_loaded !== true && (function () {
+                            var s = document.createElement("script");
+                            s.type = "text/javascript";
+                            s.async = true;
+                            s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
+                            var x = document.getElementsByTagName('script')[0];
+                            x.parentNode.insertBefore(s, x);
+                            window.$MPC_loaded = true;
+                        })();
+                    }
+                    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
+                })();
+
+            </script>
 
         </section>
     </section>
