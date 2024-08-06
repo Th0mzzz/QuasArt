@@ -6,7 +6,8 @@ const middleWares = require("../sessions/middleswares");
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
-const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/", 3, ['jpeg', 'jpg', 'png'],);
+const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capaImgs/", 3, ['jpeg', 'jpg', 'png'],);
+const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -236,7 +237,7 @@ router.post("/checarToken", function (req, res) {
 
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
-router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, function (req, res) {
+router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, uploadPerfil(), function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 

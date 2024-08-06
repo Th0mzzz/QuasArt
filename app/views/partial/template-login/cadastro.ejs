@@ -38,6 +38,14 @@ let msgErro= {
     <h3 class="subtitle">Venha se tornar um de nossos tripulantes!</h3>
   </header>
   <form action="/criarConta" method="post">
+    <article class="input__container input-file" data-capaContainer>
+      <span class="invalid-msg smallText">
+      </span>
+        <input type="file" name="imgPerfil" id="imgPerfil" class="input__control imgPerfil" placeholder="Selecione sua capa de imagem" data-inputCapa>
+        <label for="imgPerfil">Selecione sua imagem de perfil</label>
+        <label for="imgPerfil" class="icon"><i class="bi bi-download"></i></label>
+    </article> 
+
     <article class="input__container <%= classeErro.nome  %>">
 
       <span class="invalid-msg smallText">
@@ -104,3 +112,5 @@ let msgErro= {
     <button class="btn submit text p-2 mt-3">Entrar</button>
   </form>
 </article>
+
+<script src="./js/addPerfil.js"></script>

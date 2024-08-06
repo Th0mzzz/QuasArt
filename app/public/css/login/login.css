@@ -87,8 +87,26 @@
 
     & .input__container {
         border: 1px solid var(--cor-login);
+        &.input-file{
+            width: 180px;
+            height: 180px;
+            & label{
+                margin-top: 3px;
+            }
+        }
     }
 
+}
+.previa-content,
+.capa__img,
+.video__preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 10px;
 }
 
 .fundo__login {
