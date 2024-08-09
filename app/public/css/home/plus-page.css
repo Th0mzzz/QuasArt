@@ -20,14 +20,15 @@
             border-radius: 20px;
             border: 1px solid var(--cor-texto);
             background: var(--cor-containers);
-            width: clamp(200px, 100vw, 356px);
+            width: clamp(200px, 100vw, 386px);
 
             & .btn {
                 width: fit-content;
                 margin: 0 auto;
                 margin-bottom: 3rem;
                 padding: .6rem 2rem;
-                &.hidden{
+
+                &.hidden {
                     visibility: hidden;
                 }
             }
@@ -66,9 +67,9 @@
             }
 
             &.recomendado {
-                padding: 1.4rem 1rem;
                 border: 3px solid var(--cor-principal);
                 margin-bottom: 2.4rem;
+
                 & .recomendado__alert {
                     position: absolute;
                     top: -5%;
@@ -80,6 +81,13 @@
                     color: var(--cor-secundaria);
                 }
 
+            }
+
+            &.viajante {
+                & .plus__recursos .recursos .recurso__item i {
+                    font-size: 20px;
+                    color: var(--cor-danger);
+                }
             }
         }
     }
