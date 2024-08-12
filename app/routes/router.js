@@ -25,6 +25,7 @@ const destinoDeFalha = {
 router.get("/" , function (req, res) {
     const token = req.session.logado == 0 && req.session.autenticado.autenticado != null ? { msg:"Bem-vindo ao Quasart!", usuario: req.session.autenticado.autenticado} : null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/inicial-home",
         classePagina: "inicialHome",
         token: token
@@ -35,6 +36,7 @@ router.get("/" , function (req, res) {
 router.get("/plus-page", function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/plus-page",
         classePagina: "assinatura",
         token: token
@@ -47,6 +49,7 @@ router.get("/plus-page", function (req, res) {
 router.get("/pesquisar", function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/pesquisa-home",
         classePagina: "pesquisar",
         token: token
@@ -76,6 +79,7 @@ router.get("/profile",
 router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/my-posts",
         classePagina: 'perfil',
         token: token
@@ -89,6 +93,7 @@ router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutoriza
 router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/publicar-home",
         classePagina: "publicar",
         token: token
@@ -101,6 +106,7 @@ router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/pub-pages/videos-pub",
         classePagina: "publicar",
         erros: null,
@@ -114,6 +120,7 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
 router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/pub-pages/fichas-pub",
         classePagina: "publicar",
         erros: null,
@@ -126,6 +133,7 @@ router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.ver
 router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/pub-pages/resenhas-pub",
         classePagina: "publicar",
         erros: null,
@@ -140,6 +148,7 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
 router.get("/sobre", function (req, res) {
     const token = null
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/sobre",
         classePagina: "",
         token: token
@@ -161,6 +170,7 @@ router.get("/view-resenha", function (req, res) {
 
 router.get("/view-ficha", function (req, res) {
     const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/view-ficha",
         classePagina: "",
         erros: null
@@ -174,6 +184,7 @@ router.get("/entrar", function (req, res) {
 
     if (req.session.autenticado && req.session.autenticado.autenticado && req.session.autenticado.autenticado != null) {
         const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             page: "../partial/template-home/inicial-home",
             classePagina: "inicialHome",
             token: {
@@ -237,7 +248,7 @@ router.post("/checarToken", function (req, res) {
 
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
-router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, uploadPerfil(), function (req, res) {
+router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, uploadPerfil("imgPerfil    "), function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 

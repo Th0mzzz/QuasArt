@@ -24,6 +24,7 @@ inputFileCapa.addEventListener("change", function (e) {
                 if (Math.abs(imgAspectRatio - aspectRatio) > margemErro) { 
                     inputFileCapa.parentNode.classList.add("invalid");
                     inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = "A proporção da imagem deve ser 3:4.";
+                    capaContainer.removeChild(capaContainer.querySelector(".capa__img"));
                     inputFileCapa.value = "";
                     return;
                 }

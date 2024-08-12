@@ -38,16 +38,16 @@ const middleWares = {
             var userBd = await usuariosModel.findUserByNickname(req.body.usuario)
             if (Object.keys(userBd).length == 1) {
                 if (bcrypt.compareSync(req.body.senha, userBd[0].SENHA_USUARIO)) {
-                    var aut = { autenticado: userBd[0].NICKNAME_USUARIO, id: userBd[0].ID_USUARIO }
+                    var aut = { autenticado: userBd[0].NICKNAME_USUARIO, id: userBd[0].ID_USUARIO , foto: userBd[0].CAMINHO_FOTO    }
                 } else {
-                    var aut = { autenticado: null, id: null }
+                    var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
 
                 }
             } else {
-                var aut = { autenticado: null, id: null }
+                var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
             }
         } else {
-            var aut = { autenticado: null, id: null }
+            var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
         }
         req.session.autenticado = aut
         req.session.logado = 0
