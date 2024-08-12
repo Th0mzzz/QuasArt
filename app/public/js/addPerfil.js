@@ -24,6 +24,7 @@ inputFileCapa.addEventListener("change", function (e) {
                 if (Math.abs(imgAspectRatio - aspectRatio) > margemErro) { 
                     inputFileCapa.parentNode.classList.add("invalid");
                     inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = "A proporção da imagem deve ser 3:4.";
+                    capaContainer.removeChild(capaContainer.querySelector(".capa__img"));
                     inputFileCapa.value = "";
                     return;
                 }
@@ -36,8 +37,6 @@ inputFileCapa.addEventListener("change", function (e) {
                 const imgCapa = document.createElement("img");
                 imgCapa.setAttribute("src", src);
                 imgCapa.className = "capa__img";
-                const labels = capaContainer.querySelectorAll("label");
-                labels.forEach(label => label.style.display = "none");
                 capaContainer.appendChild(imgCapa);
             };
             img.src = src;

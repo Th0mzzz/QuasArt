@@ -137,19 +137,24 @@ const usuariosController = {
 
         //  Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de cadastro novamente com erros, senão pego tds os dados do form, crio um objeto com as colunas do banco e coloco os dados nela(obs: criptografo a senha a partir do bcrypt e armazeno o hash dela.), por fim utilizo uma funçao do banco para inserir no banco, se tiver erros ele mostra a pagina de erro 500.
         let errors = validationResult(req)
-        console.log(req.session.autenticado)
-        if (!errors.isEmpty()) {
-            console.log(errors)
+        const erroMulter = req.session.erroMulter;
+
+        if (!errors.isEmpty() || erroMulter != null) {
+            listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
+            if (erroMulter != null) {
+                listaErros.errors.push(erroMulter)
+            }
             const jsonResult = {
                 page: "../partial/template-login/cadastro",
                 modal: "fechado",
-                erros: errors,
+                erros: listaErros,
                 valores: req.body
             }
             res.render("pages/template-login", jsonResult);
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
             let hashSenha = bcrypt.hashSync(senha, salt);
+            const filePath = req.file.filename ? req.file.filename : "perfil-padrao.webp"
             dadosForm = {
                 NOME_USUARIO: nome,
                 NICKNAME_USUARIO: usuario,
@@ -157,11 +162,14 @@ const usuariosController = {
                 SENHA_USUARIO: hashSenha,
                 DATA_NASC_USUARIO: nascimento,
                 CPF_USUARIO: cpf,
-                EMAIL_USUARIO: email
+                EMAIL_USUARIO: email,
+                CAMINHO_FOTO: filePath
             }
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
-                req.session.autenticado = { autenticado: usuario, id: resultados.insertId }
+                const userBd = await usuariosModel.findUserById(resultados.insertId);
+                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
+                console.log(resultados[0])
                 console.log("Cadastrado!")
                 req.session.logado = 0
                 res.redirect("/")
@@ -185,7 +193,7 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
-                    console.log("Logado!")  
+                    console.log("Logado!")
                     res.redirect("/")
                 } else {
                     const jsonResult = {
