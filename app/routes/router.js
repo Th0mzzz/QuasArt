@@ -8,6 +8,7 @@ const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
 const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capaImgs/", 3, ['jpeg', 'jpg', 'png'],);
 const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
+
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -22,8 +23,8 @@ const destinoDeFalha = {
 // ---------- PÁGINAS DA HOME -------------
 
 // pagina inicial
-router.get("/" , function (req, res) {
-    const token = req.session.logado == 0 && req.session.autenticado.autenticado != null ? { msg:"Bem-vindo ao Quasart!", usuario: req.session.autenticado.autenticado} : null
+router.get("/", function (req, res) {
+    const token = req.session.logado == 0 && req.session.autenticado.autenticado != null ? { msg: "Bem-vindo ao Quasart!", usuario: req.session.autenticado.autenticado } : null
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/inicial-home",
@@ -248,7 +249,7 @@ router.post("/checarToken", function (req, res) {
 
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
-router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, uploadPerfil("imgPerfil    "), function (req, res) {
+router.post("/criarConta", uploadPerfil("imgPerfil"), usuariosController.regrasValidacaoCriarConta, function (req, res) {
     usuariosController.criarUsuario(req, res)
 });
 

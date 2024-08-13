@@ -6,7 +6,7 @@
         <% if(isUser) {%>
         <a href="/sair" class="btn exit-btn"  title="Sair"><i class="bi bi-box-arrow-left"></i></a>
         <% } %>
-        <img src="./img/perfil-padrao.webp" alt="foto de perfil do usuário" class="foto__perfil">
+        <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário" class="foto__perfil">
         <h3 class="subtitle"><%= usuario.NICKNAME_USUARIO %></h3>
         <article class="row-items">
         <% if(isUser) {%>

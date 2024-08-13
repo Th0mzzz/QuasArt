@@ -137,10 +137,10 @@ const usuariosController = {
 
         //  Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de cadastro novamente com erros, senão pego tds os dados do form, crio um objeto com as colunas do banco e coloco os dados nela(obs: criptografo a senha a partir do bcrypt e armazeno o hash dela.), por fim utilizo uma funçao do banco para inserir no banco, se tiver erros ele mostra a pagina de erro 500.
         let errors = validationResult(req)
-        const erroMulter = req.session.erroMulter;
-
+        let erroMulter = req.session.erroMulter;
+        console.log(errors)
         if (!errors.isEmpty() || erroMulter != null) {
-            listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
+            listaErros = !errors.isEmpty() ? errors : { formatter: null, errors: [] };
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
             }
@@ -150,10 +150,13 @@ const usuariosController = {
                 erros: listaErros,
                 valores: req.body
             }
+
             res.render("pages/template-login", jsonResult);
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
+            
             let hashSenha = bcrypt.hashSync(senha, salt);
+
             const filePath = req.file.filename ? req.file.filename : "perfil-padrao.webp"
             dadosForm = {
                 NOME_USUARIO: nome,
@@ -232,6 +235,7 @@ const usuariosController = {
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
                 classePagina: isUser ? "perfil" : "",
+                foto: req.session.autenticado.foto,
                 usuario: user[0],
                 isUser: isUser,
                 token: null
