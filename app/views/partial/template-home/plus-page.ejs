@@ -39,12 +39,8 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i>Selo premium</li>
                 </ul>
             </article>
-
-            <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698" class="btn secundaria lg mt-3">Decolar!</a>
-           
-
-
-
+            <!-- href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698" -->
+            <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 comandante-btn">Decolar!</a>
 
         </section>
         <section class="plus__card">
@@ -64,26 +60,10 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i> Selo Premium</li>
                 </ul>
             </article>
-            <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698"
-                name="MP-payButton" class="btn secundaria lg mt-3">Decolar!</a>
-            <script type="text/javascript">
-                (function () {
-                    function $MPC_load() {
-                        window.$MPC_loaded !== true && (function () {
-                            var s = document.createElement("script");
-                            s.type = "text/javascript";
-                            s.async = true;
-                            s.src = document.location.protocol + "//secure.mlstatic.com/mptools/render.js";
-                            var x = document.getElementsByTagName('script')[0];
-                            x.parentNode.insertBefore(s, x);
-                            window.$MPC_loaded = true;
-                        })();
-                    }
-                    window.$MPC_loaded !== true ? (window.attachEvent ? window.attachEvent('onload', $MPC_load) : window.addEventListener('load', $MPC_load, false)) : null;
-                })();
-
-            </script>
+            <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 tripulante-btn">Decolar!</a>
 
         </section>
     </section>
 </section>
+
+<%- include("./assinatura-modal") %>
