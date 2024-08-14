@@ -7,7 +7,8 @@ let classeErro={
   contato:"", 
   usuario:"", 
   email:"", 
-  senha:"" 
+  senha:"",
+  imgPerfil:"" 
 } 
 let msgErro= {
     nome: "", 
@@ -16,7 +17,8 @@ let msgErro= {
     contato:"", 
     usuario:"", 
     email:"", 
-    senha:"" 
+    senha:"",
+    imgPerfil:""
   } 
     
     if(erros) {
@@ -38,8 +40,10 @@ let msgErro= {
     <h3 class="subtitle">Venha se tornar um de nossos tripulantes!</h3>
   </header>
   <form action="/criarConta" method="post" enctype="multipart/form-data">
-    <article class="input__container input-file" data-capaContainer>
+
+    <article class="input__container input-file <%= classeErro.imgPerfil  %>" data-capaContainer>
       <span class="invalid-msg smallText">
+        <%= msgErro.imgPerfil %>
       </span>
         <input type="file" name="imgPerfil" id="imgPerfil" class="input__control imgPerfil" placeholder="Selecione sua capa de imagem" data-inputCapa >
         <label for="imgPerfil"></label>

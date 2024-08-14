@@ -1,20 +1,12 @@
 const capaContainer = document.querySelector("[data-capaContainer]");
 const inputFileCapa = document.querySelector("[data-inputCapa]");
-const maxFileSize = 2 * 1024 * 1024;
 const aspectRatio = 3 / 4 ;
-const margemErro = 0.3
+const margemErro = 0.5  
 
 inputFileCapa.addEventListener("change", function (e) {
     e.preventDefault();
     const file = e.target.files[0];
     if (file && file.type.startsWith('image/')) {
-        if (file.size > maxFileSize) {
-            inputFileCapa.parentNode.classList.add("invalid");
-            inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = 'O arquivo excede o tamanho máximo de 2MB.';
-            inputFileCapa.value = "";
-            return;
-        }
-
         const reader = new FileReader();
         reader.onload = function (e) {
             const src = e.target.result;

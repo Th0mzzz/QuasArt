@@ -138,7 +138,6 @@ const usuariosController = {
         //  Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de cadastro novamente com erros, senão pego tds os dados do form, crio um objeto com as colunas do banco e coloco os dados nela(obs: criptografo a senha a partir do bcrypt e armazeno o hash dela.), por fim utilizo uma funçao do banco para inserir no banco, se tiver erros ele mostra a pagina de erro 500.
         let errors = validationResult(req)
         let erroMulter = req.session.erroMulter;
-        console.log(errors)
         if (!errors.isEmpty() || erroMulter != null) {
             listaErros = !errors.isEmpty() ? errors : { formatter: null, errors: [] };
             if (erroMulter != null) {
@@ -150,6 +149,8 @@ const usuariosController = {
                 erros: listaErros,
                 valores: req.body
             }
+
+            console.log(listaErros)
 
             res.render("pages/template-login", jsonResult);
         } else {
