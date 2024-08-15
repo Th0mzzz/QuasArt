@@ -260,7 +260,9 @@
     & .video__desc {
         padding: 2rem 1rem;
         position: relative;
-
+        & .row.user{
+            justify-content: space-between;
+        }
         & .desc {
             color: var(--cor-texto);
         }
@@ -413,11 +415,11 @@
 }
 
 .denunciar-btn {
-    border: 1px solid #680404;
+    border: 2px solid #680404;
     background: var(--cor-danger);
     padding: .8rem 1.6rem;
     width: fit-content;
-    border-radius: 10px;
+    border-radius: 40px;
     color: #680404;
     font-weight: bold;
     cursor: pointer;

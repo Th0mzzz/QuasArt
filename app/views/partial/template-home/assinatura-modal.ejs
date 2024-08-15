@@ -1,21 +1,38 @@
+<style>
+    .option {
+        display: none;
+
+        &.active {
+            display: flex;
+        }
+    }
+</style>
 <section class="assinatura__modal modal" id="assinaturaModal">
     <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
     <section class="modal__content">
-        <article class="comandante-options">
-
-        </article>
-        <article class="tripulante-options">
+        <article class="option comandante">
             
+        </article>
+        <article class="option tripulante">
+            <h2></h2>
         </article>
     </section>
 </section>
 
 <script src="./js/abrirModal.js"></script>
 <script>
+    const options = document.querySelectorAll(".option")
     btnsOpenModal.forEach(btn => {
-        
+
         btn.addEventListener("click", () => {
-            if()
+            options.forEach(option => {
+                option.classList.remove("active")
+                if (btn.classList.contains("tripulante-btn") && option.classList.contains("tripulante")) {
+                    option.classList.add("active")
+                } else if (btn.classList.contains("comandante-btn") && option.classList.contains("comandante")) {
+                    option.classList.add("active")
+                }
+            })
         });
 
     });
