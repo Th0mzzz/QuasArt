@@ -18,11 +18,11 @@ const destinoDeFalha = {
     incorreto: ""
 }
 
-router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado(destinoDeFalha),function (req, res) {
+router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login",destinoDeFalha),function (req, res) {
     const jsonResult = {
         page: "../partial/edit-profile/index",
         pageClass: "index",
-        idUser: req.session.autententicado.id,
+        idUser: req.session.autenticado.id,
     }
     res.render("./pages/edit-profile", jsonResult)
 })

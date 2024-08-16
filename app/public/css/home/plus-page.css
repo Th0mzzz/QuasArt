@@ -75,10 +75,10 @@
                     top: -5%;
                     left: 50%;
                     translate: -50% 0;
-                    background: var(--cor-secundaria-hover);
+                    background: var(--cor-secundaria);
                     padding: .4rem 1rem;
                     border-radius: 30px;
-                    color: var(--cor-secundaria);
+                    color: white;
                 }
 
             }
@@ -95,7 +95,18 @@
 
 .assinatura__modal {
     & .option {
+        --cor-plano: none;
+        &.comandante{
+            --cor-plano:var(--cor-secundaria-hover);
+        }
+        &.tripulante{
+            --cor-plano:var(--cor-secundaria-hover);
+        }
         display: none;
+
+        &>.title {
+            color: var(--cor-texto);
+        }
 
         &.active {
             display: block;
@@ -103,7 +114,30 @@
         }
     }
 
-    & .planos{
-        margin-top: 1rem;
+
+    & .planos {
+        margin-top: 2.3rem;
+
+        & .plano__link {
+            margin: 1rem 0;
+            position: relative;
+            display: block;
+            text-align: center;
+            color: var(--cor-texto);
+            width: 100%;
+            padding: 1.2rem 0;
+            transition: all .4s;
+            border-radius: 20px;
+            & .negrito-roxo, & .negrito-amarelo{
+                transition: color .4s;
+            }
+            &:hover{
+                box-shadow: 0 0 8px 1px var(--cor-texto);
+                background: var(--cor-plano);
+                & .negrito-roxo, & .negrito-amarelo{
+                    color: #ffffff;
+                }
+            }
+        }
     }
 }
