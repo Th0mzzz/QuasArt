@@ -5,6 +5,7 @@ const middleWares = require("../sessions/middleswares");
 // CONTROLLERS -------------
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
+const { findUserById } = require("../models/usuariosModel");
 // UTIL --------------- 
 const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capaImgs/", 3, ['jpeg', 'jpg', 'png'],);
 const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
@@ -18,14 +19,21 @@ const destinoDeFalha = {
     incorreto: ""
 }
 
-router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login",destinoDeFalha),function (req, res) {
-    const jsonResult = {
-        page: "../partial/edit-profile/index",
-        pageClass: "index",
-        idUser: req.session.autenticado.id,
+router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha), async function (req, res) {
+    try {
+        const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+        const jsonResult = {
+            page: "../partial/edit-profile/index",
+            pageClass: "index",
+            usuario: user[0]
+        }
+        res.render("./pages/edit-profile", jsonResult)
+    } catch (error) {
+        console.log(error)
+        res.status(500).render("pages/error-500.ejs");
+
     }
-    res.render("./pages/edit-profile", jsonResult)
-})
+});
 
 
 

@@ -1,3 +1,12 @@
-<section>
-    INDEX.EJS
+<section class="index__container">
+    <header class="header__user">
+        <h3 class="subtitle">
+            <%= usuario.NICKNAME_USUARIO %>
+        </h3>
+        <article class="foto__perfil mudar__foto-btn" data-openmodal="#mudarFotoModal">
+            <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário">
+        </article>
+    </header>
 </section>
+
+<%- include("../template-home/mudar-foto-modal") %>
