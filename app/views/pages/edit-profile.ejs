@@ -12,187 +12,21 @@
 
 <body>
     <main>
-        <section class="videos__btns">
-            <button class="btn" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
-            <button class="btn-icon ms-1 me-1" id="btnMode"><i class="bi bi-brightness-high"></i></button>
-            <button class="btn-icon ms-1 me-1" id="access" title="Acessibilidade">
-                <i class="bi bi-universal-access-circle"></i>
-            </button>
-            <article class="access__container" id="accessContainer">
-                <article class="access__content">
-                    <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar
-                        fonte
-                    </button>
-                    <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte
-                    </button>
-                    <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
-                        links</button>
-                    <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
-                        fácil</button>
-                    <button class="access__link link pb-2" id="reset"><i
-                            class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
-                </article>
-            </article>
-        </section>
-        <section class="view__container videos-view">
-            <section class="row__videos-container vertical-carousel__container">
-                <section class="row__videos">
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
-                        </article>
-                    </article>
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
-                        </article>
-                    </article>
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
-                        </article>
-                    </article>
-                </section>
-            </section>
-            <section class="video__info" id="videoComments">
-                <section class="video__info-content">
-                    <button id="btnCloseComments" class="btn-close btn secundaria"><i
-                            class="bi bi-arrow-bar-left"></i></button>
 
-                    <header class="video__desc">
-                        <section class="row user mb-2">
-                            <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
-                                    alt="foto do autor" class="userImg">Nome
-                                do usuário</a>
-                            <button class="btn">Seguir</button>
-                        </section>
-                        <article class="desc mb-2">
-                            <p class="text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae nemo saepe
-                                blanditiis
-                                labore
-                                corrupti odio maxime distinctio fuga quisquam. Amet possimus illo corrupti nulla
-                                voluptatem
-                                expedita
-                                praesentium dolore ab. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem,
-                                dicta.
-                                Ipsam
-                                repudiandae reprehenderit odit.
-                            </p>
-                        </article>
-                        <article id="tagsContainer">
-                            <span class="tag text">#Resenhalegal</span>
-                            <span class="tag text">#ebaeba</span>
-                            <span class="tag text">#que</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                        </article>
-                    </header>
-                    <section class="video__comments">
-                        <h2 class="subtitle">Comentários</h2>
-                        <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
-                                class="bi bi-exclamation-triangle"></i> Denunciar</button>
+        <% 
+        var tituloPage = "";
+        if(pageClass == "index"){
+            tituloPage = "Editar perfil"
+        }else if(pageClass == "dadosPessoais"){
+            tituloPage = "Dados pessoais"
+        }else if(pageClass == "security"){
+            tituloPage = "Senha e segurança"
+        } %>
 
-                        <article class="comments">
-                            <article class="comment">
-                                <img src="./img/user-teste2.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Th0mzzz</h4>
-                                    <p class="text">
-                                        Amei o podCast, continue postando!
-                                    </p>
-                                </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Dantas.Web</h4>
-                                    <p class="text">
-                                        Poderiam melhorar a qualidade de video, iria ficar muito mais interessante
-                                    </p>
-                                </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste3.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Mariana Ferraz</h4>
-                                    <p class="text">
-                                        Queria que trouxessem profissionais de psicologia para falar mais sobre a área
-                                    </p>
-                                </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste4.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Ícaro Carvalho</h4>
-                                    <p class="text">
-                                        Queria que trouxessem profissionais de psicologia para falar mais sobre a área
-                                    </p>
-                                </article>
-                            </article>
-                        </article>
-                        <footer class="video__form">
-                            <form action="/comentarioVideo" method="post">
-                                <article class="input__container senha">
-                                    <input type="text" class="form__control" name="comentario" id="comentario"
-                                        placeholder="Deixe seu comentário!">
-                                    <label for="comentario">Deixe seu comentário</label>
-                                    <button type="submit" class="btn-comment ocultSenha"><i
-                                            class="bi bi-send"></i></button>
-                                </article>
-
-                            </form>
-                        </footer>
-                    </section>
-                </section>
-            </section>
-        </section>
+        <h1 class="title"><%= tituloPage %></h1>
+        <%- include(page) %>
+        
     </main>
-    <%- include("../partial/template-home/denunciar-modal") %>
-    <script src="./js/commentVideo.js"></script>
-    <script src="./js/colorMode.js"></script>
-    <script src="./js/access.js"></script>
-    <script src="./js/verticalCarousel.js"></script>
 
 </body>
 

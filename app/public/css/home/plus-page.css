@@ -92,3 +92,18 @@
         }
     }
 }
+
+.assinatura__modal {
+    & .option {
+        display: none;
+
+        &.active {
+            display: block;
+
+        }
+    }
+
+    & .planos{
+        margin-top: 1rem;
+    }
+}
