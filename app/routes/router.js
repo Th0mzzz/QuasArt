@@ -6,7 +6,7 @@ const middleWares = require("../sessions/middleswares");
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
-const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capaImgs/", 3, ['jpeg', 'jpg', 'png'],);
+const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capas-img/", 3, ['jpeg', 'jpg', 'png'],);
 const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
 
 // Página de falha de autenticação ---------
@@ -50,9 +50,9 @@ router.get("/plus-page", function (req, res) {
 router.get("/pesquisar", function (req, res) {
     const token = null
     const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/pesquisa-home",
         classePagina: "pesquisar",
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         token: token
     }
     res.render("./pages/template-home", jsonResult)

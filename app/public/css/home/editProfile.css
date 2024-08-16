@@ -1,0 +1,28 @@
+.header__edit-profile,
+.main__edit-profile{
+    padding: 0 clamp(.2rem, 3vw, 3rem);
+}
+
+.header__edit-profile{
+    display: flex;
+    align-items: center;
+    padding: 1.3rem clamp(.2rem, 3vw, 3rem);
+    
+    & .homebtn{
+        background: var(--cor-fundo);
+        color: var(--cor-principal);
+        border: 2px solid var(--cor-principal);
+        border-radius: 50%;
+        padding: .8rem 1rem;
+        font-size: 20px;
+        &:hover{
+            background: var(--cor-principal-hover);
+            color: #fff;
+            border: 1px solid var(--cor-principal-hover);
+        }
+    }
+    & .title{
+        margin: auto;
+        color: var(--cor-principal);
+    }
+}

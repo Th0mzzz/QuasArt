@@ -9,25 +9,30 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/home/home.css">
 </head>
+<%  
+    var tituloPage="" ; 
+    if(pageClass=="index" ){ 
+        tituloPage="Editar perfil" 
+    }else if(pageClass=="dadosPessoais" ){
+        tituloPage="Dados pessoais" 
+    }else if(pageClass=="security" ){
+        tituloPage="Senha e segurança" 
+    } 
+%>
 
-<body>
-    <main>
+    <body>
+        <header class="header__edit-profile">
+            <button class="btn homebtn" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
+            <h1 class="title">
+                <%= tituloPage %>
+            </h1>
+        </header>
+        <main class="main__edit-profile">
 
-        <% 
-        var tituloPage = "";
-        if(pageClass == "index"){
-            tituloPage = "Editar perfil"
-        }else if(pageClass == "dadosPessoais"){
-            tituloPage = "Dados pessoais"
-        }else if(pageClass == "security"){
-            tituloPage = "Senha e segurança"
-        } %>
+            <%- include(page) %>
 
-        <h1 class="title"><%= tituloPage %></h1>
-        <%- include(page) %>
-        
-    </main>
+        </main>
 
-</body>
+    </body>
 
 </html>

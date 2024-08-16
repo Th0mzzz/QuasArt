@@ -10,7 +10,7 @@ const middleWares = {
             var aut = req.session.autenticado
             req.session.logado = req.session.logado + 1
         } else {
-            var aut = { autenticado: null, id: null }
+            var aut = { autenticado: null, id: null , foto: "perfil-padrao.webp"}
             req.session.logado = 0
         }
         req.session.autenticado = aut

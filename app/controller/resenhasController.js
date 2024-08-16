@@ -25,7 +25,10 @@ const resenhaControl = {
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/resenhas-pub",
                 classePagina: "publicar",
-                erros: listaErros
+                erros: listaErros,
+                token: { msg: "Resenha postada!", usuario: null },
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+
             }
             res.render("./pages/template-home", jsonResult)
         } else {
@@ -74,9 +77,10 @@ const resenhaControl = {
                                 capaResenha: resenha.CAPA_CAMINHO,
                                 autor: autor[0]
                             },
-                            token:token
+                            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                            token: token
                         }
-                        
+
                         res.render("./pages/template-home", jsonResult)
                     } else {
                         res.status(404).render("pages/error-404.ejs");
