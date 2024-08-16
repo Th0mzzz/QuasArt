@@ -9,13 +9,44 @@
         border-bottom: 1px solid var(--cor-texto);
 
         & .foto__perfil {
-
+            position: relative;
             width: clamp(105px, 20vw, 120px);
             height: clamp(105px, 20vw, 120px);
             border-radius: 50%;
-            object-fit: cover;
             margin: 2.3rem 0;
             border: 5px solid var(--cor-principal);
+            overflow: hidden;
+            & > img{
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+            &.mudar__foto-btn{
+                position: relative;
+                &::before{
+                    left: 0;
+                    bottom: 0;
+                    position: absolute;
+                    content:"Mudar Foto";
+                    font-size:var(--fs-text);
+                    font-family: var(--ff-text);
+                    text-align: center;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    width: 100%;
+                    height: 100%;
+                    background: #0000006b;
+                    z-index: 100;
+                    cursor: pointer;
+                }
+                &:hover{
+                    &::before{
+                        display: flex;
+                    }
+                }
+            }
         }
 
         &>.subtitle {
@@ -129,7 +160,8 @@
 }
 
 .edit-btn {
-    padding:.3rem .5rem;
+    border-radius: 50%;
+    padding:.5rem .8rem;
     position: relative;
 
     &>i {

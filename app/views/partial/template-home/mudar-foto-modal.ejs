@@ -1,0 +1,21 @@
+<section class="mudarFoto__modal modal" id="mudarFotoModal">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <form action="/mudarFoto?idUser=<%= usuario.ID_USUARIO %>" method="post" enctype="multipart/form-data" class="form__mudar-foto">
+            <h2 class="subtitle">Mudar foto de perfil</h2>
+            <article class="input__container input-file perfil" data-capaContainer>
+                <span class="invalid-msg smallText pt-3">
+
+                </span>
+                <input type="file" name="imgPerfil" id="imgPerfil" class="input__control imgPerfil"
+                    placeholder="Selecione sua capa de imagem" data-inputCapa required>
+                <label for="imgPerfil"></label>
+                <label for="imgPerfil" class="icon"><i class="bi bi-download"></i></label>
+            </article>
+            <button class="btn mt-3" type="submit">Mudar</button>
+        </form>
+    </section>
+</section>
+
+<script src="./js/abrirModal.js"></script>
+<script src="./js/addPerfil.js"></script>

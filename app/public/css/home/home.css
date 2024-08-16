@@ -9,6 +9,8 @@
 @import url("./views-pages.css");
 @import url("./pesquisa.css");
 @import url("./sobre-page.css");
+@import url("./modals.css");
+@import url("./editProfile.css");
 
 .home__header,
 .home__footer,

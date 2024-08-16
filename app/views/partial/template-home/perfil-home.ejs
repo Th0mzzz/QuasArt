@@ -4,37 +4,48 @@
 <section class="area__perfil">
     <header class="header__perfil">
         <% if(isUser) {%>
-        <a href="/sair" class="btn exit-btn"  title="Sair"><i class="bi bi-box-arrow-left"></i></a>
-        <% } %>
-        <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário" class="foto__perfil">
-        <h3 class="subtitle"><%= usuario.NICKNAME_USUARIO %></h3>
-        <article class="row-items">
-        <% if(isUser) {%>
-            <button class="btn mt-2 link">Editar</button>
-        <% } else { %>
-            <button class="btn mt-2 link">Seguir</button>
-        <% } %>
+            <a href="/sair" class="btn exit-btn" title="Sair"><i class="bi bi-box-arrow-left"></i></a>
+            <% } %>
 
-            <section class="estatisticas__usuario">
-                
-                <article class="item">
-                    <p class="link">Postagens</p>
-                    <h3 class="subtitle">3</h3>
+                <!-- <article class="foto__perfil mudar__foto-btn" data-openmodal="#mudarFotoModal">
+                        <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário" >
+                    </article> -->
+
+                <article class="foto__perfil">
+                    <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
+                        alt="foto de perfil do usuário">
                 </article>
-                <article class="item">
-                    <p class="link">Seguidores</p>
-                    <h3 class="subtitle">40</h3>
+
+                <h3 class="subtitle">
+                    <%= usuario.NICKNAME_USUARIO %>
+                </h3>
+                <article class="row-items">
+                    <% if(isUser) {%>
+                        <a href="/edit-profile?idUser=<%= usuario.ID_USUARIO %>" class="btn mt-2 link">Editar</a>
+                        <% } else { %>
+                            <button class="btn mt-2 link">Seguir</button>
+                            <% } %>
+
+                                <section class="estatisticas__usuario">
+
+                                    <article class="item">
+                                        <p class="link">Postagens</p>
+                                        <h3 class="subtitle">3</h3>
+                                    </article>
+                                    <article class="item">
+                                        <p class="link">Seguidores</p>
+                                        <h3 class="subtitle">40</h3>
+                                    </article>
+                                    <article class="item">
+                                        <p class="link">Curtidas</p>
+                                        <h3 class="subtitle">1K</h3>
+                                    </article>
+                                </section>
                 </article>
-                <article class="item">
-                    <p class="link">Curtidas</p>
-                    <h3 class="subtitle">1K</h3>
-                </article>
-            </section>
-        </article>
 
     </header>
     <section class="postagens__perfil">
-       
+
         <article class="btns-section">
             <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i
                     class="bi bi-grid"></i></button>
@@ -42,9 +53,9 @@
                     class="bi bi-card-text"></i></button>
             <button class="btn-section link" data-btnSection="videos" title="videos"><i
                     class="bi bi-camera-video"></i></button>
-                    <% if(isUser) {%>
-                        <a href="/myPosts" class="btn edit-btn" title="Editar Postagens"><i class="bi bi-pencil-square"></i></a>
-                    <% } %>
+            <% if(isUser) {%>
+                <a href="/myPosts" class="btn edit-btn" title="Editar Postagens"><i class="bi bi-pencil-square"></i></a>
+                <% } %>
         </article>
         <section class="postagens__section ativo" data-section="fichas">
             <h3 class="title">Fichas</h3>
@@ -149,3 +160,4 @@
 </section>
 <script src="./js/toggleSection.js"></script>
 <script src="./js/carousel.js"></script>
+

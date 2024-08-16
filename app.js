@@ -17,9 +17,15 @@ app.set("views", "./app/views");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+// ROUTES
 var rotas = require("./app/routes/router");
 app.use("/", rotas);
+
+var rotasAdm = require("./app/routes/routerAdm");
+app.use("/", rotasAdm);
+
+var rotasEditProfile = require("./app/routes/routerEditProfile");
+app.use("/", rotasEditProfile);
 
 app.use((req, res, next) => {
   res.status(404).render("pages/error-404.ejs");
