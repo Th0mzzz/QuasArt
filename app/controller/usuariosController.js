@@ -2,8 +2,8 @@ const usuariosModel = require("../models/usuariosModel")
 const { body, validationResult } = require("express-validator")
 const moment = require("moment")
 var bcrypt = require("bcryptjs")
+const { removeImg } = require("../util/removeImg")
 var salt = bcrypt.genSaltSync(8)
-
 const usuariosController = {
 
     // Validação do form de cadastro
@@ -236,8 +236,27 @@ const usuariosController = {
             console.log("erro ao tentar visualizar página", errors)
             res.render("pages/error-500")
         }
+    },
+    mudarFoto: async (req, res) => {
+        try {
+            if (!req.file) {
+                console.log("falha ao carregar arquivo!")
+                const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+                const jsonResult = {
+                    page: "../partial/edit-profile/index",
+                    pageClass: "index",
+                    usuario: user[0],
+                    modalAberto: true
+                }
+                res.render("./pages/edit-profile", jsonResult)
+            }
+        } catch (errors) {
+            console.log("falha ao carregar arquivo!")
+            console.log(errors)
+        }
     }
 
 }
+
 
 module.exports = usuariosController

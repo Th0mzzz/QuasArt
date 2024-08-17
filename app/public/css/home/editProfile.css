@@ -1,27 +1,29 @@
 .header__edit-profile,
-.main__edit-profile{
+.main__edit-profile {
     padding: 0 clamp(.2rem, 3vw, 3rem);
 }
 
-.header__edit-profile{
+.header__edit-profile {
     display: flex;
     align-items: center;
     padding: 1.3rem clamp(.2rem, 3vw, 3rem);
-    
-    & .homebtn{
+
+    & .homebtn {
         background: var(--cor-fundo);
         color: var(--cor-principal);
         border: 2px solid var(--cor-principal);
         border-radius: 50%;
         padding: .8rem 1rem;
         font-size: 20px;
-        &:hover{
+
+        &:hover {
             background: var(--cor-principal-hover);
             color: #fff;
             border: 1px solid var(--cor-principal-hover);
         }
     }
-    & .title{
+
+    & .title {
         margin: auto;
         color: var(--cor-principal);
     }
@@ -29,10 +31,14 @@
 
 /* INDEX */
 
-.index__container{
-    & .header__user{
-        
+.index__container {
+    & .header__user {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        justify-content: center;
     }
+
     & .foto__perfil {
         position: relative;
         width: clamp(150px, 20vw, 180px);
@@ -41,19 +47,22 @@
         margin: 2.3rem 0;
         border: 5px solid var(--cor-principal);
         overflow: hidden;
-        & > img{
+
+        &>img {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
-        &.mudar__foto-btn{
+
+        &.mudar__foto-btn {
             position: relative;
-            &::before{
+
+            &::before {
                 left: 0;
                 bottom: 0;
                 position: absolute;
-                content:"Mudar Foto";
-                font-size:var(--fs-subtitle);
+                content: "Mudar Foto";
+                font-size: var(--fs-subtitle);
                 font-family: var(--ff-text);
                 text-align: center;
                 display: none;
@@ -66,11 +75,50 @@
                 z-index: 100;
                 cursor: pointer;
             }
-            &:hover{
-                &::before{
+
+            &:hover {
+                &::before {
                     display: flex;
                 }
             }
+        }
+    }
+
+    & .menu__index {
+        width: 100%;
+        max-width: 768px;
+        margin: auto;
+        padding: 2rem 4rem;
+        border: 2px solid var(--cor-secundaria);
+        border-radius: 20px;
+
+        & .index__link {
+            padding: 1rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            gap: 1rem;
+            color: var(--cor-secundaria);
+            transition: all .3s;
+
+            & i {
+                font-size: 30px;
+                margin-bottom: 0;
+                transition: all .3s;
+
+                &.setinha {
+                    margin-left: auto;
+                }
+            }
+
+            &:hover {
+                color: var(--cor-secundaria-hover);
+
+                &>i.setinha {
+                    margin-right: -10px;
+                }
+            }
+
         }
     }
 }

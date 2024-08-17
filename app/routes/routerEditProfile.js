@@ -7,7 +7,6 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 const { findUserById } = require("../models/usuariosModel");
 // UTIL --------------- 
-const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capaImgs/", 3, ['jpeg', 'jpg', 'png'],);
 const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
 
 // Página de falha de autenticação ---------
@@ -25,6 +24,23 @@ router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAut
         const jsonResult = {
             page: "../partial/edit-profile/index",
             pageClass: "index",
+            usuario: user[0],
+            modalAberto: false
+        }
+        res.render("./pages/edit-profile", jsonResult)
+    } catch (error) {
+        console.log(error)
+        res.status(500).render("pages/error-500.ejs");
+
+    }
+});
+
+router.get("/security", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha), async function (req, res) {
+    try {
+        const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+        const jsonResult = {
+            page: "../partial/edit-profile/",
+            pageClass: "security",
             usuario: user[0]
         }
         res.render("./pages/edit-profile", jsonResult)
@@ -35,7 +51,27 @@ router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAut
     }
 });
 
+router.get("/dados-pessoais", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha), async function (req, res) {
+    try {
+        const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+        const jsonResult = {
+            page: "../partial/edit-profile/",
+            pageClass: "dadosPessoais",
+            usuario: user[0]
+        }
+        res.render("./pages/edit-profile", jsonResult)
+    } catch (error) {
+        console.log(error)
+        res.status(500).render("pages/error-500.ejs");
 
+    }
+});
 
+router.post("/mudarFoto",
+    uploadPerfil("imgPerfil"),
+    function (req, res) {
+        usuariosController.mudarFoto(req, res)
+    }
+)
 
 module.exports = router;
