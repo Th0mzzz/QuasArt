@@ -36,6 +36,8 @@
 
 .inicial__container .slogan .btn-outline {
     width: fit-content;
+    border-radius: 15px;
+    --cor-btn:var(--cor-principal)
 }
 
 .ad__section {

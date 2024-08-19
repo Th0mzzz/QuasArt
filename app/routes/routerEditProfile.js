@@ -39,7 +39,7 @@ router.get("/security", middleWares.verifyAutenticado, middleWares.verifyAutoriz
     try {
         const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         const jsonResult = {
-            page: "../partial/edit-profile/",
+            page: "../partial/edit-profile/security",
             pageClass: "security",
             usuario: user[0]
         }
@@ -55,7 +55,7 @@ router.get("/dados-pessoais", middleWares.verifyAutenticado, middleWares.verifyA
     try {
         const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         const jsonResult = {
-            page: "../partial/edit-profile/",
+            page: "../partial/edit-profile/dados-pessoais",
             pageClass: "dadosPessoais",
             usuario: user[0]
         }

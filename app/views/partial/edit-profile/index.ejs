@@ -1,29 +1,17 @@
-<section class="index__container">
-    <header class="header__user">
-        <h3 class="subtitle">
-            <%= usuario.NICKNAME_USUARIO %>
-        </h3>
-        <article class="foto__perfil mudar__foto-btn" data-openmodal="#mudarFotoModal">
-            <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário">
-        </article>
-    </header>
-    <section class="menu__index">
-        <a href="/security" class="index__link subtitle">
-            <i class="bi bi-shield-lock "></i>
-            Senha e segurança
-            <i class="bi bi-arrow-right-short setinha"></i>
-        </a>
-        <a href="/dados-pessoais" class="index__link subtitle">
-            <i class="bi bi-person"></i>
-            Dados pessoais
-            <i class="bi bi-arrow-right-short setinha"></i>
-        </a>
-        <a href="" class="index__link subtitle">
-            <i class="bi bi-wallet2"></i>
-            Assinaturas
-            <i class="bi bi-arrow-right-short setinha"></i>
-        </a>
-    </section>
-</section>
+<a href="/security" class="index__link subtitle">
+    <i class="bi bi-shield-lock "></i>
+    Senha e segurança
+    <i class="bi bi-arrow-right-short setinha"></i>
+</a>
+<a href="/dados-pessoais" class="index__link subtitle">
+    <i class="bi bi-person"></i>
+    Dados pessoais
+    <i class="bi bi-arrow-right-short setinha"></i>
+</a>
+<a href="" class="index__link subtitle">
+    <i class="bi bi-wallet2"></i>
+    Assinaturas
+    <i class="bi bi-arrow-right-short setinha"></i>
+</a>
 
 <%- include("../template-home/mudar-foto-modal") %>
