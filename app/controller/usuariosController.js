@@ -118,6 +118,59 @@ const usuariosController = {
             .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
             .bail()
     ],
+    regrasValidacaoAtualizarConta: [
+        // verifica nome tamanho max e min
+        body("nome")
+            .isLength({ min: 3, max: 45 }).withMessage("Nome deve ter de 3 a 45 letras!"),
+        // verifica se a idade é valida, e dps se define a idade minima que é a data atual menos 13 anos. Depois verifica se a dataNascimento é depois da dataminima, se for, ele cancela e retorna o erro dizendo que é necessario ter mais de 13 anos
+        body('nascimento')
+            .custom(value => {
+                const dataNascimento = moment(value, "YYYY-MM-DD");
+                const dataMinima = moment().subtract(13, 'years');
+                if (dataNascimento.isAfter(dataMinima)) {
+                    throw new Error("Necessário ser maior de 13 anos!");
+                }
+                return true;
+            }),
+        // verifica se o cpf é valido e se tem 11 digitos, dps verifica se já existe o cpf no banco de dados, se existir ele retorna q o cpf ja está em uso
+
+        // // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30 e se o usuário digitado existe no banco de dados, caso tenha, retorna como incorreto
+
+        body('usuario')
+            .isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!")
+            .bail()
+            .custom(async (usuario) => {
+                const usuarioExistente = await usuariosModel.findUserByNickname(usuario)
+                if (usuarioExistente[0] === usuario) {
+                    throw new Error("Usuário já existe! Tente outro");
+                }
+                return true;
+            }),
+        // mesma coisa do telefone so que para email
+        body('email')
+            .isEmail().withMessage('Deve ser um email válido')
+            .bail()
+            .custom(async (email) => {
+                const emailExistente = await usuariosModel.findUserByEmail(email)
+                if (emailExistente.length > 0) {
+                    throw new Error("E-mail já em uso! Tente outro");
+                }
+                return true;
+            }),
+        // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos, se pelo menos 1 caracter especial, 1 maiusculo e 1 minusculo, tudo a partir de regex.
+        body('senha')
+            .isLength({ min: 8, max: 30 })
+            .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
+            .bail()
+            .matches(/[A-Z]/).withMessage('A senha deve conter pelo menos uma letra maiúscula.')
+            .bail()
+            .matches(/[a-z]/).withMessage('A senha deve conter pelo menos uma letra minúscula.')
+            .bail()
+            .matches(/[0-9]/).withMessage('A senha deve conter pelo menos um número inteiro.')
+            .bail()
+            .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
+            .bail()
+    ],
     regrasValidacaoEntrar: [
         // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30.
         body('usuario').isLength({ min: 4, max: 30 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
@@ -238,24 +291,51 @@ const usuariosController = {
         }
     },
     mudarFoto: async (req, res) => {
-        try {
-            if (!req.file) {
-                console.log("falha ao carregar arquivo!")
-                const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
-                const jsonResult = {
-                    page: "../partial/edit-profile/index",
-                    pageClass: "index",
-                    usuario: user[0],
-                    modalAberto: true
-                }
-                res.render("./pages/edit-profile", jsonResult)
-            }
-        } catch (errors) {
-            console.log("falha ao carregar arquivo!")
+        let errors = validationResult(req)
+        if (!errors.isEmpty()) {
             console.log(errors)
+            const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+            const jsonResult = {
+                page: "../partial/edit-profile/index",
+                pageClass: "index",
+                usuario: user[0],
+                modalAberto: true,
+                erros: null
+            }
+            res.render("./pages/edit-profile", jsonResult)
+        } else {
+            try {
+                const caminhoFoto = req.session.autenticado.foto
+
+                console.log(`img/imagens-servidor/perfil/${caminhoFoto}`)
+                if (!req.file) {
+                    console.log("falha ao carregar arquivo!")
+                    const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+                    const jsonResult = {
+                        page: "../partial/edit-profile/index",
+                        pageClass: "index",
+                        usuario: user[0],
+                        modalAberto: true,
+                        erros: null
+                    }
+                    res.render("./pages/edit-profile", jsonResult)
+                }else{
+                    if(caminhoFoto != req.file.filename){
+                        removeImg(`img/imagens-servidor/perfil/${caminhoFoto}`)
+                    }
+                    caminhoFoto = req.file.filename
+                }
+                
+                let resultado = await usuariosModel.updateUser({CAMINHO_FOTO:caminhoFoto}, req.session.autenticado.id)
+            } catch (errors) {
+                console.log("falha ao carregar arquivo!")
+                console.log(errors)
+            }
         }
+
     },
     atualizarUsuario: async (req, res) => {
+        const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         let errors = validationResult(req)
         console.log(errors)
         if (!errors.isEmpty()) {
@@ -268,23 +348,36 @@ const usuariosController = {
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
-            const { nome, nascimento, usuario, email } = req.body
-            dadosForm = {
-                NOME_USUARIO: nome,
-                NICKNAME_USUARIO: usuario,
-                DATA_NASC_USUARIO: nascimento,
-                EMAIL_USUARIO: email,
-            }
-            try {
-                const resultados = await usuariosModel.updateUser(dadosForm);
-                const userBd = await usuariosModel.findUserById(resultados.insertId);
-                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
-                console.log(resultados[0])
-                console.log("Usuário atualizado!")
-                
-            } catch (erros) {
-                console.log(erros)
-                res.render("pages/error-500")
+            if (!req.session.autenticado) {
+                const jsonResult = {
+                    page: "../partial/edit-profile/dados-pessoais",
+                    pageClass: "dadosPessoais",
+                    usuario: user[0],
+                    erros: null,
+                    valores: req.body
+                }
+                console.log("ERROR, usuário não logado")
+                res.render("./pages/edit-profile", jsonResult)
+            } else {
+                const { nome, nascimento, usuario, email } = req.body
+                const idUser = req.session.autenticado.id
+                dadosForm = {
+                    NOME_USUARIO: nome,
+                    NICKNAME_USUARIO: usuario,
+                    DATA_NASC_USUARIO: nascimento,
+                    EMAIL_USUARIO: email,
+                }
+                try {
+                    const resultados = await usuariosModel.updateUser(dadosForm, idUser);
+                    const userBd = await usuariosModel.findUserById(resultados.insertId);
+                    req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
+                    console.log(resultados[0])
+                    console.log("Usuário atualizado!")
+
+                } catch (erros) {
+                    console.log(erros)
+                    res.render("pages/error-500")
+                }
             }
 
         }

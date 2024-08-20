@@ -76,13 +76,19 @@ router.get("/dados-pessoais", middleWares.verifyAutenticado, middleWares.verifyA
         res.status(500).render("pages/error-500.ejs");
 
     }
-});
+}
+)
 
 router.post("/mudarFoto",
     uploadPerfil("imgPerfil"),
     function (req, res) {
         usuariosController.mudarFoto(req, res)
     }
+)
+
+router.post("/atualizarDados", usuariosController.regrasValidacaoAtualizarConta,function (req, res) {
+    usuariosController.atualizarUsuario(req, res)
+}
 )
 
 module.exports = router;

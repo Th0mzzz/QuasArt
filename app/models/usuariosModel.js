@@ -1,3 +1,4 @@
+const { update } = require("lodash");
 var pool = require("../../config/poolConn");
 
 const usuariosModel = {
@@ -7,7 +8,7 @@ const usuariosModel = {
             return resultados
         } catch (error) {
             throw error
-        }  
+        }
     },
     findUserByContato: async (contato) => {
         try {
@@ -70,7 +71,17 @@ const usuariosModel = {
             console.error("Erro ao buscar usuário", error);
             throw error;
         }
-    }
+    },
+    updateUser: async (dadosForm, id) => {
+        try {
+            const [resultados] = await pool.query("UPDATE USUARIOS SET ? WHERE ID_USUARIO = ?", [dadosForm,id])
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao atualizar usuário", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = usuariosModel;
