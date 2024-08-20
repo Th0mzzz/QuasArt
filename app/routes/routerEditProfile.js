@@ -54,10 +54,21 @@ router.get("/security", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 router.get("/dados-pessoais", middleWares.verifyAutenticado, middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha), async function (req, res) {
     try {
         const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+        const data = new Date(user[0].DATA_NASC_USUARIO)
+        const dataFormatada = data.toISOString().split('T')[0];
         const jsonResult = {
             page: "../partial/edit-profile/dados-pessoais",
             pageClass: "dadosPessoais",
-            usuario: user[0]
+            usuario: user[0],
+            erros: null,
+            valores: {
+                nome: user[0].NOME_USUARIO,
+                nascimento: dataFormatada,
+                cpf: user[0].CPF_USUARIO,
+                contato: user[0].CONTATO,
+                usuario: user[0].NICKNAME_USUARIO,
+                email: user[0].EMAIL_USUARIO,
+            }
         }
         res.render("./pages/edit-profile", jsonResult)
     } catch (error) {

@@ -254,6 +254,40 @@ const usuariosController = {
             console.log("falha ao carregar arquivo!")
             console.log(errors)
         }
+    },
+    atualizarUsuario: async (req, res) => {
+        let errors = validationResult(req)
+        console.log(errors)
+        if (!errors.isEmpty()) {
+            const jsonResult = {
+                page: "../partial/edit-profile/dados-pessoais",
+                pageClass: "dadosPessoais",
+                usuario: user[0],
+                erros: errors,
+                valores: req.body
+            }
+            res.render("./pages/edit-profile", jsonResult)
+        } else {
+            const { nome, nascimento, usuario, email } = req.body
+            dadosForm = {
+                NOME_USUARIO: nome,
+                NICKNAME_USUARIO: usuario,
+                DATA_NASC_USUARIO: nascimento,
+                EMAIL_USUARIO: email,
+            }
+            try {
+                const resultados = await usuariosModel.updateUser(dadosForm);
+                const userBd = await usuariosModel.findUserById(resultados.insertId);
+                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
+                console.log(resultados[0])
+                console.log("Usuário atualizado!")
+                
+            } catch (erros) {
+                console.log(erros)
+                res.render("pages/error-500")
+            }
+
+        }
     }
 
 }

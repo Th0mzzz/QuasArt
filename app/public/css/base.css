@@ -162,9 +162,6 @@
         }
     }
 
-
-
-
     /* input invalid */
 
     &.invalid {
@@ -191,8 +188,6 @@
         left: 1rem;
     }
 
-
-
     /* input file */
     &.input-file {
         & input[type="file"] {
@@ -218,6 +213,12 @@
             translate: -50% -50%;
         }
 
+    }
+    &.disabled{
+        background: var(--cor-warning);
+        & input{
+            cursor: no-drop;
+        }
     }
 }
 
