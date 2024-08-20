@@ -41,7 +41,7 @@ inputFileCapa.addEventListener("change", function (e) {
             };
             img.src = src;
         };
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(file); 
     } else {
         inputFileCapa.parentNode.classList.add("invalid");
         inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo Imagem!!';
