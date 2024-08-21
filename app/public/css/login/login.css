@@ -171,7 +171,9 @@
         }
     }
 }
-
+.input__check{
+    color: var(--cor-texto);
+}
 @media (min-width:769px) {
     .section__login {
         & .fundo__login {

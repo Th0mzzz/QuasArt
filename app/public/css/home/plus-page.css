@@ -75,10 +75,10 @@
                     top: -5%;
                     left: 50%;
                     translate: -50% 0;
-                    background: var(--cor-secundaria);
+                    background: #FCA5FA;
                     padding: .4rem 1rem;
                     border-radius: 30px;
-                    color: white;
+                    color: var(--cor-secundaria);
                 }
 
             }
