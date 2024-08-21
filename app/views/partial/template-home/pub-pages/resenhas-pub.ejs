@@ -1,3 +1,21 @@
+<% 
+let classeErro={ 
+    titulo:"",
+    textoResenha:""
+} 
+let msgErro= {
+    titulo:"",
+    textoResenha:""
+  } 
+    
+    if(erros) {
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
+    }
+%>
+
 <section class="form__pub-container">
     <h2 class="title">Criar <span class="negrito-roxo">Resenha Cósmica</span></h2>
     <form action="/criarResenha" class="form__pub resenha" method="post" enctype="multipart/form-data">
@@ -10,19 +28,20 @@
                 <label for="capaResenha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
-                <article class="input__container">
+                <article class="input__container <%= classeErro.titulo  %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.titulo %>
                     </span>
                     <input type="text" name="titulo" id="titulo" class="input__control"
-                        placeholder="Título do video" required value="">
+                        placeholder="Título do video" required value="<%= valores? valores.titulo : '' %>">
                     <label for="titulo">Título do Resenha Cósmica</label>
                 </article>
-                <article class="input__container">
+                <!-- <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
                     <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"></textarea>
                     <label for="descricao">Descrição</label>
-                </article>
+                </article> -->
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                         Limite de tags atingido!
@@ -33,10 +52,12 @@
                 <div id="tagsContainer"></div>
             </section>
         </header>
-        <article class="input__container">
+        <article class="input__container <%= classeErro.textoResenha  %>">
             <span class="invalid-msg smallText">
+                <%= msgErro.textoResenha %>
+
             </span>
-            <textarea name="textoResenha" id="textoResenha" placeholder="Digite sua resenha aqui!" maxlength="1200"></textarea>
+            <textarea name="textoResenha" id="textoResenha" placeholder="Digite sua resenha aqui!" maxlength="1200" ><%= valores? valores.textoResenha : '' %></textarea>
             <label for="textoResenha">Digite sua Resenha aqui!</label>
         </article>
         <button class="btn submit secundaria p-2">Publicar</button>

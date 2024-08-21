@@ -138,6 +138,7 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
         page: "../partial/template-home/pub-pages/resenhas-pub",
         classePagina: "publicar",
         erros: null,
+        valores:null,
         token: token
     }
     res.render("./pages/template-home", jsonResult)

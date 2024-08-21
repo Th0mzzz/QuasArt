@@ -7,9 +7,9 @@ const resenhaControl = {
         body("titulo")
             .isLength({ min: 3, max: 45 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
         ,
-        body("descricao")
-            .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
-        ,
+        // body("descricao")
+        //     .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
+        // ,
         body("textoResenha")
             .isLength({ min: 3, max: 1200 }).withMessage("A resenha deve ter entre 3 e 1200 caracteres!")
     ],
@@ -26,7 +26,8 @@ const resenhaControl = {
                 page: "../partial/template-home/pub-pages/resenhas-pub",
                 classePagina: "publicar",
                 erros: listaErros,
-                token: { msg: "Resenha postada!", usuario: null },
+                valores: req.body,
+                token: null,
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
 
             }
