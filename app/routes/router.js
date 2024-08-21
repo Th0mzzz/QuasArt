@@ -172,6 +172,7 @@ router.get("/view-resenha", function (req, res) {
 
 router.get("/view-ficha", function (req, res) {
     const jsonResult = {
+        token:null,
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/view-ficha",
         classePagina: "",
