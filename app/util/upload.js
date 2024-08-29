@@ -10,7 +10,7 @@ const createFileFilter = (extensoesPermitidas) => {
         if (extname && mimetype) {
             return cowboy(null, true);
         } else {
-            cowboy(new Error("Tipo de arquivo inválido"));
+            return cowboy(new Error("Tipo de arquivo inválido"));
         }
     };
 };
@@ -50,8 +50,8 @@ module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg',
     }
 
     return (campoArquivo) => {
-
         return (req, res, next) => {
+            
             req.session.erroMulter = null
             upload.single(campoArquivo)(req, res, function (err) {
                 if (err instanceof multer.MulterError) {

@@ -6,8 +6,9 @@ const middleWares = require("../sessions/middleswares");
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
-const uploadCapa = require("../util/upload")("./app/public/img/imagens-servidor/capas-img/", 3, ['jpeg', 'jpg', 'png'],);
-const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
+const upload = require("../util/upload");
+
+
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
