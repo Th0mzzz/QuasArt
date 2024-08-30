@@ -9,12 +9,27 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/home/home.css">
 </head>
-<% var tituloPage="" ; if(pageClass=="index" ){ tituloPage="Editar perfil" }else if(pageClass=="dadosPessoais" ){
-    tituloPage="Dados pessoais" }else if(pageClass=="security" ){ tituloPage="Senha e segurança" } %>
+<%  
+    var tituloPage=""; 
+
+    if(pageClass=="index" ){ 
+        tituloPage="Editar perfil" 
+    }else if(pageClass=="dadosPessoais" ){
+        tituloPage="Dados pessoais" 
+    }else if(pageClass=="security" ){
+        tituloPage="Senha e segurança" 
+    }
+%>
 
     <body>
+        <% if(token) {%>
+            <h4 class="token-alert link <%= token.type %>">
+                <%= token.msg %>
+            </h4>
+        <% } %>
         <header class="header__edit-profile">
-            <button class="btn homebtn" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
+            <a href="<%=pageClass == 'index'?'/profile':'/edit-profile' %>" 
+            class="btn homebtn"><i class="bi bi-arrow-left"></i></a>
             <h1 class="supertitle">
                 <%= tituloPage %>
             </h1>
@@ -25,7 +40,7 @@
                     <h3 class="subtitle">
                         <%= usuario.NICKNAME_USUARIO %>
                     </h3>
-                    <article class="foto__perfil mudar__foto-btn" data-openmodal="#mudarFotoModal">
+                    <article class="foto__perfil <%= pageClass == 'index' ? 'mudar__foto-btn' : '' %>" data-openmodal="#mudarFotoModal">
                         <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
                             alt="foto de perfil do usuário">
                     </article>

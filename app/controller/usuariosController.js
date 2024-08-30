@@ -133,43 +133,13 @@ const usuariosController = {
                 return true;
             }),
         // verifica se o cpf é valido e se tem 11 digitos, dps verifica se já existe o cpf no banco de dados, se existir ele retorna q o cpf ja está em uso
-
         // // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30 e se o usuário digitado existe no banco de dados, caso tenha, retorna como incorreto
-
         body('usuario')
-            .isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!")
-            .bail()
-            .custom(async (usuario) => {
-                const usuarioExistente = await usuariosModel.findUserByNickname(usuario)
-                if (usuarioExistente[0] === usuario) {
-                    throw new Error("Usuário já existe! Tente outro");
-                }
-                return true;
-            }),
+            .isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
         // mesma coisa do telefone so que para email
         body('email')
-            .isEmail().withMessage('Deve ser um email válido')
-            .bail()
-            .custom(async (email) => {
-                const emailExistente = await usuariosModel.findUserByEmail(email)
-                if (emailExistente.length > 0) {
-                    throw new Error("E-mail já em uso! Tente outro");
-                }
-                return true;
-            }),
+            .isEmail().withMessage('Deve ser um email válido'),
         // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos, se pelo menos 1 caracter especial, 1 maiusculo e 1 minusculo, tudo a partir de regex.
-        body('senha')
-            .isLength({ min: 8, max: 30 })
-            .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
-            .bail()
-            .matches(/[A-Z]/).withMessage('A senha deve conter pelo menos uma letra maiúscula.')
-            .bail()
-            .matches(/[a-z]/).withMessage('A senha deve conter pelo menos uma letra minúscula.')
-            .bail()
-            .matches(/[0-9]/).withMessage('A senha deve conter pelo menos um número inteiro.')
-            .bail()
-            .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
-            .bail()
     ],
     regrasValidacaoEntrar: [
         // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30.
@@ -319,14 +289,14 @@ const usuariosController = {
                         erros: null
                     }
                     res.render("./pages/edit-profile", jsonResult)
-                }else{
-                    if(caminhoFoto != req.file.filename){
+                } else {
+                    if (caminhoFoto != req.file.filename) {
                         removeImg(`img/imagens-servidor/perfil/${caminhoFoto}`)
                     }
                     caminhoFoto = req.file.filename
                 }
-                
-                let resultado = await usuariosModel.updateUser({CAMINHO_FOTO:caminhoFoto}, req.session.autenticado.id)
+
+                let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
             } catch (errors) {
                 console.log("falha ao carregar arquivo!")
                 console.log(errors)
@@ -337,7 +307,6 @@ const usuariosController = {
     atualizarUsuario: async (req, res) => {
         const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         let errors = validationResult(req)
-        console.log(errors)
         if (!errors.isEmpty()) {
             const jsonResult = {
                 page: "../partial/edit-profile/dados-pessoais",
@@ -360,7 +329,6 @@ const usuariosController = {
                 res.render("./pages/edit-profile", jsonResult)
             } else {
                 const { nome, nascimento, usuario, email } = req.body
-                const idUser = req.session.autenticado.id
                 dadosForm = {
                     NOME_USUARIO: nome,
                     NICKNAME_USUARIO: usuario,
@@ -368,12 +336,53 @@ const usuariosController = {
                     EMAIL_USUARIO: email,
                 }
                 try {
-                    const resultados = await usuariosModel.updateUser(dadosForm, idUser);
-                    const userBd = await usuariosModel.findUserById(resultados.insertId);
-                    req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
-                    console.log(resultados[0])
-                    console.log("Usuário atualizado!")
+                    const resultados = await usuariosModel.updateUser(dadosForm, req.session.autenticado.id);
 
+                    if (!resultados.isEmpty) {
+                        const user = await usuariosModel.findUserById(req.session.autenticado.id);
+                        const data = new Date(user[0].DATA_NASC_USUARIO)
+                        const dataFormatada = data.toISOString().split('T')[0];
+                        if (resultados.changedRows == 1) {
+                            req.session.autenticado = {
+                                autenticado: user[0].NOME_USUARIO,
+                                id: user[0].ID_USUARIO,
+                                foto: user[0].CAMINHO_FOTO
+                            }
+                            const jsonResult = {
+                                page: "../partial/edit-profile/dados-pessoais",
+                                pageClass: "dadosPessoais",
+                                usuario: user[0],
+                                erros: null,
+                                valores: {
+                                    nome: user[0].NOME_USUARIO,
+                                    nascimento: dataFormatada,
+                                    cpf: user[0].CPF_USUARIO,
+                                    contato: user[0].CONTATO,
+                                    usuario: user[0].NICKNAME_USUARIO,
+                                    email: user[0].EMAIL_USUARIO,
+                                },
+                                token: { msg: "Perfil atualizado com sucesso!", type:"success"}
+                            }
+                            res.render("./pages/edit-profile", jsonResult)
+                        } else {
+                            const jsonResult = {
+                                page: "../partial/edit-profile/dados-pessoais",
+                                pageClass: "dadosPessoais",
+                                usuario: user[0],
+                                erros: null,
+                                valores: {
+                                    nome: user[0].NOME_USUARIO,
+                                    nascimento: dataFormatada,
+                                    cpf: user[0].CPF_USUARIO,
+                                    contato: user[0].CONTATO,
+                                    usuario: user[0].NICKNAME_USUARIO,
+                                    email: user[0].EMAIL_USUARIO,
+                                },
+                                token: { msg: "Nenhuma alteração feita", type:"" }
+                            }
+                            res.render("./pages/edit-profile", jsonResult)
+                        }
+                    }
                 } catch (erros) {
                     console.log(erros)
                     res.render("pages/error-500")

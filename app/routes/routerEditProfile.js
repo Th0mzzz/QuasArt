@@ -4,11 +4,10 @@ var router = express.Router();
 const middleWares = require("../sessions/middleswares");
 // CONTROLLERS -------------
 const usuariosController = require("../controller/usuariosController");
-const resenhaControl = require("../controller/resenhasController");
 const { findUserById } = require("../models/usuariosModel");
 // UTIL --------------- 
-const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
-
+const upload = require("../util/upload");
+const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -25,7 +24,8 @@ router.get("/edit-profile", middleWares.verifyAutenticado, middleWares.verifyAut
             page: "../partial/edit-profile/index",
             pageClass: "index",
             usuario: user[0],
-            modalAberto: false
+            modalAberto: false,
+            token:null
         }
         res.render("./pages/edit-profile", jsonResult)
     } catch (error) {
@@ -41,7 +41,9 @@ router.get("/security", middleWares.verifyAutenticado, middleWares.verifyAutoriz
         const jsonResult = {
             page: "../partial/edit-profile/security",
             pageClass: "security",
-            usuario: user[0]
+            usuario: user[0],
+            token:null
+
         }
         res.render("./pages/edit-profile", jsonResult)
     } catch (error) {
@@ -68,7 +70,8 @@ router.get("/dados-pessoais", middleWares.verifyAutenticado, middleWares.verifyA
                 contato: user[0].CONTATO,
                 usuario: user[0].NICKNAME_USUARIO,
                 email: user[0].EMAIL_USUARIO,
-            }
+            },
+            token:null
         }
         res.render("./pages/edit-profile", jsonResult)
     } catch (error) {
@@ -86,7 +89,7 @@ router.post("/mudarFoto",
     }
 )
 
-router.post("/atualizarDados", usuariosController.regrasValidacaoAtualizarConta,function (req, res) {
+router.post("/atualizarDados",middleWares.verifyAutenticado,  middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), usuariosController.regrasValidacaoAtualizarConta,function (req, res) {
     usuariosController.atualizarUsuario(req, res)
 }
 )

@@ -47,14 +47,14 @@ let msgErro= {
       <span class="invalid-msg smallText">
         <%= msgErro.cpf %>
       </span>
-      <input type="text" name="cpf" id="cpf" class="input__control inputMask" placeholder="cpf" maxlength="11" required value="<%= valores.cpf %>" disabled>
+      <input type="text" name="cpf" id="cpf" class="input__control inputMask" placeholder="cpf" maxlength="11" required value="<%= valores.cpf %>" readonly>
       <label for="cpf">Digite seu CPF</label>
     </article>
     <article class="input__container disabled <%= classeErro.contato  %>">
       <span class="invalid-msg smallText">
         <%= msgErro.contato %>
       </span>
-      <input type="tel" name="contato" id="contato" class="input__control inputMask" placeholder="contato" maxlength="14" required value="<%= valores.contato %>" disabled>
+      <input type="tel" name="contato" id="contato" class="input__control inputMask" placeholder="contato" maxlength="14" required value="<%= valores.contato %>" readonly>
       <label for="contato">Digite seu número de telefone</label>
     </article>
     <article class="input__container <%= classeErro.usuario  %>">

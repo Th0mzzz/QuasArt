@@ -230,6 +230,12 @@
     border: 2px solid var(--cor-secundaria);
     border-radius: 50px;
     z-index: 100;
+    &.success{
+        color: var(--cor-success);
+    }
+    &.danger{
+        color: var(--cor-danger);
+    }
 }
 
 .userLink {
