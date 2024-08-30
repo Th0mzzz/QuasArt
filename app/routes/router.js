@@ -7,7 +7,7 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-
+const uploadCapa = upload("../public/img/imagens-servidor/capas-img", 3, ['jpeg', 'jpg', 'png']);
 
 
 // Página de falha de autenticação ---------
@@ -139,7 +139,7 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
         page: "../partial/template-home/pub-pages/resenhas-pub",
         classePagina: "publicar",
         erros: null,
-        valores:null,
+        valores: null,
         token: token
     }
     res.render("./pages/template-home", jsonResult)
@@ -173,7 +173,7 @@ router.get("/view-resenha", function (req, res) {
 
 router.get("/view-ficha", function (req, res) {
     const jsonResult = {
-        token:null,
+        token: null,
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/view-ficha",
         classePagina: "",

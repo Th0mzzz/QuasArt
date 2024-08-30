@@ -18,10 +18,11 @@ const resenhaControl = {
         const erroMulter = req.session.erroMulter;
 
         if (!errors.isEmpty() || erroMulter != null) {
-            listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
+            var listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
             }
+            console.log(listaErros)
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/resenhas-pub",
                 classePagina: "publicar",
