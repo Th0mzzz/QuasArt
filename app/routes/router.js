@@ -7,7 +7,8 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadCapa = upload("../public/img/imagens-servidor/capas-img", 3, ['jpeg', 'jpg', 'png']);
+const uploadCapa = upload("./app/public/img/imagens-servidor/capas-img/", 3, ['jpeg', 'jpg', 'png']);
+const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png']);
 
 
 // Página de falha de autenticação ---------
