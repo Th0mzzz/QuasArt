@@ -1,25 +1,22 @@
 ### FRONT-END
-- Página de Videos;
-- Página de configurações;
 - Página de gerenciamento de posts;
-- Validar proporção das imagens dos formulários (cadastro, publicações, etc.)e definir seus tamanhos;
+- Atualizar form de fichas e resenhas;
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home e na pagina de perfil;
-- Configurar formulários de pub para salvarem no banco de dados( necessário configurar banco de dados);
-- Organizar e comentar arquivos de models, controllers e middlewares;
-- Verificar validade do e-mail e numero ao criar Usuário;
-- Adicionar funcionalidade para adicionar imagem para usuários;
+- Publicação de vídeos;
+- Publicação de Fichas;
+- Adicionar comentários;
+- Curtir posts;
+- Sistema de seguir perfis;
+- Alterar senha do usuário;
+- Validar proporção das imagens dos formulários (cadastro, publicações, etc.)e definir seus tamanhos;
 
 ### Banco de dados
-- Configurar tables de videos para add o caminho do video e criar uma tabela chamada prévias, contendo o id da ficha, o tipo de arquivo e o caminho do arquivo;
-- add column de imagem na table usuarios;
-
+- 
 
 ### Documentação e integração 
-- PagSeguro - definir implementação ;
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
-- Definição de assinaturas(Definir algo básico para a apresentação e aprimorar depois);
 - Implementação do Google ADS;
 
 
