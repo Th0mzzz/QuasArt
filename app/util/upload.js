@@ -1,3 +1,4 @@
+const { validationResult } = require("express-validator");
 const multer = require("multer")
 const path = require("path")
 
@@ -19,9 +20,10 @@ const createFileFilter = (extensoesPermitidas) => {
 
 module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg', 'jpg', 'png']) => {
     return (campoArquivo) => {
-        return (req, res, next) => { 
+        return (req, res, next) => {
             const fileFilter = createFileFilter(extensoesPermitidas);
             // Salvar em SGBD
+
             if (caminho == null) {
                 const storage = multer.memoryStorage();
                 upload = multer({
@@ -50,6 +52,8 @@ module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg',
                     fileFilter: fileFilter
                 });
             }
+
+
             req.session.erroMulter = null
             upload.single(campoArquivo)(req, res, function (err) {
                 if (err instanceof multer.MulterError) {

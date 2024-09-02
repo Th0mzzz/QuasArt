@@ -11,7 +11,7 @@ const resenhaControl = {
             .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
         ,
         body("textoResenha")
-            .isLength({ min: 3, max: 5000 }).withMessage("A resenha deve ter entre 3 e 1200 caracteres!")
+            .isLength({ min: 3, max: 6600 }).withMessage("A resenha deve ter entre 3 e 1200 caracteres!")
     ],
     postarResenha: async (req, res) => {
         let errors = validationResult(req)

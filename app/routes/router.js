@@ -264,7 +264,7 @@ router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares
 
 // Form de criação de Resenha
 
-router.post("/criarResenha", resenhaControl.validacaoResenha, uploadCapa("capaResenha"), function (req, res) {
+router.post("/criarResenha", uploadCapa("capaResenha"), resenhaControl.validacaoResenha, function (req, res) {
     resenhaControl.postarResenha(req, res)
 })
 

@@ -264,42 +264,59 @@ const usuariosController = {
         let errors = validationResult(req)
         if (!errors.isEmpty()) {
             console.log(errors)
-            const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+            const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+
             const jsonResult = {
                 page: "../partial/edit-profile/index",
                 pageClass: "index",
                 usuario: user[0],
                 modalAberto: true,
-                erros: null
+                erros: null,
+                token: null
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
             try {
-                const caminhoFoto = req.session.autenticado.foto
+                var caminhoFoto = req.session.autenticado.foto
 
-                console.log(`img/imagens-servidor/perfil/${caminhoFoto}`)
                 if (!req.file) {
                     console.log("falha ao carregar arquivo!")
-                    const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+                    const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
                     const jsonResult = {
                         page: "../partial/edit-profile/index",
                         pageClass: "index",
                         usuario: user[0],
                         modalAberto: true,
-                        erros: null
+                        erros: null,
+                        token: null
                     }
                     res.render("./pages/edit-profile", jsonResult)
                 } else {
                     if (caminhoFoto != req.file.filename) {
-                        removeImg(`img/imagens-servidor/perfil/${caminhoFoto}`)
+                        removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
                     }
                     caminhoFoto = req.file.filename
                 }
 
                 let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
+                const user = await usuariosModel.findUserById(req.session.autenticado.id)
+
+                req.session.autenticado.foto = caminhoFoto
+                console.log(resultado)
+                const jsonResult = {
+                    page: "../partial/edit-profile/index",
+                    pageClass: "index",
+                    usuario: user[0],
+                    modalAberto: false,
+                    erros: null,
+                    token: { msg: "Foto de usuário atualizada", type: "success" }
+                }
+                res.render("./pages/edit-profile", jsonResult)
+
             } catch (errors) {
-                console.log("falha ao carregar arquivo!")
                 console.log(errors)
+                res.render("pages/error-500")
+
             }
         }
 
@@ -361,7 +378,7 @@ const usuariosController = {
                                     usuario: user[0].NICKNAME_USUARIO,
                                     email: user[0].EMAIL_USUARIO,
                                 },
-                                token: { msg: "Perfil atualizado com sucesso!", type:"success"}
+                                token: { msg: "Perfil atualizado com sucesso!", type: "success" }
                             }
                             res.render("./pages/edit-profile", jsonResult)
                         } else {
@@ -378,7 +395,7 @@ const usuariosController = {
                                     usuario: user[0].NICKNAME_USUARIO,
                                     email: user[0].EMAIL_USUARIO,
                                 },
-                                token: { msg: "Nenhuma alteração feita", type:"" }
+                                token: { msg: "Nenhuma alteração feita", type: "" }
                             }
                             res.render("./pages/edit-profile", jsonResult)
                         }
