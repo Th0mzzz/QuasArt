@@ -1,11 +1,13 @@
 <% 
 let classeErro={ 
     titulo:"",
-    textoResenha:""
+    textoResenha:"",
+    descricao:""
 } 
 let msgErro= {
     titulo:"",
-    textoResenha:""
+    textoResenha:"",
+    descricao:""
   } 
     
     if(erros) {
@@ -20,6 +22,7 @@ let msgErro= {
     <h2 class="title">Criar <span class="negrito-roxo">Resenha Cósmica</span></h2>
     <form action="/criarResenha" class="form__pub resenha" method="post" enctype="multipart/form-data">
         <header class="form__row">
+
             <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
                 </span>
@@ -28,6 +31,7 @@ let msgErro= {
                 <label for="capaResenha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
+
                 <article class="input__container <%= classeErro.titulo  %>">
                     <span class="invalid-msg smallText">
                         <%= msgErro.titulo %>
@@ -36,8 +40,9 @@ let msgErro= {
                         placeholder="Título do video" required value="<%= valores? valores.titulo : '' %>">
                     <label for="titulo">Título do Resenha Cósmica</label>
                 </article>
-                <article class="input__container">
+                <article class="input__container <%= classeErro.descricao %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.descricao %>
                     </span>
                     <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"></textarea>
                     <label for="descricao">Descrição</label>
@@ -57,7 +62,7 @@ let msgErro= {
                 <%= msgErro.textoResenha %>
 
             </span>
-            <textarea name="textoResenha" id="textoResenha" placeholder="Digite sua resenha aqui!" maxlength="1200" ><%= valores? valores.textoResenha : '' %></textarea>
+            <textarea name="textoResenha" id="textoResenha" placeholder="Digite sua resenha aqui!" maxlength="6600" ><%= valores? valores.textoResenha : '' %></textarea>
             <label for="textoResenha">Digite sua Resenha aqui!</label>
         </article>
         <button class="btn submit secundaria p-2">Publicar</button>

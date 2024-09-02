@@ -18,11 +18,8 @@ const createFileFilter = (extensoesPermitidas) => {
 
 
 module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg', 'jpg', 'png']) => {
-
     return (campoArquivo) => {
-
-        return (req, res, next) => {
-            
+        return (req, res, next) => { 
             const fileFilter = createFileFilter(extensoesPermitidas);
             // Salvar em SGBD
             if (caminho == null) {

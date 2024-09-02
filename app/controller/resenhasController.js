@@ -7,22 +7,27 @@ const resenhaControl = {
         body("titulo")
             .isLength({ min: 3, max: 45 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
         ,
-        // body("descricao")
-        //     .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
-        // ,
+        body("descricao")
+            .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
+        ,
         body("textoResenha")
-            .isLength({ min: 3, max: 1200 }).withMessage("A resenha deve ter entre 3 e 1200 caracteres!")
+            .isLength({ min: 3, max: 5000 }).withMessage("A resenha deve ter entre 3 e 1200 caracteres!")
     ],
     postarResenha: async (req, res) => {
         let errors = validationResult(req)
         const erroMulter = req.session.erroMulter;
-
         if (!errors.isEmpty() || erroMulter != null) {
-            var listaErros = !errors.isEmpty ? errors : { formatter: null, errors: [] };
+
+            if(!errors.isEmpty()){
+                var listaErros = errors
+            }else{
+                var listaErros = { formatter: null, errors: [] }
+            }
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
             }
             console.log(listaErros)
+
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/resenhas-pub",
                 classePagina: "publicar",

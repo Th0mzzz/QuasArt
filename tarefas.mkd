@@ -1,6 +1,6 @@
 ### FRONT-END
 - Página de gerenciamento de posts;
-- Atualizar form de fichas e resenhas;
+- Atualizar form de fichas com input para links;
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home e na pagina de perfil;
@@ -10,7 +10,7 @@
 - Curtir posts;
 - Sistema de seguir perfis;
 - Alterar senha do usuário;
-- Validar proporção das imagens dos formulários (cadastro, publicações, etc.)e definir seus tamanhos;
+- Validar proporção das imagens dos formulários (cadastro, publicações, etc.) e definir seus tamanhos;
 
 ### Banco de dados
 - 
