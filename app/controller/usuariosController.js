@@ -292,7 +292,7 @@ const usuariosController = {
                     }
                     res.render("./pages/edit-profile", jsonResult)
                 } else {
-                    if (caminhoFoto != req.file.filename) {
+                    if (caminhoFoto != req.file.filename && caminhoFoto !=  "perfil-padrao.webp") {
                         removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
                     }
                     caminhoFoto = req.file.filename

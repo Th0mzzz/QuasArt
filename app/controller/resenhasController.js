@@ -54,6 +54,7 @@ const resenhaControl = {
                 res.redirect(`/view-resenha?idResenha=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
+                // ADD FUNCTION REMOVEIMG() para o caminho salvo no banco
                 res.render("pages/error-500")
             }
 

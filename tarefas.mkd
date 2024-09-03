@@ -31,7 +31,8 @@
 
         "Essa lista pd ser passada e armazena a partir de HTTPS, mantendo sempre os videos em um array de ids de videos para carregar na pagina"
     }
+
 ### Dúvidas
-- Bug de salvar imagem mesmo com erro de validação;
+- Bug de salvar imagem mesmo com erro de validação(remover imagem caso de erros);
 - Problemas ao mudar foto de perfil (Caso coloque um tipo diferente, ele faz um erro estranho.)
 - Como salvar uma imagem padrão para o usuário sem input(se tem como e senão, apenas coloque um escondido).
