@@ -13,25 +13,25 @@ if(erros) {
 }
 %>
 
-<section class="attSenha__modal modal <%=" id="attSenha">
+<section class="attSenha__modal modal <%= modals.senha %>" id="attSenha">
     <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
     <section class="modal__content">
         <form action="/atualizarSenha" method="post" class="form-attSenha">
             <h2 class="subtitle mb-3">Alterar senha</h2>
-            <article class="input__container <%= classeErro.senha %> senha ">
+            <article class="input__container <%= classeErro.senha %> senha alerted-input">
                 <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
                     maxlength="50">
-                <p class="ocultSenha btn"> <i class="bi bi-eye"></i> </p>
+                <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
                 <label for="senha">Senha:</label>
                 <span class="invalid-msg smallText">
                     <%= msgErro.senha %>
                 </span>
-            </article>
+                
+                <span class="smallText alert-msg mb-2">
+                        A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
+                    </span>
+    </article>
             <button class="btn mt-3 submit" type="submit">Alterar</button>
         </form>
     </section>
 </section>
-
-<script src="./js/abrirModal.js"></script>
-<script src="./js/addPerfil.js"></script>
-<script src="./js/input.js"></script>

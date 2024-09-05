@@ -3,6 +3,7 @@ var router = express.Router();
 // MIDDLEWARES -------------
 const middleWares = require("../sessions/middleswares");
 // CONTROLLERS -------------
+const usuariosModel = require("../models/usuariosModel");
 const usuariosController = require("../controller/usuariosController");
 const { findUserById } = require("../models/usuariosModel");
 const { body } = require("express-validator")
@@ -50,7 +51,8 @@ router.get("/security",
                 pageClass: "security",
                 usuario: user[0],
                 token: null,
-                erros: null
+                erros: null,
+                modals: { senha: "", email: "" }
             }
             res.render("./pages/edit-profile", jsonResult)
         } catch (error) {
@@ -79,7 +81,6 @@ router.get("/dados-pessoais",
                     cpf: user[0].CPF_USUARIO,
                     contato: user[0].CONTATO,
                     usuario: user[0].NICKNAME_USUARIO,
-                    email: user[0].EMAIL_USUARIO,
                 },
                 token: null
             }
@@ -108,6 +109,7 @@ router.post("/atualizarDados",
     function (req, res) {
         usuariosController.atualizarUsuario(req, res)
     })
+
 router.post("/atualizarSenha",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
@@ -124,7 +126,27 @@ router.post("/atualizarSenha",
         .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
         .bail(),
     async function (req, res) {
-        usuariosController.attSenha(req, res)
+        usuariosController.attUm(req, res, req.body.senha, 'SENHA_USUARIO');
+    })
+router.post("/atualizarEmail",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    body('email')
+        .isEmail().withMessage('Deve ser um email válido')
+        .bail()
+        .custom(async (email) => {
+            const emailExistente = await usuariosModel.findUserByEmail(email)
+            if (emailExistente.length > 0 ) {
+                if(email == emailExistente[0]){
+                    throw new Error("Digite um e-mail diferente!");
+                }else{
+                    throw new Error("E-mail já em uso! Tente outro");
+                }
+            }
+            return true;
+        }),
+    async function (req, res) {
+        usuariosController.attUm(req, res, req.body.email, 'EMAIL_USUARIO');
     })
 
 router.post("/inativarConta",

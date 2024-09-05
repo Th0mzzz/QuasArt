@@ -1,0 +1,34 @@
+<% 
+let classeErro={ 
+    email:"",
+} 
+let msgErro= {
+    email:"",
+} 
+if(erros) {
+    erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+    })
+}
+%>
+
+<section class="attSenha__modal modal <%= modals.email %>" id="attEmail">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <form action="/atualizarEmail" method="post" class="form-attSenha">
+            <h2 class="subtitle mb-3">Alterar E-mail</h2>
+            <article class="input__container <%= classeErro.email  %>">
+
+                <span class="invalid-msg smallText">
+                  <%= msgErro.email %>
+                </span>
+          
+                <input type="email" name="email" id="email" class="input__control" placeholder="email" required value="<%= usuario.EMAIL_USUARIO %>">
+                <label for="email">Digite seu E-mail</label>
+              </article>
+            <button class="btn mt-3 submit" type="submit">Alterar</button>
+        </form>
+    </section>
+</section>
+

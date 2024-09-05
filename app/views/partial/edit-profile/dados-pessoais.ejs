@@ -5,7 +5,6 @@ let classeErro={
   cpf:"", 
   contato:"", 
   usuario:"", 
-  email:"", 
   senha:"",
 } 
 let msgErro= {
@@ -14,7 +13,6 @@ let msgErro= {
     cpf:"", 
     contato:"", 
     usuario:"", 
-    email:"", 
     senha:"",
   } 
     
@@ -63,15 +61,6 @@ let msgErro= {
       </span>
       <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required value="<%= valores.usuario %>">
       <label for="usuario">Crie seu Usuário</label>
-    </article>
-    <article class="input__container <%= classeErro.email  %>">
-
-      <span class="invalid-msg smallText">
-        <%= msgErro.email %>
-      </span>
-
-      <input type="email" name="email" id="email" class="input__control" placeholder="email" required value="<%= valores.email %>">
-      <label for="email">Digite seu E-mail</label>
     </article>
     <!-- <article class="input__container <%= classeErro.senha %> senha alerted-input">
                 <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required

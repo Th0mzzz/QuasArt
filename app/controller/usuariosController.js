@@ -288,7 +288,7 @@ const usuariosController = {
                     usuario: user[0],
                     modalAberto: true,
                     erros: null,
-                    token: {msg:'Falha ao carregar a imagem!', type:'danger'}
+                    token: { msg: 'Falha ao carregar a imagem!', type: 'danger' }
                 }
                 return res.render("./pages/edit-profile", jsonResult)
             } else {
@@ -347,12 +347,11 @@ const usuariosController = {
                 console.log("ERROR, usuário não logado")
                 res.render("./pages/edit-profile", jsonResult)
             } else {
-                const { nome, nascimento, usuario, email } = req.body
+                const { nome, nascimento, usuario } = req.body
                 dadosForm = {
                     NOME_USUARIO: nome,
                     NICKNAME_USUARIO: usuario,
                     DATA_NASC_USUARIO: nascimento,
-                    EMAIL_USUARIO: email,
                 }
                 try {
                     const resultados = await usuariosModel.updateUser(dadosForm, req.session.autenticado.id);
@@ -378,7 +377,6 @@ const usuariosController = {
                                     cpf: user[0].CPF_USUARIO,
                                     contato: user[0].CONTATO,
                                     usuario: user[0].NICKNAME_USUARIO,
-                                    email: user[0].EMAIL_USUARIO,
                                 },
                                 token: { msg: "Perfil atualizado com sucesso!", type: "success" }
                             }
@@ -395,7 +393,6 @@ const usuariosController = {
                                     cpf: user[0].CPF_USUARIO,
                                     contato: user[0].CONTATO,
                                     usuario: user[0].NICKNAME_USUARIO,
-                                    email: user[0].EMAIL_USUARIO,
                                 },
                                 token: { msg: "Nenhuma alteração feita", type: "" }
                             }
@@ -410,40 +407,49 @@ const usuariosController = {
 
         }
     },
-    attSenha: async (req,res) =>{
+    attUm: async (req, res, campo, campoBd) => {
         let errors = validationResult(req)
         if (!errors.isEmpty()) {
             console.log(errors)
+            var modals = campoBd == "SENHA_USUARIO"
+                ? {
+                    senha: "show", email: ""
+                } : {
+                    senha: "", email: "show"
+                }
             const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
 
             const jsonResult = {
-                page: "../partial/edit-profile/index",
+                page: "../partial/edit-profile/security",
                 pageClass: "index",
                 usuario: user[0],
-                modalAberto: true,
-                erros: null,
+                modals: modals,
+                erros: errors,
                 token: null
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
             try {
-                const senha = req.body.senha
-                let hashSenha = bcrypt.hashSync(senha, salt);
-                let resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
+                if (campoBd == 'SENHA_USUARIO') {
+                    let hashSenha = bcrypt.hashSync(campo, salt);
+                    var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
+                } else {
+                    var resultado = await usuariosModel.updateUser({ EMAIL_USUARIO: campo }, req.session.autenticado.id)
+                }
                 const user = await usuariosModel.findUserById(req.session.autenticado.id)
-                console.log("Senha alterada")
                 console.log(resultado)
+                var msg = campoBd == "SENHA_USUARIO" ? "Senha alterada com sucesso!" : "Email atualizado com sucesso"
                 const jsonResult = {
                     page: "../partial/edit-profile/security",
                     pageClass: "security",
                     usuario: user[0],
-                    modalAberto: false,
+                    modals: { senha: "", email: "" },
                     erros: null,
-                    token: { msg: "Senha alterada com sucesso!", type: "success" }
+                    token: { msg: msg, type: "success" }
                 }
                 res.render("./pages/edit-profile", jsonResult)
             } catch (error) {
-                console.log("Erro ao atualizar senha")
+                console.log("Erro ao atualizar perfil")
                 console.log(error)
                 res.render("pages/error-500")
             }
