@@ -160,8 +160,9 @@ const usuariosController = {
 
         //  Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de cadastro novamente com erros, senão pego tds os dados do form, crio um objeto com as colunas do banco e coloco os dados nela(obs: criptografo a senha a partir do bcrypt e armazeno o hash dela.), por fim utilizo uma funçao do banco para inserir no banco, se tiver erros ele mostra a pagina de erro 500.
         let errors = validationResult(req)
-        console.log(errors)
         if (!errors.isEmpty()) {
+            console.log("Erros de validação do cadastro")
+            console.log(errors)
             const jsonResult = {
                 page: "../partial/template-login/cadastro",
                 modal: "fechado",
@@ -186,6 +187,7 @@ const usuariosController = {
                 const resultados = await usuariosModel.createUser(dadosForm);
                 const userBd = await usuariosModel.findUserById(resultados.insertId);
                 req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
+                console.log("Resultado do createUser:")
                 console.log(resultados[0])
                 console.log("Cadastrado!")
                 req.session.logado = 0
@@ -276,48 +278,48 @@ const usuariosController = {
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
-            try {
-                var caminhoFoto = req.session.autenticado.foto
 
-                if (!req.file) {
-                    console.log("falha ao carregar arquivo!")
-                    const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
-                    const jsonResult = {
-                        page: "../partial/edit-profile/index",
-                        pageClass: "index",
-                        usuario: user[0],
-                        modalAberto: true,
-                        erros: null,
-                        token: null
-                    }
-                    res.render("./pages/edit-profile", jsonResult)
-                } else {
-                    if (caminhoFoto != req.file.filename && caminhoFoto !=  "perfil-padrao.webp") {
-                        removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
-                    }
-                    caminhoFoto = req.file.filename
-                }
-
-                let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
-                const user = await usuariosModel.findUserById(req.session.autenticado.id)
-
-                req.session.autenticado.foto = caminhoFoto
-                console.log(resultado)
+            if (!req.file) {
+                console.log("falha ao carregar arquivo!")
+                const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
                 const jsonResult = {
                     page: "../partial/edit-profile/index",
                     pageClass: "index",
                     usuario: user[0],
-                    modalAberto: false,
+                    modalAberto: true,
                     erros: null,
-                    token: { msg: "Foto de usuário atualizada", type: "success" }
+                    token: {msg:'Falha ao carregar a imagem!', type:'danger'}
                 }
-                res.render("./pages/edit-profile", jsonResult)
+                return res.render("./pages/edit-profile", jsonResult)
+            } else {
+                try {
+                    var caminhoFoto = req.session.autenticado.foto
+                    if (caminhoFoto != req.file.filename && caminhoFoto != "perfil-padrao.webp") {
+                        removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
+                    }
+                    caminhoFoto = req.file.filename
+                    let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
+                    const user = await usuariosModel.findUserById(req.session.autenticado.id)
 
-            } catch (errors) {
-                console.log(errors)
-                res.render("pages/error-500")
+                    req.session.autenticado.foto = caminhoFoto
+                    console.log(resultado)
+                    const jsonResult = {
+                        page: "../partial/edit-profile/index",
+                        pageClass: "index",
+                        usuario: user[0],
+                        modalAberto: false,
+                        erros: null,
+                        token: { msg: "Foto de usuário atualizada", type: "success" }
+                    }
+                    res.render("./pages/edit-profile", jsonResult)
 
+                } catch (errors) {
+                    console.log(errors)
+                    res.render("pages/error-500")
+
+                }
             }
+
         }
 
     },
@@ -404,6 +406,46 @@ const usuariosController = {
                     console.log(erros)
                     res.render("pages/error-500")
                 }
+            }
+
+        }
+    },
+    attSenha: async (req,res) =>{
+        let errors = validationResult(req)
+        if (!errors.isEmpty()) {
+            console.log(errors)
+            const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
+
+            const jsonResult = {
+                page: "../partial/edit-profile/index",
+                pageClass: "index",
+                usuario: user[0],
+                modalAberto: true,
+                erros: null,
+                token: null
+            }
+            res.render("./pages/edit-profile", jsonResult)
+        } else {
+            try {
+                const senha = req.body.senha
+                let hashSenha = bcrypt.hashSync(senha, salt);
+                let resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
+                const user = await usuariosModel.findUserById(req.session.autenticado.id)
+                console.log("Senha alterada")
+                console.log(resultado)
+                const jsonResult = {
+                    page: "../partial/edit-profile/security",
+                    pageClass: "security",
+                    usuario: user[0],
+                    modalAberto: false,
+                    erros: null,
+                    token: { msg: "Senha alterada com sucesso!", type: "success" }
+                }
+                res.render("./pages/edit-profile", jsonResult)
+            } catch (error) {
+                console.log("Erro ao atualizar senha")
+                console.log(error)
+                res.render("pages/error-500")
             }
 
         }

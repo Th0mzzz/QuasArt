@@ -1,13 +1,15 @@
 .mudarFoto__modal {
-    & .form__mudar-foto{
+    & .form__mudar-foto {
         display: flex;
         flex-flow: column nowrap;
         align-items: center;
         color: var(--cor-texto);
-        & .btn{
+
+        & .btn {
             width: 100%;
         }
     }
+
     & .input-file.perfil {
         min-width: 180px;
         width: 180px;
@@ -29,5 +31,11 @@
         left: 0;
         bottom: 0;
         border-radius: 50%;
+    }
+}
+
+.attSenha__modal {
+    & .input__container{
+        min-width: 400px;
     }
 }

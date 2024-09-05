@@ -1,0 +1,37 @@
+<% 
+let classeErro={ 
+    senha:"",
+} 
+let msgErro= {
+    senha:"",
+} 
+if(erros) {
+    erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+    })
+}
+%>
+
+<section class="attSenha__modal modal <%=" id="attSenha">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <form action="/atualizarSenha" method="post" class="form-attSenha">
+            <h2 class="subtitle mb-3">Alterar senha</h2>
+            <article class="input__container <%= classeErro.senha %> senha ">
+                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
+                    maxlength="50">
+                <p class="ocultSenha btn"> <i class="bi bi-eye"></i> </p>
+                <label for="senha">Senha:</label>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.senha %>
+                </span>
+            </article>
+            <button class="btn mt-3 submit" type="submit">Alterar</button>
+        </form>
+    </section>
+</section>
+
+<script src="./js/abrirModal.js"></script>
+<script src="./js/addPerfil.js"></script>
+<script src="./js/input.js"></script>

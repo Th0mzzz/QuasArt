@@ -1,7 +1,6 @@
 const fs = require("fs")
 
 function removeImg(caminho) {
-    console.log(caminho)
     fs.unlink(caminho, function (error) {
         if (error && error.code == "ENOENT") {
             console.log("Arquivo não existe, não foi possível apagar!");
