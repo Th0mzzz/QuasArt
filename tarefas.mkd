@@ -9,17 +9,15 @@
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
-- Alterar senha do usuário;
 - Validar proporção das imagens dos formulários (cadastro, publicações, etc.) e definir seus tamanhos;
 
 
 ### Banco de dados
-- 
+- Adicionar campo para tipo de usuario + table de tipo de usuário(cliente e admin por enquanto) e status de usuário.
 
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
 - Implementação do Google ADS;
-
 
 ### Brainstorm
 - Página de vídeos - função para trazer novos videos = {

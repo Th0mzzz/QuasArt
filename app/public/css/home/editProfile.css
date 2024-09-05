@@ -89,7 +89,7 @@
         max-width: 768px;
         margin: auto; 
         margin-bottom: 3rem;
-        padding:4rem;
+        padding:clamp(1rem, 10vw, 3rem);
         border: 2px solid var(--cor-secundaria);
         border-radius: 20px;
 
