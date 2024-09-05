@@ -36,6 +36,8 @@
 
 .attSenha__modal {
     & .input__container{
-        min-width: 400px;
+        min-width: 200px;
+        width: 80vw;
+        max-width: 400px;
     }
 }
