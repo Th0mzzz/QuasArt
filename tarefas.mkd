@@ -9,8 +9,7 @@
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
-- Validar proporção das imagens dos formulários (cadastro, publicações, etc.) e definir seus tamanhos;
-
+- Adicionar função para excluir img
 
 ### Banco de dados
 - Adicionar campo para tipo de usuario + table de tipo de usuário(cliente e admin por enquanto) e status de usuário.

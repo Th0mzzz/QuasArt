@@ -19,14 +19,15 @@ const createFileFilter = (extensoesPermitidas) => {
 };
 
 
-// função para validar a proporção da imagem que está sendo passada
+// função para validar a proporção da imagem que está sendo passada, onde eu pego as informações da 
+// imagem a partir do buffer do req.file e pego sua proporção, comparando-a com a proportion exigida e vendo se está acima da margem de erro.
 
 const validarProporcaoImagem = async (buffer, proportion, margemErro) => {
     try {
         const metadata = await sharp(buffer).metadata();
         const { width, height } = metadata;
         const imageProporcao = width / height;
-        if (Math.abs(proportion - imageProporcao) > margemErro) {
+        if (Math.abs(imageProporcao - proportion) > margemErro) {
             return false
         }
         return true
@@ -89,7 +90,7 @@ module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg',
                 } else if (req.file && caminho == null) {
                     try {
                         const isProporcaoValida = true;
-                        if (proportion && margemErro) { isProporcaoValida = await validarProporcaoImagem(req.file.buffer, proportion, margemErro); }
+                        if (proportion && margemErro) { isProporcaoValida = await validarProporcaoImagem(req.file.buffer, proportion, margemErro);  }
 
                         if (!isProporcaoValida) {
                             req.session.erroMulter = {

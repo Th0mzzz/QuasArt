@@ -25,7 +25,14 @@ const destinoDeFalha = {
 
 // pagina inicial
 router.get("/", function (req, res) {
-    const token = req.session.logado == 0 && req.session.autenticado.autenticado != null ? { msg: "Bem-vindo ao Quasart!", usuario: req.session.autenticado.autenticado } : null
+    let token = null
+    if (req.session.logado == 0 && req.session.autenticado.autenticado != null) {
+        let msg = "Muito bom te ter de volta,"
+        if(req.session.cadastro){msg = "Bem-vindo(a) ao Quasart,"}
+        token = { msg: msg, usuario: req.session.autenticado.autenticado }
+        req.session.logado = req.session.logado + 1
+    }
+   
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/inicial-home",

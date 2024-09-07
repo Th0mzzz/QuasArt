@@ -1,14 +1,34 @@
+<% let classeErro = {
+    imgPerfil:''
+}
+
+let msgErro = {
+    imgPerfil:""
+}
+
+if(erros) {
+    erros.errors.forEach(error=>{
+      classeErro[error.path] = 'invalid';
+      msgErro[error.path] = error.msg
+    })
+  }
+
+%>
 <section class="mudarFoto__modal modal" id="mudarFotoModal">
     <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
     <section class="modal__content">
 
         <form action="/mudarFoto" method="post" enctype="multipart/form-data" class="form__mudar-foto">
-            <h2 class="subtitle">Mudar foto de perfil</h2>
+            <h2 class="subtitle" style="color: var(--cor-texto);">Mudar foto de perfil</h2>
 
-            <article class="input__container input-file perfil" data-capaContainer>
+            <article class="input__container input-file perfil alerted-input" data-capaContainer>
                 <span class="invalid-msg smallText pt-3">
+                    <%= msgErro.imgPerfil %>
                 </span>
-                <input type="file" name="imgPerfil" id="imgPerfil" class="input__control imgPerfil"
+                <span class="smallText alert-msg">
+                    A imagem deve ter uma proporção de 3:4.
+                </span>
+                <input type="file" name="imgPerfil" id="imgPerfil" class="input__control imgPerfil <%= classeErro.imgPerfil %>"
                     placeholder="Selecione sua capa de imagem" data-inputCapa required>
                 <label for="imgPerfil"></label>
                 <label for="imgPerfil" class="icon"><i class="bi bi-download"></i></label>

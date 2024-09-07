@@ -221,6 +221,7 @@
 
         & input {
             cursor: no-drop;
+            color: #2C2C2C;
         }
     }
 }

@@ -9,7 +9,7 @@ const { findUserById } = require("../models/usuariosModel");
 const { body } = require("express-validator")
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'], 3 / 4, 0.5);
+const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'], 3 / 4, 0);
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -30,6 +30,7 @@ router.get("/edit-profile",
                 pageClass: "index",
                 usuario: user[0],
                 modalAberto: false,
+                erros:null,
                 token: null
             }
             res.render("./pages/edit-profile", jsonResult)

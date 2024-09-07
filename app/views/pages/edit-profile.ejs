@@ -28,8 +28,29 @@
             </h4>
         <% } %>
         <header class="header__edit-profile">
-            <a href="<%=pageClass == 'index'?'/profile':'/edit-profile' %>" 
-            class="btn homebtn"><i class="bi bi-arrow-left"></i></a>
+            <article class="nav__btns">
+                <a href="<%=pageClass == 'index'?'/profile':'/edit-profile' %>" 
+                    class="btn homebtn"><i class="bi bi-arrow-left"></i></a>
+                <button class="btn-icon ms-1 me-1 mt-2" id="btnMode"><i class="bi bi-brightness-high"></i></button>
+                <button class="btn-icon ms-1 me-1 mt-2" id="access" title="Acessibilidade"><i class="bi bi-universal-access-circle"></i></button>
+                
+                <article class="access__container" id="accessContainer">
+                    <article class="access__content">
+                        <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar
+                            fonte
+                        </button>
+                        <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte
+                        </button>
+                        <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
+                            links</button>
+                        <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
+                            fácil</button>
+                        <button class="access__link link pb-2" id="reset"><i
+                                class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
+                    </article>
+                </article>
+            </article>
+            
             <h1 class="supertitle">
                 <%= tituloPage %>
             </h1>
@@ -37,7 +58,7 @@
         <main class="main__edit-profile">
             <section class="index__container">
                 <header class="header__user">
-                    <h3 class="subtitle">
+                    <h3 class="subtitle" style="color: var(--cor-texto);">
                         <%= usuario.NICKNAME_USUARIO %>
                     </h3>
                     <article class="foto__perfil <%= pageClass == 'index' ? 'mudar__foto-btn' : '' %>" data-openmodal="#mudarFotoModal">
@@ -51,7 +72,8 @@
             </section>
 
         </main>
-
+        <script src="./js/colorMode.js"></script>
+        <script src="./js/access.js"></script>
     </body>
 
 </html>

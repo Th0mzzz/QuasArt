@@ -16,9 +16,9 @@ const resenhaControl = {
     ],
     postarResenha: async (req, res) => {
         let errors = validationResult(req)
-        const erroMulter = req.session.erroMulter;
+        let erroMulter = req.session.erroMulter;
         if (!errors.isEmpty() || erroMulter != null) {
-
+            
             if(!errors.isEmpty()){
                 var listaErros = errors
             }else{
@@ -26,8 +26,7 @@ const resenhaControl = {
             }
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
-                removeImg()
-
+                removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
             }
             console.log(listaErros)
 

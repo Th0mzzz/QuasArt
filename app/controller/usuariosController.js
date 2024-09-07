@@ -191,6 +191,7 @@ const usuariosController = {
                 console.log(resultados[0])
                 console.log("Cadastrado!")
                 req.session.logado = 0
+                req.session.cadastro = true
                 res.redirect("/")
             } catch (erros) {
                 console.log(erros)
@@ -213,6 +214,8 @@ const usuariosController = {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     console.log("Logado!")
+                    req.session.cadastro = false
+
                     res.redirect("/")
                 } else {
                     const jsonResult = {
@@ -264,8 +267,20 @@ const usuariosController = {
     },
     mudarFoto: async (req, res) => {
         let errors = validationResult(req)
-        if (!errors.isEmpty()) {
-            console.log(errors)
+        let erroMulter = req.session.erroMulter
+        if (!errors.isEmpty() || erroMulter != null) {
+
+            if (!errors.isEmpty()) {
+                var listaErros = errors
+            } else {
+                var listaErros = { formatter: null, errors: [] }
+            }
+            if (erroMulter != null) {
+                listaErros.errors.push(erroMulter)
+                removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
+            }
+            console.log(listaErros)
+
             const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
 
             const jsonResult = {
@@ -273,10 +288,11 @@ const usuariosController = {
                 pageClass: "index",
                 usuario: user[0],
                 modalAberto: true,
-                erros: null,
+                erros: listaErros,
                 token: null
             }
             res.render("./pages/edit-profile", jsonResult)
+
         } else {
 
             if (!req.file) {
