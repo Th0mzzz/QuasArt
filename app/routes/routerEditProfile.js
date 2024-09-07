@@ -9,7 +9,7 @@ const { findUserById } = require("../models/usuariosModel");
 const { body } = require("express-validator")
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'],);
+const uploadPerfil = upload("./app/public/img/imagens-servidor/perfil/", 3, ['jpeg', 'jpg', 'png'], 3 / 4, 0.5);
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
     page: "../partial/template-login/login",
@@ -39,7 +39,6 @@ router.get("/edit-profile",
 
         }
     });
-
 router.get("/security",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha),
@@ -61,7 +60,6 @@ router.get("/security",
 
         }
     });
-
 router.get("/dados-pessoais",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha),
@@ -92,16 +90,14 @@ router.get("/dados-pessoais",
         }
     }
 )
-
+// ---------------------------POSTS-----------------
 router.post("/mudarFoto",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     uploadPerfil("imgPerfil"),
     function (req, res) {
         usuariosController.mudarFoto(req, res)
-    }
-)
-
+    })
 router.post("/atualizarDados",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
@@ -109,7 +105,6 @@ router.post("/atualizarDados",
     function (req, res) {
         usuariosController.atualizarUsuario(req, res)
     })
-
 router.post("/atualizarSenha",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
@@ -136,11 +131,13 @@ router.post("/atualizarEmail",
         .bail()
         .custom(async (email) => {
             const emailExistente = await usuariosModel.findUserByEmail(email)
-            if (emailExistente.length > 0 ) {
-                if(email == emailExistente[0]){
+            if (emailExistente) {
+                if (email == emailExistente[0].EMAIL_USUARIO) {
                     throw new Error("Digite um e-mail diferente!");
-                }else{
-                    throw new Error("E-mail já em uso! Tente outro");
+                } else {
+                    if (emailExistente.length > 0) {
+                        throw new Error("E-mail já em uso! Tente outro");
+                    }
                 }
             }
             return true;
@@ -148,7 +145,6 @@ router.post("/atualizarEmail",
     async function (req, res) {
         usuariosController.attUm(req, res, req.body.email, 'EMAIL_USUARIO');
     })
-
 router.post("/inativarConta",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),

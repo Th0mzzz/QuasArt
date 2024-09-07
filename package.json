@@ -109,6 +109,7 @@
     "serve-static": "^1.15.0",
     "set-function-length": "^1.2.2",
     "setprototypeof": "^1.2.0",
+    "sharp": "^0.33.5",
     "side-channel": "^1.0.6",
     "simple-update-notifier": "^2.0.0",
     "sqlstring": "^2.3.3",

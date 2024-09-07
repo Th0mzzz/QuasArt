@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const resenhaModel = require("../models/resenhasModel");
 const usuariosModel = require("../models/usuariosModel");
+const { removeImg } = require("../util/removeImg");
 
 const resenhaControl = {
     validacaoResenha: [
@@ -25,6 +26,8 @@ const resenhaControl = {
             }
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
+                removeImg()
+
             }
             console.log(listaErros)
 
