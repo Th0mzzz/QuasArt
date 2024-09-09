@@ -14,14 +14,14 @@ if(erros) {
   }
 
 %>
-<section class="mudarFoto__modal modal" id="mudarFotoModal">
+<section class="mudarFoto__modal modal <%= modalAberto ? 'show' : '' %>" id="mudarFotoModal">
     <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
     <section class="modal__content">
 
         <form action="/mudarFoto" method="post" enctype="multipart/form-data" class="form__mudar-foto">
             <h2 class="subtitle" style="color: var(--cor-texto);">Mudar foto de perfil</h2>
 
-            <article class="input__container input-file perfil alerted-input" data-capaContainer>
+            <article class="input__container input-file perfil alerted-input <%= classeErro.imgPerfil %>" data-capaContainer>
                 <span class="invalid-msg smallText pt-3">
                     <%= msgErro.imgPerfil %>
                 </span>

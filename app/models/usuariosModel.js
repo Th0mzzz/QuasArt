@@ -21,7 +21,6 @@ const usuariosModel = {
     findUserByNickname: async (nickname) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where NICKNAME_USUARIO = ?", [nickname])
-            console.log(resultados)
             return resultados
 
         } catch (error) {
@@ -32,7 +31,6 @@ const usuariosModel = {
     findUserByEmail: async (email) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where EMAIL_USUARIO = ?", [email])
-            console.log(resultados)
             return resultados
 
         } catch (error) {
@@ -43,7 +41,6 @@ const usuariosModel = {
     findUserByCpf: async (cpf) => {
         try {
             const [resultados] = await pool.query("select * from USUARIOS where CPF_USUARIO = ?", [cpf])
-            console.log(resultados)
             return resultados
 
         } catch (error) {
@@ -54,7 +51,6 @@ const usuariosModel = {
     findPasswordByUser: async (usuario) => {
         try {
             const [resultados] = await pool.query("SELECT SENHA_USUARIO FROM USUARIOS WHERE NICKNAME_USUARIO = ?", [usuario])
-            console.log(resultados)
             return resultados
 
         } catch (error) {

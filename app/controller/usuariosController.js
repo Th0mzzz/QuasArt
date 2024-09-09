@@ -3,7 +3,10 @@ const { body, validationResult } = require("express-validator")
 const moment = require("moment")
 var bcrypt = require("bcryptjs")
 const { removeImg } = require("../util/removeImg")
+const resenhaModel = require("../models/resenhasModel")
 var salt = bcrypt.genSaltSync(8)
+
+
 const usuariosController = {
 
     // Validação do form de cadastro
@@ -200,6 +203,7 @@ const usuariosController = {
 
         }
     },
+
     entrar: async (req, res) => {
         // Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de login novamente com erros, senão busco a partir do um usuário a partir do digitado, e então eu por fim, verifico se o usuario do banco existe e se o hash da senha digitada no form bate com o hash da senha que estava no banco e se a sessão não é null. Se tudo estiver correto ele renderiza a page home, senão ele manda pra page de login como usuário ou senha incorretos
         let errors = validationResult(req)
@@ -213,9 +217,8 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
-                    console.log("Logado!")
+                    console.log(`---------- Usuário ${userBd[0].NICKNAME_USUARIO} logou --------------`)
                     req.session.cadastro = false
-
                     res.redirect("/")
                 } else {
                     const jsonResult = {
@@ -244,18 +247,37 @@ const usuariosController = {
             } else if (req.session.autenticado && req.session.autenticado.autenticado) {
                 var user = await usuariosModel.findUserById(req.session.autenticado.id)
             }
-            var isUser = false
 
+            const resenhasUser = await resenhaModel.buscarPorIdDeUser(user[0].ID_USUARIO)
+            const contagemResenhas = await resenhaModel.contarResenhasPorId(user[0].ID_USUARIO)
+            
+
+            var isUser = false
             if (user && req.session.autenticado) {
                 if (user[0].ID_USUARIO === req.session.autenticado.id) {
                     isUser = true
                 }
+            }
+            let postagens = contagemResenhas['count(*)'] + 0 + 0
+            
+            const estatisticas = {
+                postagens:postagens,
+                seguidores:0,
+                curtidas:0,
+            }
+            
+            const posts = {
+                resenhas: resenhasUser,
+                videos:[],
+                fichas:[],
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
                 classePagina: isUser ? "perfil" : "",
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                 usuario: user[0],
+                estatisticas: estatisticas,
+                posts: posts,
                 isUser: isUser,
                 token: null
             }
@@ -277,7 +299,7 @@ const usuariosController = {
             }
             if (erroMulter != null) {
                 listaErros.errors.push(erroMulter)
-                removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
+                if (req.file) removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
             }
             console.log(listaErros)
 

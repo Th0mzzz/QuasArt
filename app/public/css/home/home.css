@@ -203,7 +203,11 @@
         color: var(--cor-texto);
         position: relative;
         flex-grow: 1;
-
+        & .text{
+            width: 100%;
+            word-wrap: break-word;
+            padding-right: .3rem;
+        }
         & .btn {
             border: 10px solid var(--cor-containers);
             border-radius: 50%;

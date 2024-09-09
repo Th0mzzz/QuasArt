@@ -1,7 +1,9 @@
 const express = require("express");
 const session = require("express-session")
 const app = express();
-const port = 3306;
+const dotenv = require("dotenv");
+dotenv.config();
+const port = process.env.APP_PORT;
 app.use((session({
   secret: "QuasartSession",
   resave: false,

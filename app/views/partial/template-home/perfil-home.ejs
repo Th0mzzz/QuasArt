@@ -30,7 +30,7 @@
 
                                     <article class="item">
                                         <p class="link">Postagens</p>
-                                        <h3 class="subtitle">3</h3>
+                                        <h3 class="subtitle"><%= estatisticas.postagens %></h3>
                                     </article>
                                     <article class="item">
                                         <p class="link">Seguidores</p>
@@ -95,42 +95,31 @@
         <section class="postagens__section " data-section="resenhas">
             <h3 class="title">Resenhas</h3>
             <section class="conteudo-row p-1">
-                <article class="card__resenha">
-                    <header class="card__img">
-                        <a href="#">
-                            <img class="img__resenha" src="./img/cards/card-resenha-teste.png" alt="imagem da resenha">
-                        </a>
-                        <article class="usuario">
-                            <img src="./img/perfil-padrao.webp" alt="imagem do autor">
-                            <a href="/profile" class="link">Th0mzzz</a>
+
+                <% if(posts && posts.resenhas){
+
+                    posts.resenhas.forEach(function(resenha){ %>
+
+                        <article class="card__resenha">
+                            <header class="card__img">
+                                <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                    <img class="img__resenha" src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>" alt="imagem da resenha">
+                                </a>
+                                <!-- <article class="usuario">
+                                    <img src="./img/perfil-padrao.webp" alt="imagem do autor">
+                                    <a href="/profile" class="link">Th0mzzz</a>
+                                </article> -->
+                            </header>
+                            <footer class="card__content">
+                                <h5 class="link"><%= resenha.TITULO_RESENHA %></h5>
+                                <p class="text mt-2"><%= resenha.DESCR_RESENHA %></p>
+                                <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                            </footer>
                         </article>
-                    </header>
-                    <footer class="card__content">
-                        <h5 class="link">Carros 2! Retorno do Marquinhos</h5>
-                        <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.Lorem
-                            Ipsum is simply dummy text.</p>
-                        <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                    </footer>
-                </article>
-                <article class="card__resenha">
-                    <header class="card__img">
-                        <a href="#">
-                            <img class="img__resenha" src="./img/cards/card-resenha-teste2.png" alt="imagem da resenha">
-                        </a>
-                        <article class="usuario">
-                            <img src="./img/perfil-padrao.webp" alt="imagem do autor">
-                            <a href="/profile" class="link">Th0mzzz</a>
-                        </article>
-                    </header>
-                    <footer class="card__content">
-                        <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
-                        <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry.Lorem
-                            Ipsum is simply dummy text.</p>
-                        <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                    </footer>
-                </article>
+
+                    <% })
+                 } %>
+             
             </section>
         </section>
         <section class="postagens__section " data-section="videos">
