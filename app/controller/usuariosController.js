@@ -142,9 +142,7 @@ const usuariosController = {
         body('usuario')
             .isLength({ min: 4 }).withMessage("Usuário deve ter pelo menos 4 caracteres!"),
         // mesma coisa do telefone so que para email
-        body('email')
-            .isEmail().withMessage('Deve ser um email válido'),
-        // verifica se a senha tem o tamanho minimo de 8 e no max 30 digitos, se pelo menos 1 caracter especial, 1 maiusculo e 1 minusculo, tudo a partir de regex.
+        
     ],
     regrasValidacaoEntrar: [
         // verifica se o usuário tem no minimo 4 caracteres ou no maximo 30.
@@ -367,85 +365,81 @@ const usuariosController = {
         const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         let errors = validationResult(req)
         if (!errors.isEmpty()) {
+            console.log(errors)
             const jsonResult = {
                 page: "../partial/edit-profile/dados-pessoais",
                 pageClass: "dadosPessoais",
                 usuario: user[0],
                 erros: errors,
-                valores: req.body
+                valores: req.body,
+                token: null
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
-            if (!req.session.autenticado) {
-                const jsonResult = {
-                    page: "../partial/edit-profile/dados-pessoais",
-                    pageClass: "dadosPessoais",
-                    usuario: user[0],
-                    erros: null,
-                    valores: req.body
-                }
-                console.log("ERROR, usuário não logado")
-                res.render("./pages/edit-profile", jsonResult)
-            } else {
-                const { nome, nascimento, usuario } = req.body
-                dadosForm = {
-                    NOME_USUARIO: nome,
-                    NICKNAME_USUARIO: usuario,
-                    DATA_NASC_USUARIO: nascimento,
-                }
-                try {
-                    const resultados = await usuariosModel.updateUser(dadosForm, req.session.autenticado.id);
 
-                    if (!resultados.isEmpty) {
-                        const user = await usuariosModel.findUserById(req.session.autenticado.id);
-                        const data = new Date(user[0].DATA_NASC_USUARIO)
-                        const dataFormatada = data.toISOString().split('T')[0];
-                        if (resultados.changedRows == 1) {
-                            req.session.autenticado = {
-                                autenticado: user[0].NOME_USUARIO,
-                                id: user[0].ID_USUARIO,
-                                foto: user[0].CAMINHO_FOTO
-                            }
-                            const jsonResult = {
-                                page: "../partial/edit-profile/dados-pessoais",
-                                pageClass: "dadosPessoais",
-                                usuario: user[0],
-                                erros: null,
-                                valores: {
-                                    nome: user[0].NOME_USUARIO,
-                                    nascimento: dataFormatada,
-                                    cpf: user[0].CPF_USUARIO,
-                                    contato: user[0].CONTATO,
-                                    usuario: user[0].NICKNAME_USUARIO,
-                                },
-                                token: { msg: "Perfil atualizado com sucesso!", type: "success" }
-                            }
-                            res.render("./pages/edit-profile", jsonResult)
-                        } else {
-                            const jsonResult = {
-                                page: "../partial/edit-profile/dados-pessoais",
-                                pageClass: "dadosPessoais",
-                                usuario: user[0],
-                                erros: null,
-                                valores: {
-                                    nome: user[0].NOME_USUARIO,
-                                    nascimento: dataFormatada,
-                                    cpf: user[0].CPF_USUARIO,
-                                    contato: user[0].CONTATO,
-                                    usuario: user[0].NICKNAME_USUARIO,
-                                },
-                                token: { msg: "Nenhuma alteração feita", type: "" }
-                            }
-                            res.render("./pages/edit-profile", jsonResult)
-                        }
-                    }
-                } catch (erros) {
-                    console.log(erros)
-                    res.render("pages/error-500")
-                }
+            const { nome, nascimento, usuario } = req.body
+            dadosForm = {
+                NOME_USUARIO: nome,
+                NICKNAME_USUARIO: usuario,
+                DATA_NASC_USUARIO: nascimento,
             }
 
+            try {
+                const resultados = await usuariosModel.updateUser(dadosForm, req.session.autenticado.id);
+
+                if (!resultados.isEmpty) {
+                    const user = await usuariosModel.findUserById(req.session.autenticado.id);
+                    const data = new Date(user[0].DATA_NASC_USUARIO)
+                    const dataFormatada = data.toISOString().split('T')[0];
+                    if (resultados.changedRows == 1) {
+                        req.session.autenticado = {
+                            autenticado: user[0].NOME_USUARIO,
+                            id: user[0].ID_USUARIO,
+                            foto: user[0].CAMINHO_FOTO
+                        }
+                        const jsonResult = {
+                            page: "../partial/edit-profile/dados-pessoais",
+                            pageClass: "dadosPessoais",
+                            usuario: user[0],
+                            erros: null,
+                            valores: {
+                                nome: user[0].NOME_USUARIO,
+                                nascimento: dataFormatada,
+                                cpf: user[0].CPF_USUARIO,
+                                contato: user[0].CONTATO,
+                                usuario: user[0].NICKNAME_USUARIO,
+                            },
+                            token: { msg: "Perfil atualizado com sucesso!", type: "success" }
+                        }
+                        console.log("Perfil atualizado com sucesso!")
+                        res.render("./pages/edit-profile", jsonResult)
+                    } else {
+                        const jsonResult = {
+                            page: "../partial/edit-profile/dados-pessoais",
+                            pageClass: "dadosPessoais",
+                            usuario: user[0],
+                            erros: null,
+                            valores: {
+                                nome: user[0].NOME_USUARIO,
+                                nascimento: dataFormatada,
+                                cpf: user[0].CPF_USUARIO,
+                                contato: user[0].CONTATO,
+                                usuario: user[0].NICKNAME_USUARIO,
+                            },
+                            token: { msg: "Nenhuma alteração feita", type: "" }
+                        }
+                        console.log("Nenhuma alteração feita")
+
+                        res.render("./pages/edit-profile", jsonResult)
+                    }
+                }
+            } catch (erros) {
+                console.log(erros)
+                res.render("pages/error-500")
+            }
         }
+
+
     },
     attUm: async (req, res, campo, campoBd) => {
         let errors = validationResult(req)

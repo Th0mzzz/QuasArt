@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ROUTES
-var rotas = require("./app/routes/router");
+var rotas = require("./app/routes/routerHome");
 app.use("/", rotas);
 
 var rotasAdm = require("./app/routes/routerAdm");
@@ -28,6 +28,9 @@ app.use("/", rotasAdm);
 
 var rotasEditProfile = require("./app/routes/routerEditProfile");
 app.use("/", rotasEditProfile);
+
+var rotasConta = require("./app/routes/routerConta");
+app.use("/", rotasConta);
 
 app.use((req, res, next) => {
   res.status(404).render("pages/error-404.ejs");
