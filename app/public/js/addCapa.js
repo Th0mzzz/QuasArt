@@ -1,8 +1,8 @@
 const capaContainer = document.querySelector("[data-capaContainer]");
 const inputFileCapa = document.querySelector("[data-inputCapa]");
 const maxFileSize = 2 * 1024 * 1024;
-const aspectRatio = inputFileCapa.classList.contains("capaResenha") ? 4 / 3 : 9 / 16 ;
-const margemErro = 0.2
+const aspectRatio = inputFileCapa.classList.contains("capaResenha") ? 4 / 3 : 2 / 3;
+const margemErro = 1
 inputFileCapa.addEventListener("change", function (e) {
     e.preventDefault();
     const file = e.target.files[0];
@@ -20,9 +20,9 @@ inputFileCapa.addEventListener("change", function (e) {
             const img = new Image();
             img.onload = function () {
                 const imgAspectRatio = img.width / img.height;
-                if (Math.abs(imgAspectRatio - aspectRatio) > margemErro) { 
+                if (Math.abs(imgAspectRatio - aspectRatio) > margemErro) {
                     inputFileCapa.parentNode.classList.add("invalid");
-                    inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = inputFileCapa.classList.contains("capaResenha") ? "A proporção da imagem deve ser 4:3." : 'A proporção da imagem deve ser 9:16.';
+                    inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = inputFileCapa.classList.contains("capaResenha") ? "A proporção da imagem deve ser 4:3" : 'A proporção da imagem deve ser 2:3.';
                     inputFileCapa.value = "";
                     return;
                 }
@@ -41,7 +41,7 @@ inputFileCapa.addEventListener("change", function (e) {
             };
             img.src = src;
         };
-        reader.readAsDataURL(file); 
+        reader.readAsDataURL(file);
     } else {
         inputFileCapa.parentNode.classList.add("invalid");
         inputFileCapa.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo Imagem!!';

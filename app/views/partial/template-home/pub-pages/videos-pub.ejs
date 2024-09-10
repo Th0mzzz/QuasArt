@@ -1,9 +1,32 @@
+<% 
+let classeErro={ 
+    tituloVideo:"",
+    descricao:"",
+    capaVideo:"",
+    video:""
+} 
+let msgErro= {
+    tituloVideo:"",
+    descricao:"",
+    capaVideo:"",
+    video:""
+  } 
+    
+    if(erros) {
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
+    }
+%>
+
 <section class="form__pub-container">
     <h2 class="title">Criar <span class="negrito-roxo">ViaVideo</span></h2>
-    <form action="/criarVideo" class="form__pub" method="post">
+    <form action="/criarVideo" class="form__pub" method="post" enctype="multipart/form-data">
         <header class="form__row">
-            <article class="input__container input-file" data-capaContainer>
+            <article class="input__container input-file <%= classeErro.capaVideo %>" data-capaContainer>
                 <span class="invalid-msg smallText">
+                    <%= msgErro.capaVideo %>
                 </span>
                 <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="Título do video"
                     required data-inputCapa>
@@ -11,16 +34,18 @@
                 <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
-                <input type="hidden" name="idUsuario" id="idUsuario" value="">
-                <article class="input__container">
+
+                <article class="input__container <%= classeErro.tituloVideo %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.tituloVideo %>
                     </span>
                     <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
                         placeholder="Título do video" required value="">
                     <label for="tituloVideo">Título do vídeo</label>
                 </article>
-                <article class="input__container">
+                <article class="input__container <%= classeErro.descricao %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.descricao %>
                     </span>
                     <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"></textarea>
                     <label for="descricao">Descrição</label>
@@ -36,8 +61,9 @@
             </section>
         </header>
         <section class="video__section">
-            <article class="input__container input-file">
+            <article class="input__container input-file <%= classeErro.video %>" data-videoContainer>
                 <span class="invalid-msg smallText">
+                    <%= msgErro.video %>
                 </span>
                 <input type="file" name="video" id="video" class="input__control"
                     placeholder="Título do video" required data-inputVideo>
@@ -45,7 +71,7 @@
                 <label for="video" class="icon"><i class="bi bi-download"></i></label>
 
             </article>
-            <article class="video__container" data-videoContainer>
+            <article class="video__container" >
             </article>
         </section>
         <button class="btn submit secundaria p-2">Publicar</button>

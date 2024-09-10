@@ -2,12 +2,14 @@
 let classeErro={ 
     titulo:"",
     textoResenha:"",
-    descricao:""
+    descricao:"",
+    capaResenha:""
 } 
 let msgErro= {
     titulo:"",
     textoResenha:"",
-    descricao:""
+    descricao:"",
+    capaResenha:""
   } 
     
     if(erros) {
@@ -23,8 +25,9 @@ let msgErro= {
     <form action="/criarResenha" class="form__pub resenha" method="post" enctype="multipart/form-data">
         <header class="form__row">
 
-            <article class="input__container input-file" data-capaContainer>
+            <article class="input__container input-file <%= classeErro.capaResenha %>" data-capaContainer>
                 <span class="invalid-msg smallText">
+                    <%= msgErro.capaResenha %>
                 </span>
                 <input type="file" name="capaResenha" id="capaResenha" class="input__control capaResenha" placeholder="" required data-inputCapa>
                 <label for="capaResenha">Selecione a imagem da Resenha</label>

@@ -60,43 +60,34 @@
         <section class="postagens__section ativo" data-section="fichas">
             <h3 class="title">Fichas</h3>
             <section class="conteudo-row p-1">
+                <% if(posts && posts.fichas != null){
+                    posts.fichas.forEach(function(ficha){ %>
                 <article class="card__ficha">
-                    <a href="#" class="card__content">
-                        <img src="./img/cards/card-ficha-teste.png" alt="imagem da ficha">
+                    <a href="" class="card__content">
+                        <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
                         <article class="card-title">
-                            <h4 class="subtitle">Calor e Amor</h4>
+                            <h4 class="subtitle"><%= ficha.NOME_OBRA %>></h4>
                         </article>
                     </a>
                     <footer class="card__autor">
-                        <article class="usuario">
+                        <!-- <article class="usuario">
                             <img src="./img/perfil-padrao.webp" alt="imagem do autor">
                             <a href="/profile" class="link">Th0mzzz</a>
-                        </article>
+                        </article> -->
                         <p class="text">00/00/0000</p>
                     </footer>
                 </article>
-                <article class="card__ficha">
-                    <a href="#" class="card__content">
-                        <img src="./img/cards/card-ficha-teste2.png" alt="imagem da ficha">
-                        <article class="card-title">
-                            <h4 class="subtitle">Cantos dos Mortais</h4>
-                        </article>
-                    </a>
-                    <footer class="card__autor">
-                        <article class="usuario">
-                            <img src="./img/perfil-padrao.webp" alt="imagem do autor">
-                            <a href="/profile" class="link">Username</a>
-                        </article>
-                        <p class="text">00/00/0000</p>
-                    </footer>
-                </article>
+                <% })
+            }else{ %> 
+                <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhuma ficha.</h4>
+                <% } %>
             </section>
         </section>
         <section class="postagens__section " data-section="resenhas">
             <h3 class="title">Resenhas</h3>
             <section class="conteudo-row p-1">
 
-                <% if(posts && posts.resenhas){
+                <% if(posts && posts.resenhas != null){
 
                     posts.resenhas.forEach(function(resenha){ %>
 
@@ -117,32 +108,37 @@
                             </footer>
                         </article>
 
-                    <% })
-                 } %>
+                        <% })
+                    }else{ %> 
+                        <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhuma resenha.</h4>
              
+                        <% } %>
             </section>
         </section>
         <section class="postagens__section " data-section="videos">
             <h3 class="title">Videos</h3>
             <section class="conteudo-row p-1">
-                <article class="card__video">
-                    <a href="#" class="card__content">
-                        <img src="./img/cards/card-video-teste.png" alt="imagem da ficha">
+                <% if(posts && posts.videos != null){
 
-                        <header class="card-title">
-                            <h4 class="link"><i class="bi bi-play-fill me-1"></i>10K</h4>
-                        </header>
-                    </a>
-                </article>
-                <article class="card__video">
-                    <a href="#" class="card__content">
-                        <img src="./img/cards/card-video-teste2.png" alt="imagem da ficha">
+                    posts.videos.forEach(function(video){ %>
 
-                        <header class="card-title">
-                            <h4 class="link"><i class="bi bi-play-fill me-1"></i>9K</h4>
-                        </header>
-                    </a>
-                </article>
+                        <article class="card__video">
+                            <a href="#" class="card__content">
+                                <img src="./img/imagens-servidor/capas-img/<%= video.CAPA_VIDEO %>" alt="imagem da ficha">
+        
+                                <header class="card-title">
+                                    <h4 class="link"><i class="bi bi-play-fill me-1"></i>10K</h4>
+                                </header>
+                            </a>
+                        </article>
+
+                        <% })
+                    }else{ %> 
+                        <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhum vídeo.</h4>
+             
+                        <% } %>
+
+               
             </section>
         </section>
     </section>

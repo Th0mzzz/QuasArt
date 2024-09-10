@@ -267,9 +267,9 @@ const usuariosController = {
             }
 
             const posts = {
-                resenhas: resenhasUser,
-                videos: [],
-                fichas: [],
+                resenhas: resenhasUser.length == 0 ? null : resenhasUser,
+                videos: null,
+                fichas: null,
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",

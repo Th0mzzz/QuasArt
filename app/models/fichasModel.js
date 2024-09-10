@@ -2,7 +2,7 @@ var pool = require("../../config/poolConn");
 const fichasModel = {
     create: async (dadosFicha)=>{
         try {
-            const [resultados] = await pool.query("insert into set ?", [dadosFicha])
+            const [resultados] = await pool.query("insert into FICHAS set ?", [dadosFicha])
             return resultados
         } catch (error) {
             return error

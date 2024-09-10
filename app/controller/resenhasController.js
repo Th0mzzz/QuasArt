@@ -16,17 +16,14 @@ const resenhaControl = {
     ],
     postarResenha: async (req, res) => {
         let errors = validationResult(req)
-        let erroMulter = req.session.erroMulter;
-        if (!errors.isEmpty() || erroMulter != null) {
+        let errosMulter = req.session.erroMulter;
+        if (!errors.isEmpty() || errosMulter.length > 0) {
             
-            if(!errors.isEmpty()){
-                var listaErros = errors
-            }else{
-                var listaErros = { formatter: null, errors: [] }
-            }
-            if (erroMulter != null) {
-                listaErros.errors.push(erroMulter)
-                removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
+            let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+
+            if (errosMulter.length > 0) {
+                listaErros.errors.push(...errosMulter)
+                if(req.file){removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)}
             }
             console.log(listaErros)
 
@@ -56,7 +53,7 @@ const resenhaControl = {
                 res.redirect(`/view-resenha?idResenha=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
-                // ADD FUNCTION REMOVEIMG() para o caminho salvo no banco
+                if(req.file){removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)}
                 res.render("pages/error-500")
             }
 

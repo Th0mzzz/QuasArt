@@ -50,41 +50,10 @@
                                     <i class="bi bi-arrow-down"></i>
                                 </button>
                             </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
+                            <video src="<%= video.video %>" controls></video>
                         </article>
                     </article>
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
-                        </article>
-                    </article>
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <button class="video-btn"><i class="bi bi-heart"></i></button>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/video-teste-1.mp4" controls></video>
-                        </article>
-                    </article>
+
                 </section>
             </section>
             <section class="video__info" id="videoComments">
@@ -94,38 +63,24 @@
 
                     <header class="video__desc">
                         <section class="row user mb-2">
-                            <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
-                                    alt="foto do autor" class="userImg">Nome
-                                do usuário</a>
+                            <a href="/view-profile?idUser=<%= video.autor.ID_USUARIO %>" class="userLink link">
+                                <img src="./img/imagens-servidor/perfil/<%= video.autor.CAMINHO_FOTO %>"
+                                    alt="foto do autor" class="userImg">
+                                    <%= video.autor.NICKNAME_USUARIO %>
+                                </a>
                             <button class="btn">Seguir</button>
                         </section>
                         <article class="desc mb-2">
                             <p class="text">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam beatae nemo saepe
-                                blanditiis
-                                labore
-                                corrupti odio maxime distinctio fuga quisquam. Amet possimus illo corrupti nulla
-                                voluptatem
-                                expedita
-                                praesentium dolore ab. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem,
-                                dicta.
-                                Ipsam
-                                repudiandae reprehenderit odit.
+                                <%= video.descricao %>
                             </p>
                         </article>
                         <article id="tagsContainer">
-                            <span class="tag text">#Resenhalegal</span>
-                            <span class="tag text">#ebaeba</span>
-                            <span class="tag text">#que</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
-                            <span class="tag text">#maneiro</span>
+                            <% if(resenha.tags){ resenha.tags.forEach(tag=>{ %>
+                                <span class="tag text">
+                                    <%= tag %>
+                                </span>
+                                <% }) } %>
                         </article>
                     </header>
                     <section class="video__comments">
@@ -189,10 +144,10 @@
         </section>
     </main>
     <%- include("../partial/template-home/denunciar-modal") %>
-    <script src="./js/commentVideo.js"></script>
-    <script src="./js/colorMode.js"></script>
-    <script src="./js/access.js"></script>
-    <script src="./js/verticalCarousel.js"></script>
+        <script src="./js/commentVideo.js"></script>
+        <script src="./js/colorMode.js"></script>
+        <script src="./js/access.js"></script>
+        <script src="./js/verticalCarousel.js"></script>
 
 </body>
 

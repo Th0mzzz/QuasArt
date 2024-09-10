@@ -7,7 +7,10 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadCapa = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
+const videoControl = require("../controller/videosController");
+const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
+const uploadCapaVideo = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
+const uploadVideo = upload("./app/public/img/imagens-servidor/videos/", 400, ['mp4']);
 
 
 // Página de falha de autenticação ---------
@@ -28,11 +31,11 @@ router.get("/", function (req, res) {
     let token = null
     if (req.session.logado == 0 && req.session.autenticado.autenticado != null) {
         let msg = "Muito bom te ter de volta,"
-        if(req.session.cadastro){msg = "Bem-vindo(a) ao Quasart,"}
+        if (req.session.cadastro) { msg = "Bem-vindo(a) ao Quasart," }
         token = { msg: msg, usuario: req.session.autenticado.autenticado }
         req.session.logado = req.session.logado + 1
     }
-   
+
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/inicial-home",
@@ -167,8 +170,9 @@ router.get("/sobre", function (req, res) {
 })
 
 // --------- PAGINA DE VIDEOS ----------
+
 router.get("/videos", function (req, res) {
-    res.render("./pages/videos-home")
+    videoControl.mostrarVideo(req,res)
 });
 
 
@@ -191,9 +195,32 @@ router.get("/view-ficha", function (req, res) {
 
 
 // Form de criação de Resenha
-router.post("/criarResenha", uploadCapa("capaResenha"), resenhaControl.validacaoResenha, function (req, res) {
-    resenhaControl.postarResenha(req, res)
-})
+router.post("/criarResenha",
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    uploadCapaResenha("capaResenha"),
+    resenhaControl.validacaoResenha,
+    function (req, res) {
+        resenhaControl.postarResenha(req, res)
+    });
+
+router.post("/criarVideo",
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    uploadCapaVideo("capaVideo"),
+    uploadVideo("video"),
+    videoControl.validacaoVideo,
+    function (req, res) {
+        videoControl.postarVideo(req, res)
+    })
 
 
 module.exports = router;

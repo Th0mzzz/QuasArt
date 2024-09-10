@@ -28,6 +28,10 @@ const validarProporcaoImagem = async (buffer, proportion, margemErro) => {
         const { width, height } = metadata;
         const imageProporcao = width / height;
         if (Math.abs(imageProporcao - proportion) > margemErro) {
+            console.log("Testando proporção")
+            console.log(Math.abs(imageProporcao - proportion) > margemErro)
+            console.log(Math.abs(imageProporcao - proportion))
+            console.log(margemErro)
             return false
         }
         return true
@@ -72,41 +76,43 @@ module.exports = (caminho = null, tamanhoArq = 3, extensoesPermitidas = ['jpeg',
                     fileFilter: fileFilter
                 });
             }
-            req.session.erroMulter = null
+            if (!req.session.erroMulter) {
+                req.session.erroMulter = [];
+            }
 
             upload.single(campoArquivo)(req, res, async function (err) {
                 if (err instanceof multer.MulterError) {
-                    req.session.erroMulter = {
+                    req.session.erroMulter.push({
                         value: '',
                         msg: err.message,
                         path: campoArquivo
-                    }
+                    });
                 } else if (err) {
-                    req.session.erroMulter = {
+                    req.session.erroMulter.push({
                         value: '',
                         msg: err.message,
                         path: campoArquivo
-                    }
-                } else if (req.file && caminho == null) {
+                    });
+                } else if (req.file) {
                     try {
                         const isProporcaoValida = true;
-                        if (proportion && margemErro) { isProporcaoValida = await validarProporcaoImagem(req.file.buffer, proportion, margemErro);  }
+                        if (proportion != null && margemErro != null) {
+                            isProporcaoValida = await validarProporcaoImagem(req.file.buffer, proportion, margemErro);
 
-                        if (!isProporcaoValida) {
-                            req.session.erroMulter = {
-                                value: '',
-                                msg: 'A imagem deve seguir a proporção exigida!.',
-                                path: campoArquivo
-                            };
+                            if (!isProporcaoValida) {
+                                req.session.erroMulter.push({
+                                    value: '',
+                                    msg: 'A imagem deve seguir a proporção exigida!',
+                                    path: campoArquivo
+                                });
+                            }
                         }
                     } catch (error) {
-                        if (!isProporcaoValida) {
-                            req.session.erroMulter = {
-                                value: '',
-                                msg: error.message,
-                                path: campoArquivo
-                            };
-                        }
+                        req.session.erroMulter.push({
+                            value: '',
+                            msg: 'A imagem deve seguir a proporção exigida!',
+                            path: campoArquivo
+                        });
                     }
                 }
                 next();
