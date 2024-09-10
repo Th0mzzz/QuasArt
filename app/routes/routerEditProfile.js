@@ -132,7 +132,8 @@ router.post("/atualizarEmail",
         .bail()
         .custom(async (email) => {
             const emailExistente = await usuariosModel.findUserByEmail(email)
-            if (emailExistente) {
+
+            if (emailExistente[0]) {
                 if (email == emailExistente[0].EMAIL_USUARIO) {
                     throw new Error("Digite um e-mail diferente!");
                 } else {

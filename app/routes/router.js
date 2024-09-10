@@ -228,7 +228,6 @@ router.get("/esqueceuSenha", function (req, res) {
     }
     res.render("pages/template-login", jsonResult);
 });
-
 // formulario para enviar email
 router.get("/enviarEmail", function (req, res) {
     const jsonResult = {
@@ -247,6 +246,7 @@ router.get("/sair", middleWares.clearSession, function (req, res) {
 // --------------------------------- POSTS --------------------------------- //
 
 
+
 // form para checar se o valor do token é correto
 router.post("/checarToken", function (req, res) {
     const jsonResult = {
@@ -256,7 +256,6 @@ router.post("/checarToken", function (req, res) {
     }
     res.render("pages/template-login", jsonResult);
 })
-
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
 router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, function (req, res) {
@@ -268,9 +267,7 @@ router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares
     usuariosController.entrar(req, res)
 })
 
-
 // Form de criação de Resenha
-
 router.post("/criarResenha", uploadCapa("capaResenha"), resenhaControl.validacaoResenha, function (req, res) {
     resenhaControl.postarResenha(req, res)
 })

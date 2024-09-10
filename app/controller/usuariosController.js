@@ -4,6 +4,8 @@ const moment = require("moment")
 var bcrypt = require("bcryptjs")
 const { removeImg } = require("../util/removeImg")
 const resenhaModel = require("../models/resenhasModel")
+const fichasModel = require("../models/fichasModel")
+const videosModel = require("../models/videosModel")
 var salt = bcrypt.genSaltSync(8)
 
 
@@ -203,7 +205,6 @@ const usuariosController = {
 
         }
     },
-
     entrar: async (req, res) => {
         // Aqui verifico se tem erros de validação no formulário, se tiver carrego a pagina de login novamente com erros, senão busco a partir do um usuário a partir do digitado, e então eu por fim, verifico se o usuario do banco existe e se o hash da senha digitada no form bate com o hash da senha que estava no banco e se a sessão não é null. Se tudo estiver correto ele renderiza a page home, senão ele manda pra page de login como usuário ou senha incorretos
         let errors = validationResult(req)
@@ -250,7 +251,8 @@ const usuariosController = {
 
             const resenhasUser = await resenhaModel.buscarPorIdDeUser(user[0].ID_USUARIO)
             const contagemResenhas = await resenhaModel.contarResenhasPorId(user[0].ID_USUARIO)
-            
+            const contagemFichas = await fichasModel.contarFichasPorId(user[0].ID_USUARIO)
+            const contagemVideos = await videosModel.contarVideosPorId(user[0].ID_USUARIO)
 
             var isUser = false
             if (user && req.session.autenticado) {
@@ -258,18 +260,18 @@ const usuariosController = {
                     isUser = true
                 }
             }
-            let postagens = contagemResenhas['count(*)'] + 0 + 0
-            
+            let postagens = contagemResenhas['count(*)'] + contagemFichas['count(*)'] + contagemVideos['count(*)']
+
             const estatisticas = {
-                postagens:postagens,
-                seguidores:0,
-                curtidas:0,
+                postagens: postagens,
+                seguidores: 0,
+                curtidas: 0,
             }
-            
+
             const posts = {
                 resenhas: resenhasUser,
-                videos:[],
-                fichas:[],
+                videos: [],
+                fichas: [],
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
