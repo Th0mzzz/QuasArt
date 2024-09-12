@@ -23,7 +23,10 @@ const videoControl = {
                 listaErros.errors.push(...errosMulter)
                 if (req.file) removeImg(`./app/public/img/imagens-servidor/videos/${req.file.filename}`)
             }
+            console.log("errodevalidaçãovideo--------")
             console.log(listaErros)
+            console.log(errors)
+            console.log(errosMulter)
 
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/videos-pub",
@@ -50,7 +53,7 @@ const videoControl = {
                 }
                 const resultado = await videosModel.create(video)
                 console.log(resultado)
-                res.redirect(`/view-resenha?idResenha=${resultado.insertId}`)
+                res.redirect(`/videos?idVideo=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
                 if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }

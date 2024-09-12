@@ -289,19 +289,20 @@ const usuariosController = {
     },
     mudarFoto: async (req, res) => {
         let errors = validationResult(req)
-        let erroMulter = req.session.erroMulter
-        if (!errors.isEmpty() || erroMulter != null) {
+        let errosMulter = req.session.erroMulter
 
-            if (!errors.isEmpty()) {
-                var listaErros = errors
-            } else {
-                var listaErros = { formatter: null, errors: [] }
+        if (!errors.isEmpty() || errosMulter.length > 0) {
+
+            let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+
+            if (errosMulter.length > 0) {
+                listaErros.errors.push(...errosMulter)
+                if (req.file) removeImg(`./app/public/img/imagens-servidor/perfil/${req.file.filename}`)
             }
-            if (erroMulter != null) {
-                listaErros.errors.push(erroMulter)
-                if (req.file) removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)
-            }
+            console.log("-------erro-de-validação-foto--------")
             console.log(listaErros)
+            console.log(errors)
+            console.log(errosMulter)
 
             const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
 

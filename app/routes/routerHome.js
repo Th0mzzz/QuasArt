@@ -5,13 +5,11 @@ const middleWares = require("../sessions/middleswares");
 // CONTROLLERS -------------
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
+const videoControl = require("../controller/videosController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-const videoControl = require("../controller/videosController");
 const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
-const uploadCapaVideo = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
-const uploadVideo = upload("./app/public/img/imagens-servidor/videos/", 400, ['mp4']);
-
+const uploadMultiplo = require("../util/uploadMultiplo")
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -172,7 +170,7 @@ router.get("/sobre", function (req, res) {
 // --------- PAGINA DE VIDEOS ----------
 
 router.get("/videos", function (req, res) {
-    videoControl.mostrarVideo(req,res)
+    videoControl.mostrarVideo(req, res)
 });
 
 
@@ -215,8 +213,10 @@ router.post("/criarVideo",
     },
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
-    uploadCapaVideo("capaVideo"),
-    uploadVideo("video"),
+    uploadMultiplo([
+        { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
+        { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
+    ]),
     videoControl.validacaoVideo,
     function (req, res) {
         videoControl.postarVideo(req, res)
