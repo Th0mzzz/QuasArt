@@ -1,17 +1,14 @@
 const { body, validationResult } = require("express-validator");
 const usuariosModel = require("../models/usuariosModel");
 const { removeImg } = require("../util/removeImg");
-const videosModel = require("../models/videosModel");
+const fichasModel = require("../models/fichasModel");
 
-const videoControl = {
-    validacaoVideo: [
-        body("tituloVideo")
-            .isLength({ min: 3, max: 45 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
-        ,
-        body("descricao")
-            .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
+
+const fichasControll = {
+    validacaoFicha: [
+        
     ],
-    postarVideo: async (req, res) => {
+    postarFicha: async (req, res) => {
         let errors = validationResult(req)
         let errosMulter = req.session.erroMulter;
 
@@ -22,7 +19,7 @@ const videoControl = {
             if (errosMulter.length > 0) {
                 listaErros.errors.push(...errosMulter)
                 if (req.files) {
-                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFi'][0].filename}`)
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
                 }
             }
@@ -67,7 +64,7 @@ const videoControl = {
 
         }
     },
-    mostrarVideo: async (req, res) => {
+    mostrarFicha: async (req, res) => {
         let idVideo = req.query.idVideo
         // if (!idVideo) {
         //     const videos = await pool.query("SELECT * FROM VIDEOS LIMIT 10")
@@ -108,4 +105,4 @@ const videoControl = {
 }
 
 
-module.exports = videoControl
+module.exports = fichasControll
