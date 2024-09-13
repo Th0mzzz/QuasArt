@@ -18,10 +18,20 @@ const videosModel = {
             return error
         }
     },
-    buscarPorId: async (idUser) => {
+    buscarPorId: async (idVideo) => {
         try {
-            const [resultado] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS = ?", [idUser])
+            const [resultado] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS = ?", [idVideo])
             return resultado[0]
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
+    buscarPorIdUser: async (idUser) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            return resultados
         } catch (error) {
             console.log("erro no buscar ID")
             console.log(error)
