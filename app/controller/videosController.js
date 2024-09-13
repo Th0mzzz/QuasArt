@@ -21,12 +21,13 @@ const videoControl = {
 
             if (errosMulter.length > 0) {
                 listaErros.errors.push(...errosMulter)
-                if (req.file) removeImg(`./app/public/img/imagens-servidor/videos/${req.file.filename}`)
+                if (req.file) {
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
+                }
             }
             console.log("errodevalidaçãovideo--------")
             console.log(listaErros)
-            console.log(errors)
-            console.log(errosMulter)
 
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/videos-pub",
@@ -40,11 +41,11 @@ const videoControl = {
             res.render("./pages/template-home", jsonResult)
         } else {
             try {
-                const capaFile = req.files && req.files.find(file => file.fieldname === 'capaVideo') ? req.files.find(file => file.fieldname === 'capaVideo') : null;
-                const videoFile = req.files && req.files.find(file => file.fieldname === 'video') ? req.files.find(file => file.fieldname === 'video') : null;
-                const { titulo, descricao, tags } = req.body
+                const capaFile = req.files['capaVideo'] ? req.files['capaVideo'][0] : null;
+                const videoFile = req.files['video'] ? req.files['video'][0] : null;
+                const { tituloVideo, descricao, tags } = req.body
                 const video = {
-                    NOME_VIDEO: titulo,
+                    NOME_VIDEO: tituloVideo,
                     DESCR_VIDEO: descricao,
                     HASHTAG_VIDEO: [tags].toString(),
                     CAPA_VIDEO: capaFile.filename,
@@ -56,7 +57,10 @@ const videoControl = {
                 res.redirect(`/videos?idVideo=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
-                if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+                if (req.files) {
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
+                }
                 res.render("pages/error-500")
             }
 
@@ -79,8 +83,8 @@ const videoControl = {
                         video: {
                             titulo: video.NOME_VIDEO,
                             descricao: video.DESCR_VIDEO,
-                            tags: video.HASHTAG_RESENHA.split(","),
-                            video:video.CAMINHO_VIDEO,
+                            tags: video.HASHTAG_VIDEO.split(","),
+                            video: video.CAMINHO_VIDEO,
                             autor: autor[0]
                         },
                     }

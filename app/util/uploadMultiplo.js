@@ -45,24 +45,12 @@ const validarProporcaoImagem = async (buffer, proportion, margemErro) => {
 
 module.exports = (camposConfig = []) => {
     return (req, res, next) => {
-        const storageConfigs = {}
         const fileFilters = {}
         const limits = {}
-        // Criação dinamica para configurações para cada campo, onde, para cada campo passado no router, ele criará uma nova config para o upload
+        const errosMulter = []
+
         camposConfig.forEach(campo => {
-            storageConfigs[campo.name] = multer.diskStorage({
-                destination: (req, file, cowboy) => {
-                    cowboy(null, campo.caminho)
-                },
-                filename: (req, file, cowboy) => {
-                    // função para renomear e deixar um padrão no nome dos arquivos
-                    cowboy(
-                        null,
-                        file.fieldname + "-" + Date.now() + path.extname(file.originalname)
-                    )
-                }
-            });
-            // Assim como acima, para cada campo passado, eu crio um limite de tamanho com base no fileSize que o campo passou
+            //Para cada campo passado, eu crio um limite de tamanho com base no fileSize que o campo passou
             limits[campo.name] = campo.fileSize * 1024 * 1024;
             // Assim como acima, para cada campo passado, eu crio um filtro com base nas extensões que o campo passou
             fileFilters[campo.name] = createFileFilter(campo.extensoes);
@@ -75,13 +63,24 @@ module.exports = (camposConfig = []) => {
             }
             cb(new Error("Campo não suportado: " + file.fieldname));
         };
-        // Após configurar as configs do storage baseados em cada campo e salva-los em um objeto, criaremos uma config nos moldes do multer para utilizar no storage do upload para cada campo passado.
-        const dynamicStorage = (req, file, cb) => {
-            if (storageConfigs[file.fieldname]) {
-                return cb(null, storageConfigs[file.fieldname]);
+
+        //Criaremos uma config nos moldes do multer para utilizar no storage do upload para cada campo passado.  
+        const dynamicStorage = multer.diskStorage({
+            destination: (req, file, cb) => {
+                // Procuremos se um campo que seja igual ao do file que está sendo executado pelo upload 
+                const campo = camposConfig.find(c => c.name === file.fieldname);
+                // Verificamos se ele existe, se sim enviamos um callback com o caminho, senão, um erro.
+                if (campo) {
+                    cb(null, campo.caminho);
+                } else {
+                    cb(new Error("Campo não suportado: " + file.fieldname));
+                }
+            },
+            filename: (req, file, cb) => {
+                cb(null, file.fieldname + "-" + Date.now() + path.extname(file.originalname));
             }
-            return cb(new Error("Campo não suportado: " + file.fieldname));
-        }
+        });
+
         // Após configurar os limits com base em cada campo e salvar em um objeto, aqui verificamos se existe um limit para o campo passado no upload.fields, se sim retorna um objeto com o fileSize igual ao passado, senao, um erro.
         const dynamicLimits = (req, file, cb) => {
             const limit = limits[file.fieldname];

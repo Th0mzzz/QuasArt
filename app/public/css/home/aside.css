@@ -38,8 +38,8 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: clamp(45px, 8vw, 55px);
-                    height: clamp(45px, 8vw, 55px);
+                    width: clamp(45px, 5vw, 50px);
+                    height: clamp(45px, 5vw, 50px);
 
                     & i {
                         font-size: var(--fs-link);
@@ -88,7 +88,7 @@
         & .aside__content {
             margin: auto;
             border-radius: 0 10px 10px 0;
-            padding: 4rem 0;
+            padding: 3vh 0;
             min-height: fit-content;
             height: 80%;
             & .aside__items {

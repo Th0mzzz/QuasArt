@@ -50,7 +50,7 @@
                                     <i class="bi bi-arrow-down"></i>
                                 </button>
                             </header>
-                            <video src="<%= video.video %>" controls></video>
+                            <video src="./img/imagens-servidor/videos/<%= video.video %>" controls></video>
                         </article>
                     </article>
 
@@ -63,7 +63,7 @@
 
                     <header class="video__desc">
                         <section class="row user mb-2">
-                            <a href="/view-profile?idUser=<%= video.autor.ID_USUARIO %>" class="userLink link">
+                            <a href="/profile?idUser=<%= video.autor.ID_USUARIO %>" class="userLink link">
                                 <img src="./img/imagens-servidor/perfil/<%= video.autor.CAMINHO_FOTO %>"
                                     alt="foto do autor" class="userImg">
                                     <%= video.autor.NICKNAME_USUARIO %>
@@ -76,7 +76,7 @@
                             </p>
                         </article>
                         <article id="tagsContainer">
-                            <% if(resenha.tags){ resenha.tags.forEach(tag=>{ %>
+                            <% if(video.tags){ video.tags.forEach(tag=>{ %>
                                 <span class="tag text">
                                     <%= tag %>
                                 </span>
