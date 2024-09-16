@@ -55,46 +55,81 @@
         }
     }
 
-    & .foto__perfil {
+    & .foto__perfil-container {
         position: relative;
-        width: clamp(150px, 20vw, 180px);
-        height: clamp(150px, 20vw, 180px);
-        border-radius: 50%;
+        width: fit-content;
+        height: fit-content;
         margin: 2.3rem 0;
-        border: 5px solid var(--cor-principal);
-        overflow: hidden;
 
-        &>img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
-
-        &.mudar__foto-btn {
+        & .foto__perfil {
             position: relative;
+            width: clamp(150px, 20vw, 180px);
+            height: clamp(150px, 20vw, 180px);
+            border-radius: 50%;
+            border: 5px solid var(--cor-principal);
 
-            &::before {
-                left: 0;
-                bottom: 0;
-                position: absolute;
-                content: "Mudar Foto";
-                font-size: var(--fs-subtitle);
-                font-family: var(--ff-text);
-                text-align: center;
-                display: none;
-                align-items: center;
-                justify-content: center;
-                color: #fff;
+
+            &>img {
+                object-fit: cover;
                 width: 100%;
                 height: 100%;
-                background: #0000006b;
-                z-index: 100;
-                cursor: pointer;
+                border-radius: 50%;
             }
 
-            &:hover {
+            &.mudar__foto-btn {
+                position: relative;
+
                 &::before {
-                    display: flex;
+                    left: 0;
+                    bottom: 0;
+                    position: absolute;
+                    content: "Mudar Foto";
+                    font-size: var(--fs-subtitle);
+                    font-family: var(--ff-text);
+                    text-align: center;
+                    display: none;
+                    align-items: center;
+                    justify-content: center;
+                    color: #fff;
+                    width: 100%;
+                    height: 100%;
+                    background: #0000006b;
+                    z-index: 100;
+                    cursor: pointer;
+                    border-radius: 50%;
+                }
+
+                &:hover {
+                    &::before {
+                        display: flex;
+                    }
+                }
+            }
+
+        }
+
+        & form {
+            position: absolute;
+            top: 100%;
+            left: 100%;
+            translate: -60% -60%;
+
+            & .btn-user-trash {
+                width: inherit;
+                height: inherit;
+                color: var(--cor-danger);
+                background: none;
+                border: none;
+                outline: none;
+                font-size: clamp(22px, 5vw, 28px);
+                border-radius: 50%;
+                padding: .3rem;
+                cursor: pointer;
+                transition: all .3s;
+
+                &:hover {
+                    background: var(--cor-danger);
+                    color: white;
                 }
             }
         }

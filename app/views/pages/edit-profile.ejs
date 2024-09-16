@@ -9,71 +9,74 @@
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/home/home.css">
 </head>
-<%  
-    var tituloPage=""; 
-
-    if(pageClass=="index" ){ 
-        tituloPage="Editar perfil" 
-    }else if(pageClass=="dadosPessoais" ){
-        tituloPage="Dados pessoais" 
-    }else if(pageClass=="security" ){
-        tituloPage="Senha e segurança" 
-    }
-%>
+<% var tituloPage="" ; if(pageClass=="index" ){ tituloPage="Editar perfil" }else if(pageClass=="dadosPessoais" ){
+    tituloPage="Dados pessoais" }else if(pageClass=="security" ){ tituloPage="Senha e segurança" } %>
 
     <body>
         <% if(token) {%>
             <h4 class="token-alert link <%= token.type %>">
                 <%= token.msg %>
             </h4>
-        <% } %>
-        <header class="header__edit-profile">
-            <article class="nav__btns">
-                <a href="<%=pageClass == 'index'?'/profile':'/edit-profile' %>" 
-                    class="btn homebtn"><i class="bi bi-arrow-left"></i></a>
-                <button class="btn-icon ms-1 me-1 mt-2" id="btnMode"><i class="bi bi-brightness-high"></i></button>
-                <button class="btn-icon ms-1 me-1 mt-2" id="access" title="Acessibilidade"><i class="bi bi-universal-access-circle"></i></button>
-                
-                <article class="access__container" id="accessContainer">
-                    <article class="access__content">
-                        <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar
-                            fonte
-                        </button>
-                        <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte
-                        </button>
-                        <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
-                            links</button>
-                        <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
-                            fácil</button>
-                        <button class="access__link link pb-2" id="reset"><i
-                                class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
-                    </article>
-                </article>
-            </article>
-            
-            <h1 class="supertitle">
-                <%= tituloPage %>
-            </h1>
-        </header>
-        <main class="main__edit-profile">
-            <section class="index__container">
-                <header class="header__user">
-                    <h3 class="subtitle" style="color: var(--cor-texto);">
-                        <%= usuario.NICKNAME_USUARIO %>
-                    </h3>
-                    <article class="foto__perfil <%= pageClass == 'index' ? 'mudar__foto-btn' : '' %>" data-openmodal="#mudarFotoModal">
-                        <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
-                            alt="foto de perfil do usuário">
-                    </article>
-                </header>
-                <section class="menu__index">
-                    <%- include(page) %>
-                </section>
-            </section>
+            <% } %>
+                <header class="header__edit-profile">
+                    <article class="nav__btns">
+                        <a href="<%=pageClass == 'index'?'/profile':'/edit-profile' %>" class="btn homebtn"><i
+                                class="bi bi-arrow-left"></i></a>
+                        <button class="btn-icon ms-1 me-1 mt-2" id="btnMode"><i
+                                class="bi bi-brightness-high"></i></button>
+                        <button class="btn-icon ms-1 me-1 mt-2" id="access" title="Acessibilidade"><i
+                                class="bi bi-universal-access-circle"></i></button>
 
-        </main>
-        <script src="./js/colorMode.js"></script>
-        <script src="./js/access.js"></script>
+                        <article class="access__container" id="accessContainer">
+                            <article class="access__content">
+                                <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar
+                                    fonte
+                                </button>
+                                <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir fonte
+                                </button>
+                                <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
+                                    links</button>
+                                <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
+                                    fácil</button>
+                                <button class="access__link link pb-2" id="reset"><i
+                                        class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
+                            </article>
+                        </article>
+                    </article>
+
+                    <h1 class="supertitle">
+                        <%= tituloPage %>
+                    </h1>
+                </header>
+                <main class="main__edit-profile">
+                    <section class="index__container">
+                        <header class="header__user">
+                            <h3 class="subtitle" style="color: var(--cor-texto);">
+                                <%= usuario.NICKNAME_USUARIO %>
+                            </h3>
+                            <section class="foto__perfil-container">
+                                <article class="foto__perfil <%= pageClass == 'index' ? 'mudar__foto-btn' : '' %>"
+                                    data-openmodal="#mudarFotoModal">
+                                    <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
+                                        alt="foto de perfil do usuário">
+                                </article>
+
+                                <% if(usuario.CAMINHO_FOTO != "perfil-padrao.webp"){ %> 
+                                <form action="/excluirFoto" method="post">
+                                    <button type="submit" class="btn-user-trash"><i class="bi bi-trash"></i></button>
+                                </form>
+                                        <% } %>
+                            </section>
+
+                        </header>
+                        <section class="menu__index">
+                            <%- include(page) %>
+                        </section>
+                    </section>
+
+                </main>
+                <script src="./js/colorMode.js"></script>
+                <script src="./js/access.js"></script>
     </body>
 
 </html>

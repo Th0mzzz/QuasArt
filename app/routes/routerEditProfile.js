@@ -30,7 +30,7 @@ router.get("/edit-profile",
                 pageClass: "index",
                 usuario: user[0],
                 modalAberto: false,
-                erros:null,
+                erros: null,
                 token: null
             }
             res.render("./pages/edit-profile", jsonResult)
@@ -164,6 +164,12 @@ router.post("/inativarConta",
         .bail(),
     async function (req, res) {
         usuariosController.attSenha(req, res)
+    })
+router.post("/excluirFoto",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        usuariosController.excluirFoto(req, res)
     })
 
 module.exports = router;
