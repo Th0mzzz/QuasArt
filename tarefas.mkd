@@ -9,7 +9,6 @@
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
-- Adicionar função para excluir img no perfil
 
 ### Banco de dados
 - Adicionar campo para status de usuário.
