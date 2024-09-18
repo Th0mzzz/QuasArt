@@ -9,7 +9,8 @@ const videoControl = require("../controller/videosController");
 // UTIL --------------- 
 const upload = require("../util/upload");
 const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
-const uploadMultiplo = require("../util/uploadMultiplo")
+const uploadMultiplo = require("../util/uploadMultiplo");
+const fichasControl = require("../controller/fichasController");
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -134,7 +135,8 @@ router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.ver
         page: "../partial/template-home/pub-pages/fichas-pub",
         classePagina: "publicar",
         erros: null,
-        token: token
+        token: token,
+        valores: null,
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -181,14 +183,7 @@ router.get("/view-resenha", function (req, res) {
 });
 
 router.get("/view-ficha", function (req, res) {
-    const jsonResult = {
-        token: null,
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/view-ficha",
-        classePagina: "",
-        erros: null
-    }
-    res.render("./pages/template-home", jsonResult)
+    fichasControl.mostrarFicha(req,res)
 });
 
 
@@ -220,6 +215,22 @@ router.post("/criarVideo",
     videoControl.validacaoVideo,
     function (req, res) {
         videoControl.postarVideo(req, res)
+    })
+
+router.post("/criarFicha",
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    uploadMultiplo([
+        { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png',"webp"], fileSize: 5, maxCount: 1 },
+        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi','jpeg', 'jpg', 'png'], fileSize: 200, maxCount: 8 }
+    ]),
+    fichasControl.validacaoFicha,
+    function (req, res) {
+        fichasControl.postarFicha(req,res)
     })
 
 

@@ -1,27 +1,50 @@
+<% 
+let classeErro={ 
+    capaFicha:"",
+    nomeObra:"",
+    sinopse:"",
+    previas:""
+} 
+let msgErro= {
+    capaFicha:"",
+    nomeObra:"",
+    sinopse:"",
+    previas:""
+  } 
+    
+    if(erros) {
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
+    }
+%>
+
 <section class="form__pub-container">
     <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
-    <form action="/criarVideo" class="form__pub" method="post">
+    <form action="/criarFicha" class="form__pub" method="post" enctype="multipart/form-data">
         <header class="form__row">
             <article class="input__container input-file" data-capaContainer>
                 <span class="invalid-msg smallText">
+                    
                 </span>
-                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required data-inputCapa>
+                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required
+                    data-inputCapa>
                 <label for="capaFicha">Selecione a capa da ficha</label>
                 <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
-                <input type="hidden" name="idUsuario" id="idUsuario" value="">
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
-                    <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
-                        placeholder="Título do video" required value="">
-                    <label for="tituloVideo">Nome da Obra</label>
+                    <input type="text" name="nomeObra" id="nomeObra" class="input__control"
+                        placeholder="Título do video" required value="<%= valores ? valores.nomeObra : '' %>">
+                    <label for="nomeObra">Nome da Obra</label>
                 </article>
                 <article class="input__container">
                     <span class="invalid-msg smallText">
                     </span>
-                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="800"></textarea>
+                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="800"><%= valores ? valores.sinopse : '' %></textarea>
                     <label for="sinopse">Sinopse</label>
                 </article>
                 <article class="input__container">
@@ -40,24 +63,21 @@
                 <span class="invalid-msg smallText">
                     Limite de previas alcançado!
                 </span>
-                <input type="file" name="addPrevia" id="addPrevia" class="input__control" placeholder="Título do video">
-                <label for="addPrevia">Adicionar Prévias da Obra</label>
-                <label for="addPrevia" class="icon"><i class="bi bi-plus"></i></label>
+                <input type="file" multiple name="previas" id="previas" class="input__control" placeholder="Título do video" accept="image/*,video/*">
+                <label for="previas">Adicionar Prévias da Obra</label>
+                <label for="previas" class="icon"><i class="bi bi-plus"></i></label>
 
             </article>
 
             <section class="previas__container mt-3">
                 <article class="previas__inner" id="carouselPrevia">
-                    
+
                 </article>
             </section>
         </section>
-
         <button class="btn submit secundaria p-2">Publicar</button>
     </form>
 </section>
 <script src="./js/criarTag.js"></script>
 <script src="./js/addPrevia.js"></script>
 <script src="./js/addCapa.js"></script>
-
-

@@ -1,13 +1,14 @@
 <section class="view__container ficha-view">
     <header class="ficha__header">
         <section class="ficha__info">
-            <img src="./img/cards/card-ficha-teste6.png" alt="imagem de capa da ficha">
+            <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem de capa da ficha">
             <article class="estatistica__ficha">
-                <h2 class="title mb-3">Harry Potter e a Pedra Filosofal</h2>
+                <h2 class="title mb-3"><%= ficha.NOME_OBRA %></h2>
                 <section class="row user">
-                    <a href="/view-profile?idUser=36" class="userLink link"><img src="./img/user-teste.png"
-                            alt="foto do autor" class="userImg">Nome
-                        do usuário</a>
+                    <a href="/profile?idUser=<%= autor.ID_USUARIO %>" class="userLink link">
+                        <img src="./img/imagens-servidor/perfil/<%= autor.CAMINHO_FOTO %>" alt="foto do autor" class="userImg">
+                        <%= autor.NICKNAME_USUARIO %>
+                    </a>
                     <button class="btn">Seguir</button>
                 </section>
                 <section class="row mt-2">
@@ -29,77 +30,40 @@
         <section class="ficha__sinopse">
             <article class="box p-3">
                 <h3 class="subtitle mb-1">Sinopse</h3>
-                <p class="text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam corrupti optio quis,
-                    voluptatibus non est eos, sequi accusantium at amet dolorum repudiandae nulla voluptates libero
-                    sapiente vitae veniam ipsum dolores. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Dolorem praesentium adipisci ipsa, ipsam rerum veniam autem ea similique dignissimos, architecto
-                    voluptas earum ipsum minima minus, ratione rem quo vitae consectetur! Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit. Praesentium possimus tenetur accusantium. Dolorem, fugiat quasi
-                    assumenda et veniam deserunt recusandae, a necessitatibus impedit voluptas vero consequatur
-                    laboriosam. Ullam, tenetur necessitatibus? </p>
+                <p class="text"><%= ficha.DESCR_OBRA %></p>
             </article>
         </section>
     </header>
     <section class="ficha__content">
         <section class="carousel__container mt-3 mb-3 previa__container">
-            <article class="arrows">
-                <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
-                <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
-            </article>
+            <% if(previas && previas.lenght > 1){ %>
+                <article class="arrows">
+                    <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+                    <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+                </article>
+            <% } %>
             <section class="carousel__inner">
-                <article class="card">
-                    <article class="previa__card">
-                        <img src="./img/cards/card-ficha-teste3.png" alt="Prévia item">
-                    </article>
-                </article>
-                <article class="card">
-                    <article class="previa__card">
-                        <img src="./img/cards/card-ficha-teste2.png" alt="Prévia item">
-                    </article>
-                </article>
-                <article class="card">
-                    <article class="previa__card">
-                        <img src="./img/cards/card-ficha-teste.png" alt="Prévia item">
-                    </article>
-                </article>
-                <article class="card">
-                    <article class="previa__card">
-                        <img src="./img/cards/card-ficha-teste4.png" alt="Prévia item">
-                    </article>
-                </article>
-                <article class="card">
-                    <article class="previa__card">
-                        <img src="./img/cards/card-ficha-teste5.png" alt="Prévia item">
-                    </article>
-                </article>
+                <% if(previas) {
+                    previas.forEach(function(previa){ %>
+                        <article class="card">
+                            <article class="previa__card">
+                                <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" alt="Prévia item">
+                            </article>
+                        </article>
+                   <% })
+                } %>
+                
+            
             </section>
         </section>
         <footer class="row">
             <article id="tagsContainer">
-                <span class="tag text">#Resenhalegal</span>
-                <span class="tag text">#ebaeba</span>
-                <span class="tag text">#que</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
-                <span class="tag text">#maneiro</span>
+                <% if(tags){ 
+                    tags.forEach(tag=>{ %>
+                    <span class="tag text">
+                        <%= tag %>
+                    </span>
+                    <% }) } %>
             </article>
             <article class="avaliacao__stars">
                 <i class="bi bi-star-fill"></i>
@@ -109,8 +73,10 @@
                 <i class="bi bi-star-fill"></i>
             </article>
         </footer>
-        <button class="denunciar-btn link mt-2" data-openmodal="#denunciarModal"><i
-                class="bi bi-exclamation-triangle"></i> Denunciar</button>
+        <button class="denunciar-btn link mt-2" data-openmodal="#denunciarModal">
+            <i class="bi bi-exclamation-triangle"></i>
+            Denunciar
+        </button>
     </section>
     <footer class="comentarios__container mt-3">
         <h3 class="subtitle mb-2">Comentários</h3>
