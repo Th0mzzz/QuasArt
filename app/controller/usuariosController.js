@@ -249,6 +249,7 @@ const usuariosController = {
 
             const resenhasUser = await resenhaModel.buscarPorIdDeUser(user[0].ID_USUARIO)
             const videosUser = await videosModel.buscarPorIdUser(user[0].ID_USUARIO)
+            const fichasUser = await fichasModel.findFichasByIdUser(user[0].ID_USUARIO)
             const contagemResenhas = await resenhaModel.contarResenhasPorId(user[0].ID_USUARIO)
             const contagemFichas = await fichasModel.contarFichasPorId(user[0].ID_USUARIO)
             const contagemVideos = await videosModel.contarVideosPorId(user[0].ID_USUARIO)
@@ -270,7 +271,7 @@ const usuariosController = {
             const posts = {
                 resenhas: resenhasUser.length == 0 ? null : resenhasUser,
                 videos: videosUser.length == 0 ? null : videosUser,
-                fichas: null,
+                fichas:  fichasUser.length == 0 ? null : fichasUser,
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",

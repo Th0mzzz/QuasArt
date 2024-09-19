@@ -63,7 +63,7 @@
                 <% if(posts && posts.fichas != null){
                     posts.fichas.forEach(function(ficha){ %>
                 <article class="card__ficha">
-                    <a href="" class="card__content">
+                    <a href="view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
                         <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
                         <article class="card-title">
                             <h4 class="subtitle"><%= ficha.NOME_OBRA %>></h4>
