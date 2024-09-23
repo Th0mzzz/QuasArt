@@ -4,12 +4,16 @@ const addPreviaBtn = document.querySelector("#previas")
 addPreviaBtn.addEventListener("change", function (e) {
     e.preventDefault();
 
-    const files = Array.from(e.target.files);
+    previasContainer.innerHTML = '';
+    selectedFiles = []; 
 
-    if (files.length <= 8) {
+    const files = Array.from(e.target.files);
+    selectedFiles.push(...files);
+
+    if (selectedFiles.length <= 8) {
         addPreviaBtn.parentNode.classList.remove("invalid");
 
-        files.forEach((file, index) => {
+        selectedFiles.forEach((file, index) => {
             if (file && (file.type.startsWith('image/') || file.type.startsWith('video/'))) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
@@ -19,21 +23,21 @@ addPreviaBtn.addEventListener("change", function (e) {
                 reader.readAsDataURL(file);
             } else {
                 addPreviaBtn.parentNode.classList.add("invalid");
-                addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo imagem ou video!';
+                addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Escolha um arquivo do tipo imagem ou vídeo!';
             }
         });
 
     } else {
         addPreviaBtn.parentNode.classList.add("invalid");
         addPreviaBtn.parentNode.querySelector(".invalid-msg").textContent = 'Limite de prévias atingido! No máximo 8 prévias.';
-        addPreviaBtn.value = ""; 
+        addPreviaBtn.value = "";
     }
 });
 
 function criarPreviaItem(srcMidia, file, index, tipoArquivo) {
     const article = document.createElement("article");
     article.className = 'previa';
-    article.dataset.index = index; 
+    article.dataset.index = index;
 
     const inputContainer = document.createElement("article");
     inputContainer.className = 'input__container input-previa input-file';
@@ -41,11 +45,11 @@ function criarPreviaItem(srcMidia, file, index, tipoArquivo) {
     const removePrevia = document.createElement("span");
     removePrevia.className = 'removePrevia';
     removePrevia.innerHTML = `<i class="bi bi-x-lg"></i>`;
-    
+
 
     removePrevia.addEventListener("click", () => {
-        article.remove(); 
-        removerArquivoInput(index); 
+        article.remove();
+        removerArquivoInput(index);
     });
 
     let previaContent = null;
@@ -70,14 +74,14 @@ function criarPreviaItem(srcMidia, file, index, tipoArquivo) {
 }
 
 function removerArquivoInput(index) {
-    const dataTransfer = new DataTransfer(); 
+    const dataTransfer = new DataTransfer();
 
-    
+
     Array.from(addPreviaBtn.files).forEach((file, i) => {
         if (i !== index) {
-            dataTransfer.items.add(file); 
+            dataTransfer.items.add(file);
         }
     });
 
-    addPreviaBtn.files = dataTransfer.files; 
+    addPreviaBtn.files = dataTransfer.files;
 }

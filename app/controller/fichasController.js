@@ -18,11 +18,17 @@ const fichasControl = {
         if (!errors.isEmpty() || errosMulter.length > 0) {
 
             let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+            const previas = req.files['previas'] ? req.files['previas'] : null;
 
             if (errosMulter.length > 0) {
                 listaErros.errors.push(...errosMulter)
                 if (req.files) {
-                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFi'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFicha'][0].filename}`)
+                    if (previas) {
+                        for (let i = 0; i < previas.length; i++){
+                            removeImg(`./app/public/img/imagens-servidor/previas/${req.files['previas'][i].filename}`)
+                        }
+                    }
                 }
             }
             console.log("---------erro-de-validação-ficha--------")
@@ -67,10 +73,13 @@ const fichasControl = {
                 const resultado = await fichasModel.createFicha(ficha)
                 console.log(resultado)
 
-                previas.forEach(async (previa) => {
-                    const previaResult = await fichasModel.createPrevia({ CAMINHO_PREVIA: previa.filename, FICHAS_ID_OBRA: resultado.insertId })
-                    console.log(previaResult)
-                });
+                await Promise.all(previas.map(async (previa) => {
+                    const previaResult = await fichasModel.createPrevia({
+                        CAMINHO_PREVIA: previa.filename,
+                        FICHAS_ID_OBRA: resultado.insertId
+                    });
+                    console.log(previaResult);
+                }));
 
 
                 res.redirect(`/view-ficha?idFicha=${resultado.insertId}`)

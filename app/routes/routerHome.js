@@ -230,6 +230,7 @@ router.post("/criarFicha",
     ]),
     fichasControl.validacaoFicha,
     function (req, res) {
+        console.log(req.files)
         fichasControl.postarFicha(req,res)
     })
 
