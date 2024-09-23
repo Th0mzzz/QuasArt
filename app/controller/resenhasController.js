@@ -97,8 +97,8 @@ const resenhaControl = {
                 }
 
             } catch (error) {
-                console.log(error)
                 res.status(404).render("pages/error-404.ejs");
+
             }
 
         }

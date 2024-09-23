@@ -31,3 +31,5 @@
     }
 
 ### Dúvidas
+- Como puxar todos os autores dos posts da home
+- Qual problema está tendo na post de ficha (não mandar imagens as vzs e como poderia deixar acumulativoo input file)

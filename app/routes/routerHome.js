@@ -11,6 +11,9 @@ const upload = require("../util/upload");
 const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
 const uploadMultiplo = require("../util/uploadMultiplo");
 const fichasControl = require("../controller/fichasController");
+const resenhaModel = require("../models/resenhasModel");
+const fichasModel = require("../models/fichasModel");
+const usuariosModel = require("../models/usuariosModel");
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -26,7 +29,7 @@ const destinoDeFalha = {
 // ---------- PÁGINAS DA HOME -------------
 
 // pagina inicial
-router.get("/", function (req, res) {
+router.get("/", async function (req, res) {
     let token = null
     if (req.session.logado == 0 && req.session.autenticado.autenticado != null) {
         let msg = "Muito bom te ter de volta,"
@@ -34,14 +37,67 @@ router.get("/", function (req, res) {
         token = { msg: msg, usuario: req.session.autenticado.autenticado }
         req.session.logado = req.session.logado + 1
     }
+    try {
 
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/inicial-home",
-        classePagina: "inicialHome",
-        token: token
+        const resenhas = await resenhaModel.findResenhasEmAlta();
+        const reseRecentes = await resenhaModel.findResenhasRecentes();
+        const fichas = await fichasModel.findFichasEmAlta();
+        const fichasRecentes = await fichasModel.findFichasRecentes();
+        const idsResenha = [];
+        const idsFicha = [];
+
+
+        // Aqui se coleta todos os ids que estão nas resenhas e fichas e guarda nos arrays
+        for (const r of [...resenhas, ...reseRecentes]) {
+            if (!idsResenha.includes(r.USUARIOS_ID_USUARIO)) {
+                idsResenha.push(r.USUARIOS_ID_USUARIO);
+            }
+        }
+
+        for (const f of [...fichas, ...fichasRecentes]) {
+            if (!idsFicha.includes(f.USUARIOS_ID_USUARIO)) {
+                idsFicha.push(f.USUARIOS_ID_USUARIO);
+            }
+        }
+
+        //  aqui eu busco os usuarios com base nos ids achados
+
+        const [usuariosResenhas, usuariosFichas] = await Promise.all([
+            usuariosModel.findUsersByIds(idsResenha),
+            usuariosModel.findUsersByIds(idsFicha)
+        ]);
+
+        //  Aqui eu crio um outro array
+        const mapUsuariosResenhas = Object.fromEntries(usuariosResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
+        const mapUsuariosFichas = Object.fromEntries(usuariosFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
+
+
+        const posts = {
+            resenhas: {
+                recentes: reseRecentes.map(r => ({ ...r, usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] })),
+                alta: resenhas.map(r => ({ ...r, usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] })),
+            },
+            fichas: {
+                recentes: fichasRecentes.map(f => ({ ...f, usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] })),
+                alta: fichas.map(f => ({ ...f, usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] })),
+            },
+            destaques: "",
+        };
+        
+
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/inicial-home",
+            classePagina: "inicialHome",
+            token: token,
+            postagens: posts
+        }
+        res.render("./pages/template-home", jsonResult)
+    } catch (error) {
+        console.log(error)
+        res.status(404).render("pages/error-404.ejs");
     }
-    res.render("./pages/template-home", jsonResult)
+
 });
 // pagina de assinatura
 router.get("/plus-page", function (req, res) {
@@ -183,7 +239,7 @@ router.get("/view-resenha", function (req, res) {
 });
 
 router.get("/view-ficha", function (req, res) {
-    fichasControl.mostrarFicha(req,res)
+    fichasControl.mostrarFicha(req, res)
 });
 
 
@@ -225,13 +281,13 @@ router.post("/criarFicha",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     uploadMultiplo([
-        { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png',"webp"], fileSize: 5, maxCount: 1 },
-        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi','jpeg', 'jpg', 'png'], fileSize: 200, maxCount: 8 }
+        { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
+        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png'], fileSize: 200, maxCount: 8 }
     ]),
     fichasControl.validacaoFicha,
     function (req, res) {
         console.log(req.files)
-        fichasControl.postarFicha(req,res)
+        fichasControl.postarFicha(req, res)
     })
 
 

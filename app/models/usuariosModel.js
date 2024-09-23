@@ -78,6 +78,15 @@ const usuariosModel = {
             throw error;
         }
     },
+    findUsersByIds: async (ids) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO IN (?)", [ids]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = usuariosModel;

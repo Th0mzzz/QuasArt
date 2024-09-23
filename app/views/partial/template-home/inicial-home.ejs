@@ -1,279 +1,187 @@
+<!-- em alta -->
+<section class="container__home">
+    <section class="ad__section mt-3">
+        <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
+        <header class="ad__header">
+            <a href="" class="ad__user link">
+                <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
+                <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
+                    Itaú</p>
+            </a>
+            <a href="" class="btn">Conheça</a>
+        </header>
+    </section>
+    <h2 class="title">Em alta</h2>
 
 
-        <section class="container__home">
-            <section class="ad__section mt-3">
-                <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
-                <header class="ad__header">
-                    <a href="" class="ad__user link">
-                        <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
-                        <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
-                            Itaú</p>
-                    </a>
-                    <a href="" class="btn">Conheça</a>
-                </header>
-            </section>
-            <h2 class="title">Em alta</h2>
-            <section class="carousel__container mt-3 mb-3">
-                <article class="arrows">
-                    <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
-                    <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+    <section class="carousel__container mt-3 mb-3">
+        <article class="arrows">
+            <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+            <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+        </article>
+        <section class="carousel__inner">
+
+            <% if(postagens && postagens.resenhas && postagens.resenhas.alta) { 
+                
+
+            postagens.resenhas.alta.forEach(function(resenha){  %>
+                <article class="card">
+                    <article class="card__resenha">
+                        <header class="card__img">
+                            <a href="view-resenha?idResenha=<% resenha.ID_RESENHAS %>">
+                                <img class="img__resenha" src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
+                                    alt="imagem da resenha">
+                            </a>
+                            <article class="usuario">
+                                <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>" alt="imagem do autor">
+                                <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link"><%= resenha.usuario.NICKNAME_USUARIO %></a>
+                            </article>
+                        </header>
+                        <footer class="card__content">
+                            <h5 class="link"><%= resenha. %></h5>
+                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry.Lorem
+                                Ipsum is simply dummy text.</p>
+                            <a href="/view-resenha" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                        </footer>
+                    </article>
                 </article>
-                <section class="carousel__inner">
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste3.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste.png" alt="imagem do autor">
-                                    <a href="/profile?idUser=29" class="link">Dantas.Web</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">God of War Valhalla! Críticas</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="/view-resenha" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste2.png" alt="imagem do autor">
-                                    <a href="/profile" class="link">Th0mzzz</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">Carros 2! Retorno do Marquinhos</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste2.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste3.png" alt="imagem do autor">
-                                    <a href="/profile" class="link">Mariana Ferraz</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste3.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste.png" alt="imagem do autor">
-                                    <a href="/profile" class="link">Gabi Dantas</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">God of War Valhalla! Críticas</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste2.png" alt="imagem do autor">
-                                    <a href="/profile" class="link">Th0mzzz</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">Carros 2! Retorno do Marquinhos</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                    <article class="card">
-                        <article class="card__resenha">
-                            <header class="card__img">
-                                <a href="#">
-                                    <img class="img__resenha" src="./img/cards/card-resenha-teste2.png"
-                                        alt="imagem da resenha">
-                                </a>
-                                <article class="usuario">
-                                    <img src="./img/user-teste3.png" alt="imagem do autor">
-                                    <a href="/profile" class="link">Mariana Ferraz</a>
-                                </article>
-                            </header>
-                            <footer class="card__content">
-                                <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
-                                <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.Lorem
-                                    Ipsum is simply dummy text.</p>
-                                <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                            </footer>
-                        </article>
-                    </article>
-                </section>
-            </section>
 
-            <%- include("./cards-home/cards-fichas") %>
+                <%  })
+            } %>
+
+
         </section>
-        <section class="container__home">
-            <h2 class="title">Recentes</h2>
-            <%- include("./cards-home/carousel-resenha") %>
-                <section class="ad__section mt-3">
-                    <img class="ad__img" src="./img/img-ad-2.png" alt="imagem do anúncio">
-                    <header class="ad__header">
-                        <a href="" class="ad__user link">
-                            <img src="./img/user-ad-2.webp" alt="patrocinador" class="ad__user-img">
-                            <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span>
-                                - Fanta
-                                Brasil
-                            </p>
+    </section>
+
+    <%- include("./cards-home/cards-fichas") %>
+</section>
+
+<section class="container__home">
+    <h2 class="title">Recentes</h2>
+
+    <%- include("./cards-home/carousel-resenha") %>
+
+        <section class="ad__section mt-3">
+            <img class="ad__img" src="./img/img-ad-2.png" alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="" class="ad__user link">
+                    <img src="./img/user-ad-2.webp" alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span>
+                        - Fanta
+                        Brasil
+                    </p>
+                </a>
+                <a href="" class="btn">Conheça</a>
+            </header>
+        </section>
+        <%- include("./cards-home/carousel-resenha") %>
+            <%- include("./cards-home/cards-fichas") %>
+</section>
+<section class="container__home">
+    <h2 class="title">Perfis Destaques do mês</h2>
+    <section class="destaques__cards">
+        <article class="destaque__user">
+            <header class="user__header">
+                <img src="./img/user-teste.png" alt="foto do usuário destaque">
+            </header>
+            <section class="content__user">
+                <h4 class="subtitle mb-3">Gabi Dantas</h4>
+                <article class="obra__user">
+                    <article class="card__resenha">
+                        <header class="card__img">
+                            <a href="#">
+                                <img class="img__resenha" src="./img/cards/card-resenha-teste3.png"
+                                    alt="imagem da resenha">
+                            </a>
+                            <article class="usuario">
+                                <img src="./img/user-teste.png" alt="imagem do autor">
+                                <a href="/profile" class="link">Gabi Dantas</a>
+                            </article>
+                        </header>
+                        <footer class="card__content">
+                            <h5 class="link">God of War Valhalla! Críticas</h5>
+                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting
+                                industry.Lorem
+                                Ipsum is simply dummy text.</p>
+                            <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                        </footer>
+                    </article>
+                </article>
+                <p class="text mt-2">Visualizações - 200K</p>
+            </section>
+        </article>
+        <article class="destaque__user">
+            <header class="user__header">
+                <img src="./img/user-teste2.png" alt="foto do usuário destaque">
+            </header>
+            <section class="content__user">
+                <h4 class="subtitle mb-3">Th0mzzz</h4>
+                <article class="obra__user">
+                    <article class="card__ficha">
+                        <a href="#" class="card__content">
+                            <img src="./img/cards/card-ficha-teste.png" alt="imagem da ficha">
+                            <article class="card-title">
+                                <h4 class="subtitle">Calor e Amor</h4>
+                            </article>
                         </a>
-                        <a href="" class="btn">Conheça</a>
-                    </header>
-                </section>
-                <%- include("./cards-home/carousel-resenha") %>
-                    <%- include("./cards-home/cards-fichas") %>
-        </section>
-        <section class="container__home">
-            <h2 class="title">Perfis Destaques do mês</h2>
-            <section class="destaques__cards">
-                <article class="destaque__user">
-                    <header class="user__header">
-                        <img src="./img/user-teste.png" alt="foto do usuário destaque">
-                    </header>
-                    <section class="content__user">
-                        <h4 class="subtitle mb-3">Gabi Dantas</h4>
-                        <article class="obra__user">
-                            <article class="card__resenha">
-                                <header class="card__img">
-                                    <a href="#">
-                                        <img class="img__resenha" src="./img/cards/card-resenha-teste3.png"
-                                            alt="imagem da resenha">
-                                    </a>
-                                    <article class="usuario">
-                                        <img src="./img/user-teste.png" alt="imagem do autor">
-                                        <a href="/profile" class="link">Gabi Dantas</a>
-                                    </article>
-                                </header>
-                                <footer class="card__content">
-                                    <h5 class="link">God of War Valhalla! Críticas</h5>
-                                    <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting
-                                        industry.Lorem
-                                        Ipsum is simply dummy text.</p>
-                                    <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                                </footer>
+                        <footer class="card__autor">
+                            <article class="usuario">
+                                <img src="./img/perfil-padrao.webp" alt="imagem do autor">
+                                <a href="/profile" class="smallText">Th0mzzz</a>
                             </article>
-                        </article>
-                        <p class="text mt-2">Visualizações - 200K</p>
-                    </section>
+                            <p class="smallText">00/00/0000</p>
+                        </footer>
+                    </article>
                 </article>
-                <article class="destaque__user">
-                    <header class="user__header">
-                        <img src="./img/user-teste2.png" alt="foto do usuário destaque">
-                    </header>
-                    <section class="content__user">
-                        <h4 class="subtitle mb-3">Th0mzzz</h4>
-                        <article class="obra__user">
-                            <article class="card__ficha">
-                                <a href="#" class="card__content">
-                                    <img src="./img/cards/card-ficha-teste.png" alt="imagem da ficha">
-                                    <article class="card-title">
-                                        <h4 class="subtitle">Calor e Amor</h4>
-                                    </article>
-                                </a>
-                                <footer class="card__autor">
-                                    <article class="usuario">
-                                        <img src="./img/perfil-padrao.webp" alt="imagem do autor">
-                                        <a href="/profile" class="smallText">Th0mzzz</a>
-                                    </article>
-                                    <p class="smallText">00/00/0000</p>
-                                </footer>
-                            </article>
-                        </article>
-                        <p class="text mt-2">Visualizações - 70K</p>
-                    </section>
-                </article>
-                <article class="destaque__user">
-                    <header class="user__header">
-                        <img src="./img/user-teste3.png" alt="foto do usuário destaque">
-                    </header>
-                    <section class="content__user">
-                        <h4 class="subtitle mb-3">Mariana Ferraz</h4>
-                        <article class="obra__user">
-                            <article class="card__resenha">
-                                <header class="card__img">
-                                    <a href="#">
-                                        <img class="img__resenha" src="./img/cards/card-resenha-teste2.png"
-                                            alt="imagem da resenha">
-                                    </a>
-                                    <article class="usuario">
-                                        <img src="./img/user-teste3.png" alt="imagem do autor">
-                                        <a href="/profile" class="link">Mariana Ferraz</a>
-                                    </article>
-                                </header>
-                                <footer class="card__content">
-                                    <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
-                                    <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting
-                                        industry.Lorem
-                                        Ipsum is simply dummy text.</p>
-                                    <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                                </footer>
-                            </article>
-                        </article>
-                        <p class="text mt-2">Visualizações - 249K</p>
-                    </section>
-                </article>
+                <p class="text mt-2">Visualizações - 70K</p>
             </section>
-        </section>
-        <section class="container__home">
-            <section class="ad__section mt-3">
-                <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
-                <header class="ad__header">
-                    <a href="" class="ad__user link">
-                        <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
-                        <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
-                            Itaú</p>
-                    </a>
-                    <a href="" class="btn">Conheça</a>
-                </header>
+        </article>
+        <article class="destaque__user">
+            <header class="user__header">
+                <img src="./img/user-teste3.png" alt="foto do usuário destaque">
+            </header>
+            <section class="content__user">
+                <h4 class="subtitle mb-3">Mariana Ferraz</h4>
+                <article class="obra__user">
+                    <article class="card__resenha">
+                        <header class="card__img">
+                            <a href="#">
+                                <img class="img__resenha" src="./img/cards/card-resenha-teste2.png"
+                                    alt="imagem da resenha">
+                            </a>
+                            <article class="usuario">
+                                <img src="./img/user-teste3.png" alt="imagem do autor">
+                                <a href="/profile" class="link">Mariana Ferraz</a>
+                            </article>
+                        </header>
+                        <footer class="card__content">
+                            <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
+                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
+                                typesetting
+                                industry.Lorem
+                                Ipsum is simply dummy text.</p>
+                            <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                        </footer>
+                    </article>
+                </article>
+                <p class="text mt-2">Visualizações - 249K</p>
             </section>
-            <%- include("./cards-home/cards-fichas") %>
-        </section>
-        <script src="./js/carousel.js"></script>
+        </article>
+    </section>
+</section>
+<section class="container__home">
+    <section class="ad__section mt-3">
+        <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
+        <header class="ad__header">
+            <a href="" class="ad__user link">
+                <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
+                <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
+                    Itaú</p>
+            </a>
+            <a href="" class="btn">Conheça</a>
+        </header>
+    </section>
+    <%- include("./cards-home/cards-fichas") %>
+</section>

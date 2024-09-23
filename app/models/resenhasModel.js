@@ -40,6 +40,26 @@ const resenhaModel = {
             return error
         }
     },
+    findResenhasEmAlta: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
+    findResenhasRecentes: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS ORDER BY ID_RESENHAS DESC LIMIT 100")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
 }
 
 module.exports = resenhaModel

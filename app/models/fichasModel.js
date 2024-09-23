@@ -58,6 +58,26 @@ const fichasModel = {
             return error
         }
     },
+    findFichasEmAlta: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM FICHAS")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
+    findFichasRecentes: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM FICHAS ORDER BY ID_OBRA DESC LIMIT 100")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
 }
 
 module.exports = fichasModel;

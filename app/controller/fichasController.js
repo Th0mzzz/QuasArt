@@ -7,9 +7,9 @@ const fichasModel = require("../models/fichasModel");
 const fichasControl = {
     validacaoFicha: [
         body("nomeObra")
-            .isLength({ min: 8, max: 60 }).withMessage("O nome deve ter entre 8 e 60 caracteres!"),
+            .isLength({ min: 8, max: 100 }).withMessage("O nome deve ter entre 8 e 60 caracteres!"),
         body("sinopse")
-            .isLength({ min: 25, max: 400 }).withMessage("O nome deve ter entre 25 e 400 caracteres!")
+            .isLength({ min: 25, max: 1000 }).withMessage("O nome deve ter entre 25 e 400 caracteres!")
     ],
     postarFicha: async (req, res) => {
         let errors = validationResult(req)
