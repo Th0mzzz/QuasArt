@@ -14,7 +14,7 @@
 
 .home__header,
 .home__footer,
-.home__content{
+.home__content {
     padding: 0 clamp(.2rem, 3vw, 3rem);
     max-width: 1440px;
     margin: auto;
@@ -32,7 +32,8 @@
     & .card__content {
         position: relative;
         border-radius: var(--bdrr);
-        overflow: hidden;
+        overflow: hidden;    
+        height: clamp(180px, 100vh, 330px);
 
         & img {
             width: 100%;
@@ -41,6 +42,7 @@
             transition: all ease .3s;
             opacity: .8;
             object-fit: cover;
+            height: inherit;
 
         }
 
@@ -108,6 +110,7 @@
         position: relative;
         border-radius: var(--bdrr);
         overflow: hidden;
+        height: clamp(180px, 100vh, 330px);
 
         & img {
             width: 100%;
@@ -116,6 +119,8 @@
             transition: all ease .3s;
             opacity: .8;
             object-fit: cover;
+            height: inherit;
+
         }
 
         &:hover {
@@ -154,12 +159,14 @@
         width: 100%;
         overflow: hidden;
         border-radius: var(--bdrr) var(--bdrr) 0 0;
+        height: clamp(135px, 100vw, 210px);
 
         & img.img__resenha {
             width: 100%;
             transform: scale(1.1);
             object-fit: cover;
             transition: transform .4s;
+            height: 100%;
         }
 
         & .usuario {
@@ -203,11 +210,13 @@
         color: var(--cor-texto);
         position: relative;
         flex-grow: 1;
-        & .text{
+
+        & .text {
             width: 100%;
             word-wrap: break-word;
             padding-right: .3rem;
         }
+
         & .btn {
             border: 10px solid var(--cor-containers);
             border-radius: 50%;
@@ -234,10 +243,12 @@
     border: 2px solid var(--cor-secundaria);
     border-radius: 50px;
     z-index: 100;
-    &.success{
+
+    &.success {
         color: var(--cor-success);
     }
-    &.danger{
+
+    &.danger {
         color: var(--cor-danger);
     }
 }
@@ -321,6 +332,7 @@
         & .comment__item {
             position: relative;
             color: var(--cor-texto);
+
             & .row {
                 position: relative;
                 padding: 1rem;

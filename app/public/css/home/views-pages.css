@@ -125,6 +125,7 @@
                 box-shadow: 0 0 5px var(--cor-texto);
                 display: block;
                 z-index: 3;
+                object-fit: cover;
             }
 
             & .estatistica__ficha {
