@@ -9,12 +9,12 @@ const fichasControl = {
         body("nomeObra")
             .isLength({ min: 8, max: 100 }).withMessage("O nome deve ter entre 8 e 60 caracteres!"),
         body("sinopse")
-            .isLength({ min: 25, max: 1000 }).withMessage("O nome deve ter entre 25 e 400 caracteres!")
+            .isLength({ min: 25, max: 1400 }).withMessage("O nome deve ter entre 25 e 1400 caracteres!")
     ],
     postarFicha: async (req, res) => {
         let errors = validationResult(req)
         let errosMulter = req.session.erroMulter;
-        console.log("Erros de validação:", errors.array());
+
         if (!errors.isEmpty() || errosMulter.length > 0) {
 
             let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
@@ -32,7 +32,9 @@ const fichasControl = {
                 }
             }
             console.log("---------erro-de-validação-ficha--------")
+            
             console.log(listaErros)
+            console.log("ERROSMULTER:", errosMulter)
 
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/fichas-pub",
@@ -52,7 +54,7 @@ const fichasControl = {
                 const previas = req.files['previas'] ? req.files['previas'] : [];
                 console.log("FICHASCONTROLLER -------------------------------")
                 console.log(previas)
-                console.log(req.files)
+                
 
                 const dataAtual = new Date();
 

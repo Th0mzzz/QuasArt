@@ -5,10 +5,11 @@
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
-- Publicação de Fichas;
+- Edição de posts
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
+- Pesquisar
 
 ### Banco de dados
 - Adicionar campo para status de usuário.

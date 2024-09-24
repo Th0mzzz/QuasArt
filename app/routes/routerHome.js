@@ -74,12 +74,38 @@ router.get("/", async function (req, res) {
 
         const posts = {
             resenhas: {
-                recentes: reseRecentes.map(r => ({ ...r, usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] })),
-                alta: resenhas.map(r => ({ ...r, usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] })),
+                recentes: reseRecentes.map(r => ({
+                     ...r, 
+                     usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] 
+                    })
+                ),
+                alta: resenhas.map(r => ({ 
+                    ...r, 
+                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] 
+                })),
             },
             fichas: {
-                recentes: fichasRecentes.map(f => ({ ...f, usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] })),
-                alta: fichas.map(f => ({ ...f, usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] })),
+                recentes: fichasRecentes.map(f => {
+                    const dataFicha = new Date(f.DATA_FICHA);
+                    const dataFormatada = dataFicha.toISOString().split('T')[0];
+                    
+                    return {
+                        ...f,
+                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO], 
+                        DATA_FICHA: dataFormatada 
+                    };
+                }),
+                alta: fichas.map(f => {
+            
+                    const dataFicha = new Date(f.DATA_FICHA);
+                    const dataFormatada = dataFicha.toISOString().split('T')[0];
+                    
+                    return {
+                        ...f,
+                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO], 
+                        DATA_FICHA: dataFormatada 
+                    };
+                }),
             },
             destaques: "",
         };
@@ -282,7 +308,7 @@ router.post("/criarFicha",
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
-        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png'], fileSize: 200, maxCount: 8 }
+        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
     ]),
     fichasControl.validacaoFicha,
     function (req, res) {

@@ -158,11 +158,14 @@
     .cards__container {
         & .cards__row {
             flex-flow: row nowrap;
-            justify-content: space-between;
-
-            & .card__ficha {
-                width: 100%;
-            }
+            justify-content: start;
+             & .card__ficha{
+                width: clamp(280px,24vw, 330px);
+                & .card__content{
+                    height: clamp(420px,24vw, 495px);
+                }
+             }
+           
         }
 
     }

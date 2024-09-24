@@ -6,6 +6,8 @@ const sharp = require("sharp");
 
 const createFileFilter = (extensoesPermitidas) => {
     return (req, file, cowboy) => {
+
+        return cowboy(new Error("Teste de erro de tipo de arquivo"));
         const extensoesRegex = new RegExp(extensoesPermitidas.join('|'));
         const extname = extensoesRegex.test(path.extname(file.originalname).toLowerCase());
         const mimetype = extensoesRegex.test(file.mimetype);
@@ -103,12 +105,17 @@ module.exports = (camposConfig = []) => {
         ({
             name: campo.name,
             maxCount: campo.maxCount || 1
-        })))// aqui acaba a função de config os campos para o upload.fields e começa o tratamento para erros ou prosseguir o middlewares
-            (req, res, function (err) {
+        })))(req, res, function (err) { // aqui acaba a função de config os campos para o upload.fields e começa o tratamento para erros ou prosseguir o middlewares
+
                 // Tratamento de erros de upload
 
                 // Se existir um erro do multer ou um err, ele vai passar por todos os campos e verificar se o name deles é igual ao do erro, se sim, ele adiciona um erro ao errosMulter.
                 if (err instanceof multer.MulterError || err) {
+                    // verifica se existe a variavel de sessão de erros do multer, senao, então cria.
+
+                    if (!req.session.erroMulter) {
+                        req.session.erroMulter = [];
+                    }
                     // Adiciona erros de todos os campos
                     camposConfig.forEach(campo => {
                         if (err.field === campo.name) {
@@ -119,12 +126,8 @@ module.exports = (camposConfig = []) => {
                             });
                         }
                     });
-                    // verifica se existe a variavel de sessão de erros do multer, senao, então cria.
-                    if (!req.session.erroMulter) {
-                        req.session.erroMulter = [];
-                    }
-                    // aqui ele pega os erros que ja tinham da variavel e adiciona os erros do array, descontruindo ambos e colocando num novo array
 
+                    // aqui ele pega os erros que ja tinham da variavel e adiciona os erros do array, descontruindo ambos e colocando num novo array
                     req.session.erroMulter = [...req.session.erroMulter, ...errosMulter];
                     return next();
                 }

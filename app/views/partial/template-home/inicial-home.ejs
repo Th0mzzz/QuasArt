@@ -12,7 +12,7 @@
         </header>
     </section>
     <h2 class="title">Em alta</h2>
-
+<!-- resenhas em alta -->
 
     <section class="carousel__container mt-3 mb-3">
         <article class="arrows">
@@ -21,40 +21,69 @@
         </article>
         <section class="carousel__inner">
 
-            <% if(postagens && postagens.resenhas && postagens.resenhas.alta) { 
-                
-
-            postagens.resenhas.alta.forEach(function(resenha){  %>
+            <% if(postagens && postagens.resenhas && postagens.resenhas.alta) {
+                postagens.resenhas.alta.forEach(function(resenha){ %>
                 <article class="card">
                     <article class="card__resenha">
                         <header class="card__img">
-                            <a href="view-resenha?idResenha=<% resenha.ID_RESENHAS %>">
-                                <img class="img__resenha" src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                <img class="img__resenha"
+                                    src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
                                     alt="imagem da resenha">
                             </a>
                             <article class="usuario">
-                                <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>" alt="imagem do autor">
-                                <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link"><%= resenha.usuario.NICKNAME_USUARIO %></a>
+                                <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>"
+                                    alt="imagem do autor">
+                                <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link">
+                                    <%= resenha.usuario.NICKNAME_USUARIO %>
+                                </a>
                             </article>
                         </header>
                         <footer class="card__content">
-                            <h5 class="link"><%= resenha. %></h5>
+                            <h5 class="link">
+                                <%= resenha.TITULO_RESENHA %>
+                            </h5>
                             <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.Lorem
                                 Ipsum is simply dummy text.</p>
-                            <a href="/view-resenha" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </footer>
                     </article>
                 </article>
 
-                <%  })
-            } %>
+                <% }) } %>
 
 
         </section>
     </section>
 
-    <%- include("./cards-home/cards-fichas") %>
+    <!-- FICHAS EM ALTA -->
+    <section class="cards__container mb-3 mt-3">
+        <section class="cards__row">
+            <% if(postagens && postagens.fichas && postagens.fichas.alta) {
+                postagens.fichas.alta.forEach(function(ficha, index){ 
+                    
+                    if(index < 4) {%>
+                <article class="card__ficha">
+                    <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                        <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
+                        <article class="card-title">
+                            <h4 class="subtitle"><%=ficha.NOME_OBRA %></h4>
+                        </article>
+                    </a>
+                    <footer class="card__autor">
+                        <article class="usuario">
+                            <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>" alt="imagem do autor">
+                            <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText"><%= ficha.usuario.NICKNAME_USUARIO %></a>
+                        </article>
+                        <p class="smallText"><%= ficha.DATA_FICHA %></p>
+                    </footer>
+                </article>
+                <% } 
+            }) } %>
+        </section>
+    </section>
 </section>
 
 <section class="container__home">
