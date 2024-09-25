@@ -1,13 +1,22 @@
 const multer = require("multer")
 const path = require("path");
 const sharp = require("sharp");
+// aqui eu crio um objeto a partir do objeto de Error do JS, para poder manipula-lo na minha validação
+class fileFilterError extends Error {
+    constructor(msg, path) {
+        super(msg); 
+        this.path = path; 
+        this.msg = msg; 
+    }
+}
+
 
 // Criador de um filtro de arquivo, onde eu determino as extensoes que eu quero na hora de chamar a função
 
-const createFileFilter = (extensoesPermitidas) => {
+const createFileFilter = (extensoesPermitidas, nomeCampo) => {
     return (req, file, cowboy) => {
 
-        return cowboy(new Error("Teste de erro de tipo de arquivo"));
+        // return cowboy(new Error("Teste de erro de tipo de arquivo"));
         const extensoesRegex = new RegExp(extensoesPermitidas.join('|'));
         const extname = extensoesRegex.test(path.extname(file.originalname).toLowerCase());
         const mimetype = extensoesRegex.test(file.mimetype);
@@ -15,7 +24,7 @@ const createFileFilter = (extensoesPermitidas) => {
         if (extname && mimetype) {
             return cowboy(null, true);
         } else {
-            return cowboy(new Error("Tipo de arquivo inválido"));
+            return cowboy(new fileFilterError("Tipo de arquivo inválido", nomeCampo)); // aqui eu utilizo o objeto de erro criado e coloco uma msg como parametro e o nome do campo que será passado
         }
     };
 };
@@ -55,7 +64,7 @@ module.exports = (camposConfig = []) => {
             //Para cada campo passado, eu crio um limite de tamanho com base no fileSize que o campo passou
             limits[campo.name] = campo.fileSize * 1024 * 1024;
             // Assim como acima, para cada campo passado, eu crio um filtro com base nas extensões que o campo passou
-            fileFilters[campo.name] = createFileFilter(campo.extensoes);
+            fileFilters[campo.name] = createFileFilter(campo.extensoes, campo.name);
 
         })
         // Após configurar os filtros baseados em cada campo e salva-los em um objeto, criaremos o filtro nos moldes do multer para utilizar no fileFilter do upload.
@@ -107,32 +116,39 @@ module.exports = (camposConfig = []) => {
             maxCount: campo.maxCount || 1
         })))(req, res, function (err) { // aqui acaba a função de config os campos para o upload.fields e começa o tratamento para erros ou prosseguir o middlewares
 
-                // Tratamento de erros de upload
+            // Tratamento de erros de upload
 
-                // Se existir um erro do multer ou um err, ele vai passar por todos os campos e verificar se o name deles é igual ao do erro, se sim, ele adiciona um erro ao errosMulter.
-                if (err instanceof multer.MulterError || err) {
-                    // verifica se existe a variavel de sessão de erros do multer, senao, então cria.
+            // Se existir um erro do multer ou um err, ele vai passar por todos os campos e verificar se o name deles é igual ao do erro, se sim, ele adiciona um erro ao errosMulter.
+            if (err instanceof multer.MulterError || err) {
+                // verifica se existe a variavel de sessão de erros do multer, senao, então cria.
 
-                    if (!req.session.erroMulter) {
-                        req.session.erroMulter = [];
-                    }
-                    // Adiciona erros de todos os campos
-                    camposConfig.forEach(campo => {
-                        if (err.field === campo.name) {
-                            errosMulter.push({
-                                value: '',
-                                msg: err.message,
-                                path: campo.name
-                            });
-                        }
-                    });
-
-                    // aqui ele pega os erros que ja tinham da variavel e adiciona os erros do array, descontruindo ambos e colocando num novo array
-                    req.session.erroMulter = [...req.session.erroMulter, ...errosMulter];
-                    return next();
+                if (!req.session.erroMulter) {
+                    req.session.erroMulter = [];
                 }
-                next();
-            });
+
+                // Adiciona erros de todos os campos
+                camposConfig.forEach(campo => {
+                    console.log(' ------------------- ERRO UPLOAD MULTIPLO -----------------')
+                    console.log(err)
+                    console.log(err[campo.name])
+                    
+
+
+                    if (err.path === campo.name) {
+                        errosMulter.push({
+                            value: '',
+                            msg: err.msg,
+                            path: campo.name
+                        });
+                    }
+                });
+
+                // aqui ele pega os erros que ja tinham da variavel e adiciona os erros do array, descontruindo ambos e colocando num novo array
+                req.session.erroMulter = [...req.session.erroMulter, ...errosMulter];
+                return next();
+            }
+            next();
+        });
 
 
     }

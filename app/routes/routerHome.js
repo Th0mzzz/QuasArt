@@ -59,12 +59,14 @@ router.get("/", async function (req, res) {
                 idsFicha.push(f.USUARIOS_ID_USUARIO);
             }
         }
-
+        console.log('ERRO IDS')
+        console.log(idsResenha)
+        console.log(idsFicha)
         //  aqui eu busco os usuarios com base nos ids achados
-
+        
         const [usuariosResenhas, usuariosFichas] = await Promise.all([
-            usuariosModel.findUsersByIds(idsResenha),
-            usuariosModel.findUsersByIds(idsFicha)
+            idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
+            idsFicha.length > 0 ?usuariosModel.findUsersByIds(idsFicha) : []
         ]);
 
         //  Aqui eu crio um outro array

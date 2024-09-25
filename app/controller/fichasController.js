@@ -25,16 +25,16 @@ const fichasControl = {
                 if (req.files) {
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFicha'][0].filename}`)
                     if (previas) {
-                        for (let i = 0; i < previas.length; i++){
+                        for (let i = 0; i < previas.length; i++) {
                             removeImg(`./app/public/img/imagens-servidor/previas/${req.files['previas'][i].filename}`)
                         }
                     }
                 }
             }
-            console.log("---------erro-de-validação-ficha--------")
-            
+            console.log("---------( erro-de-validação-ficha )--------")
+
             console.log(listaErros)
-            console.log("ERROSMULTER:", errosMulter)
+            
 
             const jsonResult = {
                 page: "../partial/template-home/pub-pages/fichas-pub",
@@ -52,12 +52,11 @@ const fichasControl = {
 
                 const capaFicha = req.files['capaFicha'] ? req.files['capaFicha'][0] : null;
                 const previas = req.files['previas'] ? req.files['previas'] : [];
-                console.log("FICHASCONTROLLER -------------------------------")
+                console.log("---------( FICHASCONTROLLER )---------")
                 console.log(previas)
-                
+
 
                 const dataAtual = new Date();
-
                 const ano = dataAtual.getFullYear();
                 const mes = String(dataAtual.getMonth() + 1).padStart(2, '0');
                 const dia = String(dataAtual.getDate()).padStart(2, '0');
@@ -67,7 +66,7 @@ const fichasControl = {
                 const ficha = {
                     NOME_OBRA: nomeObra,
                     DESCR_OBRA: sinopse,
-                    HASHTAG_OBRA: [tags].toString(),
+                    HASHTAG_OBRA: [tags].toString() != '' ? [tags].toString() : null,
                     CAMINHO_CAPA: capaFicha.filename,
                     USUARIOS_ID_USUARIO: req.session.autenticado.id,
                     DATA_FICHA: dataFormatada
@@ -76,20 +75,25 @@ const fichasControl = {
                 console.log(resultado)
 
                 await Promise.all(previas.map(async (previa) => {
-                    const previaResult = await fichasModel.createPrevia({
+                    await fichasModel.createPrevia({
                         CAMINHO_PREVIA: previa.filename,
                         FICHAS_ID_OBRA: resultado.insertId
                     });
-                    console.log(previaResult);
                 }));
 
 
                 res.redirect(`/view-ficha?idFicha=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
+                const previas = req.files['previas'] ? req.files['previas'] : null;
+
                 if (req.files) {
-                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
-                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFicha'][0].filename}`)
+                    if (previas) {
+                        for (let i = 0; i < previas.length; i++) {
+                            removeImg(`./app/public/img/imagens-servidor/previas/${req.files['previas'][i].filename}`)
+                        }
+                    }
                 }
                 res.render("pages/error-500")
             }

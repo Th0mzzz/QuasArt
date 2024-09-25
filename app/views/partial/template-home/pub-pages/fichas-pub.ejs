@@ -24,9 +24,9 @@ let msgErro= {
     <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
     <form action="/criarFicha" class="form__pub" method="post" enctype="multipart/form-data">
         <header class="form__row">
-            <article class="input__container input-file" data-capaContainer>
+            <article class="input__container input-file <%= classeErro.capaFicha %>" data-capaContainer>
                 <span class="invalid-msg smallText">
-                    
+                    <%= msgErro.capaFicha %>
                 </span>
                 <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required
                     data-inputCapa>
@@ -34,17 +34,19 @@ let msgErro= {
                 <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
             </article>
             <section>
-                <article class="input__container">
+                <article class="input__container <%= classeErro.nomeObra %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.nomeObra %>
                     </span>
                     <input type="text" name="nomeObra" id="nomeObra" class="input__control"
                         placeholder="Título do video" required value="<%= valores ? valores.nomeObra : '' %>">
                     <label for="nomeObra">Nome da Obra</label>
                 </article>
-                <article class="input__container">
+                <article class="input__container <%= classeErro.sinopse %>">
                     <span class="invalid-msg smallText">
+                        <%= msgErro.sinopse %>
                     </span>
-                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="1400"><%= valores ? valores.sinopse : '' %></textarea>
+                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="1399"><%= valores ? valores.sinopse : '' %></textarea>
                     <label for="sinopse">Sinopse</label>
                 </article>
                 <article class="input__container">
@@ -59,9 +61,9 @@ let msgErro= {
         </header>
         <section class="ficha__conteudo">
 
-            <article class="input__container input-file ">
+            <article class="input__container input-file <%= classeErro.previas %>">
                 <span class="invalid-msg smallText">
-                    Limite de previas alcançado!
+                    <%= msgErro.previas != '' ? msgErro.previas : '' %>
                 </span>
                 <input type="file" name="previas" id="previas" class="input__control" placeholder="Título do video" multiple>
                 <label for="previas">Adicionar Prévias da Obra</label>

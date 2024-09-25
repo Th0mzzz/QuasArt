@@ -43,9 +43,7 @@
                             <h5 class="link">
                                 <%= resenha.TITULO_RESENHA %>
                             </h5>
-                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.Lorem
-                                Ipsum is simply dummy text.</p>
+                            <p class="text mt-2"><%= resenha.DESCR_RESENHA.length > 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...' : resenha.DESCR_RESENHA %></p>
                             <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
                                     class="bi bi-arrow-right-circle"></i></a>
                         </footer>

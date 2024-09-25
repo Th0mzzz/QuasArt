@@ -169,6 +169,10 @@
                 color: var(--cor-texto);
                 border: 1px solid var(--cor-texto);
             }
+            & .text{
+                width: 100%;
+                word-wrap: break-word;
+            }
         }
     }
 
