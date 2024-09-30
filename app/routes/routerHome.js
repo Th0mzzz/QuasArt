@@ -8,7 +8,8 @@ const resenhaControl = require("../controller/resenhasController");
 const videoControl = require("../controller/videosController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
+const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png','webp']);
+
 const uploadMultiplo = require("../util/uploadMultiplo");
 const fichasControl = require("../controller/fichasController");
 const resenhaModel = require("../models/resenhasModel");
@@ -226,7 +227,10 @@ router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.ver
 });
 
 // pagina de publicar resenhas
-router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+router.get("/resenha-cosmica-pub", 
+    middleWares.verifyAutenticado, 
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), 
+    function (req, res) {
     const token = null
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -240,7 +244,8 @@ router.get("/resenha-cosmica-pub", middleWares.verifyAutenticado, middleWares.ve
 });
 
 
-//Pagina sobre o quasart
+// ------- Página sobre o Quarsart -------
+
 
 router.get("/sobre", function (req, res) {
     const token = null
@@ -259,7 +264,6 @@ router.get("/videos", function (req, res) {
     videoControl.mostrarVideo(req, res)
 });
 
-
 // -------- PÁGINAS DE VISUALIZAÇÃO -------------
 
 router.get("/view-resenha", function (req, res) {
@@ -269,6 +273,9 @@ router.get("/view-resenha", function (req, res) {
 router.get("/view-ficha", function (req, res) {
     fichasControl.mostrarFicha(req, res)
 });
+
+
+// ------- CRIAÇÃO DE POSTS -------
 
 
 // Form de criação de Resenha
@@ -284,6 +291,7 @@ router.post("/criarResenha",
     function (req, res) {
         resenhaControl.postarResenha(req, res)
     });
+// Form de criação de Video
 
 router.post("/criarVideo",
     (req, res, next) => {
@@ -300,6 +308,7 @@ router.post("/criarVideo",
     function (req, res) {
         videoControl.postarVideo(req, res)
     })
+// Form de criação de Ficha
 
 router.post("/criarFicha",
     (req, res, next) => {
@@ -318,5 +327,14 @@ router.post("/criarFicha",
         fichasControl.postarFicha(req, res)
     })
 
+// ------- Pesquisar -------
+
+
+router.post("/Pesquisar", function(req,res){
+
+
+
+});
+    
 
 module.exports = router;

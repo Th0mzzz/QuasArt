@@ -5,15 +5,14 @@
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
-- Edição de posts
+- Edição de posts (Criar uma pagina para pegar as coisas dentro do form e outra com o form para att o post e dps incluir)
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
-- Pesquisar
+- Pesquisar (Pesquisar fichas, perfis, resenhas e videos direto nas tables com base no digitado)
 
 ### Banco de dados
 - Adicionar campo para status de usuário.
-
 - LEMBRAR : Att na table previas(Atualizei o id_previa para AI, PK ) / att na table FICHAS (att o nota_obra para null)
 
 ### Documentação e integração 
@@ -32,5 +31,4 @@
     }
 
 ### Dúvidas
-- Como puxar todos os autores dos posts da home
-- Qual problema está tendo na post de ficha (não mandar imagens as vzs e como poderia deixar acumulativoo input file)
+- Como colocar as imagens na edição

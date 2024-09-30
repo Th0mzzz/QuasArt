@@ -364,6 +364,34 @@ const usuariosController = {
         }
 
     },
+    excluirFoto: async (req, res) => {
+
+        try {
+            var caminhoFoto = req.session.autenticado.foto
+            if (caminhoFoto != "perfil-padrao.webp") {
+                removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
+            }
+            caminhoFoto = "perfil-padrao.webp"
+            let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
+            const user = await usuariosModel.findUserById(req.session.autenticado.id)
+            req.session.autenticado.foto = caminhoFoto
+            console.log(resultado)
+            const jsonResult = {
+                page: "../partial/edit-profile/index",
+                pageClass: "index",
+                usuario: user[0],
+                modalAberto: false,
+                erros: null,
+                token: { msg: "Foto excluída com sucesso!", type: "success" }
+            }
+            res.render("./pages/edit-profile", jsonResult)
+
+        } catch (errors) {
+            console.log(errors)
+            res.render("pages/error-500")
+
+        }
+    },
     atualizarUsuario: async (req, res) => {
         const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
         let errors = validationResult(req)
@@ -493,34 +521,7 @@ const usuariosController = {
 
         }
     },
-    excluirFoto: async (req, res) => {
-
-        try {
-            var caminhoFoto = req.session.autenticado.foto
-            if (caminhoFoto != "perfil-padrao.webp") {
-                removeImg(`./app/public/img/imagens-servidor/perfil/${caminhoFoto}`)
-            }
-            caminhoFoto = "perfil-padrao.webp"
-            let resultado = await usuariosModel.updateUser({ CAMINHO_FOTO: caminhoFoto }, req.session.autenticado.id)
-            const user = await usuariosModel.findUserById(req.session.autenticado.id)
-            req.session.autenticado.foto = caminhoFoto
-            console.log(resultado)
-            const jsonResult = {
-                page: "../partial/edit-profile/index",
-                pageClass: "index",
-                usuario: user[0],
-                modalAberto: false,
-                erros: null,
-                token: { msg: "Foto excluída com sucesso!", type: "success" }
-            }
-            res.render("./pages/edit-profile", jsonResult)
-
-        } catch (errors) {
-            console.log(errors)
-            res.render("pages/error-500")
-
-        }
-    }
+    
 
 
 
