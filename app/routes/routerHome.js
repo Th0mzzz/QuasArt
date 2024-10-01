@@ -8,7 +8,7 @@ const resenhaControl = require("../controller/resenhasController");
 const videoControl = require("../controller/videosController");
 // UTIL --------------- 
 const upload = require("../util/upload");
-const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png','webp']);
+const uploadCapaResenha = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png', 'webp']);
 
 const uploadMultiplo = require("../util/uploadMultiplo");
 const fichasControl = require("../controller/fichasController");
@@ -60,14 +60,12 @@ router.get("/", async function (req, res) {
                 idsFicha.push(f.USUARIOS_ID_USUARIO);
             }
         }
-        console.log('ERRO IDS')
-        console.log(idsResenha)
-        console.log(idsFicha)
+
         //  aqui eu busco os usuarios com base nos ids achados
-        
+
         const [usuariosResenhas, usuariosFichas] = await Promise.all([
             idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
-            idsFicha.length > 0 ?usuariosModel.findUsersByIds(idsFicha) : []
+            idsFicha.length > 0 ? usuariosModel.findUsersByIds(idsFicha) : []
         ]);
 
         //  Aqui eu crio um outro array
@@ -78,41 +76,41 @@ router.get("/", async function (req, res) {
         const posts = {
             resenhas: {
                 recentes: reseRecentes.map(r => ({
-                     ...r, 
-                     usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] 
-                    })
+                    ...r,
+                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
+                })
                 ),
-                alta: resenhas.map(r => ({ 
-                    ...r, 
-                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] 
+                alta: resenhas.map(r => ({
+                    ...r,
+                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
                 })),
             },
             fichas: {
                 recentes: fichasRecentes.map(f => {
                     const dataFicha = new Date(f.DATA_FICHA);
                     const dataFormatada = dataFicha.toISOString().split('T')[0];
-                    
+
                     return {
                         ...f,
-                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO], 
-                        DATA_FICHA: dataFormatada 
+                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
+                        DATA_FICHA: dataFormatada
                     };
                 }),
                 alta: fichas.map(f => {
-            
+
                     const dataFicha = new Date(f.DATA_FICHA);
                     const dataFormatada = dataFicha.toISOString().split('T')[0];
-                    
+
                     return {
                         ...f,
-                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO], 
-                        DATA_FICHA: dataFormatada 
+                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
+                        DATA_FICHA: dataFormatada
                     };
                 }),
             },
             destaques: "",
         };
-        
+
 
         const jsonResult = {
             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -213,35 +211,75 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
 
 
 // pagina de publicar fichas
-router.get("/ficha-espacial-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/pub-pages/fichas-pub",
-        classePagina: "publicar",
-        erros: null,
-        token: token,
-        valores: null,
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+router.get("/ficha-espacial-pub",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        const token = null
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/pub-pages/fichas-pub",
+            classePagina: "publicar",
+            erros: null,
+            token: token,
+            valores: null,
+            tags: null
+        }
+        res.render("./pages/template-home", jsonResult)
+    });
+
+router.get("/attficha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    async function (req, res) {
+
+        try {
+            let idFicha = req.query.idFicha
+            if (!idFicha) {
+                res.status(404).render("pages/error-404.ejs");
+            } else {
+                let ficha = await fichasModel.findFichaByIdObra(idFicha)
+                let previas = await fichasModel.findPreviasByIdObra(idFicha)
+                const token = null
+                const jsonResult = {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/template-home/pub-pages/fichas-pub",
+                    classePagina: "publicar",
+                    erros: null,
+                    token: token,
+                    valores: {
+                        capaFicha: ficha.CAMINHO_CAPA,
+                        nomeObra: ficha.NOME_OBRA,
+                        sinopse: ficha.DESCR_OBRA,
+                        previas: previas
+                    },
+                    tags: ficha.HASHTAG_OBRA.split(","),
+                }
+                res.render("./pages/template-home", jsonResult)
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(404).render("pages/error-404.ejs");
+        }
+
+    });
 
 // pagina de publicar resenhas
-router.get("/resenha-cosmica-pub", 
-    middleWares.verifyAutenticado, 
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), 
+router.get("/resenha-cosmica-pub",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     function (req, res) {
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/pub-pages/resenhas-pub",
-        classePagina: "publicar",
-        erros: null,
-        valores: null,
-        token: token
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+        const token = null
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/pub-pages/resenhas-pub",
+            classePagina: "publicar",
+            erros: null,
+            valores: null,
+            token: token
+        }
+        res.render("./pages/template-home", jsonResult)
+    });
 
 
 // ------- Página sobre o Quarsart -------
@@ -330,11 +368,11 @@ router.post("/criarFicha",
 // ------- Pesquisar -------
 
 
-router.post("/Pesquisar", function(req,res){
+router.post("/Pesquisar", function (req, res) {
 
 
 
 });
-    
+
 
 module.exports = router;

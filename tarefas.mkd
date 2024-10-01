@@ -10,6 +10,7 @@
 - Curtir posts;
 - Sistema de seguir perfis;
 - Pesquisar (Pesquisar fichas, perfis, resenhas e videos direto nas tables com base no digitado)
+- Funcionar os benefícios das assinaturas
 
 ### Banco de dados
 - Adicionar campo para status de usuário.
