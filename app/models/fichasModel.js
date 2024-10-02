@@ -1,6 +1,6 @@
 var pool = require("../../config/poolConn");
 const fichasModel = {
-    createFicha: async (dadosFicha)=>{
+    createFicha: async (dadosFicha) => {
         try {
             const [resultados] = await pool.query("insert into FICHAS set ?", [dadosFicha])
             return resultados
@@ -9,7 +9,7 @@ const fichasModel = {
             return error
         }
     },
-    createPrevia: async (dadosPrevia)=>{
+    createPrevia: async (dadosPrevia) => {
         try {
             const [resultados] = await pool.query("insert into PREVIAS set ?", [dadosPrevia])
             return resultados
@@ -18,7 +18,7 @@ const fichasModel = {
             return error
         }
     },
-    findFichaByIdObra: async(idObra)=>{
+    findFichaByIdObra: async (idObra) => {
         try {
             const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE ID_OBRA = ?", [idObra])
             return resultados[0]
@@ -28,7 +28,7 @@ const fichasModel = {
             return error
         }
     },
-    findPreviasByIdObra: async(idObra)=>{
+    findPreviasByIdObra: async (idObra) => {
         try {
             const [resultados] = await pool.query("SELECT * FROM PREVIAS WHERE FICHAS_ID_OBRA = ?", [idObra])
             return resultados
@@ -38,7 +38,7 @@ const fichasModel = {
             return error
         }
     },
-    findFichasByIdUser: async(idUser)=>{
+    findFichasByIdUser: async (idUser) => {
         try {
             const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
             return resultados
@@ -76,6 +76,25 @@ const fichasModel = {
             console.log("erro no buscar ID")
             console.log(error)
             return error
+        }
+    },
+    deletePreviasPorIdObra: async (idObra) => {
+        try {
+            const [resultados] = await pool.query("DELETE FROM PREVIAS WHERE FICHAS_ID_OBRA = ?", [idObra])
+            return resultados
+        } catch (error) {
+            console.log("----------- Erro no model de ficha -----------")
+            console.log(error)
+            return error
+        }
+    },
+    updateFicha: async (idFicha, dadosAtualizados) => {
+        try {
+            const [resultados] = await pool.query("UPDATE FICHAS SET ? WHERE ID_OBRA = ?", [dadosAtualizados, idFicha]);
+            return resultados;
+        } catch (error) {
+            console.log("Erro ao atualizar ficha");
+            return error;
         }
     },
 }

@@ -18,7 +18,7 @@ addPreviaBtn.addEventListener("change", function (e) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const src = e.target.result;
-                    criarPreviaItem(src, file, index, file.type);
+                    criarPreviaItem(src, index, file.type);
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -34,23 +34,13 @@ addPreviaBtn.addEventListener("change", function (e) {
     }
 });
 
-function criarPreviaItem(srcMidia, file, index, tipoArquivo) {
+function criarPreviaItem(srcMidia, index, tipoArquivo) {
     const article = document.createElement("article");
     article.className = 'previa';
     article.dataset.index = index;
 
     const inputContainer = document.createElement("article");
     inputContainer.className = 'input__container input-previa input-file';
-
-    const removePrevia = document.createElement("span");
-    removePrevia.className = 'removePrevia';
-    removePrevia.innerHTML = `<i class="bi bi-x-lg"></i>`;
-
-
-    removePrevia.addEventListener("click", () => {
-        article.remove();
-        removerArquivoInput(index);
-    });
 
     let previaContent = null;
     if (tipoArquivo.startsWith("image/")) {
@@ -66,22 +56,7 @@ function criarPreviaItem(srcMidia, file, index, tipoArquivo) {
     }
 
     previaContent.className = 'previa-content';
-
-    inputContainer.appendChild(removePrevia);
     inputContainer.appendChild(previaContent);
     article.appendChild(inputContainer);
     previasContainer.appendChild(article);
-}
-
-function removerArquivoInput(index) {
-    const dataTransfer = new DataTransfer();
-
-
-    Array.from(addPreviaBtn.files).forEach((file, i) => {
-        if (i !== index) {
-            dataTransfer.items.add(file);
-        }
-    });
-
-    addPreviaBtn.files = dataTransfer.files;
 }

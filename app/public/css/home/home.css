@@ -27,8 +27,14 @@
     flex-flow: column nowrap;
     gap: 10px;
     cursor: pointer;
+    position: relative;
     --bdrr: 20px;
-
+    & .editIcon{
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+    }
     & .card__content {
         position: relative;
         border-radius: var(--bdrr);

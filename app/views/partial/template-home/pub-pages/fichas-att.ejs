@@ -1,0 +1,10 @@
+<section class="form__pub-container">
+    <h2 class="title">Atualizar <span class="negrito-roxo">Ficha Espacial</span></h2>
+    <form action="/atualizarFicha?idFicha=<%=valores && valores.idFicha ? valores.idFicha : ''%>" class="form__pub" method="post" enctype="multipart/form-data">
+
+        <%- include('./form-ficha') %>
+
+            <button class="btn submit secundaria p-2">Publicar</button>
+
+    </form>
+</section>

@@ -36,7 +36,7 @@ inputFileCapa.addEventListener("change", function (e) {
                 imgCapa.setAttribute("src", src);
                 imgCapa.className = "capa__img";
                 const labels = capaContainer.querySelectorAll("label");
-                labels.forEach(label => label.style.display = "none");
+                // labels.forEach(label => label.style.display = "none");
                 capaContainer.appendChild(imgCapa);
             };
             img.src = src;
