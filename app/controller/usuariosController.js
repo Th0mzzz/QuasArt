@@ -271,7 +271,17 @@ const usuariosController = {
             const posts = {
                 resenhas: resenhasUser.length == 0 ? null : resenhasUser,
                 videos: videosUser.length == 0 ? null : videosUser,
-                fichas:  fichasUser.length == 0 ? null : fichasUser,
+                fichas: fichasUser.length == 0 
+                ? null 
+                : fichasUser.map(f => {
+                    const dataFicha = new Date(f.DATA_FICHA);
+                    const dataFormatada = dataFicha.toISOString().split('T')[0];
+
+                    return {
+                        ...f, 
+                        DATA_FICHA: dataFormatada
+                    }
+                })
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
@@ -521,7 +531,7 @@ const usuariosController = {
 
         }
     },
-    
+
 
 
 

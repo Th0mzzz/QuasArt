@@ -1,87 +1,117 @@
 <% 
 let classeErro={ 
-    capaFicha:"",
-    nomeObra:"",
-    sinopse:"",
-    previas:""
+    capaFicha:"", 
+    nomeObra:"", 
+    sinopse:"", 
+    previas:"" 
 } 
-let msgErro= {
+let msgErro={ 
     capaFicha:"",
     nomeObra:"",
-    sinopse:"",
-    previas:""
-  } 
-    
-    if(erros) {
-      erros.errors.forEach(error=>{
+    sinopse:"", 
+    previas:"" 
+} 
+
+
+if(erros) { 
+    erros.errors.forEach(error=>{
         classeErro[error.path] = 'invalid';
         msgErro[error.path] = error.msg
-      })
+        })
     }
 %>
+    <script src="./js/addPrevia.js" defer></script>
 
-<section class="form__pub-container">
-    <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
-    <form action="/criarFicha" class="form__pub" method="post" enctype="multipart/form-data">
-        <header class="form__row">
-            <article class="input__container input-file <%= classeErro.capaFicha %>" data-capaContainer>
-                <span class="invalid-msg smallText">
-                    <%= msgErro.capaFicha %>
-                </span>
-                <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required
-                    data-inputCapa>
-                <label for="capaFicha">Selecione a capa da ficha</label>
-                <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
-            </article>
-            <section>
-                <article class="input__container <%= classeErro.nomeObra %>">
+    <section class="form__pub-container">
+        <h2 class="title">Criar <span class="negrito-roxo">Ficha Espacial</span></h2>
+        <form action="/criarFicha" class="form__pub" method="post" enctype="multipart/form-data">
+            <header class="form__row">
+                <article class="input__container input-file <%= classeErro.capaFicha %>" data-capaContainer>
                     <span class="invalid-msg smallText">
-                        <%= msgErro.nomeObra %>
+                        <%= msgErro.capaFicha %>
                     </span>
-                    <input type="text" name="nomeObra" id="nomeObra" class="input__control"
-                        placeholder="Título do video" required value="<%= valores ? valores.nomeObra : '' %>">
-                    <label for="nomeObra">Nome da Obra</label>
+                    <input type="file" name="capaFicha" id="capaFicha" class="input__control" placeholder="" required
+                        data-inputCapa>
+                    <label for="capaFicha">Selecione a capa da ficha</label>
+                    <label for="capaFicha" class="icon"><i class="bi bi-download"></i></label>
                 </article>
-                <article class="input__container <%= classeErro.sinopse %>">
+                <section>
+                    <article class="input__container <%= classeErro.nomeObra %>">
+                        <span class="invalid-msg smallText">
+                            <%= msgErro.nomeObra %>
+                        </span>
+                        <input type="text" name="nomeObra" id="nomeObra" class="input__control"
+                            placeholder="Título do video" required value="<%= valores ? valores.nomeObra : '' %>">
+                        <label for="nomeObra">Nome da Obra</label>
+                    </article>
+                    <article class="input__container <%= classeErro.sinopse %>">
+                        <span class="invalid-msg smallText">
+                            <%= msgErro.sinopse %>
+                        </span>
+                        <textarea name="sinopse" id="sinopse" placeholder=""
+                            maxlength="1399"><%= valores ? valores.sinopse : '' %></textarea>
+                        <label for="sinopse">Sinopse</label>
+                    </article>
+                    <article class="input__container">
+                        <span class="invalid-msg smallText">
+                            Limite de tags atingido!
+                        </span>
+                        <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder=""
+                            maxlength="30">
+                        <label for="tags">Digite as Hashtags de sua ficha</label>
+                    </article>
+                    <div id="tagsContainer">
+                        <% if(tags){ 
+                            tags.forEach(tag){ %>
+                            <script>
+                                const tagText = "<%= tag %>"
+                                const article = document.createElement('article');
+                                article.classList.add("tag")
+                                article.classList.add("text")
+                                article.textContent = `#${tagText}`;
+
+                                const closeBtn = document.createElement('span');
+                                closeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+                                closeBtn.addEventListener('click', function () {
+                                    article.remove();
+                                    input.remove();
+                                });
+
+                                const input = document.createElement('input');
+                                input.type = 'hidden';
+                                input.name = 'tags[]';
+                                input.value = `#${tagText}`;
+
+                                article.appendChild(closeBtn);
+                                tagsContainer.appendChild(article);
+                                tagsContainer.appendChild(input);
+                            </script>
+                            <% x'} 
+                        } %>
+                    </div>
+                </section>
+            </header>
+            <section class="ficha__conteudo">
+
+                <article class="input__container input-file <%= classeErro.previas %>">
                     <span class="invalid-msg smallText">
-                        <%= msgErro.sinopse %>
+                        <%= msgErro.previas !='' ? msgErro.previas : '' %>
                     </span>
-                    <textarea name="sinopse" id="sinopse" placeholder="" maxlength="1399"><%= valores ? valores.sinopse : '' %></textarea>
-                    <label for="sinopse">Sinopse</label>
+                    <input type="file" name="previas" id="previas" class="input__control" placeholder="Título do video"
+                        multiple>
+                    <label for="previas">Adicionar Prévias da Obra</label>
+                    <label for="previas" class="icon"><i class="bi bi-plus"></i></label>
+
                 </article>
-                <article class="input__container">
-                    <span class="invalid-msg smallText">
-                        Limite de tags atingido!
-                    </span>
-                    <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder="" maxlength="30">
-                    <label for="tags">Digite as Hashtags de sua ficha</label>
-                </article>
-                <div id="tagsContainer">
-                    
-                </div>
+
+                <section class="previas__container mt-3">
+                    <article class="previas__inner" id="carouselPrevia">
+                        
+                    </article>
+                </section>
             </section>
-        </header>
-        <section class="ficha__conteudo">
-
-            <article class="input__container input-file <%= classeErro.previas %>">
-                <span class="invalid-msg smallText">
-                    <%= msgErro.previas != '' ? msgErro.previas : '' %>
-                </span>
-                <input type="file" name="previas" id="previas" class="input__control" placeholder="Título do video" multiple>
-                <label for="previas">Adicionar Prévias da Obra</label>
-                <label for="previas" class="icon"><i class="bi bi-plus"></i></label>
-
-            </article>
-
-            <section class="previas__container mt-3">
-                <article class="previas__inner" id="carouselPrevia">
-
-                </article>
-            </section>
-        </section>
-        <button class="btn submit secundaria p-2">Publicar</button>
-    </form>
-</section>
-<script src="./js/criarTag.js"></script>
-<script src="./js/addPrevia.js"></script>
-<script src="./js/addCapa.js"></script>
+            <button class="btn submit secundaria p-2">Publicar</button>
+        </form>
+    </section>
+    <script src="./js/criarTag.js"></script>
+    <script src="./js/addCapa.js"></script>

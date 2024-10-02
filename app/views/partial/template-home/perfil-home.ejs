@@ -7,10 +7,6 @@
             <a href="/sair" class="btn exit-btn" title="Sair"><i class="bi bi-box-arrow-left"></i></a>
             <% } %>
 
-                <!-- <article class="foto__perfil mudar__foto-btn" data-openmodal="#mudarFotoModal">
-                        <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>" alt="foto de perfil do usuário" >
-                    </article> -->
-
                 <article class="foto__perfil">
                     <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
                         alt="foto de perfil do usuário">
@@ -53,9 +49,9 @@
                     class="bi bi-card-text"></i></button>
             <button class="btn-section link" data-btnSection="videos" title="videos"><i
                     class="bi bi-camera-video"></i></button>
-            <% if(isUser) {%>
+            <!-- <% if(isUser) {%>
                 <a href="/myPosts" class="btn edit-btn" title="Editar Postagens"><i class="bi bi-pencil-square"></i></a>
-                <% } %>
+                <% } %> -->
         </article>
         <section class="postagens__section ativo" data-section="fichas">
             <h3 class="title">Fichas</h3>
@@ -70,7 +66,7 @@
                         </article>
                     </a>
                     <footer class="card__autor">
-                        <p class="text">00/00/0000</p>
+                        <p class="text"><%= ficha.DATA_FICHA %></p>
                     </footer>
                 </article>
                 <% })
