@@ -377,7 +377,7 @@ router.post("/atualizarFicha",
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
-        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
+        { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
     ]),
     fichasControl.validacaoFicha,
     function (req, res) {

@@ -121,7 +121,19 @@ if(erros) {
                         valores.previas.forEach((previa) => { %>
                             <article class="previa">
                                 <div class="input__container input-previa input-file">
-                                    <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" class="previa-content" alt="Capa atual">
+                                    <% if (previa.CAMINHO_PREVIA.endsWith('.jpg') || previa.CAMINHO_PREVIA.endsWith('.jpeg') || previa.CAMINHO_PREVIA.endsWith('.png') || previa.CAMINHO_PREVIA.endsWith('.gif')) { %>
+                                        <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" class="previa-content" >
+                                    <% } else if (previa.CAMINHO_PREVIA.endsWith('.mp4') || previa.CAMINHO_PREVIA.endsWith('.mov') || previa.CAMINHO_PREVIA.endsWith('.avi')) { %>
+                                        <video controls class="previa-content">
+                                            <source src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" type="video/mp4">
+                                            Seu navegador não suporta o elemento de vídeo.
+                                        </video>
+                                    <% } else { %>
+                                        
+                                        <p>Tipo de mídia não suportado</p>
+                                    <% } %>
+
+                                    
                                 </div>
                             </article>
                     <% }) } %>
