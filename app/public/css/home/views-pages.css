@@ -50,10 +50,8 @@
         width: 100%;
 
         & .resenha__capa {
-            width: clamp(380px, 100%, 1440px);
-            height: calc(100vw * (30/100));
-            min-height: 380px;
-            max-height: 420px;
+            width: 100%;
+            max-width: none;
             object-fit: cover;
             border-radius: 20px;
         }

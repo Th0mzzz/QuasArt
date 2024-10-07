@@ -5,7 +5,8 @@
                 class="resenha__capa">
             <section class="row">
                 <a href="/profile?idUser=<%= resenha.autor.ID_USUARIO %>" class="userLink link">
-                    <img src="./img/imagens-servidor/perfil/<%=resenha.autor.CAMINHO_FOTO %>" alt="foto do autor" class="userImg">
+                    <img src="./img/imagens-servidor/perfil/<%=resenha.autor.CAMINHO_FOTO %>" alt="foto do autor"
+                        class="userImg">
                     <%= resenha.autor.NICKNAME_USUARIO %>
                 </a>
                 <button class="btn">Seguir</button>
@@ -22,11 +23,13 @@
             </section>
             <footer class="row">
                 <article id="tagsContainer">
-                    <% if(resenha.tags){ resenha.tags.forEach(tag=>{ %>
+                    <% if(resenha.tags){ resenha.tags.forEach(tag=>{ 
+                        if(tag != ""){%>
                         <span class="tag text">
                             <%= tag %>
                         </span>
-                        <% }) } %>
+                        <%}
+                         }) } %>
 
                 </article>
                 <article class="avaliacao__stars">
@@ -37,7 +40,8 @@
                     <i class="bi bi-star-fill"></i>
                 </article>
             </footer>
-            <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i class="bi bi-exclamation-triangle"></i>Denunciar</button>
+            <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
+                    class="bi bi-exclamation-triangle"></i>Denunciar</button>
         </article>
         <footer class="comentarios__container">
             <h3 class="subtitle mb-2">Comentários</h3>
@@ -106,5 +110,25 @@
     </section>
     <% } %>
 
-    <%- include("denunciar-modal") %>
-        <script src="./js/input.js"></script>
+        <%- include("denunciar-modal") %>
+            <script src="./js/input.js"></script>
+
+            <script>
+                function ajustarProporcao(elemento, proporcao) {
+
+                    const largura = elemento.offsetWidth;
+                    const altura = largura / proporcao;
+                    elemento.style.height = `${altura}px`;
+                }
+
+
+                const inputProp = document.querySelector('.resenha__capa');
+
+
+                const proporcao = 3 / 1;
+
+
+                ajustarProporcao(inputProp, proporcao);
+
+                window.addEventListener('resize', () => ajustarProporcao(inputProp, proporcao));
+            </script>

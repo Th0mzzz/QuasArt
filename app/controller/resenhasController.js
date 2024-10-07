@@ -117,21 +117,36 @@ const resenhaControl = {
                 if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
             }
             console.log(listaErros)
-
-            const jsonResult = {
-                page: "../partial/template-home/pub-pages/resenhas-pub",
-                classePagina: "publicar",
-                erros: listaErros,
-                valores: req.body,
-                token: null,
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-
+            let idResenha = req.query.idResenha
+            if (!idResenha) {
+                res.status(404).render("pages/error-404.ejs");
+            } else {
+                let resenha = await resenhaModel.buscarPorId(idResenha);
+                if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+                    return res.redirect("/");
+                }
+                const token = null;
+                const jsonResult = {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/template-home/pub-pages/resenhas-att",
+                    classePagina: "publicar",
+                    erros: listaErros,
+                    token: token,
+                    valores: {
+                        titulo: resenha.TITULO_RESENHA,
+                        textoResenha: resenha.TEXTO_RESENHA,
+                        descricao: resenha.DESCR_RESENHA,
+                        capaResenha: resenha.CAPA_CAMINHO,
+                        idResenha: resenha.ID_RESENHAS
+                    },
+                    tags: resenha.HASHTAG_RESENHA.split(","),
+                };
+                res.render("./pages/template-home", jsonResult)
             }
-            res.render("./pages/template-home", jsonResult)
         } else {
             try {
                 let idResenha = req.query.idResenha
-                if(!idResenha){
+                if (!idResenha) {
                     return res.status(404).render("pages/error-404.ejs");
                 }
                 const { titulo, descricao, textoResenha, tags } = req.body
@@ -151,7 +166,8 @@ const resenhaControl = {
                         HASHTAG_RESENHA: [tags].toString(),
                     }
                 }
-                const resultado = await resenhaModel.updateResenha(resenha)
+                console.log("ATT-RESENHA--------------------------")
+                const resultado = await resenhaModel.updateResenha(idResenha, resenha)
                 console.log(resultado)
                 res.redirect(`/view-resenha?idResenha=${idResenha}`)
             } catch (error) {

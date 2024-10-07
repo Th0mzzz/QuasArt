@@ -80,7 +80,9 @@
             flex-flow: column nowrap;
 
             & .input-file {
-                max-width: 100%;
+                max-width: none;
+                width: 100%;
+                aspect-ratio: 3 / 2;
             }
         }
     }
@@ -170,7 +172,7 @@
 
         & .form__pub {
             & .form__row {
-                flex-flow: row nowrap;
+                flex-flow: row wrap;
 
             }
         }

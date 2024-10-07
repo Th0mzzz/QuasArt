@@ -85,6 +85,9 @@
                     posts.resenhas.forEach(function(resenha){ %>
 
                         <article class="card__resenha">
+                            <% if(isUser) {%>
+                                <a href="attResenha?idResenha=<%=resenha.ID_RESENHAS %>" class="editIcon btn"><i class="bi bi-pencil"></i></a>
+                            <%}%>
                             <header class="card__img">
                                 <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
                                     <img class="img__resenha" src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>" alt="imagem da resenha">

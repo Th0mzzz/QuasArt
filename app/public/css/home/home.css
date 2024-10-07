@@ -29,16 +29,18 @@
     cursor: pointer;
     position: relative;
     --bdrr: 20px;
-    & .editIcon{
+
+    & .editIcon {
         position: absolute;
         top: 0;
         right: 0;
         z-index: 100;
     }
+
     & .card__content {
         position: relative;
         border-radius: var(--bdrr);
-        overflow: hidden;    
+        overflow: hidden;
         height: clamp(180px, 100vh, 330px);
 
         & img {
@@ -112,6 +114,13 @@
     cursor: pointer;
     --bdrr: 20px;
 
+    & .editIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+    }
+
     & .card__content {
         position: relative;
         border-radius: var(--bdrr);
@@ -159,6 +168,14 @@
     --bdrr: 20px;
     border-radius: var(--bdrr);
     box-shadow: 0 0 8px #0000009d;
+    position: relative;
+
+    & .editIcon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 100;
+    }
 
     & .card__img {
         position: relative;

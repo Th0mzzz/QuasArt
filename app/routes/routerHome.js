@@ -303,7 +303,7 @@ router.get("/attresenha",
                 const token = null;
                 const jsonResult = {
                     foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/template-home/pub-pages/fichas-att",
+                    page: "../partial/template-home/pub-pages/resenhas-att",
                     classePagina: "publicar",
                     erros: null,
                     token: token,
@@ -311,10 +311,10 @@ router.get("/attresenha",
                         titulo: resenha.TITULO_RESENHA,
                         textoResenha: resenha.TEXTO_RESENHA,
                         descricao: resenha.DESCR_RESENHA,
-                        capaResenha: resenha.CAMINHO_CAPA,
+                        capaResenha: resenha.CAPA_CAMINHO,
                         idResenha: resenha.ID_RESENHAS
                     },
-                    tags: resenha.HASHTAG_OBRA.split(","),
+                    tags: resenha.HASHTAG_RESENHA.split(","),
                 };
                 res.render("./pages/template-home", jsonResult)
             }

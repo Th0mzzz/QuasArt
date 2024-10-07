@@ -26,6 +26,9 @@ let msgErro= {
 <header class="form__row">
 
     <article class="input__container input-file <%= classeErro.capaResenha %>" data-capaContainer>
+        <% if(valores && valores.capaResenha){ %>
+            <img src="./img/imagens-servidor/capas-img/<%= valores.capaResenha %>" alt="" class="capa__img">
+        <% } %>
         <span class="invalid-msg smallText">
             <%= msgErro.capaResenha %>
         </span>
@@ -50,7 +53,7 @@ let msgErro= {
             <span class="invalid-msg smallText">
                 <%= msgErro.descricao %>
             </span>
-            <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"><%= valores? valores.descr : '' %></textarea>
+            <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"><%= valores? valores.descricao : '' %></textarea>
             <label for="descricao">Descrição</label>
         </article>
         <article class="input__container">
@@ -100,3 +103,23 @@ let msgErro= {
         maxlength="6600"><%= valores? valores.textoResenha : '' %></textarea>
     <label for="textoResenha">Digite sua Resenha aqui!</label>
 </article>
+
+<script>
+    function ajustarProporcao(elemento, proporcao) {
+       
+        const largura = elemento.offsetWidth;
+        const altura = largura / proporcao;
+        elemento.style.height = `${altura}px`;
+    }
+
+    
+    const inputProp = document.querySelector('.input-file');
+
+
+    const proporcao = 3 / 1;
+
+    
+    ajustarProporcao(inputProp, proporcao);
+
+    window.addEventListener('resize', () => ajustarProporcao(inputProp, proporcao));
+</script>
