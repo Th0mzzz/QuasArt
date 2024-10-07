@@ -470,7 +470,6 @@ const usuariosController = {
                             token: { msg: "Nenhuma alteração feita", type: "" }
                         }
                         console.log("Nenhuma alteração feita")
-
                         res.render("./pages/edit-profile", jsonResult)
                     }
                 }

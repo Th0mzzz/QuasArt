@@ -60,6 +60,15 @@ const resenhaModel = {
             return error
         }
     },
+    updateResenha: async (idResenha, dadosAtualizados) => {
+        try {
+            const [resultados] = await pool.query("UPDATE RESENHAS SET ? WHERE ID_RESENHAS = ?", [dadosAtualizados, idResenha]);
+            return resultados;
+        } catch (error) {
+            console.log("Erro ao atualizar ficha");
+            return error;
+        }
+    },
 }
 
 module.exports = resenhaModel

@@ -18,12 +18,12 @@ const resenhaControl = {
         let errors = validationResult(req)
         let errosMulter = req.session.erroMulter;
         if (!errors.isEmpty() || errosMulter.length > 0) {
-            
+
             let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
 
             if (errosMulter.length > 0) {
                 listaErros.errors.push(...errosMulter)
-                if(req.file){removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)}
+                if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
             }
             console.log(listaErros)
 
@@ -53,7 +53,7 @@ const resenhaControl = {
                 res.redirect(`/view-resenha?idResenha=${resultado.insertId}`)
             } catch (error) {
                 console.log(error)
-                if(req.file){removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`)}
+                if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
                 res.render("pages/error-500")
             }
 
@@ -104,7 +104,65 @@ const resenhaControl = {
         }
 
 
-    }
+    },
+    atualizarResenha: async (req, res) => {
+        let errors = validationResult(req)
+        let errosMulter = req.session.erroMulter;
+        if (!errors.isEmpty() || errosMulter.length > 0) {
+
+            let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+
+            if (errosMulter.length > 0) {
+                listaErros.errors.push(...errosMulter)
+                if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+            }
+            console.log(listaErros)
+
+            const jsonResult = {
+                page: "../partial/template-home/pub-pages/resenhas-pub",
+                classePagina: "publicar",
+                erros: listaErros,
+                valores: req.body,
+                token: null,
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+
+            }
+            res.render("./pages/template-home", jsonResult)
+        } else {
+            try {
+                let idResenha = req.query.idResenha
+                if(!idResenha){
+                    return res.status(404).render("pages/error-404.ejs");
+                }
+                const { titulo, descricao, textoResenha, tags } = req.body
+                if (req.file) {
+                    var resenha = {
+                        TITULO_RESENHA: titulo,
+                        DESCR_RESENHA: descricao,
+                        TEXTO_RESENHA: textoResenha,
+                        HASHTAG_RESENHA: [tags].toString(),
+                        CAPA_CAMINHO: req.file.filename,
+                    }
+                } else {
+                    var resenha = {
+                        TITULO_RESENHA: titulo,
+                        DESCR_RESENHA: descricao,
+                        TEXTO_RESENHA: textoResenha,
+                        HASHTAG_RESENHA: [tags].toString(),
+                    }
+                }
+                const resultado = await resenhaModel.updateResenha(resenha)
+                console.log(resultado)
+                res.redirect(`/view-resenha?idResenha=${idResenha}`)
+            } catch (error) {
+                console.log(error)
+                if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+                res.render("pages/error-500")
+            }
+
+
+        }
+    },
 }
 
 module.exports = resenhaControl

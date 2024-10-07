@@ -240,7 +240,7 @@ router.get("/attficha",
             } else {
                 let ficha = await fichasModel.findFichaByIdObra(idFicha)
 
-                if(ficha.USUARIOS_ID_USUARIO != req.session.autenticado.id){
+                if (ficha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
                     return res.redirect("/")
                 }
                 let previas = await fichasModel.findPreviasByIdObra(idFicha)
@@ -281,9 +281,47 @@ router.get("/resenha-cosmica-pub",
             classePagina: "publicar",
             erros: null,
             valores: null,
-            token: token
+            token: token,
+            tags:null
         }
         res.render("./pages/template-home", jsonResult)
+    });
+router.get("/attresenha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    async function (req, res) {
+        try {
+            let idResenha = req.query.idResenha
+
+            if (!idResenha) {
+                res.status(404).render("pages/error-404.ejs");
+            } else {
+                let resenha = await resenhaModel.buscarPorId(idResenha);
+                if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+                    return res.redirect("/");
+                }
+                const token = null;
+                const jsonResult = {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/template-home/pub-pages/fichas-att",
+                    classePagina: "publicar",
+                    erros: null,
+                    token: token,
+                    valores: {
+                        titulo: resenha.TITULO_RESENHA,
+                        textoResenha: resenha.TEXTO_RESENHA,
+                        descricao: resenha.DESCR_RESENHA,
+                        capaResenha: resenha.CAMINHO_CAPA,
+                        idResenha: resenha.ID_RESENHAS
+                    },
+                    tags: resenha.HASHTAG_OBRA.split(","),
+                };
+                res.render("./pages/template-home", jsonResult)
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(404).render("pages/error-404.ejs");
+        }
     });
 
 // ------- Página sobre o Quarsart -------
@@ -333,8 +371,19 @@ router.post("/criarResenha",
     function (req, res) {
         resenhaControl.postarResenha(req, res)
     });
+router.post("/atualizarResenha",
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    uploadCapaResenha("capaResenha"),
+    resenhaControl.validacaoResenha,
+    function (req, res) {
+        resenhaControl.atualizarResenha(req, res)
+    });
 // Form de criação de Video
-
 router.post("/criarVideo",
     (req, res, next) => {
         req.session.erroMulter = [];
@@ -351,7 +400,6 @@ router.post("/criarVideo",
         videoControl.postarVideo(req, res)
     })
 // Form de criação de Ficha
-
 router.post("/criarFicha",
     (req, res, next) => {
         req.session.erroMulter = [];
@@ -386,11 +434,7 @@ router.post("/atualizarFicha",
     })
 
 // ------- Pesquisar -------
-
-
-router.post("/Pesquisar", function (req, res) {
-
-
+router.post("/fazerPesquisa", function (req, res) {
 
 });
 

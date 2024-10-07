@@ -25,7 +25,7 @@ let msgErro= {
 %>
 
 <form action="/atualizarDados" method="post">
-    <article class="input__container <%= classeErro.nome  %>">
+    <article class="input__container <%= classeErro.nome %>">
 
       <span class="invalid-msg smallText">
         <%= msgErro.nome %>
@@ -62,20 +62,6 @@ let msgErro= {
       <input type="text" name="usuario" id="usuario" class="input__control" placeholder="Usuário" required value="<%= valores.usuario %>">
       <label for="usuario">Crie seu Usuário</label>
     </article>
-    <!-- <article class="input__container <%= classeErro.senha %> senha alerted-input">
-                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
-                    maxlength="50">
-                <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
-                <label for="senha">Senha:</label>
-                <span class="invalid-msg smallText">
-                    <%= msgErro.senha %>
-                </span>
-                
-                <span class="smallText alert-msg mb-2">
-                   <span class="link">CASO NÃO QUEIRA MUDAR A SENHA, APENAS DEIXE EM <strong>BRANCO!</strong></span>  <BR>
-                        A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
-                    </span>
-    </article> -->
     <button class="btn submit text p-2 mt-3">Atualizar dados</button>
     
 </form>
