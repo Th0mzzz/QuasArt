@@ -107,6 +107,7 @@
 }
 
 .card__video {
+    position: relative;
     width: clamp(180px, 100vw, 250px);
     display: flex;
     flex-flow: column nowrap;

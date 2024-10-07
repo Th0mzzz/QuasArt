@@ -1,0 +1,114 @@
+<% 
+let classeErro={ 
+    tituloVideo:"",
+    descricao:"",
+    capaVideo:"",
+    video:""
+} 
+let msgErro= {
+    tituloVideo:"",
+    descricao:"",
+    capaVideo:"",
+    video:""
+  } 
+    
+    if(erros) {
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
+    }
+%>
+
+        <header class="form__row">
+            <article class="input__container input-file <%= classeErro.capaVideo %>" data-capaContainer>
+                
+                <% if(valores && valores.capaVideo){ %>
+                    <img src="./img/imagens-servidor/capas-img/<%= valores.capaVideo %>" alt="" class="capa__img">
+                <% } %>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.capaVideo %>
+                </span>
+                <% if(valores && valores.capaVideo){ %>
+                    <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="" data-inputCapa>
+                <% } else { %> 
+                    <input type="file" name="capaVideo" id="capaVideo" class="input__control" placeholder="" data-inputCapa required>
+                <% } %> 
+                <label for="capaVideo">Selecione a capa do vídeo</label>
+                <label for="capaVideo" class="icon"><i class="bi bi-download"></i></label>
+            </article>
+
+
+            <section>
+
+                <article class="input__container <%= classeErro.tituloVideo %>">
+                    <span class="invalid-msg smallText">
+                        <%= msgErro.tituloVideo %>
+                    </span>
+                    <input type="text" name="tituloVideo" id="tituloVideo" class="input__control"
+                        placeholder="Título do video" required value="<%= valores ? valores.tituloVideo: '' %>">
+                    <label for="tituloVideo">Título do vídeo</label>
+                </article>
+                <article class="input__container <%= classeErro.descricao %>">
+                    <span class="invalid-msg smallText">
+                        <%= msgErro.descricao %>
+                    </span>
+                    <textarea name="descricao" id="descricao" placeholder="A" maxlength="400"><%= valores ? valores.descricao: '' %></textarea>
+                    <label for="descricao">Descrição</label>
+                </article>
+                <article class="input__container">
+                    <span class="invalid-msg smallText">
+                        Limite de tags atingido!
+                    </span>
+                    <input type="text" name="tagsInput" id="tagsInput" class="tagInput" placeholder="" maxlength="30">
+                    <label for="tags">Digite as Hashtags do seu video</label>
+                </article>
+                <div id="tagsContainer">
+                    <% if(tags){ %>
+                        <script>
+                            var tagsTexts = "<%= tags %>".split(",")
+        
+                            tagsTexts.forEach(tag =>{
+                                const article = document.createElement('article');
+                            article.classList.add("tag")
+                            article.classList.add("text")
+                            article.textContent = `${tag}`;
+        
+                            const closeBtn = document.createElement('span');
+                            closeBtn.innerHTML = '<i class="bi bi-x-lg"></i>';
+                            closeBtn.addEventListener('click', function () {
+                                article.remove();
+                                input.remove();
+                            });
+        
+                            const input = document.createElement('input');
+                            input.type = 'hidden';
+                            input.name = 'tags[]';
+                            input.value = `${tag}`;
+        
+                            article.appendChild(closeBtn);
+                            tagsContainer.appendChild(article);
+                            tagsContainer.appendChild(input);
+                            })
+                        </script>
+                        <% } %>
+                </div>
+            </section>
+        </header>
+        <section class="video__section">
+            <article class="input__container input-file <%= classeErro.video %>" data-videoContainer>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.video %>
+                </span>
+                <input type="file" name="video" id="video" class="input__control"
+                    placeholder="Título do video" required data-inputVideo>
+                <label for="video">Adicionar Vídeo</label>
+                <label for="video" class="icon"><i class="bi bi-download"></i></label>
+                <% if(valores && valores.video) { %> 
+                <video controls="controls" class="video__preview">
+                    <source src="./img/imagens-servidor/videos/<%= valores.video %>" type="video/mp4">
+                </video>
+                <% } %>
+            </article>
+
+        </section>

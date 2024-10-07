@@ -15,6 +15,7 @@ const uploadMultiplo = require("../util/uploadMultiplo");
 const resenhaModel = require("../models/resenhasModel");
 const fichasModel = require("../models/fichasModel");
 const usuariosModel = require("../models/usuariosModel");
+const videosModel = require("../models/videosModel");
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -198,6 +199,48 @@ router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 
 // pagina de publicar videos
 router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+    const token = null
+    const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+        page: "../partial/template-home/pub-pages/videos-pub",
+        classePagina: "publicar",
+        erros: null,
+        token: token
+    }
+    res.render("./pages/template-home", jsonResult)
+});
+router.get("/attvideo", 
+    middleWares.verifyAutenticado, 
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), 
+    async function (req, res) {
+        let idVideo = req.query.idVideo
+        if (!idVideo) {
+            res.status(404).render("pages/error-404.ejs");
+        } else {
+            let video = await videosModel.buscarPorId(idVideo)
+
+            if (video.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+                return res.redirect("/")
+            }
+            
+            const token = null
+            const jsonResult = {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/template-home/pub-pages/videos-att",
+                classePagina: "publicar",
+                erros: null,
+                token: token,
+                valores: {
+                    capaVideo: video.CAPA_VIDEO,
+                    tituloVideo: video.NOME_VIDEO,
+                    descricao: video.DESCR_VIDEO,
+                    idVideo: idVideo,
+                    video: video.CAMINHO_VIDEO
+                },
+                tags: video.HASHTAG_VIDEO.split(","),
+            }
+            res.render("./pages/template-home", jsonResult)
+        }
     const token = null
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -398,6 +441,21 @@ router.post("/criarVideo",
     videoControl.validacaoVideo,
     function (req, res) {
         videoControl.postarVideo(req, res)
+    })
+router.post("/atualizarVideo",
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    uploadMultiplo([
+        { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
+        { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
+    ]),
+    videoControl.validacaoVideo,
+    function (req, res) {
+        videoControl.atualizarVideo(req, res)
     })
 // Form de criação de Ficha
 router.post("/criarFicha",

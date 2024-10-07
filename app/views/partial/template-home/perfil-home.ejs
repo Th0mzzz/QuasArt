@@ -103,7 +103,6 @@
                         <% })
                     }else{ %> 
                         <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhuma resenha.</h4>
-             
                         <% } %>
             </section>
         </section>
@@ -115,6 +114,9 @@
                     posts.videos.forEach(function(video){ %>
 
                         <article class="card__video">
+                            <% if(isUser) {%>
+                                <a href="attVideo?idVideo=<%=video.ID_VIDEOS %>" class="editIcon btn"><i class="bi bi-pencil"></i></a>
+                            <%}%>
                             <a href="/videos?idVideo=<%= video.ID_VIDEOS %>" class="card__content">
                                 <img src="./img/imagens-servidor/capas-img/<%= video.CAPA_VIDEO %>" alt="imagem da ficha">
         

@@ -67,6 +67,96 @@ const videoControl = {
 
         }
     },
+    atualizarVideo: async (req, res) => {
+        let errors = validationResult(req)
+        let errosMulter = req.session.erroMulter;
+
+        if (!errors.isEmpty() || errosMulter.length > 0) {
+
+            let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+
+            if (errosMulter.length > 0) {
+                listaErros.errors.push(...errosMulter)
+                if (req.files) {
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
+                    removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
+                }
+            }
+            console.log("errodevalidaçãovideo--------")
+            console.log(listaErros)
+
+            let idVideo = req.query.idVideo
+            if (!idVideo) {
+                res.status(404).render("pages/error-404.ejs");
+            } else {
+                let video = await videosModel.buscarPorId(idVideo)
+
+                if (video.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+                    return res.redirect("/")
+                }
+
+                const token = null
+                const jsonResult = {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/template-home/pub-pages/videos-att",
+                    classePagina: "publicar",
+                    erros: listaErros,
+                    token: token,
+                    valores: {
+                        capaVideo: video.CAPA_VIDEO,
+                        tituloVideo: video.NOME_VIDEO,
+                        descricao: video.DESCR_VIDEO,
+                        idVideo: idVideo,
+                        video: video.CAMINHO_VIDEO
+                    },
+                    tags: video.HASHTAG_VIDEO.split(","),
+                }
+                res.render("./pages/template-home", jsonResult)
+            }
+
+        } else {
+            try {
+
+                const idVideo = req.query.idVideo;
+                const video = await videosModel.buscarPorId(idVideo);
+
+                if (!video || idVideo) {
+                    return res.status(404).render("pages/error-404");
+                }
+                const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
+                const videoFile = req.files['video'] ? req.files['video'][0] : video.CAMINHO_VIDEO;
+
+                const { tituloVideo, descricao, tags } = req.body
+                
+                const videoAtt = {
+                    NOME_VIDEO: tituloVideo,
+                    DESCR_VIDEO: descricao,
+                    HASHTAG_VIDEO: [tags].toString(),
+                    CAPA_VIDEO: capaVideo,
+                    CAMINHO_VIDEO: videoFile,
+                }
+                const resultado = await videosModel.create(videoAtt)
+                console.log(resultado)
+                res.redirect(`/videos?idVideo=${resultado.insertId}`)
+
+            } catch (error) {
+                console.log("Erro ao atualizar ficha")
+                console.log(error)
+                const previas = req.files['previas'] ? req.files['previas'] : null;
+                if (req.files) {
+                    if (req.files['capaFicha'][0]) removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaFicha'][0].filename}`)
+                    if (previas) {
+                        for (let i = 0; i < previas.length; i++) {
+                            removeImg(`./app/public/img/imagens-servidor/previas/${req.files['previas'][i].filename}`)
+                        }
+                    }
+                }
+                res.render("pages/error-500")
+            }
+
+
+        }
+    },
     mostrarVideo: async (req, res) => {
         let idVideo = req.query.idVideo
         // if (!idVideo) {
