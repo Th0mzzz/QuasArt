@@ -1,6 +1,6 @@
 <section class="pesquisa__container">
     <header class="pesquisa__header">
-        <form action="" method="post" class="pesquisa__form">
+        <form action="/fazerPesquisa" method="post" class="pesquisa__form">
             <article class="input__container">
                 <input type="search" name="pesquisaInput" id="pesquisaInput" placeholder="O que você procura?">
                 <label for="pesquisaInput">O que você procura?</label>
@@ -8,4 +8,105 @@
             </article>
         </form>
     </header>
+
+    <section class="resultados__search">
+        <% if (posts && posts != "none" ) {%> 
+            <section class="postagens__perfil">
+
+                <article class="btns-section">
+                    <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i
+                            class="bi bi-grid"></i></button>
+                    <button class="btn-section link" data-btnSection="resenhas" title="resenhas"><i
+                            class="bi bi-card-text"></i></button>
+                    <button class="btn-section link" data-btnSection="videos" title="videos"><i
+                            class="bi bi-camera-video"></i></button>
+                </article>
+                <section class="postagens__section ativo" data-section="fichas">
+                    <h3 class="title">Fichas</h3>
+                    <section class="conteudo-row p-1">
+                        <% if(posts && posts.fichas != null){
+                            posts.fichas.forEach(function(ficha){ %>
+                        <article class="card__ficha">
+                        
+        
+                            <a href="view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                                <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
+                                <article class="card-title">
+                                    <h4 class="subtitle"><%= ficha.NOME_OBRA %></h4>
+                                </article>
+                            </a>
+                            <footer class="card__autor">
+                                <p class="text"><%= ficha.DATA_FICHA %></p>
+                            </footer>
+                        </article>
+                        <% })
+                    }else{ %> 
+                        <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhuma ficha.</h4>
+                        <% } %>
+                    </section>
+                </section>
+                <section class="postagens__section " data-section="resenhas">
+                    <h3 class="title">Resenhas</h3>
+                    <section class="conteudo-row p-1">
+        
+                        <% if(posts && posts.resenhas != null){
+        
+                            posts.resenhas.forEach(function(resenha){ %>
+        
+                                <article class="card__resenha">
+                            
+                                    <header class="card__img">
+                                        <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                            <img class="img__resenha" src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>" alt="imagem da resenha">
+                                        </a>
+                                    </header>
+                                    <footer class="card__content">
+                                        <h5 class="link"><%= resenha.TITULO_RESENHA %></h5>
+                                        <p class="text mt-2"><%= resenha.DESCR_RESENHA.length > 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...' : resenha.DESCR_RESENHA %></p>
+                                        <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                                    </footer>
+                                </article>
+        
+                                <% })
+                            }else{ %> 
+                                <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhuma resenha.</h4>
+                                <% } %>
+                    </section>
+                </section>
+                <section class="postagens__section " data-section="videos">
+                    <h3 class="title">Videos</h3>
+                    <section class="conteudo-row p-1">
+                        <% if(posts && posts.videos != null){
+        
+                            posts.videos.forEach(function(video){ %>
+        
+                                <article class="card__video">
+                                    
+                                    <a href="/videos?idVideo=<%= video.ID_VIDEOS %>" class="card__content">
+                                        <img src="./img/imagens-servidor/capas-img/<%= video.CAPA_VIDEO %>" alt="imagem da ficha">
+                
+                                        <header class="card-title">
+                                            <h4 class="link"><i class="bi bi-play-fill me-1"></i>10K</h4>
+                                        </header>
+                                    </a>
+                                </article>
+        
+                                <% })
+                            }else{ %> 
+                                <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhum vídeo.</h4>
+                     
+                                <% } %>
+        
+                       
+                    </section>
+                </section>
+            </section>
+        <% } else if(posts == "none"){ %> 
+            <h2 class="subtitle">Nenhum resultado encontrado...</h2>
+        <% }else{ %>
+            <h2 class="subtitle">Explore por nosso universo!</h2>
+        <% } %>
+    </section>
 </section>
+
+<script src="./js/toggleSection.js"></script>

@@ -147,7 +147,8 @@ router.get("/pesquisar", function (req, res) {
         page: "../partial/template-home/pesquisa-home",
         classePagina: "pesquisar",
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        token: token
+        token: token,
+        posts: null,
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -209,9 +210,9 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
     }
     res.render("./pages/template-home", jsonResult)
 });
-router.get("/attvideo", 
-    middleWares.verifyAutenticado, 
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), 
+router.get("/attvideo",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
     async function (req, res) {
         let idVideo = req.query.idVideo
         if (!idVideo) {
@@ -222,7 +223,7 @@ router.get("/attvideo",
             if (video.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
                 return res.redirect("/")
             }
-            
+
             const token = null
             const jsonResult = {
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -241,16 +242,16 @@ router.get("/attvideo",
             }
             res.render("./pages/template-home", jsonResult)
         }
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/pub-pages/videos-pub",
-        classePagina: "publicar",
-        erros: null,
-        token: token
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+        const token = null
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/pub-pages/videos-pub",
+            classePagina: "publicar",
+            erros: null,
+            token: token
+        }
+        res.render("./pages/template-home", jsonResult)
+    });
 
 
 // pagina de publicar fichas
@@ -325,7 +326,7 @@ router.get("/resenha-cosmica-pub",
             erros: null,
             valores: null,
             token: token,
-            tags:null
+            tags: null
         }
         res.render("./pages/template-home", jsonResult)
     });
@@ -492,7 +493,105 @@ router.post("/atualizarFicha",
     })
 
 // ------- Pesquisar -------
-router.post("/fazerPesquisa", function (req, res) {
+router.post("/fazerPesquisa", async function (req, res) {
+    try {
+        const termo = `%${req.body.pesquisaInput}%`;
+
+        
+        const fichas = await fichasModel.acharPorTermo(termo) || [];
+        const videos = await videosModel.acharPorTermo(termo) || [];
+        const resenhas = await resenhaModel.acharPorTermo(termo) || [];
+
+        
+        const idsResenha = [];
+        const idsFicha = [];
+        const idsVideo = [];
+
+        
+        if (fichas.length === 0 && videos.length === 0 && resenhas.length === 0) {
+            const token = null;
+            const jsonResult = {
+                page: "../partial/template-home/pesquisa-home",
+                classePagina: "pesquisar",
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                token: token,
+                posts: "none", 
+            };
+            return res.render("./pages/template-home", jsonResult);
+        }
+
+      
+        for (const r of resenhas) {
+            if (!idsResenha.includes(r.USUARIOS_ID_USUARIO)) {
+                idsResenha.push(r.USUARIOS_ID_USUARIO);
+            }
+        }
+
+        for (const f of fichas) {
+            if (!idsFicha.includes(f.USUARIOS_ID_USUARIO)) {
+                idsFicha.push(f.USUARIOS_ID_USUARIO);
+            }
+        }
+
+        for (const v of videos) {
+            if (!idsVideo.includes(v.USUARIOS_ID_USUARIO)) {
+                idsVideo.push(v.USUARIOS_ID_USUARIO);
+            }
+        }
+
+        
+        const [usuariosResenhas, usuariosFichas, usuariosVideos] = await Promise.all([
+            idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
+            idsFicha.length > 0 ? usuariosModel.findUsersByIds(idsFicha) : [],
+            idsVideo.length > 0 ? usuariosModel.findUsersByIds(idsVideo) : []
+        ]);
+
+        
+        const mapUsuariosResenhas = Object.fromEntries(usuariosResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
+        const mapUsuariosFichas = Object.fromEntries(usuariosFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
+        const mapUsuariosVideos = Object.fromEntries(usuariosVideos.map(usuario => [usuario.ID_USUARIO, usuario]));
+
+        
+        const posts = {
+            resenhas: resenhas.map(r => ({
+                ...r,
+                usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] || null  
+            })),
+            fichas: fichas.map(f => {
+                const dataFicha = new Date(f.DATA_FICHA);
+                const dataFormatada = dataFicha.toISOString().split('T')[0];
+
+                return {
+                    ...f,
+                    usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] || null,  
+                    DATA_FICHA: dataFormatada
+                };
+            }),
+            videos: videos.map(v => ({
+                ...v,
+                usuario: mapUsuariosVideos[v.USUARIOS_ID_USUARIO] || null  
+            })),
+        };
+
+        
+        const jsonResult = {
+            page: "../partial/template-home/pesquisa-home",
+            classePagina: "pesquisar",
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            token: null,
+            posts: posts  
+        };
+
+        return res.render("./pages/template-home", jsonResult);
+
+    } catch (error) {
+        console.log(error)
+        res.status(404).render("pages/error-404.ejs");
+
+    }
+
+
+
 
 });
 

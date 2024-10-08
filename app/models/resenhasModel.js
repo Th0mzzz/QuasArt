@@ -65,10 +65,19 @@ const resenhaModel = {
             const [resultados] = await pool.query("UPDATE RESENHAS SET ? WHERE ID_RESENHAS = ?", [dadosAtualizados, idResenha]);
             return resultados;
         } catch (error) {
-            console.log("Erro ao atualizar ficha");
+            console.log("Erro ao atualizar Resenha");
             return error;
         }
     },
+    acharPorTermo:async (termo)=>{
+        try {
+            const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? OR DESCR_RESENHA LIKE ? OR HASHTAG_RESENHA LIKE ? OR TEXTO_RESENHA LIKE ? ", [termo, termo, termo, termo]);
+            return resultados;
+        } catch (error) {
+            console.log("Erro ao buscar resenhas");
+            return error;
+        }
+    }
 }
 
 module.exports = resenhaModel

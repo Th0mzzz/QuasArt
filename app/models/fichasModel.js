@@ -97,6 +97,15 @@ const fichasModel = {
             return error;
         }
     },
+    acharPorTermo:async (termo)=>{
+        try {
+            const [resultados] = await pool.query("select * from FICHAS where NOME_OBRA LIKE ? OR DESCR_OBRA LIKE ? OR HASHTAG_OBRA LIKE ? ", [termo, termo, termo]);
+            return resultados;
+        } catch (error) {
+            console.log("Erro ao buscar fichas");
+            return error;
+        }
+    }
 }
 
 module.exports = fichasModel;

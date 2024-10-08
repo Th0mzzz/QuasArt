@@ -48,6 +48,15 @@ const videosModel = {
             console.log(error)
             return error
         }
+    },
+    acharPorTermo:async (termo)=>{
+        try {
+            const [resultados] = await pool.query("select * from VIDEOS where NOME_VIDEO LIKE ? OR HASHTAG_VIDEO LIKE ? OR DESCR_VIDEO LIKE ?", [termo, termo, termo]);
+            return resultados;
+        } catch (error) {
+            console.log("Erro ao buscar videos");
+            return error;
+        }
     }
 
 }
