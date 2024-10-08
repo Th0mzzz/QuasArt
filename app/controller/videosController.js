@@ -43,6 +43,8 @@ const videoControl = {
             try {
                 const capaFile = req.files['capaVideo'] ? req.files['capaVideo'][0] : null;
                 const videoFile = req.files['video'] ? req.files['video'][0] : null;
+
+                
                 const { tituloVideo, descricao, tags } = req.body
                 const video = {
                     NOME_VIDEO: tituloVideo,
@@ -120,11 +122,12 @@ const videoControl = {
                 const idVideo = req.query.idVideo;
                 const video = await videosModel.buscarPorId(idVideo);
 
-                if (!video || idVideo) {
+                if (!video || !idVideo) {
+                    console.log("video nao encontrado")
                     return res.status(404).render("pages/error-404");
                 }
                 const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
-                const videoFile = req.files['video'] ? req.files['video'][0] : video.CAMINHO_VIDEO;
+                const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
 
                 const { tituloVideo, descricao, tags } = req.body
                 
@@ -135,9 +138,9 @@ const videoControl = {
                     CAPA_VIDEO: capaVideo,
                     CAMINHO_VIDEO: videoFile,
                 }
-                const resultado = await videosModel.create(videoAtt)
+                const resultado = await videosModel.updateVideo(videoAtt, idVideo)
                 console.log(resultado)
-                res.redirect(`/videos?idVideo=${resultado.insertId}`)
+                res.redirect(`/videos?idVideo=${idVideo}`)
 
             } catch (error) {
                 console.log("Erro ao atualizar ficha")

@@ -1,6 +1,7 @@
 var pool = require("../../config/poolConn");
+const { updateFicha } = require("./fichasModel");
 const videosModel = {
-    create: async (dadosVideo)=>{
+    create: async (dadosVideo) => {
         try {
             const [resultados] = await pool.query("insert into VIDEOS set ?", [dadosVideo])
             return resultados
@@ -38,7 +39,17 @@ const videosModel = {
             return error
         }
     },
-    
+    updateVideo: async (dadosAtualizados, idVideo) => {
+        try {
+        const [resultados] = await pool.query("UPDATE VIDEOS SET ? WHERE ID_VIDEOS = ?", [dadosAtualizados, idVideo])
+        return resultados
+        } catch (error) {
+            console.log("ERRO ao atualizar o VIDEO")
+            console.log(error)
+            return error
+        }
+    }
+
 }
 
 module.exports = videosModel;

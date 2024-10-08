@@ -100,8 +100,14 @@ let msgErro= {
                 <span class="invalid-msg smallText">
                     <%= msgErro.video %>
                 </span>
+                <% if(valores && valores.video) { %> 
                 <input type="file" name="video" id="video" class="input__control"
+                    placeholder="Título do video" data-inputVideo>
+                <% }else { %>
+                    <input type="file" name="video" id="video" class="input__control"
                     placeholder="Título do video" required data-inputVideo>
+                    <% } %>
+
                 <label for="video">Adicionar Vídeo</label>
                 <label for="video" class="icon"><i class="bi bi-download"></i></label>
                 <% if(valores && valores.video) { %> 

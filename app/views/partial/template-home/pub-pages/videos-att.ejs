@@ -1,6 +1,6 @@
 <section class="form__pub-container">
     <h2 class="title">Atualizar <span class="negrito-roxo">ViaVideo</span></h2>
-    <form action="/criarVideo" class="form__pub" method="post" enctype="multipart/form-data">
+    <form action="/atualizarVideo?idVideo=<%=valores.idVideo %>" class="form__pub" method="post" enctype="multipart/form-data">
         <%- include("./form-video") %>
         <button class="btn submit secundaria p-2">Atualizar</button>
     </form>

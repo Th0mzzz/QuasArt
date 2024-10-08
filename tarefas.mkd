@@ -1,11 +1,9 @@
 ### FRONT-END
-- Página de gerenciamento de posts;
 - Atualizar form de fichas com input para links;
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
-- Edição de posts (Criar uma pagina para pegar as coisas dentro do form e outra com o form para att o post e dps incluir)(ficha, video, resenha)
 - Adicionar comentários;
 - Curtir posts;
 - Sistema de seguir perfis;
@@ -13,8 +11,7 @@
 - Funcionar os benefícios das assinaturas
 
 ### Banco de dados
-- Adicionar campo para status de usuário.
-- LEMBRAR : Att na table previas(Atualizei o id_previa para AI, PK ) / att na table FICHAS (att o nota_obra para null)
+- Adicionar campo para status de usuário, resenha, video e ficha;
 
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
