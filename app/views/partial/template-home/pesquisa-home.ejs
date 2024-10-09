@@ -11,16 +11,20 @@
 
     <section class="resultados__search">
         <% if (posts && posts != "none" ) {%> 
-            <section class="postagens__perfil">
+            <section class="postagens__pesquisa">
 
                 <article class="btns-section">
-                    <button class="btn-section link ativo" data-btnSection="fichas" title="fichas"><i
-                            class="bi bi-grid"></i></button>
-                    <button class="btn-section link" data-btnSection="resenhas" title="resenhas"><i
-                            class="bi bi-card-text"></i></button>
-                    <button class="btn-section link" data-btnSection="videos" title="videos"><i
-                            class="bi bi-camera-video"></i></button>
+                    <button class="btn-section subtitle ativo" data-btnSection="fichas" title="fichas">
+                        Fichas
+                    </button>
+                    <button class="btn-section subtitle" data-btnSection="resenhas" title="resenhas">
+                        Resenhas
+                    </button>
+                    <button class="btn-section subtitle" data-btnSection="videos" title="videos">
+                        Videos
+                    </button>
                 </article>
+
                 <section class="postagens__section ativo" data-section="fichas">
                     <h3 class="title">Fichas</h3>
                     <section class="conteudo-row p-1">

@@ -124,29 +124,29 @@
         }
     }
 
-    .postagens__section {
-        display: none;
+    
+}
+.postagens__section {
+    display: none;
 
-        &.ativo {
-            display: block;
-        }
+    &.ativo {
+        display: block;
+    }
 
-        & .title {
-            color: var(--cor-texto);
-            text-align: center;
-            margin: 2rem 0;
-        }
+    & .title {
+        color: var(--cor-texto);
+        text-align: center;
+        margin: 2rem 0;
+    }
 
-        & .conteudo-row {
-            display: flex;
-            justify-content: center;
-            flex-flow: row wrap;
-            width: 100%;
-            gap: 2rem;
-        }
+    & .conteudo-row {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        width: 100%;
+        gap: 2rem;
     }
 }
-
 .exit-btn {
     position: absolute;
     right: 0;

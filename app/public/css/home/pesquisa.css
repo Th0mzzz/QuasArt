@@ -32,3 +32,31 @@
         }
     }
 }
+
+.resultados__search{
+    margin: 3rem 0;
+}
+
+
+.postagens__pesquisa{
+    & .btns-section{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        & .btn-section{
+            background: transparent;
+            color: var(--cor-secundaria);
+            border: 1px solid var(--cor-secundaria);
+            border-radius: 5px;
+            padding: .3rem 1.2rem;
+            cursor: pointer;
+            transition: all .3s;
+            &.ativo{
+                background: var(--cor-secundaria);
+                color: #fff;
+            }
+        }
+    }
+}
