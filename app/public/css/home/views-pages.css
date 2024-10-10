@@ -505,7 +505,7 @@
         }
 
         & .video__comments .comments {
-            max-height: 500px;
+            max-height: 340px;
         }
 
     }
