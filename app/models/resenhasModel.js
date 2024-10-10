@@ -77,7 +77,26 @@ const resenhaModel = {
             console.log("Erro ao buscar resenhas");
             return error;
         }
-    }
+    },
+    comentarResenha: async (dadosAvaliacao) => {
+        try {
+            const [resultados] = await pool.query("insert into AVALIACAO_RESENHA set ?", [dadosAvaliacao])
+            return resultados
+        } catch (error) {
+            console.log("----------- ERRO AO COMENTAR NA RESENHA -----------")
+            return error
+        }
+    },
+    findComentariosByIdResenha: async (idResenha) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM AVALIACAO_RESENHA WHERE RESENHAS_ID_RESENHAS = ?", [idResenha])
+            return resultados
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR COMENTARIOS DA RESENHA -----------")
+            console.log(error)
+            return error
+        }
+    },
 }
 
 module.exports = resenhaModel

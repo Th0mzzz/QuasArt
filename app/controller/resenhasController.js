@@ -68,22 +68,32 @@ const resenhaControl = {
             try {
                 const resenha = await resenhaModel.buscarPorId(idResenha)
                 if (resenha) {
-                    console.log(resenha)
                     const autor = await usuariosModel.findUserById(resenha.USUARIOS_ID_USUARIO)
                     if (autor) {
-                        console.log(autor)
+                        const comentarios = await resenhaModel.findComentariosByIdResenha(resenha.ID_RESENHAS)
+                        const idsUsersComentarios = []
+                        for (const c of comentarios) {
+                            if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
+                                idsUsersComentarios.push(c.USUARIOS_ID_USUARIO)
+                            }
+                        }
+                        const usuariosComentarios = idsUsersComentarios.length > 0 ? await usuariosModel.findUsersByIds(idsUsersComentarios) : [];
+                        const mapUsuariosComentarios = Object.fromEntries(usuariosComentarios.map(usuario => [usuario.ID_USUARIO, usuario]))
+                        const comments = comentarios.map(c => ({
+                            ...c,
+                            usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
+                        }))
+
                         const token = null
                         const jsonResult = {
                             page: "../partial/template-home/view-resenha",
                             classePagina: "",
                             resenha: {
-                                titulo: resenha.TITULO_RESENHA,
-                                descricao: resenha.descricao,
-                                texto: resenha.TEXTO_RESENHA,
+                                ...resenha,
                                 tags: resenha.HASHTAG_RESENHA.split(","),
-                                capaResenha: resenha.CAPA_CAMINHO,
                                 autor: autor[0]
                             },
+                            comentarios: comments,
                             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                             token: token
                         }
@@ -179,6 +189,25 @@ const resenhaControl = {
 
         }
     },
+    avaliarResenha: async (req, res) => {
+        try {
+            const idResenha = req.query.idResenha
+            if (!idResenha) {
+                return res.status(404).render("pages/error-404")
+            }
+            const { textComment, avaliacao } = req.body
+            const dadosAvaliacao = {
+                COMENTARIO_AVALIACAO: textComment,
+                NOTA_AVALIACAO: avaliacao,
+                RESENHAS_ID_RESENHAS: idResenha,
+                USUARIOS_ID_USUARIO: req.session.autenticado.id
+            }
+            await resenhaModel.comentarResenha(dadosAvaliacao)
+            res.redirect(`/view-resenha?idResenha=${idResenha}`)
+        } catch (error) {
+
+        }
+    }
 }
 
 module.exports = resenhaControl

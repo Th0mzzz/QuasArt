@@ -57,8 +57,26 @@ const videosModel = {
             console.log("Erro ao buscar videos");
             return error;
         }
-    }
-
+    },
+    comentarVideo: async (dadosAvaliacao) => {
+        try {
+            const [resultados] = await pool.query("insert into AVALIACAO_VIDEO set ?", [dadosAvaliacao])
+            return resultados
+        } catch (error) {
+            console.log("----------- ERRO AO COMENTAR NO VIDEO -----------")
+            return error
+        }
+    },
+    findComentariosByIdVideo: async (idVideo) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM AVALIACAO_VIDEO WHERE VIDEOS_ID_VIDEOS = ?", [idVideo])
+            return resultados
+        } catch (error) {
+            console.log("----------- ERRO AO ACHAR COMENTARIOS DO VIDEO -----------")
+            console.log(error)
+            return error
+        }
+    },
 }
 
 module.exports = videosModel;

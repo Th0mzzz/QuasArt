@@ -351,11 +351,16 @@
         align-items: center;
         padding: 2rem 0;
         gap: 1rem;
+        width: 100%;
         max-width: 700px;
 
         & .comment__item {
             position: relative;
             color: var(--cor-texto);
+            width: 100%;
+            & p{
+                word-wrap: break-word;
+            }
 
             & .row {
                 position: relative;

@@ -34,6 +34,7 @@
                 </article>
             </article>
         </section>
+
         <section class="view__container videos-view">
             <section class="row__videos-container vertical-carousel__container">
                 <section class="row__videos">
@@ -50,7 +51,7 @@
                                     <i class="bi bi-arrow-down"></i>
                                 </button>
                             </header>
-                            <video src="./img/imagens-servidor/videos/<%= video.video %>" controls></video>
+                            <video src="./img/imagens-servidor/videos/<%= video.CAMINHO_VIDEO %>" controls></video>
                         </article>
                     </article>
 
@@ -66,13 +67,17 @@
                             <a href="/profile?idUser=<%= video.autor.ID_USUARIO %>" class="userLink link">
                                 <img src="./img/imagens-servidor/perfil/<%= video.autor.CAMINHO_FOTO %>"
                                     alt="foto do autor" class="userImg">
-                                    <%= video.autor.NICKNAME_USUARIO %>
-                                </a>
+                                <%= video.autor.NICKNAME_USUARIO %>
+                            </a>
                             <button class="btn">Seguir</button>
                         </section>
                         <article class="desc mb-2">
+                            <h3 class="subtitle mb-2">
+                                <%= video.NOME_VIDEO %>
+                            </h3>
+
                             <p class="text">
-                                <%= video.descricao %>
+                                <%= video.DESCR_VIDEO %>
                             </p>
                         </article>
                         <article id="tagsContainer">
@@ -89,48 +94,31 @@
                                 class="bi bi-exclamation-triangle"></i> Denunciar</button>
 
                         <article class="comments">
-                            <article class="comment">
-                                <img src="./img/user-teste2.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Th0mzzz</h4>
-                                    <p class="text">
-                                        Amei o podCast, continue postando!
-                                    </p>
+                            <% if(comentarios) { comentarios.forEach(comentario=> { %>
+
+                                <article class="comment">
+                                    <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>"
+                                        alt="foto de perfil" class="user__img">
+                                    <article class="texto">
+                                        <h4 class="link user-nick">
+                                            <%= comentario.usuario.NICKNAME_USUARIO %>
+                                        </h4>
+                                        <p class="text">
+                                            <%= comentario.COMENTARIO_AVALIACAO %>
+                                        </p>
+                                    </article>
                                 </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Dantas.Web</h4>
-                                    <p class="text">
-                                        Poderiam melhorar a qualidade de video, iria ficar muito mais interessante
-                                    </p>
-                                </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste3.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Mariana Ferraz</h4>
-                                    <p class="text">
-                                        Queria que trouxessem profissionais de psicologia para falar mais sobre a área
-                                    </p>
-                                </article>
-                            </article>
-                            <article class="comment">
-                                <img src="./img/user-teste4.png" alt="" class="user__img">
-                                <article class="texto">
-                                    <h4 class="link user-nick">Ícaro Carvalho</h4>
-                                    <p class="text">
-                                        Queria que trouxessem profissionais de psicologia para falar mais sobre a área
-                                    </p>
-                                </article>
-                            </article>
+                                <% }) } %>
+
+
+
+
                         </article>
                         <footer class="video__form">
-                            <form action="/comentarioVideo" method="post">
+                            <form action="/comentarVideo?idVideo=<%=video.ID_VIDEOS %>" method="post">
                                 <article class="input__container senha">
                                     <input type="text" class="form__control" name="comentario" id="comentario"
-                                        placeholder="Deixe seu comentário!">
+                                        placeholder="Deixe seu comentário!" >
                                     <label for="comentario">Deixe seu comentário</label>
                                     <button type="submit" class="btn-comment ocultSenha"><i
                                             class="bi bi-send"></i></button>

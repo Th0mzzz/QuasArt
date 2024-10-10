@@ -35,6 +35,11 @@
 
 .resultados__search{
     margin: 3rem 0;
+    & > .subtitle{
+        width: 100%;
+        text-align: center;
+        color: var(--cor-texto);
+    }
 }
 
 

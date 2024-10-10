@@ -12,14 +12,14 @@
                     <button class="btn">Seguir</button>
                 </section>
                 <section class="row mt-2">
-                    <article class="estatistica">
+                    <!-- <article class="estatistica">
                         <article class="btn secundaria"><i class="bi bi-eye"></i></article>
                         <p class="text mt-1">2mi</p>
                     </article>
                     <article class="estatistica">
                         <article class="btn secundaria"><i class="bi bi-star"></i></article>
                         <p class="text mt-1">875k</p>
-                    </article>
+                    </article> -->
                     <article class="estatistica">
                         <article class="btn secundaria"><i class="bi bi-heart"></i></article>
                         <p class="text mt-1">50k</p>
@@ -77,13 +77,13 @@
                     </span>
                     <% }) } %>
             </article>
-            <article class="avaliacao__stars">
+            <!-- <article class="avaliacao__stars">
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
-            </article>
+            </article> -->
         </footer>
         <button class="denunciar-btn link mt-2" data-openmodal="#denunciarModal">
             <i class="bi bi-exclamation-triangle"></i>
@@ -92,11 +92,10 @@
     </section>
     <footer class="comentarios__container mt-3">
         <h3 class="subtitle mb-2">Comentários</h3>
-        <form action="/comentarResenha" class="comment__form">
+        <form action="/comentarFicha?idFicha=<%= ficha.ID_OBRA %>" class="comment__form" method="post">
             <article class="input__container">
                 <textarea name="textComment" id="textComment" class="form__control"
-                    placeholder="Deixe seu comentário sobre!">
-                </textarea>
+                    placeholder="Deixe seu comentário sobre!" maxlength="300"></textarea>
                 <label for="textComment">Deixe seu comentário e sua avaliação!</label>
             </article>
             <article class="avaliacao__stars pt-1">
@@ -110,46 +109,31 @@
             <button type="submit" class="btn secundaria mt-2">Comentar</button>
         </form>
         <section class="comentarios mt-3">
-            <article class="comment__item">
-                <article class="row">
-                    <header class="comment__user">
-                        <img src="./img/user-teste2.png" alt="foto de perfil do comentário" class="userImg">
-                        <h4 class="link mt-2">Th0mzzz</h4>
-                    </header>
-                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
-                        eveniet
-                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
-                </article>
-                <article class="avaliacao__stars pt-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </article>
-            </article>
-
-            <article class="comment__item">
-                <article class="row">
-                    <header class="comment__user">
-                        <img src="./img/user-teste3.png" alt="foto de perfil do comentário" class="userImg">
-                        <h4 class="link mt-2">Mariana Ferraz</h4>
-                    </header>
-                    <p class="text">Comentário do cara Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid
-                        dignissimos provident cum, nulla enim eligendi suscipit architecto voluptate alias dolore
-                        eveniet
-                        voluptas veritatis repellendus? Voluptatem impedit esse a laboriosam optio.</p>
-                </article>
-                <article class="avaliacao__stars pt-1">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                </article>
-            </article>
-
+            <% if(comentarios) { 
+                
+                comentarios.forEach(comentario => { %>
+                    <article class="comment__item">
+                        <article class="row">
+                            <a href="/profile?idUser=<%= comentario.usuario.ID_USUARIO %>" class="comment__user">
+                                <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>" alt="foto de perfil do comentário" class="userImg">
+                                <h4 class="link mt-2"><%= comentario.usuario.NICKNAME_USUARIO %></h4>
+                            </a>
+                            <p class="text"><%= comentario.COMENTARIO_AVALIACAO %></p>
+                        </article>
+                        <article class="avaliacao__stars pt-1">
+                            <% for (let i = 1; i <= 5; i++) { %>
+                                <% if (i <= comentario.NOTA_AVALIACAO) { %>
+                                    <i class="bi bi-star-fill"></i> 
+                                <% } else { %>
+                                    <i class="bi bi-star"></i>
+                                <% } %>
+                            <% } %>
+                        </article>
+                    </article>
+                    <% })
+                
+             } %>
+            
         </section>
     </footer>
 </section>

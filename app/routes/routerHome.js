@@ -497,17 +497,17 @@ router.post("/fazerPesquisa", async function (req, res) {
     try {
         const termo = `%${req.body.pesquisaInput}%`;
 
-        
+
         const fichas = await fichasModel.acharPorTermo(termo) || [];
         const videos = await videosModel.acharPorTermo(termo) || [];
         const resenhas = await resenhaModel.acharPorTermo(termo) || [];
 
-        
+
         const idsResenha = [];
         const idsFicha = [];
         const idsVideo = [];
 
-        
+
         if (fichas.length === 0 && videos.length === 0 && resenhas.length === 0) {
             const token = null;
             const jsonResult = {
@@ -515,12 +515,12 @@ router.post("/fazerPesquisa", async function (req, res) {
                 classePagina: "pesquisar",
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                 token: token,
-                posts: "none", 
+                posts: "none",
             };
             return res.render("./pages/template-home", jsonResult);
         }
 
-      
+
         for (const r of resenhas) {
             if (!idsResenha.includes(r.USUARIOS_ID_USUARIO)) {
                 idsResenha.push(r.USUARIOS_ID_USUARIO);
@@ -539,23 +539,23 @@ router.post("/fazerPesquisa", async function (req, res) {
             }
         }
 
-        
+
         const [usuariosResenhas, usuariosFichas, usuariosVideos] = await Promise.all([
             idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
             idsFicha.length > 0 ? usuariosModel.findUsersByIds(idsFicha) : [],
             idsVideo.length > 0 ? usuariosModel.findUsersByIds(idsVideo) : []
         ]);
 
-        
+
         const mapUsuariosResenhas = Object.fromEntries(usuariosResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
         const mapUsuariosFichas = Object.fromEntries(usuariosFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
         const mapUsuariosVideos = Object.fromEntries(usuariosVideos.map(usuario => [usuario.ID_USUARIO, usuario]));
 
-        
+
         const posts = {
             resenhas: resenhas.map(r => ({
                 ...r,
-                usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] || null  
+                usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO] || null
             })),
             fichas: fichas.map(f => {
                 const dataFicha = new Date(f.DATA_FICHA);
@@ -563,23 +563,23 @@ router.post("/fazerPesquisa", async function (req, res) {
 
                 return {
                     ...f,
-                    usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] || null,  
+                    usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO] || null,
                     DATA_FICHA: dataFormatada
                 };
             }),
             videos: videos.map(v => ({
                 ...v,
-                usuario: mapUsuariosVideos[v.USUARIOS_ID_USUARIO] || null  
+                usuario: mapUsuariosVideos[v.USUARIOS_ID_USUARIO] || null
             })),
         };
 
-        
+
         const jsonResult = {
             page: "../partial/template-home/pesquisa-home",
             classePagina: "pesquisar",
             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             token: null,
-            posts: posts  
+            posts: posts
         };
 
         return res.render("./pages/template-home", jsonResult);
@@ -594,6 +594,30 @@ router.post("/fazerPesquisa", async function (req, res) {
 
 
 });
+
+// COMENTAR --------
+
+router.post("/comentarFicha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        fichasControl.avaliarFicha(req, res)
+    }
+)
+router.post("/comentarResenha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        resenhaControl.avaliarResenha(req, res)
+    }
+)
+router.post("/comentarVideo",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    function (req, res) {
+        videoControl.avaliarVideo(req,res)
+    }
+)
 
 
 module.exports = router;

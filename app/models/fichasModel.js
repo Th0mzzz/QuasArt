@@ -97,7 +97,7 @@ const fichasModel = {
             return error;
         }
     },
-    acharPorTermo:async (termo)=>{
+    acharPorTermo: async (termo) => {
         try {
             const [resultados] = await pool.query("select * from FICHAS where NOME_OBRA LIKE ? OR DESCR_OBRA LIKE ? OR HASHTAG_OBRA LIKE ? ", [termo, termo, termo]);
             return resultados;
@@ -105,7 +105,27 @@ const fichasModel = {
             console.log("Erro ao buscar fichas");
             return error;
         }
-    }
+    },
+    comentarFicha: async (dadosAvaliacao) => {
+        try {
+            const [resultados] = await pool.query("insert into AVALIACAO_FICHA set ?", [dadosAvaliacao])
+            return resultados
+        } catch (error) {
+            console.log("----------- Erro no model de avaliação de ficha -----------")
+            return error
+        }
+    },
+    findComentariosByIdObra: async (idObra) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM AVALIACAO_FICHA WHERE FICHAS_ID_OBRA = ?", [idObra])
+            return resultados
+        } catch (error) {
+            console.log("----------- Erro no model de ficha -----------")
+            console.log(error)
+            return error
+        }
+    },
+    
 }
 
 module.exports = fichasModel;

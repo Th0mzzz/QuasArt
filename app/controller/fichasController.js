@@ -198,17 +198,24 @@ const fichasControl = {
         } else {
             try {
                 const ficha = await fichasModel.findFichaByIdObra(idFicha)
-                console.log("----------- VIEW FICHA ----------")
-                console.log(ficha)
                 if (ficha) {
-                    console.log("----------- AUTOR ----------")
                     const autor = await usuariosModel.findUserById(ficha.USUARIOS_ID_USUARIO)
-                    console.log(autor)
                     if (autor) {
-                        console.log("----------- PREVIAS ----------")
-
                         const previas = await fichasModel.findPreviasByIdObra(ficha.ID_OBRA)
-                        console.log(previas)
+                        const comentarios = await fichasModel.findComentariosByIdObra(ficha.ID_OBRA)
+                        const idsUsersComentarios = []
+                        for (const c of comentarios) {
+                            if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
+                                idsUsersComentarios.push(c.USUARIOS_ID_USUARIO)
+                            }
+                        }
+                        const usuariosComentarios = idsUsersComentarios.length > 0 ? await usuariosModel.findUsersByIds(idsUsersComentarios) : [];
+                        const mapUsuariosComentarios = Object.fromEntries(usuariosComentarios.map(usuario => [usuario.ID_USUARIO, usuario]))
+                        const comments = comentarios.map(c => ({
+                            ...c,
+                            usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
+                        }))
+
                         const token = null
                         const jsonResult = {
                             page: "../partial/template-home/view-ficha",
@@ -218,7 +225,8 @@ const fichasControl = {
                             tags: ficha.HASHTAG_OBRA.split(","),
                             autor: autor[0],
                             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                            token: token
+                            token: token,
+                            comentarios: comments
                         }
 
                         res.render("./pages/template-home", jsonResult)
@@ -237,6 +245,25 @@ const fichasControl = {
         }
 
 
+    },
+    avaliarFicha: async (req, res) => {
+        try {
+            const idFicha = req.query.idFicha
+            if (!idFicha) {
+                return res.status(404).render("pages/error-404")
+            }
+            const { textComment, avaliacao } = req.body
+            const dadosAvaliacao = {
+                COMENTARIO_AVALIACAO: textComment,
+                NOTA_AVALIACAO: avaliacao,
+                FICHAS_ID_OBRA: idFicha,
+                USUARIOS_ID_USUARIO: req.session.autenticado.id
+            }
+            await fichasModel.comentarFicha(dadosAvaliacao)
+            res.redirect(`/view-ficha?idFicha=${idFicha}`)
+        } catch (error) {
+
+        }
     }
 }
 

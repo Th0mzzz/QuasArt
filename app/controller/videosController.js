@@ -44,7 +44,7 @@ const videoControl = {
                 const capaFile = req.files['capaVideo'] ? req.files['capaVideo'][0] : null;
                 const videoFile = req.files['video'] ? req.files['video'][0] : null;
 
-                
+
                 const { tituloVideo, descricao, tags } = req.body
                 const video = {
                     NOME_VIDEO: tituloVideo,
@@ -130,7 +130,7 @@ const videoControl = {
                 const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
 
                 const { tituloVideo, descricao, tags } = req.body
-                
+
                 const videoAtt = {
                     NOME_VIDEO: tituloVideo,
                     DESCR_VIDEO: descricao,
@@ -171,15 +171,27 @@ const videoControl = {
             if (video) {
                 const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
                 if (autor) {
+                    const comentarios = await videosModel.findComentariosByIdVideo(idVideo)
+                    const idsUsersComentarios = []
+                    for (const c of comentarios) {
+                        if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
+                            idsUsersComentarios.push(c.USUARIOS_ID_USUARIO)
+                        }
+                    }
+                    const usuariosComentarios = idsUsersComentarios.length > 0 ? await usuariosModel.findUsersByIds(idsUsersComentarios) : [];
+                    const mapUsuariosComentarios = Object.fromEntries(usuariosComentarios.map(usuario => [usuario.ID_USUARIO, usuario]))
+                    const comments = comentarios.map(c => ({
+                        ...c,
+                        usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
+                    }))
 
                     const jsonResult = {
                         video: {
-                            titulo: video.NOME_VIDEO,
-                            descricao: video.DESCR_VIDEO,
+                            ...video,
                             tags: video.HASHTAG_VIDEO.split(","),
-                            video: video.CAMINHO_VIDEO,
                             autor: autor[0]
                         },
+                        comentarios: comments
                     }
 
                     res.render("./pages/videos-home", jsonResult)
@@ -195,8 +207,26 @@ const videoControl = {
             res.status(404).render("pages/error-404.ejs");
         }
 
-    }
+    },
 
+    avaliarVideo: async (req, res) => {
+        try {
+            const idVideo = req.query.idVideo
+            if (!idVideo) {
+                return res.status(404).render("pages/error-404")
+            }
+            const { comentario } = req.body
+            const dadosAvaliacao = {
+                COMENTARIO_AVALIACAO: comentario,
+                VIDEOS_ID_VIDEOS: idVideo,
+                USUARIOS_ID_USUARIO: req.session.autenticado.id
+            }
+            await videosModel.comentarVideo(dadosAvaliacao)
+            res.redirect(`/videos?idVideo=${idVideo}`)
+        } catch (error) {
+
+        }
+    }
 
 }
 
