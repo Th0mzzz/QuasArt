@@ -11,16 +11,14 @@ const uploadPerfil = require("../util/upload")("./app/public/img/imagens-servido
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
-    page: "../partial/template-login/login",
-    modal: "fechado",
-    erros: null,
-    valores: "",
-    incorreto: ""
 }
 
-routerAdm.get("/adm", function (req,res){
-    res.render("./pages/videos-home")
-})
+routerAdm.get("/adm",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    function (req, res) {
+        res.render("pages/template-adm", { page: "../partial/adm/index", token: null, classePagina: "index" })
+    })
 
 
 

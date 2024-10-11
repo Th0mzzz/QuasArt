@@ -1,0 +1,301 @@
+.adm__header,
+.adm__footer,
+.adm__content {
+    padding: 0 clamp(.2rem, 3vw, 3rem);
+    max-width: 1440px;
+    margin: auto;
+}
+/* HEADER */
+
+.adm__header {
+    position: relative;
+    z-index: 100;
+
+    &.background {
+        background: #00000096;
+
+        & .logo {
+            color: #ffffff;
+
+        }
+    }
+
+    & .nav__adm {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        padding: clamp(1rem, 5vw, 1.4rem) 0;
+
+        & .nav__btns {
+            position: relative;
+            display: flex;
+            align-items: center;
+
+            & .btn {
+                --cor-btn: var(--cor-secundaria);
+                --cor-btn-hover: var(--cor-secundaria-hover);
+            }
+
+
+            & .plus-btn {
+                display: flex;
+
+                & p {
+                    display: none;
+                }
+
+            }
+        }
+    }
+}
+
+.btn-icon {
+    background: transparent;
+    outline: none;
+    font-size: clamp(20px, 5vw, 25px);
+    cursor: pointer;
+    transition: transform .3s;
+
+    &#btnMode {
+        color: var(--cor-principal);
+    }
+
+    &#access {
+        color: var(--cor-secundaria-hover);
+    }
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cor-secundaria);
+
+    & img {
+        width: clamp(45px, 5vw, 55px);
+    }
+}
+
+.dark .logo {
+    color: var(--cor-texto);
+}
+
+.access__container {
+    width: clamp(15rem, 15vw, 20rem);
+    height: auto;
+    max-height: 0px;
+    position: absolute;
+    background: var(--cor-containers);
+    top: 110%;
+    right: 50%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 0px solid var(--cor-secundaria-hover);
+    transition: all .3s;
+    z-index: 100;
+
+    & .access__content {
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        width: 100%;
+
+        & .access__link {
+            width: 100%;
+            color: var(--cor-texto);
+            padding: clamp(.5rem, 1vw, .8rem) clamp(1rem, 2vw, 1.3rem);
+            text-align: left;
+            background: transparent;
+
+            & i {
+                font-size: 23px;
+                margin-right: 5%;
+            }
+
+            &:hover {
+                background: var(--cor-principal);
+                font-weight: 700;
+            }
+        }
+    }
+
+    &.aberto {
+        max-height: 400px;
+        border-width: 1px;
+    }
+}
+
+
+/* ASIDE ADM */
+
+
+.adm__aside {
+    max-width: 100%;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+
+    & .aside__content {
+        background: var(--cor-containers);
+        box-shadow: 0px 0px 5px 1px #0000005d;
+        border-radius: 10px 10px 0px 0;
+
+
+        & .aside__items {
+            list-style: none;
+            display: flex;
+            gap: 1.3em;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            padding: .5rem;
+
+
+            & .aside__item {
+                min-width: fit-content;
+                min-height: fit-content;
+                background: var(--cor-principal);
+                border-radius: 50%;
+                transition: all ease .3s;
+                position: relative;
+                overflow: hidden;
+                border: 3px solid var(--cor-containers);
+                box-shadow: 0px 0px 5px 0px var(--cor-texto);
+
+                & a {
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: clamp(45px, 5vw, 50px);
+                    height: clamp(45px, 5vw, 50px);
+
+                    & i {
+                        font-size: var(--fs-link);
+                        color: var(--cor-containers);
+                    }
+
+                    & img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        margin: auto;
+                    }
+                }
+
+
+                &:hover {
+                    background: var(--cor-principal-hover);
+                    opacity: .8;
+                }
+
+                &.ativo {
+                    top: -30px;
+                    box-shadow: 0px 0px 8px 3px var(--cor-texto);
+                    transform: scale(1.1);
+                }
+
+                &.perfil-ativo {
+                    border: 2px solid var(--cor-principal);
+                }
+            }
+        }
+    }
+
+
+}
+
+@media (min-width:769px) {
+    .adm__aside {
+        max-width: var(--aside-width);
+        width: auto;
+        bottom: 0;
+        left: 0;
+        height: 100vh;
+        display: flex;
+
+        & .aside__content {
+            margin: auto;
+            border-radius: 0 10px 10px 0;
+            padding: 3vh 0;
+            min-height: fit-content;
+            height: 80%;
+            & .aside__items {
+                flex-flow: column nowrap;
+                width: 100%;
+                height: fit-content;
+                min-height: 100%;
+                max-height: fit-content;
+                align-items: center;
+                justify-content: center;
+                padding: .5rem;
+
+
+                & .aside__item {
+                    &.ativo {
+                        top: 0;
+                        right: -30px;
+                    }
+                }
+            }
+        }
+
+
+    }
+
+}
+
+@media (min-width:769px) {
+
+    .adm__header {
+        position: relative;
+
+        & .nav__adm {
+            & .nav__btns {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                & .btn {
+                    --cor-btn: var(--cor-secundaria);
+                    --cor-btn-hover: var(--cor-secundaria-hover);
+                }
+
+                & .btn-icon {
+                    background: transparent;
+                    outline: none;
+                    font-size: clamp(20px, 5vw, 25px);
+                    cursor: pointer;
+                    transition: transform .3s;
+
+                    &#btnMode {
+                        color: var(--cor-principal);
+                    }
+
+                    &#access {
+                        color: var(--cor-secundaria-hover);
+                    }
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                & .plus-btn {
+                    display: flex;
+
+                    & p {
+                        display: flex;
+                    }
+
+                }
+            }
+        }
+    }
+}

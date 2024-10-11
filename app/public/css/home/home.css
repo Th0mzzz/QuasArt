@@ -255,27 +255,7 @@
     }
 }
 
-.token-alert {
-    position: fixed;
-    left: 50%;
-    top: 20%;
-    background: var(--cor-containers);
-    padding: 1rem 1.8rem;
-    color: var(--cor-texto);
-    animation: sumir 6s normal;
-    translate: -50% -200vh;
-    border: 2px solid var(--cor-secundaria);
-    border-radius: 50px;
-    z-index: 100;
 
-    &.success {
-        color: var(--cor-success);
-    }
-
-    &.danger {
-        color: var(--cor-danger);
-    }
-}
 
 .userLink {
     display: flex;

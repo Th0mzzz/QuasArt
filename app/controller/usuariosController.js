@@ -184,7 +184,8 @@ const usuariosController = {
                 DATA_NASC_USUARIO: nascimento,
                 CPF_USUARIO: cpf,
                 EMAIL_USUARIO: email,
-                CAMINHO_FOTO: "perfil-padrao.webp"
+                CAMINHO_FOTO: "perfil-padrao.webp",
+                ID_TIPO_USUARIO: 1
             }
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
@@ -216,6 +217,10 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
+                    if(userBd[0].ID_TIPO_USUARIO == 4){
+                        console.log(`---------- Administrador ${userBd[0].NICKNAME_USUARIO} logou --------------`)
+                        return res.redirect("/adm")
+                    }
                     console.log(`---------- Usuário ${userBd[0].NICKNAME_USUARIO} logou --------------`)
                     req.session.cadastro = false
                     res.redirect("/")
