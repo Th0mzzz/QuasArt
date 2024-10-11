@@ -165,28 +165,17 @@ router.get("/profile",
         }
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         usuariosController.mostrarPageProfile(req, res)
     });
 
-// pagina de gerenciamento de post
-
-router.get("/myPosts", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/my-posts",
-        classePagina: 'perfil',
-        token: token
-
-    }
-    res.render("./pages/template-home", jsonResult)
-});
-
 
 // Home de publicações
-router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+router.get("/publicar", 
+    middleWares.verifyAutenticado, 
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]), 
+    function (req, res) {
     const token = null
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -199,7 +188,10 @@ router.get("/publicar", middleWares.verifyAutenticado, middleWares.verifyAutoriz
 
 
 // pagina de publicar videos
-router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyAutorizado("pages/template-login", destinoDeFalha), function (req, res) {
+router.get("/via-videos-pub", 
+    middleWares.verifyAutenticado, 
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]), 
+    function (req, res) {
     const token = null
     const jsonResult = {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -212,7 +204,7 @@ router.get("/via-videos-pub", middleWares.verifyAutenticado, middleWares.verifyA
 });
 router.get("/attvideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
         let idVideo = req.query.idVideo
         if (!idVideo) {
@@ -257,7 +249,7 @@ router.get("/attvideo",
 // pagina de publicar fichas
 router.get("/ficha-espacial-pub",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         const token = null
         const jsonResult = {
@@ -274,7 +266,7 @@ router.get("/ficha-espacial-pub",
 
 router.get("/attficha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
 
         try {
@@ -316,7 +308,7 @@ router.get("/attficha",
 // pagina de publicar resenhas
 router.get("/resenha-cosmica-pub",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         const token = null
         const jsonResult = {
@@ -332,7 +324,7 @@ router.get("/resenha-cosmica-pub",
     });
 router.get("/attresenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
         try {
             let idResenha = req.query.idResenha
@@ -409,7 +401,7 @@ router.post("/criarResenha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadCapaResenha("capaResenha"),
     resenhaControl.validacaoResenha,
     function (req, res) {
@@ -421,7 +413,7 @@ router.post("/atualizarResenha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadCapaResenha("capaResenha"),
     resenhaControl.validacaoResenha,
     function (req, res) {
@@ -434,7 +426,7 @@ router.post("/criarVideo",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadMultiplo([
         { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
         { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
@@ -449,7 +441,7 @@ router.post("/atualizarVideo",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadMultiplo([
         { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
         { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
@@ -465,7 +457,7 @@ router.post("/criarFicha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
         { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
@@ -481,7 +473,7 @@ router.post("/atualizarFicha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
         { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
@@ -599,21 +591,21 @@ router.post("/fazerPesquisa", async function (req, res) {
 
 router.post("/comentarFicha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         fichasControl.avaliarFicha(req, res)
     }
 )
 router.post("/comentarResenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         resenhaControl.avaliarResenha(req, res)
     }
 )
 router.post("/comentarVideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         videoControl.avaliarVideo(req,res)
     }

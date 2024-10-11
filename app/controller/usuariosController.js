@@ -189,7 +189,7 @@ const usuariosController = {
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
                 const userBd = await usuariosModel.findUserById(resultados.insertId);
-                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO }
+                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
                 console.log("Resultado do createUser:")
                 console.log(resultados[0])
                 console.log("Cadastrado!")
@@ -436,7 +436,8 @@ const usuariosController = {
                         req.session.autenticado = {
                             autenticado: user[0].NOME_USUARIO,
                             id: user[0].ID_USUARIO,
-                            foto: user[0].CAMINHO_FOTO
+                            foto: user[0].CAMINHO_FOTO,
+                            tipo:user[0].ID_TIPO_USUARIO
                         }
                         const jsonResult = {
                             page: "../partial/edit-profile/dados-pessoais",

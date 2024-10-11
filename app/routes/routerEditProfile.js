@@ -21,7 +21,7 @@ const destinoDeFalha = {
 
 router.get("/edit-profile",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
         try {
             const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
@@ -42,7 +42,7 @@ router.get("/edit-profile",
     });
 router.get("/security",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
         try {
             const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
@@ -63,7 +63,7 @@ router.get("/security",
     });
 router.get("/dados-pessoais",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("./pages/template-login", destinoDeFalha, [1,2,3,4]),
     async function (req, res) {
         try {
             const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
@@ -94,21 +94,21 @@ router.get("/dados-pessoais",
 // ---------------------------POSTS-----------------
 router.post("/mudarFoto",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     uploadPerfil("imgPerfil"),
     function (req, res) {
         usuariosController.mudarFoto(req, res)
     })
 router.post("/atualizarDados",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     usuariosController.regrasValidacaoAtualizarConta,
     function (req, res) {
         usuariosController.atualizarUsuario(req, res)
     })
 router.post("/atualizarSenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     body('senha')
         .isLength({ min: 8, max: 30 })
         .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
@@ -126,7 +126,7 @@ router.post("/atualizarSenha",
     })
 router.post("/atualizarEmail",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     body('email')
         .isEmail().withMessage('Deve ser um email válido')
         .bail()
@@ -149,7 +149,7 @@ router.post("/atualizarEmail",
     })
 router.post("/inativarConta",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     body('senha')
         .isLength({ min: 8, max: 30 })
         .withMessage('A senha deve ter pelo menos 8 e no máximo 30 caracteres!')
@@ -167,7 +167,7 @@ router.post("/inativarConta",
     })
 router.post("/excluirFoto",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
     function (req, res) {
         usuariosController.excluirFoto(req, res)
     })

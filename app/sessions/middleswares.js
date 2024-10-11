@@ -10,7 +10,7 @@ const middleWares = {
             var aut = req.session.autenticado
             req.session.logado = req.session.logado + 1
         } else {
-            var aut = { autenticado: null, id: null , foto: "perfil-padrao.webp"}
+            var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp", tipo: null }
             req.session.logado = 0
         }
         req.session.autenticado = aut
@@ -22,9 +22,9 @@ const middleWares = {
         next()
     },
     // verifica se o item 'autenticado' da variavel de sessão 'autenticado' é diferente de null, se for ele passa pro proximo middleWare, senao ele realiza um res.render para a pagina passada como destinoFalha
-    verifyAutorizado: (destinoFalha, objetoResRender = null) => {
+    verifyAutorizado: (destinoFalha, objetoResRender = null, tiposPermitidos) => {
         return (req, res, next) => {
-            if (req.session.autenticado.autenticado != null) {
+            if (req.session.autenticado.autenticado != null && tiposPermitidos.find(tipo => { return tipo == req.session.autenticado.tipo }) != undefined) {
                 next();
             } else {
                 res.render(destinoFalha, objetoResRender)
@@ -38,16 +38,17 @@ const middleWares = {
             var userBd = await usuariosModel.findUserByNickname(req.body.usuario)
             if (Object.keys(userBd).length == 1) {
                 if (bcrypt.compareSync(req.body.senha, userBd[0].SENHA_USUARIO)) {
-                    var aut = { autenticado: userBd[0].NICKNAME_USUARIO, id: userBd[0].ID_USUARIO , foto: userBd[0].CAMINHO_FOTO    }
+                    var aut = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
+
                 } else {
-                    var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
+                    var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp", tipo: null }
 
                 }
             } else {
-                var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
+                var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp", tipo: null }
             }
         } else {
-            var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp" }
+            var aut = { autenticado: null, id: null, foto: "perfil-padrao.webp", tipo: null }
         }
         req.session.autenticado = aut
         req.session.logado = 0
