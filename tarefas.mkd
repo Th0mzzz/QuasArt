@@ -1,6 +1,10 @@
 ### FRONT-END
 - Add botão para denunciar o usuário na pagina de perfil
     ## Pagina admin 
+    - dashboard com gráficos e estatisticas
+    - pagina de usuários
+    - denúncias {usuarios, videos,resenhas e fichas}
+    - assinaturas
 
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
@@ -19,6 +23,7 @@
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
 - Implementação do Google ADS;
+- Mercado pago assinaturas( se tem como obter as informações de assinaturas para meu site ou não)
 
 ### Brainstorm
 - Página de vídeos - função para trazer novos videos = {
@@ -32,5 +37,6 @@
     }
 
 ### Dúvidas
+- Pedir ajuda para o professor para tentar entender a documentação do MercadoPago para integração de planos de assinaturas;
 
 ### erros
