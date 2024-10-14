@@ -16,7 +16,7 @@
 <body>
 
     <% if(token) {%>
-        <h4 class="token-alert link">
+        <h4 class="token-alert link <%=token.type %>">
             <%= token.msg %>
         </h4>
         <% } %>

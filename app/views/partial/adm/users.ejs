@@ -35,7 +35,23 @@
                     <td><%= usuario.CPF_USUARIO %></td>
                     <td><%= usuario.EMAIL_USUARIO %></td>
                     <td><span class="span-status <%= usuario.STATUS_USUARIO == 'ativo' ? 'ativo' : 'inativo' %>"><%= usuario.STATUS_USUARIO %></span></td>
-                    <td><button>inativar</button></td>
+                    <td>
+                        <article class="btns-table">
+                            <% if(usuario.STATUS_USUARIO == 'ativo'){ %>
+                                <form action="/inativarUser?idUser=<%= usuario.ID_USUARIO %>" method="post">
+                                    <button class="btn-icon inativar" title="Inativar usuário"><i class="bi bi-ban"></i></button>
+                                </form>
+                                <% }else { %>
+                                    <form action="/ativarUser?idUser=<%= usuario.ID_USUARIO %>" method="post">
+                                        <button class="btn-icon ativar" title="Ativar usuário"><i class="bi bi-check-circle"></i></button>
+                                    </form>
+                                <% } %>
+                                <a href="/profile?idUser=<%= usuario.ID_USUARIO %>" class="btn-icon" title="Ver usuário">
+                                    <i class="bi bi-eye"></i>
+                                </a>
+                        </article>
+                        
+                    </td>
                   </tr>
            <% })
         } %>

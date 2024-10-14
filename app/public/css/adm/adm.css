@@ -226,6 +226,27 @@
         border-radius: 50%;
         object-fit: cover;
     }
+    & .btns-table{
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: .5rem;
+    }
+    & .btn-icon{
+        --cor-btn-icon: var(--cor-texto);
+        font-size: 25px;
+        color: var(--cor-btn-icon);
+        &:hover{
+            text-shadow: 0px 0px 5px var(--cor-btn-icon);
+        }
+
+        &.ativar{
+        --cor-btn-icon: var(--cor-success);
+        }
+        &.inativar{
+        --cor-btn-icon: var(--cor-danger);
+        }
+    }
 }
 
 #admTable_wrapper {

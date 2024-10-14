@@ -69,7 +69,8 @@ const usuariosModel = {
     },
     updateUser: async (dadosForm, id) => {
         try {
-            const [resultados] = await pool.query("UPDATE USUARIOS SET ? WHERE ID_USUARIO = ? AND STATUS_USUARIO = 'ativo' ", [dadosForm,id])
+            const [resultados] = await pool.query("UPDATE USUARIOS SET ? WHERE ID_USUARIO = ? ", [dadosForm, id])
+            console.log(resultados)
             return resultados
 
         } catch (error) {
