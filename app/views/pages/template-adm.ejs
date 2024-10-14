@@ -5,10 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quasart</title>
+    <!-- DATA TABLE -->
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
     <link rel="shortcut icon" href="./img/quasart-logo-pequena.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/adm/adm.css">
-
+    
 </head>
 
 <body>
@@ -19,64 +21,90 @@
         </h4>
         <% } %>
 
-            <header class="adm__header ">
-                <nav class="nav__adm">
-                    <a href="/adm" class="logo link">
-                        <img src="./img/quasart-logo.png" alt="logotipo da plataforma Quasart">
-                        <h1 class="tipografia">Quas<span style="color: var(--cor-principal);">Art</span> ADMIN</h1>
-                    </a>
+            <% 
+            let titulo="" 
+            if(classePagina=="index" ){ 
+                titulo="Dashboard" 
+            }else if(classePagina=="users" ){
+                titulo="Usuários" 
+            } else if(classePagina=="denuncias" ){ 
+                titulo="Denúncias" 
+            } else if(classePagina=="assinaturas" ){
+                     titulo="Assinaturas" 
+            } %>
 
-                    <article class="nav__btns">
-                        <button class="btn-icon ms-1 me-1" id="btnMode"><i class="bi bi-brightness-high"></i></button>
-                        <button class="btn-icon ms-1 me-1" id="access" title="Acessibilidade"><i
-                                class="bi bi-universal-access-circle"></i></button>
-                        <article class="access__container" id="accessContainer">
-                            <article class="access__content">
-                                <button class="access__link link pt-2" id="aumentar"><i class="bi bi-plus"></i>Aumentar
-                                    fonte
-                                </button>
-                                <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir
-                                    fonte
-                                </button>
-                                <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
-                                    links</button>
-                                <button class="access__link link" id="facil"><i class="bi bi-alphabet"></i>Tipografia
-                                    fácil</button>
-                                <button class="access__link link pb-2" id="reset"><i
-                                        class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
+                <header class="adm__header ">
+                    <nav class="nav__adm">
+                        <a href="/adm" class="logo link">
+                            <img src="./img/quasart-logo.png" alt="logotipo da plataforma Quasart">
+                            <h1 class="tipografia">Quas<span style="color: var(--cor-principal);">Art</span> ADMIN</h1>
+                        </a>
+
+                        <article class="nav__btns">
+                            <button class="btn-icon ms-1 me-1" id="btnMode"><i
+                                    class="bi bi-brightness-high"></i></button>
+                            <button class="btn-icon ms-1 me-1" id="access" title="Acessibilidade"><i
+                                    class="bi bi-universal-access-circle"></i></button>
+                            <article class="access__container" id="accessContainer">
+                                <article class="access__content">
+                                    <button class="access__link link pt-2" id="aumentar"><i
+                                            class="bi bi-plus"></i>Aumentar
+                                        fonte
+                                    </button>
+                                    <button class="access__link link" id="diminuir"><i class="bi bi-dash"></i>Diminuir
+                                        fonte
+                                    </button>
+                                    <button class="access__link link" id="sublinhar"><i class="bi bi-link"></i>Sublinhar
+                                        links</button>
+                                    <button class="access__link link" id="facil"><i
+                                            class="bi bi-alphabet"></i>Tipografia
+                                        fácil</button>
+                                    <button class="access__link link pb-2" id="reset"><i
+                                            class="bi bi-arrow-counterclockwise"></i>Reiniciar</button>
+                                </article>
                             </article>
                         </article>
-                    </article>
 
-                </nav>
-            </header>
-            <aside class="adm__aside">
-                <section class="aside__content">
-                    <ul class="aside__items">
-                        <li class="aside__item <%= classePagina == '' ? 'ativo ': '' %>">
-                            <a href=""><i class="bi bi-house"></i></a>
-                        </li>
-                        <li class="aside__item <%= classePagina == '' ? 'ativo ': '' %>">
-                            <a href=""><i class="bi bi-person"></i></a>
-                        </li>
-                        <li class="aside__item <%= classePagina == '' ? 'ativo ': '' %>">
-                            <a href=""><i class="bi bi-exclamation-diamond"></i></a>
-                        </li>
-                        <li class="aside__item <%= classePagina == '' ? 'ativo ': '' %>">
-                            <a href=""><i class="bi bi-wallet"></i></a>
-                        </li>
-                        <li class="aside__item <%= classePagina == '' ? 'ativo ': '' %>">
-                            <a href="/sair"><i class="bi bi-box-arrow-left"></i></a>
-                        </li>
-                    </ul>
-                </section>
-            </aside>
-            <main class="adm__content">
-
-                <%- include(page) %>
-            </main>
-            <script src="./js/colorMode.js"></script>
-            <script src="./js/access.js"></script>
+                    </nav>
+                </header>
+                <aside class="adm__aside">
+                    <section class="aside__content">
+                        <ul class="aside__items">
+                            <li class="aside__item <%= classePagina == 'index' ? 'ativo ': '' %>">
+                                <a href="/adm"><i class="bi bi-house"></i></a>
+                            </li>
+                            <li class="aside__item <%= classePagina == 'users' ? 'ativo ': '' %>">
+                                <a href="/adm-users"><i class="bi bi-person"></i></a>
+                            </li>
+                            <li class="aside__item <%= classePagina == 'denuncias' ? 'ativo ': '' %>">
+                                <a href="/adm-denuncias"><i class="bi bi-exclamation-diamond"></i></a>
+                            </li>
+                            <li class="aside__item <%= classePagina == 'assinaturas' ? 'ativo ': '' %>">
+                                <a href="/adm-assinaturas"><i class="bi bi-wallet"></i></a>
+                            </li>
+                            <li class="aside__item">
+                                <a href="/sair"><i class="bi bi-box-arrow-left"></i></a>
+                            </li>
+                        </ul>
+                    </section>
+                </aside>
+                <main class="adm__content">
+                    <h2 class="supertitle">
+                        <%=titulo%>
+                    </h2>
+                    <%- include(page) %>
+                </main>
+                <script src="./js/colorMode.js"></script>
+                <script src="./js/access.js"></script>
+                <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+                <script src="//cdn.datatables.net/2.1.8/js/dataTables.min.js"></script>
+                <script defer>
+                    let table = new DataTable('#admTable', {
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/pt-BR.json"
+                    }
+                    });
+                </script>
 </body>
 
 </html>

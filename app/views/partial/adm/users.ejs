@@ -1,0 +1,48 @@
+<section class="admTable__container">
+    <table id="admTable" class="display">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Nickname</th>
+            <th>Contato</th>
+            <th>Nascimento</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+        <% if(usuarios) {
+            usuarios.forEach(usuario=>{ 
+    
+                const data = new Date(usuario.DATA_NASC_USUARIO);
+                const dia = String(data.getDate()).padStart(2, '0'); 
+                const mes = String(data.getMonth() + 1).padStart(2, '0');
+                const ano = data.getFullYear();
+                const dataFormatada = `${dia}/${mes}/${ano}`;
+                %>
+                <tr>
+                    <td><img src="./img/imagens-servidor/perfil/<%=usuario.CAMINHO_FOTO %>" alt="foto do usuário" class="foto-table"></td>
+                    <td><%= usuario.ID_USUARIO %></td>
+                    <td><%= usuario.NOME_USUARIO %></td>
+                    <td><%= usuario.NICKNAME_USUARIO %></td>
+                    <td><%= usuario.CONTATO %></td>
+                    <td><%= dataFormatada %></td>
+                    <td><%= usuario.CPF_USUARIO %></td>
+                    <td><%= usuario.EMAIL_USUARIO %></td>
+                    <td><span class="span-status <%= usuario.STATUS_USUARIO == 'ativo' ? 'ativo' : 'inativo' %>"><%= usuario.STATUS_USUARIO %></span></td>
+                    <td><button>inativar</button></td>
+                  </tr>
+           <% })
+        } %>
+          
+        </tbody>
+      </table>
+</section>
+
+
+  

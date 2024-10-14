@@ -1,4 +1,3 @@
-const { update } = require("lodash");
 var pool = require("../../config/poolConn");
 
 const usuariosModel = {

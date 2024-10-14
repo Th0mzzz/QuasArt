@@ -15,7 +15,7 @@
 - Sistema de seguir perfis;
 - Funcionar os benefícios das assinaturas
 - Gestão das assinaturas( necessário da pagina de admin antes)
-
+- Verificação de e-mail
 ### Banco de dados
 - Adicionar campo para status de usuário, resenha, video e ficha;
 - add table de denúncias para resenha, video, ficha e usuarios

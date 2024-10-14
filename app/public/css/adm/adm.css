@@ -5,6 +5,7 @@
     max-width: 1440px;
     margin: auto;
 }
+
 /* HEADER */
 
 .adm__header {
@@ -129,10 +130,11 @@
     }
 }
 
+.supertitle{
+    color: var(--cor-texto);
+}
 
 /* ASIDE ADM */
-
-
 .adm__aside {
     max-width: 100%;
     width: 100%;
@@ -211,6 +213,45 @@
 
 }
 
+
+/* ADMS-TABLES */
+.admTable__container {
+    width: 100%;
+    min-width: 100%;
+    overflow: auto;
+
+    & .foto-table{
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+}
+
+#admTable_wrapper {
+    margin-top: 3rem;
+
+    &>* {
+        color: var(--cor-texto);
+        font-size: var(--fs-link) !important;
+        font-family: var(--ff-link) !important;
+    }
+}
+
+.span-status{
+    border-radius: 10px;
+    padding: .2rem .5rem;
+    font-size:var(--fs-text);
+    font-family: var(--ff-link);
+    color: #fff;
+}
+.ativo{
+    background: var(--cor-success);
+}
+.inativo{
+    background: var(--cor-danger);
+}
+
 @media (min-width:769px) {
     .adm__aside {
         max-width: var(--aside-width);
@@ -226,6 +267,7 @@
             padding: 3vh 0;
             min-height: fit-content;
             height: 80%;
+
             & .aside__items {
                 flex-flow: column nowrap;
                 width: 100%;
