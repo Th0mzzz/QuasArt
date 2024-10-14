@@ -14,7 +14,7 @@
 - Curtir posts;
 - Sistema de seguir perfis;
 - Funcionar os benefícios das assinaturas
-- Como funciona o mercado pago e integrar de forma correta para que consigamos realizar a gestão das assinaturas( necessário da pagina de admin antes)
+- Gestão das assinaturas( necessário da pagina de admin antes)
 
 ### Banco de dados
 - Adicionar campo para status de usuário, resenha, video e ficha;

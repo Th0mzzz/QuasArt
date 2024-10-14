@@ -185,14 +185,15 @@ const usuariosController = {
                 CPF_USUARIO: cpf,
                 EMAIL_USUARIO: email,
                 CAMINHO_FOTO: "perfil-padrao.webp",
-                ID_TIPO_USUARIO: 1
+                ID_TIPO_USUARIO: 1,
+                STATUS_USUARIO: 'ativo',
             }
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
                 const userBd = await usuariosModel.findUserById(resultados.insertId);
                 req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
                 console.log("Resultado do createUser:")
-                console.log(resultados[0])
+                console.log(resultados)
                 console.log("Cadastrado!")
                 req.session.logado = 0
                 req.session.cadastro = true

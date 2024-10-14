@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `b0ugzjkogcuw0zusl2np` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `b0ugzjkogcuw0zusl2np`;
--- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
 --
 -- Host: b0ugzjkogcuw0zusl2np-mysql.services.clever-cloud.com    Database: b0ugzjkogcuw0zusl2np
 -- ------------------------------------------------------
@@ -23,7 +23,7 @@ SET @@SESSION.SQL_LOG_BIN= 0;
 -- GTID state at the beginning of the backup 
 --
 
-SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'f41d366d-91e5-11e9-8525-cecd028ee826:1-143147758';
+SET @@GLOBAL.GTID_PURGED=/*!80000 '+'*/ 'f41d366d-91e5-11e9-8525-cecd028ee826:1-143548430';
 
 --
 -- Table structure for table `ASSINATURA`
@@ -69,7 +69,7 @@ DROP TABLE IF EXISTS `AVALIACAO_FICHA`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `AVALIACAO_FICHA` (
-  `ID_AVALIACAO` int(11) NOT NULL,
+  `ID_AVALIACAO` int(11) NOT NULL AUTO_INCREMENT,
   `COMENTARIO_AVALIACAO` text,
   `NOTA_AVALIACAO` decimal(2,1) DEFAULT NULL,
   `FICHAS_ID_OBRA` int(11) NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE `AVALIACAO_FICHA` (
   KEY `fk_AVALIACAO_FICHA_ID_OBRA_idx` (`FICHAS_ID_OBRA`),
   CONSTRAINT `fk_AVALIACAO_FICHA_ID_OBRA` FOREIGN KEY (`FICHAS_ID_OBRA`) REFERENCES `FICHAS` (`ID_OBRA`),
   CONSTRAINT `fk_AVALIACAO_FICHA_USUARIOS1` FOREIGN KEY (`USUARIOS_ID_USUARIO`) REFERENCES `USUARIOS` (`ID_USUARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +88,7 @@ CREATE TABLE `AVALIACAO_FICHA` (
 
 LOCK TABLES `AVALIACAO_FICHA` WRITE;
 /*!40000 ALTER TABLE `AVALIACAO_FICHA` DISABLE KEYS */;
+INSERT INTO `AVALIACAO_FICHA` VALUES (1,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',5.0,40,36),(2,'NÃO TÃO LEGAL ASSIM NAO',3.0,40,36),(3,'Esse doutrinador é um espetaculo mesmo, adorei, ele tem uma ideologia muito forte e é legal quando seus inimigos dizem: \"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\"',5.0,40,36),(4,'O doutrinador é legal',4.0,40,36),(5,'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',2.0,40,36);
 /*!40000 ALTER TABLE `AVALIACAO_FICHA` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +101,7 @@ DROP TABLE IF EXISTS `AVALIACAO_RESENHA`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `AVALIACAO_RESENHA` (
   `ID_AVALIACAO_RESENHA` int(11) NOT NULL AUTO_INCREMENT,
-  `COMENTARIO_AVALIACAO_RESENHA` text NOT NULL,
+  `COMENTARIO_AVALIACAO` text NOT NULL,
   `NOTA_AVALIACAO` decimal(2,1) NOT NULL,
   `RESENHAS_ID_RESENHAS` int(11) NOT NULL,
   `USUARIOS_ID_USUARIO` int(11) NOT NULL,
@@ -109,7 +110,7 @@ CREATE TABLE `AVALIACAO_RESENHA` (
   KEY `fk_AVALIACAO_RESENHA_USUARIOS1_idx` (`USUARIOS_ID_USUARIO`),
   CONSTRAINT `fk_AVALIACAO_RESENHA_RESENHAS1` FOREIGN KEY (`RESENHAS_ID_RESENHAS`) REFERENCES `RESENHAS` (`ID_RESENHAS`),
   CONSTRAINT `fk_AVALIACAO_RESENHA_USUARIOS1` FOREIGN KEY (`USUARIOS_ID_USUARIO`) REFERENCES `USUARIOS` (`ID_USUARIO`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,6 +119,7 @@ CREATE TABLE `AVALIACAO_RESENHA` (
 
 LOCK TABLES `AVALIACAO_RESENHA` WRITE;
 /*!40000 ALTER TABLE `AVALIACAO_RESENHA` DISABLE KEYS */;
+INSERT INTO `AVALIACAO_RESENHA` VALUES (1,'TESTEEEE',4.0,24,36),(2,'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',4.0,24,36),(3,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',1.0,24,36),(4,'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',1.0,24,36),(5,'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA',3.0,24,36),(6,'muito boa a resenha, amei',4.0,24,37);
 /*!40000 ALTER TABLE `AVALIACAO_RESENHA` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,9 +131,8 @@ DROP TABLE IF EXISTS `AVALIACAO_VIDEO`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `AVALIACAO_VIDEO` (
-  `ID_AVALIACAO` int(11) NOT NULL,
-  `COMENTARIO_AVALIACAO` text,
-  `NOTA_AVALIACAO` decimal(2,1) NOT NULL,
+  `ID_AVALIACAO` int(11) NOT NULL AUTO_INCREMENT,
+  `COMENTARIO_AVALIACAO` text NOT NULL,
   `USUARIOS_ID_USUARIO` int(11) NOT NULL,
   `VIDEOS_ID_VIDEOS` int(11) NOT NULL,
   PRIMARY KEY (`ID_AVALIACAO`),
@@ -139,7 +140,7 @@ CREATE TABLE `AVALIACAO_VIDEO` (
   KEY `fk_AVALIACAO_VIDEO_VIDEOS1_idx` (`VIDEOS_ID_VIDEOS`),
   CONSTRAINT `fk_AVALIACAO_VIDEO_USUARIOS1` FOREIGN KEY (`USUARIOS_ID_USUARIO`) REFERENCES `USUARIOS` (`ID_USUARIO`),
   CONSTRAINT `fk_AVALIACAO_VIDEO_VIDEOS1` FOREIGN KEY (`VIDEOS_ID_VIDEOS`) REFERENCES `VIDEOS` (`ID_VIDEOS`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,6 +149,7 @@ CREATE TABLE `AVALIACAO_VIDEO` (
 
 LOCK TABLES `AVALIACAO_VIDEO` WRITE;
 /*!40000 ALTER TABLE `AVALIACAO_VIDEO` DISABLE KEYS */;
+INSERT INTO `AVALIACAO_VIDEO` VALUES (1,'Essa ponte é deveras sombria mesmo',36,4),(2,'Que video intrigante',36,4),(3,'Muito divertido ',36,4),(4,'Muito divertido ',36,4),(5,'Oh meu Deus, eu morro de medo de pontes sombrias',36,4),(6,'Oh meu Deus, eu morro de medo de pontes sombrias',36,4),(7,'ninguem supera o Th0mzzz nessa trend',36,4);
 /*!40000 ALTER TABLE `AVALIACAO_VIDEO` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -555,7 +557,7 @@ CREATE TABLE `RESENHAS` (
 
 LOCK TABLES `RESENHAS` WRITE;
 /*!40000 ALTER TABLE `RESENHAS` DISABLE KEYS */;
-INSERT INTO `RESENHAS` VALUES (24,'God of War valhalla: é tudo isso mesmo?','idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenh','idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?','#GOWVALHALLA',NULL,'capaResenha-1727293528791.png',NULL,36);
+INSERT INTO `RESENHAS` VALUES (24,'God of War valhalla: é tudo isso mesmo?','idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenha.length > 0 ?idsResenh','socosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosocosoco','#CREED,#2,#DIFERENTE,#PORRADARIA',NULL,'capaResenha-1728324837401.png',NULL,36);
 /*!40000 ALTER TABLE `RESENHAS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -602,7 +604,8 @@ CREATE TABLE `USUARIOS` (
   `RECOMENDACOES_ID_RECOMENDACOES` int(11) DEFAULT NULL,
   `EMAIL_USUARIO` varchar(50) NOT NULL,
   `CAMINHO_FOTO` varchar(120) NOT NULL,
-  `ID_TIPO_USUARIO` int(11) DEFAULT NULL,
+  `ID_TIPO_USUARIO` int(11) NOT NULL,
+  `STATUS_USUARIO` varchar(20) NOT NULL,
   PRIMARY KEY (`ID_USUARIO`),
   UNIQUE KEY `ID_USUARIO_UNIQUE` (`ID_USUARIO`),
   UNIQUE KEY `NICKNAME_USUARIO_UNIQUE` (`NICKNAME_USUARIO`),
@@ -611,7 +614,7 @@ CREATE TABLE `USUARIOS` (
   UNIQUE KEY `CONTATO` (`CONTATO`),
   UNIQUE KEY `CONTATO_2` (`CONTATO`),
   KEY `ID_TIPO_USUARIO_idx` (`ID_TIPO_USUARIO`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -620,7 +623,7 @@ CREATE TABLE `USUARIOS` (
 
 LOCK TABLES `USUARIOS` WRITE;
 /*!40000 ALTER TABLE `USUARIOS` DISABLE KEYS */;
-INSERT INTO `USUARIOS` VALUES (26,'Beto','Bet0','1333606088','$2a$08$QRQQPGB/in.haiXeoDsl0.Rm.dFyxSew7/DgSxRkxDH1/qWE/fF4W','1995-08-19','62321678801',NULL,'bet0@gmail.com','perfil-padrao.webp',NULL),(27,'Carlos','C4rlos','15 20828126','$2a$08$QRQQPGB/in.haiXeoDsl0.7THaE8YVrMHZiZD1D9xYrFhjb.O3Euu','1993-02-17','44459374013',NULL,'carlao@hotmail.com','perfil-padrao.webp',NULL),(28,'Gabi','G4b1Dantas','16 23782986','$2a$08$aI6KSNAPwBm6b8HYAvXsheL3BTiHUgX8EakFtznNDD36Pf4CTX9Ba','2006-04-06','04376313033',NULL,'gabi@gmail.com','perfil-padrao.webp',NULL),(29,'Gabriella Dantas Figueiredo','Dantas.Web','1431107687','$2a$08$3bAG/1X2qJnKrVsW97c5ru1jHO3DygDPUCZ8VuiWCdOVcXgJH1dua','2006-04-06','10154784419',NULL,'dantas@gmail.com','perfil-padrao.webp',NULL),(30,'Thomaz Vasconcelos Mendes','Gast3r','11940129090','$2a$08$tx1IrhK.N9liSrXo6221Z.nKYNVpA2ZtOUKhJWa66d7ppp3xlSru2','2006-08-26','47488089854',NULL,'gaster@gmail.com','perfil-padrao.webp',NULL),(31,'Giovani','Giov4ni','8134578863','$2a$08$siJQTtTLknLXsO/8g839oeuiBXRqxZdsZOplt9V6WJ1RO3SEH/G5O','2000-01-01','25204384014',NULL,'giovani@gmail.com','perfil-padrao.webp',NULL),(32,'Tupac Shakur','2pac','83992259905','$2a$08$GcK.1OH7aHTdupwWIR/FJeE8Hgi.2b8W3oQ3IvGZD0ig6FQtsmS7K','1995-11-21','74486630203',NULL,'2pac@hotmail.com','perfil-padrao.webp',NULL),(33,'Teste','teste','11942509494','$2a$08$bdH1Zy7XNxM/qZH8Tx5ixuvn3DAWOP2Vm9k30E8/wvdzjwim6ZpR.','1990-11-11','29558613835',NULL,'teste@gmail.com','perfil-padrao.webp',NULL),(34,'Teste','test3','11940129037','$2a$08$/qPuOFhoOevN4tWnwnkuMuutNSSEzC4Y0wqg23M3IwHV5qweRtIgm','2000-05-01','44444444455',NULL,'teste3@hotmail.com','perfil-padrao.webp',NULL),(35,'Teste','t3st3','11940129038','$2a$08$bezxAVZWl3.Fg0JgzdLT..HDZM1cA86gC/lP.EmGrjkVf4W1dTmKa','2000-05-01','43444444455',NULL,'t2ste3@hotmail.com','perfil-padrao.webp',NULL),(36,'Thomaz','Th0mzzz','11940129027','$2a$08$eHdQw2CjaXqD7vsQfmB2nOiFF8GLvKn9kRE2LCv.OMvp1u/AqJ5hu','2006-08-26','47488089855',NULL,'thomazzzz@gmail.com','imgPerfil-1727898545973.jpg',NULL),(37,'Bruna Lopes Rodrigues','Bruna','11954531234','$2a$08$4klLuIqGtBdTux4Niy7XcuF414z6JH8Ln.kXPVile35yenEWgDotO','2006-09-15','47511840833',NULL,'rm86701@estudante.fieb.edu.br','imgPerfil-1727781167262.webp',NULL),(38,'Thomaz vasconcelos Mendes','TesteUsuario','1299156160','$2a$08$0wPSb3PAAIW5iSlQVlieNufw.EeokernCDuEgpW/qiLOzNQWCTdWG','1997-12-28','95454371033',NULL,'testeusuario@gmail.com','perfil-padrao.webp',NULL),(39,'Gabi','UserTest','11961169509','$2a$08$JQSZO.ETxaXT61m4OSO.au.JGGQ3DNm.b/nX3LhMYEzbUrp4qXoLW','2003-06-28','37252671976',NULL,'test@gmail.com','perfil-padrao.webp',NULL),(40,'GIOVANNI','GiovanniProf','8235857887','$2a$08$MTCNIQOcNo4nN28AW9l2jOA0yMW.sybaBlfsEJCBLMkMdd5KwdKOq','2000-11-11','03206301025',NULL,'Giovanni@gmail.com','perfil-padrao.webp',NULL),(41,'Tifanny','tifanny','11957852648','$2a$08$6wNzI19OR2eJP/nqUh9mWuqSh0Qb9fwMhIq6wewOdBMOnmwrH9SRK','2006-06-28','56012095880',NULL,'tifannysouza@gmail.com','perfil-padrao.webp',NULL),(42,'Mariana Ferraz','F3rraz','6128777523','$2a$08$Zwg6ThVcUqj4/AELftD9.ulEV/wUA6GrKAXjOGP2LEQFdam/0ILHa','2000-01-19','83473643033',NULL,'mariana@gmail.com','imgPerfil-1723560694380.png',NULL),(44,'Sophia Ferreira de Araújo','SosoLinda','11975270585','$2a$08$Zwg6ThVcUqj4/AELftD9.uyUcopue8czhwewd.ChQAmujvxfe8cYC','2007-03-29','51943996857',NULL,'sosolinda@gmail.com','imgPerfil-1723561977003.jpg',NULL),(45,'Dwayne Johnson','TheRock','1735315687','$2a$08$Hdegr16IC2jDPl7UcleWz.NMiGe/Ib3dY.LWjgDErVOv4TX9Nokfy','1972-05-02','12479012034',NULL,'theRock@gmail.com','imgPerfil-1723643265585.jpg',NULL),(46,'Filipe dos Santos Inácio','F1l1pus','11942509495','$2a$08$EC7dWNT1ZN.bqWKf5zRR0.d5YL3HMQKbLCter8onhGtfD6Txm8taS','2007-04-07','43238713841',NULL,'flpus92@gmail.com','perfil-padrao.webp',NULL),(47,'Teste','TesteUser','6398163496','$2a$08$UQD0xgMo5aLTpQ17QAxj2OnAgTX4z5muez7gKRgSdM9MQ68HvhoJq','2000-05-02','43152779089',NULL,'testeuser@gmail.com','perfil-padrao.webp',NULL),(48,'teteu','mateteu','11997285877','$2a$08$xqe0rWQtOnbxl317AXRVje04d23MCSC5UmNK8auOqR1MUGYgQqhhq','2006-10-01','54090993890',NULL,'matheus_morais06@gmail.com','perfil-padrao.webp',NULL),(49,'marcos','marcus1','1105075977','$2a$08$zNLAxWZ6/iHsTXg1UrPLKOr4yDc42.bD9FtxRwRGgZ6AJ1PylSq5y','2006-10-01','43675181839',NULL,'matheus_morais06@yahoo.com.br','perfil-padrao.webp',NULL),(50,'Arthur Mendes','Lazully','1194304578','$2a$08$Ns6huLgYX6yLrrbnI1aOi.Wdqq8/mG8kbEY5PAAULuH.N/VKJoT6y','2007-05-09','93248092025',NULL,'Lazully@gmail.com','perfil-padrao.webp',NULL),(51,'Teste da silva','T3ste','8520884359','$2a$08$rVSS7CN7T0zJihMBsQcc0.Jv1OfjbGKDCAVwfq5LmTuu3sCUReAHC','2000-12-20','97805509921',NULL,'testedasilva@gmail.com','imgPerfil-1725307017098.png',NULL),(52,'Thulio Gordo da Silva','G0rdoRs','9525616242','$2a$08$yhvwPsPaY2.hSq/O9PLX0uqcO2ZcnEXfTrWAa5UPZP6DieJuH..Xu','2000-02-08','26388938388',NULL,'thuliogordin@gmail.com','imgPerfil-1725492711528.jpg',NULL),(55,'Thais','th4t4','2725968385','$2a$08$yhvwPsPaY2.hSq/O9PLX0uqcO2ZcnEXfTrWAa5UPZP6DieJuH..Xu','2007-04-27','86260151861',NULL,'thais@gmail.com','perfil-padrao.webp',NULL),(56,'Thomaz Vasconcelos Mendes','TESTEEE','6236634312','$2a$08$Yr.41ekzqR.caGFqr2RmHeTUXaCr4Swshtg41yj2R6xKuVO4depTC','2000-02-01','68764645800',NULL,'teste02@gmail.com','perfil-padrao.webp',NULL),(57,'Thomaz Vasconcelos Mendes','TESTE03','8934833572','$2a$08$VfcenYPI241XRCuo6Q0FYuS3UZOihutNYz22d3E5euzaLyBRGqBea','2000-02-20','64817917156',NULL,'teste03@gmail.com','imgPerfil-1725493579369.png',NULL),(58,'Teste da silva ','Teste04','7927609377','$2a$08$VfcenYPI241XRCuo6Q0FYuS3UZOihutNYz22d3E5euzaLyBRGqBea','2000-02-02','03711208452',NULL,'teste04@gmail.com','perfil-padrao.webp',NULL),(59,'Soso Linda','S0s0Lind4','9699979811','$2a$08$xJC9ysZ0vM9T2UIu86OfAebvJKXr5BFiT/dea.ohO8eOIRDSICUvG','2000-12-30','34102406409',NULL,'sosolindateste@gmail.com','imgPerfil-1725621624959.jpg',NULL),(60,'Thomaz Vasconcelos Mendes','Teste10','6332657012','$2a$08$UV0kXCY82hMon2rpX/Up6e0stRzNafT/ZAaDSd7QqqJ3IYPWMUjDW','2000-02-12','30936366800',NULL,'teste10@gmail.com','imgPerfil-1725747138326.jpg',NULL),(61,'Thais Vasconcelos Mendes Linda','thaiismorango','11940842194','$2a$08$obDNE8zo13JWnrfuJrgWq.xHUoAX/gUWSImvsUl/jBAn7AskYtmKy','2000-04-27','47488076877',NULL,'thaiisvasconcelosmendess@gmail.com','perfil-padrao.webp',NULL),(62,'Fernanda Rodrigues da Silva','Fernanda','11983606681','$2a$08$BJEzBbM2wOnjQ6FmmLAwPutLx6myaehcM0TlttuX57d9jM/9Kzyu.','1999-04-10','24328330829',NULL,'fernanda.rodrigues22012@gmail.com','perfil-padrao.webp',NULL),(63,'Shadow o Ouriço','Shadow','11954696329','$2a$08$dpa1GhKAYzFG59ujbX5tgOCta.tgiCKqR4/R6RC.qhMehe7yS5j5i','2001-09-13','00814471080',NULL,'shadow@gmail.com','imgPerfil-1726571038219.jpg',NULL),(66,'Knuckles','Knukcles','11943214321','$2a$08$TXR3niVVF0O/g7omBkk/suMPnhvD20yhmrk6e.If/MJARofWJq32O','2006-05-01','42131187033',NULL,'knuckles@gmail.com','imgPerfil-1726571528109.png',NULL),(67,'Sonic o Ouriço','Sanic','11912344321','$2a$08$TXR3niVVF0O/g7omBkk/sun0a0o00ESlHKCo08hBId4QSBq.YwMrS','2006-09-15','48461384024',NULL,'sonic@gmail.com','imgPerfil-1727869319313.png',NULL),(68,'Arthur Lourenço','Lazullyz','11943014578','$2a$08$TXR3niVVF0O/g7omBkk/suh9TzksoHpq2PI793Zd7FH8GuWUAkz9K','2007-05-09','79463863036',NULL,'Lazullyz@gmail.com','perfil-padrao.webp',NULL),(69,'Teste da silva','Teste444','6822612129','$2a$08$QXYIkufYA938iLvTJVdwOOjWqsJkMSBOUZam8OymYQ1fBmFC5Jw7G','2004-02-13','54558389035',NULL,'teste444@gmail.com','perfil-padrao.webp',NULL);
+INSERT INTO `USUARIOS` VALUES (26,'Beto','Bet0','1333606088','$2a$08$QRQQPGB/in.haiXeoDsl0.Rm.dFyxSew7/DgSxRkxDH1/qWE/fF4W','1995-08-19','62321678801',NULL,'bet0@gmail.com','perfil-padrao.webp',1,'ativo'),(27,'Carlos','C4rlos','15 20828126','$2a$08$QRQQPGB/in.haiXeoDsl0.7THaE8YVrMHZiZD1D9xYrFhjb.O3Euu','1993-02-17','44459374013',NULL,'carlao@hotmail.com','perfil-padrao.webp',1,'ativo'),(28,'Gabi','G4b1Dantas','16 23782986','$2a$08$aI6KSNAPwBm6b8HYAvXsheL3BTiHUgX8EakFtznNDD36Pf4CTX9Ba','2006-04-06','04376313033',NULL,'gabi@gmail.com','perfil-padrao.webp',1,'ativo'),(29,'Gabriella Dantas Figueiredo','Dantas.Web','1431107687','$2a$08$3bAG/1X2qJnKrVsW97c5ru1jHO3DygDPUCZ8VuiWCdOVcXgJH1dua','2006-04-06','10154784419',NULL,'dantas@gmail.com','perfil-padrao.webp',1,'ativo'),(30,'Thomaz Vasconcelos Mendes','Gast3r','11940129090','$2a$08$tx1IrhK.N9liSrXo6221Z.nKYNVpA2ZtOUKhJWa66d7ppp3xlSru2','2006-08-26','47488089854',NULL,'gaster@gmail.com','perfil-padrao.webp',1,'ativo'),(31,'Giovani','Giov4ni','8134578863','$2a$08$siJQTtTLknLXsO/8g839oeuiBXRqxZdsZOplt9V6WJ1RO3SEH/G5O','2000-01-01','25204384014',NULL,'giovani@gmail.com','perfil-padrao.webp',1,'ativo'),(32,'Tupac Shakur','2pac','83992259905','$2a$08$GcK.1OH7aHTdupwWIR/FJeE8Hgi.2b8W3oQ3IvGZD0ig6FQtsmS7K','1995-11-21','74486630203',NULL,'2pac@hotmail.com','perfil-padrao.webp',1,'ativo'),(33,'Teste','teste','11942509494','$2a$08$bdH1Zy7XNxM/qZH8Tx5ixuvn3DAWOP2Vm9k30E8/wvdzjwim6ZpR.','1990-11-11','29558613835',NULL,'teste@gmail.com','perfil-padrao.webp',1,'ativo'),(34,'Teste','test3','11940129037','$2a$08$/qPuOFhoOevN4tWnwnkuMuutNSSEzC4Y0wqg23M3IwHV5qweRtIgm','2000-05-01','44444444455',NULL,'teste3@hotmail.com','perfil-padrao.webp',1,'ativo'),(35,'Teste','t3st3','11940129038','$2a$08$bezxAVZWl3.Fg0JgzdLT..HDZM1cA86gC/lP.EmGrjkVf4W1dTmKa','2000-05-01','43444444455',NULL,'t2ste3@hotmail.com','perfil-padrao.webp',1,'ativo'),(36,'Thomaz','Th0mzzz','11940129027','$2a$08$eHdQw2CjaXqD7vsQfmB2nOiFF8GLvKn9kRE2LCv.OMvp1u/AqJ5hu','2006-08-26','47488089855',NULL,'thomazzzz@gmail.com','imgPerfil-1727898545973.jpg',1,'ativo'),(37,'Bruna Lopes Rodrigues','Bruna','11954531234','$2a$08$4klLuIqGtBdTux4Niy7XcuF414z6JH8Ln.kXPVile35yenEWgDotO','2006-09-15','47511840833',NULL,'rm86701@estudante.fieb.edu.br','imgPerfil-1727781167262.webp',1,'ativo'),(38,'Thomaz vasconcelos Mendes','TesteUsuario','1299156160','$2a$08$0wPSb3PAAIW5iSlQVlieNufw.EeokernCDuEgpW/qiLOzNQWCTdWG','1997-12-28','95454371033',NULL,'testeusuario@gmail.com','perfil-padrao.webp',1,'ativo'),(39,'Gabi','UserTest','11961169509','$2a$08$JQSZO.ETxaXT61m4OSO.au.JGGQ3DNm.b/nX3LhMYEzbUrp4qXoLW','2003-06-28','37252671976',NULL,'test@gmail.com','perfil-padrao.webp',1,'ativo'),(40,'GIOVANNI','GiovanniProf','8235857887','$2a$08$MTCNIQOcNo4nN28AW9l2jOA0yMW.sybaBlfsEJCBLMkMdd5KwdKOq','2000-11-11','03206301025',NULL,'Giovanni@gmail.com','perfil-padrao.webp',1,'ativo'),(41,'Tifanny','tifanny','11957852648','$2a$08$6wNzI19OR2eJP/nqUh9mWuqSh0Qb9fwMhIq6wewOdBMOnmwrH9SRK','2006-06-28','56012095880',NULL,'tifannysouza@gmail.com','perfil-padrao.webp',1,'ativo'),(42,'Mariana Ferraz','F3rraz','6128777523','$2a$08$Zwg6ThVcUqj4/AELftD9.ulEV/wUA6GrKAXjOGP2LEQFdam/0ILHa','2000-01-19','83473643033',NULL,'mariana@gmail.com','imgPerfil-1723560694380.png',1,'ativo'),(44,'Sophia Ferreira de Araújo','SosoLinda','11975270585','$2a$08$Zwg6ThVcUqj4/AELftD9.uyUcopue8czhwewd.ChQAmujvxfe8cYC','2007-03-29','51943996857',NULL,'sosolinda@gmail.com','imgPerfil-1723561977003.jpg',1,'ativo'),(45,'Dwayne Johnson','TheRock','1735315687','$2a$08$Hdegr16IC2jDPl7UcleWz.NMiGe/Ib3dY.LWjgDErVOv4TX9Nokfy','1972-05-02','12479012034',NULL,'theRock@gmail.com','imgPerfil-1723643265585.jpg',1,'ativo'),(46,'Filipe dos Santos Inácio','F1l1pus','11942509495','$2a$08$EC7dWNT1ZN.bqWKf5zRR0.d5YL3HMQKbLCter8onhGtfD6Txm8taS','2007-04-07','43238713841',NULL,'flpus92@gmail.com','perfil-padrao.webp',1,'ativo'),(47,'Teste','TesteUser','6398163496','$2a$08$UQD0xgMo5aLTpQ17QAxj2OnAgTX4z5muez7gKRgSdM9MQ68HvhoJq','2000-05-02','43152779089',NULL,'testeuser@gmail.com','perfil-padrao.webp',1,'ativo'),(48,'teteu','mateteu','11997285877','$2a$08$xqe0rWQtOnbxl317AXRVje04d23MCSC5UmNK8auOqR1MUGYgQqhhq','2006-10-01','54090993890',NULL,'matheus_morais06@gmail.com','perfil-padrao.webp',1,'ativo'),(49,'marcos','marcus1','1105075977','$2a$08$zNLAxWZ6/iHsTXg1UrPLKOr4yDc42.bD9FtxRwRGgZ6AJ1PylSq5y','2006-10-01','43675181839',NULL,'matheus_morais06@yahoo.com.br','perfil-padrao.webp',1,'ativo'),(50,'Arthur Mendes','Lazully','1194304578','$2a$08$Ns6huLgYX6yLrrbnI1aOi.Wdqq8/mG8kbEY5PAAULuH.N/VKJoT6y','2007-05-09','93248092025',NULL,'Lazully@gmail.com','perfil-padrao.webp',1,'ativo'),(51,'Teste da silva','T3ste','8520884359','$2a$08$rVSS7CN7T0zJihMBsQcc0.Jv1OfjbGKDCAVwfq5LmTuu3sCUReAHC','2000-12-20','97805509921',NULL,'testedasilva@gmail.com','imgPerfil-1725307017098.png',1,'ativo'),(52,'Thulio Gordo da Silva','G0rdoRs','9525616242','$2a$08$yhvwPsPaY2.hSq/O9PLX0uqcO2ZcnEXfTrWAa5UPZP6DieJuH..Xu','2000-02-08','26388938388',NULL,'thuliogordin@gmail.com','imgPerfil-1725492711528.jpg',1,'ativo'),(55,'Thais','th4t4','2725968385','$2a$08$yhvwPsPaY2.hSq/O9PLX0uqcO2ZcnEXfTrWAa5UPZP6DieJuH..Xu','2007-04-27','86260151861',NULL,'thais@gmail.com','perfil-padrao.webp',1,'ativo'),(56,'Thomaz Vasconcelos Mendes','TESTEEE','6236634312','$2a$08$Yr.41ekzqR.caGFqr2RmHeTUXaCr4Swshtg41yj2R6xKuVO4depTC','2000-02-01','68764645800',NULL,'teste02@gmail.com','perfil-padrao.webp',1,'ativo'),(57,'Thomaz Vasconcelos Mendes','TESTE03','8934833572','$2a$08$VfcenYPI241XRCuo6Q0FYuS3UZOihutNYz22d3E5euzaLyBRGqBea','2000-02-20','64817917156',NULL,'teste03@gmail.com','imgPerfil-1725493579369.png',1,'ativo'),(58,'Teste da silva ','Teste04','7927609377','$2a$08$VfcenYPI241XRCuo6Q0FYuS3UZOihutNYz22d3E5euzaLyBRGqBea','2000-02-02','03711208452',NULL,'teste04@gmail.com','perfil-padrao.webp',1,'ativo'),(59,'Soso Linda','S0s0Lind4','9699979811','$2a$08$xJC9ysZ0vM9T2UIu86OfAebvJKXr5BFiT/dea.ohO8eOIRDSICUvG','2000-12-30','34102406409',NULL,'sosolindateste@gmail.com','imgPerfil-1725621624959.jpg',1,'ativo'),(60,'Thomaz Vasconcelos Mendes','Teste10','6332657012','$2a$08$UV0kXCY82hMon2rpX/Up6e0stRzNafT/ZAaDSd7QqqJ3IYPWMUjDW','2000-02-12','30936366800',NULL,'teste10@gmail.com','imgPerfil-1725747138326.jpg',1,'ativo'),(61,'Thais Vasconcelos Mendes Linda','thaiismorango','11940842194','$2a$08$obDNE8zo13JWnrfuJrgWq.xHUoAX/gUWSImvsUl/jBAn7AskYtmKy','2000-04-27','47488076877',NULL,'thaiisvasconcelosmendess@gmail.com','perfil-padrao.webp',1,'ativo'),(62,'Fernanda Rodrigues da Silva','Fernanda','11983606681','$2a$08$BJEzBbM2wOnjQ6FmmLAwPutLx6myaehcM0TlttuX57d9jM/9Kzyu.','1999-04-10','24328330829',NULL,'fernanda.rodrigues22012@gmail.com','perfil-padrao.webp',1,'ativo'),(63,'Shadow o Ouriço','Shadow','11954696329','$2a$08$dpa1GhKAYzFG59ujbX5tgOCta.tgiCKqR4/R6RC.qhMehe7yS5j5i','2001-09-13','00814471080',NULL,'shadow@gmail.com','imgPerfil-1726571038219.jpg',1,'ativo'),(66,'Knuckles','Knukcles','11943214321','$2a$08$TXR3niVVF0O/g7omBkk/suMPnhvD20yhmrk6e.If/MJARofWJq32O','2006-05-01','42131187033',NULL,'knuckles@gmail.com','imgPerfil-1726571528109.png',1,'ativo'),(67,'Sonic o Ouriço','Sanic','11912344321','$2a$08$TXR3niVVF0O/g7omBkk/sun0a0o00ESlHKCo08hBId4QSBq.YwMrS','2006-09-15','48461384024',NULL,'sonic@gmail.com','imgPerfil-1727869319313.png',1,'inativo'),(68,'Arthur Lourenço','Lazullyz','11943014578','$2a$08$TXR3niVVF0O/g7omBkk/suh9TzksoHpq2PI793Zd7FH8GuWUAkz9K','2007-05-09','79463863036',NULL,'Lazullyz@gmail.com','perfil-padrao.webp',1,'ativo'),(69,'Teste da silva','Teste444','6822612129','$2a$08$QXYIkufYA938iLvTJVdwOOjWqsJkMSBOUZam8OymYQ1fBmFC5Jw7G','2004-02-13','54558389035',NULL,'teste444@gmail.com','perfil-padrao.webp',1,'ativo'),(70,'huhuhuhhu','huhuhuhuhu','9598623408','$2a$08$jqTKk8.J9svNJPfGz65xH.Y7L6ScdvmhXsAn.ostiI/87kFxI4A.S','1968-12-11','86253715151',NULL,'boi@gmail.com','perfil-padrao.webp',1,'ativo'),(71,'Administrador da Silva ','Administrador','7720479616','$2a$08$VccZuqOBwh2JOBz3glmTg.soYRRtXDAvzVel5S8fwvmf50uT9VHD6','2001-01-01','19727968015',NULL,'admin@gmail.com','imgPerfil-1728675662302.webp',4,'ativo'),(72,'teste inativo','testeInativo','4320222509','$2a$08$Ge5YNCTA1fw09tBxkwK/b.M4SYPCyaukiFET1Rby5TrIB7czbqwV2','2004-04-21','97879554084',NULL,'testeInativo@gmail.com','perfil-padrao.webp',1,'inativo');
 /*!40000 ALTER TABLE `USUARIOS` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -668,4 +671,4 @@ SET @@SESSION.SQL_LOG_BIN = @MYSQLDUMP_TEMP_LOG_BIN;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-05 23:03:59
+-- Dump completed on 2024-10-14 15:48:26
