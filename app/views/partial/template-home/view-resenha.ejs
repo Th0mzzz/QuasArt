@@ -10,6 +10,18 @@
                     <%= resenha.autor.NICKNAME_USUARIO %>
                 </a>
                 <button class="btn">Seguir</button>
+                <form action="/curtirResenha?idResenha=<%= resenha.ID_RESENHAS %>" class="estatistica" method="post">
+                    <% if(isCurtido) {%> 
+                    <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
+                        <i class="bi bi-heart-fill"></i>
+                    </button>
+                    <%} else {%>
+                        <button class="btn secundaria" data-curtirBtn title="Curtir">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    <%}%>
+                    <p class="text mt-1"><%= resenha.curtidas %></p>
+                </form>
             </section>
         </header>
         <article class="resenha__content">
@@ -23,13 +35,12 @@
             </section>
             <footer class="row">
                 <article id="tagsContainer">
-                    <% if(resenha.tags){ resenha.tags.forEach(tag=>{ 
+                    <% if(resenha.tags){ resenha.tags.forEach(tag=>{
                         if(tag != ""){%>
                         <span class="tag text">
                             <%= tag %>
                         </span>
-                        <%}
-                         }) } %>
+                        <%} }) } %>
 
                 </article>
                 <!-- <article class="avaliacao__stars">
@@ -63,30 +74,31 @@
                 <button type="submit" class="btn secundaria mt-2">Comentar</button>
             </form>
             <section class="comentarios mt-3">
-                <% if(comentarios) { 
-                
-                    comentarios.forEach(comentario => { %>
-                        <article class="comment__item">
-                            <article class="row">
-                                <a href="/profile?idUser=<%= comentario.usuario.ID_USUARIO %>" class="comment__user">
-                                    <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>" alt="foto de perfil do comentário" class="userImg">
-                                    <h4 class="link mt-2"><%= comentario.usuario.NICKNAME_USUARIO %></h4>
-                                </a>
-                                <p class="text"><%= comentario.COMENTARIO_AVALIACAO %></p>
-                            </article>
-                            <article class="avaliacao__stars pt-1">
-                                <% for (let i = 1; i <= 5; i++) { %>
-                                    <% if (i <= comentario.NOTA_AVALIACAO) { %>
-                                        <i class="bi bi-star-fill"></i> 
+                <% if(comentarios) { comentarios.forEach(comentario=> { %>
+                    <article class="comment__item">
+                        <article class="row">
+                            <a href="/profile?idUser=<%= comentario.usuario.ID_USUARIO %>" class="comment__user">
+                                <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>"
+                                    alt="foto de perfil do comentário" class="userImg">
+                                <h4 class="link mt-2">
+                                    <%= comentario.usuario.NICKNAME_USUARIO %>
+                                </h4>
+                            </a>
+                            <p class="text">
+                                <%= comentario.COMENTARIO_AVALIACAO %>
+                            </p>
+                        </article>
+                        <article class="avaliacao__stars pt-1">
+                            <% for (let i=1; i <=5; i++) { %>
+                                <% if (i <=comentario.NOTA_AVALIACAO) { %>
+                                    <i class="bi bi-star-fill"></i>
                                     <% } else { %>
                                         <i class="bi bi-star"></i>
-                                    <% } %>
-                                <% } %>
-                            </article>
+                                        <% } %>
+                                            <% } %>
                         </article>
-                        <% })
-                    
-                 } %>
+                    </article>
+                    <% }) } %>
 
             </section>
         </footer>
@@ -95,6 +107,7 @@
 
         <%- include("denunciar-modal") %>
             <script src="./js/input.js"></script>
+            <script src="./js/curtirBtn.js"></script>
 
             <script>
                 function ajustarProporcao(elemento, proporcao) {

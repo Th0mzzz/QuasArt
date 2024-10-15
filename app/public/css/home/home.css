@@ -381,28 +381,7 @@
     }
 }
 
-@keyframes sumir {
 
-    0%,
-    10%,
-    15%,
-    20%,
-    30%,
-    35%,
-    40%,
-    45%,
-    50%,
-    55%,
-    60%,
-    65%,
-    70% {
-        translate: -50% 0%;
-    }
-
-    100% {
-        translate: -50% -200vh;
-    }
-}
 
 @media (min-width:769px) {
 
@@ -410,5 +389,14 @@
     .home__footer,
     .home__content {
         padding-left: calc(var(--aside-width) + clamp(1rem, 10vw, 1.4rem));
+    }
+}
+
+@media (min-width:1440px) {
+
+    .home__header,
+    .home__footer,
+    .home__content {
+        padding: 0 clamp(.2rem, 3vw, 3rem);
     }
 }

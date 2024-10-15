@@ -165,46 +165,46 @@ router.get("/profile",
         }
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
         usuariosController.mostrarPageProfile(req, res)
     });
 
 
 // Home de publicações
-router.get("/publicar", 
-    middleWares.verifyAutenticado, 
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]), 
+router.get("/publicar",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/publicar-home",
-        classePagina: "publicar",
-        token: token
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+        const token = null
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/publicar-home",
+            classePagina: "publicar",
+            token: token
+        }
+        res.render("./pages/template-home", jsonResult)
+    });
 
 
 // pagina de publicar videos
-router.get("/via-videos-pub", 
-    middleWares.verifyAutenticado, 
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]), 
+router.get("/via-videos-pub",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
-    const token = null
-    const jsonResult = {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/template-home/pub-pages/videos-pub",
-        classePagina: "publicar",
-        erros: null,
-        token: token
-    }
-    res.render("./pages/template-home", jsonResult)
-});
+        const token = null
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/pub-pages/videos-pub",
+            classePagina: "publicar",
+            erros: null,
+            token: token
+        }
+        res.render("./pages/template-home", jsonResult)
+    });
 router.get("/attvideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async function (req, res) {
         let idVideo = req.query.idVideo
         if (!idVideo) {
@@ -249,7 +249,7 @@ router.get("/attvideo",
 // pagina de publicar fichas
 router.get("/ficha-espacial-pub",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
         const token = null
         const jsonResult = {
@@ -266,7 +266,7 @@ router.get("/ficha-espacial-pub",
 
 router.get("/attficha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async function (req, res) {
 
         try {
@@ -308,7 +308,7 @@ router.get("/attficha",
 // pagina de publicar resenhas
 router.get("/resenha-cosmica-pub",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
         const token = null
         const jsonResult = {
@@ -324,7 +324,7 @@ router.get("/resenha-cosmica-pub",
     });
 router.get("/attresenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async function (req, res) {
         try {
             let idResenha = req.query.idResenha
@@ -361,7 +361,6 @@ router.get("/attresenha",
     });
 
 // ------- Página sobre o Quarsart -------
-
 
 router.get("/sobre", function (req, res) {
     const token = null
@@ -401,7 +400,7 @@ router.post("/criarResenha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadCapaResenha("capaResenha"),
     resenhaControl.validacaoResenha,
     function (req, res) {
@@ -413,7 +412,7 @@ router.post("/atualizarResenha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadCapaResenha("capaResenha"),
     resenhaControl.validacaoResenha,
     function (req, res) {
@@ -426,7 +425,7 @@ router.post("/criarVideo",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadMultiplo([
         { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
         { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
@@ -441,7 +440,7 @@ router.post("/atualizarVideo",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadMultiplo([
         { name: 'capaVideo', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png'], fileSize: 5, maxCount: 1 },
         { name: 'video', caminho: './app/public/img/imagens-servidor/videos/', extensoes: ['mp4', 'avi'], fileSize: 400, maxCount: 1 }
@@ -457,7 +456,7 @@ router.post("/criarFicha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
         { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'avi', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
@@ -473,7 +472,7 @@ router.post("/atualizarFicha",
         next();
     },
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     uploadMultiplo([
         { name: 'capaFicha', caminho: './app/public/img/imagens-servidor/capas-img/', extensoes: ['jpeg', 'jpg', 'png', "webp"], fileSize: 5, maxCount: 1 },
         { name: 'previas', caminho: './app/public/img/imagens-servidor/previas/', extensoes: ['mp4', 'jpeg', 'jpg', 'png', 'webp'], fileSize: 200, maxCount: 8 }
@@ -591,23 +590,81 @@ router.post("/fazerPesquisa", async function (req, res) {
 
 router.post("/comentarFicha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
         fichasControl.avaliarFicha(req, res)
     }
 )
 router.post("/comentarResenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
         resenhaControl.avaliarResenha(req, res)
     }
 )
 router.post("/comentarVideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1,2,3,4]),
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     function (req, res) {
-        videoControl.avaliarVideo(req,res)
+        videoControl.avaliarVideo(req, res)
+    }
+)
+
+
+// CURTIR
+
+router.post("/curtirResenha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idResenha = req.query.idResenha
+        if (!idResenha) {
+            console.log("erro ao encontrar resenha")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) : false
+        if (isCurtido) {
+            await resenhaModel.removerCurtidaResenha(idResenha, req.session.autenticado.id)
+        } else {
+            await resenhaModel.curtirResenha({ RESENHAS_ID_RESENHAS: idResenha, USUARIOS_ID_USUARIO: req.session.autenticado.id })
+        }
+        res.redirect(`/view-resenha?idResenha=${idResenha}`)
+    }
+)
+router.post("/curtirFicha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idFicha = req.query.idFicha
+        if (!idFicha) {
+            console.log("erro ao encontrar ficha")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await fichasModel.verificarCurtida(idFicha, req.session.autenticado.id) : false
+        if (isCurtido) {
+            await fichasModel.removerCurtidaFicha(idFicha, req.session.autenticado.id)
+        } else {
+            await fichasModel.curtirFicha({ FICHAS_ID_OBRA: idFicha, USUARIOS_ID_USUARIO: req.session.autenticado.id })
+        }
+        res.redirect(`/view-ficha?idFicha=${idFicha}`)
+    }
+)
+router.post("/curtirVideo",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idVideo = req.query.idVideo
+        if (!idVideo) {
+            console.log("erro ao encontrar video")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
+        if (isCurtido) {
+            await videosModel.removerCurtidaVideo(idVideo, req.session.autenticado.id)
+        } else {
+            await videosModel.curtirVideo({ VIDEOS_ID_VIDEOS: idVideo, USUARIOS_ID_USUARIO: req.session.autenticado.id })
+        }
+        res.redirect(`/videos?idVideo=${idVideo}`)
     }
 )
 

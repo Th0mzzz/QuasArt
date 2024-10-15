@@ -87,6 +87,7 @@ const usuariosModel = {
             throw error;
         }
     },
+
 }
 
 module.exports = usuariosModel;

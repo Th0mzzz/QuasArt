@@ -84,6 +84,8 @@ const resenhaControl = {
                             usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
                         }))
 
+                        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) : false
+                        const curtidas = await resenhaModel.verificarCurtidasDaResenha(idResenha)
                         const token = null
                         const jsonResult = {
                             page: "../partial/template-home/view-resenha",
@@ -91,15 +93,17 @@ const resenhaControl = {
                             resenha: {
                                 ...resenha,
                                 tags: resenha.HASHTAG_RESENHA.split(","),
-                                autor: autor[0]
+                                autor: autor[0],
+                                curtidas: curtidas
                             },
                             comentarios: comments,
                             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                            token: token
+                            token: token,
+                            isCurtido: isCurtido
                         }
 
                         res.render("./pages/template-home", jsonResult)
-                    } else {
+                    } else {    
                         res.status(404).render("pages/error-404.ejs");
                     }
                 } else {
@@ -107,6 +111,7 @@ const resenhaControl = {
                 }
 
             } catch (error) {
+                console.log(error)
                 res.status(404).render("pages/error-404.ejs");
 
             }

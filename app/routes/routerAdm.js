@@ -46,6 +46,9 @@ routerAdm.get("/adm-assinaturas",
         res.render("pages/template-adm", { page: "../partial/adm/assinaturas", token: null, classePagina: "assinaturas" })
     })
 
+
+
+// POST ---------------------------
 routerAdm.post("/inativarUser",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),

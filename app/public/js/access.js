@@ -29,9 +29,17 @@ if (fonteStorage == "diminuida") {
 }
 // botão para abrir e fechar o menu de acessibilidade
 
-accessBtn.addEventListener("click", () => {
-    accessContainer.classList.toggle("aberto")
+accessBtn.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+    accessContainer.classList.toggle("aberto");
 });
+
+window.addEventListener("click", (e) => {
+    if (!accessContainer.contains(e.target) && e.target !== accessBtn && accessContainer.classList.contains("aberto")) {
+        accessContainer.classList.remove("aberto");
+    }
+});
+
 
 // botao para deixar a tipografia facil
 tipografiaFacil.addEventListener("click", () => {

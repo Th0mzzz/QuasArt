@@ -69,7 +69,7 @@ const resenhaModel = {
             return error;
         }
     },
-    acharPorTermo:async (termo)=>{
+    acharPorTermo: async (termo) => {
         try {
             const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? OR DESCR_RESENHA LIKE ? OR HASHTAG_RESENHA LIKE ? OR TEXTO_RESENHA LIKE ? ", [termo, termo, termo, termo]);
             return resultados;
@@ -95,6 +95,48 @@ const resenhaModel = {
             console.log("----------- ERRO AO BUSCAR COMENTARIOS DA RESENHA -----------")
             console.log(error)
             return error
+        }
+    },
+    verificarCurtida: async (idResenha, idUsuario) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS = ? AND USUARIOS_ID_USUARIO = ?", [idResenha, idUsuario])
+            if (resultados[0].total > 0) {
+                return true
+            } else {
+                return false
+            }
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDA DA RESENHA -----------")
+            console.log(error)
+            return error
+        }
+    },
+    verificarCurtidasDaResenha: async (idResenha) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS = ?", [idResenha])
+            return resultados[0].total
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDA DA RESENHA -----------")
+            console.log(error)
+            return error
+        }
+    },
+    curtirResenha: async (dadosCurtida) => {
+        try {
+            const [resultados] = await pool.query("INSERT INTO FAVORITO_RESENHAS SET ?", [dadosCurtida]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao curtir", error);
+            throw error;
+        }
+    },
+    removerCurtidaResenha: async (idPost, idUser) => {
+        try {
+            const [resultados] = await pool.query("DELETE FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS = ? AND USUARIOS_ID_USUARIO = ? ", [idPost, idUser]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao remover curtida", error);
+            throw error;
         }
     },
 }

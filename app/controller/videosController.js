@@ -184,14 +184,17 @@ const videoControl = {
                         ...c,
                         usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
                     }))
-
+                    const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
+                    const curtidas = await videosModel.verificarCurtidasDoVideo(idVideo)
                     const jsonResult = {
                         video: {
                             ...video,
                             tags: video.HASHTAG_VIDEO.split(","),
-                            autor: autor[0]
+                            autor: autor[0],
+                            curtidas:curtidas
                         },
-                        comentarios: comments
+                        comentarios: comments,
+                        isCurtido: isCurtido
                     }
 
                     res.render("./pages/videos-home", jsonResult)

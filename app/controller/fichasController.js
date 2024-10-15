@@ -215,18 +215,23 @@ const fichasControl = {
                             ...c,
                             usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
                         }))
-
+                        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await fichasModel.verificarCurtida(idFicha, req.session.autenticado.id) : false
+                        const curtidas = await fichasModel.verificarCurtidasDaFicha(idFicha)
                         const token = null
                         const jsonResult = {
                             page: "../partial/template-home/view-ficha",
                             classePagina: "",
-                            ficha: ficha,
+                            ficha: {
+                                ...ficha,
+                                curtidas: curtidas
+                            },
                             previas: previas,
                             tags: ficha.HASHTAG_OBRA.split(","),
                             autor: autor[0],
                             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                             token: token,
-                            comentarios: comments
+                            comentarios: comments,
+                            isCurtido: isCurtido
                         }
 
                         res.render("./pages/template-home", jsonResult)

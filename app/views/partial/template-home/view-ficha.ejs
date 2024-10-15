@@ -20,10 +20,18 @@
                         <article class="btn secundaria"><i class="bi bi-star"></i></article>
                         <p class="text mt-1">875k</p>
                     </article> -->
-                    <article class="estatistica">
-                        <article class="btn secundaria"><i class="bi bi-heart"></i></article>
-                        <p class="text mt-1">50k</p>
-                    </article>
+                    <form action="/curtirFicha?idFicha=<%= ficha.ID_OBRA %>" class="estatistica" method="post">
+                        <% if(isCurtido) {%> 
+                        <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
+                            <i class="bi bi-heart-fill"></i>
+                        </button>
+                        <%} else {%>
+                            <button class="btn secundaria" data-curtirBtn title="Curtir">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        <%}%>
+                        <p class="text mt-1"><%= ficha.curtidas %></p>
+                    </form>
                 </section>
             </article>
         </section>

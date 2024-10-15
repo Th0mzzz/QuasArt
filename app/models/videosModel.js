@@ -1,5 +1,4 @@
 var pool = require("../../config/poolConn");
-const { updateFicha } = require("./fichasModel");
 const videosModel = {
     create: async (dadosVideo) => {
         try {
@@ -75,6 +74,48 @@ const videosModel = {
             console.log("----------- ERRO AO ACHAR COMENTARIOS DO VIDEO -----------")
             console.log(error)
             return error
+        }
+    },
+    verificarCurtida: async (idVideo, idUsuario) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ?", [idVideo, idUsuario])
+            if (resultados[0].total > 0) {
+                return true
+            } else {
+                return false
+            }
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDA DO VIDEO -----------")
+            console.log(error)
+            return error
+        }
+    },
+    verificarCurtidasDoVideo: async (idVideo) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ?", [idVideo])
+            return resultados[0].total
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDAS DO VIDEO  -----------")
+            console.log(error)
+            return error
+        }
+    },
+    curtirVideo: async (dadosCurtida) => {
+        try {
+            const [resultados] = await pool.query("INSERT INTO FAVORITO_VIDEOS SET ?", [dadosCurtida]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao curtir", error);
+            throw error;
+        }
+    },
+    removerCurtidaVideo: async (idPost, idUser) => {
+        try {
+            const [resultados] = await pool.query("DELETE FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ? ", [idPost, idUser]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao remover curtida", error);
+            throw error;
         }
     },
 }

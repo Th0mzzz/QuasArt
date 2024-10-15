@@ -31,7 +31,7 @@
     flex-flow: column nowrap;
     align-items: start;
     text-align: start;
-    padding: 0 10%;
+    padding: 3rem clamp(.2rem, 3vw, 3rem);
 }
 
 .inicial__container .slogan .btn-outline {

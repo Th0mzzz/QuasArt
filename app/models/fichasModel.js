@@ -125,6 +125,48 @@ const fichasModel = {
             return error
         }
     },
+    verificarCurtida: async (idFicha, idUsuario) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA = ? AND USUARIOS_ID_USUARIO = ?", [idFicha, idUsuario])
+            if (resultados[0].total > 0) {
+                return true
+            } else {
+                return false
+            }
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDA DA FICHA -----------")
+            console.log(error)
+            return error
+        }
+    },
+    verificarCurtidasDaFicha: async (idFicha) => {
+        try {
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA = ?", [idFicha])
+            return resultados[0].total
+        } catch (error) {
+            console.log("----------- ERRO AO BUSCAR CURTIDAS DA FICHA  -----------")
+            console.log(error)
+            return error
+        }
+    },
+    curtirFicha: async (dadosCurtida) => {
+        try {
+            const [resultados] = await pool.query("INSERT INTO FAVORITO_FICHAS SET ?", [dadosCurtida]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao curtir", error);
+            throw error;
+        }
+    },
+    removerCurtidaFicha: async (idPost, idUser) => {
+        try {
+            const [resultados] = await pool.query("DELETE FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA = ? AND USUARIOS_ID_USUARIO = ? ", [idPost, idUser]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao remover curtida", error);
+            throw error;
+        }
+    },
     
 }
 
