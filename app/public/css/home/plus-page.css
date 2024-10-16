@@ -128,6 +128,7 @@
             padding: 1.2rem 0;
             transition: all .4s;
             border-radius: 20px;
+            border: 1px solid var(--cor-secundaria);
             & .negrito-roxo, & .negrito-amarelo{
                 transition: color .4s;
             }
