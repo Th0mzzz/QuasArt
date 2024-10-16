@@ -1,0 +1,21 @@
+.denuncia-table {
+    display: none;
+
+    &.ativo {
+        display: block;
+    }
+}
+
+.denun-tables__btns {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+
+    & .btn {
+        background: var(--cor-principal-hover);
+        
+        &.ativo {
+            background: var(--cor-principal);
+        }
+    }
+}

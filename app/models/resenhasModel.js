@@ -139,6 +139,15 @@ const resenhaModel = {
             throw error;
         }
     },
+    findResenhasByIds: async (ids) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE ID_RESENHAS IN (?) ", [ids]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = resenhaModel

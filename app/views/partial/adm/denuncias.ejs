@@ -1,15 +1,78 @@
-<section class="admTable__container">
-    <table id="admTable" class="display">
-        <thead>
-            <tr>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
-    </table>
+<section class="denun-tables__btns mt-3">
+    <button class="link btn ativo" data-btnSection="usuTable">Usuários</button>
+    <button class="link btn" data-btnSection="reseTable">Resenhas</button>
+    <button class="link btn" data-btnSection="fichaTable">Fichas</button>
+    <button class="link btn" data-btnSection="vidTable">Videos</button>
 </section>
+<section class="tables__denuncias">
+
+    <section data-section="usuTable" class="admTable__container denuncia-table ativo">
+        <table id="denunciaUsuarioTable" class="display">
+            <caption>Usuários denunciados</caption>
+            <thead>
+                <tr>
+                    <th>ID denúncia</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section data-section="reseTable" class="admTable__container denuncia-table">
+        <table id="denunciaResenhaTable" class="display">
+            <caption>Resenhas denunciadas</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section data-section="fichaTable" class="admTable__container denuncia-table">
+        <table id="denunciaFichaTable" class="display">
+            <caption>Fichas denunciadas</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section data-section="vidTable" class="admTable__container denuncia-table">
+        <table id="denunciaVideoTable" class="display">
+            <caption>Videos denunciados</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+
+
+<script src="./js/toggleSection.js"></script>

@@ -1,3 +1,5 @@
+@import url("./denuncias.css");
+
 .adm__header,
 .adm__footer,
 .adm__content {
@@ -249,7 +251,7 @@
     }
 }
 
-#admTable_wrapper {
+.admTable__container {
     margin-top: 3rem;
 
     &>* {
@@ -266,10 +268,10 @@
     font-family: var(--ff-link);
     color: #fff;
 }
-.ativo{
+span.ativo{
     background: var(--cor-success);
 }
-.inativo{
+span.inativo{
     background: var(--cor-danger);
 }
 
@@ -362,3 +364,4 @@
         }
     }
 }
+
