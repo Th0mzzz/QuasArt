@@ -115,7 +115,7 @@ const usuariosModel = {
             
             const [curtidasFichas] = fichaIds.length > 0
                 ? await pool.query(
-                    `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_FICHAS WHERE IN (?)`, [fichaIds]
+                    `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA IN (?)`, [fichaIds]
                 )
                 : [{ totalCurtidas: 0 }];
 

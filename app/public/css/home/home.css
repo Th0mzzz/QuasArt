@@ -387,16 +387,8 @@
 
     .home__header,
     .home__footer,
-    .home__content {
-        padding-left: calc(var(--aside-width) + clamp(1rem, 10vw, 1.4rem));
-    }
-}
-
-@media (min-width:1440px) {
-
-    .home__header,
-    .home__footer,
-    .home__content {
-        padding: 0 clamp(.2rem, 3vw, 3rem);
+    .home__content,
+    .slogan {
+        padding-left: calc(var(--aside-width) + clamp(1rem, 10vw, 1.4rem)) !important;
     }
 }
