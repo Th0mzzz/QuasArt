@@ -46,38 +46,39 @@ routerAdm.get("/adm-denuncias",
             const idsVideos = [];
             const idsFichas = [];
 
-            for(const u of [...denunUsu]){
-                if (!idsUsuarios.includes(u.USUARIOS_ID_USUARIO)) {
-                    idsUsuarios.push(u.USUARIOS_ID_USUARIO);
+            for (const u of [...denunUsu]) {
+                if (!idsUsuarios.includes(u.ID_DENUNCIADO)) {
+                    idsUsuarios.push(u.ID_DENUNCIADO);
                 }
             }
-            for(const r of [...denunRes]){
+            for (const r of [...denunRes]) {
                 if (!idsResenhas.includes(r.USUARIOS_ID_USUARIO)) {
                     idsResenhas.push(r.USUARIOS_ID_USUARIO);
                 }
             }
-            for(const v of [...denunVid]){
+            for (const v of [...denunVid]) {
                 if (!idsVideos.includes(v.USUARIOS_ID_USUARIO)) {
                     idsVideos.push(v.USUARIOS_ID_USUARIO);
                 }
             }
-            for(const f of [...denunFic]){
+            for (const f of [...denunFic]) {
                 if (!idsFichas.includes(f.USUARIOS_ID_USUARIO)) {
                     idsFichas.push(f.USUARIOS_ID_USUARIO);
                 }
             }
-            
 
-            const [resenhasDenunciadas, fichasDenunciadas, videosDenunciados, usuariosDenunciados] = await Promise.all([
-                await usuariosModel.findUsersByIds(idsUsuarios),
+
+            const [usuariosDenunciados] = await Promise.all([
+                idsUsuarios.length > 0 ? await usuariosModel.findUsersByIds(idsUsuarios) : [],
             ]);
 
-            const mapUsuariosDenunciados = Object.fromEntries(denun.map(usuario => [usuario.ID_USUARIO, usuario]));
+            const mapUsuariosDenunciados = Object.fromEntries(usuariosDenunciados.map(usuario => [usuario.ID_USUARIO, usuario]));
+            // const mapUsuariosDeResenhasDenunciados = Object.fromEntries(denun.map(usuario => [usuario.ID_USUARIO, usuario]));
 
 
             const denuncias = {
                 usuarios: denunUsu.length > 0
-                    ? denunUsu
+                    ? denunUsu.map(usu => ({ ...usu, denunciado: mapUsuariosDenunciados[usu.ID_USUARIO] }))
                     : null,
                 resenhas: denunRes.length > 0
                     ? denunRes
