@@ -87,6 +87,64 @@ const usuariosModel = {
             throw error;
         }
     },
+    contarCurtidasUsuario: async (idUser) => {
+        try {
+            
+            const [fichas] = await pool.query(
+                `SELECT ID_OBRA FROM FICHAS WHERE USUARIOS_ID_USUARIO = ?`, [idUser]
+            );
+
+            const [resenhas] = await pool.query(
+                `SELECT ID_RESENHAS FROM RESENHAS WHERE USUARIOS_ID_USUARIO = ?`, [idUser]
+            );
+
+            const [videos] = await pool.query(
+                `SELECT ID_VIDEOS FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ?`, [idUser]
+            );
+
+       
+            const fichaIds = fichas.map(ficha => ficha.ID_OBRA);
+            const resenhaIds = resenhas.map(resenha => resenha.ID_RESENHAS);
+            const videoIds = videos.map(video => video.ID_VIDEOS);
+
+            
+            if (fichaIds.length === 0 && resenhaIds.length === 0 && videoIds.length === 0) {
+                return 0;
+            }
+
+            
+            const [curtidasFichas] = fichaIds.length > 0
+                ? await pool.query(
+                    `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_FICHAS WHERE IN (?)`, [fichaIds]
+                )
+                : [{ totalCurtidas: 0 }];
+
+            
+            const [curtidasResenhas] = resenhaIds.length > 0
+                ? await pool.query(
+                    `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS IN (?)`, [resenhaIds]
+                )
+                : [{ totalCurtidas: 0 }];
+
+            
+            const [curtidasVideos] = videoIds.length > 0
+                ? await pool.query(
+                    `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS IN (?)`, [videoIds]
+                )
+                : [{ totalCurtidas: 0 }];
+
+            
+            const totalCurtidas = (curtidasFichas[0].totalCurtidas || 0)
+                + (curtidasResenhas[0].totalCurtidas || 0)
+                + (curtidasVideos[0].totalCurtidas || 0);
+
+            return totalCurtidas;
+
+        } catch (error) {
+            console.log("Erro ao buscar curtidas do usuário", error);
+            return error;
+        }
+    }
 
 }
 

@@ -487,8 +487,6 @@ router.post("/atualizarFicha",
 router.post("/fazerPesquisa", async function (req, res) {
     try {
         const termo = `%${req.body.pesquisaInput}%`;
-
-
         const fichas = await fichasModel.acharPorTermo(termo) || [];
         const videos = await videosModel.acharPorTermo(termo) || [];
         const resenhas = await resenhaModel.acharPorTermo(termo) || [];
@@ -580,10 +578,6 @@ router.post("/fazerPesquisa", async function (req, res) {
         res.status(404).render("pages/error-404.ejs");
 
     }
-
-
-
-
 });
 
 // COMENTAR --------
@@ -668,5 +662,15 @@ router.post("/curtirVideo",
     }
 )
 
+
+// DENUNCIAR 
+
+router.post("/denunciarUsuario",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+
+    }
+)
 
 module.exports = router;

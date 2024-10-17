@@ -84,7 +84,16 @@ const resenhaControl = {
                             usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
                         }))
 
-                        const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) : false
+                        const isCurtido = async () => {
+                            if (req.session.autenticado && req.session.autenticado.id != null) {
+                                const result = await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id)
+                                if(result.length > 0 ){
+                                    return true
+                                }else{
+                                    return false
+                                }
+                            } else { return false }
+                        }
                         const curtidas = await resenhaModel.verificarCurtidasDaResenha(idResenha)
                         const token = null
                         const jsonResult = {
@@ -103,7 +112,7 @@ const resenhaControl = {
                         }
 
                         res.render("./pages/template-home", jsonResult)
-                    } else {    
+                    } else {
                         res.status(404).render("pages/error-404.ejs");
                     }
                 } else {

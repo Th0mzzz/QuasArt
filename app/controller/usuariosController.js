@@ -267,11 +267,11 @@ const usuariosController = {
                 }
             }
             let postagens = contagemResenhas['count(*)'] + contagemFichas['count(*)'] + contagemVideos['count(*)']
-
+            let curtidas = await usuariosModel.contarCurtidasUsuario(user[0].ID_USUARIO) > 0 ? await usuariosModel.contarCurtidasUsuario(user[0].ID_USUARIO) : 0
             const estatisticas = {
                 postagens: postagens,
                 seguidores: 0,
-                curtidas: 0,
+                curtidas: curtidas,
             }
 
             const posts = {

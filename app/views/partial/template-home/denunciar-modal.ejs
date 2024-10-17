@@ -1,62 +1,54 @@
-<section class="denunciar__modal modal" id="denunciarModal">
-    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
-    <section class="modal__content">
-        <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar conteúdo</h3>
-
-        <form action="/denunciarConteudo?" method="post">
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio1">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio1">Conteúdo sexual</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio2">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio2">Conteúdo violento ou repulsivo</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio3">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio3">Conteúdo de incitação ao ódio ou abusivo</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio4">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio4">Assédio ou bullying</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio5">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio5">Atos perigosos ou nocivos</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio6">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio6">Desinformação</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio7">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio7">Abuso infantil</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio8">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio8">Promove terrorismo</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio9">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio9">Spam ou enganoso</label>
-            </article>
-            <article class="input__radio">
-                <input type="radio" name="denunciaRadio" id="denunciaRadio10">
-                <span class="radio-btn"></span>
-                <label class="link" for="denunciaRadio10">Problema jurídico</label>
-            </article>
-            <button type="submit" class="btn mt-2">Denunciar</button>
-        </form>
-    </section>
-</section>
-
-<script src="./js/abrirModal.js"></script>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio1">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio1">Conteúdo sexual</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio2">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio2">Conteúdo violento ou repulsivo</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio3">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio3">Conteúdo de incitação ao ódio ou abusivo</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio4">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio4">Assédio ou bullying</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio5">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio5">Atos perigosos ou nocivos</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio6">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio6">Desinformação</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio7">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio7">Abuso infantil</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio8">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio8">Promove terrorismo</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio9">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio9">Spam ou enganoso</label>
+</article>
+<article class="input__radio">
+    <input required type="radio" name="denunciaRadio" id="denunciaRadio10">
+    <span class="radio-btn"></span>
+    <label class="link" for="denunciaRadio10">Problema jurídico</label>
+</article>
+<article class="input__container">
+    <textarea name="descricaoDenuncia" id="descricaoDenuncia" class="input__control" placeholder="" maxlength="300"></textarea>
+    <label class="link" for="descricaoDenuncia">Descreva o motivo da denúncia (opcional)</label>
+</article>

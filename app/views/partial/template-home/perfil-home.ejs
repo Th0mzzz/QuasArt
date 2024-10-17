@@ -6,7 +6,10 @@
         <% if(isUser) {%>
             <a href="/sair" class="btn exit-btn" title="Sair"><i class="bi bi-box-arrow-left"></i></a>
             <% } %>
-
+            <% if(!isUser) {%>
+                <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
+                    class="bi bi-exclamation-triangle"></i> Denunciar</button>
+            <% } %>
                 <article class="foto__perfil">
                     <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
                         alt="foto de perfil do usuário">
@@ -34,7 +37,7 @@
                                     </article>
                                     <article class="item">
                                         <p class="link">Curtidas</p>
-                                        <h3 class="subtitle">1K</h3>
+                                        <h3 class="subtitle"><%= estatisticas.postagens %></h3>
                                     </article>
                                 </section>
                 </article>
@@ -127,7 +130,7 @@
                         </article>
 
                         <% })
-                    }else{ %> 
+                             }else{ %> 
                         <h4 class="text" style="color: var(--cor-texto); margin: auto;">Este usuário não postou nenhum vídeo.</h4>
              
                         <% } %>
@@ -137,6 +140,21 @@
         </section>
     </section>
 </section>
+
+<section class="denunciar__modal modal" id="denunciarModal">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar Usuário</h3>
+
+        <form action="/denunciarUsuario?idUser=<%= usuario.ID_USUARIO%>" method="post">
+            <%- include("./denunciar-modal") %>
+            <button type="submit" class="btn mt-2">Denunciar</button>
+        </form>
+    </section>
+</section>
+
+<script src="./js/abrirModal.js"></script>
 <script src="./js/toggleSection.js"></script>
 <script src="./js/carousel.js"></script>
+
 
