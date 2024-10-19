@@ -289,6 +289,11 @@ const usuariosController = {
                     }
                 })
             }
+            const token = null
+            if(req.session.token && req.session.token.contagem && req.session.token.contagem == 0){
+                token = req.session.token
+                req.session.token.contagem = req.session.token.contagem + 1
+            }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
                 classePagina: isUser ? "perfil" : "",
@@ -297,7 +302,7 @@ const usuariosController = {
                 estatisticas: estatisticas,
                 posts: posts,
                 isUser: isUser,
-                token: null
+                token: token
             }
             res.render("./pages/template-home", jsonResult)
         } catch (errors) {

@@ -11,7 +11,7 @@
 
 <body>
     <% if(token) {%>
-    <h4 class="token-alert link">
+    <h4 class="token-alert link <%= token.type ? token.type : '' %>">
         <%= token.msg %>
         <span class="negrito-amarelo">
             <%= token.usuario %>!

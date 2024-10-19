@@ -669,6 +669,26 @@ router.post("/denunciarUsuario",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async function (req, res) {
+        const idUser = req.query.idUser
+        if (!idUser) {
+            console.log("Erro ao encontrar o usuário")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        try {
+            const { denunciaRadio, descricaoDenuncia } = req.body
+            const denuncia = {
+                ID_DENUNCIADO: idUser,
+                DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
+                TIPO_DENUNCIA: denunciaRadio,
+            }
+            await usuariosModel.denunciarUser(denuncia)
+            req.session.token = { msg: 'Usuário denunciado com sucesso!', type: 'success', contagem: 0 }
+            res.redirect(`/profile?idUser=${idUser}`)
+
+        } catch (error) {
+            req.session.token = { msg: 'Erro ao denunciar usuário!', type: 'danger', contagem: 0 }
+            res.redirect(`/profile?idUser=${idUser}`)
+        }
 
     }
 )

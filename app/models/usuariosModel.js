@@ -80,7 +80,7 @@ const usuariosModel = {
     },
     findUsersByIds: async (ids) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO IN (?) AND STATUS_USUARIO = 'ativo'", [ids]);
+            const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO IN (?) ", [ids]);
             return resultados;
         } catch (error) {
             console.error("Erro ao buscar usuários", error);
@@ -144,8 +144,17 @@ const usuariosModel = {
             console.log("Erro ao buscar curtidas do usuário", error);
             return error;
         }
-    }
-
+    },
+    denunciarUser: async (denuncia) => {
+        try {
+            const [resultados] = await pool.query("insert into DENUNCIAS_USUARIOS set ?", [denuncia])
+            return resultados
+        } catch (error) {
+            console.log('Erro ao denunciar usuário')
+            console.log(error)
+            throw error
+        }
+    },
 }
 
 module.exports = usuariosModel;

@@ -7,7 +7,7 @@
             <a href="/sair" class="btn exit-btn" title="Sair"><i class="bi bi-box-arrow-left"></i></a>
             <% } %>
             <% if(!isUser) {%>
-                <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
+                <button class="denunciar-btn link" data-openmodal="#denunciarModal"><i
                     class="bi bi-exclamation-triangle"></i> Denunciar</button>
             <% } %>
                 <article class="foto__perfil">
@@ -19,6 +19,7 @@
                     <%= usuario.NICKNAME_USUARIO %>
                 </h3>
                 <article class="row-items">
+                    
                     <% if(isUser) {%>
                         <a href="/edit-profile" class="btn mt-2 link">Editar</a>
                         <% } else { %>

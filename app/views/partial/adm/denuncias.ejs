@@ -14,8 +14,9 @@
                     <th>ID denúncia</th>
                     <th>Tipo da denúncia</th>
                     <th>Descrição da denúncia</th>
-                    <th>ID do denunciado</th>
-                    <th>Usuário denunciado</th>
+                    <th>ID</th>
+                    <th>Usuário</th>
+                    <th>Email</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                             <td><%= denuncia.DESCRICAO_DENUNCIA %></td>
                             <td><%= denuncia.usuario.ID_USUARIO %></td>
                             <td><%= denuncia.usuario.NICKNAME_USUARIO %></td>
+                            <td><%= denuncia.usuario.EMAIL_USUARIO %></td>
                             <td>
                                 <article class="btns-table">
                                     <% if(denuncia.usuario.STATUS_USUARIO == 'ativo'){ %>
@@ -44,7 +46,7 @@
                                             <i class="bi bi-eye"></i>
                                         </a>
                                         <form action="/concluirDenunciaUsuario?idDenuncia=<%= denuncia.ID_DENUNCIA %>" method="post">
-                                            <button class="btn-icon ativar" title="Ativar usuário"><i class="bi bi-check-circle"></i></button>
+                                            <button class="btn-icon ativar" title="Concluir denúncia"><i class="bi bi-check-circle"></i></button>
                                         </form>
                                 </article>
                                 

@@ -75,10 +75,9 @@ routerAdm.get("/adm-denuncias",
             const mapUsuariosDenunciados = Object.fromEntries(usuariosDenunciados.map(usuario => [usuario.ID_USUARIO, usuario]));
             // const mapUsuariosDeResenhasDenunciados = Object.fromEntries(denun.map(usuario => [usuario.ID_USUARIO, usuario]));
 
-
             const denuncias = {
                 usuarios: denunUsu.length > 0
-                    ? denunUsu.map(usu => ({ ...usu, denunciado: mapUsuariosDenunciados[usu.ID_USUARIO] }))
+                    ? denunUsu.map(usu => ({ ...usu, usuario: mapUsuariosDenunciados[usu.ID_DENUNCIADO] }))
                     : null,
                 resenhas: denunRes.length > 0
                     ? denunRes
