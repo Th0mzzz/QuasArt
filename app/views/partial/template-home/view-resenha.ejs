@@ -11,16 +11,18 @@
                 </a>
                 <button class="btn">Seguir</button>
                 <form action="/curtirResenha?idResenha=<%= resenha.ID_RESENHAS %>" class="estatistica" method="post">
-                    <% if(isCurtido) {%> 
-                    <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
-                        <i class="bi bi-heart-fill"></i>
-                    </button>
-                    <%} else {%>
-                        <button class="btn secundaria" data-curtirBtn title="Curtir">
-                            <i class="bi bi-heart"></i>
+                    <% if(isCurtido) {%>
+                        <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
+                            <i class="bi bi-heart-fill"></i>
                         </button>
-                    <%}%>
-                    <p class="text mt-1"><%= resenha.curtidas %></p>
+                        <%} else {%>
+                            <button class="btn secundaria" data-curtirBtn title="Curtir">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                            <%}%>
+                                <p class="text mt-1">
+                                    <%= resenha.curtidas %>
+                                </p>
                 </form>
             </section>
         </header>
@@ -105,26 +107,37 @@
     </section>
     <% } %>
 
-        <%- include("denunciar-modal") %>
-            <script src="./js/input.js"></script>
-            <script src="./js/curtirBtn.js"></script>
+        <section class="denunciar__modal modal" id="denunciarModal">
+            <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+            <section class="modal__content">
+                <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar resenha</h3>
 
-            <script>
-                function ajustarProporcao(elemento, proporcao) {
+                <form action="/denunciarResenha?idResenha=<%= resenha.ID_RESENHAS%>" method="post">
+                    <%- include("./denunciar-modal") %>
+                        <button type="submit" class="btn mt-2">Denunciar</button>
+                </form>
+            </section>
+        </section>
+        <script src="./js/abrirModal.js"></script>
+        <script src="./js/input.js"></script>
+        <script src="./js/curtirBtn.js"></script>
 
-                    const largura = elemento.offsetWidth;
-                    const altura = largura / proporcao;
-                    elemento.style.height = `${altura}px`;
-                }
+        <script>
+            function ajustarProporcao(elemento, proporcao) {
+
+                const largura = elemento.offsetWidth;
+                const altura = largura / proporcao;
+                elemento.style.height = `${altura}px`;
+            }
 
 
-                const inputProp = document.querySelector('.resenha__capa');
+            const inputProp = document.querySelector('.resenha__capa');
 
 
-                const proporcao = 3 / 1;
+            const proporcao = 3 / 1;
 
 
-                ajustarProporcao(inputProp, proporcao);
+            ajustarProporcao(inputProp, proporcao);
 
-                window.addEventListener('resize', () => ajustarProporcao(inputProp, proporcao));
-            </script>
+            window.addEventListener('resize', () => ajustarProporcao(inputProp, proporcao));
+        </script>

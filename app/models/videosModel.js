@@ -118,6 +118,15 @@ const videosModel = {
             throw error;
         }
     },
+    findVideosByIds: async (ids) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS IN (?) ", [ids]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = videosModel;

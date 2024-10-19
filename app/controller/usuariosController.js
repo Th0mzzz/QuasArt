@@ -252,7 +252,6 @@ const usuariosController = {
             } else if (req.session.autenticado && req.session.autenticado.autenticado) {
                 var user = await usuariosModel.findUserById(req.session.autenticado.id)
             }
-
             const resenhasUser = await resenhaModel.buscarPorIdDeUser(user[0].ID_USUARIO)
             const videosUser = await videosModel.buscarPorIdUser(user[0].ID_USUARIO)
             const fichasUser = await fichasModel.findFichasByIdUser(user[0].ID_USUARIO)

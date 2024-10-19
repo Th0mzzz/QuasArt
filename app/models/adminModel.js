@@ -53,6 +53,15 @@ const adminModel = {
             throw error
         }
     },
+    findAllPosts: async (table) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM ?? LIMIT 1000", [table]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar posts", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = adminModel;

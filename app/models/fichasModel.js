@@ -167,6 +167,15 @@ const fichasModel = {
             throw error;
         }
     },
+    findFichasByIds: async (ids) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE ID_OBRA IN (?) ", [ids]);
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
     
 }
 

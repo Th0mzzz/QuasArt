@@ -87,15 +87,20 @@ const resenhaControl = {
                         const isCurtido = async () => {
                             if (req.session.autenticado && req.session.autenticado.id != null) {
                                 const result = await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id)
-                                if(result.length > 0 ){
+                                if (result.length > 0) {
                                     return true
-                                }else{
+                                } else {
                                     return false
                                 }
                             } else { return false }
                         }
                         const curtidas = await resenhaModel.verificarCurtidasDaResenha(idResenha)
-                        const token = null
+                        let token = req.session.token ? req.session.token : null;
+                        if (token && token.contagem < 1) {
+                            req.session.token.contagem++;
+                        } else {
+                            req.session.token = null;
+                        }
                         const jsonResult = {
                             page: "../partial/template-home/view-resenha",
                             classePagina: "",

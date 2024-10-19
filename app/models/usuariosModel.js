@@ -144,7 +144,7 @@ const usuariosModel = {
             console.log("Erro ao buscar curtidas do usuário", error);
             return error;
         }
-    },
+    }
 }
 
 module.exports = usuariosModel;

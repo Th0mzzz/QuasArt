@@ -694,5 +694,33 @@ router.post("/denunciarUsuario",
 
     }
 )
+router.post("/denunciarResenha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idResenha = req.query.idResenha
+        if (!idResenha) {
+            console.log("Erro ao encontrar a resenha")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        try {
+            const { denunciaRadio, descricaoDenuncia } = req.body
+            const denuncia = {
+                RESENHAS_ID_RESENHAS: idResenha,
+                DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
+                TIPO_DENUNCIA: denunciaRadio,
+            }
+            await adminModel.denunciar(denuncia, 'DENUNCIAS_RESENHAS')
+            req.session.token = { msg: 'resenha denunciada com sucesso!', type: 'success', contagem: 0 }
+            res.redirect(`/view-resenha?idResenha=${idResenha}`)
+
+        } catch (error) {
+            console.log(error)
+            req.session.token = { msg: 'Erro ao denunciar resenha!', type: 'danger', contagem: 0 }
+            res.redirect(`/view-resenha?idResenha=${idResenha}`)
+        }
+
+    }
+)
 
 module.exports = router;

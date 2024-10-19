@@ -1,0 +1,163 @@
+<section class="denun-tables__btns mt-3">
+    <button class="link btn ativo" data-btnSection="reseTable">Resenhas</button>
+    <button class="link btn" data-btnSection="fichaTable">Fichas</button>
+    <button class="link btn" data-btnSection="vidTable">Videos</button>
+</section>
+<section class="tables__denuncias">
+
+    <section data-section="reseTable" class="admTable__container denuncia-table ativo">
+        <table id="denunciaResenhaTable" class="display">
+            <caption>Resenhas</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Status</th>
+                    <th>ID do Usuario</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(posts && posts.resenhas) {
+                     posts.resenhas.forEach(resenha=> {%>
+                    <tr>
+                        <td><%= resenha.ID_RESENHAS %></td>
+                        <td><%= resenha.TITULO_RESENHA %></td>
+                        <td><span class="span-status <%= resenha.STATUS_RESENHA == 'ativo' ? 'ativo' : 'inativo' %>"><%= resenha.STATUS_RESENHA %></span></td>
+                        <td><%= resenha.usuario.ID_USUARIO %></td>
+                        <td><%= resenha.usuario.NICKNAME_USUARIO %></td>
+                        <td>
+                            <article class="btns-table">
+
+                                <% if(resenha.STATUS_RESENHA=='ativo' ){ %>
+                                    <form action="/inativarResenha?idPost=<%=resenha.ID_RESENHAS%>" method="post">
+                                        <button class="btn-icon inativar" title="Inativar resenha"><i
+                                                class="bi bi-ban"></i></button>
+                                    </form>
+                                    <% }else { %>
+                                        <form action="/ativarResenha?idPost=<%=resenha.ID_RESENHAS%>" method="post">
+                                            <button class="btn-icon ativar" title="Ativar resenha"><i
+                                                    class="bi bi-check-circle"></i></button>
+                                        </form>
+                                        <% } %>
+
+                                            <a href="/view-resenha?idResenha=<%= resenha.ID_RESENHAS %>"
+                                                class="btn-icon" title="Ver resenha">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+
+
+                            </article>
+                        </td>
+                    </tr>
+                    <% }) } %>
+            </tbody>
+        </table>
+    </section>
+    <section data-section="fichaTable" class="admTable__container denuncia-table">
+        <table id="denunciaFichaTable" class="display">
+            <caption>Fichas</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Status</th>
+                    <th>ID do Usuario</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(posts && posts.fichas) {
+                     posts.fichas.forEach(ficha=> {%>
+                    <tr>
+                        <td><%= ficha.ID_OBRA %></td>
+                        <td><%= ficha.NOME_OBRA %></td>
+                        <td><span class="span-status <%= ficha.STATUS_FICHA == 'ativo' ? 'ativo' : 'inativo' %>"><%= ficha.STATUS_FICHA %></span></td>
+                        <td><%= ficha.usuario.ID_USUARIO %></td>
+                        <td><%= ficha.usuario.NICKNAME_USUARIO %></td>
+                        <td>
+                            <article class="btns-table">
+                                    <% if(ficha.STATUS_FICHA =='ativo' ){ %>
+                                        <form action="/inativarFicha?idPost=<%=ficha.ID_OBRA%>" method="post">
+                                            <button class="btn-icon inativar" title="Inativar ficha"><i
+                                                class="bi bi-ban"></i></button>
+                                        </form>
+                                    <% }else { %>
+                                        <form action="/ativarFicha?idPost=<%=ficha.ID_OBRA%>" method="post">
+                                            <button class="btn-icon ativar" title="Ativar ficha"><i
+                                                    class="bi bi-check-circle"></i></button>
+                                        </form>
+                                    <% } %>
+
+                                    <a href="/view-ficha?idFicha=<%= ficha.ID_OBRA %>"
+                                        class="btn-icon" title="Ver ficha">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+
+
+                            </article>
+                        </td>
+                    </tr>
+                    <% }) } %>
+            </tbody>
+        </table>
+    </section>
+    <section data-section="vidTable" class="admTable__container denuncia-table">
+        <table id="denunciaVideoTable" class="display">
+            <caption>Videos</caption>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Status</th>
+                    <th>ID do Usuario</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% if(posts && posts.videos) {
+                     posts.videos.forEach(video=> {%>
+                    <tr>
+                        <td><%= video.ID_VIDEOS %></td>
+                        <td><%= video.NOME_VIDEO %></td>
+                        <td><span class="span-status <%= video.STATUS_VIDEO == 'ativo' ? 'ativo' : 'inativo' %>"><%= video.STATUS_VIDEO %></span></td>
+                        <td><%= video.usuario.ID_USUARIO %></td>
+                        <td><%= video.usuario.NICKNAME_USUARIO %></td>
+                        <td>
+                            <article class="btns-table">
+                                    <% if(video.STATUS_VIDEO =='ativo' ){ %>
+                                        <form action="/inativarVideo?idPost=<%=video.ID_VIDEOS%>" method="post">
+                                            <button class="btn-icon inativar" title="Inativar video"><i
+                                                class="bi bi-ban"></i></button>
+                                        </form>
+                                    <% }else { %>
+                                        <form action="/ativarVideo?idPost=<%=video.ID_VIDEOS%>" method="post">
+                                            <button class="btn-icon ativar" title="Ativar video"><i
+                                                    class="bi bi-check-circle"></i></button>
+                                        </form>
+                                    <% } %>
+
+                                    <a href="/videos?idVideo=<%= video.ID_VIDEOS %>"
+                                        class="btn-icon" title="Ver video">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+
+
+                            </article>
+                        </td>
+                    </tr>
+                    <% }) } %>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+
+
+<script src="./js/toggleSection.js"></script>

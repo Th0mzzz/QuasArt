@@ -12,7 +12,7 @@ const resenhaModel = {
     },
     buscarPorId: async (idResenha) => {
         try {
-            const [resultado] = await pool.query("SELECT * FROM RESENHAS WHERE ID_RESENHAS = ?", [idResenha])
+            const [resultado] = await pool.query("SELECT * FROM RESENHAS WHERE ID_RESENHAS = ? AND STATUS_RESENHA = 'ativo'", [idResenha])
             return resultado[0]
         } catch (error) {
             console.log("erro no buscar ID")
@@ -22,7 +22,7 @@ const resenhaModel = {
     },
     buscarPorIdDeUser: async (idUser) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE USUARIOS_ID_USUARIO = ? ", [idUser])
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -32,7 +32,7 @@ const resenhaModel = {
     },
     contarResenhasPorId: async (idUser) => {
         try {
-            const [resultado] = await pool.query("SELECT count(*) FROM RESENHAS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            const [resultado] = await pool.query("SELECT count(*) FROM RESENHAS WHERE USUARIOS_ID_USUARIO = ? AND STATUS_RESENHA = 'ativo'", [idUser])
             return resultado[0]
         } catch (error) {
             console.log("erro no buscar ID")
@@ -42,7 +42,7 @@ const resenhaModel = {
     },
     findResenhasEmAlta: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM RESENHAS")
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE STATUS_RESENHA = 'ativo'")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -52,7 +52,7 @@ const resenhaModel = {
     },
     findResenhasRecentes: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM RESENHAS ORDER BY ID_RESENHAS DESC LIMIT 100")
+            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE STATUS_RESENHA = 'ativo' ORDER BY ID_RESENHAS DESC LIMIT 1000;")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -66,15 +66,17 @@ const resenhaModel = {
             return resultados;
         } catch (error) {
             console.log("Erro ao atualizar Resenha");
+            console.log(error);
             return error;
         }
     },
     acharPorTermo: async (termo) => {
         try {
-            const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? OR DESCR_RESENHA LIKE ? OR HASHTAG_RESENHA LIKE ? OR TEXTO_RESENHA LIKE ? ", [termo, termo, termo, termo]);
+            const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? OR DESCR_RESENHA LIKE ? OR HASHTAG_RESENHA LIKE ? OR TEXTO_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' ", [termo, termo, termo, termo]);
             return resultados;
         } catch (error) {
             console.log("Erro ao buscar resenhas");
+            console.log(error);
             return error;
         }
     },
