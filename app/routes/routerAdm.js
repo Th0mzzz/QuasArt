@@ -36,24 +36,27 @@ routerAdm.get("/adm-denuncias",
     middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
     async function (req, res) {
         try {
-            const denunUsu = await adminModel.findDenunciasUsuarios()
-            const denunRes = await adminModel.findDenunciasResenhas()
-            const denunVid = await adminModel.findDenunciasVideos()
-            const denunFic = await adminModel.findDenunciasFichas()
+            const denunUsu = await adminModel.findDenuncias('DENUNCIAS_USUARIOS')
+            const denunRes = await adminModel.findDenuncias('DENUNCIAS_RESENHAS')
+            const denunVid = await adminModel.findDenuncias('DENUNCIAS_VIDEOS')
+            const denunFic = await adminModel.findDenuncias('DENUNCIAS_FICHAS')
 
             const idsUsuarios = [];
-            const idsResenhas = [];
+            const idsResenhas = []
+            const idsUsuResenhas = []
             const idsVideos = [];
             const idsFichas = [];
 
+            //criar array dos ids dos usuarios das denuncias
             for (const u of [...denunUsu]) {
                 if (!idsUsuarios.includes(u.ID_DENUNCIADO)) {
                     idsUsuarios.push(u.ID_DENUNCIADO);
                 }
             }
+            //criar array dos ids das resenhas das denuncias
             for (const r of [...denunRes]) {
-                if (!idsResenhas.includes(r.USUARIOS_ID_USUARIO)) {
-                    idsResenhas.push(r.USUARIOS_ID_USUARIO);
+                if (!idsResenhas.includes(r.RESENHAS_ID_RESENHAS)) {
+                    idsResenhas.push(r.RESENHAS_ID_RESENHAS);
                 }
             }
             for (const v of [...denunVid]) {
@@ -89,9 +92,16 @@ routerAdm.get("/adm-denuncias",
                     ? denunFic
                     : null,
             }
+
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
             const jsonResult = {
                 page: "../partial/adm/denuncias",
-                token: null,
+                token: token,
                 classePagina: "denuncias",
                 denuncias: denuncias
             }
@@ -146,6 +156,61 @@ routerAdm.post("/ativarUser",
         const users = await adminModel.findAllUsers()
         res.render("pages/template-adm", { page: "../partial/adm/users", token: { msg: "Usuário ativado com sucesso", type: "success" }, classePagina: "users", usuarios: users })
     })
+
+routerAdm.post("/concluirDenunciaUsuario",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    async function (req, res) {
+        const idDenuncia = req.query.idDenuncia
+        if (!idDenuncia) {
+            req.session.token = { msg: 'Erro ao encontrar denúncia!', type: 'danger', contagem: 0 }
+
+            return res.redirect("/adm-denuncias")
+        }
+        try {
+            const isConcluida = await adminModel.verifyStatusDenuncia('DENUNCIAS_USUARIOS', idDenuncia)
+            if (isConcluida) {
+                req.session.token = { msg: 'Denúncia reativada!', type: 'success', contagem: 0 }
+                await adminModel.updateDenuncia('DENUNCIAS_USUARIOS', { STATUS_DENUNCIA: 'pendente' }, idDenuncia)
+            } else {
+                req.session.token = { msg: 'Denúncia concluida!', type: 'success', contagem: 0 }
+                await adminModel.updateDenuncia('DENUNCIAS_USUARIOS', { STATUS_DENUNCIA: 'concluida' }, idDenuncia)
+            }
+
+            res.redirect("/adm-denuncias")
+        } catch (error) {
+            req.session.token = { msg: 'Erro ao alterar denúncia!', type: 'danger', contagem: 0 }
+            res.redirect(`/adm-denuncias`)
+        }
+    })
+
+routerAdm.post("/concluirDenunciaResenha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    async function (req, res) {
+        const idDenuncia = req.query.idDenuncia
+        if (!idDenuncia) {
+            req.session.token = { msg: 'Erro ao encontrar denúncia!', type: 'danger', contagem: 0 }
+
+            return res.redirect("/adm-denuncias")
+        }
+        try {
+            const isConcluida = await adminModel.verifyStatusDenuncia('DENUNCIAS_USUARIOS', idDenuncia)
+            if (isConcluida) {
+                req.session.token = { msg: 'Denúncia reativada!', type: 'success', contagem: 0 }
+                await adminModel.updateDenuncia('DENUNCIAS_USUARIOS', { STATUS_DENUNCIA: 'pendente' }, idDenuncia)
+            } else {
+                req.session.token = { msg: 'Denúncia concluida!', type: 'success', contagem: 0 }
+                await adminModel.updateDenuncia('DENUNCIAS_USUARIOS', { STATUS_DENUNCIA: 'concluida' }, idDenuncia)
+            }
+
+            res.redirect("/adm-denuncias")
+        } catch (error) {
+            req.session.token = { msg: 'Erro ao alterar denúncia!', type: 'danger', contagem: 0 }
+            res.redirect(`/adm-denuncias`)
+        }
+    })
+
 
 
 module.exports = routerAdm;

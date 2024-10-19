@@ -218,7 +218,7 @@ const usuariosController = {
             try {
                 const userBd = await usuariosModel.findUserByNickname(usuario)
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
-                    if(userBd[0].ID_TIPO_USUARIO == 4){
+                    if (userBd[0].ID_TIPO_USUARIO == 4) {
                         console.log(`---------- Administrador ${userBd[0].NICKNAME_USUARIO} logou --------------`)
                         return res.redirect("/adm")
                     }
@@ -277,22 +277,24 @@ const usuariosController = {
             const posts = {
                 resenhas: resenhasUser.length == 0 ? null : resenhasUser,
                 videos: videosUser.length == 0 ? null : videosUser,
-                fichas: fichasUser.length == 0 
-                ? null 
-                : fichasUser.map(f => {
-                    const dataFicha = new Date(f.DATA_FICHA);
-                    const dataFormatada = dataFicha.toISOString().split('T')[0];
+                fichas: fichasUser.length == 0
+                    ? null
+                    : fichasUser.map(f => {
+                        const dataFicha = new Date(f.DATA_FICHA);
+                        const dataFormatada = dataFicha.toISOString().split('T')[0];
 
-                    return {
-                        ...f, 
-                        DATA_FICHA: dataFormatada
-                    }
-                })
+                        return {
+                            ...f,
+                            DATA_FICHA: dataFormatada
+                        }
+                    })
             }
-            const token = null
-            if(req.session.token && req.session.token.contagem && req.session.token.contagem == 0){
-                token = req.session.token
-                req.session.token.contagem = req.session.token.contagem + 1
+
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
             }
             const jsonResult = {
                 page: "../partial/template-home/perfil-home",
@@ -304,6 +306,7 @@ const usuariosController = {
                 isUser: isUser,
                 token: token
             }
+            
             res.render("./pages/template-home", jsonResult)
         } catch (errors) {
             console.log("erro ao tentar visualizar página", errors)
@@ -448,7 +451,7 @@ const usuariosController = {
                             autenticado: user[0].NOME_USUARIO,
                             id: user[0].ID_USUARIO,
                             foto: user[0].CAMINHO_FOTO,
-                            tipo:user[0].ID_TIPO_USUARIO
+                            tipo: user[0].ID_TIPO_USUARIO
                         }
                         const jsonResult = {
                             page: "../partial/edit-profile/dados-pessoais",
@@ -542,10 +545,6 @@ const usuariosController = {
 
         }
     },
-
-
-
-
 }
 
 

@@ -14,6 +14,7 @@
                     <th>ID denúncia</th>
                     <th>Tipo da denúncia</th>
                     <th>Descrição da denúncia</th>
+                    <th>Status da denúncia</th>
                     <th>ID</th>
                     <th>Usuário</th>
                     <th>Email</th>
@@ -28,26 +29,33 @@
                             <td><%= denuncia.ID_DENUNCIA %></td>
                             <td><%= denuncia.TIPO_DENUNCIA %></td>
                             <td><%= denuncia.DESCRICAO_DENUNCIA %></td>
+                            <td><span class="span-status <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'pendente' : 'concluida' %>"><%= denuncia.STATUS_DENUNCIA %></span></td>
                             <td><%= denuncia.usuario.ID_USUARIO %></td>
                             <td><%= denuncia.usuario.NICKNAME_USUARIO %></td>
                             <td><%= denuncia.usuario.EMAIL_USUARIO %></td>
                             <td>
                                 <article class="btns-table">
-                                    <% if(denuncia.usuario.STATUS_USUARIO == 'ativo'){ %>
-                                        <form action="/inativarUser?idUser=<%= denuncia.usuario.ID_USUARIO %>" method="post">
+                                    <% if(denuncia.STATUS_DENUNCIA != 'concluida'){ %>
+                                        <% if(denuncia.usuario.STATUS_USUARIO == 'ativo'){ %>
+                                            <form action="/inativarUser?idUser=<%= denuncia.usuario.ID_USUARIO %>" method="post">
                                             <button class="btn-icon inativar" title="Inativar usuário"><i class="bi bi-ban"></i></button>
-                                        </form>
+                                            </form>
                                         <% }else { %>
                                             <form action="/ativarUser?idUser=<%= denuncia.usuario.ID_USUARIO %>" method="post">
                                                 <button class="btn-icon ativar" title="Ativar usuário"><i class="bi bi-check-circle"></i></button>
                                             </form>
                                         <% } %>
+                                    <% } %>
                                         <a href="/profile?idUser=<%= denuncia.usuario.ID_USUARIO %>" class="btn-icon" title="Ver usuário">
                                             <i class="bi bi-eye"></i>
                                         </a>
+                                        
                                         <form action="/concluirDenunciaUsuario?idDenuncia=<%= denuncia.ID_DENUNCIA %>" method="post">
-                                            <button class="btn-icon ativar" title="Concluir denúncia"><i class="bi bi-check-circle"></i></button>
+                                            <button class="btn-icon <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'ativar' : 'inativar' %>" title="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'Concluir denúncia' : 'Reativar denúncia' %>">
+                                                <i class="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'bi bi-clipboard-check' : 'bi bi-arrow-return-left' %>"></i>
+                                            </button>
                                         </form>
+                                        
                                 </article>
                                 
                             </td>

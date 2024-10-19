@@ -16,6 +16,7 @@ const resenhaModel = require("../models/resenhasModel");
 const fichasModel = require("../models/fichasModel");
 const usuariosModel = require("../models/usuariosModel");
 const videosModel = require("../models/videosModel");
+const adminModel = require("../models/adminModel");
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -681,11 +682,12 @@ router.post("/denunciarUsuario",
                 DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
                 TIPO_DENUNCIA: denunciaRadio,
             }
-            await usuariosModel.denunciarUser(denuncia)
+            await adminModel.denunciar(denuncia, 'DENUNCIAS_USUARIOS')
             req.session.token = { msg: 'Usuário denunciado com sucesso!', type: 'success', contagem: 0 }
             res.redirect(`/profile?idUser=${idUser}`)
 
         } catch (error) {
+            console.log(error)
             req.session.token = { msg: 'Erro ao denunciar usuário!', type: 'danger', contagem: 0 }
             res.redirect(`/profile?idUser=${idUser}`)
         }

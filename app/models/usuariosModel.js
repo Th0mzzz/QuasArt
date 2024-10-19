@@ -145,16 +145,6 @@ const usuariosModel = {
             return error;
         }
     },
-    denunciarUser: async (denuncia) => {
-        try {
-            const [resultados] = await pool.query("insert into DENUNCIAS_USUARIOS set ?", [denuncia])
-            return resultados
-        } catch (error) {
-            console.log('Erro ao denunciar usuário')
-            console.log(error)
-            throw error
-        }
-    },
 }
 
 module.exports = usuariosModel;
