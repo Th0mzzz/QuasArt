@@ -271,9 +271,9 @@ const videoControl = {
                 } else {
                     req.session.token = null;
                 }
-                res.status(404).render("pages/template-home", {
+                res.status(500).render("pages/template-home", {
                     foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
+                    page: "../partial/error-500",
                     classePagina: "",
                     token: token,
                 });

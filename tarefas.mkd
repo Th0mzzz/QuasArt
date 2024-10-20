@@ -1,8 +1,4 @@
 ### FRONT-END
-* Páginas erro
-    - ERRO 404
-    - ERRO 500
-    - Sem permissão
 * Pagina admin 
     - dashboard com gráficos e estatisticas
     - assinaturas
@@ -10,11 +6,11 @@
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
-- Sistema de seguir perfis;
 - Funcionar os benefícios das assinaturas
 - Gestão das assinaturas
 - Verificação de e-mail
 - Alteração de senha(necessário mandar token para email )
+- Sistema de seguir perfis;
 - Ao inativar usuário, inativar seus posts;
   
 ### Banco de dados

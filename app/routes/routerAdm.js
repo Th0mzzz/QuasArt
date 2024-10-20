@@ -13,19 +13,25 @@ const fichasModel = require("../models/fichasModel");
 // UTIL --------------- 
 
 // Página de falha de autenticação ---------
+
+
 const destinoDeFalha = {
+    foto: "perfil-padrao.webp",
+    page: "../partial/sem-permissao",
+    classePagina: "",
+    token: null,
 }
 
 routerAdm.get("/adm",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     function (req, res) {
         res.render("pages/template-adm", { page: "../partial/adm/index", token: null, classePagina: "index" })
     })
 
 routerAdm.get("/adm-users",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const users = await adminModel.findAllUsers()
         res.render("pages/template-adm", { page: "../partial/adm/users", token: null, classePagina: "users", usuarios: users })
@@ -33,7 +39,7 @@ routerAdm.get("/adm-users",
 
 routerAdm.get("/adm-denuncias",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         try {
             const denunUsu = await adminModel.findDenuncias('DENUNCIAS_USUARIOS')
@@ -169,7 +175,7 @@ routerAdm.get("/adm-denuncias",
 
 routerAdm.get("/adm-posts",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const resenhas = await adminModel.findAllPosts("RESENHAS")
         const fichas = await adminModel.findAllPosts("FICHAS")
@@ -233,7 +239,7 @@ routerAdm.get("/adm-posts",
 
 routerAdm.get("/adm-assinaturas",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
 
         const jsonResult = {
@@ -247,7 +253,7 @@ routerAdm.get("/adm-assinaturas",
 // POST ---------------------------
 routerAdm.post("/inativarUser",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idUser = req.query.idUser
         if (!idUser) {
@@ -260,7 +266,7 @@ routerAdm.post("/inativarUser",
     })
 routerAdm.post("/ativarUser",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idUser = req.query.idUser
         if (!idUser) {
@@ -273,7 +279,7 @@ routerAdm.post("/ativarUser",
     })
 routerAdm.post("/inativarResenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -287,7 +293,7 @@ routerAdm.post("/inativarResenha",
     })
 routerAdm.post("/ativarResenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -301,7 +307,7 @@ routerAdm.post("/ativarResenha",
     })
 routerAdm.post("/inativarFicha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -315,7 +321,7 @@ routerAdm.post("/inativarFicha",
     })
 routerAdm.post("/ativarFicha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -329,7 +335,7 @@ routerAdm.post("/ativarFicha",
     })
 routerAdm.post("/inativarVideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -343,7 +349,7 @@ routerAdm.post("/inativarVideo",
     })
 routerAdm.post("/ativarVideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idPost = req.query.idPost
         if (!idPost) {
@@ -357,7 +363,7 @@ routerAdm.post("/ativarVideo",
     })
 routerAdm.post("/concluirDenunciaUsuario",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idDenuncia = req.query.idDenuncia
         if (!idDenuncia) {
@@ -383,7 +389,7 @@ routerAdm.post("/concluirDenunciaUsuario",
     })
 routerAdm.post("/concluirDenunciaResenha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idDenuncia = req.query.idDenuncia
         if (!idDenuncia) {
@@ -409,7 +415,7 @@ routerAdm.post("/concluirDenunciaResenha",
     })
 routerAdm.post("/concluirDenunciaFicha",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idDenuncia = req.query.idDenuncia
         if (!idDenuncia) {
@@ -435,7 +441,7 @@ routerAdm.post("/concluirDenunciaFicha",
     })
 routerAdm.post("/concluirDenunciaVideo",
     middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/sem-permissao", destinoDeFalha, [4]),
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         const idDenuncia = req.query.idDenuncia
         if (!idDenuncia) {

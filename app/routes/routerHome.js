@@ -639,7 +639,18 @@ router.post("/fazerPesquisa", async function (req, res) {
 
     } catch (error) {
         console.log(error)
-        res.status(500).render("pages/error-500.ejs");
+        let token = req.session.token ? req.session.token : null;
+        if (token && token.contagem < 1) {
+            req.session.token.contagem++;
+        } else {
+            req.session.token = null;
+        }
+        res.status(500).render("pages/template-home", {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/error-500",
+            classePagina: "",
+            token: token,
+        });
     }
 });
 
@@ -808,7 +819,7 @@ router.post("/denunciarResenha",
         const idResenha = req.query.idResenha
         if (!idResenha) {
             console.log("Erro ao encontrar a resenha")
-             let token = req.session.token ? req.session.token : null;
+            let token = req.session.token ? req.session.token : null;
             if (token && token.contagem < 1) {
                 req.session.token.contagem++;
             } else {
@@ -848,7 +859,7 @@ router.post("/denunciarFicha",
         const idFicha = req.query.idFicha
         if (!idFicha) {
             console.log("Erro ao encontrar a ficha")
-             let token = req.session.token ? req.session.token : null;
+            let token = req.session.token ? req.session.token : null;
             if (token && token.contagem < 1) {
                 req.session.token.contagem++;
             } else {

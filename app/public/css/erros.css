@@ -5,8 +5,8 @@
 
     & .error-title {
         text-align: center;
-        padding: 8rem 5rem;
-        border-radius: 40%;
+        padding: clamp(3rem, 20vw, 8rem) clamp(3rem, 20vw, 5rem);
+        border-radius: 43%;
         position: relative;
         background: var(--cor-secundaria);
         width: fit-content;

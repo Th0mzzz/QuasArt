@@ -78,7 +78,7 @@ const videosModel = {
     },
     verificarCurtida: async (idVideo, idUsuario) => {
         try {
-            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ? AND STATUS_VIDEO = 'ativo'", [idVideo, idUsuario])
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ? ", [idVideo, idUsuario])
             if (resultados[0].total > 0) {
                 return true
             } else {
