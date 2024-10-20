@@ -63,7 +63,18 @@ const videoControl = {
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
                 }
-                res.render("pages/error-500")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
 
@@ -89,7 +100,18 @@ const videoControl = {
 
             let idVideo = req.query.idVideo
             if (!idVideo) {
-                res.status(404).render("pages/error-404.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             } else {
                 let video = await videosModel.buscarPorId(idVideo)
 
@@ -124,7 +146,18 @@ const videoControl = {
 
                 if (!video || !idVideo) {
                     console.log("video nao encontrado")
-                    return res.status(404).render("pages/error-404");
+                    let token = req.session.token ? req.session.token : null;
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+                    return res.status(404).render("pages/template-home", {
+                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                        page: "../partial/error-404",
+                        classePagina: "",
+                        token: token,
+                    });
                 }
                 const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
                 const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
@@ -154,7 +187,18 @@ const videoControl = {
                         }
                     }
                 }
-                res.render("pages/error-500")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
 
@@ -207,24 +251,67 @@ const videoControl = {
 
                     res.render("./pages/videos-home", jsonResult)
                 } else {
-                    res.status(404).render("pages/error-404.ejs");
+                    let token = req.session.token ? req.session.token : null;
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+                    res.status(404).render("pages/template-home", {
+                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                        page: "../partial/error-404",
+                        classePagina: "",
+                        token: token,
+                    });
                 }
             } else {
-                res.status(404).render("pages/error-404.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
         } catch (error) {
             console.log(error)
-            res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
         }
 
     },
-
     avaliarVideo: async (req, res) => {
         try {
             const idVideo = req.query.idVideo
             if (!idVideo) {
-                return res.status(404).render("pages/error-404")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                return res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             }
             const { comentario } = req.body
             const dadosAvaliacao = {
@@ -235,7 +322,18 @@ const videoControl = {
             await videosModel.comentarVideo(dadosAvaliacao)
             res.redirect(`/videos?idVideo=${idVideo}`)
         } catch (error) {
-
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
         }
     }
 

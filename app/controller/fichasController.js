@@ -92,7 +92,18 @@ const fichasControl = {
                         }
                     }
                 }
-                res.render("pages/error-500")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
 
@@ -141,7 +152,18 @@ const fichasControl = {
                 const ficha = await fichasModel.findFichaByIdObra(idFicha);
 
                 if (!ficha) {
-                    return res.status(404).render("pages/error-404");
+                    let token = req.session.token ? req.session.token : null;
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+                    res.status(500).render("pages/template-home", {
+                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                        page: "../partial/error-500",
+                        classePagina: "",
+                        token: token,
+                    });
                 }
                 const capaFicha = req.files['capaFicha'] ? req.files['capaFicha'][0].filename : ficha.CAMINHO_CAPA;
                 const previas = req.files['previas'] ? req.files['previas'].map(previa => previa.filename) : null;
@@ -185,7 +207,18 @@ const fichasControl = {
                         }
                     }
                 }
-                res.render("pages/error-500")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
 
@@ -194,7 +227,18 @@ const fichasControl = {
     mostrarFicha: async (req, res) => {
         const idFicha = req.query.idFicha
         if (!idFicha) {
-            res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         } else {
             try {
                 const ficha = await fichasModel.findFichaByIdObra(idFicha)
@@ -241,15 +285,48 @@ const fichasControl = {
 
                         res.render("./pages/template-home", jsonResult)
                     } else {
-                        res.status(404).render("pages/error-404.ejs");
+                        let token = req.session.token ? req.session.token : null;
+                        if (token && token.contagem < 1) {
+                            req.session.token.contagem++;
+                        } else {
+                            req.session.token = null;
+                        }
+                        res.status(404).render("pages/template-home", {
+                            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                            page: "../partial/error-404",
+                            classePagina: "",
+                            token: token,
+                        });
                     }
                 } else {
-                    res.status(404).render("pages/error-404.ejs");
+                    let token = req.session.token ? req.session.token : null;
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+                    res.status(404).render("pages/template-home", {
+                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                        page: "../partial/error-404",
+                        classePagina: "",
+                        token: token,
+                    });
                 }
 
             } catch (error) {
                 console.log(error)
-                res.status(404).render("pages/error-404.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
         }
@@ -260,7 +337,18 @@ const fichasControl = {
         try {
             const idFicha = req.query.idFicha
             if (!idFicha) {
-                return res.status(404).render("pages/error-404")
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             }
             const { textComment, avaliacao } = req.body
             const dadosAvaliacao = {
