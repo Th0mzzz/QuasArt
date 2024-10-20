@@ -10,7 +10,7 @@ const videosModel = {
     },
     contarVideosPorId: async (idUser) => {
         try {
-            const [resultado] = await pool.query("SELECT count(*) FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            const [resultado] = await pool.query("SELECT count(*) FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ? AND STATUS_VIDEO = 'ativo'", [idUser])
             return resultado[0]
         } catch (error) {
             console.log("erro no buscar ID")
@@ -20,7 +20,7 @@ const videosModel = {
     },
     buscarPorId: async (idVideo) => {
         try {
-            const [resultado] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS = ?", [idVideo])
+            const [resultado] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS = ? AND STATUS_VIDEO = 'ativo'", [idVideo])
             return resultado[0]
         } catch (error) {
             console.log("erro no buscar ID")
@@ -30,7 +30,7 @@ const videosModel = {
     },
     buscarPorIdUser: async (idUser) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ? AND STATUS_VIDEO = 'ativo'", [idUser])
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -40,7 +40,7 @@ const videosModel = {
     },
     updateVideo: async (dadosAtualizados, idVideo) => {
         try {
-        const [resultados] = await pool.query("UPDATE VIDEOS SET ? WHERE ID_VIDEOS = ?", [dadosAtualizados, idVideo])
+        const [resultados] = await pool.query("UPDATE VIDEOS SET ? WHERE ID_VIDEOS = ? ", [dadosAtualizados, idVideo])
         return resultados
         } catch (error) {
             console.log("ERRO ao atualizar o VIDEO")
@@ -50,7 +50,7 @@ const videosModel = {
     },
     acharPorTermo:async (termo)=>{
         try {
-            const [resultados] = await pool.query("select * from VIDEOS where NOME_VIDEO LIKE ? OR HASHTAG_VIDEO LIKE ? OR DESCR_VIDEO LIKE ?", [termo, termo, termo]);
+            const [resultados] = await pool.query("select * from VIDEOS where NOME_VIDEO LIKE ? AND STATUS_VIDEO = 'ativo' OR HASHTAG_VIDEO LIKE ? AND STATUS_VIDEO = 'ativo' OR DESCR_VIDEO LIKE ? AND STATUS_VIDEO = 'ativo'", [termo, termo, termo]);
             return resultados;
         } catch (error) {
             console.log("Erro ao buscar videos");
@@ -78,7 +78,7 @@ const videosModel = {
     },
     verificarCurtida: async (idVideo, idUsuario) => {
         try {
-            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ?", [idVideo, idUsuario])
+            const [resultados] = await pool.query("SELECT count(*) AS total FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS = ? AND USUARIOS_ID_USUARIO = ? AND STATUS_VIDEO = 'ativo'", [idVideo, idUsuario])
             if (resultados[0].total > 0) {
                 return true
             } else {
@@ -120,7 +120,7 @@ const videosModel = {
     },
     findVideosByIds: async (ids) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS IN (?) ", [ids]);
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE ID_VIDEOS IN (?)", [ids]);
             return resultados;
         } catch (error) {
             console.error("Erro ao buscar usuários", error);

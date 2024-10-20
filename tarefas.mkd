@@ -1,24 +1,17 @@
 ### FRONT-END
-- Add botão para denunciar o usuário na pagina de perfil
     ## Pagina admin 
     - dashboard com gráficos e estatisticas
-    - pagina de usuários
-    - denúncias {usuarios, videos,resenhas e fichas}
     - assinaturas
-
 ### BACK-END
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
-- Adicionar comentários;
-- Denúncias
-- Curtir posts;
 - Sistema de seguir perfis;
 - Funcionar os benefícios das assinaturas
-- Gestão das assinaturas( necessário da pagina de admin antes)
+- Gestão das assinaturas
 - Verificação de e-mail
+- Alteração de senha(necessário mandar token para email )
+  
 ### Banco de dados
-- Adicionar campo para status de usuário, resenha, video e ficha;
-- add table de denúncias para resenha, video, ficha e usuarios
 
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
@@ -37,6 +30,5 @@
     }
 
 ### Dúvidas
-- Pedir ajuda para o professor para tentar entender a documentação do MercadoPago para integração de planos de assinaturas;
 
 ### erros

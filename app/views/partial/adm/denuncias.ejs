@@ -98,15 +98,17 @@
                             <td>
                                 <article class="btns-table">
                                     <% if(denuncia.STATUS_DENUNCIA != 'concluida'){ %>
-                                        <% if(denuncia.resenha.STATUS_RESENHA == 'ativo'){ %>
-                                            <form action="/inativarUser?idUser=" method="post">
-                                                <button class="btn-icon inativar" title="Inativar usuário"><i class="bi bi-ban"></i></button>
+                                        <% if(denuncia.resenha.STATUS_RESENHA=='ativo' ){ %>
+                                            <form action="/inativarResenha?idPost=<%=denuncia.resenha.ID_RESENHAS%>" method="post">
+                                                <button class="btn-icon inativar" title="Inativar resenha"><i
+                                                        class="bi bi-ban"></i></button>
                                             </form>
-                                        <% }else { %>
-                                            <form action="/ativarUser?idUser=" method="post">
-                                                <button class="btn-icon ativar" title="Ativar usuário"><i class="bi bi-check-circle"></i></button>
-                                            </form>
-                                        <% } %>
+                                            <% }else { %>
+                                                <form action="/ativarResenha?idPost=<%=denuncia.resenha.ID_RESENHAS%>" method="post">
+                                                    <button class="btn-icon ativar" title="Ativar resenha"><i
+                                                            class="bi bi-check-circle"></i></button>
+                                                </form>
+                                                <% } %>
                                     <% } %>
                                         <a href="/view-resenha?idResenha=<%= denuncia.resenha.ID_RESENHAS %>" class="btn-icon" title="Ver resenha">
                                             <i class="bi bi-eye"></i>
@@ -132,14 +134,61 @@
             <caption>Fichas denunciadas</caption>
             <thead>
                 <tr>
-                    <th></th>
+                    <th>ID denúncia</th>
+                    <th>Tipo da denúncia</th>
+                    <th>Descrição da denúncia</th>
+                    <th>Status da denúncia</th>
+                    <th>ID da Ficha</th>
+                    <th>Nome da Obra</th>
+                    <th>ID Usuário</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td></td>
-                </tr>
+                <% if(denuncias && denuncias.fichas) {
+                    denuncias.fichas.forEach(denuncia => {%>
+                        <tr>
+                            <td><%= denuncia.ID_DENUNCIA %></td>
+                            <td><%= denuncia.TIPO_DENUNCIA %></td>
+                            <td><%= denuncia.DESCRICAO_DENUNCIA %></td>
+                            <td><span class="span-status <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'pendente' : 'concluida' %>"><%= denuncia.STATUS_DENUNCIA %></span></td>
+                            <td><%= denuncia.ficha.ID_OBRA %></td>
+                            <td><%= denuncia.ficha.NOME_OBRA %></td>
+                            <td><%= denuncia.ficha.usuario.ID_USUARIO %></td>
+                            <td><%= denuncia.ficha.usuario.NICKNAME_USUARIO %></td>
+                            <td>
+                                <article class="btns-table">
+                                    <% if(denuncia.STATUS_DENUNCIA != 'concluida'){ %>
+                                        <% if(denuncia.ficha.STATUS_FICHA =='ativo' ){ %>
+                                            <form action="/inativarFicha?idPost=<%=denuncia.ficha.ID_OBRA%>" method="post">
+                                                <button class="btn-icon inativar" title="Inativar ficha"><i
+                                                        class="bi bi-ban"></i></button>
+                                            </form>
+                                            <% }else { %>
+                                                <form action="/ativarFicha?idPost=<%=denuncia.ficha.ID_OBRA%>" method="post">
+                                                    <button class="btn-icon ativar" title="Ativar ficha"><i
+                                                            class="bi bi-check-circle"></i></button>
+                                                </form>
+                                                <% } %>
+                                    <% } %>
+                                        <a href="/view-ficha?idFicha=<%= denuncia.ficha.ID_OBRA %>" class="btn-icon" title="Ver ficha">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        
+                                        <form action="/concluirDenunciaFicha?idDenuncia=<%= denuncia.ID_DENUNCIA %>" method="post">
+                                            <button class="btn-icon <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'ativar' : 'inativar' %>" title="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'Concluir denúncia' : 'Reativar denúncia' %>">
+                                                <i class="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'bi bi-clipboard-check' : 'bi bi-arrow-return-left' %>"></i>
+                                            </button>
+                                        </form>
+                                        
+                                </article>
+                                
+                            </td>
+                        </tr>
+                    <% })
+                } %>
             </tbody>
         </table>
     </section>
@@ -148,14 +197,61 @@
             <caption>Videos denunciados</caption>
             <thead>
                 <tr>
-                    <th></th>
+                    <th>ID denúncia</th>
+                    <th>Tipo da denúncia</th>
+                    <th>Descrição da denúncia</th>
+                    <th>Status da denúncia</th>
+                    <th>ID da Ficha</th>
+                    <th>Nome da Obra</th>
+                    <th>ID Usuário</th>
+                    <th>Usuário</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
 
             <tbody>
-                <tr>
-                    <td></td>
-                </tr>
+                <% if(denuncias && denuncias.videos) {
+                    denuncias.videos.forEach(denuncia => {%>
+                        <tr>
+                            <td><%= denuncia.ID_DENUNCIA %></td>
+                            <td><%= denuncia.TIPO_DENUNCIA %></td>
+                            <td><%= denuncia.DESCRICAO_DENUNCIA %></td>
+                            <td><span class="span-status <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'pendente' : 'concluida' %>"><%= denuncia.STATUS_DENUNCIA %></span></td>
+                            <td><%= denuncia.video.ID_VIDEOS %></td>
+                            <td><%= denuncia.video.NOME_VIDEO %></td>
+                            <td><%= denuncia.video.usuario.ID_USUARIO %></td>
+                            <td><%= denuncia.video.usuario.NICKNAME_USUARIO %></td>
+                            <td>
+                                <article class="btns-table">
+                                    <% if(denuncia.STATUS_DENUNCIA != 'concluida'){ %>
+                                        <% if(denuncia.video.STATUS_VIDEO =='ativo' ){ %>
+                                            <form action="/inativarVideo?idPost=<%=denuncia.video.ID_VIDEOS %>" method="post">
+                                                <button class="btn-icon inativar" title="Inativar video"><i
+                                                        class="bi bi-ban"></i></button>
+                                            </form>
+                                            <% }else { %>
+                                                <form action="/ativarVideo?idPost=<%=denuncia.video.ID_VIDEOS %>" method="post">
+                                                    <button class="btn-icon ativar" title="Ativar video"><i
+                                                            class="bi bi-check-circle"></i></button>
+                                                </form>
+                                                <% } %>
+                                    <% } %>
+                                        <a href="/videos?idVideo=<%= denuncia.video.ID_VIDEOS  %>" class="btn-icon" title="Ver video">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        
+                                        <form action="/concluirDenunciaVideo?idDenuncia=<%= denuncia.ID_DENUNCIA %>" method="post">
+                                            <button class="btn-icon <%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'ativar' : 'inativar' %>" title="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'Concluir denúncia' : 'Reativar denúncia' %>">
+                                                <i class="<%= denuncia.STATUS_DENUNCIA == 'pendente' ? 'bi bi-clipboard-check' : 'bi bi-arrow-return-left' %>"></i>
+                                            </button>
+                                        </form>
+                                        
+                                </article>
+                                
+                            </td>
+                        </tr>
+                    <% })
+                } %>
             </tbody>
         </table>
     </section>

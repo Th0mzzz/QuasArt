@@ -63,13 +63,13 @@ routerAdm.get("/adm-denuncias",
                 }
             }
             for (const v of [...denunVid]) {
-                if (!idsVideos.includes(v.USUARIOS_ID_USUARIO)) {
-                    idsVideos.push(v.USUARIOS_ID_USUARIO);
+                if (!idsVideos.includes(v.VIDEOS_ID_VIDEOS)) {
+                    idsVideos.push(v.VIDEOS_ID_VIDEOS);
                 }
             }
             for (const f of [...denunFic]) {
-                if (!idsFichas.includes(f.USUARIOS_ID_USUARIO)) {
-                    idsFichas.push(f.USUARIOS_ID_USUARIO);
+                if (!idsFichas.includes(f.FICHAS_ID_OBRA)) {
+                    idsFichas.push(f.FICHAS_ID_OBRA);
                 }
             }
 

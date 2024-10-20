@@ -186,13 +186,21 @@ const videoControl = {
                     }))
                     const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
                     const curtidas = await videosModel.verificarCurtidasDoVideo(idVideo)
+                    const token = req.session.token ? req.session.token : null
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+
                     const jsonResult = {
                         video: {
                             ...video,
                             tags: video.HASHTAG_VIDEO.split(","),
                             autor: autor[0],
-                            curtidas:curtidas
+                            curtidas: curtidas
                         },
+                        token: token,
                         comentarios: comments,
                         isCurtido: isCurtido
                     }

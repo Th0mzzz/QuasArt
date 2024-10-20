@@ -217,7 +217,12 @@ const fichasControl = {
                         }))
                         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await fichasModel.verificarCurtida(idFicha, req.session.autenticado.id) : false
                         const curtidas = await fichasModel.verificarCurtidasDaFicha(idFicha)
-                        const token = null
+                        const token = req.session.token ? req.session.token : null
+                        if (token && token.contagem < 1) {
+                            req.session.token.contagem++;
+                        } else {
+                            req.session.token = null;
+                        }
                         const jsonResult = {
                             page: "../partial/template-home/view-ficha",
                             classePagina: "",

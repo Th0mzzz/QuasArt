@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <% if(token){%>
+        <h4 class="token-alert link <%= token.type %>">
+            <%= token.msg %>
+        </h4>
+    <% } %>
     <main>
         <section class="videos__btns">
             <a href="/" class="btn"><i class="bi bi-house"></i></a>
@@ -44,17 +49,20 @@
                                 <button class="previous video-arrows">
                                     <i class="bi bi-arrow-up"></i>
                                 </button>
-                                <form action="/curtirVideo?idVideo=<%= video.ID_VIDEOS %>" method="post" class="curtirBtn__container">
-                                    <% if(isCurtido) {%> 
-                                    <button class="video-btn" title="Curtido">
-                                        <i class="bi bi-heart-fill"></i>
-                                    </button>
-                                    <%} else {%>
-                                        <button class="video-btn" title="Curtir">
-                                            <i class="bi bi-heart"></i>
+                                <form action="/curtirVideo?idVideo=<%= video.ID_VIDEOS %>" method="post"
+                                    class="curtirBtn__container">
+                                    <% if(isCurtido) {%>
+                                        <button class="video-btn" title="Curtido">
+                                            <i class="bi bi-heart-fill"></i>
                                         </button>
-                                    <%}%>
-                                    <p class="text mt-1"><%= video.curtidas %></p>
+                                        <%} else {%>
+                                            <button class="video-btn" title="Curtir">
+                                                <i class="bi bi-heart"></i>
+                                            </button>
+                                            <%}%>
+                                                <p class="text mt-1">
+                                                    <%= video.curtidas %>
+                                                </p>
                                 </form>
                                 <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
                                 <button class="video-btn"><i class="bi bi-share"></i></button>
@@ -129,7 +137,7 @@
                             <form action="/comentarVideo?idVideo=<%=video.ID_VIDEOS %>" method="post">
                                 <article class="input__container senha">
                                     <input type="text" class="form__control" name="comentario" id="comentario"
-                                        placeholder="Deixe seu comentário!" >
+                                        placeholder="Deixe seu comentário!">
                                     <label for="comentario">Deixe seu comentário</label>
                                     <button type="submit" class="btn-comment ocultSenha"><i
                                             class="bi bi-send"></i></button>
@@ -142,10 +150,22 @@
             </section>
         </section>
     </main>
-        <script src="./js/commentVideo.js"></script>
-        <script src="./js/colorMode.js"></script>
-        <script src="./js/access.js"></script>
-        <script src="./js/verticalCarousel.js"></script>
+    <section class="denunciar__modal modal" id="denunciarModal">
+        <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+        <section class="modal__content">
+            <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar video</h3>
+
+            <form action="/denunciarVideo?idVideo=<%= video.ID_VIDEOS %>" method="post">
+                <%- include("../partial/template-home/denunciar-modal") %>
+                    <button type="submit" class="btn mt-2">Denunciar</button>
+            </form>
+        </section>
+    </section>
+    <script src="./js/abrirModal.js"></script>
+    <script src="./js/commentVideo.js"></script>
+    <script src="./js/colorMode.js"></script>
+    <script src="./js/access.js"></script>
+    <script src="./js/verticalCarousel.js"></script>
 
 </body>
 

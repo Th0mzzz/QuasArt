@@ -72,7 +72,7 @@ const resenhaModel = {
     },
     acharPorTermo: async (termo) => {
         try {
-            const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? OR DESCR_RESENHA LIKE ? OR HASHTAG_RESENHA LIKE ? OR TEXTO_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' ", [termo, termo, termo, termo]);
+            const [resultados] = await pool.query("select * from RESENHAS where TITULO_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' OR DESCR_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' OR HASHTAG_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' OR TEXTO_RESENHA LIKE ? AND STATUS_RESENHA = 'ativo' ", [termo, termo, termo, termo]);
             return resultados;
         } catch (error) {
             console.log("Erro ao buscar resenhas");

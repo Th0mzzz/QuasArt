@@ -20,7 +20,7 @@ const fichasModel = {
     },
     findFichaByIdObra: async (idObra) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE ID_OBRA = ?", [idObra])
+            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE ID_OBRA = ? AND STATUS_FICHA = 'ativo'", [idObra])
             return resultados[0]
         } catch (error) {
             console.log("----------- Erro no model de ficha -----------")
@@ -40,7 +40,7 @@ const fichasModel = {
     },
     findFichasByIdUser: async (idUser) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE USUARIOS_ID_USUARIO = ?", [idUser])
+            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE USUARIOS_ID_USUARIO = ? AND STATUS_FICHA = 'ativo'", [idUser])
             return resultados
         } catch (error) {
             console.log("----------- Erro no model de ficha -----------")
@@ -60,7 +60,7 @@ const fichasModel = {
     },
     findFichasEmAlta: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM FICHAS")
+            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE STATUS_FICHA = 'ativo'")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -70,7 +70,7 @@ const fichasModel = {
     },
     findFichasRecentes: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM FICHAS ORDER BY ID_OBRA DESC LIMIT 100")
+            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE STATUS_FICHA = 'ativo' ORDER BY ID_OBRA DESC LIMIT 100")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -99,7 +99,7 @@ const fichasModel = {
     },
     acharPorTermo: async (termo) => {
         try {
-            const [resultados] = await pool.query("select * from FICHAS where NOME_OBRA LIKE ? OR DESCR_OBRA LIKE ? OR HASHTAG_OBRA LIKE ? ", [termo, termo, termo]);
+            const [resultados] = await pool.query("select * from FICHAS where NOME_OBRA LIKE ? AND STATUS_FICHA = 'ativo' OR DESCR_OBRA LIKE ? AND STATUS_FICHA = 'ativo' OR HASHTAG_OBRA LIKE ? AND STATUS_FICHA = 'ativo' ", [termo, termo, termo]);
             return resultados;
         } catch (error) {
             console.log("Erro ao buscar fichas");

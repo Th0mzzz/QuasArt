@@ -145,6 +145,17 @@
         </section>
     </footer>
 </section>
-<%- include("denunciar-modal") %>
+        <section class="denunciar__modal modal" id="denunciarModal">
+            <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+            <section class="modal__content">
+                <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar ficha</h3>
+
+                <form action="/denunciarFicha?idFicha=<%= ficha.ID_OBRA %>" method="post">
+                    <%- include("./denunciar-modal") %>
+                        <button type="submit" class="btn mt-2">Denunciar</button>
+                </form>
+            </section>
+        </section>
+<script src="./js/abrirModal.js"></script>
     <script src="./js/carousel.js"></script>
     <script src="./js/input.js"></script>

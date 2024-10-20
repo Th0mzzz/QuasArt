@@ -681,6 +681,7 @@ router.post("/denunciarUsuario",
                 ID_DENUNCIADO: idUser,
                 DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
                 TIPO_DENUNCIA: denunciaRadio,
+                STATUS_DENUNCIA: 'pendente',
             }
             await adminModel.denunciar(denuncia, 'DENUNCIAS_USUARIOS')
             req.session.token = { msg: 'Usuário denunciado com sucesso!', type: 'success', contagem: 0 }
@@ -709,6 +710,7 @@ router.post("/denunciarResenha",
                 RESENHAS_ID_RESENHAS: idResenha,
                 DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
                 TIPO_DENUNCIA: denunciaRadio,
+                STATUS_DENUNCIA: 'pendente',
             }
             await adminModel.denunciar(denuncia, 'DENUNCIAS_RESENHAS')
             req.session.token = { msg: 'resenha denunciada com sucesso!', type: 'success', contagem: 0 }
@@ -718,6 +720,64 @@ router.post("/denunciarResenha",
             console.log(error)
             req.session.token = { msg: 'Erro ao denunciar resenha!', type: 'danger', contagem: 0 }
             res.redirect(`/view-resenha?idResenha=${idResenha}`)
+        }
+
+    }
+)
+router.post("/denunciarFicha",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idFicha = req.query.idFicha
+        if (!idFicha) {
+            console.log("Erro ao encontrar a ficha")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        try {
+            const { denunciaRadio, descricaoDenuncia } = req.body
+            const denuncia = {
+                FICHAS_ID_OBRA: idFicha,
+                DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
+                TIPO_DENUNCIA: denunciaRadio,
+                STATUS_DENUNCIA: 'pendente',
+            }
+            await adminModel.denunciar(denuncia, 'DENUNCIAS_FICHAS')
+            req.session.token = { msg: 'Ficha denunciada com sucesso!', type: 'success', contagem: 0 }
+            res.redirect(`/view-ficha?idFicha=${idFicha}`)
+
+        } catch (error) {
+            console.log(error)
+            req.session.token = { msg: 'Erro ao denunciar ficha!', type: 'danger', contagem: 0 }
+            res.redirect(`/view-ficha?idFicha=${idFicha}`)
+        }
+
+    }
+)
+router.post("/denunciarVideo",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idVideo = req.query.idVideo
+        if (!idVideo) {
+            console.log("Erro ao encontrar a video")
+            return res.status(404).render("pages/error-404.ejs");
+        }
+        try {
+            const { denunciaRadio, descricaoDenuncia } = req.body
+            const denuncia = {
+                VIDEOS_ID_VIDEOS: idVideo,
+                DESCRICAO_DENUNCIA: descricaoDenuncia != '' ? descricaoDenuncia : null,
+                TIPO_DENUNCIA: denunciaRadio,
+                STATUS_DENUNCIA: 'pendente',
+            }
+            await adminModel.denunciar(denuncia, 'DENUNCIAS_VIDEOS')
+            req.session.token = { msg: 'Video denunciado com sucesso!', type: 'success', contagem: 0 }
+            res.redirect(`/videos?idVideo=${idVideo}`)
+
+        } catch (error) {
+            console.log(error)
+            req.session.token = { msg: 'Erro ao denunciar video!', type: 'danger', contagem: 0 }
+            res.redirect(`/videos?idVideo=${idVideo}`)
         }
 
     }
