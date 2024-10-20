@@ -28,7 +28,6 @@ routerAdm.get("/adm",
     function (req, res) {
         res.render("pages/template-adm", { page: "../partial/adm/index", token: null, classePagina: "index" })
     })
-
 routerAdm.get("/adm-users",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -36,7 +35,6 @@ routerAdm.get("/adm-users",
         const users = await adminModel.findAllUsers()
         res.render("pages/template-adm", { page: "../partial/adm/users", token: null, classePagina: "users", usuarios: users })
     })
-
 routerAdm.get("/adm-denuncias",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -172,7 +170,6 @@ routerAdm.get("/adm-denuncias",
         }
 
     })
-
 routerAdm.get("/adm-posts",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -236,7 +233,6 @@ routerAdm.get("/adm-posts",
         }
         res.render("pages/template-adm", jsonResult)
     })
-
 routerAdm.get("/adm-assinaturas",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -249,7 +245,6 @@ routerAdm.get("/adm-assinaturas",
         }
         res.render("pages/template-adm", jsonResult)
     })
-
 // POST ---------------------------
 routerAdm.post("/inativarUser",
     middleWares.verifyAutenticado,
@@ -261,6 +256,13 @@ routerAdm.post("/inativarUser",
             return res.render("pages/template-adm", { page: "../partial/adm/users", token: { msg: "Nenhum usuário encontrado!", type: "danger" }, classePagina: "users", usuarios: users })
         }
         await usuariosModel.updateUser({ STATUS_USUARIO: "inativo" }, idUser)
+        // const resenhas = await resenhaModel.buscarPorIdDeUser(idUser)
+        // const videos = await videosModel.buscarPorIdUser(idUser)
+        // const fichas = await fichasModel.findFichasByIdUser(idUser)
+        // resenhas.forEach(async resenha => { await resenhaModel.updateResenha(resenha.ID_RESENHAS, { STATUS_RESENHA: 'inativo' }) })
+        // videos.forEach(async video => { await videosModel.updateVideo({ STATUS_VIDEO: 'inativo' }, video.ID_VIDEOS) })
+        // fichas.forEach(async ficha => { await fichasModel.updateFicha(ficha.ID_OBRA, { STATUS_FICHA: 'inativo' }) })
+
         const users = await adminModel.findAllUsers()
         res.render("pages/template-adm", { page: "../partial/adm/users", token: { msg: "Usuário inativado com sucesso", type: "success" }, classePagina: "users", usuarios: users })
     })
@@ -274,6 +276,12 @@ routerAdm.post("/ativarUser",
             return res.render("pages/template-adm", { page: "../partial/adm/users", token: { msg: "Nenhum usuário encontrado!", type: "danger" }, classePagina: "users", usuarios: users })
         }
         await usuariosModel.updateUser({ STATUS_USUARIO: "ativo" }, idUser)
+        // const resenhas = await resenhaModel.buscarPorIdDeUser(idUser)
+        // const videos = await videosModel.buscarPorIdUser(idUser)
+        // const fichas = await fichasModel.findFichasByIdUser(idUser)
+        // resenhas.forEach(async resenha => { await resenhaModel.updateResenha(resenha.ID_RESENHAS, { STATUS_RESENHA: 'ativo' }) })
+        // videos.forEach(async video => { await videosModel.updateVideo({ STATUS_VIDEO: 'ativo' }, video.ID_VIDEOS) })
+        // fichas.forEach(async ficha => { await fichasModel.updateFicha(ficha.ID_OBRA, { STATUS_FICHA: 'ativo' }) })
         const users = await adminModel.findAllUsers()
         res.render("pages/template-adm", { page: "../partial/adm/users", token: { msg: "Usuário ativado com sucesso", type: "success" }, classePagina: "users", usuarios: users })
     })
