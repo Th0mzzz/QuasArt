@@ -33,8 +33,20 @@ var rotasConta = require("./app/routes/routerConta");
 app.use("/", rotasConta);
 
 app.use((req, res, next) => {
-  res.status(404).render("pages/error-404.ejs");
+  let token = req.session.token ? req.session.token : null;
+  if (token && token.contagem < 1) {
+    req.session.token.contagem++;
+  } else {
+    req.session.token = null;
+  }
+  res.status(404).render("pages/template-home", {
+    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+    page: "../partial/error-404",
+    classePagina: "",
+    token: token,
+  });
 });
+
 app.listen(port, () => {
   console.log(`Servidor ouvindo na porta ${port}\nhttp://localhost:${port}`);
 });

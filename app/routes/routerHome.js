@@ -27,7 +27,6 @@ const destinoDeFalha = {
     incorreto: ""
 }
 
-// ---------------------------------------- GETS -------------------------------------------------- 
 
 // ---------- PÁGINAS DA HOME -------------
 
@@ -124,7 +123,18 @@ router.get("/", async function (req, res) {
         res.render("./pages/template-home", jsonResult)
     } catch (error) {
         console.log(error)
-        res.status(404).render("pages/error-404.ejs");
+        let token = req.session.token ? req.session.token : null;
+        if (token && token.contagem < 1) {
+            req.session.token.contagem++;
+        } else {
+            req.session.token = null;
+        }
+        res.status(404).render("pages/template-home", {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/error-404",
+            classePagina: "",
+            token: token,
+        });
     }
 
 });
@@ -209,7 +219,18 @@ router.get("/attvideo",
     async function (req, res) {
         let idVideo = req.query.idVideo
         if (!idVideo) {
-            res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         } else {
             let video = await videosModel.buscarPorId(idVideo)
 
@@ -273,7 +294,18 @@ router.get("/attficha",
         try {
             let idFicha = req.query.idFicha
             if (!idFicha) {
-                res.status(404).render("pages/error-404.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             } else {
                 let ficha = await fichasModel.findFichaByIdObra(idFicha)
 
@@ -301,7 +333,18 @@ router.get("/attficha",
             }
         } catch (error) {
             console.log(error)
-            res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
 
     });
@@ -331,7 +374,18 @@ router.get("/attresenha",
             let idResenha = req.query.idResenha
 
             if (!idResenha) {
-                res.status(404).render("pages/error-404.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: token,
+                });
             } else {
                 let resenha = await resenhaModel.buscarPorId(idResenha);
                 if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
@@ -357,7 +411,18 @@ router.get("/attresenha",
             }
         } catch (error) {
             console.log(error)
-            res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
     });
 
@@ -390,8 +455,6 @@ router.get("/view-ficha", function (req, res) {
     fichasControl.mostrarFicha(req, res)
 });
 
-
-// ------- CRIAÇÃO DE POSTS -------
 
 
 // Form de criação de Resenha
@@ -576,8 +639,7 @@ router.post("/fazerPesquisa", async function (req, res) {
 
     } catch (error) {
         console.log(error)
-        res.status(404).render("pages/error-404.ejs");
-
+        res.status(500).render("pages/error-500.ejs");
     }
 });
 
@@ -615,7 +677,18 @@ router.post("/curtirResenha",
         const idResenha = req.query.idResenha
         if (!idResenha) {
             console.log("erro ao encontrar resenha")
-            return res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -633,7 +706,18 @@ router.post("/curtirFicha",
         const idFicha = req.query.idFicha
         if (!idFicha) {
             console.log("erro ao encontrar ficha")
-            return res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await fichasModel.verificarCurtida(idFicha, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -651,7 +735,18 @@ router.post("/curtirVideo",
         const idVideo = req.query.idVideo
         if (!idVideo) {
             console.log("erro ao encontrar video")
-            return res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -673,7 +768,18 @@ router.post("/denunciarUsuario",
         const idUser = req.query.idUser
         if (!idUser) {
             console.log("Erro ao encontrar o usuário")
-            return res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -702,7 +808,18 @@ router.post("/denunciarResenha",
         const idResenha = req.query.idResenha
         if (!idResenha) {
             console.log("Erro ao encontrar a resenha")
-            return res.status(404).render("pages/error-404.ejs");
+             let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -731,7 +848,18 @@ router.post("/denunciarFicha",
         const idFicha = req.query.idFicha
         if (!idFicha) {
             console.log("Erro ao encontrar a ficha")
-            return res.status(404).render("pages/error-404.ejs");
+             let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -760,7 +888,18 @@ router.post("/denunciarVideo",
         const idVideo = req.query.idVideo
         if (!idVideo) {
             console.log("Erro ao encontrar a video")
-            return res.status(404).render("pages/error-404.ejs");
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body

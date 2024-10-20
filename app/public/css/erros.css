@@ -1,0 +1,34 @@
+.error__container {
+    color: #fff;
+    position: relative;
+    padding: 4rem 0;
+
+    & .error-title {
+        text-align: center;
+        padding: 8rem 5rem;
+        border-radius: 40%;
+        position: relative;
+        background: var(--cor-secundaria);
+        width: fit-content;
+        margin: 2rem auto;
+        z-index: 100;
+    }
+    & #saturno{
+        width: clamp(180px, 80vw, 300px);
+        filter: drop-shadow(0 0 8px #0000005c);
+        transform: rotate(-10deg);
+        position: absolute;
+        top: 10%;
+        right: 0;
+        z-index: 20;
+    }
+    & #jupiter{
+        width: clamp(200px, 100vw, 350px);
+        filter: drop-shadow(0 0 8px #0000005c);
+        transform: rotate(17deg);
+        position: absolute;
+        top: 30%;
+        left: 0;
+        z-index: 20;
+    }
+}
