@@ -67,6 +67,16 @@ const usuariosModel = {
             throw error;
         }
     },
+    findUserByIdInativo: async (id) => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM USUARIOS WHERE ID_USUARIO = ? AND STATUS_USUARIO = 'inativo' LIMIT 1", [id])
+            return resultados
+
+        } catch (error) {
+            console.error("Erro ao buscar usuário", error);
+            throw error;
+        }
+    },
     updateUser: async (dadosForm, id) => {
         try {
             const [resultados] = await pool.query("UPDATE USUARIOS SET ? WHERE ID_USUARIO = ? ", [dadosForm, id])

@@ -7,6 +7,11 @@ const resenhaModel = require("../models/resenhasModel")
 const fichasModel = require("../models/fichasModel")
 const videosModel = require("../models/videosModel")
 var salt = bcrypt.genSaltSync(8)
+const jwt = require("jsonwebtoken")
+const { enviarEmail, enviarEmailAtivacao } = require("../util/sendEmail")
+
+const dotenv = require("dotenv");
+dotenv.config();
 
 
 const usuariosController = {
@@ -176,7 +181,7 @@ const usuariosController = {
         } else {
             const { nome, nascimento, cpf, contato, usuario, email, senha } = req.body
             let hashSenha = bcrypt.hashSync(senha, salt);
-            dadosForm = {
+            const dadosForm = {
                 NOME_USUARIO: nome,
                 NICKNAME_USUARIO: usuario,
                 CONTATO: contato,
@@ -186,32 +191,47 @@ const usuariosController = {
                 EMAIL_USUARIO: email,
                 CAMINHO_FOTO: "perfil-padrao.webp",
                 ID_TIPO_USUARIO: 1,
-                STATUS_USUARIO: 'ativo',
+                STATUS_USUARIO: 'inativo',
             }
             try {
                 const resultados = await usuariosModel.createUser(dadosForm);
-                const userBd = await usuariosModel.findUserById(resultados.insertId);
-                req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
-                console.log("Resultado do createUser:")
-                console.log(resultados)
-                console.log("Cadastrado!")
-                req.session.logado = 0
-                req.session.cadastro = true
-                res.redirect("/")
+                const token = jwt.sign(
+                    {
+                        userId: resultados.insertId
+                    },
+                    process.env.SECRET_KEY
+                )
+                
+                enviarEmailAtivacao(
+                    dadosForm.EMAIL_USUARIO, 
+                    "Cadastro realizado na QuasArt!", 
+                    process.env.URL_BASE,
+                    token, 
+                    async () => {
+                    const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
+                    console.log(userBd[0])
+                    // req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
+                    console.log("Resultado do createUser:")
+                    console.log(resultados)
+                    console.log("Cadastrado!")
+                    res.redirect("/entrar")
+                })
+
             } catch (erros) {
                 console.log(erros)
-                 let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
         }
@@ -248,18 +268,18 @@ const usuariosController = {
 
             } catch (erros) {
                 console.log(erros)
-                 let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
         }
@@ -327,22 +347,22 @@ const usuariosController = {
                 isUser: isUser,
                 token: token
             }
-            
+
             res.render("./pages/template-home", jsonResult)
         } catch (errors) {
             console.log("erro ao tentar visualizar página", errors)
-             let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
         }
     },
     mudarFoto: async (req, res) => {
@@ -412,18 +432,18 @@ const usuariosController = {
 
                 } catch (errors) {
                     console.log(errors)
-                     let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+                    let token = req.session.token ? req.session.token : null;
+                    if (token && token.contagem < 1) {
+                        req.session.token.contagem++;
+                    } else {
+                        req.session.token = null;
+                    }
+                    res.status(500).render("pages/template-home", {
+                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                        page: "../partial/error-500",
+                        classePagina: "",
+                        token: token,
+                    });
 
                 }
             }
@@ -455,18 +475,18 @@ const usuariosController = {
 
         } catch (errors) {
             console.log(errors)
-             let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
 
         }
     },
@@ -544,18 +564,18 @@ const usuariosController = {
                 }
             } catch (erros) {
                 console.log(erros)
-                 let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
         }
 
@@ -605,22 +625,57 @@ const usuariosController = {
             } catch (error) {
                 console.log("Erro ao atualizar perfil")
                 console.log(error)
-                 let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(500).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-500",
-    classePagina: "",
-    token: token,
-  });
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
             }
 
         }
     },
+    ativarConta: async (req, res) => {
+        try {
+            const token = req.query.token
+            console.log(token)
+            jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
+                console.log(decoded)
+                if (err) {
+                    console.log("Token inválido ou expirado")
+                } else {
+                    const userBd = await usuariosModel.findUserByIdInativo(decoded.userId)
+                    if (!userBd[0]) {
+                        return console.log("Usuário não encontrado")
+                    }
+
+                    await usuariosModel.updateUser({ STATUS_USUARIO: 'ativo' }, decoded.userId);
+                    console.log("Conta ativada!")
+                    res.redirect("/entrar")
+                }
+            })
+        } catch (error) {
+            console.log(error)
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
+        }
+    }
 }
 
 

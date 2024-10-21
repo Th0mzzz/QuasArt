@@ -70,6 +70,7 @@
     "is-number": "^7.0.0",
     "is-property": "^1.0.2",
     "jake": "^10.8.7",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "long": "^5.2.3",
     "lru-cache": "^8.0.5",

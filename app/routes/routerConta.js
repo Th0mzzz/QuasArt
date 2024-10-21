@@ -25,6 +25,13 @@ const destinoDeFalha = {
 
 // -------- PÁGINAS DE VISUALIZAÇÃO -------------
 
+
+router.get("/ativar-conta",
+    middleWares.verifyAutenticado,
+    async function (req, res) {
+        usuariosController.ativarConta(req, res);
+    }
+)
 // ------------ LOGIN E CADASTRO ---------------
 
 router.get("/entrar", function (req, res) {
