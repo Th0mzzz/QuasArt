@@ -24,7 +24,8 @@ const destinoDeFalha = {
     modal: "fechado",
     erros: null,
     valores: "",
-    incorreto: ""
+    incorreto: "",  
+    token:null,
 }
 
 
