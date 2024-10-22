@@ -13,7 +13,7 @@ if(erros) {
 }
 %>
 
-<section class="attSenha__modal modal <%= modals.senha %>" id="attSenha">
+<section class="attSenha__modal modal <%= modalAberto ? 'show' : '' %>" id="attSenha">
     <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
     <section class="modal__content">
         <form action="/atualizarSenha" method="post" class="form-attSenha">

@@ -1,16 +1,11 @@
-<a class="index__link subtitle" data-openmodal="#attSenha" style="cursor:pointer">
+<a href="/solicitarResetSenha" class="index__link subtitle" style="cursor:pointer">
     <i class="bi bi-shield-lock"></i>
     Alterar Senha
     <i class="bi bi-arrow-right-short setinha"></i>
 </a>
-<a class="index__link subtitle" data-openmodal="#attEmail" style="cursor:pointer">
-    <i class="bi bi-shield-lock"></i>
-    Alterar E-mail
-    <i class="bi bi-arrow-right-short setinha"></i>
-</a>
-
-<%- include("./alterarSenha-modal") %>
-<%- include("./alterarEmail-modal") %>
+<% if(modalAberto){
+    include("./alterarSenha-modal") 
+}%>
 
 <script src="./js/abrirModal.js"></script>
 <script src="./js/addPerfil.js"></script>

@@ -201,21 +201,21 @@ const usuariosController = {
                     },
                     process.env.SECRET_KEY
                 )
-                
+
                 enviarEmailAtivacao(
-                    dadosForm.EMAIL_USUARIO, 
-                    "Cadastro realizado na QuasArt!", 
+                    dadosForm.EMAIL_USUARIO,
+                    "Cadastro realizado na QuasArt!",
                     process.env.URL_BASE,
-                    token, 
+                    token,
                     async () => {
-                    const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
-                    console.log(userBd[0])
-                    // req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
-                    console.log("Resultado do createUser:")
-                    console.log(resultados)
-                    console.log("Cadastrado!")
-                    res.redirect("/entrar")
-                })
+                        const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
+                        console.log(userBd[0])
+                        console.log("Resultado do createUser:")
+                        console.log(resultados)
+                        console.log("Cadastrado!")
+                        req.session.token = { msg: "E-mail de ativação de conta enviado!", type: "success" }
+                        res.redirect("/entrar")
+                    })
 
             } catch (erros) {
                 console.log(erros)
@@ -581,45 +581,37 @@ const usuariosController = {
 
 
     },
-    attUm: async (req, res, campo, campoBd) => {
+    attSenha: async (req, res) => {
         let errors = validationResult(req)
         if (!errors.isEmpty()) {
             console.log(errors)
-            var modals = campoBd == "SENHA_USUARIO"
-                ? {
-                    senha: "show", email: ""
-                } : {
-                    senha: "", email: "show"
-                }
+
             const user = req.session.autenticado ? await usuariosModel.findUserById(req.session.autenticado.id) : new Error("Erro ao acessar o banco")
 
             const jsonResult = {
                 page: "../partial/edit-profile/security",
                 pageClass: "index",
                 usuario: user[0],
-                modals: modals,
+                modalAberto: true,
                 erros: errors,
                 token: null
             }
             res.render("./pages/edit-profile", jsonResult)
         } else {
             try {
-                if (campoBd == 'SENHA_USUARIO') {
-                    let hashSenha = bcrypt.hashSync(campo, salt);
-                    var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
-                } else {
-                    var resultado = await usuariosModel.updateUser({ EMAIL_USUARIO: campo }, req.session.autenticado.id)
-                }
+
+                let hashSenha = bcrypt.hashSync(campo, salt);
+                var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
                 const user = await usuariosModel.findUserById(req.session.autenticado.id)
                 console.log(resultado)
-                var msg = campoBd == "SENHA_USUARIO" ? "Senha alterada com sucesso!" : "Email atualizado com sucesso"
+
                 const jsonResult = {
                     page: "../partial/edit-profile/security",
                     pageClass: "security",
                     usuario: user[0],
-                    modals: { senha: "", email: "" },
+                    modalAberto: false,
                     erros: null,
-                    token: { msg: msg, type: "success" }
+                    token: { msg: "Senha alterada com sucesso!", type: "success" }
                 }
                 res.render("./pages/edit-profile", jsonResult)
             } catch (error) {

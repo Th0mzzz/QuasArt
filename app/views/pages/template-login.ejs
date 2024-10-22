@@ -10,7 +10,13 @@
     <link rel="stylesheet" href="./css/login/login.css">
 </head>
 <body>
+    <% if(token) {%>
+        <h4 class="token-alert link <%= token.type ? token.type : '' %>">
+            <%= token.msg %>
+        </h4>
+        <% } %>
     <main>
+
         <button class="btn homebtn" onclick="window.history.back();"><i class="bi bi-arrow-left"></i></button>
 
         <section class="section__login">

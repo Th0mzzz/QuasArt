@@ -49,7 +49,20 @@ router.get("/entrar", function (req, res) {
         res.render("pages/template-home", jsonResult)
 
     } else {
-        res.render("pages/template-login", destinoDeFalha);
+        let alert = req.session.token ? req.session.token : null;
+        if (alert && alert.contagem < 1) {
+            req.session.token.contagem++;
+        } else {
+            req.session.token = null;
+        }
+        res.render("pages/template-login", {
+            page: "../partial/template-login/login",
+            modal: "fechado",
+            erros: null,
+            valores: "",
+            incorreto: "",
+            token: alert
+        });
     }
 });
 //  pagina de cadastro
