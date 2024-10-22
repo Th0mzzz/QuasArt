@@ -176,7 +176,7 @@ module.exports = (url, token) => {
                     </header>
                     <article>
                         <p class="text">Obrigado por se cadastrar! Clique abaixo para ativar sua conta!</p>
-                        <a href="https://${url}" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #E6781E; color: #ffffff; text-decoration: none; border-radius: 5px;">Ativar conta</a>
+                        <a href="${url}" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #E6781E; color: #ffffff; text-decoration: none; border-radius: 5px;">Ativar conta</a>
                     </article>
                     <footer>
                         <p class='text'>Ignore esse e-mail caso não tenha solicitado.</p>
