@@ -209,11 +209,9 @@ const usuariosController = {
                     token, 
                     async () => {
                     const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
+                    console.log(`------ Usuário ${userBd[0].NICKNAME_USUARIO} cadastrado! ------`)
+                    console.log(`------ Verificação enviada para ${userBd[0].EMAIL_USUARIO} ------`)
                     console.log(userBd[0])
-                    // req.session.autenticado = { autenticado: usuario, id: resultados.insertId, foto: userBd[0].CAMINHO_FOTO, tipo: userBd[0].ID_TIPO_USUARIO }
-                    console.log("Resultado do createUser:")
-                    console.log(resultados)
-                    console.log("Cadastrado!")
                     res.redirect("/entrar")
                 })
 
