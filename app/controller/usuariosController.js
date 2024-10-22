@@ -208,14 +208,12 @@ const usuariosController = {
                     process.env.URL_BASE,
                     token,
                     async () => {
-                        const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
-                        console.log(userBd[0])
-                        console.log("Resultado do createUser:")
-                        console.log(resultados)
-                        console.log("Cadastrado!")
-                        req.session.token = { msg: "E-mail de ativação de conta enviado!", type: "success" }
-                        res.redirect("/entrar")
-                    })
+                    const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
+                    console.log(`------ Usuário ${userBd[0].NICKNAME_USUARIO} cadastrado! ------`)
+                    console.log(`------ Verificação enviada para ${userBd[0].EMAIL_USUARIO} ------`)
+                    console.log(userBd[0])
+                    res.redirect("/entrar")
+                })
 
             } catch (erros) {
                 console.log(erros)
