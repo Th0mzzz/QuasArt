@@ -71,7 +71,8 @@ router.get("/cadastrar", function (req, res) {
         page: "../partial/template-login/cadastro",
         modal: "fechado",
         erros: null,
-        valores: ""
+        valores: "",
+        token: null
     }
     res.render("pages/template-login", jsonResult);
 });
