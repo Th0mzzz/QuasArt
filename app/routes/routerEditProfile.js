@@ -116,7 +116,7 @@ router.get("/solicitarResetSenha",
                 },
                 process.env.SECRET_KEY
             )
-            const resetSenhaEmailDocument = require("../util/emails/recuperarSenha")(process.env.URL_BASE, token);
+            const resetSenhaEmailDocument = require("../util/emails/redefinirSenha")(process.env.URL_BASE, token);
             enviarEmail(
                 user[0].EMAIL_USUARIO,
                 "Redefinição de senha",
