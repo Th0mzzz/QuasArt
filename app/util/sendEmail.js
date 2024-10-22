@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 const ativarContaTemplate = require('../util/ativar-conta');
-
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -14,17 +13,14 @@ const transporter = nodemailer.createTransport({
         rejectUnauthorized: false
     }
 });
-
 const enviarEmailAtivacao = async (emailDestino, assunto, urlBase, token, callback) => {
-
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: emailDestino,
         subject: assunto,
         html: ativarContaTemplate(urlBase, token),
-        text:null
+        text: null
     };
-
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.log(error)
@@ -35,9 +31,7 @@ const enviarEmailAtivacao = async (emailDestino, assunto, urlBase, token, callba
             }
         }
     });
-
 };
-
 const enviarEmail = async (emailDestino, assunto, html, urlBase, token, callback) => {
 
     const mailOptions = {
