@@ -8,7 +8,7 @@ const fichasModel = require("../models/fichasModel")
 const videosModel = require("../models/videosModel")
 var salt = bcrypt.genSaltSync(8)
 const jwt = require("jsonwebtoken")
-const { enviarEmail, enviarEmailAtivacao , enviarEmailRecuperarSenha} = require("../util/sendEmail")
+const { enviarEmail, enviarEmailAtivacao, enviarEmailRecuperarSenha } = require("../util/sendEmail")
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -746,7 +746,7 @@ const usuariosController = {
                     },
                     process.env.SECRET_KEY
                 )
-                
+
                 enviarEmailRecuperarSenha(
                     user[0].EMAIL_USUARIO,
                     "Recuperar de senha",
@@ -773,6 +773,55 @@ const usuariosController = {
                     token: token,
                 });
 
+            }
+        }
+    },
+    redefinirSenha: async (req, res) => {
+        let idUser = req.query.idUser
+        if (!idUser) {
+            console.log("usuario não achado")
+            req.session.token = { msg: "Usuário não encontrado", type: "danger", contagem: 0 }
+            return res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: alert,
+            });
+        }
+        let error = validationResult(req)
+
+        if (!error.isEmpty) {
+            const jsonResult = {
+                page: "../partial/template-login/esqueceuSenha",
+                token: null,
+                erros: error,
+                idUser: idUser,
+                modalAberto: true
+            }
+            res.render("./pages/template-login", jsonResult)
+        } else {
+            try {
+                const { senha } = req.body
+                let hashSenha = bcrypt.hashSync(senha, salt);
+                var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, idUser)
+                console.log("-------- senha redefinida -----------")
+                console.log(resultado)
+                req.session.token = { msg: "Senha redefinida com sucesso!", type: "success", contagem: 0 }
+                res.redirect("/entrar")
+            } catch (error) {
+                console.log(error)
+                let alert = req.session.token ? req.session.token : null;
+                if (alert && alert.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: alert,
+                });
             }
         }
     }

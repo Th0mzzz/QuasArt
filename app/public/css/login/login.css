@@ -87,7 +87,7 @@
 
     & .input__container {
         border: 1px solid var(--cor-login);
-        
+
     }
 
 }
@@ -132,6 +132,10 @@
         }
     }
 
+    &.attSenha__modal .modal__content {
+        width: 100%;
+    }
+
     & .modal__content {
         border: 1px solid var(--cor-login-hover);
         width: auto;
@@ -171,9 +175,11 @@
         }
     }
 }
-.input__check{
+
+.input__check {
     color: var(--cor-texto);
 }
+
 @media (min-width:769px) {
     .section__login {
         & .fundo__login {

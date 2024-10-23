@@ -324,7 +324,6 @@
         margin: auto;
         border-radius: 10px;
         padding: 2rem clamp(1rem, 10vw, 4rem);
-
         & .modal__title {
             display: flex;
             flex-flow: column nowrap;

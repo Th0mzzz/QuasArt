@@ -132,53 +132,7 @@ router.post("/redefinirSenha",
         .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('A senha deve conter pelo menos um caractere especial.')
         .bail(),
     async function (req, res) {
-        let idUser = req.query.idUser
-        if (!idUser) {
-            console.log("usuario não achado")
-            req.session.token = { msg: "Usuário não encontrado", type: "danger", contagem: 0 }
-            return res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: alert,
-            });
-        }
-        let error = validationResult(req)
-
-        if (!error.isEmpty) {
-            const jsonResult = {
-                page: "../partial/template-login/esqueceuSenha",
-                token: null,
-                erros: error,
-                idUser: idUser,
-                modalAberto: true
-            }
-            res.render("./pages/template-login", jsonResult)
-        } else {
-            try {
-                const { senha } = req.body
-                let hashSenha = bcrypt.hashSync(senha, salt);
-                var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, idUser)
-                console.log("-------- senha redefinida -----------")
-                console.log(resultado)
-                req.session.token = { msg: "Senha redefinida com sucesso!", type: "success", contagem: 0 }
-                res.redirect("/entrar")
-            } catch (error) {
-                console.log(error)
-                let alert = req.session.token ? req.session.token : null;
-                if (alert && alert.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: alert,
-                });
-            }
-        }
+        usuariosController.redefinirSenha(req, res)
     })
 // Link para destruir sessão
 router.get("/sair", middleWares.clearSession, function (req, res) {
