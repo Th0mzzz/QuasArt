@@ -715,6 +715,65 @@ const usuariosController = {
             });
 
         }
+    },
+    solicitarResetSenha: async (req, res) => {
+        let error = validationResult(req)
+
+        if (!error.isEmpty) {
+            let alert = req.session.token ? req.session.token : null;
+            if (alert && alert.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            const jsonResult = {
+                page: "../partial/template-login/esqueceuSenha",
+                modal: "fechado",
+                erros: error,
+                token: alert,
+                modalAberto: false
+            }
+            res.render("pages/template-login", jsonResult);
+        } else {
+            try {
+                const { email } = req.body
+                const user = await usuariosModel.findUserByEmail(email)
+
+                const token = jwt.sign(
+                    {
+                        userId: user[0].ID_USUARIO,
+                        expiresIn: "40m"
+                    },
+                    process.env.SECRET_KEY
+                )
+                const resetSenhaEmailDocument = require("../util/emails/recuperarSenha")(process.env.URL_BASE, token);
+                enviarEmail(
+                    user[0].EMAIL_USUARIO,
+                    "Recuperar de senha",
+                    resetSenhaEmailDocument,
+                    async () => {
+                        req.session.token = { msg: "E-mail enviado com sucesso", type: "success", contagem: 0 }
+                        res.redirect("/esqueceuSenha")
+                    })
+
+
+            } catch (error) {
+                console.log(error)
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
+
+            }
+        }
     }
 }
 
