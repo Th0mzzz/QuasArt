@@ -2,14 +2,12 @@ var express = require("express");
 var router = express.Router();
 // MIDDLEWARES -------------
 const middleWares = require("../sessions/middleswares");
-// CONTROLLERS -------------
+// CONTROLLERS e MODELS\-------------
 const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
-// UTIL --------------- 
-const upload = require("../util/upload");
 const usuariosModel = require("../models/usuariosModel");
+// UTIL --------------- 
 const { body, validationResult } = require("express-validator");
-const uploadCapa = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
 
 
 // Página de falha de autenticação ---------
@@ -132,7 +130,7 @@ router.get("/solicitarResetSenha",
         } else {
             try {
                 const { email } = req.body
-                const user = req.session.autenticado ? await usuariosModel.findUserByEmail(email) : new Error("Erro ao acessar o banco")
+                const user = await usuariosModel.findUserByEmail(email)
 
                 const token = jwt.sign(
                     {
@@ -147,28 +145,35 @@ router.get("/solicitarResetSenha",
                     "Recuperar de senha",
                     resetSenhaEmailDocument,
                     async () => {
-                        const jsonResult = {
-                            page: "../partial/edit-profile/security",
-                            pageClass: "security",
-                            usuario: user[0],
-                            token: { msg: "E-mail de redefinição de senha enviado!", type: "success" },
-                            erros: null,
-                            modalAberto: false
-                        }
-                        res.render("./pages/edit-profile", jsonResult)
+                        req.session.token = { msg: "E-mail enviado com sucesso", type: "success", contagem: 0 }
+                        res.redirect("/esqueceuSenha")
                     })
 
 
             } catch (error) {
                 console.log(error)
-                res.status(500).render("pages/error-500.ejs");
+                let token = req.session.token ? req.session.token : null;
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                res.status(500).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-500",
+                    classePagina: "",
+                    token: token,
+                });
 
             }
         }
 
     });
 
-
+router.get("/redefinir-senha",
+    function (req, res) {
+        usuariosController.verificarTokenRedefinirSenha(req, res)
+    });
 // Link para destruir sessão
 router.get("/sair", middleWares.clearSession, function (req, res) {
     res.redirect("/")
@@ -189,78 +194,9 @@ router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares
 })
 
 
-// Esqueceu a senha
-
 //Redefinição de senha
 
 
-router.get("/redefinir-senha",
-    middleWares.verifyAutorizado,
-    async function (req, res) {
-        try {
-            const token = req.query.token
-            if (!token) {
-                let alert = req.session.token ? req.session.token : null;
-                if (alert && alert.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                return res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: alert,
-                });
-            }
-
-            jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
-                if (err) {
-
-                    if (!req.session.autenticado && req.session.autenticado.id == null) {
-                        req.session.token = { msg: "Link expirado!", type: "danger" }
-                        return res.redirect("/entrar")
-                    }
-                    const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao encontrar usuário")
-                    const jsonResult = {
-                        page: "../partial/edit-profile/security",
-                        pageClass: "security",
-                        usuario: user[0],
-                        token: { msg: "Link expirado!", type: "success" },
-                        erros: null,
-                        modalAberto: false
-                    }
-                    res.render("./pages/edit-profile", jsonResult)
-                } else {
-                    const user = await findUserById(decoded.userId)
-                    const jsonResult = {
-                        page: "../partial/edit-profile/security",
-                        pageClass: "security",
-                        usuario: user[0],
-                        token: null,
-                        erros: null,
-                        modalAberto: true
-                    }
-                    res.render("./pages/edit-profile", jsonResult)
-                }
-            })
-        } catch (error) {
-            console.log(error)
-            let alert = req.session.token ? req.session.token : null;
-            if (alert && alert.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: alert,
-            });
-
-        }
-    });
 
 
 module.exports = router;

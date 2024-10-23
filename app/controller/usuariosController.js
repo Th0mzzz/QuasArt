@@ -208,12 +208,12 @@ const usuariosController = {
                     process.env.URL_BASE,
                     token,
                     async () => {
-                    const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
-                    console.log(`------ Usuário ${userBd[0].NICKNAME_USUARIO} cadastrado! ------`)
-                    console.log(`------ Verificação enviada para ${userBd[0].EMAIL_USUARIO} ------`)
-                    console.log(userBd[0])
-                    res.redirect("/entrar")
-                })
+                        const userBd = await usuariosModel.findUserByIdInativo(resultados.insertId);
+                        console.log(`------ Usuário ${userBd[0].NICKNAME_USUARIO} cadastrado! ------`)
+                        console.log(`------ Verificação enviada para ${userBd[0].EMAIL_USUARIO} ------`)
+                        console.log(userBd[0])
+                        res.redirect("/entrar")
+                    })
 
             } catch (erros) {
                 console.log(erros)
@@ -664,6 +664,56 @@ const usuariosController = {
                 classePagina: "",
                 token: token,
             });
+        }
+    },
+    verificarTokenRedefinirSenha: async (req, res) => {
+        try {
+            const token = req.query.token
+            if (!token) {
+                let alert = req.session.token ? req.session.token : null;
+                if (alert && alert.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                return res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: alert,
+                });
+            }
+
+            jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
+                if (err) {
+                    req.session.token = { msg: "Link expirado!", type: "danger", contagem: 0 }
+                    res.redirect("/esqueceuSenha")
+                } else {
+                    const jsonResult = {
+                        page: "../partial/template-login/esqueceuSenha",
+                        token: { msg: "Autenticação realizada com sucesso! Redefina sua senha!", type: "success" },
+                        erros: null,
+                        idUser: decoded.userId,
+                        modalAberto: true
+                    }
+                    res.render("./pages/edit-profile", jsonResult)
+                }
+            })
+        } catch (error) {
+            console.log(error)
+            let alert = req.session.token ? req.session.token : null;
+            if (alert && alert.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: alert,
+            });
+
         }
     }
 }
