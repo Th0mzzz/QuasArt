@@ -175,7 +175,8 @@ const usuariosController = {
                 page: "../partial/template-login/cadastro",
                 modal: "fechado",
                 erros: errors,
-                valores: req.body
+                valores: req.body,
+                token: null
             }
             res.render("pages/template-login", jsonResult);
         } else {
@@ -240,7 +241,7 @@ const usuariosController = {
 
         if (!errors.isEmpty()) {
             console.log(errors)
-            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors, incorreto: null });
+            res.render("pages/template-login", { page: "../partial/template-login/login", modal: "fechado", erros: errors, incorreto: null, token: null });
         } else {
 
             const { usuario, senha } = req.body
