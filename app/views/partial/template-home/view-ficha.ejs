@@ -3,13 +3,30 @@
         <section class="ficha__info">
             <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem de capa da ficha">
             <article class="estatistica__ficha">
-                <h2 class="title mb-3"><%= ficha.NOME_OBRA %></h2>
+                <h2 class="title mb-3">
+                    <%= ficha.NOME_OBRA %>
+                </h2>
                 <section class="row user">
                     <a href="/profile?idUser=<%= autor.ID_USUARIO %>" class="userLink link">
-                        <img src="./img/imagens-servidor/perfil/<%= autor.CAMINHO_FOTO %>" alt="foto do autor" class="userImg">
+                        <img src="./img/imagens-servidor/perfil/<%= autor.CAMINHO_FOTO %>" alt="foto do autor"
+                            class="userImg">
                         <%= autor.NICKNAME_USUARIO %>
                     </a>
                     <button class="btn">Seguir</button>
+                    <form action="/curtirFicha?idFicha=<%= ficha.ID_OBRA %>" class="estatistica btn-curtida" method="post">
+                        <% if(isCurtido) {%>
+                            <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                            <%} else {%>
+                                <button class="btn secundaria" data-curtirBtn title="Curtir">
+                                    <i class="bi bi-heart"></i>
+                                </button>
+                                <%}%>
+                                    <p class="text mt-1 ">
+                                        <%= ficha.curtidas %>
+                                    </p>
+                    </form>
                 </section>
                 <section class="row mt-2">
                     <!-- <article class="estatistica">
@@ -20,66 +37,62 @@
                         <article class="btn secundaria"><i class="bi bi-star"></i></article>
                         <p class="text mt-1">875k</p>
                     </article> -->
-                    <form action="/curtirFicha?idFicha=<%= ficha.ID_OBRA %>" class="estatistica" method="post">
-                        <% if(isCurtido) {%> 
-                        <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
-                            <i class="bi bi-heart-fill"></i>
-                        </button>
-                        <%} else {%>
-                            <button class="btn secundaria" data-curtirBtn title="Curtir">
-                                <i class="bi bi-heart"></i>
-                            </button>
-                        <%}%>
-                        <p class="text mt-1"><%= ficha.curtidas %></p>
-                    </form>
+
                 </section>
             </article>
         </section>
         <section class="ficha__sinopse">
             <article class="box p-3">
                 <h3 class="subtitle mb-1">Sinopse</h3>
-                <p class="text"><%= ficha.DESCR_OBRA %></p>
+                <p class="text">
+                    <%= ficha.DESCR_OBRA %>
+                </p>
             </article>
         </section>
     </header>
     <section class="ficha__content">
         <section class="carousel__container mt-3 mb-3 previa__container">
-            <% if(previas && previas.length > 3){ %>
+            <% if(previas && previas.length> 3){ %>
                 <article class="arrows">
                     <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
                     <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
                 </article>
-            <% } %>
-            <section class="carousel__inner">
-                <% if(previas) {
-                    previas.forEach(function(previa){ %>
-                        <article class="card">
-                            <article class="previa__card">
+                <% } %>
+                    <section class="carousel__inner">
+                        <% if(previas) { previas.forEach(function(previa){ %>
+                            <article class="card">
+                                <article class="previa__card">
 
-                                <% if (previa.CAMINHO_PREVIA.endsWith('.jpg') || previa.CAMINHO_PREVIA.endsWith('.jpeg') || previa.CAMINHO_PREVIA.endsWith('.png') || previa.CAMINHO_PREVIA.endsWith('.gif')) { %>
-                                    <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" alt="Imagem">
-                                <% } else if (previa.CAMINHO_PREVIA.endsWith('.mp4') || previa.CAMINHO_PREVIA.endsWith('.mov') || previa.CAMINHO_PREVIA.endsWith('.avi')) { %>
-                                   
-                                    <video controls>
-                                        <source src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>" type="video/mp4">
-                                        Seu navegador não suporta o elemento de vídeo.
-                                    </video>
-                                <% } else { %>
-                                    
-                                    <p>Tipo de mídia não suportado</p>
-                                <% } %>
-                        </article>
-                    </article>
-                    <% })
-                } %>
-                
-            
-            </section>
+                                    <% if (previa.CAMINHO_PREVIA.endsWith('.jpg') ||
+                                        previa.CAMINHO_PREVIA.endsWith('.jpeg') ||
+                                        previa.CAMINHO_PREVIA.endsWith('.png') ||
+                                        previa.CAMINHO_PREVIA.endsWith('.gif')) { %>
+                                        <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>"
+                                            alt="Imagem">
+                                        <% } else if (previa.CAMINHO_PREVIA.endsWith('.mp4') ||
+                                            previa.CAMINHO_PREVIA.endsWith('.mov') ||
+                                            previa.CAMINHO_PREVIA.endsWith('.avi')) { %>
+
+                                            <video controls>
+                                                <source
+                                                    src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>"
+                                                    type="video/mp4">
+                                                Seu navegador não suporta o elemento de vídeo.
+                                            </video>
+                                            <% } else { %>
+
+                                                <p>Tipo de mídia não suportado</p>
+                                                <% } %>
+                                </article>
+                            </article>
+                            <% }) } %>
+
+
+                    </section>
         </section>
         <footer class="row">
             <article id="tagsContainer">
-                <% if(tags){ 
-                    tags.forEach(tag=>{ %>
+                <% if(tags){ tags.forEach(tag=>{ %>
                     <span class="tag text">
                         <%= tag %>
                     </span>
@@ -117,45 +130,46 @@
             <button type="submit" class="btn secundaria mt-2">Comentar</button>
         </form>
         <section class="comentarios mt-3">
-            <% if(comentarios) { 
-                
-                comentarios.forEach(comentario => { %>
-                    <article class="comment__item">
-                        <article class="row">
-                            <a href="/profile?idUser=<%= comentario.usuario.ID_USUARIO %>" class="comment__user">
-                                <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>" alt="foto de perfil do comentário" class="userImg">
-                                <h4 class="link mt-2"><%= comentario.usuario.NICKNAME_USUARIO %></h4>
-                            </a>
-                            <p class="text"><%= comentario.COMENTARIO_AVALIACAO %></p>
-                        </article>
-                        <article class="avaliacao__stars pt-1">
-                            <% for (let i = 1; i <= 5; i++) { %>
-                                <% if (i <= comentario.NOTA_AVALIACAO) { %>
-                                    <i class="bi bi-star-fill"></i> 
+            <% if(comentarios) { comentarios.forEach(comentario=> { %>
+                <article class="comment__item">
+                    <article class="row">
+                        <a href="/profile?idUser=<%= comentario.usuario.ID_USUARIO %>" class="comment__user">
+                            <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>"
+                                alt="foto de perfil do comentário" class="userImg">
+                            <h4 class="link mt-2">
+                                <%= comentario.usuario.NICKNAME_USUARIO %>
+                            </h4>
+                        </a>
+                        <p class="text">
+                            <%= comentario.COMENTARIO_AVALIACAO %>
+                        </p>
+                    </article>
+                    <article class="avaliacao__stars pt-1">
+                        <% for (let i=1; i <=5; i++) { %>
+                            <% if (i <=comentario.NOTA_AVALIACAO) { %>
+                                <i class="bi bi-star-fill"></i>
                                 <% } else { %>
                                     <i class="bi bi-star"></i>
-                                <% } %>
-                            <% } %>
-                        </article>
+                                    <% } %>
+                                        <% } %>
                     </article>
-                    <% })
-                
-             } %>
-            
+                </article>
+                <% }) } %>
+
         </section>
     </footer>
 </section>
-        <section class="denunciar__modal modal" id="denunciarModal">
-            <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
-            <section class="modal__content">
-                <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar ficha</h3>
+<section class="denunciar__modal modal" id="denunciarModal">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar ficha</h3>
 
-                <form action="/denunciarFicha?idFicha=<%= ficha.ID_OBRA %>" method="post">
-                    <%- include("./denunciar-modal") %>
-                        <button type="submit" class="btn mt-2">Denunciar</button>
-                </form>
-            </section>
-        </section>
+        <form action="/denunciarFicha?idFicha=<%= ficha.ID_OBRA %>" method="post">
+            <%- include("./denunciar-modal") %>
+                <button type="submit" class="btn mt-2">Denunciar</button>
+        </form>
+    </section>
+</section>
 <script src="./js/abrirModal.js"></script>
-    <script src="./js/carousel.js"></script>
-    <script src="./js/input.js"></script>
+<script src="./js/carousel.js"></script>
+<script src="./js/input.js"></script>

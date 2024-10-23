@@ -163,6 +163,17 @@
                         --cor-btn-hover: var(--cor-principal-hover);
 
                     }
+
+                    & .btn-curtida {
+                        position: relative;
+
+                        & p {
+                            position: absolute;
+                            bottom: -50%;
+                            left:50%;
+                            translate:-50%;
+                        }
+                    }
                 }
             }
         }
@@ -392,6 +403,9 @@
 
             &:is(:hover, :focus, :active) {
                 text-shadow: 0 0 5px var(--cor-principal-hover);
+            }
+            & p {
+                color: #ffffff;
             }
         }
 

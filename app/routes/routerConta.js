@@ -7,6 +7,8 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 // UTIL --------------- 
 const upload = require("../util/upload");
+const usuariosModel = require("../models/usuariosModel");
+const { body, validationResult } = require("express-validator");
 const uploadCapa = upload("./app/public/img/imagens-servidor/capas-img/", 5, ['jpeg', 'jpg', 'png']);
 
 
@@ -16,8 +18,8 @@ const destinoDeFalha = {
     modal: "fechado",
     erros: null,
     valores: "",
-    incorreto: "",  
-    token:null,
+    incorreto: "",
+    token: null,
 }
 
 // ---------------------------------------- GETS -------------------------------------------------- 
@@ -79,22 +81,94 @@ router.get("/cadastrar", function (req, res) {
 });
 // pagina de esqueceu a senha
 router.get("/esqueceuSenha", function (req, res) {
+    let alert = req.session.token ? req.session.token : null;
+    if (alert && alert.contagem < 1) {
+        req.session.token.contagem++;
+    } else {
+        req.session.token = null;
+    }
     const jsonResult = {
         page: "../partial/template-login/esqueceuSenha",
         modal: "fechado",
-        erros: null
+        erros: null,
+        token: alert,
+        modalAberto: false
     }
     res.render("pages/template-login", jsonResult);
 });
-// formulario para enviar email
-router.get("/enviarEmail", function (req, res) {
-    const jsonResult = {
-        page: "../partial/template-login/esqueceuSenha",
-        modal: "aberto",
-        erros: null
-    }
-    res.render("pages/template-login", jsonResult);
-})
+
+
+router.get("/solicitarResetSenha",
+    [
+        body('email')
+            .isEmail().withMessage('Deve ser um email válido')
+            .bail()
+            .custom(async (email) => {
+                const emailExistente = await usuariosModel.findUserByEmail(email)
+                if (emailExistente.length > 0) {
+                    throw new Error("E-mail já em uso! Tente outro");
+                }
+                return true;
+            })],
+    async function (req, res) {
+
+        let error = validationResult(req)
+
+        if (!error.isEmpty) {
+            let alert = req.session.token ? req.session.token : null;
+            if (alert && alert.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            const jsonResult = {
+                page: "../partial/template-login/esqueceuSenha",
+                modal: "fechado",
+                erros: error,
+                token: alert,
+                modalAberto: false
+            }
+            res.render("pages/template-login", jsonResult);
+        } else {
+            try {
+                const { email } = req.body
+                const user = req.session.autenticado ? await usuariosModel.findUserByEmail(email) : new Error("Erro ao acessar o banco")
+
+                const token = jwt.sign(
+                    {
+                        userId: user[0].ID_USUARIO,
+                        expiresIn: "40m"
+                    },
+                    process.env.SECRET_KEY
+                )
+                const resetSenhaEmailDocument = require("../util/emails/recuperarSenha")(process.env.URL_BASE, token);
+                enviarEmail(
+                    user[0].EMAIL_USUARIO,
+                    "Recuperar de senha",
+                    resetSenhaEmailDocument,
+                    async () => {
+                        const jsonResult = {
+                            page: "../partial/edit-profile/security",
+                            pageClass: "security",
+                            usuario: user[0],
+                            token: { msg: "E-mail de redefinição de senha enviado!", type: "success" },
+                            erros: null,
+                            modalAberto: false
+                        }
+                        res.render("./pages/edit-profile", jsonResult)
+                    })
+
+
+            } catch (error) {
+                console.log(error)
+                res.status(500).render("pages/error-500.ejs");
+
+            }
+        }
+
+    });
+
+
 // Link para destruir sessão
 router.get("/sair", middleWares.clearSession, function (req, res) {
     res.redirect("/")
@@ -102,15 +176,7 @@ router.get("/sair", middleWares.clearSession, function (req, res) {
 
 // --------------------------------- POSTS --------------------------------- //
 
-// form para checar se o valor do token é correto
-router.post("/checarToken", function (req, res) {
-    const jsonResult = {
-        page: "../partial/template-login/redefinir",
-        modal: "fechado",
-        erros: null
-    }
-    res.render("pages/template-login", jsonResult);
-})
+
 // Router do FORM de cadastro que chama o Controle de Usuários e cadastra o usuário  
 
 router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, function (req, res) {
@@ -121,6 +187,80 @@ router.post("/criarConta", usuariosController.regrasValidacaoCriarConta, functio
 router.post("/logarConta", usuariosController.regrasValidacaoEntrar, middleWares.gravarAutenticacao, function (req, res) {
     usuariosController.entrar(req, res)
 })
+
+
+// Esqueceu a senha
+
+//Redefinição de senha
+
+
+router.get("/redefinir-senha",
+    middleWares.verifyAutorizado,
+    async function (req, res) {
+        try {
+            const token = req.query.token
+            if (!token) {
+                let alert = req.session.token ? req.session.token : null;
+                if (alert && alert.contagem < 1) {
+                    req.session.token.contagem++;
+                } else {
+                    req.session.token = null;
+                }
+                return res.status(404).render("pages/template-home", {
+                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                    page: "../partial/error-404",
+                    classePagina: "",
+                    token: alert,
+                });
+            }
+
+            jwt.verify(token, process.env.SECRET_KEY, async (err, decoded) => {
+                if (err) {
+
+                    if (!req.session.autenticado && req.session.autenticado.id == null) {
+                        req.session.token = { msg: "Link expirado!", type: "danger" }
+                        return res.redirect("/entrar")
+                    }
+                    const user = req.session.autenticado ? await findUserById(req.session.autenticado.id) : new Error("Erro ao encontrar usuário")
+                    const jsonResult = {
+                        page: "../partial/edit-profile/security",
+                        pageClass: "security",
+                        usuario: user[0],
+                        token: { msg: "Link expirado!", type: "success" },
+                        erros: null,
+                        modalAberto: false
+                    }
+                    res.render("./pages/edit-profile", jsonResult)
+                } else {
+                    const user = await findUserById(decoded.userId)
+                    const jsonResult = {
+                        page: "../partial/edit-profile/security",
+                        pageClass: "security",
+                        usuario: user[0],
+                        token: null,
+                        erros: null,
+                        modalAberto: true
+                    }
+                    res.render("./pages/edit-profile", jsonResult)
+                }
+            })
+        } catch (error) {
+            console.log(error)
+            let alert = req.session.token ? req.session.token : null;
+            if (alert && alert.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: alert,
+            });
+
+        }
+    });
 
 
 module.exports = router;

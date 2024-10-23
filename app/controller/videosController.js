@@ -53,6 +53,7 @@ const videoControl = {
                     CAPA_VIDEO: capaFile.filename,
                     CAMINHO_VIDEO: videoFile.filename,
                     USUARIOS_ID_USUARIO: req.session.autenticado.id,
+                    STATUS_VIDEO: "ativo"
                 }
                 const resultado = await videosModel.create(video)
                 console.log(resultado)

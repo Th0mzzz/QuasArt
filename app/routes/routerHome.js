@@ -24,8 +24,8 @@ const destinoDeFalha = {
     modal: "fechado",
     erros: null,
     valores: "",
-    incorreto: "",  
-    token:null,
+    incorreto: "",
+    token: null,
 }
 
 
@@ -210,7 +210,9 @@ router.get("/via-videos-pub",
             page: "../partial/template-home/pub-pages/videos-pub",
             classePagina: "publicar",
             erros: null,
-            token: token
+            token: token,
+            valores: null,
+            tags: null
         }
         res.render("./pages/template-home", jsonResult)
     });
@@ -231,6 +233,7 @@ router.get("/attvideo",
                 page: "../partial/error-404",
                 classePagina: "",
                 token: token,
+
             });
         } else {
             let video = await videosModel.buscarPorId(idVideo)
@@ -281,8 +284,8 @@ router.get("/ficha-espacial-pub",
             classePagina: "publicar",
             erros: null,
             token: token,
-            valores: null,
-            tags: null
+            valores: { previas: null },
+            tags: null,
         }
         res.render("./pages/template-home", jsonResult)
     });
