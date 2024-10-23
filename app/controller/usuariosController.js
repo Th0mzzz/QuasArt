@@ -8,7 +8,7 @@ const fichasModel = require("../models/fichasModel")
 const videosModel = require("../models/videosModel")
 var salt = bcrypt.genSaltSync(8)
 const jwt = require("jsonwebtoken")
-const { enviarEmail, enviarEmailAtivacao } = require("../util/sendEmail")
+const { enviarEmail, enviarEmailAtivacao , enviarEmailRecuperarSenha} = require("../util/sendEmail")
 
 const dotenv = require("dotenv");
 dotenv.config();
@@ -746,11 +746,12 @@ const usuariosController = {
                     },
                     process.env.SECRET_KEY
                 )
-                const resetSenhaEmailDocument = require("../util/emails/recuperarSenha")(process.env.URL_BASE, token);
-                enviarEmail(
+                
+                enviarEmailRecuperarSenha(
                     user[0].EMAIL_USUARIO,
                     "Recuperar de senha",
-                    resetSenhaEmailDocument,
+                    process.env.URL_BASE,
+                    token,
                     async () => {
                         req.session.token = { msg: "E-mail enviado com sucesso", type: "success", contagem: 0 }
                         res.redirect("/esqueceuSenha")
