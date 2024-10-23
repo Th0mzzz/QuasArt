@@ -1,0 +1,37 @@
+<% 
+let classeErro={ 
+    senha:"",
+} 
+let msgErro= {
+    senha:"",
+} 
+if(erros) {
+    erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+    })
+}
+%>
+
+<section class="attSenha__modal modal <%= modalAberto ? 'show' : '' %>" id="attSenha">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <form action="/redefinirSenha?idUser=<%= idUser %>" method="post" class="form-attSenha">
+            <h2 class="subtitle mb-3" style="color: var(--cor-texto);">Redefina sua senha.</h2>
+            <article class="input__container <%= classeErro.senha %> senha alerted-input">
+                <input type="password" name="senha" id="senha" class="input__control" placeholder="Senha" required
+                    maxlength="50">
+                <p class="ocultSenha btn"><i class="bi bi-eye"></i></p>
+                <label for="senha">Senha:</label>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.senha %>
+                </span>
+                
+                <span class="smallText alert-msg mb-2">
+                        A senha deve ter pelo menos 8 caracteres, 1 carácter maiúsculo, 1 minúsculo e 1 especial ([!@#$%^&*(),.?":{}|<>])
+                    </span>
+    </article>
+            <button class="btn mt-3 submit" type="submit">Alterar</button>
+        </form>
+    </section>
+</section>

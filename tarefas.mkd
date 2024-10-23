@@ -2,21 +2,23 @@
 * Pagina admin 
     - dashboard com gráficos e estatisticas
     - assinaturas
+* Home 
+    - seção para assinantes
   
 ### BACK-END
+- fazer anuncios aparecerem por um tempo nas paginas de views
 - Gerenciar dinamicidade dos cards na home;
 - Visualização de vídeos
 - Funcionar os benefícios das assinaturas
 - Gestão das assinaturas
-- Verificação de e-mail
 - Alteração de senha(necessário mandar token para email )
 - Sistema de seguir perfis;
   
 ### Banco de dados
-
+- criar table para anuncios
+- criar table de relacionamento para seguidor e seguido
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
-- Implementação do Google ADS;
 - Mercado pago assinaturas( se tem como obter as informações de assinaturas para meu site ou não)
 
 ### Brainstorm

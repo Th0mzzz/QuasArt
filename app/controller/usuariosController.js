@@ -597,8 +597,8 @@ const usuariosController = {
             res.render("./pages/edit-profile", jsonResult)
         } else {
             try {
-
-                let hashSenha = bcrypt.hashSync(campo, salt);
+                const { senha } = req.body
+                let hashSenha = bcrypt.hashSync(senha, salt);
                 var resultado = await usuariosModel.updateUser({ SENHA_USUARIO: hashSenha }, req.session.autenticado.id)
                 const user = await usuariosModel.findUserById(req.session.autenticado.id)
                 console.log(resultado)
@@ -696,7 +696,7 @@ const usuariosController = {
                         idUser: decoded.userId,
                         modalAberto: true
                     }
-                    res.render("./pages/edit-profile", jsonResult)
+                    res.render("./pages/template-login", jsonResult)
                 }
             })
         } catch (error) {
