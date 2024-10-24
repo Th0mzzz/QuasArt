@@ -99,7 +99,7 @@ const usuariosModel = {
     },
     contarCurtidasUsuario: async (idUser) => {
         try {
-            
+
             const [fichas] = await pool.query(
                 `SELECT ID_OBRA FROM FICHAS WHERE USUARIOS_ID_USUARIO = ?`, [idUser]
             );
@@ -112,38 +112,38 @@ const usuariosModel = {
                 `SELECT ID_VIDEOS FROM VIDEOS WHERE USUARIOS_ID_USUARIO = ?`, [idUser]
             );
 
-       
+
             const fichaIds = fichas.map(ficha => ficha.ID_OBRA);
             const resenhaIds = resenhas.map(resenha => resenha.ID_RESENHAS);
             const videoIds = videos.map(video => video.ID_VIDEOS);
 
-            
+
             if (fichaIds.length === 0 && resenhaIds.length === 0 && videoIds.length === 0) {
                 return 0;
             }
 
-            
+
             const [curtidasFichas] = fichaIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA IN (?)`, [fichaIds]
                 )
                 : [{ totalCurtidas: 0 }];
 
-            
+
             const [curtidasResenhas] = resenhaIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS IN (?)`, [resenhaIds]
                 )
                 : [{ totalCurtidas: 0 }];
 
-            
+
             const [curtidasVideos] = videoIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS IN (?)`, [videoIds]
                 )
                 : [{ totalCurtidas: 0 }];
 
-            
+
             const totalCurtidas = (curtidasFichas[0].totalCurtidas || 0)
                 + (curtidasResenhas[0].totalCurtidas || 0)
                 + (curtidasVideos[0].totalCurtidas || 0);
@@ -153,6 +153,34 @@ const usuariosModel = {
         } catch (error) {
             console.log("Erro ao buscar curtidas do usuário", error);
             return error;
+        }
+    },
+    findSeguidoresByIdSeguido: async (idUser) => {
+        try {
+            const [results] = await pool.query("SELECT * FROM SEGUIR_USUARIO WHERE ID_SEGUIDO = ?", [idUser])
+            return results
+        } catch (error) {
+            return error
+        }
+    },
+    verifySeguindo: async (idSeguido, idSeguidor) => {
+        try {
+            const [results] = await pool.query("SELECT * FROM SEGUIR_USUARIO WHERE ID_SEGUIDO = ? AND ID_SEGUIDOR = ?", [idSeguido, idSeguidor])
+            return results.length > 0;
+        } catch (error) {
+            return error
+        }
+    },
+    seguirUsuario: async (isSeguindo, idSeguidor, idSeguido) => {
+        try {
+            if (isSeguindo) {
+                var [results] = await pool.query("DELETE FROM SEGUIR_USUARIO WHERE ID_SEGUIDO = ? AND ID_SEGUIDOR = ?", [idSeguido, idSeguidor])
+            } else {
+                var [results] = await pool.query("INSERT INTO SEGUIR_USUARIO SET ?", [{ ID_SEGUIDOR: idSeguidor, ID_SEGUIDO: idSeguido }])
+            }
+            return results
+        } catch (error) {
+            return error
         }
     }
 }

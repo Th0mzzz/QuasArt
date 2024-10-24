@@ -307,10 +307,11 @@ const usuariosController = {
                 }
             }
             let postagens = contagemResenhas['count(*)'] + contagemFichas['count(*)'] + contagemVideos['count(*)']
+            let seguidores = await usuariosModel.findSeguidoresByIdSeguido(user[0].ID_USUARIO)
             let curtidas = await usuariosModel.contarCurtidasUsuario(user[0].ID_USUARIO) > 0 ? await usuariosModel.contarCurtidasUsuario(user[0].ID_USUARIO) : 0
             const estatisticas = {
                 postagens: postagens,
-                seguidores: 0,
+                seguidores: seguidores.length > 0 ? seguidores.length : 0,
                 curtidas: curtidas,
             }
 
@@ -329,7 +330,8 @@ const usuariosController = {
                         }
                     })
             }
-
+        
+            let seguindo = req.session.autenticado && req.session.autenticado.id ? await usuariosModel.verifySeguindo(user[0].ID_USUARIO, req.session.autenticado.id) : false;
             let token = req.session.token ? req.session.token : null;
             if (token && token.contagem < 1) {
                 req.session.token.contagem++;
@@ -344,12 +346,14 @@ const usuariosController = {
                 estatisticas: estatisticas,
                 posts: posts,
                 isUser: isUser,
-                token: token
+                token: token,
+                seguidores: seguidores,
+                isSeguido: seguindo,
             }
 
             res.render("./pages/template-home", jsonResult)
         } catch (errors) {
-            console.log("erro ao tentar visualizar página", errors)
+            console.log(errors)
             let token = req.session.token ? req.session.token : null;
             if (token && token.contagem < 1) {
                 req.session.token.contagem++;

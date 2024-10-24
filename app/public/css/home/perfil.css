@@ -66,6 +66,12 @@
             & .btn {
                 width: fit-content;
                 height: fit-content;
+                margin-top: 1rem;
+                &.seguido{
+                    background: var(--cor-containers);
+                    color:var(--cor-principal);
+                    box-shadow: 0 0 5px #0000004d;
+                }
             }
         }
 
@@ -254,15 +260,15 @@
 
         & .btn {
             position: absolute;
-            right: calc(-85px - 1.5em);
+            top: 50%;
+            translate: 0 -100%;
+            right: calc(-85px - 2rem);
+            margin-top: 0;
+
         }
     }
 
     .edit-btn {
-        position: absolute;
-        right: 0;
-        top: 50%;
-        translate: 0 -50%;
 
         &>i {
             display: block;

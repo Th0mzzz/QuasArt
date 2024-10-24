@@ -937,4 +937,48 @@ router.post("/denunciarVideo",
     }
 )
 
+// SEGUIR
+
+router.post("/seguirUsuario",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async function (req, res) {
+        const idSeguido = req.query.idSeguido
+        if (!idSeguido) {
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            return res.status(404).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-404",
+                classePagina: "",
+                token: token,
+            });
+        }
+        try {
+            const isSeguindo = await usuariosModel.verifySeguindo(idSeguido, req.session.autenticado.id)
+            await usuariosModel.seguirUsuario(isSeguindo, req.session.autenticado.id, idSeguido)
+            res.redirect(`/profile?idUser=${idSeguido}`)
+        } catch (error) {
+            console.log(error)
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+            res.status(500).render("pages/template-home", {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/error-500",
+                classePagina: "",
+                token: token,
+            });
+        }
+
+    }
+)
+
 module.exports = router;
