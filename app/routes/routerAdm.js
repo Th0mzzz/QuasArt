@@ -32,8 +32,14 @@ routerAdm.get("/adm-users",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
-        const users = await adminModel.findAllUsers()
-        res.render("pages/template-adm", { page: "../partial/adm/users", token: null, classePagina: "users", usuarios: users })
+        try {
+            const users = await adminModel.findAllUsers()
+            res.render("pages/template-adm", { page: "../partial/adm/users", token: null, classePagina: "users", usuarios: users })
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
+        }
+
     })
 routerAdm.get("/adm-denuncias",
     middleWares.verifyAutenticado,
@@ -166,7 +172,7 @@ routerAdm.get("/adm-denuncias",
             res.render("pages/template-adm", jsonResult)
         } catch (error) {
             console.log(error)
-            res.status(500).render("pages/error-500")
+            res.redirect("/error-500")
         }
 
     })
@@ -174,64 +180,70 @@ routerAdm.get("/adm-posts",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
-        const resenhas = await adminModel.findAllPosts("RESENHAS")
-        const fichas = await adminModel.findAllPosts("FICHAS")
-        const videos = await adminModel.findAllPosts("VIDEOS")
-        const idsUsuResenhas = []
-        const idsUsuFichas = []
-        const idsUsuVideos = []
+        try {
+            const resenhas = await adminModel.findAllPosts("RESENHAS")
+            const fichas = await adminModel.findAllPosts("FICHAS")
+            const videos = await adminModel.findAllPosts("VIDEOS")
+            const idsUsuResenhas = []
+            const idsUsuFichas = []
+            const idsUsuVideos = []
 
-        for (const r of [...resenhas]) {
-            if (!idsUsuResenhas.includes(r.USUARIOS_ID_USUARIO)) {
-                idsUsuResenhas.push(r.USUARIOS_ID_USUARIO);
+            for (const r of [...resenhas]) {
+                if (!idsUsuResenhas.includes(r.USUARIOS_ID_USUARIO)) {
+                    idsUsuResenhas.push(r.USUARIOS_ID_USUARIO);
+                }
             }
-        }
-        for (const f of [...fichas]) {
-            if (!idsUsuFichas.includes(f.USUARIOS_ID_USUARIO)) {
-                idsUsuFichas.push(f.USUARIOS_ID_USUARIO);
+            for (const f of [...fichas]) {
+                if (!idsUsuFichas.includes(f.USUARIOS_ID_USUARIO)) {
+                    idsUsuFichas.push(f.USUARIOS_ID_USUARIO);
+                }
             }
-        }
-        for (const v of [...videos]) {
-            if (!idsUsuVideos.includes(v.USUARIOS_ID_USUARIO)) {
-                idsUsuVideos.push(v.USUARIOS_ID_USUARIO);
+            for (const v of [...videos]) {
+                if (!idsUsuVideos.includes(v.USUARIOS_ID_USUARIO)) {
+                    idsUsuVideos.push(v.USUARIOS_ID_USUARIO);
+                }
             }
+
+            const [usuariosDasResenhas, usuariosDasFichas, usuariosDosVideos] = await Promise.all([
+                idsUsuResenhas.length > 0 ? await usuariosModel.findUsersByIds(idsUsuResenhas) : [],
+                idsUsuFichas.length > 0 ? await usuariosModel.findUsersByIds(idsUsuFichas) : [],
+                idsUsuVideos.length > 0 ? await usuariosModel.findUsersByIds(idsUsuVideos) : [],
+            ]);
+
+            const mapUsuariosDasResenhas = Object.fromEntries(usuariosDasResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
+            const mapUsuariosDosVideos = Object.fromEntries(usuariosDosVideos.map(usuario => [usuario.ID_USUARIO, usuario]));
+            const mapUsuariosDasFichas = Object.fromEntries(usuariosDasFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
+
+            const posts = {
+                resenhas: resenhas.length > 0
+                    ? resenhas.map(resenha => ({ ...resenha, usuario: mapUsuariosDasResenhas[resenha.USUARIOS_ID_USUARIO] }))
+                    : null,
+                fichas: fichas.length > 0
+                    ? fichas.map(ficha => ({ ...ficha, usuario: mapUsuariosDasFichas[ficha.USUARIOS_ID_USUARIO] }))
+                    : null,
+                videos: videos.length > 0
+                    ? videos.map(video => ({ ...video, usuario: mapUsuariosDosVideos[video.USUARIOS_ID_USUARIO] }))
+                    : null
+            }
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+
+            const jsonResult = {
+                page: "../partial/adm/posts",
+                token: token,
+                classePagina: "posts",
+                posts: posts
+            }
+            res.render("pages/template-adm", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
         }
 
-        const [usuariosDasResenhas, usuariosDasFichas, usuariosDosVideos] = await Promise.all([
-            idsUsuResenhas.length > 0 ? await usuariosModel.findUsersByIds(idsUsuResenhas) : [],
-            idsUsuFichas.length > 0 ? await usuariosModel.findUsersByIds(idsUsuFichas) : [],
-            idsUsuVideos.length > 0 ? await usuariosModel.findUsersByIds(idsUsuVideos) : [],
-        ]);
-
-        const mapUsuariosDasResenhas = Object.fromEntries(usuariosDasResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
-        const mapUsuariosDosVideos = Object.fromEntries(usuariosDosVideos.map(usuario => [usuario.ID_USUARIO, usuario]));
-        const mapUsuariosDasFichas = Object.fromEntries(usuariosDasFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
-
-        const posts = {
-            resenhas: resenhas.length > 0
-                ? resenhas.map(resenha => ({ ...resenha, usuario: mapUsuariosDasResenhas[resenha.USUARIOS_ID_USUARIO] }))
-                : null,
-            fichas: fichas.length > 0
-                ? fichas.map(ficha => ({ ...ficha, usuario: mapUsuariosDasFichas[ficha.USUARIOS_ID_USUARIO] }))
-                : null,
-            videos: videos.length > 0
-                ? videos.map(video => ({ ...video, usuario: mapUsuariosDosVideos[video.USUARIOS_ID_USUARIO] }))
-                : null
-        }
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-            req.session.token.contagem++;
-        } else {
-            req.session.token = null;
-        }
-
-        const jsonResult = {
-            page: "../partial/adm/posts",
-            token: token,
-            classePagina: "posts",
-            posts: posts
-        }
-        res.render("pages/template-adm", jsonResult)
     })
 routerAdm.get("/adm-assinaturas",
     middleWares.verifyAutenticado,

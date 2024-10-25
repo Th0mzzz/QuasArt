@@ -218,19 +218,7 @@ const usuariosController = {
 
             } catch (erros) {
                 console.log(erros)
-
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                res.redirect("/error-500")
             }
 
         }
@@ -267,18 +255,7 @@ const usuariosController = {
 
             } catch (erros) {
                 console.log(erros)
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                res.redirect("/error-500")
             }
 
         }
@@ -330,7 +307,7 @@ const usuariosController = {
                         }
                     })
             }
-        
+
             let seguindo = req.session.autenticado && req.session.autenticado.id ? await usuariosModel.verifySeguindo(user[0].ID_USUARIO, req.session.autenticado.id) : false;
             let token = req.session.token ? req.session.token : null;
             if (token && token.contagem < 1) {
@@ -354,18 +331,7 @@ const usuariosController = {
             res.render("./pages/template-home", jsonResult)
         } catch (errors) {
             console.log(errors)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
     },
     mudarFoto: async (req, res) => {
@@ -435,18 +401,7 @@ const usuariosController = {
 
                 } catch (errors) {
                     console.log(errors)
-                    let token = req.session.token ? req.session.token : null;
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-                    res.status(500).render("pages/template-home", {
-                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                        page: "../partial/error-500",
-                        classePagina: "",
-                        token: token,
-                    });
+                    res.redirect("/error-500")
 
                 }
             }
@@ -478,18 +433,7 @@ const usuariosController = {
 
         } catch (errors) {
             console.log(errors)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
 
         }
     },
@@ -567,18 +511,7 @@ const usuariosController = {
                 }
             } catch (erros) {
                 console.log(erros)
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                res.redirect("/error-500")
             }
         }
 
@@ -618,20 +551,8 @@ const usuariosController = {
                 }
                 res.render("./pages/edit-profile", jsonResult)
             } catch (error) {
-                console.log("Erro ao atualizar perfil")
                 console.log(error)
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                res.redirect("/error-500")
             }
 
         }
@@ -657,18 +578,7 @@ const usuariosController = {
             })
         } catch (error) {
             console.log(error)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
     },
     verificarTokenRedefinirSenha: async (req, res) => {
@@ -706,18 +616,7 @@ const usuariosController = {
             })
         } catch (error) {
             console.log(error)
-            let alert = req.session.token ? req.session.token : null;
-            if (alert && alert.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: alert,
-            });
+            res.redirect("/error-500")
 
         }
     },
@@ -765,18 +664,7 @@ const usuariosController = {
 
             } catch (error) {
                 console.log(error)
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                res.redirect("/error-500")
 
             }
         }
@@ -786,12 +674,7 @@ const usuariosController = {
         if (!idUser) {
             console.log("usuario não achado")
             req.session.token = { msg: "Usuário não encontrado", type: "danger", contagem: 0 }
-            return res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: alert,
-            });
+            return res.redirect("/error-500")
         }
         let error = validationResult(req)
 
@@ -815,18 +698,7 @@ const usuariosController = {
                 res.redirect("/entrar")
             } catch (error) {
                 console.log(error)
-                let alert = req.session.token ? req.session.token : null;
-                if (alert && alert.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: alert,
-                });
+                res.redirect("/error-500")
             }
         }
     }

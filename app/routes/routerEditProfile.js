@@ -21,8 +21,8 @@ const destinoDeFalha = {
     modal: "fechado",
     erros: null,
     valores: "",
-    incorreto: "",  
-    token:null,
+    incorreto: "",
+    token: null,
 }
 
 router.get("/edit-profile",
@@ -42,7 +42,7 @@ router.get("/edit-profile",
             res.render("./pages/edit-profile", jsonResult)
         } catch (error) {
             console.log(error)
-            res.status(500).render("pages/error-500.ejs");
+            res.redirect("/error-500")
 
         }
     });
@@ -63,7 +63,7 @@ router.get("/security",
             res.render("./pages/edit-profile", jsonResult)
         } catch (error) {
             console.log(error)
-            res.status(500).render("pages/error-500.ejs");
+            res.redirect("/error-500")
 
         }
     });
@@ -92,17 +92,11 @@ router.get("/dados-pessoais",
             res.render("./pages/edit-profile", jsonResult)
         } catch (error) {
             console.log(error)
-            res.status(500).render("pages/error-500.ejs");
+            res.redirect("/error-500")
 
         }
     }
-)
-
-
-
-
-
-
+);
 
 // ---------------------------POSTS-----------------
 router.post("/mudarFoto",
