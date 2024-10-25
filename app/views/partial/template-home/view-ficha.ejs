@@ -12,7 +12,6 @@
                             class="userImg">
                         <%= autor.NICKNAME_USUARIO %>
                     </a>
-                    <button class="btn">Seguir</button>
                     <form action="/curtirFicha?idFicha=<%= ficha.ID_OBRA %>" class="estatistica btn-curtida" method="post">
                         <% if(isCurtido) {%>
                             <button class="btn secundaria curtido" data-curtirBtn title="Curtido">

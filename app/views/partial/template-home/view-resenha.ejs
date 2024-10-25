@@ -9,7 +9,6 @@
                         class="userImg">
                     <%= resenha.autor.NICKNAME_USUARIO %>
                 </a>
-                <button class="btn">Seguir</button>
                 <form action="/curtirResenha?idResenha=<%= resenha.ID_RESENHAS %>" class="estatistica" method="post">
                     <% if(isCurtido) {%>
                         <button class="btn secundaria curtido" data-curtirBtn title="Curtido">
