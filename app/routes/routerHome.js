@@ -387,9 +387,11 @@ router.get("/videos", function (req, res) {
 
 // -------- PÁGINAS DE VISUALIZAÇÃO -------------
 
-router.get("/view-resenha", function (req, res) {
-    resenhaControl.mostrarResenha(req, res)
-});
+router.get("/view-resenha",
+    middleWares.verifyAutenticado,
+    function (req, res) {
+        resenhaControl.mostrarResenha(req, res)
+    });
 
 router.get("/view-ficha", function (req, res) {
     fichasControl.mostrarFicha(req, res)

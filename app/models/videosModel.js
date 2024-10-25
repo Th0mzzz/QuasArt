@@ -127,6 +127,15 @@ const videosModel = {
             throw error;
         }
     },
+    findRandomVideo: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE STATUS_VIDEO = 'ativo' ORDER BY RAND() LIMIT 1;");
+            return resultados[0];
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
 }
 
 module.exports = videosModel;

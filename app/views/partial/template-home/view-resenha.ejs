@@ -105,9 +105,11 @@
         </footer>
     </section>
     <% } %>
-
+        <% if(anuncio) {%>
+            <%- include("./anuncio-modal") %>
+        <%}%>
         <section class="denunciar__modal modal" id="denunciarModal">
-            <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+            <button class="closeBtn btn" ><i class="bi bi-x-lg"></i></button>
             <section class="modal__content">
                 <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar resenha</h3>
 
@@ -120,7 +122,7 @@
         <script src="./js/abrirModal.js"></script>
         <script src="./js/input.js"></script>
         <script src="./js/curtirBtn.js"></script>
-
+        <script src="./js/anuncio.js"></script>
         <script>
             function ajustarProporcao(elemento, proporcao) {
 

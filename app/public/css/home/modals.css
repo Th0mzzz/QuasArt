@@ -41,3 +41,17 @@
         max-width: 400px;
     }
 }
+
+
+.anuncio__modal .modal__content{
+    width: fit-content;
+    width: 100%;
+    max-width: 1024px;
+    padding: 1rem;
+    &>*{color: var(--cor-texto);text-decoration: none;}
+    & .add__img{
+        margin-top: 2rem;
+        width: 100%;
+        border-radius: 10px;
+    }
+}

@@ -37,6 +37,15 @@ const anunciosModel = {
             throw error;
         }
     },
+    findAnuncioAleatorio: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM ANUNCIOS WHERE STATUS_ANUNCIO = 'ativo' ORDER BY RAND() LIMIT 1;");
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar usuários", error);
+            throw error;
+        }
+    },
 
 }
 

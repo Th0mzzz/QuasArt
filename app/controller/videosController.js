@@ -171,10 +171,10 @@ const videoControl = {
     },
     mostrarVideo: async (req, res) => {
         let idVideo = req.query.idVideo
-        // if (!idVideo) {
-        //     const videos = await pool.query("SELECT * FROM VIDEOS LIMIT 10")
-        // }
-
+        if (!idVideo) {
+            let result = await videosModel.findRandomVideo()
+            idVideo = result.ID_VIDEOS
+        }
         try {
             const video = await videosModel.buscarPorId(idVideo)
             if (video) {

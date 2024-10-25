@@ -1,6 +1,7 @@
 const { body, validationResult } = require("express-validator");
 const resenhaModel = require("../models/resenhasModel");
 const usuariosModel = require("../models/usuariosModel");
+const anunciosModel = require("../models/anunciosModel");
 const { removeImg } = require("../util/removeImg");
 
 const resenhaControl = {
@@ -86,135 +87,143 @@ const resenhaControl = {
               usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
             }))
 
-            const isCurtido = async () => {
-              if (req.session.autenticado && req.session.autenticado.id != null) {
-                const result = await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id)
-                if (result.length > 0) {
-                  return true
-                } else {
-                  return false
-                }
-              } else { return false }
-            }
-            const curtidas = await resenhaModel.verificarCurtidasDaResenha(idResenha)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-              req.session.token.contagem++;
-            } else {
-              req.session.token = null;
-            }
-            const jsonResult = {
-              page: "../partial/template-home/view-resenha",
-              classePagina: "",
-              resenha: {
-                ...resenha,
-                tags: resenha.HASHTAG_RESENHA.split(","),
-                autor: autor[0],
-                curtidas: curtidas
-              },
-              comentarios: comments,
-              foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-              token: token,
-              isCurtido: isCurtido
-            }
-
-            res.render("./pages/template-home", jsonResult)
+            const isCurtido = req.session.autenticado && req.session.autenticado.id != null 
+            ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) 
+            : false
+          
+          const curtidas = await resenhaModel.verificarCurtidasDaResenha(idResenha)
+          let token = req.session.token ? req.session.token : null;
+          if (token && token.contagem < 1) {
+            req.session.token.contagem++;
           } else {
-            res.redirect("/error-404")
+            req.session.token = null;
           }
-        } else {
 
+
+          let anuncio = null
+
+          if (!req.session.autenticado || req.session.autenticado.tipo == null || req.session.autenticado.tipo == 1) {
+            let result = await anunciosModel.findAnuncioAleatorio()
+            if (result.length > 0) {
+              anuncio = result[0]
+            } else {
+              return res.redirect("/error-500")
+            }
+          }
+
+          const jsonResult = {
+            page: "../partial/template-home/view-resenha",
+            classePagina: "",
+            resenha: {
+              ...resenha,
+              tags: resenha.HASHTAG_RESENHA.split(","),
+              autor: autor[0],
+              curtidas: curtidas
+            },
+            comentarios: comments,
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            token: token,
+            isCurtido: isCurtido,
+            anuncio: anuncio
+          }
+
+          res.render("./pages/template-home", jsonResult)
+        } else {
           res.redirect("/error-404")
         }
+      } else {
 
-      } catch (error) {
-        console.log(error)
-        req.session.token = { msg: "Erro ao mostrar resenha!", type: "danger", contagem: 0 }
-        res.redirect("/error-500")
-
+        res.redirect("/error-404")
       }
+
+} catch (error) {
+  console.log(error)
+  req.session.token = { msg: "Erro ao mostrar resenha!", type: "danger", contagem: 0 }
+  res.redirect("/error-500")
+
+}
 
     }
 
 
   },
-  atualizarResenha: async (req, res) => {
-    let errors = validationResult(req)
-    let errosMulter = req.session.erroMulter;
-    if (!errors.isEmpty() || errosMulter.length > 0) {
+atualizarResenha: async (req, res) => {
+  let errors = validationResult(req)
+  let errosMulter = req.session.erroMulter;
+  if (!errors.isEmpty() || errosMulter.length > 0) {
 
-      let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
+    let listaErros = errors.isEmpty() ? { formatter: null, errors: [] } : errors;
 
-      if (errosMulter.length > 0) {
-        listaErros.errors.push(...errosMulter)
-        if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+    if (errosMulter.length > 0) {
+      listaErros.errors.push(...errosMulter)
+      if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+    }
+    console.log(listaErros)
+    let idResenha = req.query.idResenha
+    if (!idResenha) {
+      req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
+      return res.redirect("/error-404")
+    } else {
+      let resenha = await resenhaModel.buscarPorId(idResenha);
+      if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+        return res.redirect("/");
       }
-      console.log(listaErros)
+      const token = null;
+      const jsonResult = {
+        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+        page: "../partial/template-home/pub-pages/resenhas-att",
+        classePagina: "publicar",
+        erros: listaErros,
+        token: token,
+        valores: {
+          titulo: resenha.TITULO_RESENHA,
+          textoResenha: resenha.TEXTO_RESENHA,
+          descricao: resenha.DESCR_RESENHA,
+          capaResenha: resenha.CAPA_CAMINHO,
+          idResenha: resenha.ID_RESENHAS
+        },
+        tags: resenha.HASHTAG_RESENHA.split(","),
+      };
+      res.render("./pages/template-home", jsonResult)
+    }
+  } else {
+    try {
       let idResenha = req.query.idResenha
       if (!idResenha) {
         req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
         return res.redirect("/error-404")
+      }
+      const { titulo, descricao, textoResenha, tags } = req.body
+      if (req.file) {
+        var resenha = {
+          TITULO_RESENHA: titulo,
+          DESCR_RESENHA: descricao,
+          TEXTO_RESENHA: textoResenha,
+          HASHTAG_RESENHA: [tags].toString(),
+          CAPA_CAMINHO: req.file.filename,
+        }
       } else {
-        let resenha = await resenhaModel.buscarPorId(idResenha);
-        if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
-          return res.redirect("/");
+        var resenha = {
+          TITULO_RESENHA: titulo,
+          DESCR_RESENHA: descricao,
+          TEXTO_RESENHA: textoResenha,
+          HASHTAG_RESENHA: [tags].toString(),
         }
-        const token = null;
-        const jsonResult = {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/template-home/pub-pages/resenhas-att",
-          classePagina: "publicar",
-          erros: listaErros,
-          token: token,
-          valores: {
-            titulo: resenha.TITULO_RESENHA,
-            textoResenha: resenha.TEXTO_RESENHA,
-            descricao: resenha.DESCR_RESENHA,
-            capaResenha: resenha.CAPA_CAMINHO,
-            idResenha: resenha.ID_RESENHAS
-          },
-          tags: resenha.HASHTAG_RESENHA.split(","),
-        };
-        res.render("./pages/template-home", jsonResult)
       }
-    } else {
-      try {
-        let idResenha = req.query.idResenha
-        if (!idResenha) {
-          req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
-          return res.redirect("/error-404")
-        }
-        const { titulo, descricao, textoResenha, tags } = req.body
-        if (req.file) {
-          var resenha = {
-            TITULO_RESENHA: titulo,
-            DESCR_RESENHA: descricao,
-            TEXTO_RESENHA: textoResenha,
-            HASHTAG_RESENHA: [tags].toString(),
-            CAPA_CAMINHO: req.file.filename,
-          }
-        } else {
-          var resenha = {
-            TITULO_RESENHA: titulo,
-            DESCR_RESENHA: descricao,
-            TEXTO_RESENHA: textoResenha,
-            HASHTAG_RESENHA: [tags].toString(),
-          }
-        }
-        console.log("ATT-RESENHA--------------------------")
-        const resultado = await resenhaModel.updateResenha(idResenha, resenha)
-        console.log(resultado)
-        res.redirect(`/view-resenha?idResenha=${idResenha}`)
-      } catch (error) {
-        console.log(error)
-        if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
-        req.session.token = { msg: "Erro ao atualizar resenha!", type: "danger", contagem: 0 }
-        res.redirect("/error-500")
-      }
-
-
+      console.log("ATT-RESENHA--------------------------")
+      const resultado = await resenhaModel.updateResenha(idResenha, resenha)
+      console.log(resultado)
+      res.redirect(`/view-resenha?idResenha=${idResenha}`)
+    } catch (error) {
+      console.log(error)
+      if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
+      req.session.token = { msg: "Erro ao atualizar resenha!", type: "danger", contagem: 0 }
+      res.redirect("/error-500")
     }
-  },
+
+
+  }
+},
   avaliarResenha: async (req, res) => {
     try {
       const idResenha = req.query.idResenha
