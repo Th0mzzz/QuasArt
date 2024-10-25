@@ -124,18 +124,7 @@ router.get("/", async function (req, res) {
         res.render("./pages/template-home", jsonResult)
     } catch (error) {
         console.log(error)
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-            req.session.token.contagem++;
-        } else {
-            req.session.token = null;
-        }
-        res.status(404).render("pages/template-home", {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/error-404",
-            classePagina: "",
-            token: token,
-        });
+        res.redirect("/error-500")
     }
 
 });
@@ -222,19 +211,8 @@ router.get("/attvideo",
     async function (req, res) {
         let idVideo = req.query.idVideo
         if (!idVideo) {
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-
-            });
+            req.session.token = { msg: "Video não encontrada!", type: "danger", contagem: 0 }
+            res.redirect("/error-404")
         } else {
             let video = await videosModel.buscarPorId(idVideo)
 
@@ -298,18 +276,8 @@ router.get("/attficha",
         try {
             let idFicha = req.query.idFicha
             if (!idFicha) {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Ficha não encontrada!", type: "danger", contagem: 0 }
+                res.redirect("/error-404")
             } else {
                 let ficha = await fichasModel.findFichaByIdObra(idFicha)
 
@@ -337,18 +305,7 @@ router.get("/attficha",
             }
         } catch (error) {
             console.log(error)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
 
     });
@@ -378,18 +335,8 @@ router.get("/attresenha",
             let idResenha = req.query.idResenha
 
             if (!idResenha) {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Resenha não encontrada!", type: "danger", contagem: 0 }
+                return res.redirect("/error-404")
             } else {
                 let resenha = await resenhaModel.buscarPorId(idResenha);
                 if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
@@ -415,18 +362,7 @@ router.get("/attresenha",
             }
         } catch (error) {
             console.log(error)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
     });
 
@@ -643,18 +579,7 @@ router.post("/fazerPesquisa", async function (req, res) {
 
     } catch (error) {
         console.log(error)
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-            req.session.token.contagem++;
-        } else {
-            req.session.token = null;
-        }
-        res.status(500).render("pages/template-home", {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/error-500",
-            classePagina: "",
-            token: token,
-        });
+        res.redirect("/error-500")
     }
 });
 
@@ -692,18 +617,8 @@ router.post("/curtirResenha",
         const idResenha = req.query.idResenha
         if (!idResenha) {
             console.log("erro ao encontrar resenha")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Resenha não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await resenhaModel.verificarCurtida(idResenha, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -721,18 +636,8 @@ router.post("/curtirFicha",
         const idFicha = req.query.idFicha
         if (!idFicha) {
             console.log("erro ao encontrar ficha")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Ficha não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await fichasModel.verificarCurtida(idFicha, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -750,18 +655,8 @@ router.post("/curtirVideo",
         const idVideo = req.query.idVideo
         if (!idVideo) {
             console.log("erro ao encontrar video")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Video não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
         if (isCurtido) {
@@ -782,19 +677,8 @@ router.post("/denunciarUsuario",
     async function (req, res) {
         const idUser = req.query.idUser
         if (!idUser) {
-            console.log("Erro ao encontrar o usuário")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Usuário não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -822,19 +706,8 @@ router.post("/denunciarResenha",
     async function (req, res) {
         const idResenha = req.query.idResenha
         if (!idResenha) {
-            console.log("Erro ao encontrar a resenha")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Resenha não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -862,19 +735,8 @@ router.post("/denunciarFicha",
     async function (req, res) {
         const idFicha = req.query.idFicha
         if (!idFicha) {
-            console.log("Erro ao encontrar a ficha")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Ficha não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -902,19 +764,8 @@ router.post("/denunciarVideo",
     async function (req, res) {
         const idVideo = req.query.idVideo
         if (!idVideo) {
-            console.log("Erro ao encontrar a video")
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Video não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         try {
             const { denunciaRadio, descricaoDenuncia } = req.body
@@ -945,18 +796,8 @@ router.post("/seguirUsuario",
     async function (req, res) {
         const idSeguido = req.query.idSeguido
         if (!idSeguido) {
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            return res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Usuário não encontrada!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         }
         try {
             const isSeguindo = await usuariosModel.verifySeguindo(idSeguido, req.session.autenticado.id)
@@ -964,18 +805,7 @@ router.post("/seguirUsuario",
             res.redirect(`/profile?idUser=${idSeguido}`)
         } catch (error) {
             console.log(error)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
 
     }

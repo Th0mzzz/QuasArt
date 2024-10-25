@@ -3,7 +3,6 @@ const usuariosModel = require("../models/usuariosModel");
 const { removeImg } = require("../util/removeImg");
 const fichasModel = require("../models/fichasModel");
 
-
 const fichasControl = {
     validacaoFicha: [
         body("nomeObra")
@@ -92,18 +91,8 @@ const fichasControl = {
                         }
                     }
                 }
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Erro ao encontrar ficha!", type: "danger", contagem: 0 }
+                return res.redirect("/error-500")
             }
 
 
@@ -152,18 +141,8 @@ const fichasControl = {
                 const ficha = await fichasModel.findFichaByIdObra(idFicha);
 
                 if (!ficha) {
-                    let token = req.session.token ? req.session.token : null;
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-                    res.status(500).render("pages/template-home", {
-                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                        page: "../partial/error-500",
-                        classePagina: "",
-                        token: token,
-                    });
+                    req.session.token = { msg: "Erro ao encontrar ficha!", type: "danger", contagem: 0 }
+                    return res.redirect("/error-404")
                 }
                 const capaFicha = req.files['capaFicha'] ? req.files['capaFicha'][0].filename : ficha.CAMINHO_CAPA;
                 const previas = req.files['previas'] ? req.files['previas'].map(previa => previa.filename) : null;
@@ -196,7 +175,6 @@ const fichasControl = {
 
                 res.redirect(`/view-ficha?idFicha=${idFicha}`)
             } catch (error) {
-                console.log("Erro ao atualizar ficha")
                 console.log(error)
                 const previas = req.files['previas'] ? req.files['previas'] : null;
                 if (req.files) {
@@ -207,18 +185,8 @@ const fichasControl = {
                         }
                     }
                 }
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Erro ao atualizar ficha!", type: "danger", contagem: 0 }
+                return res.redirect("/error-500")
             }
 
 
@@ -227,18 +195,8 @@ const fichasControl = {
     mostrarFicha: async (req, res) => {
         const idFicha = req.query.idFicha
         if (!idFicha) {
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(404).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-404",
-                classePagina: "",
-                token: token,
-            });
+            req.session.token = { msg: "Erro ao encontrar ficha!", type: "danger", contagem: 0 }
+            return res.redirect("/error-404")
         } else {
             try {
                 const ficha = await fichasModel.findFichaByIdObra(idFicha)
@@ -285,48 +243,18 @@ const fichasControl = {
 
                         res.render("./pages/template-home", jsonResult)
                     } else {
-                        let token = req.session.token ? req.session.token : null;
-                        if (token && token.contagem < 1) {
-                            req.session.token.contagem++;
-                        } else {
-                            req.session.token = null;
-                        }
-                        res.status(404).render("pages/template-home", {
-                            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                            page: "../partial/error-404",
-                            classePagina: "",
-                            token: token,
-                        });
+                        req.session.token = { msg: "Erro ao mostrar ficha!", type: "danger", contagem: 0 }
+                        return res.redirect("/error-404")
                     }
                 } else {
-                    let token = req.session.token ? req.session.token : null;
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-                    res.status(404).render("pages/template-home", {
-                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                        page: "../partial/error-404",
-                        classePagina: "",
-                        token: token,
-                    });
+                    req.session.token = { msg: "Erro ao mostrar ficha!", type: "danger", contagem: 0 }
+                    return res.redirect("/error-404")
                 }
 
             } catch (error) {
                 console.log(error)
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Erro ao mostrar ficha!", type: "danger", contagem: 0 }
+                return res.redirect("/error-500")
             }
 
         }
@@ -337,18 +265,8 @@ const fichasControl = {
         try {
             const idFicha = req.query.idFicha
             if (!idFicha) {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Erro ao encontrar ficha!", type: "danger", contagem: 0 }
+                return res.redirect("/error-404")
             }
             const { textComment, avaliacao } = req.body
             const dadosAvaliacao = {
@@ -360,7 +278,8 @@ const fichasControl = {
             await fichasModel.comentarFicha(dadosAvaliacao)
             res.redirect(`/view-ficha?idFicha=${idFicha}`)
         } catch (error) {
-
+            req.session.token = { msg: "Erro ao avaliar ficha!", type: "danger", contagem: 0 }
+            res.redirect("/error-500")
         }
     }
 }

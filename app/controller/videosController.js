@@ -64,18 +64,8 @@ const videoControl = {
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['capaVideo'][0].filename}`)
                     removeImg(`./app/public/img/imagens-servidor/capaImg/${req.files['video'][0].filename}`)
                 }
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Erro ao postar vídeo", type: "danger", contagem: 0 }
+                res.redirect("/error-500")
             }
 
 
@@ -101,18 +91,8 @@ const videoControl = {
 
             let idVideo = req.query.idVideo
             if (!idVideo) {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Video não encontrado!", type: "danger", contagem: 0 }
+                return res.redirect("/error-404")
             } else {
                 let video = await videosModel.buscarPorId(idVideo)
 
@@ -146,19 +126,8 @@ const videoControl = {
                 const video = await videosModel.buscarPorId(idVideo);
 
                 if (!video || !idVideo) {
-                    console.log("video nao encontrado")
-                    let token = req.session.token ? req.session.token : null;
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-                    return res.status(404).render("pages/template-home", {
-                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                        page: "../partial/error-404",
-                        classePagina: "",
-                        token: token,
-                    });
+                    req.session.token = { msg: "Video não encontrado!", type: "danger", contagem: 0 }
+                    return res.redirect("/error-404")
                 }
                 const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
                 const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
@@ -188,18 +157,8 @@ const videoControl = {
                         }
                     }
                 }
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                console.log(error)
+                res.redirect("/error-500")
             }
 
 
@@ -252,48 +211,17 @@ const videoControl = {
 
                     res.render("./pages/videos-home", jsonResult)
                 } else {
-                    let token = req.session.token ? req.session.token : null;
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-                    res.status(404).render("pages/template-home", {
-                        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                        page: "../partial/error-404",
-                        classePagina: "",
-                        token: token,
-                    });
+                    console.log(error)
+                    res.redirect("/error-404")
                 }
             } else {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                res.status(500).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-500",
-                    classePagina: "",
-                    token: token,
-                });
+                console.log(error)
+                res.redirect("/error-500")
             }
 
         } catch (error) {
             console.log(error)
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            res.redirect("/error-500")
         }
 
     },
@@ -301,18 +229,8 @@ const videoControl = {
         try {
             const idVideo = req.query.idVideo
             if (!idVideo) {
-                let token = req.session.token ? req.session.token : null;
-                if (token && token.contagem < 1) {
-                    req.session.token.contagem++;
-                } else {
-                    req.session.token = null;
-                }
-                return res.status(404).render("pages/template-home", {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/error-404",
-                    classePagina: "",
-                    token: token,
-                });
+                req.session.token = { msg: "Video não encontrado!", type: "danger", contagem: 0 }
+                return res.redirect("/error-404")
             }
             const { comentario } = req.body
             const dadosAvaliacao = {
@@ -323,18 +241,8 @@ const videoControl = {
             await videosModel.comentarVideo(dadosAvaliacao)
             res.redirect(`/videos?idVideo=${idVideo}`)
         } catch (error) {
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-                req.session.token.contagem++;
-            } else {
-                req.session.token = null;
-            }
-            res.status(500).render("pages/template-home", {
-                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                page: "../partial/error-500",
-                classePagina: "",
-                token: token,
-            });
+            console.log(error)
+            res.redirect("/error-500")
         }
     }
 

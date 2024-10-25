@@ -54,18 +54,8 @@ const resenhaControl = {
       } catch (error) {
         console.log(error)
         if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-          req.session.token.contagem++;
-        } else {
-          req.session.token = null;
-        }
-        res.status(500).render("pages/template-home", {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/error-500",
-          classePagina: "",
-          token: token,
-        });
+        req.session.token = { msg: "Erro ao postar resenha!", type: "danger", contagem: 0 }
+        res.redirect("/error-404")
       }
 
 
@@ -74,18 +64,8 @@ const resenhaControl = {
   mostrarResenha: async (req, res) => {
     const idResenha = req.query.idResenha
     if (!idResenha) {
-      let token = req.session.token ? req.session.token : null;
-      if (token && token.contagem < 1) {
-        req.session.token.contagem++;
-      } else {
-        req.session.token = null;
-      }
-      res.status(404).render("pages/template-home", {
-        foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-        page: "../partial/error-404",
-        classePagina: "",
-        token: token,
-      });
+      req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
+      res.redirect("/error-404")
     } else {
       try {
         const resenha = await resenhaModel.buscarPorId(idResenha)
@@ -140,48 +120,17 @@ const resenhaControl = {
 
             res.render("./pages/template-home", jsonResult)
           } else {
-            let token = req.session.token ? req.session.token : null;
-            if (token && token.contagem < 1) {
-              req.session.token.contagem++;
-            } else {
-              req.session.token = null;
-            }
-            res.status(404).render("pages/template-home", {
-              foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-              page: "../partial/error-404",
-              classePagina: "",
-              token: token,
-            });
+            res.redirect("/error-404")
           }
         } else {
-          let token = req.session.token ? req.session.token : null;
-          if (token && token.contagem < 1) {
-            req.session.token.contagem++;
-          } else {
-            req.session.token = null;
-          }
-          res.status(404).render("pages/template-home", {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/error-404",
-            classePagina: "",
-            token: token,
-          });
+
+          res.redirect("/error-404")
         }
 
       } catch (error) {
         console.log(error)
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-          req.session.token.contagem++;
-        } else {
-          req.session.token = null;
-        }
-        res.status(500).render("pages/template-home", {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/error-500",
-          classePagina: "",
-          token: token,
-        });
+        req.session.token = { msg: "Erro ao mostrar resenha!", type: "danger", contagem: 0 }
+        res.redirect("/error-500")
 
       }
 
@@ -203,18 +152,8 @@ const resenhaControl = {
       console.log(listaErros)
       let idResenha = req.query.idResenha
       if (!idResenha) {
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-          req.session.token.contagem++;
-        } else {
-          req.session.token = null;
-        }
-        res.status(404).render("pages/template-home", {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/error-404",
-          classePagina: "",
-          token: token,
-        });
+        req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
+        return res.redirect("/error-404")
       } else {
         let resenha = await resenhaModel.buscarPorId(idResenha);
         if (resenha.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
@@ -242,18 +181,8 @@ const resenhaControl = {
       try {
         let idResenha = req.query.idResenha
         if (!idResenha) {
-          let token = req.session.token ? req.session.token : null;
-          if (token && token.contagem < 1) {
-            req.session.token.contagem++;
-          } else {
-            req.session.token = null;
-          }
-          return res.status(404).render("pages/template-home", {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/error-404",
-            classePagina: "",
-            token: token,
-          });
+          req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
+          return res.redirect("/error-404")
         }
         const { titulo, descricao, textoResenha, tags } = req.body
         if (req.file) {
@@ -279,18 +208,8 @@ const resenhaControl = {
       } catch (error) {
         console.log(error)
         if (req.file) { removeImg(`./app/public/img/imagens-servidor/capaImg/${req.file.filename}`) }
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-          req.session.token.contagem++;
-        } else {
-          req.session.token = null;
-        }
-        res.status(500).render("pages/template-home", {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/error-500",
-          classePagina: "",
-          token: token,
-        });
+        req.session.token = { msg: "Erro ao atualizar resenha!", type: "danger", contagem: 0 }
+        res.redirect("/error-500")
       }
 
 
@@ -300,18 +219,8 @@ const resenhaControl = {
     try {
       const idResenha = req.query.idResenha
       if (!idResenha) {
-        let token = req.session.token ? req.session.token : null;
-        if (token && token.contagem < 1) {
-          req.session.token.contagem++;
-        } else {
-          req.session.token = null;
-        }
-        return res.status(404).render("pages/template-home", {
-          foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-          page: "../partial/error-404",
-          classePagina: "",
-          token: token,
-        });
+        req.session.token = { msg: "Erro ao encontrar resenha!", type: "danger", contagem: 0 }
+        return res.redirect("/error-500")
       }
       const { textComment, avaliacao } = req.body
       const dadosAvaliacao = {
@@ -323,7 +232,9 @@ const resenhaControl = {
       await resenhaModel.comentarResenha(dadosAvaliacao)
       res.redirect(`/view-resenha?idResenha=${idResenha}`)
     } catch (error) {
-
+      console.log(error)
+      req.session.token = { msg: "Erro ao avaliar a resenha!", type: "danger", contagem: 0 }
+      res.redirect("/error-500")
     }
   }
 }
