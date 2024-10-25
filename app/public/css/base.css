@@ -408,7 +408,7 @@
     translate: -50% -200vh;
     border: 2px solid var(--cor-secundaria);
     border-radius: 50px;
-    z-index: 100;
+    z-index: 1000;
 
     &.success {
         color: var(--cor-success);

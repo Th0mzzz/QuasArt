@@ -1,0 +1,101 @@
+<section class="denun-tables__btns mt-3">
+    <a href="/criar-anuncio" class="link btn ativo" data-openModal="#criarAnuncio">Criar Anúncio</a> 
+</section>
+<section class="admTable__container">
+    <table id="usuarioTable" class="display">
+        <thead>
+            <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Patrocinador</th>
+                <th>Link do anúncio</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% if(anuncios) { anuncios.forEach(anuncio=>{ %>
+                <tr>
+                    <td><img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR %>"
+                            alt="foto do Patrocinador" class="foto-table"></td>
+                    <td>
+                        <%= anuncio.ID_ANUNCIO %>
+                    </td>
+                    <td>
+                        <%= anuncio.NOME_PATROCINADOR %>
+                    </td>
+                    <td>
+                        <%= anuncio.LINK_ANUNCIO %>
+                    </td>
+                    <td><span class="span-status <%= anuncio.STATUS_ANUNCIO == 'ativo' ? 'ativo' : 'inativo' %>">
+                            <%= anuncio.STATUS_ANUNCIO %>
+                        </span></td>
+                    <td>
+                        <article class="btns-table">
+                            <% if(anuncio.STATUS_ANUNCIO=='ativo' ){ %>
+                                <form action="/inativarAnuncio?idAnuncio=<%= anuncio.ID_ANUNCIO %>" method="post">
+                                    <button class="btn-icon inativar" title="Inativar anúncio"><i
+                                            class="bi bi-ban"></i></button>
+                                </form>
+                                <% }else { %>
+                                    <form action="/ativarAnuncio?idAnuncio=<%= anuncio.ID_ANUNCIO %>" method="post">
+                                        <button class="btn-icon ativar" title="Ativar anúncio"><i
+                                                class="bi bi-check-circle"></i></button>
+                                    </form>
+                                    <% } %>
+                                        <a class="btn-icon" title="Ver anúncio" href="/ver-anuncio?idAnuncio=<%= anuncio.ID_ANUNCIO %>">
+                                            <i class="bi bi-eye"></i>
+                                        </a>
+                                        <a class="btn-icon" title="Editar anúncio" href="/att-anuncio?idAnuncio=<%= anuncio.ID_ANUNCIO %>">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                        </article>
+
+                    </td>
+                </tr>
+                <% }) } %>
+
+        </tbody>
+    </table>
+</section>
+
+<% if(anuncio && modal.seeAnuncio == 'show') { %>
+ <section class="verAnuncio__modal modal <%= modal.seeAnuncio %>">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <h2 class="title">Imagem do Anúncios</h2>
+        <img src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO %>" alt="imagem do anúncio" class="anuncio__imagem">
+    </section>
+</section> 
+
+<% }%>
+
+<% if(modal.criarAnuncio == 'show') { %>
+<section class="verAnuncio__modal modal <%= modal.criarAnuncio %>" id="criarAnuncio">
+    <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+    <section class="modal__content">
+        <form action="/criarAnuncio" method="post" enctype="multipart/form-data" class="form-criarAnuncio">
+            <%-include("./form-anuncio") %>
+            <button type="submit" class="btn submit">Criar</button>
+        </form>
+    </section>
+</section> 
+<% } %>
+
+<% if(anuncio && modal.attAnuncio == 'show') { %>
+    <section class="verAnuncio__modal modal <%= modal.attAnuncio %>" id="criarAnuncio">
+        <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
+        <section class="modal__content">
+            <form action="/atualizarAnuncio?idAnuncio=<%= anuncio.ID_ANUNCIO%>" method="post" enctype="multipart/form-data">
+                <%-include("./form-anuncio") %>
+                <button type="submit" class="btn submit">Atualizar</button>
+            </form>
+
+        </section>
+    </section> 
+<% }%>
+<script src="./js/abrirModal.js"></script>
+<script src="./js/input.js"></script>
+<script src="./js/addAnuncio.js"></script>
+<script src="./js/addCapa.js"></script>

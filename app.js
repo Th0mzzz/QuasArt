@@ -32,8 +32,8 @@ app.use("/", rotasEditProfile);
 var rotasConta = require("./app/routes/routerConta");
 app.use("/", rotasConta);
 
-app.use((req, res, next) => {
-  let token = req.session.token ? req.session.token : null;
+app.use("/error-404", (req, res) => {
+  let token = req.session.token || null;
   if (token && token.contagem < 1) {
     req.session.token.contagem++;
   } else {
@@ -46,22 +46,9 @@ app.use((req, res, next) => {
     token: token,
   });
 });
-app.use("/error-404", (req, res, next) => {
-  let token = req.session.token ? req.session.token : null;
-  if (token && token.contagem < 1) {
-    req.session.token.contagem++;
-  } else {
-    req.session.token = null;
-  }
-  res.status(404).render("pages/template-home", {
-    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-    page: "../partial/error-404",
-    classePagina: "",
-    token: token,
-  });
-});
-app.use("/sem-permissao", (req, res, next) => {
-  let token = req.session.token ? req.session.token : null;
+
+app.use("/sem-permissao", (req, res) => {
+  let token = req.session.token || null;
   if (token && token.contagem < 1) {
     req.session.token.contagem++;
   } else {
@@ -74,8 +61,9 @@ app.use("/sem-permissao", (req, res, next) => {
     token: null,
   });
 });
-app.use("/error-500", (req, res, next) => {
-  let token = req.session.token ? req.session.token : null;
+
+app.use("/error-500", (req, res) => {
+  let token = req.session.token || null;
   if (token && token.contagem < 1) {
     req.session.token.contagem++;
   } else {
@@ -87,6 +75,10 @@ app.use("/error-500", (req, res, next) => {
     classePagina: "",
     token: token,
   });
+});
+
+app.use((req, res) => {
+  res.redirect('/error-404');
 });
 
 app.listen(port, () => {

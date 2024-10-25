@@ -93,31 +93,31 @@ const videoControl = {
             if (!idVideo) {
                 req.session.token = { msg: "Video não encontrado!", type: "danger", contagem: 0 }
                 return res.redirect("/error-404")
-            } else {
-                let video = await videosModel.buscarPorId(idVideo)
-
-                if (video.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
-                    return res.redirect("/")
-                }
-
-                const token = null
-                const jsonResult = {
-                    foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-                    page: "../partial/template-home/pub-pages/videos-att",
-                    classePagina: "publicar",
-                    erros: listaErros,
-                    token: token,
-                    valores: {
-                        capaVideo: video.CAPA_VIDEO,
-                        tituloVideo: video.NOME_VIDEO,
-                        descricao: video.DESCR_VIDEO,
-                        idVideo: idVideo,
-                        video: video.CAMINHO_VIDEO
-                    },
-                    tags: video.HASHTAG_VIDEO.split(","),
-                }
-                res.render("./pages/template-home", jsonResult)
             }
+            let video = await videosModel.buscarPorId(idVideo)
+
+            if (video.USUARIOS_ID_USUARIO != req.session.autenticado.id) {
+                return res.redirect("/")
+            }
+
+            const token = null
+            const jsonResult = {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                page: "../partial/template-home/pub-pages/videos-att",
+                classePagina: "publicar",
+                erros: listaErros,
+                token: token,
+                valores: {
+                    capaVideo: video.CAPA_VIDEO,
+                    tituloVideo: video.NOME_VIDEO,
+                    descricao: video.DESCR_VIDEO,
+                    idVideo: idVideo,
+                    video: video.CAMINHO_VIDEO
+                },
+                tags: video.HASHTAG_VIDEO.split(","),
+            }
+            res.render("./pages/template-home", jsonResult)
+
 
         } else {
             try {
@@ -131,6 +131,11 @@ const videoControl = {
                 }
                 const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
                 const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
+
+                if(req.files){
+                    if(req.files['capaVideo'][0]) removeImg(`./img/imagens-servidor/capas-img/${video.CAPA_VIDEO}`)
+                    if(req.files['video'][0]) removeImg(`./img/imagens-servidor/videos/${video.CAMINHO_VIDEO}`)
+                }
 
                 const { tituloVideo, descricao, tags } = req.body
 
@@ -211,12 +216,11 @@ const videoControl = {
 
                     res.render("./pages/videos-home", jsonResult)
                 } else {
-                    console.log(error)
+
                     res.redirect("/error-404")
                 }
             } else {
-                console.log(error)
-                res.redirect("/error-500")
+                res.redirect("/error-404")
             }
 
         } catch (error) {

@@ -248,7 +248,8 @@ const usuariosController = {
                         page: "../partial/template-login/login",
                         modal: "fechado",
                         erros: null,
-                        incorreto: "ativado"
+                        incorreto: "ativado",
+                        token:null
                     }
                     res.render("pages/template-login", jsonResult);
                 }

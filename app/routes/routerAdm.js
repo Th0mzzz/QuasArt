@@ -7,11 +7,13 @@ const usuariosController = require("../controller/usuariosController");
 const resenhaControl = require("../controller/resenhasController");
 const adminModel = require("../models/adminModel");
 const usuariosModel = require("../models/usuariosModel");
+const anunciosModel = require("../models/anunciosModel");
 const resenhaModel = require("../models/resenhasModel");
 const videosModel = require("../models/videosModel");
 const fichasModel = require("../models/fichasModel");
+const anunciosController = require("../controller/anuncioController");
 // UTIL --------------- 
-
+const uploadMultiplo = require("../util/uploadMultiplo");
 // Página de falha de autenticação ---------
 
 
@@ -25,22 +27,149 @@ const destinoDeFalha = {
 routerAdm.get("/adm",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+
     function (req, res) {
-        res.render("pages/template-adm", { page: "../partial/adm/index", token: null, classePagina: "index" })
+        let token = req.session.token ? req.session.token : null;
+        if (token && token.contagem < 1) {
+            req.session.token.contagem++;
+        } else {
+            req.session.token = null;
+        }
+        res.render("pages/template-adm", { page: "../partial/adm/index", token: token, classePagina: "index" })
     })
 routerAdm.get("/adm-users",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
     async function (req, res) {
         try {
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
             const users = await adminModel.findAllUsers()
-            res.render("pages/template-adm", { page: "../partial/adm/users", token: null, classePagina: "users", usuarios: users })
+            res.render("pages/template-adm", { page: "../partial/adm/users", token: token, classePagina: "users", usuarios: users })
         } catch (error) {
             console.log(error)
             res.redirect("/error-500")
         }
 
     })
+routerAdm.get("/adm-anuncios",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        try {
+            let token = req.session.token ? req.session.token : null;
+            if (token && token.contagem < 1) {
+                req.session.token.contagem++;
+            } else {
+                req.session.token = null;
+            }
+
+            const anuncios = await adminModel.findAllAnuncios()
+            const jsonResult = {
+                page: "../partial/adm/anuncios",
+                token: token,
+                classePagina: "anuncios",
+                anuncios: anuncios.length >= 1 ? anuncios : null,
+                modal: { seeAnuncio: "", criarAnuncio: "", attAnuncio: "" },
+                anuncio: null,
+                erros: null,
+            }
+            res.render("pages/template-adm", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
+        }
+
+    })
+routerAdm.get("/ver-anuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        try {
+            const anuncios = await adminModel.findAllAnuncios()
+            const idAnuncio = req.query.idAnuncio
+            if (!idAnuncio) {
+                req.session.token = { msg: "Erro ao encontrar anúncio", type: "danger", contagem: 0 }
+                return res.redirect("/adm-anuncios")
+            }
+            const anuncio = await anunciosModel.findAnuncioById(idAnuncio)
+            const jsonResult = {
+                page: "../partial/adm/anuncios",
+                token: null,
+                classePagina: "anuncios",
+                anuncios: anuncios.length >= 1 ? anuncios : null,
+                modal: { seeAnuncio: "show", criarAnuncio: "", attAnuncio: "" },
+                anuncio: anuncio,
+                erros: null,
+            }
+            res.render("pages/template-adm", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
+        }
+
+    })
+routerAdm.get("/criar-anuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        try {
+            const anuncios = await adminModel.findAllAnuncios()
+            const jsonResult = {
+                page: "../partial/adm/anuncios",
+                token: null,
+                classePagina: "anuncios",
+                anuncios: anuncios.length >= 1 ? anuncios : null,
+                modal: { seeAnuncio: "", criarAnuncio: "show", attAnuncio: "" },
+                anuncio: null,
+                erros: null,
+            }
+            res.render("pages/template-adm", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
+        }
+
+    })
+
+routerAdm.get("/att-anuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        try {
+            const anuncios = await adminModel.findAllAnuncios()
+            const idAnuncio = req.query.idAnuncio
+            if (!idAnuncio) {
+                req.session.token = { msg: "Erro ao encontrar anúncio", type: "danger", contagem: 0 }
+                return res.redirect("/adm-anuncios")
+            }
+            const anuncio = await anunciosModel.findAnuncioById(idAnuncio)
+            const jsonResult = {
+                page: "../partial/adm/anuncios",
+                token: null,
+                classePagina: "anuncios",
+                anuncios: anuncios.length >= 1 ? anuncios : null,
+                modal: { seeAnuncio: "", criarAnuncio: "", attAnuncio: "show" },
+                anuncio: anuncio,
+                erros: null,
+            }
+            res.render("pages/template-adm", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
+        }
+
+    })
+
+
+
+
+
+
 routerAdm.get("/adm-denuncias",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -381,6 +510,33 @@ routerAdm.post("/ativarVideo",
 
         res.redirect("/adm-posts")
     })
+routerAdm.post("/inativarAnuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        const idAnuncio = req.query.idAnuncio
+        if (!idAnuncio) {
+            req.session.token = { msg: "Erro ao encontrar o anuncio!", type: 'danger', contagem: 0 }
+            return res.redirect("/adm-anuncios")
+        }
+        await anunciosModel.updateAnuncio(idAnuncio, { STATUS_ANUNCIO: "inativo" })
+        req.session.token = { msg: "Anuncio inativado!", type: 'success', contagem: 0 }
+        res.redirect("/adm-anuncios")
+    })
+routerAdm.post("/ativarAnuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    async function (req, res) {
+        const idAnuncio = req.query.idAnuncio
+        if (!idAnuncio) {
+            req.session.token = { msg: "Erro ao encontrar o anuncio!", type: 'danger', contagem: 0 }
+            return res.redirect("/adm-anuncios")
+        }
+        await anunciosModel.updateAnuncio(idAnuncio, { STATUS_ANUNCIO: "ativo" })
+        req.session.token = { msg: "Anuncio reativado!", type: 'success', contagem: 0 }
+        res.redirect("/adm-anuncios")
+    })
+
 routerAdm.post("/concluirDenunciaUsuario",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
@@ -484,6 +640,36 @@ routerAdm.post("/concluirDenunciaVideo",
             req.session.token = { msg: 'Erro ao alterar denúncia!', type: 'danger', contagem: 0 }
             res.redirect(`/adm-denuncias`)
         }
+    })
+routerAdm.post("/atualizarAnuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    uploadMultiplo([
+        { name: 'fotoPat', caminho: './app/public/img/imagens-servidor/anuncios/foto-patrocinador', extensoes: ['jpeg', 'jpg', 'png', 'webp'], fileSize: 5, maxCount: 1 },
+        { name: 'anuncioImg', caminho: './app/public/img/imagens-servidor/anuncios/anuncio-imagem', extensoes: ['jpeg', 'jpg', 'png', 'webp'], fileSize: 10, maxCount: 1 }
+    ]),
+    anunciosController.validacaoAnuncio,
+    function (req, res) {
+        anunciosController.attAnuncio(req, res)
+    })
+routerAdm.post("/criarAnuncio",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-home", destinoDeFalha, [4]),
+    (req, res, next) => {
+        req.session.erroMulter = [];
+        next();
+    },
+    uploadMultiplo([
+        { name: 'fotoPat', caminho: './app/public/img/imagens-servidor/anuncios/foto-patrocinador', extensoes: ['jpeg', 'jpg', 'png', 'webp'], fileSize: 5, maxCount: 1 },
+        { name: 'anuncioImg', caminho: './app/public/img/imagens-servidor/anuncios/anuncio-imagem', extensoes: ['jpeg', 'jpg', 'png', 'webp'], fileSize: 10, maxCount: 1 }
+    ]),
+    anunciosController.validacaoAnuncio,
+    function (req, res) {
+        anunciosController.criarAnuncio(req, res)
     })
 
 

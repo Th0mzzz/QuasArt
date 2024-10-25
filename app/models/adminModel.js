@@ -10,6 +10,15 @@ const adminModel = {
             throw error;
         }
     },
+    findAllAnuncios: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM ANUNCIOS LIMIT 1000");
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar anuncios", error);
+            throw error;
+        }
+    },
     findDenuncias: async (table) => {
         try {
             const [resultados] = await pool.query("SELECT * FROM ?? LIMIT 1000", [table]);

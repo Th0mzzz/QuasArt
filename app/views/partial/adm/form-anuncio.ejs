@@ -1,0 +1,87 @@
+<% 
+let classeErro={ 
+    nomePat:"",
+    linkAnuncio:"",
+    fotoPat:"",
+    anuncioImg:""
+} 
+let msgErro= {
+    nomePat:"",
+    linkAnuncio:"",
+    fotoPat:"",
+    anuncioImg:""
+  } 
+    
+    if(erros) {
+      erros.errors.forEach(error=>{
+        classeErro[error.path] = 'invalid';
+        msgErro[error.path] = error.msg
+      })
+    }
+%>
+
+        <header class="form__row">
+            <article class="input__container input-file foto-patrocinador <%= classeErro.fotoPat %>" data-capaContainer>
+                
+                <% if(anuncio){ %>
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR %>" alt="" class="capa__img">
+                <% } %>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.fotoPat %>
+                </span>
+                <% if(anuncio){ %>
+                    <input type="file" name="fotoPat" id="fotoPat" class="input__control" placeholder="" data-inputCapa>
+                <% } else { %> 
+                    <input type="file" name="fotoPat" id="fotoPat" class="input__control" placeholder="" data-inputCapa required>
+                <% } %> 
+                <label for="fotoPat">Selecione a foto do patrocinador</label>
+                <label for="fotoPat" class="icon"><i class="bi bi-download"></i></label>
+            </article>
+
+
+            <section>
+
+                <article class="input__container <%= classeErro.nomePat %>">
+                    <span class="invalid-msg smallText">
+                        <%= msgErro.nomePat %>
+                    </span>
+                    <input type="text" name="nomePat" id="nomePat" class="input__control"
+                        placeholder="Nome do patrocinador" required value="<%= anuncio ? anuncio.NOME_PATROCINADOR: '' %>">
+                    <label for="nomePat">Nome do patrocinador</label>
+                </article>
+                <article class="input__container <%= classeErro.nomePat %>">
+                    <span class="invalid-msg smallText">
+                        <%= msgErro.nomePat %>
+                    </span>
+                    <input type="text" name="linkAnuncio" id="linkAnuncio" class="input__control"
+                        placeholder="Nome do patrocinador" value="<%= anuncio ? anuncio.LINK_ANUNCIO: '' %>">
+                    <label for="linkAnuncio">Link do anúncio (opcional)</label>
+                </article>
+           
+            </section>
+
+        </header>
+        <section class="anuncio__section">
+            <article class="input__container input-file anuncio-img-file <%= classeErro.anuncioImg %>" data-anuncioContainer>
+                <span class="invalid-msg smallText">
+                    <%= msgErro.anuncioImg %>
+                </span>
+                <% if(anuncio) { %> 
+                <input type="file" name="anuncioImg" id="anuncioImg" class="input__control"
+                    placeholder="imagem do anuncio__section" data-inputAnuncio>
+                <% }else { %>
+                    <input type="file" name="anuncioImg" id="anuncioImg" class="input__control"
+                    placeholder="imagem do anuncio__section" required data-inputAnuncio>
+                    <% } %>
+
+                <label for="anuncioImg">Adicionar a imagem do anúncio</label>
+                <label for="anuncioImg" class="icon"><i class="bi bi-download"></i></label>
+                <% if(anuncio) { %> 
+                    <img src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO %>" alt="imagem anuncio" class="capa__img">
+                <% } %>
+            </article>
+
+        </section>
+
+
+       
