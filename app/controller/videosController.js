@@ -233,7 +233,17 @@ const videoControl = {
                         isCurtido: isCurtido,
                         comentarios: comments,
                     }
-                    
+                    var anuncio = null
+
+                    if (!req.session.autenticado || req.session.autenticado.tipo == null || req.session.autenticado.tipo == 1) {
+                        let result = await anunciosModel.findAnuncioAleatorio()
+                        if (result.length > 0) {
+                            anuncio = result[0]
+                        } else {
+                            return res.redirect("/error-500")
+                        }
+                    }
+
                     if (videosInfo.findIndex(v => v.ID_VIDEOS === videoItem.ID_VIDEOS) !== -1) {
                         videosInfo.splice(videosInfo.findIndex(v => v.ID_VIDEOS === videoItem.ID_VIDEOS), 1);
                     }
