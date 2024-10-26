@@ -170,8 +170,8 @@
                         & p {
                             position: absolute;
                             bottom: -50%;
-                            left:50%;
-                            translate:-50%;
+                            left: 50%;
+                            translate: -50%;
                         }
                     }
                 }
@@ -235,6 +235,7 @@
     }
 }
 
+
 .videos-view {
     margin: 0 0;
     display: flex;
@@ -246,6 +247,7 @@
 
 .videos-view .video__info {
     width: 100%;
+    flex-grow: 2;
     max-width: 650px;
     position: fixed;
     transition: transform ease .3s;
@@ -255,6 +257,7 @@
     z-index: 50;
     transition: all ease .4s;
     padding: 0.8rem;
+    padding-top: 3rem;
 
     &.aberto {
         left: 50%;
@@ -281,6 +284,10 @@
         display: flex;
         flex-flow: column nowrap;
         box-shadow: 0 0 8px 1px #00000027;
+        
+        & .btn-close{
+            margin-left: auto;
+        }
     }
 
     & .video__desc {
@@ -373,7 +380,9 @@
     & .video__card {
         position: relative;
         width: 100%;
-        height: 100%;
+        aspect-ratio: 2 / 3;
+        max-width: 420px;
+        max-height: 100%;
 
         & video {
             width: 100%;
@@ -404,6 +413,7 @@
             &:is(:hover, :focus, :active) {
                 text-shadow: 0 0 5px var(--cor-principal-hover);
             }
+
             & p {
                 color: #ffffff;
             }
@@ -435,11 +445,12 @@
     }
 
     & [data-verticalCard] {
-        width: clamp(320px, 100%, 550px);
+        width: 100%;
+        display: flex;
         height: 100%;
         min-height: 100vh;
         transition: transform .4s;
-
+        position: relative;
     }
 }
 
@@ -527,10 +538,12 @@
     }
 
     .videos-view .video__info {
-        width: auto;
+        width: max-content;
         position: relative;
         left: 0px;
         top: 0;
+        padding-top: 0.8rem;
+
 
         &.aberto {
             left: 0%;
@@ -551,19 +564,19 @@
         & .btnOpenComments {
             display: none;
         }
+    }
 
-        & .video__card {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding: 1rem 0;
 
-            & video {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                border-radius: 10px;
-            }
+}
+@media (min-width:1440px) {
+
+    .videos-view .row__videos-container {
+        & .btnOpenComments {
+            display: none;
+        }
+        & .video__card{
+            max-width: 520px;
+            
         }
     }
 

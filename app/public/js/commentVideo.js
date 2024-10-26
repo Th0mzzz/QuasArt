@@ -1,14 +1,11 @@
-const btnOpenComments = document.querySelectorAll(".btnOpenComments")
-const btnCloseComments = document.querySelector("#btnCloseComments")
-const videoCommentsContainer = document.querySelector("#videoComments")
-
+const btnOpenComments = document.querySelectorAll("[data-opencomment]")
 btnOpenComments.forEach(btn => {
-    console.log(btn)
+    const videoCommentsContainer = document.querySelector(`[data-videoComments=${btn.dataset.opencomment}]`)
+    const btnClose = videoCommentsContainer.querySelector('.btn-close')
+    btnClose.addEventListener("click", () => { videoCommentsContainer.classList.remove("aberto") })
     btn.addEventListener("click", () => {
         videoCommentsContainer.classList.toggle("aberto")
     });
 })
-btnCloseComments.addEventListener("click", () => {
-    videoCommentsContainer.classList.remove("aberto")
-});
+
 

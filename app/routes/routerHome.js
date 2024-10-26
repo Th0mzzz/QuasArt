@@ -382,7 +382,7 @@ router.get("/sobre", function (req, res) {
 // --------- PAGINA DE VIDEOS ----------
 
 router.get("/videos", function (req, res) {
-    videoControl.mostrarVideo(req, res)
+    videoControl.mostrarVideos(req, res)
 });
 
 // -------- PÁGINAS DE VISUALIZAÇÃO -------------

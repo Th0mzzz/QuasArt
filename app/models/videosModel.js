@@ -127,10 +127,10 @@ const videosModel = {
             throw error;
         }
     },
-    findRandomVideo: async () => {
+    findRandomVideos: async (limit = 10) => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE STATUS_VIDEO = 'ativo' ORDER BY RAND() LIMIT 1;");
-            return resultados[0];
+            const [resultados] = await pool.query("SELECT * FROM VIDEOS WHERE STATUS_VIDEO = 'ativo' ORDER BY RAND() LIMIT ?",[limit]);
+            return resultados;
         } catch (error) {
             console.error("Erro ao buscar usuários", error);
             throw error;

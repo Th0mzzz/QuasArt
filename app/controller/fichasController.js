@@ -2,6 +2,7 @@ const { body, validationResult } = require("express-validator");
 const usuariosModel = require("../models/usuariosModel");
 const { removeImg } = require("../util/removeImg");
 const fichasModel = require("../models/fichasModel");
+const anunciosModel = require("../models/anunciosModel");
 
 const fichasControl = {
     validacaoFicha: [
@@ -66,7 +67,8 @@ const fichasControl = {
                     HASHTAG_OBRA: [tags].toString() != '' ? [tags].toString() : null,
                     CAMINHO_CAPA: capaFicha.filename,
                     USUARIOS_ID_USUARIO: req.session.autenticado.id,
-                    DATA_FICHA: dataFormatada
+                    DATA_FICHA: dataFormatada,
+                    STATUS_FICHA: 'ativo'
                 }
                 const resultado = await fichasModel.createFicha(ficha)
                 console.log(resultado)
@@ -225,6 +227,16 @@ const fichasControl = {
                         } else {
                             req.session.token = null;
                         }
+                        let anuncio = null
+
+                        if (!req.session.autenticado || req.session.autenticado.tipo == null || req.session.autenticado.tipo == 1) {
+                            let result = await anunciosModel.findAnuncioAleatorio()
+                            if (result.length > 0) {
+                                anuncio = result[0]
+                            } else {
+                                return res.redirect("/error-500")
+                            }
+                        }
                         const jsonResult = {
                             page: "../partial/template-home/view-ficha",
                             classePagina: "",
@@ -238,7 +250,8 @@ const fichasControl = {
                             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                             token: token,
                             comentarios: comments,
-                            isCurtido: isCurtido
+                            isCurtido: isCurtido,
+                            anuncio: anuncio
                         }
 
                         res.render("./pages/template-home", jsonResult)

@@ -8,11 +8,23 @@ verticalCarouselsContainers.forEach(container => {
 
     const atualizarCard = (arrayCard) => {
         arrayCard.forEach((card, indexCard) => {
+            const video = card.querySelector("video");
+
             card.style.transform = `translateY(-${indexAtual * 100}%)`;
+
             if (indexCard === indexAtual) {
                 card.classList.add("active");
+
+                if (video) {
+                    video.play();
+                }
             } else {
                 card.classList.remove("active");
+
+                if (video) {
+                    video.pause();
+                    video.currentTime = 0;
+                }
             }
         });
 
@@ -52,5 +64,5 @@ verticalCarouselsContainers.forEach(container => {
         });
     });
 
-    atualizarCard(cards); // Inicializar o estado dos cartões e botões
+    atualizarCard(cards);
 });

@@ -40,131 +40,18 @@
             </article>
         </section>
 
-        <section class="view__container videos-view">
-            <section class="row__videos-container vertical-carousel__container">
-                <section class="row__videos">
-                    <article data-verticalCard>
-                        <article class="video__card">
-                            <header class="video__btns">
-                                <button class="previous video-arrows">
-                                    <i class="bi bi-arrow-up"></i>
-                                </button>
-                                <form action="/curtirVideo?idVideo=<%= video.ID_VIDEOS %>" method="post"
-                                    class="curtirBtn__container">
-                                    <% if(isCurtido) {%>
-                                        <button class="video-btn" title="Curtido">
-                                            <i class="bi bi-heart-fill"></i>
-                                        </button>
-                                        <%} else {%>
-                                            <button class="video-btn" title="Curtir">
-                                                <i class="bi bi-heart"></i>
-                                            </button>
-                                            <%}%>
-                                                <p class="text mt-1">
-                                                    <%= video.curtidas %>
-                                                </p>
-                                </form>
-                                <button class="video-btn btnOpenComments"><i class="bi bi-chat"></i></button>
-                                <button class="video-btn"><i class="bi bi-share"></i></button>
-                                <button class="next video-arrows">
-                                    <i class="bi bi-arrow-down"></i>
-                                </button>
-                            </header>
-                            <video src="./img/imagens-servidor/videos/<%= video.CAMINHO_VIDEO %>" controls></video>
-                        </article>
-                    </article>
-
-                </section>
-            </section>
-            <section class="video__info" id="videoComments">
-                <section class="video__info-content">
-                    <button id="btnCloseComments" class="btn-close btn secundaria"><i
-                            class="bi bi-arrow-bar-left"></i></button>
-
-                    <header class="video__desc">
-                        <section class="row user mb-2">
-                            <a href="/profile?idUser=<%= video.autor.ID_USUARIO %>" class="userLink link">
-                                <img src="./img/imagens-servidor/perfil/<%= video.autor.CAMINHO_FOTO %>"
-                                    alt="foto do autor" class="userImg">
-                                <%= video.autor.NICKNAME_USUARIO %>
-                            </a>
-                        </section>
-                        <article class="desc mb-2">
-                            <h3 class="subtitle mb-2">
-                                <%= video.NOME_VIDEO %>
-                            </h3>
-
-                            <p class="text">
-                                <%= video.DESCR_VIDEO %>
-                            </p>
-                        </article>
-                        <article id="tagsContainer">
-                            <% if(video.tags){ video.tags.forEach(tag=>{ %>
-                                <span class="tag text">
-                                    <%= tag %>
-                                </span>
-                                <% }) } %>
-                        </article>
-                    </header>
-                    <section class="video__comments">
-                        <h2 class="subtitle">Comentários</h2>
-                        <button class="denunciar-btn link ml-auto" data-openmodal="#denunciarModal"><i
-                                class="bi bi-exclamation-triangle"></i> Denunciar</button>
-
-                        <article class="comments">
-                            <% if(comentarios) { comentarios.forEach(comentario=> { %>
-
-                                <article class="comment">
-                                    <img src="./img/imagens-servidor/perfil/<%= comentario.usuario.CAMINHO_FOTO %>"
-                                        alt="foto de perfil" class="user__img">
-                                    <article class="texto">
-                                        <h4 class="link user-nick">
-                                            <%= comentario.usuario.NICKNAME_USUARIO %>
-                                        </h4>
-                                        <p class="text">
-                                            <%= comentario.COMENTARIO_AVALIACAO %>
-                                        </p>
-                                    </article>
-                                </article>
-                                <% }) } %>
-
-
-
-
-                        </article>
-                        <footer class="video__form">
-                            <form action="/comentarVideo?idVideo=<%=video.ID_VIDEOS %>" method="post">
-                                <article class="input__container senha">
-                                    <input type="text" class="form__control" name="comentario" id="comentario"
-                                        placeholder="Deixe seu comentário!" required> 
-                                    <label for="comentario">Deixe seu comentário</label>
-                                    <button type="submit" class="btn-comment ocultSenha"><i
-                                            class="bi bi-send"></i></button>
-                                </article>
-
-                            </form>
-                        </footer>
-                    </section>
-                </section>
-            </section>
-        </section>
+        <%-include('../partial/template-home/view-videos') %>
     </main>
-    <section class="denunciar__modal modal" id="denunciarModal">
-        <button class="closeBtn btn"><i class="bi bi-x-lg"></i></button>
-        <section class="modal__content">
-            <h3 class="subtitle"><i class="bi bi-exclamation-triangle"></i> Denunciar video</h3>
-
-            <form action="/denunciarVideo?idVideo=<%= video.ID_VIDEOS %>" method="post">
-                <%- include("../partial/template-home/denunciar-modal") %>
-                    <button type="submit" class="btn mt-2">Denunciar</button>
-            </form>
-        </section>
-    </section>
+    
+    <% if(anuncio) {%>
+        <%- include("../partial/template-home/anuncio-modal") %>
+    <%}%>
     <script src="./js/abrirModal.js"></script>
     <script src="./js/commentVideo.js"></script>
     <script src="./js/colorMode.js"></script>
     <script src="./js/access.js"></script>
     <script src="./js/verticalCarousel.js"></script>
+    <script src="./js/anuncio.js"></script>
 
 </body>
 

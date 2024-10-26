@@ -2,14 +2,15 @@ const { body, validationResult } = require("express-validator");
 const usuariosModel = require("../models/usuariosModel");
 const { removeImg } = require("../util/removeImg");
 const videosModel = require("../models/videosModel");
+const anunciosModel = require("../models/anunciosModel");
 
 const videoControl = {
     validacaoVideo: [
         body("tituloVideo")
-            .isLength({ min: 3, max: 45 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
+            .isLength({ min: 3, max: 120 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 120!")
         ,
         body("descricao")
-            .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
+            .isLength({ min: 3, max: 1200 }).withMessage("A descrição deve ter entre 3 e 1200 caracteres!")
     ],
     postarVideo: async (req, res) => {
         let errors = validationResult(req)
@@ -132,9 +133,9 @@ const videoControl = {
                 const capaVideo = req.files['capaVideo'] ? req.files['capaVideo'][0].filename : video.CAPA_VIDEO;
                 const videoFile = req.files['video'] ? req.files['video'][0].filename : video.CAMINHO_VIDEO;
 
-                if(req.files){
-                    if(req.files['capaVideo'][0]) removeImg(`./img/imagens-servidor/capas-img/${video.CAPA_VIDEO}`)
-                    if(req.files['video'][0]) removeImg(`./img/imagens-servidor/videos/${video.CAMINHO_VIDEO}`)
+                if (req.files) {
+                    if (req.files['capaVideo'][0]) removeImg(`./img/imagens-servidor/capas-img/${video.CAPA_VIDEO}`)
+                    if (req.files['video'][0]) removeImg(`./img/imagens-servidor/videos/${video.CAMINHO_VIDEO}`)
                 }
 
                 const { tituloVideo, descricao, tags } = req.body
@@ -169,18 +170,15 @@ const videoControl = {
 
         }
     },
-    mostrarVideo: async (req, res) => {
-        let idVideo = req.query.idVideo
-        if (!idVideo) {
-            let result = await videosModel.findRandomVideo()
-            idVideo = result.ID_VIDEOS
-        }
+    mostrarVideos: async (req, res) => {
         try {
-            const video = await videosModel.buscarPorId(idVideo)
-            if (video) {
-                const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
-                if (autor) {
-                    const comentarios = await videosModel.findComentariosByIdVideo(idVideo)
+            const videos = await videosModel.findRandomVideos(10)
+            const idVideo = req.query.idVideo
+            if (videos.length) {
+
+                const videosInfo = await Promise.all(videos.map(async video => {
+                    const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
+                    const comentarios = await videosModel.findComentariosByIdVideo(video.ID_VIDEOS)
                     const idsUsersComentarios = []
                     for (const c of comentarios) {
                         if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
@@ -193,35 +191,64 @@ const videoControl = {
                         ...c,
                         usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
                     }))
-                    const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(idVideo, req.session.autenticado.id) : false
-                    const curtidas = await videosModel.verificarCurtidasDoVideo(idVideo)
-                    const token = req.session.token ? req.session.token : null
-                    if (token && token.contagem < 1) {
-                        req.session.token.contagem++;
-                    } else {
-                        req.session.token = null;
-                    }
-
-                    const jsonResult = {
-                        video: {
-                            ...video,
-                            tags: video.HASHTAG_VIDEO.split(","),
-                            autor: autor[0],
-                            curtidas: curtidas
-                        },
-                        token: token,
+                    const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(video.ID_VIDEOS, req.session.autenticado.id) : false
+                    const curtidas = await videosModel.verificarCurtidasDoVideo(video.ID_VIDEOS)
+                    return {
+                        ...video,
+                        autor: autor[0],
+                        curtidas: curtidas,
+                        isCurtido: isCurtido,
                         comentarios: comments,
-                        isCurtido: isCurtido
                     }
+                }))
 
-                    res.render("./pages/videos-home", jsonResult)
+                const token = req.session.token ? req.session.token : null
+                if (token && token.contagem < 1) {
+                    req.session.token.contagem++;
                 } else {
-
-                    res.redirect("/error-404")
+                    req.session.token = null;
                 }
-            } else {
-                res.redirect("/error-404")
+                if (idVideo) {
+                    const video = await videosModel.buscarPorId(idVideo)
+                    const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
+                    const comentarios = await videosModel.findComentariosByIdVideo(video.ID_VIDEOS)
+                    const idsUsersComentarios = []
+                    for (const c of comentarios) { 
+                        if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
+                            idsUsersComentarios.push(c.USUARIOS_ID_USUARIO)
+                        }
+                    }
+                    const usuariosComentarios = idsUsersComentarios.length > 0 ? await usuariosModel.findUsersByIds(idsUsersComentarios) : [];
+                    const mapUsuariosComentarios = Object.fromEntries(usuariosComentarios.map(usuario => [usuario.ID_USUARIO, usuario]))
+                    const comments = comentarios.map(c => ({
+                        ...c,
+                        usuario: mapUsuariosComentarios[c.USUARIOS_ID_USUARIO]
+                    }))
+                    const isCurtido = req.session.autenticado && req.session.autenticado.id != null ? await videosModel.verificarCurtida(video.ID_VIDEOS, req.session.autenticado.id) : false
+                    const curtidas = await videosModel.verificarCurtidasDoVideo(video.ID_VIDEOS)
+                    const videoItem = {
+                        ...video,
+                        autor: autor[0],
+                        curtidas: curtidas,
+                        isCurtido: isCurtido,
+                        comentarios: comments,
+                    }
+                    
+                    if (videosInfo.findIndex(v => v.ID_VIDEOS === videoItem.ID_VIDEOS) !== -1) {
+                        videosInfo.splice(videosInfo.findIndex(v => v.ID_VIDEOS === videoItem.ID_VIDEOS), 1);
+                    }
+                    videosInfo.unshift(videoItem)
+
+                }
+                
+                const jsonResult = {
+                    token: token,
+                    videos: videosInfo,
+                    anuncio: anuncio
+                }
+                res.render("./pages/videos-home", jsonResult)
             }
+
 
         } catch (error) {
             console.log(error)
