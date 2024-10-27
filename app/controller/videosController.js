@@ -172,7 +172,7 @@ const videoControl = {
     },
     mostrarVideos: async (req, res) => {
         try {
-            const videos = await videosModel.findRandomVideos(10)
+            const videos = await videosModel.findRandomVideos(4)
             const idVideo = req.query.idVideo
             if (videos.length) {
 
@@ -208,7 +208,7 @@ const videoControl = {
                 } else {
                     req.session.token = null;
                 }
-                if (idVideo) {
+                if (idVideo && idVideo != null) {
                     const video = await videosModel.buscarPorId(idVideo)
                     const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
                     const comentarios = await videosModel.findComentariosByIdVideo(video.ID_VIDEOS)
