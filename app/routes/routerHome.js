@@ -912,7 +912,7 @@ router.post("/criarComandante",
             const assinatura = await preApproval.create({
                 body: {
                     preapproval_plan_id: planoId,
-                    payer_email:'TESTUSER908042050',
+                    payer_email:'testemail@example.com',
                     back_url: `${process.env.URL_BASE}/feedback-assinatura`,
                     reason: 'ComandantePlus',
                     status: 'pending',
