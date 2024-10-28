@@ -95,7 +95,7 @@ router.get("/",
             const curtidasVideo = await videosModel.verificarCurtidasDoVideo(videoDestaque[0].ID_VIDEOS)
             const curtidasFicha = await fichasModel.verificarCurtidasDaFicha(fichaDestaque[0].ID_OBRA)
             const curtidasResenha = await resenhaModel.verificarCurtidasDaResenha(resenhaDestaque[0].ID_RESENHAS)
-            
+
             const posts = {
                 resenhas: {
                     recentes: reseRecentes.map(r => ({
@@ -148,9 +148,9 @@ router.get("/",
                     }),
                 },
                 destaques: {
-                    video: { ...videoDestaque[0], usuario: videoUser[0] , curtidas: curtidasVideo},
+                    video: { ...videoDestaque[0], usuario: videoUser[0], curtidas: curtidasVideo },
                     ficha: { ...fichaDestaque[0], usuario: fichaUser[0], curtidas: curtidasFicha },
-                    resenha: { ...resenhaDestaque[0], usuario: resenhaUser[0], curtidas: curtidasResenha}
+                    resenha: { ...resenhaDestaque[0], usuario: resenhaUser[0], curtidas: curtidasResenha }
                 },
             };
             let anuncios = await anunciosModel.findAnunciosAleatorio()
@@ -873,6 +873,7 @@ router.get("/assinar-form",
             page: "../partial/template-home/assinar-page",
             classePagina: "",
             token: token,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             usuario: user[0]
         }
         res.render("pages/template-home", jsonResult)

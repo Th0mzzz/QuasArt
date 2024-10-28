@@ -1,22 +1,11 @@
 ### FRONT-END
 * Pagina admin 
-    - dashboard com gráficos e estatisticas
     - assinaturas
 * Home 
     - seção para assinantes
   
 ### BACK-END
-- Gerenciar dinamicidade dos cards na home;
-- Funcionar os benefícios das assinaturas
-
-  
+- Mercado pago assinaturas( se tem como obter as informações de assinaturas para meu site ou não)
 ### Banco de dados
 ### Documentação e integração 
 - Hospedagem: King Host (Estudar a plataforma e como gerenciar um servidor);
-- Mercado pago assinaturas( se tem como obter as informações de assinaturas para meu site ou não)
-
-### Brainstorm
-
-### Dúvidas
-
-### erros
