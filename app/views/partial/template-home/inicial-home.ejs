@@ -1,19 +1,27 @@
 <!-- em alta -->
 <section class="container__home">
-    <section class="ad__section mt-3">
-        <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
-        <header class="ad__header">
-            <a href="" class="ad__user link">
-                <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
-                <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
-                    Itaú</p>
-            </a>
-            <a href="" class="btn">Conheça</a>
-        </header>
-    </section>
-    <h2 class="title">Em alta</h2>
-<!-- resenhas em alta -->
 
+    <section class="ad__section mt-3">
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
+                    </p>
+                </a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
+            </header>
+            <% }%>
+    </section>
+
+    <h2 class="title">Em alta</h2>
+
+    <!-- resenhas em alta -->
     <section class="carousel__container mt-3 mb-3">
         <article class="arrows">
             <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
@@ -36,14 +44,24 @@
                                     alt="imagem do autor">
                                 <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link">
                                     <%= resenha.usuario.NICKNAME_USUARIO %>
+
                                 </a>
+                                <% if (resenha.usuario.ID_TIPO_USUARIO !=='undefined' && resenha.usuario.ID_TIPO_USUARIO
+                                    !=null && resenha.usuario.ID_TIPO_USUARIO !=1 && resenha.usuario.ID_TIPO_USUARIO
+                                    !=4) {%>
+                                    <img src="./img/diversos/<%= resenha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                        alt="icone de assinante" class="icon-perfil">
+                                    <% }%>
                             </article>
                         </header>
                         <footer class="card__content">
                             <h5 class="link">
                                 <%= resenha.TITULO_RESENHA %>
                             </h5>
-                            <p class="text mt-2"><%= resenha.DESCR_RESENHA.length > 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...' : resenha.DESCR_RESENHA %></p>
+                            <p class="text mt-2">
+                                <%= resenha.DESCR_RESENHA.length> 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...'
+                                    : resenha.DESCR_RESENHA %>
+                            </p>
                             <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
                                     class="bi bi-arrow-right-circle"></i></a>
                         </footer>
@@ -60,155 +78,507 @@
     <section class="cards__container mb-3 mt-3">
         <section class="cards__row">
             <% if(postagens && postagens.fichas && postagens.fichas.alta) {
-                postagens.fichas.alta.forEach(function(ficha, index){ 
-                    
-                    if(index < 4) {%>
+                postagens.fichas.alta.forEach(function(ficha, index){ if(index < 4) {%>
                 <article class="card__ficha">
                     <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
                         <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
                         <article class="card-title">
-                            <h4 class="subtitle"><%=ficha.NOME_OBRA %></h4>
+                            <h4 class="subtitle">
+                                <%=ficha.NOME_OBRA %>
+                            </h4>
                         </article>
                     </a>
                     <footer class="card__autor">
                         <article class="usuario">
-                            <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>" alt="imagem do autor">
-                            <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText"><%= ficha.usuario.NICKNAME_USUARIO %></a>
+                            <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>"
+                                alt="imagem do autor">
+                            <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText">
+                                <%= ficha.usuario.NICKNAME_USUARIO %>
+                            </a>
+                            <% if (ficha.usuario.ID_TIPO_USUARIO !=='undefined' && ficha.usuario.ID_TIPO_USUARIO !=null
+                                && ficha.usuario.ID_TIPO_USUARIO !=1 && ficha.usuario.ID_TIPO_USUARIO !=4) {%>
+                                <img src="./img/diversos/<%= ficha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                    alt="icone de assinante" class="icon-perfil">
+                                <% }%>
                         </article>
-                        <p class="smallText"><%= ficha.DATA_FICHA %></p>
+                        <p class="smallText">
+                            <%= ficha.DATA_FICHA %>
+                        </p>
                     </footer>
                 </article>
-                <% } 
-            }) } %>
+                <% } }) } %>
         </section>
     </section>
-</section>
 
-<section class="container__home">
-    <h2 class="title">Recentes</h2>
-
-    <%- include("./cards-home/carousel-resenha") %>
-
-        <section class="ad__section mt-3">
-            <img class="ad__img" src="./img/img-ad-2.png" alt="imagem do anúncio">
+    <section class="ad__section mt-3">
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
             <header class="ad__header">
-                <a href="" class="ad__user link">
-                    <img src="./img/user-ad-2.webp" alt="patrocinador" class="ad__user-img">
-                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span>
-                        - Fanta
-                        Brasil
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
                     </p>
                 </a>
-                <a href="" class="btn">Conheça</a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
             </header>
-        </section>
-        <%- include("./cards-home/carousel-resenha") %>
-            <%- include("./cards-home/cards-fichas") %>
-</section>
-<section class="container__home">
-    <h2 class="title">Perfis Destaques do mês</h2>
-    <section class="destaques__cards">
-        <article class="destaque__user">
-            <header class="user__header">
-                <img src="./img/user-teste.png" alt="foto do usuário destaque">
-            </header>
-            <section class="content__user">
-                <h4 class="subtitle mb-3">Gabi Dantas</h4>
-                <article class="obra__user">
-                    <article class="card__resenha">
-                        <header class="card__img">
-                            <a href="#">
-                                <img class="img__resenha" src="./img/cards/card-resenha-teste3.png"
-                                    alt="imagem da resenha">
-                            </a>
-                            <article class="usuario">
-                                <img src="./img/user-teste.png" alt="imagem do autor">
-                                <a href="/profile" class="link">Gabi Dantas</a>
-                            </article>
-                        </header>
-                        <footer class="card__content">
-                            <h5 class="link">God of War Valhalla! Críticas</h5>
-                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting
-                                industry.Lorem
-                                Ipsum is simply dummy text.</p>
-                            <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
-                        </footer>
-                    </article>
-                </article>
-                <p class="text mt-2">Visualizações - 200K</p>
-            </section>
-        </article>
-        <article class="destaque__user">
-            <header class="user__header">
-                <img src="./img/user-teste2.png" alt="foto do usuário destaque">
-            </header>
-            <section class="content__user">
-                <h4 class="subtitle mb-3">Th0mzzz</h4>
-                <article class="obra__user">
+            <% }%>
+    </section>
+
+    <!-- FICHAS EM ALTA 2 -->
+    <section class="cards__container mb-3 mt-3">
+        <section class="cards__row">
+            <% if(postagens && postagens.fichas && postagens.fichas.alta) {
+                postagens.fichas.alta.forEach(function(ficha, index){ if(index> 4 && index < 8) {%>
                     <article class="card__ficha">
-                        <a href="#" class="card__content">
-                            <img src="./img/cards/card-ficha-teste.png" alt="imagem da ficha">
+                        <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                            <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
                             <article class="card-title">
-                                <h4 class="subtitle">Calor e Amor</h4>
+                                <h4 class="subtitle">
+                                    <%=ficha.NOME_OBRA %>
+                                </h4>
                             </article>
                         </a>
                         <footer class="card__autor">
                             <article class="usuario">
-                                <img src="./img/perfil-padrao.webp" alt="imagem do autor">
-                                <a href="/profile" class="smallText">Th0mzzz</a>
+                                <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>"
+                                    alt="imagem do autor">
+                                <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText">
+                                    <%= ficha.usuario.NICKNAME_USUARIO %>
+                                </a>
+                                <% if (ficha.usuario.ID_TIPO_USUARIO !=='undefined' && ficha.usuario.ID_TIPO_USUARIO
+                                    !=null && ficha.usuario.ID_TIPO_USUARIO !=1 && ficha.usuario.ID_TIPO_USUARIO !=4)
+                                    {%>
+                                    <img src="./img/diversos/<%= ficha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                        alt="icone de assinante" class="icon-perfil">
+                                    <% }%>
                             </article>
-                            <p class="smallText">00/00/0000</p>
+                            <p class="smallText">
+                                <%= ficha.DATA_FICHA %>
+                            </p>
                         </footer>
                     </article>
-                </article>
-                <p class="text mt-2">Visualizações - 70K</p>
-            </section>
+                    <% } }) } %>
+        </section>
+    </section>
+</section>
+<!-- destaques -->
+<section class="container__home">
+    <h2 class="title">Perfis Destaques do mês</h2>
+    <section class="destaques__cards">
+       
+
+            <article class="destaque__user">
+                <header class="user__header">
+                    <img src="./img/imagens-servidor/perfil/<%= postagens.destaques.resenha.usuario.CAMINHO_FOTO %>"
+                        alt="foto do usuário destaque">
+                </header>
+                <section class="content__user">
+                    <h4 class="subtitle mb-3"><a
+                            href="/profile?idUser=<%= postagens.destaques.resenha.usuario.ID_USUARIO %>"></a>
+                        <%= postagens.destaques.video.usuario.NICKNAME_USUARIO %>
+                    </h4>
+                    <article class="obra__user">
+                        <article class="card__resenha">
+                            <header class="card__img">
+                                <a href="/view-resenha?idResenha=<%= postagens.destaques.resenha.ID_RESENHAS %>">
+                                    <img class="img__resenha"
+                                        src="./img/imagens-servidor/capas-img/<%= postagens.destaques.resenha.CAPA_CAMINHO %>"
+                                        alt="imagem da resenha">
+                                </a>
+                            </header>
+                            <footer class="card__content">
+
+                                <h5 class="link">
+                                    <%= postagens.destaques.resenha.TITULO_RESENHA %>
+                                </h5>
+                                <p class="text mt-2">
+                                    <%= postagens.destaques.resenha.DESCR_RESENHA.length> 120 ?
+                                        postagens.destaques.resenha.DESCR_RESENHA.substring(0, 120) + '...' :
+                                        postagens.destaques.resenha.DESCR_RESENHA %>
+                                </p>
+                                <a href="/view-resenha?idResenha=<%= postagens.destaques.resenha.ID_RESENHAS %>"
+                                    class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                            </footer>
+                        </article>
+                    </article>
+                    <p class="text mt-2">Curtidas - <%= postagens.destaques.resenha.curtidas %>
+                    </p>
+                </section>
+            </article>
+            <article class="destaque__user">
+                <header class="user__header">
+                    <img src="./img/imagens-servidor/perfil/<%= postagens.destaques.ficha.usuario.CAMINHO_FOTO %>"
+                        alt="foto do usuário destaque">
+                </header>
+                <section class="content__user">
+                    <h4 class="subtitle mb-3">
+                        <%= postagens.destaques.ficha.usuario.NICKNAME_USUARIO %>
+                    </h4>
+                    <article class="obra__user">
+                        <article class="card__ficha">
+                            <a href="view-ficha?idFicha=<%= postagens.destaques.ficha.ID_OBRA %>" class="card__content">
+                                <img src="./img/imagens-servidor/capas-img/<%= postagens.destaques.ficha.CAMINHO_CAPA %>"
+                                    alt="imagem da ficha">
+                                <article class="card-title">
+                                    <h4 class="subtitle">
+                                        <%= postagens.destaques.ficha.NOME_OBRA %>
+                                    </h4>
+                                </article>
+                            </a>
+                        </article>
+                    </article>
+                    <p class="text mt-2">Curtidas - <%= postagens.destaques.ficha.curtidas %>
+                    </p>
+                </section>
+            </article>
+            <article class="destaque__user">
+                <header class="user__header">
+                    <img src="./img/imagens-servidor/perfil/<%= postagens.destaques.video.usuario.CAMINHO_FOTO %>" alt="foto do usuário destaque">
+                </header>
+                <section class="content__user">
+                    <h4 class="subtitle mb-3"><%= postagens.destaques.video.usuario.NICKNAME_USUARIO %></h4>
+                    <article class="obra__user">
+                        <article class="card__video">
+                            <a href="/videos?idVideo=<%= postagens.destaques.video.ID_VIDEOS %>" class="card__content">
+                                <img src="./img/imagens-servidor/capas-img/<%= postagens.destaques.video.CAPA_VIDEO %>"
+                                    alt="imagem da ficha">
+
+                            </a>
+                        </article>
+                    </article>
+                    <p class="text mt-2">Curtidas - <%= postagens.destaques.video.curtidas %></p>
+                </section>
+            </article>
+    </section>
+</section>
+<!-- area dos comandantes -->
+<section class="container__home">
+    <h2 class="title">Área dos Comandantes</h2>
+    <!-- Resenhas comandante -->
+    <section class="carousel__container mt-3 mb-3">
+        <article class="arrows">
+            <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+            <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
         </article>
-        <article class="destaque__user">
-            <header class="user__header">
-                <img src="./img/user-teste3.png" alt="foto do usuário destaque">
-            </header>
-            <section class="content__user">
-                <h4 class="subtitle mb-3">Mariana Ferraz</h4>
-                <article class="obra__user">
+        <section class="carousel__inner">
+
+            <% if(postagens && postagens.resenhas && postagens.resenhas.comandantes) {
+                postagens.resenhas.comandantes.forEach(function(resenha, index){ if(index < 10) {%>
+                <article class="card">
                     <article class="card__resenha">
                         <header class="card__img">
-                            <a href="#">
-                                <img class="img__resenha" src="./img/cards/card-resenha-teste2.png"
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                <img class="img__resenha"
+                                    src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
                                     alt="imagem da resenha">
                             </a>
                             <article class="usuario">
-                                <img src="./img/user-teste3.png" alt="imagem do autor">
-                                <a href="/profile" class="link">Mariana Ferraz</a>
+                                <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>"
+                                    alt="imagem do autor">
+                                <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link">
+                                    <%= resenha.usuario.NICKNAME_USUARIO %>
+
+                                </a>
+                                <% if (resenha.usuario.ID_TIPO_USUARIO !=='undefined' && resenha.usuario.ID_TIPO_USUARIO
+                                    !=null && resenha.usuario.ID_TIPO_USUARIO !=1 && resenha.usuario.ID_TIPO_USUARIO
+                                    !=4) {%>
+                                    <img src="./img/diversos/<%= resenha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                        alt="icone de assinante" class="icon-perfil">
+                                    <% }%>
                             </article>
                         </header>
                         <footer class="card__content">
-                            <h5 class="link">Por que CREED 2 é o melhor filme da trilogia?</h5>
-                            <p class="text mt-2">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting
-                                industry.Lorem
-                                Ipsum is simply dummy text.</p>
-                            <a href="" class="btn"><i class="bi bi-arrow-right-circle"></i></a>
+                            <h5 class="link">
+                                <%= resenha.TITULO_RESENHA %>
+                            </h5>
+                            <p class="text mt-2">
+                                <%= resenha.DESCR_RESENHA.length> 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...'
+                                    : resenha.DESCR_RESENHA %>
+                            </p>
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
+                                    class="bi bi-arrow-right-circle"></i></a>
                         </footer>
                     </article>
                 </article>
-                <p class="text mt-2">Visualizações - 249K</p>
-            </section>
-        </article>
+
+                <%} }) } %>
+
+
+        </section>
     </section>
-</section>
-<section class="container__home">
+    <!-- FICHAS comandante -->
+    <section class="cards__container mb-3 mt-3">
+        <section class="cards__row">
+            <% if(postagens && postagens.fichas && postagens.fichas.comandantes) {
+                postagens.fichas.comandantes.forEach(function(ficha, index){ if(index < 4) {%>
+                <article class="card__ficha">
+                    <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                        <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
+                        <article class="card-title">
+                            <h4 class="subtitle">
+                                <%=ficha.NOME_OBRA %>
+                            </h4>
+                        </article>
+                    </a>
+                    <footer class="card__autor">
+                        <article class="usuario">
+                            <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>"
+                                alt="imagem do autor">
+                            <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText">
+                                <%= ficha.usuario.NICKNAME_USUARIO %>
+                            </a>
+                            <% if (ficha.usuario.ID_TIPO_USUARIO !=='undefined' && ficha.usuario.ID_TIPO_USUARIO !=null
+                                && ficha.usuario.ID_TIPO_USUARIO !=1 && ficha.usuario.ID_TIPO_USUARIO !=4) {%>
+                                <img src="./img/diversos/<%= ficha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                    alt="icone de assinante" class="icon-perfil">
+                                <% }%>
+                        </article>
+                        <p class="smallText">
+                            <%= ficha.DATA_FICHA %>
+                        </p>
+                    </footer>
+                </article>
+                <% } }) } %>
+        </section>
+    </section>
+
     <section class="ad__section mt-3">
-        <img class="ad__img" src="./img/img-ad-1.png" alt="imagem do anúncio">
-        <header class="ad__header">
-            <a href="" class="ad__user link">
-                <img src="./img/user-ad-1.png" alt="patrocinador" class="ad__user-img">
-                <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> -
-                    Itaú</p>
-            </a>
-            <a href="" class="btn">Conheça</a>
-        </header>
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
+                    </p>
+                </a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
+            </header>
+            <% }%>
     </section>
-    <%- include("./cards-home/cards-fichas") %>
+
+</section>
+<!-- recentes -->
+<section class="container__home">
+    <h2 class="title">Recentes</h2>
+    <!-- Resenhas recentes -->
+    <section class="carousel__container mt-3 mb-3">
+        <article class="arrows">
+            <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+            <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+        </article>
+        <section class="carousel__inner">
+
+            <% if(postagens && postagens.resenhas && postagens.resenhas.recentes) {
+                postagens.resenhas.recentes.forEach(function(resenha, index){ if(index < 10) {%>
+                <article class="card">
+                    <article class="card__resenha">
+                        <header class="card__img">
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                <img class="img__resenha"
+                                    src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
+                                    alt="imagem da resenha">
+                            </a>
+                            <article class="usuario">
+                                <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>"
+                                    alt="imagem do autor">
+                                <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link">
+                                    <%= resenha.usuario.NICKNAME_USUARIO %>
+
+                                </a>
+                                <% if (resenha.usuario.ID_TIPO_USUARIO !=='undefined' && resenha.usuario.ID_TIPO_USUARIO
+                                    !=null && resenha.usuario.ID_TIPO_USUARIO !=1 && resenha.usuario.ID_TIPO_USUARIO
+                                    !=4) {%>
+                                    <img src="./img/diversos/<%= resenha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                        alt="icone de assinante" class="icon-perfil">
+                                    <% }%>
+                            </article>
+                        </header>
+                        <footer class="card__content">
+                            <h5 class="link">
+                                <%= resenha.TITULO_RESENHA %>
+                            </h5>
+                            <p class="text mt-2">
+                                <%= resenha.DESCR_RESENHA.length> 120 ? resenha.DESCR_RESENHA.substring(0, 120) + '...'
+                                    : resenha.DESCR_RESENHA %>
+                            </p>
+                            <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
+                                    class="bi bi-arrow-right-circle"></i></a>
+                        </footer>
+                    </article>
+                </article>
+
+                <%} }) } %>
+
+
+        </section>
+    </section>
+    <!-- FICHAS Recentes -->
+    <section class="cards__container mb-3 mt-3">
+        <section class="cards__row">
+            <% if(postagens && postagens.fichas && postagens.fichas.recentes) {
+                postagens.fichas.recentes.forEach(function(ficha, index){ if(index < 4) {%>
+                <article class="card__ficha">
+                    <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                        <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
+                        <article class="card-title">
+                            <h4 class="subtitle">
+                                <%=ficha.NOME_OBRA %>
+                            </h4>
+                        </article>
+                    </a>
+                    <footer class="card__autor">
+                        <article class="usuario">
+                            <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>"
+                                alt="imagem do autor">
+                            <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText">
+                                <%= ficha.usuario.NICKNAME_USUARIO %>
+                            </a>
+                            <% if (ficha.usuario.ID_TIPO_USUARIO !=='undefined' && ficha.usuario.ID_TIPO_USUARIO !=null
+                                && ficha.usuario.ID_TIPO_USUARIO !=1 && ficha.usuario.ID_TIPO_USUARIO !=4) {%>
+                                <img src="./img/diversos/<%= ficha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                    alt="icone de assinante" class="icon-perfil">
+                                <% }%>
+                        </article>
+                        <p class="smallText">
+                            <%= ficha.DATA_FICHA %>
+                        </p>
+                    </footer>
+                </article>
+                <% } }) } %>
+        </section>
+    </section>
+
+    <section class="ad__section mt-3">
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
+                    </p>
+                </a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
+            </header>
+            <% }%>
+    </section>
+
+    <!-- FICHAS Recentes 2 -->
+    <section class="cards__container mb-3 mt-3">
+        <section class="cards__row">
+            <% if(postagens && postagens.fichas && postagens.fichas.recentes) {
+                postagens.fichas.recentes.forEach(function(ficha, index){ if(index> 4 && index < 8) {%>
+                    <article class="card__ficha">
+                        <a href="/view-ficha?idFicha=<%=ficha.ID_OBRA %>" class="card__content">
+                            <img src="./img/imagens-servidor/capas-img/<%= ficha.CAMINHO_CAPA %>" alt="imagem da ficha">
+                            <article class="card-title">
+                                <h4 class="subtitle">
+                                    <%=ficha.NOME_OBRA %>
+                                </h4>
+                            </article>
+                        </a>
+                        <footer class="card__autor">
+                            <article class="usuario">
+                                <img src="./img/imagens-servidor/perfil/<%= ficha.usuario.CAMINHO_FOTO%>"
+                                    alt="imagem do autor">
+                                <a href="/profile?idUser=<%=ficha.usuario.ID_USUARIO%>" class="smallText">
+                                    <%= ficha.usuario.NICKNAME_USUARIO %>
+                                </a>
+                                <% if (ficha.usuario.ID_TIPO_USUARIO !=='undefined' && ficha.usuario.ID_TIPO_USUARIO
+                                    !=null && ficha.usuario.ID_TIPO_USUARIO !=1 && ficha.usuario.ID_TIPO_USUARIO !=4)
+                                    {%>
+                                    <img src="./img/diversos/<%= ficha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                        alt="icone de assinante" class="icon-perfil">
+                                    <% }%>
+                            </article>
+                            <p class="smallText">
+                                <%= ficha.DATA_FICHA %>
+                            </p>
+                        </footer>
+                    </article>
+                    <% } }) } %>
+        </section>
+    </section>
+    <!-- Resenhas recentes 2-->
+
+    <section class="carousel__container mt-3 mb-3">
+        <article class="arrows">
+            <button class="arrow-btn previous"><i class="bi bi-arrow-left-short"></i></button>
+            <button class="arrow-btn next"><i class="bi bi-arrow-right-short"></i></button>
+        </article>
+        <section class="carousel__inner">
+
+
+            <% if(postagens && postagens.resenhas && postagens.resenhas.recentes) {
+                postagens.resenhas.recentes.forEach(function(resenha, index){ if(index> 10 && index < 20) {%>
+                    <article class="card">
+                        <article class="card__resenha">
+                            <header class="card__img">
+                                <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>">
+                                    <img class="img__resenha"
+                                        src="./img/imagens-servidor/capas-img/<%= resenha.CAPA_CAMINHO %>"
+                                        alt="imagem da resenha">
+                                </a>
+                                <article class="usuario">
+                                    <img src="./img/imagens-servidor/perfil/<%=resenha.usuario.CAMINHO_FOTO %>"
+                                        alt="imagem do autor">
+                                    <a href="/profile?idUser=<%= resenha.usuario.ID_USUARIO%>" class="link">
+                                        <%= resenha.usuario.NICKNAME_USUARIO %>
+
+                                    </a>
+                                    <% if (resenha.usuario.ID_TIPO_USUARIO !=='undefined' &&
+                                        resenha.usuario.ID_TIPO_USUARIO !=null && resenha.usuario.ID_TIPO_USUARIO !=1 &&
+                                        resenha.usuario.ID_TIPO_USUARIO !=4) {%>
+                                        <img src="./img/diversos/<%= resenha.usuario.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>"
+                                            alt="icone de assinante" class="icon-perfil">
+                                        <% }%>
+                                </article>
+                            </header>
+                            <footer class="card__content">
+                                <h5 class="link">
+                                    <%= resenha.TITULO_RESENHA %>
+                                </h5>
+                                <p class="text mt-2">
+                                    <%= resenha.DESCR_RESENHA.length> 120 ? resenha.DESCR_RESENHA.substring(0, 120) +
+                                        '...' : resenha.DESCR_RESENHA %>
+                                </p>
+                                <a href="view-resenha?idResenha=<%= resenha.ID_RESENHAS %>" class="btn"><i
+                                        class="bi bi-arrow-right-circle"></i></a>
+                            </footer>
+                        </article>
+                    </article>
+
+                    <%} }) } %>
+
+        </section>
+    </section>
+
+    <section class="ad__section mt-3">
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
+                    </p>
+                </a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
+            </header>
+            <% }%>
+    </section>
 </section>

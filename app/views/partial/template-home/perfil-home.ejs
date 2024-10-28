@@ -13,6 +13,9 @@
                 <article class="foto__perfil">
                     <img src="./img/imagens-servidor/perfil/<%= usuario.CAMINHO_FOTO %>"
                         alt="foto de perfil do usuário">
+                        <% if (usuario.ID_TIPO_USUARIO !== 'undefined' && usuario.ID_TIPO_USUARIO != null && usuario.ID_TIPO_USUARIO != 1 && usuario.ID_TIPO_USUARIO != 4) {%>
+                            <img src="./img/diversos/<%= tipoUsu == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>" alt="icone de assinante" class="icon-perfil">
+                        <% }%>
                 </article>
 
                 <h3 class="subtitle">

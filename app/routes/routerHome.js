@@ -17,6 +17,14 @@ const fichasModel = require("../models/fichasModel");
 const usuariosModel = require("../models/usuariosModel");
 const videosModel = require("../models/videosModel");
 const adminModel = require("../models/adminModel");
+// Mercado Pago ------------------
+const crypto = require('crypto');
+const { MercadoPagoConfig, PreApproval, PreApprovalPlan } = require('mercadopago');
+const anunciosModel = require("../models/anunciosModel");
+const mercadopago = new MercadoPagoConfig({
+    accessToken: process.env.MP_ACCESS_TOKEN_TEST,
+    options: { timeout: 5000, idempotencyKey: 'abc' }
+});
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -32,102 +40,136 @@ const destinoDeFalha = {
 // ---------- PÁGINAS DA HOME -------------
 
 // pagina inicial
-router.get("/", async function (req, res) {
-    let token = null
-    if (req.session.logado == 0 && req.session.autenticado.autenticado != null) {
-        let msg = "Muito bom te ter de volta,"
-        if (req.session.cadastro) { msg = "Bem-vindo(a) ao Quasart," }
-        token = { msg: msg, usuario: req.session.autenticado.autenticado }
-        req.session.logado = req.session.logado + 1
-    }
-    try {
+router.get("/",
+    middleWares.verifyAutenticado,
+    async function (req, res) {
+        let token = null
+        if (req.session.logado == 0 && req.session.autenticado.autenticado != null) {
+            let msg = "Muito bom te ter de volta,"
+            if (req.session.cadastro) { msg = "Bem-vindo(a) ao Quasart," }
+            token = { msg: msg, usuario: req.session.autenticado.autenticado }
+            req.session.logado = req.session.logado + 1
+        }
+        try {
 
-        const resenhas = await resenhaModel.findResenhasEmAlta();
-        const reseRecentes = await resenhaModel.findResenhasRecentes();
-        const fichas = await fichasModel.findFichasEmAlta();
-        const fichasRecentes = await fichasModel.findFichasRecentes();
-        const idsResenha = [];
-        const idsFicha = [];
+            const resenhas = await resenhaModel.findResenhasEmAlta();
+            const reseRecentes = await resenhaModel.findResenhasRecentes();
+            const reseComandantes = await resenhaModel.findResenhasComandantes();
+            const fichas = await fichasModel.findFichasEmAlta();
+            const fichasRecentes = await fichasModel.findFichasRecentes();
+            const fichasComandantes = await fichasModel.findFichasRecentes();
+            const idsResenha = [];
+            const idsFicha = [];
 
 
-        // Aqui se coleta todos os ids que estão nas resenhas e fichas e guarda nos arrays
-        for (const r of [...resenhas, ...reseRecentes]) {
-            if (!idsResenha.includes(r.USUARIOS_ID_USUARIO)) {
-                idsResenha.push(r.USUARIOS_ID_USUARIO);
+            // Aqui se coleta todos os ids que estão nas resenhas e fichas e guarda nos arrays
+            for (const r of [...resenhas, ...reseRecentes, ...reseComandantes]) {
+                if (!idsResenha.includes(r.USUARIOS_ID_USUARIO)) {
+                    idsResenha.push(r.USUARIOS_ID_USUARIO);
+                }
             }
-        }
 
-        for (const f of [...fichas, ...fichasRecentes]) {
-            if (!idsFicha.includes(f.USUARIOS_ID_USUARIO)) {
-                idsFicha.push(f.USUARIOS_ID_USUARIO);
+            for (const f of [...fichas, ...fichasRecentes, ...fichasComandantes]) {
+                if (!idsFicha.includes(f.USUARIOS_ID_USUARIO)) {
+                    idsFicha.push(f.USUARIOS_ID_USUARIO);
+                }
             }
+
+            //  aqui eu busco os usuarios com base nos ids achados
+
+            const [usuariosResenhas, usuariosFichas] = await Promise.all([
+                idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
+                idsFicha.length > 0 ? usuariosModel.findUsersByIds(idsFicha) : []
+            ]);
+
+            //  Aqui eu crio um outro array
+            const mapUsuariosResenhas = Object.fromEntries(usuariosResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
+            const mapUsuariosFichas = Object.fromEntries(usuariosFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
+
+            const videoDestaque = await videosModel.findVideoEmAlta()
+            const videoUser = await usuariosModel.findUserById(videoDestaque[0].USUARIOS_ID_USUARIO)
+            const resenhaDestaque = await resenhaModel.findResenhasEmAlta()
+            const resenhaUser = await usuariosModel.findUserById(resenhaDestaque[0].USUARIOS_ID_USUARIO)
+            const fichaDestaque = await fichasModel.findFichasEmAlta()
+            const fichaUser = await usuariosModel.findUserById(fichaDestaque[0].USUARIOS_ID_USUARIO)
+            const curtidasVideo = await videosModel.verificarCurtidasDoVideo(videoDestaque[0].ID_VIDEOS)
+            const curtidasFicha = await fichasModel.verificarCurtidasDaFicha(fichaDestaque[0].ID_OBRA)
+            const curtidasResenha = await resenhaModel.verificarCurtidasDaResenha(resenhaDestaque[0].ID_RESENHAS)
+            
+            const posts = {
+                resenhas: {
+                    recentes: reseRecentes.map(r => ({
+                        ...r,
+                        usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
+                    })
+                    ),
+                    alta: resenhas.map(r => ({
+                        ...r,
+                        usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
+                    })),
+                    comandantes: reseComandantes.map(r => ({
+                        ...r,
+                        usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
+                    })),
+
+                },
+                fichas: {
+                    recentes: fichasRecentes.map(f => {
+                        const dataFicha = new Date(f.DATA_FICHA);
+                        const dataFormatada = dataFicha.toISOString().split('T')[0];
+
+                        return {
+                            ...f,
+                            usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
+                            DATA_FICHA: dataFormatada
+                        };
+                    }),
+                    alta: fichas.map(f => {
+
+                        const dataFicha = new Date(f.DATA_FICHA);
+                        const dataFormatada = dataFicha.toISOString().split('T')[0];
+
+                        return {
+                            ...f,
+                            usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
+                            DATA_FICHA: dataFormatada
+                        };
+                    }),
+                    comandantes: fichasComandantes.map(f => {
+
+                        const dataFicha = new Date(f.DATA_FICHA);
+                        const dataFormatada = dataFicha.toISOString().split('T')[0];
+
+                        return {
+                            ...f,
+                            usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
+                            DATA_FICHA: dataFormatada
+                        };
+                    }),
+                },
+                destaques: {
+                    video: { ...videoDestaque[0], usuario: videoUser[0] , curtidas: curtidasVideo},
+                    ficha: { ...fichaDestaque[0], usuario: fichaUser[0], curtidas: curtidasFicha },
+                    resenha: { ...resenhaDestaque[0], usuario: resenhaUser[0], curtidas: curtidasResenha}
+                },
+            };
+            let anuncios = await anunciosModel.findAnunciosAleatorio()
+            const jsonResult = {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
+                page: "../partial/template-home/inicial-home",
+                classePagina: "inicialHome",
+                token: token,
+                postagens: posts,
+                anuncios: anuncios.length > 0 ? anuncios : null
+            }
+            res.render("./pages/template-home", jsonResult)
+        } catch (error) {
+            console.log(error)
+            res.redirect("/error-500")
         }
 
-        //  aqui eu busco os usuarios com base nos ids achados
-
-        const [usuariosResenhas, usuariosFichas] = await Promise.all([
-            idsResenha.length > 0 ? usuariosModel.findUsersByIds(idsResenha) : [],
-            idsFicha.length > 0 ? usuariosModel.findUsersByIds(idsFicha) : []
-        ]);
-
-        //  Aqui eu crio um outro array
-        const mapUsuariosResenhas = Object.fromEntries(usuariosResenhas.map(usuario => [usuario.ID_USUARIO, usuario]));
-        const mapUsuariosFichas = Object.fromEntries(usuariosFichas.map(usuario => [usuario.ID_USUARIO, usuario]));
-
-
-        const posts = {
-            resenhas: {
-                recentes: reseRecentes.map(r => ({
-                    ...r,
-                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
-                })
-                ),
-                alta: resenhas.map(r => ({
-                    ...r,
-                    usuario: mapUsuariosResenhas[r.USUARIOS_ID_USUARIO]
-                })),
-            },
-            fichas: {
-                recentes: fichasRecentes.map(f => {
-                    const dataFicha = new Date(f.DATA_FICHA);
-                    const dataFormatada = dataFicha.toISOString().split('T')[0];
-
-                    return {
-                        ...f,
-                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
-                        DATA_FICHA: dataFormatada
-                    };
-                }),
-                alta: fichas.map(f => {
-
-                    const dataFicha = new Date(f.DATA_FICHA);
-                    const dataFormatada = dataFicha.toISOString().split('T')[0];
-
-                    return {
-                        ...f,
-                        usuario: mapUsuariosFichas[f.USUARIOS_ID_USUARIO],
-                        DATA_FICHA: dataFormatada
-                    };
-                }),
-            },
-            destaques: "",
-        };
-
-
-        const jsonResult = {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/template-home/inicial-home",
-            classePagina: "inicialHome",
-            token: token,
-            postagens: posts
-        }
-        res.render("./pages/template-home", jsonResult)
-    } catch (error) {
-        console.log(error)
-        res.redirect("/error-500")
-    }
-
-});
+    });
 // pagina de assinatura
 router.get("/plus-page", function (req, res) {
     const token = null
@@ -135,7 +177,8 @@ router.get("/plus-page", function (req, res) {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/plus-page",
         classePagina: "assinatura",
-        token: token
+        token: token,
+        tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
     }
 
     res.render("./pages/template-home", jsonResult)
@@ -150,6 +193,7 @@ router.get("/pesquisar", function (req, res) {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         token: token,
         posts: null,
+        tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
     }
     res.render("./pages/template-home", jsonResult)
 });
@@ -182,7 +226,8 @@ router.get("/publicar",
             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             page: "../partial/template-home/publicar-home",
             classePagina: "publicar",
-            token: token
+            token: token,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
         }
         res.render("./pages/template-home", jsonResult)
     });
@@ -201,7 +246,8 @@ router.get("/via-videos-pub",
             erros: null,
             token: token,
             valores: null,
-            tags: null
+            tags: null,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
         }
         res.render("./pages/template-home", jsonResult)
     });
@@ -235,18 +281,10 @@ router.get("/attvideo",
                     video: video.CAMINHO_VIDEO
                 },
                 tags: video.HASHTAG_VIDEO.split(","),
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             }
             res.render("./pages/template-home", jsonResult)
         }
-        const token = null
-        const jsonResult = {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/template-home/pub-pages/videos-pub",
-            classePagina: "publicar",
-            erros: null,
-            token: token
-        }
-        res.render("./pages/template-home", jsonResult)
     });
 
 
@@ -264,6 +302,8 @@ router.get("/ficha-espacial-pub",
             token: token,
             valores: { previas: null },
             tags: null,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
+
         }
         res.render("./pages/template-home", jsonResult)
     });
@@ -299,6 +339,7 @@ router.get("/attficha",
                         previas: previas,
                         idFicha: idFicha
                     },
+                    tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                     tags: ficha.HASHTAG_OBRA.split(","),
                 }
                 res.render("./pages/template-home", jsonResult)
@@ -323,6 +364,7 @@ router.get("/resenha-cosmica-pub",
             erros: null,
             valores: null,
             token: token,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             tags: null
         }
         res.render("./pages/template-home", jsonResult)
@@ -356,6 +398,7 @@ router.get("/attresenha",
                         capaResenha: resenha.CAPA_CAMINHO,
                         idResenha: resenha.ID_RESENHAS
                     },
+                    tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                     tags: resenha.HASHTAG_RESENHA.split(","),
                 };
                 res.render("./pages/template-home", jsonResult)
@@ -374,6 +417,7 @@ router.get("/sobre", function (req, res) {
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         page: "../partial/template-home/sobre",
         classePagina: "",
+        tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
         token: token
     }
     res.render("./pages/template-home", jsonResult)
@@ -510,6 +554,7 @@ router.post("/fazerPesquisa", async function (req, res) {
                 classePagina: "pesquisar",
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                 token: token,
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                 posts: "none",
             };
             return res.render("./pages/template-home", jsonResult);
@@ -574,6 +619,7 @@ router.post("/fazerPesquisa", async function (req, res) {
             classePagina: "pesquisar",
             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             token: null,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             posts: posts
         };
 
@@ -812,5 +858,118 @@ router.post("/seguirUsuario",
 
     }
 )
+
+
+
+// Assinatura
+router.get("/assinar-form",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async (req, res) => {
+        const token = null
+        const user = await usuariosModel.findUserById(req.session.autenticado.id)
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/assinar-page",
+            classePagina: "",
+            token: token,
+            usuario: user[0]
+        }
+        res.render("pages/template-home", jsonResult)
+    }
+)
+
+router.post("/criarComandanteMensal",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async (req, res) => {
+        try {
+            const { plano, cardTokenId } = req.body;
+
+            const user = await usuariosModel.findUserById(req.session.autenticado.id);
+            const preApproval = new PreApproval(mercadopago);
+            const preApprovalPlan = new PreApprovalPlan(mercadopago)
+            const planos = await preApprovalPlan.search({
+                qs: {
+                    status: 'active'
+                }
+            })
+
+            let preapproval_plan_id;
+            if (plano === 'mensal') {
+                preapproval_plan_id = '2c9380849154066301915c29114705c2';
+            } else if (plano === 'anual') {
+                preapproval_plan_id = 'ID_DO_PLANO_ANUAL';
+            }
+            const assinatura = await preApproval.create({
+                body: {
+                    preapproval_plan_id: preapproval_plan_id,
+                    payer_email: user[0].EMAIL_USUARIO,
+                    back_url: `${process.env.URL_BASE}/feedback-assinatura`,
+                    reason: 'ComandantePlus',
+                    status: 'pending',
+                    card_token_id: cardTokenId
+                }
+            });
+
+            console.log('PLANOS DO MERCADO PAGO -----------------')
+            console.log(planos)
+
+            if (assinatura && assinatura.body && assinatura.body.init_point) {
+                console.log(assinatura.body.init_point)
+                res.json({ init_point: assinatura.body.init_point });
+            } else {
+                throw new Error("Erro ao criar assinatura")
+            }
+        } catch (error) {
+
+            console.log('---- ERRO ASSINATURA ----')
+            console.error(error)
+            return res.status(500).json({ message: "Erro ao processar assinatura" });
+        }
+    })
+
+function verificarWebhook(payload, assinaturaRecebida, segredo) {
+    const hash = crypto
+        .createHmac('sha256', segredo)
+        .update(payload)
+        .digest('hex');
+    return hash === assinaturaRecebida;
+}
+function verificarWebhook(payload, assinaturaRecebida, segredo) {
+    const hash = crypto
+        .createHmac('sha256', segredo)
+        .update(payload)
+        .digest('hex');
+    return hash === assinaturaRecebida;
+}
+router.post('/atualizarAssinatura', async (req, res) => {
+    const data = req.body
+    try {
+
+        if (verificarWebhook(JSON.stringify(data), req.headers['x-webhook-signature'], process.env.MP_WEBHOOK_SECRET_TEST)) {
+            const user = await usuariosModel.findUserByEmail(data.payer.email)
+            if (data.status === 'authorized') {
+                const plano = data.reason
+
+                await usuariosModel.updateUser({ TIPO_USUARIO: 2 }, user[0].ID_USUARIO)
+                console.log(`Usuário ${user[0].NICKNAME_USUARIO} teve a assinatura ativada.`)
+            } else if (data.status === 'paused') {
+                await usuariosModel.updateUser({ TIPO_USUARIO: 1 }, user[0].ID_USUARIO)
+                console.log(`Usuário ${user[0].NICKNAME_USUARIO} teve a assinatura pausada.`)
+            }
+            res.status(200).send('Webhook processado com sucesso');
+        } else {
+            console.log('Assinatura inválida')
+            res.status(403).send('Assinatura inválida');
+        }
+
+    } catch (error) {
+        console.log(error)
+        console.log('Erro de comunicação com Mercado Pago')
+    }
+
+});
+router.get('/feedback-assinatura', (req, res) => { res.json({ teste: '' }) })
 
 module.exports = router;

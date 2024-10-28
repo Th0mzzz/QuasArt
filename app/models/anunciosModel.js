@@ -33,7 +33,7 @@ const anunciosModel = {
             const [resultados] = await pool.query("SELECT * FROM ANUNCIOS WHERE ID_ANUNCIO IN (?) ", [ids]);
             return resultados;
         } catch (error) {
-            console.error("Erro ao buscar usuários", error);
+            console.error("Erro ao buscar anuncios", error);
             throw error;
         }
     },
@@ -42,7 +42,16 @@ const anunciosModel = {
             const [resultados] = await pool.query("SELECT * FROM ANUNCIOS WHERE STATUS_ANUNCIO = 'ativo' ORDER BY RAND() LIMIT 1;");
             return resultados;
         } catch (error) {
-            console.error("Erro ao buscar usuários", error);
+            console.error("Erro ao buscar anuncios", error);
+            throw error;
+        }
+    },
+    findAnunciosAleatorio: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT * FROM ANUNCIOS WHERE STATUS_ANUNCIO = 'ativo' ORDER BY RAND()");
+            return resultados;
+        } catch (error) {
+            console.error("Erro ao buscar anuncios", error);
             throw error;
         }
     },

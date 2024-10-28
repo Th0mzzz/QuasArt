@@ -249,7 +249,7 @@ const usuariosController = {
                         modal: "fechado",
                         erros: null,
                         incorreto: "ativado",
-                        token:null
+                        token: null
                     }
                     res.render("pages/template-login", jsonResult);
                 }
@@ -327,6 +327,7 @@ const usuariosController = {
                 token: token,
                 seguidores: seguidores,
                 isSeguido: seguindo,
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             }
 
             res.render("./pages/template-home", jsonResult)

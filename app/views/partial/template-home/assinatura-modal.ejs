@@ -4,20 +4,14 @@
         <article class="option comandante">
             <h2 class="title">Comandante <span class="negrito-amarelo">PLUS+</span></h2>
             <article class="planos">
-                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c9380849154066301915c29114705c2" class="plano__link link">
+                <button class="plano__link link" id="comandanteMensal">
                     <h4 class="subtitle">Mensal</h4>
                     <p class="subtitle">R$ <span id="precoTripulante" class="title negrito-amarelo">45<span
                                 class="subtitle">,00</span></span>/mês
                     </p>
-                </a>
-                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084915406c201915c2a9674058f" class="plano__link link">
-                    <h4 class="subtitle">Semestral</h4>
-                    <p class="subtitle">R$ <span id="precoTripulante" class="title negrito-amarelo">199<span
-                                class="subtitle">,50</span></span>/mês
-                    </p>
-                    <span class="text negrito-roxo">(Desconto de 5% por mês)</span>
-                </a>
-                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c9380849154066301915c2b4eee05c3" class="plano__link link">
+                </button>
+                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c9380849154066301915c2b4eee05c3"
+                    class="plano__link link">
                     <h4 class="subtitle">Anual</h4>
                     <p class="subtitle">R$ <span id="precoTripulante" class="title negrito-amarelo">378<span
                                 class="subtitle">,00</span></span>/mês
@@ -29,20 +23,14 @@
         <article class="option tripulante">
             <h2 class="title">Tripulante <span class="negrito-roxo">PLUS+</span></h2>
             <article class="planos">
-                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698" class="plano__link link">
+                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b60191278282070698"
+                    class="plano__link link">
                     <h4 class="subtitle">Mensal</h4>
                     <p class="subtitle">R$ <span id="precoTripulante" class="title negrito-amarelo">35<span
                                 class="subtitle">,00</span></span>/mês
                     </p>
                 </a>
-                <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f95b901912783200906ba"
-                    class="plano__link link">
-                    <h4 class="subtitle">Semestral</h4>
-                    <p class="subtitle">R$ <span id="precoTripulante" class="title negrito-amarelo">153<span
-                                class="subtitle">,90</span></span>/mês
-                    </p>
-                    <span class="text negrito-roxo">(Desconto de 5% por mês)</span>
-                </a>
+
                 <a href="https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c938084910f959d0191278861dd06d3"
                     class="plano__link link">
                     <h4 class="subtitle">Anual</h4>
@@ -55,6 +43,59 @@
         </article>
     </section>
 </section>
+
+<script>
+
+    
+
+    document.getElementById('form-checkout').addEventListener('submit', async (event) => {
+        event.preventDefault(); // Evita o envio normal do formulário
+
+        const cardData = {
+            cardNumber: document.getElementById('form-checkout__cardNumber').value,
+            cardExpirationDate: document.getElementById('form-checkout__expirationDate').value,
+            securityCode: document.getElementById('form-checkout__securityCode').value,
+            cardholderName: document.getElementById('form-checkout__cardholderName').value,
+            cardholderEmail: document.getElementById('form-checkout__cardholderEmail').value
+        };
+
+        try {
+            const tokenResponse = await mp.card.createToken(cardData);
+            const cardTokenId = tokenResponse.id; // Este é o token que você enviará para o servidor
+            // Agora você pode enviar o cardTokenId para sua rota no servidor para criar a assinatura ou cobrança
+        } catch (error) {
+            console.error('Erro ao criar token:', error);
+        }
+    });
+
+
+
+
+    document.getElementById('comandanteMensal').addEventListener('click', async () => {
+        try {
+            const response = await fetch('/criarComandanteMensal', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ plano: 'mensal' })
+            });
+
+            if (response.headers.get("content-type")?.includes("application/json")) {
+                const data = await response.json();
+                if (data.init_point) {
+                    window.location.href = data.init_point;
+                } else {
+                    alert('Erro ao iniciar assinatura.');
+                }
+            } else {
+                window.location.href = '/entrar';
+            }
+        } catch (error) {
+            console.error('Erro:', error);
+            alert('Erro ao processar assinatura.');
+        }
+    });
+
+</script>
 
 <script src="./js/abrirModal.js"></script>
 <script>

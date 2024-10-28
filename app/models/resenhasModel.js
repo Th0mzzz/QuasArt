@@ -42,7 +42,7 @@ const resenhaModel = {
     },
     findResenhasEmAlta: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE STATUS_RESENHA = 'ativo'")
+            const [resultados] = await pool.query("SELECT r.*, COUNT(fr.ID_FAVORITOS) AS curtidas FROM RESENHAS r LEFT JOIN FAVORITO_RESENHAS fr ON r.ID_RESENHAS = fr.RESENHAS_ID_RESENHAS WHERE r.STATUS_RESENHA = 'ativo' GROUP BY r.ID_RESENHAS ORDER BY curtidas DESC; ")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -53,6 +53,16 @@ const resenhaModel = {
     findResenhasRecentes: async () => {
         try {
             const [resultados] = await pool.query("SELECT * FROM RESENHAS WHERE STATUS_RESENHA = 'ativo' ORDER BY ID_RESENHAS DESC LIMIT 1000;")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
+    findResenhasComandantes: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT r.* FROM RESENHAS r JOIN USUARIOS u ON r.USUARIOS_ID_USUARIO = u.ID_USUARIO WHERE u.ID_TIPO_USUARIO = 3 AND STATUS_RESENHA = 'ativo'")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")

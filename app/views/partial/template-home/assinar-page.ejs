@@ -1,0 +1,214 @@
+<style>
+    .plan-form__container {
+        display: none;
+
+        &.ativo {
+            display: flex;
+        }
+    }
+
+    .toggle-plans {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: center;
+
+        & .btn {
+            background: var(--cor-principal-hover);
+
+            &.ativo {
+                background: var(--cor-principal);
+
+            }
+        }
+    }
+
+    #form-checkout{
+        display: flex;
+        flex-direction: column;
+        max-width: 600px;
+    }
+
+    .container {
+        height: 18px;
+        display: inline-block;
+        border: 1px solid rgb(118, 118, 118);
+        border-radius: 2px;
+        padding: 1px 2px;
+    }
+</style>
+<section class="toggle-plans">
+    <button class="btn" data-btnSection="tripulante">Tripulante Plus+</button>
+    <button class="btn ativo" data-btnSection="comandante">Comandante Plus+</button>
+</section>
+
+<section class="plan-form__container " data-section="tripulante">
+
+</section>
+<section class="plan-form__container ativo" data-section="comandante">
+    <form id="form-checkout">
+        <select id="planoSelect">
+            <option value="mensal">Mensal</option>
+            <option value="anual">Anual</option>
+        </select>        
+        <div id="form-checkout__cardNumber" class="container"></div>
+        <div id="form-checkout__expirationDate" class="container"></div>
+        <div id="form-checkout__securityCode" class="container"></div>
+        <input type="text" id="form-checkout__cardholderName" />
+        <select id="form-checkout__issuer"></select>
+        <select id="form-checkout__installments"></select>
+        <select id="form-checkout__identificationType"></select>
+        <input type="text" id="form-checkout__identificationNumber" />
+        <input type="email" id="form-checkout__cardholderEmail" />
+    
+        <button type="submit" id="form-checkout__submit">Pagar</button>
+        <progress value="0" class="progress-bar">Carregando...</progress>
+      </form>
+</section>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const mp = new MercadoPago('APP_USR-73c7d76e-c8f6-4a2c-b852-532652601b07');
+        console.log(mp)
+        
+    const cardForm = mp.cardForm({
+      amount: "100.5",
+      iframe: true,
+      form: {
+        id: "form-checkout",
+        cardNumber: {
+          id: "form-checkout__cardNumber",
+          placeholder: "Número do cartão",
+        },
+        expirationDate: {
+          id: "form-checkout__expirationDate",
+          placeholder: "MM/YY",
+        },
+        securityCode: {
+          id: "form-checkout__securityCode",
+          placeholder: "Código de segurança",
+        },
+        cardholderName: {
+          id: "form-checkout__cardholderName",
+          placeholder: "Titular do cartão",
+        },
+        issuer: {
+          id: "form-checkout__issuer",
+          placeholder: "Banco emissor",
+        },
+        installments: {
+          id: "form-checkout__installments",
+          placeholder: "Parcelas",
+        },        
+        identificationType: {
+          id: "form-checkout__identificationType",
+          placeholder: "Tipo de documento",
+        },
+        identificationNumber: {
+          id: "form-checkout__identificationNumber",
+          placeholder: "Número do documento",
+        },
+        cardholderEmail: {
+          id: "form-checkout__cardholderEmail",
+          placeholder: "E-mail",
+        },
+      },
+      callbacks: {
+        onFormMounted: error => {
+          if (error) return console.warn("Form Mounted handling error: ", error);
+          console.log("Form mounted");
+        },
+        onSubmit: event => {
+          event.preventDefault();
+          const plano = document.getElementById('planoSelect').value;
+          const {
+            paymentMethodId: payment_method_id,
+            issuerId: issuer_id,
+            cardholderEmail: email,
+            amount,
+            token,
+            installments,
+            identificationNumber,
+            identificationType,
+          } = cardForm.getCardFormData();
+
+          fetch("/criarComandanteMensal", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              token,
+              issuer_id,
+              payment_method_id,
+              transaction_amount: Number(amount),
+              installments: Number(installments),
+              description: "Descrição do produto",
+              payer: {
+                email,
+                identification: {
+                  type: identificationType,
+                  number: identificationNumber,
+                },
+              },
+              plano
+            }),
+          });
+        },
+        onFetching: (resource) => {
+          console.log("Fetching resource: ", resource);
+
+          const progressBar = document.querySelector(".progress-bar");
+          progressBar.removeAttribute("value");
+
+          return () => {
+            progressBar.setAttribute("value", "0");
+          };
+        }
+      },
+    });
+
+
+        // document.getElementById('form-checkout-comandante').addEventListener('submit', async (event) => {
+        //     event.preventDefault(); // Evita o envio normal do formulário
+
+        //     const plano = document.getElementById('planoSelect').value; // Captura o plano escolhido
+
+        //     const cardData = {
+        //         cardNumber: document.getElementById('form-checkout__cardNumber').value,
+        //         cardExpirationDate: document.getElementById('form-checkout__expirationDate').value,
+        //         securityCode: document.getElementById('form-checkout__securityCode').value,
+        //         cardholderName: document.getElementById('form-checkout__cardholderName').value,
+        //         cardholderEmail: document.getElementById('form-checkout__cardholderEmail').value
+        //     };
+
+        //     try {
+        //         const tokenResponse = await mp.fields.createToken(cardData);
+        //         const cardTokenId = tokenResponse.id;
+
+        //         const response = await fetch('/criarComandanteMensal', {
+        //             method: 'POST',
+        //             headers: { 'Content-Type': 'application/json' },
+        //             body: JSON.stringify({ plano, cardTokenId })
+        //         });
+
+        //         if (response.ok) {
+        //             const data = await response.json();
+        //             if (data.init_point) {
+        //                 window.location.href = data.init_point;
+        //             } else {
+        //                 alert('Erro ao iniciar assinatura.');
+        //             }
+        //         } else {
+        //             alert('Erro ao processar assinatura.');
+        //         }
+        //     } catch (error) {
+        //         console.error('Erro ao criar token:', error);
+        //     }
+        // });
+    });
+</script>
+
+<script src="./js/toggleSection.js"></script>

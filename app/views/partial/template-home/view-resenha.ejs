@@ -8,6 +8,9 @@
                     <img src="./img/imagens-servidor/perfil/<%=resenha.autor.CAMINHO_FOTO %>" alt="foto do autor"
                         class="userImg">
                     <%= resenha.autor.NICKNAME_USUARIO %>
+                    <% if (resenha.autor.ID_TIPO_USUARIO !== 'undefined' && resenha.autor.ID_TIPO_USUARIO != null && resenha.autor.ID_TIPO_USUARIO != 1 && resenha.autor.ID_TIPO_USUARIO != 4) {%>
+                        <img src="./img/diversos/<%= resenha.autor.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>" alt="icone de assinante" class="icon-perfil">
+                    <% }%>
                 </a>
                 <form action="/curtirResenha?idResenha=<%= resenha.ID_RESENHAS %>" class="estatistica" method="post">
                     <% if(isCurtido) {%>

@@ -35,7 +35,7 @@ const resenhaControl = {
         valores: req.body,
         token: null,
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-
+        tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
       }
       res.render("./pages/template-home", jsonResult)
     } else {
@@ -125,6 +125,7 @@ const resenhaControl = {
               foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
               token: token,
               isCurtido: isCurtido,
+              tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
               anuncio: anuncio
             }
 
@@ -183,6 +184,7 @@ const resenhaControl = {
             capaResenha: resenha.CAPA_CAMINHO,
             idResenha: resenha.ID_RESENHAS
           },
+          tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
           tags: resenha.HASHTAG_RESENHA.split(","),
         };
         res.render("./pages/template-home", jsonResult)

@@ -136,6 +136,16 @@ const videosModel = {
             throw error;
         }
     },
+    findVideoEmAlta: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT v.*, COUNT(fv.ID_FAVORITO) AS curtidas FROM VIDEOS v LEFT JOIN FAVORITO_VIDEOS fv ON v.ID_VIDEOS = fv.VIDEOS_ID_VIDEOS WHERE v.STATUS_VIDEO = 'ativo' GROUP BY v.ID_VIDEOS ORDER BY curtidas DESC; ")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
 }
 
 module.exports = videosModel;

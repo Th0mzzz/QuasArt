@@ -15,12 +15,24 @@
             border-radius: 50%;
             margin: 2.3rem 0;
             border: 5px solid var(--cor-principal);
-            overflow: hidden;
 
             &>img {
                 object-fit: cover;
                 width: 100%;
                 height: 100%;
+                border-radius: 50%;
+
+            }
+
+            & .icon-perfil {
+                width: clamp(35px, 35vw, 45px);
+                height: clamp(35px, 35vw, 45px);
+                position: absolute;
+                z-index: 100;
+                right: 5%;
+                bottom: 5%;
+                background: var(--cor-principal);
+                border-radius: 50%;
             }
 
             &.mudar__foto-btn {
@@ -67,9 +79,10 @@
                 width: fit-content;
                 height: fit-content;
                 margin-top: 1rem;
-                &.seguido{
+
+                &.seguido {
                     background: var(--cor-containers);
-                    color:var(--cor-principal);
+                    color: var(--cor-principal);
                     box-shadow: 0 0 5px #0000004d;
                 }
             }

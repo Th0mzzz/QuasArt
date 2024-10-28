@@ -36,6 +36,8 @@ const videoControl = {
                 erros: listaErros,
                 valores: req.body,
                 token: null,
+                tags:null,
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
 
             }
@@ -115,6 +117,7 @@ const videoControl = {
                     idVideo: idVideo,
                     video: video.CAMINHO_VIDEO
                 },
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                 tags: video.HASHTAG_VIDEO.split(","),
             }
             res.render("./pages/template-home", jsonResult)
@@ -213,7 +216,7 @@ const videoControl = {
                     const autor = await usuariosModel.findUserById(video.USUARIOS_ID_USUARIO)
                     const comentarios = await videosModel.findComentariosByIdVideo(video.ID_VIDEOS)
                     const idsUsersComentarios = []
-                    for (const c of comentarios) { 
+                    for (const c of comentarios) {
                         if (!idsUsersComentarios.includes(c.USUARIOS_ID_USUARIO)) {
                             idsUsersComentarios.push(c.USUARIOS_ID_USUARIO)
                         }
@@ -250,7 +253,7 @@ const videoControl = {
                     videosInfo.unshift(videoItem)
 
                 }
-                
+
                 const jsonResult = {
                     token: token,
                     videos: videosInfo,

@@ -40,6 +40,7 @@ const fichasControl = {
                 erros: listaErros,
                 valores: req.body,
                 token: null,
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             }
             res.render("./pages/template-home", jsonResult)
@@ -131,6 +132,7 @@ const fichasControl = {
                 erros: listaErros,
                 valores: req.body,
                 token: null,
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             }
             res.render("./pages/template-home", jsonResult)
@@ -251,6 +253,7 @@ const fichasControl = {
                             token: token,
                             comentarios: comments,
                             isCurtido: isCurtido,
+                            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
                             anuncio: anuncio
                         }
 

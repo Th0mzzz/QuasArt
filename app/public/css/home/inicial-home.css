@@ -118,8 +118,10 @@
             position: relative;
             translate: 0 50%;
             width: clamp(120px, 20vw, 150px);
+            height: clamp(120px, 20vw, 150px);
+            object-fit: cover;
             border-radius: 50%;
-            border: 3px solid var(--cor-principal);
+            border: 5px solid var(--cor-principal);
         }
     }
 

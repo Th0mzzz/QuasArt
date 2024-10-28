@@ -60,7 +60,7 @@ const fichasModel = {
     },
     findFichasEmAlta: async () => {
         try {
-            const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE STATUS_FICHA = 'ativo'")
+            const [resultados] = await pool.query("SELECT f.*, COUNT(ff.ID_FAVORITOS) AS curtidas FROM FICHAS f LEFT JOIN FAVORITO_FICHAS ff ON f.ID_OBRA = ff.FICHAS_ID_OBRA WHERE f.STATUS_FICHA = 'ativo' GROUP BY f.ID_OBRA ORDER BY curtidas DESC; ")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")
@@ -71,6 +71,16 @@ const fichasModel = {
     findFichasRecentes: async () => {
         try {
             const [resultados] = await pool.query("SELECT * FROM FICHAS WHERE STATUS_FICHA = 'ativo' ORDER BY ID_OBRA DESC LIMIT 100")
+            return resultados
+        } catch (error) {
+            console.log("erro no buscar ID")
+            console.log(error)
+            return error
+        }
+    },
+    findFichasRecentes: async () => {
+        try {
+            const [resultados] = await pool.query("SELECT f.* FROM FICHAS f JOIN USUARIOS u ON f.USUARIOS_ID_USUARIO = u.ID_USUARIO WHERE u.ID_TIPO_USUARIO = 3 AND STATUS_FICHA = 'ativo'")
             return resultados
         } catch (error) {
             console.log("erro no buscar ID")

@@ -11,6 +11,9 @@
                         <img src="./img/imagens-servidor/perfil/<%= autor.CAMINHO_FOTO %>" alt="foto do autor"
                             class="userImg">
                         <%= autor.NICKNAME_USUARIO %>
+                        <% if (autor.ID_TIPO_USUARIO !== 'undefined' && autor.ID_TIPO_USUARIO != null && autor.ID_TIPO_USUARIO != 1 && autor.ID_TIPO_USUARIO != 4) {%>
+                            <img src="./img/diversos/<%= autor.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>" alt="icone de assinante" class="icon-perfil">
+                        <% }%>
                     </a>
                     <form action="/curtirFicha?idFicha=<%= ficha.ID_OBRA %>" class="estatistica btn-curtida" method="post">
                         <% if(isCurtido) {%>

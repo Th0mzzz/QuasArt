@@ -95,6 +95,13 @@
                 object-fit: cover;
             }
 
+            & .icon-perfil {
+                width: 30px;
+                height: 30px;
+                border-radius: 0;
+
+            }
+
             & a {
                 color: var(--cor-texto);
 
@@ -104,6 +111,7 @@
             }
         }
     }
+
 }
 
 .card__video {
@@ -210,6 +218,13 @@
                 object-fit: cover;
             }
 
+            & .icon-perfil {
+                border-radius: 0;
+                width: 30px;
+                height: 30px;
+
+            }
+
             & a {
                 color: white;
 
@@ -253,6 +268,8 @@
 
         }
     }
+
+
 }
 
 
@@ -277,6 +294,11 @@
         height: 30px;
         object-fit: cover;
         border-radius: 50%;
+    }
+
+    & .icon-perfil{
+        width: 20px;
+        height: 20px;
     }
 }
 
@@ -338,7 +360,8 @@
             position: relative;
             color: var(--cor-texto);
             width: 100%;
-            & p{
+
+            & p {
                 word-wrap: break-word;
             }
 

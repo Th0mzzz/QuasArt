@@ -42,7 +42,11 @@
                                         <img src="./img/imagens-servidor/perfil/<%= video.autor.CAMINHO_FOTO %>"
                                             alt="foto do autor" class="userImg">
                                         <%= video.autor.NICKNAME_USUARIO %>
+                                        <% if (video.autor.ID_TIPO_USUARIO !== 'undefined' && video.autor.ID_TIPO_USUARIO != null && video.autor.ID_TIPO_USUARIO != 1 && video.autor.ID_TIPO_USUARIO != 4) {%>
+                                            <img src="./img/diversos/<%= video.autor.ID_TIPO_USUARIO == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>" alt="icone de assinante" class="icon-perfil">
+                                        <% }%>
                                     </a>
+                                    
                                 </section>
                                 <article class="desc mb-2">
                                     <h3 class="subtitle mb-2">

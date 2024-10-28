@@ -83,8 +83,12 @@
                             class="bi bi-camera-video"></i></a></li>
                 <li class="aside__item <%= classePagina == 'publicar' ? 'ativo ': '' %>"><a href="/publicar"><i
                             class="bi bi-plus-circle-dotted"></i></a></li>
-                <li class="aside__item <%= classePagina == 'perfil' ? 'ativo ': '' %> perfil-item"><a
-                        href="/profile"><img src="./img/imagens-servidor/perfil/<%= foto %>" alt="imagem do usuário"></a></li>
+                <li class="aside__item <%= classePagina == 'perfil' ? 'ativo ': '' %> perfil-item">
+                    <a href="/profile"><img src="./img/imagens-servidor/perfil/<%= foto %>" alt="imagem do usuário"></a>
+                    <% if (typeof tipoUsu !== 'undefined' && tipoUsu != null && tipoUsu != 1 && tipoUsu != 4) {%>
+                        <img src="./img/diversos/<%= tipoUsu == 2 ? 'tripulante-icon.png' : 'comandante-icon.png' %>" alt="icone de assinante" class="icon-perfil">
+                        <% }%>
+                </li>
             </ul>
         </section>
     </aside>
