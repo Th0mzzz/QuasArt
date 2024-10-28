@@ -153,8 +153,7 @@ router.get("/",
                     resenha: { ...resenhaDestaque[0], usuario: resenhaUser[0], curtidas: curtidasResenha }
                 },
             };
-            console.log(resenhas)
-            console.log(reseRecentes)
+
             let anuncios = await anunciosModel.findAnunciosAleatorio()
             const jsonResult = {
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -860,7 +859,7 @@ router.post("/seguirUsuario",
     }
 )
 // Assinatura
-router.get("/assinar-form",
+router.get("/assinar-form-comandante",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async (req, res) => {
@@ -869,7 +868,7 @@ router.get("/assinar-form",
         const jsonResult = {
             foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
             page: "../partial/template-home/assinar-page",
-            classePagina: "",
+            classePagina: "comandante",
             token: token,
             tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
             usuario: user[0]
@@ -877,12 +876,29 @@ router.get("/assinar-form",
         res.render("pages/template-home", jsonResult)
     }
 )
-router.post("/criarComandanteMensal",
+router.get("/assinar-form-tripulante",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async (req, res) => {
+        const token = null
+        const user = await usuariosModel.findUserById(req.session.autenticado.id)
+        const jsonResult = {
+            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+            page: "../partial/template-home/assinar-page",
+            classePagina: "tripulante",
+            token: token,
+            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
+            usuario: user[0]
+        }
+        res.render("pages/template-home", jsonResult)
+    }
+)
+router.post("/criarComandante",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async (req, res) => {
         try {
-            const { plano, cardTokenId } = req.body;
+            const { planoId, cardTokenId } = req.body;
 
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
             const preApproval = new PreApproval(mercadopago);
@@ -893,15 +909,9 @@ router.post("/criarComandanteMensal",
                 }
             })
 
-            let preapproval_plan_id;
-            if (plano === 'mensal') {
-                preapproval_plan_id = '2c9380849154066301915c29114705c2';
-            } else if (plano === 'anual') {
-                preapproval_plan_id = 'ID_DO_PLANO_ANUAL';
-            }
             const assinatura = await preApproval.create({
                 body: {
-                    preapproval_plan_id: preapproval_plan_id,
+                    preapproval_plan_id: planoId,
                     payer_email: user[0].EMAIL_USUARIO,
                     back_url: `${process.env.URL_BASE}/feedback-assinatura`,
                     reason: 'ComandantePlus',
@@ -925,7 +935,10 @@ router.post("/criarComandanteMensal",
             console.error(error)
             return res.status(500).json({ message: "Erro ao processar assinatura" });
         }
-})
+    })
+
+
+
 function verificarWebhook(payload, assinaturaRecebida, segredo) {
     const hash = crypto
         .createHmac('sha256', segredo)

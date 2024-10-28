@@ -1,0 +1,17 @@
+<section class="ad__section mt-3">
+        <% if(anuncios) { let anuncio=anuncios[Math.floor(Math.random() * anuncios.length)] %>
+            <img class="ad__img"
+                src="./img/imagens-servidor/anuncios/anuncio-imagem/<%= anuncio.CAMINHO_IMAGEM_ANUNCIO%>"
+                alt="imagem do anúncio">
+            <header class="ad__header">
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="ad__user link">
+                    <img src="./img/imagens-servidor/anuncios/foto-patrocinador/<%= anuncio.CAMINHO_FOTO_PATROCINADOR%>"
+                        alt="patrocinador" class="ad__user-img">
+                    <p class="ad__user-name text"><span style="color: var(--cor-principal);">Patrocinador</span> - <%=
+                            anuncio.NOME_PATROCINADOR %>
+                    </p>
+                </a>
+                <a href="<%= anuncio.LINK_ANUNCIO != null ? anuncio.LINK_ANUNCIO : '#' %>" class="btn">Conheça</a>
+            </header>
+            <% }%>
+</section>
