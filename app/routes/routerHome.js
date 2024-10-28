@@ -19,12 +19,13 @@ const videosModel = require("../models/videosModel");
 const adminModel = require("../models/adminModel");
 // Mercado Pago ------------------
 const crypto = require('crypto');
-const { MercadoPagoConfig, PreApproval, PreApprovalPlan } = require('mercadopago');
+const { MercadoPagoConfig, Preference } = require('mercadopago');
 const anunciosModel = require("../models/anunciosModel");
 const mercadopago = new MercadoPagoConfig({
-    accessToken: process.env.MP_ACCESS_TOKEN_TEST,
+    accessToken: process.env.MP_ACCESS_TOKEN,
     options: { timeout: 5000, idempotencyKey: 'abc' }
 });
+const preference = new Preference(mercadopago)
 
 // Página de falha de autenticação ---------
 const destinoDeFalha = {
@@ -859,120 +860,146 @@ router.post("/seguirUsuario",
     }
 )
 // Assinatura
-router.get("/assinar-form-comandante",
-    middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
-    async (req, res) => {
-        const token = null
-        const user = await usuariosModel.findUserById(req.session.autenticado.id)
-        const jsonResult = {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/template-home/assinar-page",
-            classePagina: "comandante",
-            token: token,
-            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
-            usuario: user[0]
-        }
-        res.render("pages/template-home", jsonResult)
-    }
-)
-router.get("/assinar-form-tripulante",
-    middleWares.verifyAutenticado,
-    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
-    async (req, res) => {
-        const token = null
-        const user = await usuariosModel.findUserById(req.session.autenticado.id)
-        const jsonResult = {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/template-home/assinar-page",
-            classePagina: "tripulante",
-            token: token,
-            tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
-            usuario: user[0]
-        }
-        res.render("pages/template-home", jsonResult)
-    }
-)
+
 router.post("/criarComandante",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async (req, res) => {
         try {
-            const { planoId, card_token_id } = req.body;
-
+            const { plano } = req.body;
+            const title = plano == 'mensal' ? 'Comandante PLUS+ (MENSAL)' : 'Comandante PLUS+ (ANUAL)';
+            const price = plano == 'mensal' ? 45 : 378;
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
-            const preApproval = new PreApproval(mercadopago);
-            const preApprovalPlan = new PreApprovalPlan(mercadopago)
-            const planos = await preApprovalPlan.search({
-                qs: {
-                    status: 'active'
-                }
-            })
+            req.session.compra = { emailComprador: user[0].EMAIL_USUARIOS, plano:'comandante' }
+            const body = {
+                items: [
+                    {
+                        id: `${req.session.autenticado.id}`,
+                        title: title,
+                        quantity: 1,
+                        currency_id: 'BRL',
+                        unit_price: price,
+                    },
+                ],
+                payer: {
+                    email: user[0].EMAIL_USUARIOS,
+                },
+                back_urls: {
+                    success: `${process.env.URL_BASE}/feedback-compra?success`,
+                    failure: `${process.env.URL_BASE}/feedback-compra?failure`,
+                    pending: `${process.env.URL_BASE}/feedback-compra?pending`,
+                },
+                auto_return: 'all'
+            };
 
-            const assinatura = await preApproval.create({
-                body: {
-                    preapproval_plan_id: planoId,
-                    payer_email:'test_user_1489787289@example.com',
-                    back_url: `${process.env.URL_BASE}/feedback-assinatura`,
-                    reason: 'ComandantePlus',
-                    status: 'pending',
-                    card_token_id: card_token_id
-                }
+            preference.create({ body }).then(response => {
+                res.redirect(response.init_point)
+            }).catch(error => {
+                console.error(error)
+                req.session.token = { msg: 'Erro ao assinar', type: 'danger', contagem: 0 }
+                return res.status(500).redirect("/error");
             });
 
-            console.log('PLANOS DO MERCADO PAGO -----------------')
-            console.log(planos)
 
-            if (assinatura && assinatura.body && assinatura.body.init_point) {
-                console.log(assinatura.body.init_point)
-                res.json({ init_point: assinatura.body.init_point });
-            } else {
-                throw new Error("Erro ao criar assinatura")
-            }
+
         } catch (error) {
 
             console.log('---- ERRO ASSINATURA ----')
             console.error(error)
-            return res.status(500).json({ message: "Erro ao processar assinatura" });
+            req.session.token = { msg: 'Erro ao assinar', type: 'danger', contagem: 0 }
+            return res.status(500).redirect("/error"); x
+        }
+    })
+router.post("/criarTripulante",
+    middleWares.verifyAutenticado,
+    middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
+    async (req, res) => {
+        try {
+            const { plano } = req.body;
+            const title = plano == 'mensal' ? 'Tripulante PLUS+ (MENSAL)' : 'Tripulante PLUS+ (ANUAL)';
+            const price = plano == 'mensal' ? 35 : 291.60;
+            const user = await usuariosModel.findUserById(req.session.autenticado.id);
+            req.session.compra = { emailComprador: user[0].EMAIL_USUARIOS, plano:'tripulante' }
+
+            const body = {
+                items: [
+                    {
+                        id: `${req.session.autenticado.id}`,
+                        title: title,
+                        quantity: 1,
+                        currency_id: 'BRL',
+                        unit_price: price,
+                    },
+                ],
+                payer: {
+                    email: user[0].EMAIL_USUARIOS,
+                },
+                back_urls: {
+                    success: `${process.env.URL_BASE}/feedback-compra?success`,
+                    failure: `${process.env.URL_BASE}/feedback-compra?failure`,
+                    pending: `${process.env.URL_BASE}/feedback-compra?pending`,
+                },
+                auto_return: 'all'
+            };
+
+            preference.create({ body }).then(response => {
+                console.log(response)
+                res.redirect(response.init_point)
+            }).catch(error => {
+                console.error(error)
+                req.session.token = { msg: 'Erro ao assinar', type: 'danger', contagem: 0 }
+                return res.status(500).redirect("/error");
+            });
+
+
+
+        } catch (error) {
+
+            console.log('---- ERRO ASSINATURA ----')
+            console.error(error)
+            req.session.token = { msg: 'Erro ao assinar', type: 'danger', contagem: 0 }
+            return res.status(500).redirect("/error"); x
         }
     })
 
 
-
-function verificarWebhook(payload, assinaturaRecebida, segredo) {
-    const hash = crypto
-        .createHmac('sha256', segredo)
-        .update(payload)
-        .digest('hex');
-    return hash === assinaturaRecebida;
-}
-router.post('/atualizarAssinatura', async (req, res) => {
-    const data = req.body
+router.get('/feedback-compra', async (req, res) => {
     try {
-
-        if (verificarWebhook(JSON.stringify(data), req.headers['x-webhook-signature'], process.env.MP_WEBHOOK_SECRET_TEST)) {
-            const user = await usuariosModel.findUserByEmail(data.payer.email)
-            if (data.status === 'authorized') {
-                const plano = data.reason
-
-                await usuariosModel.updateUser({ TIPO_USUARIO: 2 }, user[0].ID_USUARIO)
-                console.log(`Usuário ${user[0].NICKNAME_USUARIO} teve a assinatura ativada.`)
-            } else if (data.status === 'paused') {
-                await usuariosModel.updateUser({ TIPO_USUARIO: 1 }, user[0].ID_USUARIO)
-                console.log(`Usuário ${user[0].NICKNAME_USUARIO} teve a assinatura pausada.`)
-            }
-            res.status(200).send('Webhook processado com sucesso');
-        } else {
-            console.log('Assinatura inválida')
-            res.status(403).send('Assinatura inválida');
+        const params = new URLSearchParams(req.query)
+        const compra = req.session.compra ? req.session.compra : null
+        console.log(compra)
+        if (!compra) {
+            throw new Error('Erro ao processar assinatura')
         }
-
+        if (params.has('success')) {
+            const user = await usuariosModel.findUserByEmail(compra.emailComprador)
+            const plano = compra.plano == 'comandante' ? 3 : 2;
+            await usuariosModel.updateUser({ID_TIPO_USUARIO: plano }, user[0].ID_USUARIO)
+            req.session.compra = undefined
+            const jsonResult = {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
+                page: "../partial/template-home/feedback-page",
+                classePagina: "pagamentoSucesso",
+                token: { msg: 'Assinatura feita com sucesso!', type: 'success', contagem: 0 },
+            }
+            res.render('pages/template-home', jsonResult)
+        } else if (params.has('failure') || params.has('pending')) {
+            const jsonResult = {
+                foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
+                tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
+                page: "../partial/template-home/feedback-page",
+                classePagina: "pagamentoErro",
+                token: { msg: 'Pagamento não efetuado!', type: 'danger' },
+            }
+            res.render('pages/template-home', jsonResult)
+        }
     } catch (error) {
         console.log(error)
-        console.log('Erro de comunicação com Mercado Pago')
+        req.session.token = { msg: 'Erro ao processar assinatura, acesso o suporte!', type: 'danger', contagem: 0 }
+        res.redirect("/error-404")
     }
 
-});
-router.get('/feedback-assinatura', (req, res) => { res.json({ teste: '' }) })
+})
 
 module.exports = router;

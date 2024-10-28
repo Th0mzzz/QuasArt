@@ -130,7 +130,7 @@
         }
     }
 
-    & :is( :is(input, textarea, select):focus, :is(input, textarea, select):active, input:not(:placeholder-shown), textarea:not(:placeholder-shown))~label {
+    & :is( :is(input, textarea, select):focus, :is(input, textarea, select):active, input:not(:placeholder-shown), textarea:not(:placeholder-shown), select:not(:placeholder-shown))~label {
         left: .8rem;
         top: 10px;
         font-size: var(--fs-smalltext);
