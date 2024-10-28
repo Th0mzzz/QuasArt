@@ -139,10 +139,9 @@
                 })
               });
 
-              const data = await response.json();
               const contentType = response.headers.get("content-type");
               if (contentType && contentType.includes("application/json")) {
-                const data = await response.json();
+                const data = await response.json(); // Ler a resposta JSON uma única vez
                 if (data.url) {
                   window.location.href = data.url;
                 } else {
