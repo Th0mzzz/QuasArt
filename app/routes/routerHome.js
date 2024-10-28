@@ -898,7 +898,7 @@ router.post("/criarComandante",
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
     async (req, res) => {
         try {
-            const { planoId, cardTokenId } = req.body;
+            const { planoId, card_token_id } = req.body;
 
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
             const preApproval = new PreApproval(mercadopago);
@@ -916,7 +916,7 @@ router.post("/criarComandante",
                     back_url: `${process.env.URL_BASE}/feedback-assinatura`,
                     reason: 'ComandantePlus',
                     status: 'pending',
-                    card_token_id: cardTokenId
+                    card_token_id: card_token_id
                 }
             });
 
