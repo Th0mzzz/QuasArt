@@ -16,7 +16,16 @@
         </article>
         <article class="option tripulante">
             <h2 class="title">Tripulante <span class="negrito-roxo">PLUS+</span></h2>
-            
+            <form action="/criarTripulante" method="post">
+                <article class="input__container">
+                 <select name="plano" id="plano" class="select__control">
+                     <option value="mensal" selected>Plano Mensal</option>
+                     <option value="anual">Plano Anual</option>
+                 </select>
+                 <label for="plano">Escolha o plano</label>
+                </article>
+                 <button type="submit" class="btn mt-3 submit">Assinar</button>
+             </form>
         </article>
     </section>
 </section>
