@@ -870,7 +870,8 @@ router.post("/criarComandante",
             const title = plano == 'mensal' ? 'Comandante PLUS+ (MENSAL)' : 'Comandante PLUS+ (ANUAL)';
             const price = plano == 'mensal' ? 45 : 378;
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
-            req.session.compra = { emailComprador: user[0].EMAIL_USUARIOS, plano:'comandante' }
+            req.session.compra = { email: user[0].EMAIL_USUARIOS, plano:'comandante' }
+
             const body = {
                 items: [
                     {
@@ -919,7 +920,7 @@ router.post("/criarTripulante",
             const title = plano == 'mensal' ? 'Tripulante PLUS+ (MENSAL)' : 'Tripulante PLUS+ (ANUAL)';
             const price = plano == 'mensal' ? 35 : 291.60;
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
-            req.session.compra = { emailComprador: user[0].EMAIL_USUARIOS, plano:'tripulante' }
+            req.session.compra = { email: user[0].EMAIL_USUARIOS, plano:'tripulante' }
 
             const body = {
                 items: [
@@ -943,7 +944,6 @@ router.post("/criarTripulante",
             };
 
             preference.create({ body }).then(response => {
-                console.log(response)
                 res.redirect(response.init_point)
             }).catch(error => {
                 console.error(error)
@@ -958,7 +958,7 @@ router.post("/criarTripulante",
             console.log('---- ERRO ASSINATURA ----')
             console.error(error)
             req.session.token = { msg: 'Erro ao assinar', type: 'danger', contagem: 0 }
-            return res.status(500).redirect("/error"); x
+            return res.status(500).redirect("/error");
         }
     })
 
@@ -967,12 +967,15 @@ router.get('/feedback-compra', async (req, res) => {
     try {
         const params = new URLSearchParams(req.query)
         const compra = req.session.compra ? req.session.compra : null
+        console.log('FEEDBACK COMPRA')
         console.log(compra)
+        console.log(req.session.compra)
         if (!compra) {
             throw new Error('Erro ao processar assinatura')
         }
         if (params.has('success')) {
-            const user = await usuariosModel.findUserByEmail(compra.emailComprador)
+            const user = await usuariosModel.findUserByEmail(compra.email)
+            console.log(user)
             const plano = compra.plano == 'comandante' ? 3 : 2;
             await usuariosModel.updateUser({ID_TIPO_USUARIO: plano }, user[0].ID_USUARIO)
             req.session.compra = undefined
