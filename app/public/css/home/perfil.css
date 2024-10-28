@@ -31,8 +31,7 @@
                 z-index: 100;
                 right: 5%;
                 bottom: 5%;
-                background: var(--cor-principal);
-                border-radius: 50%;
+                border-radius: 0;
             }
 
             &.mudar__foto-btn {

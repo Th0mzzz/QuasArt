@@ -57,7 +57,7 @@ router.get("/",
             const reseComandantes = await resenhaModel.findResenhasComandantes();
             const fichas = await fichasModel.findFichasEmAlta();
             const fichasRecentes = await fichasModel.findFichasRecentes();
-            const fichasComandantes = await fichasModel.findFichasRecentes();
+            const fichasComandantes = await fichasModel.findFichasComandante();
             const idsResenha = [];
             const idsFicha = [];
 
@@ -153,6 +153,8 @@ router.get("/",
                     resenha: { ...resenhaDestaque[0], usuario: resenhaUser[0], curtidas: curtidasResenha }
                 },
             };
+            console.log(resenhas)
+            console.log(reseRecentes)
             let anuncios = await anunciosModel.findAnunciosAleatorio()
             const jsonResult = {
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
@@ -837,7 +839,6 @@ router.post("/denunciarVideo",
 )
 
 // SEGUIR
-
 router.post("/seguirUsuario",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
@@ -858,9 +859,6 @@ router.post("/seguirUsuario",
 
     }
 )
-
-
-
 // Assinatura
 router.get("/assinar-form",
     middleWares.verifyAutenticado,
@@ -879,7 +877,6 @@ router.get("/assinar-form",
         res.render("pages/template-home", jsonResult)
     }
 )
-
 router.post("/criarComandanteMensal",
     middleWares.verifyAutenticado,
     middleWares.verifyAutorizado("pages/template-login", destinoDeFalha, [1, 2, 3, 4]),
@@ -928,15 +925,7 @@ router.post("/criarComandanteMensal",
             console.error(error)
             return res.status(500).json({ message: "Erro ao processar assinatura" });
         }
-    })
-
-function verificarWebhook(payload, assinaturaRecebida, segredo) {
-    const hash = crypto
-        .createHmac('sha256', segredo)
-        .update(payload)
-        .digest('hex');
-    return hash === assinaturaRecebida;
-}
+})
 function verificarWebhook(payload, assinaturaRecebida, segredo) {
     const hash = crypto
         .createHmac('sha256', segredo)

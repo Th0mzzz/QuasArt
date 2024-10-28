@@ -7,7 +7,7 @@ const { removeImg } = require("../util/removeImg");
 const resenhaControl = {
   validacaoResenha: [
     body("titulo")
-      .isLength({ min: 3, max: 45 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
+      .isLength({ min: 3, max: 120 }).withMessage("O título deve ter no minimo 3 caracteres e no máximo 45!")
     ,
     body("descricao")
       .isLength({ min: 3, max: 400 }).withMessage("A descrição deve ter entre 3 e 400 caracteres!")
@@ -33,7 +33,8 @@ const resenhaControl = {
         classePagina: "publicar",
         erros: listaErros,
         valores: req.body,
-        token: null,
+        token: null, 
+        tags: null,
         foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
         tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
       }

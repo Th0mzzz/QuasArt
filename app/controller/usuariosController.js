@@ -238,7 +238,7 @@ const usuariosController = {
                 if (userBd[0] && bcrypt.compareSync(senha, userBd[0].SENHA_USUARIO) && req.session.autenticado.autenticado) {
                     if (userBd[0].ID_TIPO_USUARIO == 4) {
                         console.log(`---------- Administrador ${userBd[0].NICKNAME_USUARIO} logou --------------`)
-                        return res.redirect("/adm")
+                        return res.redirect("/adm-users")
                     }
                     console.log(`---------- Usuário ${userBd[0].NICKNAME_USUARIO} logou --------------`)
                     req.session.cadastro = false

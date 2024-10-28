@@ -123,33 +123,31 @@ const usuariosModel = {
             }
 
 
-            const [curtidasFichas] = fichaIds.length > 0
+            const [curtidasFichasResult] = fichaIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_FICHAS WHERE FICHAS_ID_OBRA IN (?)`, [fichaIds]
                 )
-                : [{ totalCurtidas: 0 }];
+                : [[{ totalCurtidas: 0 }]];
 
-
-            const [curtidasResenhas] = resenhaIds.length > 0
+            const [curtidasResenhasResult] = resenhaIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_RESENHAS WHERE RESENHAS_ID_RESENHAS IN (?)`, [resenhaIds]
                 )
-                : [{ totalCurtidas: 0 }];
+                : [[{ totalCurtidas: 0 }]];
 
-
-            const [curtidasVideos] = videoIds.length > 0
+            const [curtidasVideosResult] = videoIds.length > 0
                 ? await pool.query(
                     `SELECT COUNT(*) AS totalCurtidas FROM FAVORITO_VIDEOS WHERE VIDEOS_ID_VIDEOS IN (?)`, [videoIds]
                 )
-                : [{ totalCurtidas: 0 }];
+                : [[{ totalCurtidas: 0 }]];
 
+            const totalCurtidasFichas = curtidasFichasResult[0]?.totalCurtidas || 0;
+            const totalCurtidasResenhas = curtidasResenhasResult[0]?.totalCurtidas || 0;
+            const totalCurtidasVideos = curtidasVideosResult[0]?.totalCurtidas || 0;
 
-            const totalCurtidas = (curtidasFichas[0].totalCurtidas || 0)
-                + (curtidasResenhas[0].totalCurtidas || 0)
-                + (curtidasVideos[0].totalCurtidas || 0);
+            const curtidas = totalCurtidasFichas + totalCurtidasResenhas + totalCurtidasVideos;
 
-            return totalCurtidas;
-
+            return curtidas;
         } catch (error) {
             console.log("Erro ao buscar curtidas do usuário", error);
             return error;

@@ -78,7 +78,7 @@ const fichasModel = {
             return error
         }
     },
-    findFichasRecentes: async () => {
+    findFichasComandante: async () => {
         try {
             const [resultados] = await pool.query("SELECT f.* FROM FICHAS f JOIN USUARIOS u ON f.USUARIOS_ID_USUARIO = u.ID_USUARIO WHERE u.ID_TIPO_USUARIO = 3 AND STATUS_FICHA = 'ativo'")
             return resultados

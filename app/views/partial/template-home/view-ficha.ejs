@@ -68,7 +68,8 @@
                                     <% if (previa.CAMINHO_PREVIA.endsWith('.jpg') ||
                                         previa.CAMINHO_PREVIA.endsWith('.jpeg') ||
                                         previa.CAMINHO_PREVIA.endsWith('.png') ||
-                                        previa.CAMINHO_PREVIA.endsWith('.gif')) { %>
+                                        previa.CAMINHO_PREVIA.endsWith('.gif')||
+                                        previa.CAMINHO_PREVIA.endsWith('.webp'))  { %>
                                         <img src="./img/imagens-servidor/previas/<%= previa.CAMINHO_PREVIA %>"
                                             alt="Imagem">
                                         <% } else if (previa.CAMINHO_PREVIA.endsWith('.mp4') ||

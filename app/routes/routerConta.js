@@ -38,36 +38,30 @@ router.get("/ativar-conta",
 router.get("/entrar", function (req, res) {
 
     if (req.session.autenticado && req.session.autenticado.autenticado && req.session.autenticado.autenticado != null) {
-        const jsonResult = {
-            foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
-            page: "../partial/template-home/inicial-home",
-            classePagina: "inicialHome",
-            token: {
-                msg: `Bom te ver de novo`,
-                usuario: `${req.session.autenticado.autenticado}!`
-            }
-        }
-        res.render("pages/template-home", jsonResult)
-
-    } else {
-        let alert = req.session.token ? req.session.token : null;
-        if (alert && alert.contagem < 1) {
-            req.session.token.contagem++;
-        } else {
-            req.session.token = null;
-        }
-        res.render("pages/template-login", {
-            page: "../partial/template-login/login",
-            modal: "fechado",
-            erros: null,
-            valores: "",
-            incorreto: "",
-            token: alert
-        });
+        return res.redirect("/")
     }
+    let alert = req.session.token ? req.session.token : null;
+    if (alert && alert.contagem < 1) {
+        req.session.token.contagem++;
+    } else {
+        req.session.token = null;
+    }
+    res.render("pages/template-login", {
+        page: "../partial/template-login/login",
+        modal: "fechado",
+        erros: null,
+        valores: "",
+        incorreto: "",
+        token: alert
+    });
+
 });
 //  pagina de cadastro
 router.get("/cadastrar", function (req, res) {
+
+    if (req.session.autenticado && req.session.autenticado.autenticado && req.session.autenticado.autenticado != null) {
+        return res.redirect("/")
+    }
     const jsonResult = {
         page: "../partial/template-login/cadastro",
         modal: "fechado",

@@ -46,6 +46,7 @@
     & .ad__img {
         width: 100%;
         min-height: 280px;
+        max-height: 400px;
         border-radius: 20px;
         object-fit: cover;
         object-position: center;
@@ -65,6 +66,8 @@
             & .ad__user-img {
                 width: clamp(45px, 10vw, 80px);
                 height: clamp(45px, 10vw, 80px);
+                border-radius: 50%;
+                object-fit: cover;
             }
         }
     }
