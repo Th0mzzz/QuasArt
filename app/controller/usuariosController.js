@@ -575,6 +575,7 @@ const usuariosController = {
 
                     await usuariosModel.updateUser({ STATUS_USUARIO: 'ativo' }, decoded.userId);
                     console.log("Conta ativada!")
+                    req.session.token = { msg: 'Conta ativada!', type: 'success', contagem: 0 }
                     res.redirect("/entrar")
                 }
             })
