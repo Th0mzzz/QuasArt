@@ -1,6 +1,8 @@
 .plus__container {
     margin: 1rem 0;
-
+    & .btn-obtido{
+        background: #3fc73f;
+    }
     &>.subtitle {
         text-align: center;
         color: var(--cor-texto);

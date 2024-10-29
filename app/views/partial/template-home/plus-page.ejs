@@ -38,9 +38,13 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i>Selo premium</li>
                 </ul>
             </article>
-           
-            <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 comandante-btn">Decolar!</a>
-
+            <% if(tipoUsu && tipoUsu == 2) {%>
+                <a class="btn secundaria lg mt-3 comandante-btn" style="background: var(--cor-danger);">Outro plano obtido</a>
+            <%}else if(tipoUsu && tipoUsu == 3){ %>
+                <a class="btn secundaria lg mt-3 comandante-btn btn-obtido">Plano obtido</a>
+            <%}else{ %>
+                <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 comandante-btn">Decolar!</a>
+               <% } %>
         </section>
         <section class="plus__card">
             <header>
@@ -58,7 +62,16 @@
                     <li class="recurso__item link"><i class="bi bi-check"></i> Selo Premium</li>
                 </ul>
             </article>
-            <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 tripulante-btn">Decolar!</a>
+
+            <% if(tipoUsu && tipoUsu == 3) {%>
+                <a class="btn secundaria lg mt-3 tripulante-btn" style="background: var(--cor-danger);">Outro plano obtido</a>
+            <%}else if(tipoUsu && tipoUsu == 2){ %>
+                <a class="btn secundaria lg mt-3 tripulante-btn btn-obtido">Plano obtido</a>
+            <%}else{ %>
+                <a data-openmodal="#assinaturaModal" class="btn secundaria lg mt-3 tripulante-btn">Decolar!</a>
+               <% } %>
+
+        
 
         </section>
     </section>

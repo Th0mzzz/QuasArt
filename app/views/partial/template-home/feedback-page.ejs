@@ -1,5 +1,33 @@
-<% if(classePagina == 'pagamentoSucesso'){%>
-<h2>Pagamento feito com sucesso</h2>
-<% }else {%>
-    <h2>Ocorreu um erro com o pagamento, tente novamente ou acesse contate-nos.</h2>
-<% } %>
+<link rel="stylesheet" href="./css/erros.css">
+<% if(classePagina=='pagamentoSucesso' ){%>
+
+
+    <section class="error__container">
+        <header class="error-title">
+            <h2 class="supertitle">Pagamento feito com sucesso</h2>
+            <h4 class="subtitle">Redirecionando para o site.</h4>
+            <a href="/" class="btn link mt-3">Voltar para página inicial</a>
+        </header>
+        <img src="./img/diversos/2.png" alt="Saturno" id="saturno">
+        <img src="./img/diversos/1.png" alt="jupiter" id="jupiter">
+    </section>
+    <% }else {%>
+        <section class="error__container">
+            <header class="error-title">
+                <h2 class="supertitle">Erro ao processar pagamento.</h2>
+                <h4 class="subtitle">Em caso de dúvidas, acesse o suporte.</h4>
+                <a href="/" class="btn link mt-3">Voltar para página inicial</a>
+            </header>
+            <img src="./img/diversos/2.png" alt="Saturno" id="saturno">
+            <img src="./img/diversos/1.png" alt="jupiter" id="jupiter">
+        </section>
+        <% } %>
+
+            <script>
+                window.onload = () => {
+                    setTimeout(() => {
+                        window.location = "/"
+                    }, 5000)
+                }
+
+            </script>

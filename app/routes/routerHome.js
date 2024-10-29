@@ -870,7 +870,7 @@ router.post("/criarComandante",
             const title = plano == 'mensal' ? 'Comandante PLUS+ (MENSAL)' : 'Comandante PLUS+ (ANUAL)';
             const price = plano == 'mensal' ? 45 : 378;
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
-            req.session.compra = { email: user[0].EMAIL_USUARIOS, plano:'comandante' }
+            req.session.compra = { email: user[0].EMAIL_USUARIO, plano: 'comandante' }
 
             const body = {
                 items: [
@@ -920,7 +920,7 @@ router.post("/criarTripulante",
             const title = plano == 'mensal' ? 'Tripulante PLUS+ (MENSAL)' : 'Tripulante PLUS+ (ANUAL)';
             const price = plano == 'mensal' ? 35 : 291.60;
             const user = await usuariosModel.findUserById(req.session.autenticado.id);
-            req.session.compra = { email: user[0].EMAIL_USUARIOS, plano:'tripulante' }
+            req.session.compra = { email: user[0].EMAIL_USUARIO, plano: 'tripulante' }
 
             const body = {
                 items: [
@@ -971,7 +971,7 @@ router.get('/feedback-compra', async (req, res) => {
         console.log(compra)
         console.log(req.session.compra)
         if (!compra) {
-            throw new Error('Erro ao processar assinatura')
+            throw new Error('Erro ao processar assinatura!')
         }
         if (params.has('success')) {
             const user = await usuariosModel.findUserByEmail(compra.email)
@@ -979,6 +979,7 @@ router.get('/feedback-compra', async (req, res) => {
             const plano = compra.plano == 'comandante' ? 3 : 2;
             await usuariosModel.updateUser({ID_TIPO_USUARIO: plano }, user[0].ID_USUARIO)
             req.session.compra = undefined
+            req.session.autenticado.tipo = plano
             const jsonResult = {
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                 tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
@@ -999,7 +1000,7 @@ router.get('/feedback-compra', async (req, res) => {
         }
     } catch (error) {
         console.log(error)
-        req.session.token = { msg: 'Erro ao processar assinatura, acesso o suporte!', type: 'danger', contagem: 0 }
+        req.session.token = { msg: 'Erro ao processar assinatura!', type: 'danger', contagem: 0 }
         res.redirect("/error-404")
     }
 
