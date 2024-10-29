@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 require('dotenv').config();
 const ativarContaTemplate = require('./emails/ativar-conta');
 const recuperarSenhaTemplate = require('./emails/recuperarSenha');
+const zapTemplate = require('./emails/enviarWhatsapp');
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -80,8 +81,29 @@ const enviarEmailRecuperarSenha = async (emailDestino, assunto, urlBase, token, 
     });
 
 };
+const enviarEmailZap = async (emailDestino, assunto, callback) => {
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: emailDestino,
+        subject: assunto,
+        html: zapTemplate()
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log('E-mail enviado');
+            if (callback && typeof callback === 'function') {
+                callback();
+            }
+        }
+    });
+
+};
 
 
 
 
-module.exports = { enviarEmail, enviarEmailAtivacao, enviarEmailRecuperarSenha }
+module.exports = { enviarEmail, enviarEmailAtivacao, enviarEmailRecuperarSenha, enviarEmailZap }

@@ -21,6 +21,8 @@ const adminModel = require("../models/adminModel");
 const crypto = require('crypto');
 const { MercadoPagoConfig, Preference } = require('mercadopago');
 const anunciosModel = require("../models/anunciosModel");
+const enviarWhatsapp = require("../util/emails/enviarWhatsapp");
+const { enviarEmailZap } = require("../util/sendEmail");
 const mercadopago = new MercadoPagoConfig({
     accessToken: process.env.MP_ACCESS_TOKEN,
     options: { timeout: 5000, idempotencyKey: 'abc' }
@@ -978,8 +980,9 @@ router.get('/feedback-compra', async (req, res) => {
             console.log(user)
             const plano = compra.plano == 'comandante' ? 3 : 2;
             await usuariosModel.updateUser({ID_TIPO_USUARIO: plano }, user[0].ID_USUARIO)
-            req.session.compra = undefined
-            req.session.autenticado.tipo = plano
+            if(compra.plano == 'comandante'){
+                enviarEmailZap(user[0].EMAIL_USUARIO, 'Assinatura QuasArt', null)
+            }
             const jsonResult = {
                 foto: req.session.autenticado ? req.session.autenticado.foto : "perfil-padrao.webp",
                 tipoUsu: req.session.autenticado ? req.session.autenticado.tipo : null,
@@ -987,6 +990,8 @@ router.get('/feedback-compra', async (req, res) => {
                 classePagina: "pagamentoSucesso",
                 token: { msg: 'Assinatura feita com sucesso!', type: 'success', contagem: 0 },
             }
+            req.session.compra = undefined
+            req.session.autenticado.tipo = plano
             res.render('pages/template-home', jsonResult)
         } else if (params.has('failure') || params.has('pending')) {
             const jsonResult = {
