@@ -175,7 +175,7 @@ module.exports = () => {
                     </header>
                     <article>
                         <p class="text">Acesse nosso grupo no whatsapp para um maior contato e um suporte prioritário!</p>
-                        <a href="https://chat.whatsapp.com/Iu4hF8ATCkUKC1gzbURZQY" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #E6781E; color: #ffffff; text-decoration: none; border-radius: 5px;">Ativar conta</a>
+                        <a href="https://chat.whatsapp.com/Iu4hF8ATCkUKC1gzbURZQY" class="btn" style="display: inline-block; padding: 10px 20px; background-color: #3fc73f; color: #ffffff; text-decoration: none; border-radius: 5px;">Acessar grupo do whatsapp</a>
                     </article>
                     <footer>
                         <p class='text'>Ignore esse e-mail caso não tenha solicitado.</p>
