@@ -68,21 +68,49 @@ Siga as etapas abaixo para clonar e executar o projeto localmente:
 ## Prints do Projeto
 
 1. **Página Inicial**: Visão geral da plataforma.
+   <br>
+   <br>
+   <br>
+	<img width='50%' src="app/public/img/readme/print-1.png">               
+	<img width='50%' src="app/public/img/readme/print-2.png">               
+	<img width='50%' src="app/public/img/readme/print-3.png">               
+	<img width='50%' src="app/public/img/readme/print-4.png">               
+   <br>
+   <br>
+   <br>
+3. **Página de Cadastro de Obras**: Interface para adicionar novas obras.
+   <br>
+   <br>
+   <br>
+	<img width='50%' src="app/public/img/readme/print-5.png">               
+	<img width='50%' src="app/public/img/readme/print-6.png">               
+	
+   <br>
+   <br>
+   <br>
+4. **Feed Social**: Mostrando postagens, curtidas e comentários.
+   <br>
+   <br>
+   <br>
+	<img width='50%' src="app/public/img/readme/print-7.png">               
+	<img width='50%' src="app/public/img/readme/print-8.png">                
+	  
+   <br>
+   <br>
+   <br>
+5. **Painel de Administração**: Ferramentas para gerenciar usuários, posts e denúncias.
 
-   ![Página Inicial](path/to/image1.png)
-
-2. **Página de Cadastro de Obras**: Interface para adicionar novas obras.
-
-   ![Cadastro de Obras](path/to/image2.png)
-
-3. **Feed Social**: Mostrando postagens, curtidas e comentários.
-
-   ![Feed Social](path/to/image3.png)
-
-4. **Painel de Administração**: Ferramentas para gerenciar usuários, posts e denúncias.
-
-   ![Painel de Administração](path/to/image4.png)
-
+   <br>
+   <br>
+   <br>
+	<img width='50%' src="app/public/img/readme/print-9.png">               
+	<img width='50%' src="app/public/img/readme/print-10.png">                
+	<img width='50%' src="app/public/img/readme/print-11.png">                
+	<img width='50%' src="app/public/img/readme/print-12.png">                
+	  
+   <br>
+   <br>
+   <br>
 
 
 ## Equipe
